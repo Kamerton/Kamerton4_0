@@ -1,0 +1,10 @@
+E:\FT-MBMP-NET-ALL.2.6.1\fieldtalk\samples\cs\KamertomNet\bin\x86\Debug\GuiExample.exe
+E:\FT-MBMP-NET-ALL.2.6.1\fieldtalk\samples\cs\KamertomNet\bin\x86\Debug\GuiExample.pdb
+E:\FT-MBMP-NET-ALL.2.6.1\fieldtalk\samples\cs\KamertomNet\bin\x86\Debug\mbusmaster.net.dll
+E:\FT-MBMP-NET-ALL.2.6.1\fieldtalk\samples\cs\KamertomNet\bin\x86\Debug\mbusmaster.net.xml
+E:\FT-MBMP-NET-ALL.2.6.1\fieldtalk\samples\cs\KamertomNet\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\FT-MBMP-NET-ALL.2.6.1\fieldtalk\samples\cs\KamertomNet\obj\x86\Debug\GuiExample.Form1.resources
+E:\FT-MBMP-NET-ALL.2.6.1\fieldtalk\samples\cs\KamertomNet\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+E:\FT-MBMP-NET-ALL.2.6.1\fieldtalk\samples\cs\KamertomNet\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+E:\FT-MBMP-NET-ALL.2.6.1\fieldtalk\samples\cs\KamertomNet\obj\x86\Debug\GuiExample.exe
+E:\FT-MBMP-NET-ALL.2.6.1\fieldtalk\samples\cs\KamertomNet\obj\x86\Debug\GuiExample.pdb
