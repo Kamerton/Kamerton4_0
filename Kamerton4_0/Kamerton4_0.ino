@@ -1,6 +1,6 @@
 /*
 
- Kamerton4_0_0.ino
+ Kamerton4_0.ino
  VisualStudio
  
  Программа тестирования модуля "Камертон" (Базовый вариант)
@@ -821,7 +821,7 @@ void control_command()
 	switch (test_n)
 	{
 		case 1:
-			// regBank.set(7,1);      // Включить питание Камертон
+			// regBank.set(7,1);                              // Включить питание Камертон
 			 sence_all_off();                                // Отключить все сенсоры
 			break;
 		case 2:				
@@ -872,7 +872,7 @@ void control_command()
 
 void sence_all_off()
 {
-  regBank.set(7,1);      //Включить питание Камертон
+  regBank.set(7,1);      // Включить питание Камертон
   regBank.set(20,0);     // * XP2 Sence "Маг." 
   regBank.set(21,0);     // * XP5 Sence "ГГC."
   regBank.set(22,0);     // * XP3 Sence "ГГ-Радио1."  
@@ -909,7 +909,6 @@ void sence_all_off()
 			regBank.set(40126,regcount);           // 
 			regBank.set(126,1);
 			regBank.set(120,1);
-
 			myFile.print("Komanda sensor Off Sence Mag Error! - ");
 			myFile.println(regcount);
 		  }
@@ -921,7 +920,6 @@ void sence_all_off()
 			regBank.set(40132,regcount);            // 
 			regBank.set(132,1);
 			regBank.set(120,1);
-
 			myFile.print("Komanda sensor Off GGS  Error! - ");
 			myFile.println(regcount);
 		  }
@@ -933,7 +931,6 @@ void sence_all_off()
 			regBank.set(40121,regcount);            // 
 			regBank.set(121,1);
 			regBank.set(120,1);
-
 			myFile.print("Komanda sensor Off GG Radio1 Error! - ");
 			myFile.println(regcount);
 		  }
@@ -1129,10 +1126,7 @@ void sence_all_off()
 //regBank.add(30054);  // байт 4 прием бит 6 - Камертон    флаг управления микрофонами гарнитур
  
 
-
-
    delay(100);
- //  Serial.println("All sensors OFF!.");
 }
 void sence_all_on()
 {

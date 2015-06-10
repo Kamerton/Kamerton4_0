@@ -43,3 +43,6 @@ E:\2 SVN Kamerton4_0\trunk\KamertonPC_New\obj\x86\Debug\GenerateResource.read.1.
 E:\2 SVN Kamerton4_0\trunk\KamertonPC_New\obj\x86\Debug\GenerateResource.write.1.tlog
 E:\2 SVN Kamerton4_0\trunk\KamertonPC_New\obj\x86\Debug\KamertonTestNet.exe.manifest
 E:\2 SVN Kamerton4_0\trunk\KamertonPC_New\obj\x86\Debug\KamertonTestNet.application
+E:\1 SVN Kamerton4_0\trunk\KamertonPC_New\bin\x86\Debug\KamertonTestNet.exe.config
+E:\1 SVN Kamerton4_0\trunk\KamertonPC_New\obj\x86\Debug\KamertonTestNet.exe
+E:\1 SVN Kamerton4_0\trunk\KamertonPC_New\obj\x86\Debug\KamertonTestNet.pdb
