@@ -221,7 +221,7 @@ void flash_time()                                              // Программа обра
 	prer_Kmerton_Run = 1;
 		digitalWrite(ledPin12,HIGH);
 		//digitalWrite(ledPin12,!digitalRead(ledPin12));       // Сроб импульс начала прерывания
-	    prer_Kamerton();
+		prer_Kamerton();
 		digitalWrite(ledPin12,LOW);
 	prer_Kmerton_Run = 0;
 }
@@ -833,7 +833,7 @@ void control_command()
 				break;
 		case 3:
 			 Serial.println("test_instruktora");
-     		 test_instruktora();
+			 test_instruktora();
 				break;
 		case 4:				
 			//test_dispetchera();          //
@@ -1371,7 +1371,7 @@ void test_instruktora()
 		  UpdateRegs(); 
 		  delay(600);
 
-	 	 if(bitRead(i5,1) > 0)                       // Проверка флага подключения гарнитуры инструктора 2 наушниками
+		 if(bitRead(i5,1) > 0)                       // Проверка флага подключения гарнитуры инструктора 2 наушниками
 			{
 				int regcount = regBank.get(40127);   // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
 				regcount++;                          // увеличить счетчик ошибок
@@ -1385,8 +1385,8 @@ void test_instruktora()
 			{
 				myFile.println("Komanda sensor On  SpkLout  Ok!");
 			}
-		 	if(bitRead(i5,2) > 0)                     // Проверка флага подключения гарнитуры инструктора
-	         {
+			if(bitRead(i5,2) > 0)                     // Проверка флага подключения гарнитуры инструктора
+			 {
 				int regcount = regBank.get(40128);    // адрес счетчика ошибки сенсора гарнитуры инструктора
 				regcount++;                           // увеличить счетчик ошибок
 				regBank.set(40128,regcount);          // адрес счетчика ошибки сенсора гарнитуры инструктора
