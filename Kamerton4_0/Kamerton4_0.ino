@@ -610,9 +610,9 @@ void set_clock()
 		int hour   = regBank.get(adr_set_kontrol_hour);  
 		int minute = regBank.get(adr_set_kontrol_minute);  
 		int second = 0;
-		DateTime set_time = DateTime(year, month, day, hour, minute, second);
-		RTC.adjust(set_time);
-		regBank.set(adr_set_time, 0);    
+		DateTime set_time = DateTime(year, month, day, hour, minute, second); // Занести данные о времени в строку "set_time"
+		RTC.adjust(set_time);                                // Записать время в контроллер часов  
+		regBank.set(adr_set_time, 0);                        // Записать в регистр признак окончания выполнения команды
 }
 void data_clock_exchange()
 {
@@ -822,12 +822,15 @@ void control_command()
 	{
 		case 1:
 			// regBank.set(7,1);                              // Включить питание Камертон
+			 Serial.println(" sence_all_off");
 			 sence_all_off();                                // Отключить все сенсоры
 			break;
-		case 2:				
+		case 2:		
+			 Serial.println(" sence_all_on");
 			 sence_all_on();                                 // Включить все сенсоры
 				break;
 		case 3:
+			 Serial.println("test_instruktora");
 			test_instruktora();
 				break;
 		case 4:				
@@ -855,12 +858,15 @@ void control_command()
 			// test_mag();
 				break;
 		case 12:
+			 Serial.println("FileOpen");
 			   FileOpen();
 				break;
-		case 13:				
+		case 13:	
+			  Serial.println("FileClose");
 			  FileClose();
 				break;
-		case 14:				
+		case 14:
+			  Serial.println("Set clock");
 			  set_clock();
 				break;
 		default:
