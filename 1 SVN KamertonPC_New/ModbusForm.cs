@@ -3749,6 +3749,11 @@ namespace KamertonTest
                         {
                             writeVals[err] = 0;
                         }
+
+                    startWrReg = 121;                                                                   //  Обнулить счетчики ошибок
+                    numWrRegs = 14;
+                    res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);   // Выполнить сброс счетчиков 40121 - 40130
+
                     startWrReg = 121;                                                                   //  Обнулить счетчики ошибок
                     numWrRegs = 10;   
                     res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);   // Выполнить сброс счетчиков 40121 - 40130

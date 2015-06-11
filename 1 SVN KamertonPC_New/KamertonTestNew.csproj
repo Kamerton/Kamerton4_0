@@ -94,9 +94,9 @@
     <ApplicationIcon>kcontrol2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mbusmaster.net, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="mbusmaster.net, Version=2.7.1.0, Culture=neutral, PublicKeyToken=e3fe03aede4b4746, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\win\x86\mbusmaster.net.dll</HintPath>
+      <HintPath>.\mbusmaster.net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

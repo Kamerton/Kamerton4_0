@@ -9,14 +9,14 @@
     <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="KamertonTestNet.exe.manifest" size="5172">
+    <dependentAssembly dependencyType="install" codebase="KamertonTestNet.exe.manifest" size="5173">
       <assemblyIdentity name="KamertonTestNet.exe" version="1.0.0.22" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>zvLXSk9WlKqSXjUzWglz0cQQiNI=</dsig:DigestValue>
+        <dsig:DigestValue>9jySl5jI0kduNzV4KagzIn/AAcE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

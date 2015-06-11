@@ -50,19 +50,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>AtmjESPMMpu75xCziqpSgQFoA4o=</dsig:DigestValue>
+        <dsig:DigestValue>strElRIeFnI25vHWbz+PcxDa5G8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="mbusmaster.net.dll" size="60416">
-      <assemblyIdentity name="mbusmaster.net" version="2.7.0.0" publicKeyToken="E3FE03AEDE4B4746" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="mbusmaster.net.dll" size="134144">
+      <assemblyIdentity name="mbusmaster.net" version="2.7.1.0" publicKeyToken="E3FE03AEDE4B4746" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>7yPMCHMn+Hb0863M8jvk6t0lVGc=</dsig:DigestValue>
+        <dsig:DigestValue>vRHnFhzmefbYK9glBZG0u8DW5GQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

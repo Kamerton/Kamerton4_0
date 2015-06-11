@@ -226,16 +226,18 @@ void flash_time()                                              // Программа обра
 	prer_Kmerton_Run = 0;
 }
 
-void serialEvent2()
-{
-	digitalWrite(ledPin13,HIGH);
- // digitalWrite(ledPin13,!digitalRead(ledPin13));               // Сроб импульс MODBUS
-	while(prer_Kmerton_Run == 1)                               // Подождать окончания прерывания
-		{
-		}
-	slave.run(); 
-	digitalWrite(ledPin13,LOW);
-}
+//void serialEvent2()
+//{
+//	//digitalWrite(ledPin13,HIGH);
+// //// digitalWrite(ledPin13,!digitalRead(ledPin13));               // Сроб импульс MODBUS
+//	////while(prer_Kmerton_Run == 1)                                 // Подождать окончания прерывания
+//	////	{
+//	////	}
+//	//slave.run(); 
+//	//Serial.println("slave.run");
+//	//control_command();
+//	//digitalWrite(ledPin13,LOW);
+//}
 
 void dateTime(uint16_t* date, uint16_t* time)                  // Программа записи времени и даты файла
 {
@@ -433,8 +435,8 @@ prer_Kmerton_On = 0;
 	  reg_Kamerton();
 
 	  //-----Установить бит 0
-	boolean set_rele = regBank.get(1);
-	mcp_Out1.digitalWrite(0, set_rele);                 // Реле RL0 Звук  Звук Mic1p Диспетчер
+	 boolean set_rele = regBank.get(1);
+	 mcp_Out1.digitalWrite(0, set_rele);                 // Реле RL0 Звук  Звук Mic1p Диспетчер
 
 	 //-----Установить бит 1
 	  set_rele = regBank.get(2);
@@ -596,7 +598,7 @@ prer_Kmerton_On = 0;
 	  regBank.set(adr_reg_err_TangNPTT_ON,err_count_TangNPTT_ON);         // записать в регистр показания счетчика ошибок HeS2PTT_ON     
 	  regBank.set(adr_reg_err_TangNPTT_OFF,err_count_TangNPTT_OFF);       // записать в регистр показания счетчика ошибок HeS2PTT_OFF
 
-	 // regBank.set(adr_reg_count_Mic, count_test_Mic);                     // записать в регистр показания счетчика проходов теста Mic
+	 // regBank.set(adr_reg_count_Mic, count_test_Mic);                   // записать в регистр показания счетчика проходов теста Mic
 	  regBank.set(adr_reg_err_Mic, err_count_Mic);                        // записать в регистр показания счетчика ошибок CTS
 	  */
 	//  time_control();
@@ -816,7 +818,7 @@ void control_command()
 	UpdateRegs() ;
 
 	int test_n = regBank.get(adr_control_command); //адрес  40120
-
+	if (test_n!= 0) Serial.println(test_n);
 		
 	switch (test_n)
 	{
@@ -831,7 +833,7 @@ void control_command()
 				break;
 		case 3:
 			 Serial.println("test_instruktora");
-			test_instruktora();
+     		 test_instruktora();
 				break;
 		case 4:				
 			//test_dispetchera();          //
@@ -2127,7 +2129,8 @@ void setup()
 			Serial.println("RTC failed");
 			while(1);
 		};
-	
+	// DateTime set_time = DateTime(15, 6, 11, 14, 20, 0); // Занести данные о времени в строку "set_time"
+	// RTC.adjust(set_time);                                // Записа
 	serial_print_date();
 	Serial.println(" ");
 	setup_mcp();                                    // Настроить порты расширения  
@@ -2191,10 +2194,10 @@ void setup()
 
 void loop()
 {
+	slave.run(); 
 	control_command();
 //	delay(100);
-
-/*
+	/*
 	 Serial.print(regs_out[0],HEX);
 	 Serial.print("--");
 	 Serial.print(regs_out[1],HEX);
