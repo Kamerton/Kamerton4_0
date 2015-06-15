@@ -228,21 +228,28 @@ void flash_time()                                              // Программа обра
 	//}
 }
 
-//void serialEvent2()
-//{
+void serialEvent2()
+{
+	//while(prer_Kmerton_Run == true) {}  // 
+	//slave.run(); 
+	//control_command();
+
+
+
+
 //	while(prer_Kmerton_Run == 1) {}                                // Подождать окончания прерывания
 //		digitalWrite(ledPin13,HIGH);
 //	 // digitalWrite(ledPin13,!digitalRead(ledPin13));               // Сроб импульс MODBUS
 //		while(prer_Kmerton_Run == 1) {}                                // Подождать окончания прерывания
 //		slave.run(); 
-//		Serial.println("slave.run");
+		Serial.println("slave.run");
 //		control_command();
 //		digitalWrite(ledPin13,LOW);
 //	while (Serial.available()) 
 //	{
 //		char inChar = (char)Serial.read();
 //	}
-//}
+}
 
 void dateTime(uint16_t* date, uint16_t* time)                  // Программа записи времени и даты файла
 {
@@ -434,9 +441,9 @@ void UpdateRegs()                                        // Обновить регистры
 	//-----Установить бит 0
 	 while(prer_Kmerton_Run == true){}                  // Ждем окончания получения данных из Камертон
 
-     prer_Kmerton_On = false;                            // Запретить прерывание Камертон ??
+	 prer_Kmerton_On = false;                            // Запретить прерывание Камертон ??
 	 reg_Kamerton();                                     // Записать данные из Камертон в    регистры 
-	  	// Подпрограмма переноса данных из регистров на порты вывода
+		// Подпрограмма переноса данных из регистров на порты вывода
 	  //-----Установить бит 0
 	 boolean set_rele = regBank.get(1);
 	 mcp_Out1.digitalWrite(0, set_rele);                 // Реле RL0 Звук  Звук Mic1p Диспетчер
@@ -2209,7 +2216,7 @@ void setup()
 
 void loop()
 {
-	while(prer_Kmerton_Run == true) {}  // 
+	//while(prer_Kmerton_Run == true) {}  // 
 	slave.run(); 
 	control_command();
 //	delay(100);
