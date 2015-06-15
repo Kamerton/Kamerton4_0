@@ -154,9 +154,9 @@ void modbusSlave::getDigitalStatus(byte funcType, word startreg, word numregs)
 	// Если функция является чтение цифровых входов затем добавить 10001 до начального регистра
 	//else add 1 to the start register
 	if(funcType == READ_DISCRETE_INPUT)
-		startreg += 10001;
+		startreg += 10000;
 	else
-		startreg += 1;
+		startreg += 0;
 
 	//determine the message length
 	//определить длину сообщения
@@ -314,9 +314,9 @@ void modbusSlave::getImputRegister(byte funcType, word startreg, word numregs)
 	//if the function is to read analog inputs then add 30001 to the start register
 	//else add 40001 to the start register
 	if(funcType == READ_INPUT_REGISTER)
-		startreg += 30001;
+		startreg += 30000;
 	else
-		startreg += 40001;
+		startreg += 40000;
 
 	//calculate the query reply message length
 	//for each register queried add 2 bytes
@@ -367,14 +367,14 @@ void modbusSlave::setStatus(byte funcType, word reg, word val)
 	if(funcType == WRITE_COIL)
 	{
 		//Add 1 to the register value and set it's value to val
-		_device->set(reg + 1, val);
+		_device->set(reg + 0, val);
 		//write the function type to the response message
 		_msg[1] = WRITE_COIL;
 	}
 	else
 	{
 		//else add 40001 to the register and set it's value to val
-		_device->set(reg + 40001, val);
+		_device->set(reg + 40000, val);
 
 		//write the function type of the response message
 		_msg[1] = WRITE_REGISTER;
@@ -400,7 +400,7 @@ void modbusSlave::setMULTIPLE_Status(byte funcType, word reg, word val)
   uint8_t u8currentRegister, u8currentBit, u8frameByte, u8bitsno;
   unsigned int u16currentCoil, u16coil;
   boolean bTemp;
-  reg += 1;                                                  // Первый адрес регистров
+  reg += 0;                                                  // Первый адрес регистров
    unsigned int u16StartCoil = word(  _msg[2],  _msg[3] );   // Номер первого регистра
   unsigned int u16Coilno = word(  _msg[4],  _msg[5] );       // Количество регистров
 
@@ -468,7 +468,7 @@ void modbusSlave::setMULTIPLE_REGISTERS(byte funcType, word reg, word val)
 	   for (i = 0; i < u8regsno; i++)
 		   {
 			temp = word(_msg[ (BYTE_CNT + 1) + i*2 ],	_msg[ (BYTE_CNT + 2) + i*2 ]);
-			_device->set(reg + 40001 + i, temp);
+			_device->set(reg + 40000 + i, temp);
 		   }
 
 	//Set the query response message length
