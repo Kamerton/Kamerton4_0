@@ -164,7 +164,7 @@ byte regs_crc[1];                                   // Регистры работы с платой 
 
 byte Stop_Kam = 0;                                  // Флаг индикации чтения инф. из Камертона
 bool prer_Kmerton_On = true;                        // Флаг разрешение прерывания Камертон
-volatile bool prer_Kmerton_Run = true;              // Флаг разрешение прерывания Камертон
+volatile bool prer_Kmerton_Run = false;              // Флаг разрешение прерывания Камертон
 #define BUFFER_SIZEK 64                             // Размер буфера Камертон не более 128 байт
 unsigned char bufferK;                              // Счетчик количества принимаемых байт
 
@@ -218,14 +218,14 @@ unsigned int adr_set_time                = 36;    // адрес флаг установки
 
 void flash_time()                                              // Программа обработчик прерывания 
 { 
-	if(prer_Kmerton_On)
-	{
+	//if(prer_Kmerton_On)
+	//{
 		prer_Kmerton_Run = true;
 			//digitalWrite(ledPin12,HIGH);
 		prer_Kamerton();
 			//digitalWrite(ledPin12,LOW);
 		prer_Kmerton_Run = false;
-	}
+	//}
 }
 
 //void serialEvent2()
@@ -428,14 +428,14 @@ void reg_Kamerton()                                       // Подпрограмма преобр
 
 		 
 }
-void UpdateRegs()                             // Обновить регистры
+void UpdateRegs()                                        // Обновить регистры
 {
 	//-----Первый байт ------------
 	//-----Установить бит 0
-	// while(prer_Kmerton_Run == false){}      // Ждем окончания получения данных из Камертон
+	 while(prer_Kmerton_Run == true){}                  // Ждем окончания получения данных из Камертон
 
-     prer_Kmerton_On = false;          // Запретить прерывание Камертон ??
-	 reg_Kamerton();               // Записать данные из Камертон в    регистры 
+     prer_Kmerton_On = false;                            // Запретить прерывание Камертон ??
+	 reg_Kamerton();                                     // Записать данные из Камертон в    регистры 
 	  	// Подпрограмма переноса данных из регистров на порты вывода
 	  //-----Установить бит 0
 	 boolean set_rele = regBank.get(1);
@@ -2199,7 +2199,7 @@ void setup()
 	MsTimer2::start();                               // Включить таймер преравания
 	resistor(1, 200);                                // Установить уровень сигнала
 	resistor(2, 200);                                // Установить уровень сигнала
-	prer_Kmerton_On = true;                             // Разрешить прерывания на камертон
+	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	Serial.println(" ");
