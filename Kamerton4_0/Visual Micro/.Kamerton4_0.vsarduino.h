@@ -98,6 +98,7 @@ void UpdateRegs();
 void set_clock();
 void data_clock_exchange();
 void time_control();
+void time_control_get();
 void file_print_date();
 void serial_print_date();
 void resistor(int resist, int valresist);

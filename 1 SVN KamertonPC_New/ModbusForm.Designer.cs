@@ -399,9 +399,9 @@ namespace KamertonTest
             // 
             // TabControl1
             // 
-            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl1.Controls.Add(this.tabPage3);
             this.TabControl1.Controls.Add(this.tabPage4);
             this.TabControl1.Controls.Add(this.tabPage5);
@@ -441,7 +441,7 @@ namespace KamertonTest
             // groupBox21
             // 
             this.groupBox21.Controls.Add(this.textBox9);
-            this.groupBox21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox21.Location = new System.Drawing.Point(484, 332);
             this.groupBox21.Name = "groupBox21";
             this.groupBox21.Size = new System.Drawing.Size(498, 241);
@@ -452,7 +452,7 @@ namespace KamertonTest
             // 
             // textBox9
             // 
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox9.Location = new System.Drawing.Point(4, 23);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
@@ -535,7 +535,7 @@ namespace KamertonTest
             // groupBox20
             // 
             this.groupBox20.Controls.Add(this.textBox8);
-            this.groupBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox20.Location = new System.Drawing.Point(484, 82);
             this.groupBox20.Name = "groupBox20";
             this.groupBox20.Size = new System.Drawing.Size(498, 250);
@@ -545,7 +545,7 @@ namespace KamertonTest
             // 
             // textBox8
             // 
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox8.Location = new System.Drawing.Point(6, 23);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
@@ -558,7 +558,7 @@ namespace KamertonTest
             // groupBox19
             // 
             this.groupBox19.Controls.Add(this.textBox7);
-            this.groupBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox19.Location = new System.Drawing.Point(31, 82);
             this.groupBox19.Name = "groupBox19";
             this.groupBox19.Size = new System.Drawing.Size(447, 492);
@@ -568,7 +568,7 @@ namespace KamertonTest
             // 
             // textBox7
             // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.textBox7.Location = new System.Drawing.Point(7, 23);
             this.textBox7.Multiline = true;
@@ -583,7 +583,7 @@ namespace KamertonTest
             // 
             this.label98.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label98.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label98.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label98.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label98.Location = new System.Drawing.Point(946, 580);
             this.label98.Name = "label98";
             this.label98.Size = new System.Drawing.Size(30, 16);
@@ -640,7 +640,7 @@ namespace KamertonTest
             // textBox10
             // 
             this.textBox10.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox10.Location = new System.Drawing.Point(524, 373);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
@@ -652,7 +652,7 @@ namespace KamertonTest
             // 
             // label89
             // 
-            this.label89.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label89.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label89.ForeColor = System.Drawing.Color.Red;
             this.label89.Location = new System.Drawing.Point(256, 11);
             this.label89.Name = "label89";
@@ -663,7 +663,7 @@ namespace KamertonTest
             // 
             // label88
             // 
-            this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label88.ForeColor = System.Drawing.Color.Red;
             this.label88.Location = new System.Drawing.Point(191, 509);
             this.label88.Name = "label88";
@@ -687,7 +687,7 @@ namespace KamertonTest
             this.groupBox11.Controls.Add(this.label52);
             this.groupBox11.Controls.Add(this.label50);
             this.groupBox11.Controls.Add(this.label51);
-            this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox11.Location = new System.Drawing.Point(686, 65);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(210, 291);
@@ -698,7 +698,7 @@ namespace KamertonTest
             // label87
             // 
             this.label87.AutoSize = true;
-            this.label87.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label87.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label87.Location = new System.Drawing.Point(35, 164);
             this.label87.Name = "label87";
             this.label87.Size = new System.Drawing.Size(131, 16);
@@ -708,7 +708,7 @@ namespace KamertonTest
             // 
             // label53
             // 
-            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label53.Location = new System.Drawing.Point(16, 107);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(171, 37);
@@ -720,7 +720,7 @@ namespace KamertonTest
             // 
             this.label54.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label54.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label54.Location = new System.Drawing.Point(16, 144);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(171, 20);
@@ -731,7 +731,7 @@ namespace KamertonTest
             // 
             this.label79.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label79.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label79.Location = new System.Drawing.Point(19, 253);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(171, 20);
@@ -741,7 +741,7 @@ namespace KamertonTest
             // label76
             // 
             this.label76.AutoSize = true;
-            this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label76.Location = new System.Drawing.Point(43, 237);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(123, 16);
@@ -753,7 +753,7 @@ namespace KamertonTest
             // label75
             // 
             this.label75.AutoSize = true;
-            this.label75.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label75.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label75.Location = new System.Drawing.Point(35, 194);
             this.label75.Name = "label75";
             this.label75.Size = new System.Drawing.Size(138, 16);
@@ -765,7 +765,7 @@ namespace KamertonTest
             // label74
             // 
             this.label74.AutoSize = true;
-            this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label74.Location = new System.Drawing.Point(35, 65);
             this.label74.Name = "label74";
             this.label74.Size = new System.Drawing.Size(132, 16);
@@ -776,7 +776,7 @@ namespace KamertonTest
             // label73
             // 
             this.label73.AutoSize = true;
-            this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label73.Location = new System.Drawing.Point(53, 20);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(97, 16);
@@ -789,7 +789,7 @@ namespace KamertonTest
             // 
             this.label52.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label52.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label52.Location = new System.Drawing.Point(16, 82);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(171, 20);
@@ -801,7 +801,7 @@ namespace KamertonTest
             // 
             this.label50.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label50.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label50.Location = new System.Drawing.Point(19, 210);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(171, 20);
@@ -813,7 +813,7 @@ namespace KamertonTest
             // 
             this.label51.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label51.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label51.Location = new System.Drawing.Point(16, 36);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(171, 20);
@@ -845,7 +845,7 @@ namespace KamertonTest
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label66.Location = new System.Drawing.Point(322, 15);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(140, 30);
@@ -856,7 +856,7 @@ namespace KamertonTest
             // label65
             // 
             this.label65.AutoSize = true;
-            this.label65.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label65.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label65.Location = new System.Drawing.Point(240, 23);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(66, 15);
@@ -867,7 +867,7 @@ namespace KamertonTest
             // label64
             // 
             this.label64.AutoSize = true;
-            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label64.Location = new System.Drawing.Point(155, 25);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(47, 15);
@@ -877,7 +877,7 @@ namespace KamertonTest
             // 
             // label63
             // 
-            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label63.Location = new System.Drawing.Point(8, 75);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(123, 40);
@@ -888,7 +888,7 @@ namespace KamertonTest
             // 
             // label62
             // 
-            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label62.Location = new System.Drawing.Point(8, 42);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(122, 33);
@@ -901,7 +901,7 @@ namespace KamertonTest
             // 
             this.label49.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label49.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label49.Location = new System.Drawing.Point(304, 85);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(170, 20);
@@ -913,7 +913,7 @@ namespace KamertonTest
             // 
             this.label48.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label48.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label48.Location = new System.Drawing.Point(304, 50);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(170, 20);
@@ -925,7 +925,7 @@ namespace KamertonTest
             // 
             this.label47.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label47.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label47.Location = new System.Drawing.Point(225, 85);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(73, 20);
@@ -937,7 +937,7 @@ namespace KamertonTest
             // 
             this.label46.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label46.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label46.Location = new System.Drawing.Point(225, 50);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(73, 20);
@@ -948,7 +948,7 @@ namespace KamertonTest
             // 
             this.label45.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label45.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label45.Location = new System.Drawing.Point(136, 85);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(83, 20);
@@ -960,7 +960,7 @@ namespace KamertonTest
             // 
             this.label44.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label44.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label44.Location = new System.Drawing.Point(136, 50);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(83, 20);
@@ -977,7 +977,7 @@ namespace KamertonTest
             this.groupBox9.Controls.Add(this.textBox3);
             this.groupBox9.Controls.Add(this.textBox2);
             this.groupBox9.Controls.Add(this.textBox1);
-            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox9.Location = new System.Drawing.Point(371, 65);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(300, 291);
@@ -987,7 +987,7 @@ namespace KamertonTest
             // 
             // label86
             // 
-            this.label86.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label86.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label86.ForeColor = System.Drawing.Color.Red;
             this.label86.Location = new System.Drawing.Point(26, 253);
             this.label86.Name = "label86";
@@ -999,7 +999,7 @@ namespace KamertonTest
             // label69
             // 
             this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label69.Location = new System.Drawing.Point(6, 120);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(213, 15);
@@ -1010,7 +1010,7 @@ namespace KamertonTest
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label68.Location = new System.Drawing.Point(15, 89);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(204, 15);
@@ -1022,7 +1022,7 @@ namespace KamertonTest
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label67.Location = new System.Drawing.Point(21, 58);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(198, 15);
@@ -1075,7 +1075,7 @@ namespace KamertonTest
             this.groupBox8.Controls.Add(this.label39);
             this.groupBox8.Controls.Add(this.label38);
             this.groupBox8.Controls.Add(this.label37);
-            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox8.Location = new System.Drawing.Point(26, 65);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(330, 291);
@@ -1086,7 +1086,7 @@ namespace KamertonTest
             // label77
             // 
             this.label77.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label77.Location = new System.Drawing.Point(51, 20);
             this.label77.Name = "label77";
             this.label77.Size = new System.Drawing.Size(217, 26);
@@ -1097,7 +1097,7 @@ namespace KamertonTest
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label61.Location = new System.Drawing.Point(7, 240);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(177, 15);
@@ -1108,7 +1108,7 @@ namespace KamertonTest
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label60.Location = new System.Drawing.Point(7, 210);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(195, 15);
@@ -1119,7 +1119,7 @@ namespace KamertonTest
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label59.Location = new System.Drawing.Point(7, 180);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(183, 15);
@@ -1131,7 +1131,7 @@ namespace KamertonTest
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label58.Location = new System.Drawing.Point(7, 150);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(174, 15);
@@ -1142,7 +1142,7 @@ namespace KamertonTest
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label57.Location = new System.Drawing.Point(7, 120);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(163, 15);
@@ -1153,7 +1153,7 @@ namespace KamertonTest
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label56.Location = new System.Drawing.Point(7, 90);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(149, 15);
@@ -1164,7 +1164,7 @@ namespace KamertonTest
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label55.Location = new System.Drawing.Point(8, 60);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(149, 15);
@@ -1176,7 +1176,7 @@ namespace KamertonTest
             // 
             this.label43.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label43.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label43.Location = new System.Drawing.Point(223, 237);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(83, 20);
@@ -1187,7 +1187,7 @@ namespace KamertonTest
             // 
             this.label42.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label42.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label42.Location = new System.Drawing.Point(223, 207);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(83, 20);
@@ -1198,7 +1198,7 @@ namespace KamertonTest
             // 
             this.label41.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label41.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label41.Location = new System.Drawing.Point(223, 177);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(83, 20);
@@ -1209,7 +1209,7 @@ namespace KamertonTest
             // 
             this.label40.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label40.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label40.Location = new System.Drawing.Point(223, 147);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(83, 20);
@@ -1220,7 +1220,7 @@ namespace KamertonTest
             // 
             this.label39.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label39.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label39.Location = new System.Drawing.Point(223, 117);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(83, 20);
@@ -1231,7 +1231,7 @@ namespace KamertonTest
             // 
             this.label38.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label38.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label38.Location = new System.Drawing.Point(223, 87);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(83, 20);
@@ -1242,7 +1242,7 @@ namespace KamertonTest
             // 
             this.label37.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label37.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label37.Location = new System.Drawing.Point(168, 57);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(138, 20);
@@ -1298,7 +1298,7 @@ namespace KamertonTest
             // 
             // label92
             // 
-            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label92.Location = new System.Drawing.Point(558, 39);
             this.label92.Name = "label92";
             this.label92.Size = new System.Drawing.Size(189, 18);
@@ -1309,7 +1309,7 @@ namespace KamertonTest
             // 
             // textBox11
             // 
-            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox11.Location = new System.Drawing.Point(552, 424);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
@@ -1321,7 +1321,7 @@ namespace KamertonTest
             // label95
             // 
             this.label95.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label95.Location = new System.Drawing.Point(559, 65);
             this.label95.Name = "label95";
             this.label95.Size = new System.Drawing.Size(187, 30);
@@ -1389,7 +1389,7 @@ namespace KamertonTest
             this.groupBox17.Controls.Add(this.button69);
             this.groupBox17.Controls.Add(this.button71);
             this.groupBox17.Controls.Add(this.button79);
-            this.groupBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox17.Location = new System.Drawing.Point(765, 21);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(209, 397);
@@ -1399,7 +1399,7 @@ namespace KamertonTest
             // 
             // label70
             // 
-            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label70.Location = new System.Drawing.Point(0, 288);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(86, 36);
@@ -1439,7 +1439,7 @@ namespace KamertonTest
             // 
             // label163
             // 
-            this.label163.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label163.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label163.Location = new System.Drawing.Point(0, 259);
             this.label163.Name = "label163";
             this.label163.Size = new System.Drawing.Size(92, 18);
@@ -1458,7 +1458,7 @@ namespace KamertonTest
             // 
             // label162
             // 
-            this.label162.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label162.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label162.Location = new System.Drawing.Point(9, 230);
             this.label162.Name = "label162";
             this.label162.Size = new System.Drawing.Size(77, 18);
@@ -1486,7 +1486,7 @@ namespace KamertonTest
             // 
             // label161
             // 
-            this.label161.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label161.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label161.Location = new System.Drawing.Point(3, 201);
             this.label161.Name = "label161";
             this.label161.Size = new System.Drawing.Size(83, 18);
@@ -1496,7 +1496,7 @@ namespace KamertonTest
             // 
             // label130
             // 
-            this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label130.Location = new System.Drawing.Point(5, 370);
             this.label130.Name = "label130";
             this.label130.Size = new System.Drawing.Size(46, 23);
@@ -1507,7 +1507,7 @@ namespace KamertonTest
             // 
             // label160
             // 
-            this.label160.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label160.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label160.Location = new System.Drawing.Point(0, 172);
             this.label160.Name = "label160";
             this.label160.Size = new System.Drawing.Size(92, 18);
@@ -1527,7 +1527,7 @@ namespace KamertonTest
             // 
             // label159
             // 
-            this.label159.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label159.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label159.Location = new System.Drawing.Point(11, 134);
             this.label159.Name = "label159";
             this.label159.Size = new System.Drawing.Size(75, 38);
@@ -1538,7 +1538,7 @@ namespace KamertonTest
             // 
             // label127
             // 
-            this.label127.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label127.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label127.Location = new System.Drawing.Point(2, 341);
             this.label127.Name = "label127";
             this.label127.Size = new System.Drawing.Size(46, 23);
@@ -1549,7 +1549,7 @@ namespace KamertonTest
             // 
             // label158
             // 
-            this.label158.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label158.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label158.Location = new System.Drawing.Point(9, 116);
             this.label158.Name = "label158";
             this.label158.Size = new System.Drawing.Size(77, 18);
@@ -1571,7 +1571,7 @@ namespace KamertonTest
             // 
             // label135
             // 
-            this.label135.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label135.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label135.Location = new System.Drawing.Point(3, 85);
             this.label135.Name = "label135";
             this.label135.Size = new System.Drawing.Size(77, 18);
@@ -1581,7 +1581,7 @@ namespace KamertonTest
             // 
             // label132
             // 
-            this.label132.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label132.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label132.Location = new System.Drawing.Point(0, 56);
             this.label132.Name = "label132";
             this.label132.Size = new System.Drawing.Size(83, 18);
@@ -1591,7 +1591,7 @@ namespace KamertonTest
             // 
             // label129
             // 
-            this.label129.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label129.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label129.Location = new System.Drawing.Point(0, 28);
             this.label129.Name = "label129";
             this.label129.Size = new System.Drawing.Size(86, 18);
@@ -1782,7 +1782,7 @@ namespace KamertonTest
             // 
             // groupBox14
             // 
-            this.groupBox14.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (192)))), ((int) (((byte) (255)))), ((int) (((byte) (255)))));
+            this.groupBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.groupBox14.Controls.Add(this.label149);
             this.groupBox14.Controls.Add(this.label151);
             this.groupBox14.Controls.Add(this.label146);
@@ -1804,7 +1804,7 @@ namespace KamertonTest
             // 
             // label149
             // 
-            this.label149.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label149.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label149.ForeColor = System.Drawing.Color.DarkRed;
             this.label149.Location = new System.Drawing.Point(4, 108);
             this.label149.Name = "label149";
@@ -1815,7 +1815,7 @@ namespace KamertonTest
             // 
             // label151
             // 
-            this.label151.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label151.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label151.Location = new System.Drawing.Point(222, 38);
             this.label151.Name = "label151";
             this.label151.Size = new System.Drawing.Size(52, 23);
@@ -1825,7 +1825,7 @@ namespace KamertonTest
             // 
             // label146
             // 
-            this.label146.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label146.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label146.Location = new System.Drawing.Point(6, 37);
             this.label146.Name = "label146";
             this.label146.Size = new System.Drawing.Size(168, 23);
@@ -1835,7 +1835,7 @@ namespace KamertonTest
             // 
             // label153
             // 
-            this.label153.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label153.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label153.Location = new System.Drawing.Point(222, 9);
             this.label153.Name = "label153";
             this.label153.Size = new System.Drawing.Size(52, 23);
@@ -1868,7 +1868,7 @@ namespace KamertonTest
             // 
             // label154
             // 
-            this.label154.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label154.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label154.Location = new System.Drawing.Point(228, 67);
             this.label154.Name = "label154";
             this.label154.Size = new System.Drawing.Size(46, 23);
@@ -1878,7 +1878,7 @@ namespace KamertonTest
             // 
             // label147
             // 
-            this.label147.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label147.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label147.Location = new System.Drawing.Point(0, 11);
             this.label147.Name = "label147";
             this.label147.Size = new System.Drawing.Size(174, 23);
@@ -1900,7 +1900,7 @@ namespace KamertonTest
             // 
             // label145
             // 
-            this.label145.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label145.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label145.Location = new System.Drawing.Point(6, 66);
             this.label145.Name = "label145";
             this.label145.Size = new System.Drawing.Size(168, 23);
@@ -1962,7 +1962,7 @@ namespace KamertonTest
             // label102
             // 
             this.label102.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label102.ForeColor = System.Drawing.Color.Lime;
             this.label102.Location = new System.Drawing.Point(3, 65);
             this.label102.Name = "label102";
@@ -2016,7 +2016,7 @@ namespace KamertonTest
             this.groupBox13.Controls.Add(this.button26);
             this.groupBox13.Controls.Add(this.button28);
             this.groupBox13.Controls.Add(this.button29);
-            this.groupBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox13.Location = new System.Drawing.Point(550, 112);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(209, 276);
@@ -2026,7 +2026,7 @@ namespace KamertonTest
             // 
             // label164
             // 
-            this.label164.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label164.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label164.Location = new System.Drawing.Point(6, 228);
             this.label164.Name = "label164";
             this.label164.Size = new System.Drawing.Size(80, 23);
@@ -2086,7 +2086,7 @@ namespace KamertonTest
             // 
             // label90
             // 
-            this.label90.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label90.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label90.Location = new System.Drawing.Point(6, 112);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(80, 23);
@@ -2096,7 +2096,7 @@ namespace KamertonTest
             // 
             // label91
             // 
-            this.label91.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label91.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label91.Location = new System.Drawing.Point(6, 83);
             this.label91.Name = "label91";
             this.label91.Size = new System.Drawing.Size(80, 23);
@@ -2116,7 +2116,7 @@ namespace KamertonTest
             // 
             // label93
             // 
-            this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label93.Location = new System.Drawing.Point(6, 141);
             this.label93.Name = "label93";
             this.label93.Size = new System.Drawing.Size(80, 23);
@@ -2126,7 +2126,7 @@ namespace KamertonTest
             // 
             // label94
             // 
-            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label94.Location = new System.Drawing.Point(6, 54);
             this.label94.Name = "label94";
             this.label94.Size = new System.Drawing.Size(80, 23);
@@ -2176,7 +2176,7 @@ namespace KamertonTest
             // 
             // label96
             // 
-            this.label96.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label96.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label96.Location = new System.Drawing.Point(6, 170);
             this.label96.Name = "label96";
             this.label96.Size = new System.Drawing.Size(80, 23);
@@ -2196,7 +2196,7 @@ namespace KamertonTest
             // 
             // label97
             // 
-            this.label97.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label97.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label97.Location = new System.Drawing.Point(6, 25);
             this.label97.Name = "label97";
             this.label97.Size = new System.Drawing.Size(80, 23);
@@ -2226,7 +2226,7 @@ namespace KamertonTest
             // 
             // label100
             // 
-            this.label100.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label100.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label100.Location = new System.Drawing.Point(6, 198);
             this.label100.Name = "label100";
             this.label100.Size = new System.Drawing.Size(80, 23);
@@ -2317,7 +2317,7 @@ namespace KamertonTest
             this.groupBox15.Controls.Add(this.label118);
             this.groupBox15.Controls.Add(this.button73);
             this.groupBox15.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox15.Location = new System.Drawing.Point(234, 20);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Size = new System.Drawing.Size(310, 411);
@@ -2327,7 +2327,7 @@ namespace KamertonTest
             // 
             // label148
             // 
-            this.label148.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label148.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label148.ForeColor = System.Drawing.Color.DarkRed;
             this.label148.Location = new System.Drawing.Point(15, 385);
             this.label148.Name = "label148";
@@ -2339,7 +2339,7 @@ namespace KamertonTest
             // 
             // label139
             // 
-            this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label139.Location = new System.Drawing.Point(-1, 195);
             this.label139.Name = "label139";
             this.label139.Size = new System.Drawing.Size(165, 37);
@@ -2349,7 +2349,7 @@ namespace KamertonTest
             // 
             // label126
             // 
-            this.label126.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label126.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label126.Location = new System.Drawing.Point(-3, 84);
             this.label126.Name = "label126";
             this.label126.Size = new System.Drawing.Size(165, 23);
@@ -2489,7 +2489,7 @@ namespace KamertonTest
             // 
             // label125
             // 
-            this.label125.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label125.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label125.Location = new System.Drawing.Point(6, 172);
             this.label125.Name = "label125";
             this.label125.Size = new System.Drawing.Size(165, 23);
@@ -2510,7 +2510,7 @@ namespace KamertonTest
             // 
             // label124
             // 
-            this.label124.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label124.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label124.Location = new System.Drawing.Point(6, 345);
             this.label124.Name = "label124";
             this.label124.Size = new System.Drawing.Size(165, 23);
@@ -2552,7 +2552,7 @@ namespace KamertonTest
             // 
             // label123
             // 
-            this.label123.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label123.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label123.Location = new System.Drawing.Point(6, 52);
             this.label123.Name = "label123";
             this.label123.Size = new System.Drawing.Size(165, 23);
@@ -2572,7 +2572,7 @@ namespace KamertonTest
             // 
             // label122
             // 
-            this.label122.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label122.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label122.Location = new System.Drawing.Point(6, 26);
             this.label122.Name = "label122";
             this.label122.Size = new System.Drawing.Size(165, 23);
@@ -2612,7 +2612,7 @@ namespace KamertonTest
             // 
             // label121
             // 
-            this.label121.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label121.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label121.Location = new System.Drawing.Point(6, 315);
             this.label121.Name = "label121";
             this.label121.Size = new System.Drawing.Size(165, 23);
@@ -2662,7 +2662,7 @@ namespace KamertonTest
             // 
             // label120
             // 
-            this.label120.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label120.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label120.Location = new System.Drawing.Point(6, 114);
             this.label120.Name = "label120";
             this.label120.Size = new System.Drawing.Size(165, 23);
@@ -2682,7 +2682,7 @@ namespace KamertonTest
             // 
             // label116
             // 
-            this.label116.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label116.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label116.Location = new System.Drawing.Point(6, 286);
             this.label116.Name = "label116";
             this.label116.Size = new System.Drawing.Size(165, 23);
@@ -2733,7 +2733,7 @@ namespace KamertonTest
             // 
             // label119
             // 
-            this.label119.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label119.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label119.Location = new System.Drawing.Point(6, 142);
             this.label119.Name = "label119";
             this.label119.Size = new System.Drawing.Size(165, 23);
@@ -2753,7 +2753,7 @@ namespace KamertonTest
             // 
             // label117
             // 
-            this.label117.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label117.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label117.Location = new System.Drawing.Point(6, 250);
             this.label117.Name = "label117";
             this.label117.Size = new System.Drawing.Size(165, 43);
@@ -2803,7 +2803,7 @@ namespace KamertonTest
             // 
             // label118
             // 
-            this.label118.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label118.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label118.Location = new System.Drawing.Point(6, 232);
             this.label118.Name = "label118";
             this.label118.Size = new System.Drawing.Size(165, 20);
@@ -2835,7 +2835,7 @@ namespace KamertonTest
             this.groupBox7.Controls.Add(this.label26);
             this.groupBox7.Controls.Add(this.label25);
             this.groupBox7.Controls.Add(this.label24);
-            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox7.Location = new System.Drawing.Point(7, 327);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(221, 237);
@@ -2846,7 +2846,7 @@ namespace KamertonTest
             // label141
             // 
             this.label141.AutoSize = true;
-            this.label141.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label141.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label141.Location = new System.Drawing.Point(38, 39);
             this.label141.Name = "label141";
             this.label141.Size = new System.Drawing.Size(165, 18);
@@ -2857,7 +2857,7 @@ namespace KamertonTest
             // 
             this.label36.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label36.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label36.Location = new System.Drawing.Point(76, 177);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(138, 20);
@@ -2868,7 +2868,7 @@ namespace KamertonTest
             // 
             this.label35.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label35.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label35.Location = new System.Drawing.Point(76, 137);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(138, 20);
@@ -2879,7 +2879,7 @@ namespace KamertonTest
             // 
             this.label34.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label34.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label34.Location = new System.Drawing.Point(76, 97);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(138, 20);
@@ -2890,17 +2890,18 @@ namespace KamertonTest
             // 
             this.label33.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label33.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label33.Location = new System.Drawing.Point(76, 57);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(138, 20);
             this.label33.TabIndex = 10;
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label33.Click += new System.EventHandler(this.label33_Click);
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label29.Location = new System.Drawing.Point(145, 197);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(69, 20);
@@ -2910,7 +2911,7 @@ namespace KamertonTest
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label27.Location = new System.Drawing.Point(9, 177);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(60, 20);
@@ -2921,7 +2922,7 @@ namespace KamertonTest
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label26.Location = new System.Drawing.Point(9, 137);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(60, 20);
@@ -2931,7 +2932,7 @@ namespace KamertonTest
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label25.Location = new System.Drawing.Point(10, 97);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(60, 20);
@@ -2942,7 +2943,7 @@ namespace KamertonTest
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label24.Location = new System.Drawing.Point(9, 57);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(60, 20);
@@ -2961,7 +2962,7 @@ namespace KamertonTest
             this.groupBox6.Controls.Add(this.label23);
             this.groupBox6.Controls.Add(this.label22);
             this.groupBox6.Controls.Add(this.label21);
-            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox6.Location = new System.Drawing.Point(6, 144);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(222, 177);
@@ -2972,7 +2973,7 @@ namespace KamertonTest
             // label140
             // 
             this.label140.AutoSize = true;
-            this.label140.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label140.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label140.Location = new System.Drawing.Point(38, 141);
             this.label140.Name = "label140";
             this.label140.Size = new System.Drawing.Size(165, 18);
@@ -2983,7 +2984,7 @@ namespace KamertonTest
             // 
             this.label32.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label32.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label32.Location = new System.Drawing.Point(76, 111);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(138, 20);
@@ -2994,7 +2995,7 @@ namespace KamertonTest
             // 
             this.label31.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label31.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label31.Location = new System.Drawing.Point(76, 78);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(138, 20);
@@ -3005,17 +3006,18 @@ namespace KamertonTest
             // 
             this.label30.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label30.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label30.Location = new System.Drawing.Point(76, 45);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(138, 20);
             this.label30.TabIndex = 7;
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label30.Click += new System.EventHandler(this.label30_Click);
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label28.Location = new System.Drawing.Point(145, 25);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(69, 20);
@@ -3026,7 +3028,7 @@ namespace KamertonTest
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label23.Location = new System.Drawing.Point(10, 111);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(60, 20);
@@ -3036,7 +3038,7 @@ namespace KamertonTest
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label22.Location = new System.Drawing.Point(10, 78);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(60, 20);
@@ -3046,7 +3048,7 @@ namespace KamertonTest
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label21.Location = new System.Drawing.Point(10, 45);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(60, 20);
@@ -3188,8 +3190,8 @@ namespace KamertonTest
             // 
             // GroupBox5
             // 
-            this.GroupBox5.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox5.Controls.Add(this.txtWriteVal8);
             this.GroupBox5.Controls.Add(this.txtWriteVal7);
             this.GroupBox5.Controls.Add(this.txtWriteVal6);
@@ -3271,9 +3273,9 @@ namespace KamertonTest
             // 
             // GroupBox4
             // 
-            this.GroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox4.Controls.Add(this.lblReadValues);
             this.GroupBox4.Location = new System.Drawing.Point(12, 88);
             this.GroupBox4.Name = "GroupBox4";
@@ -3284,9 +3286,9 @@ namespace KamertonTest
             // 
             // lblReadValues
             // 
-            this.lblReadValues.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblReadValues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblReadValues.Location = new System.Drawing.Point(7, 15);
             this.lblReadValues.Name = "lblReadValues";
             this.lblReadValues.Size = new System.Drawing.Size(944, 422);
@@ -3294,8 +3296,8 @@ namespace KamertonTest
             // 
             // lblResult2
             // 
-            this.lblResult2.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult2.Location = new System.Drawing.Point(12, 617);
             this.lblResult2.Name = "lblResult2";
             this.lblResult2.Size = new System.Drawing.Size(953, 20);
@@ -3403,7 +3405,7 @@ namespace KamertonTest
             // label84
             // 
             this.label84.AutoSize = true;
-            this.label84.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label84.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label84.Location = new System.Drawing.Point(22, 86);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(131, 15);
@@ -3413,9 +3415,9 @@ namespace KamertonTest
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm:ss";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(16, 104);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -3427,7 +3429,7 @@ namespace KamertonTest
             // 
             this.label80.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label80.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label80.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label80.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label80.Location = new System.Drawing.Point(16, 40);
             this.label80.Name = "label80";
             this.label80.Size = new System.Drawing.Size(171, 20);
@@ -3437,7 +3439,7 @@ namespace KamertonTest
             // label81
             // 
             this.label81.AutoSize = true;
-            this.label81.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label81.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label81.Location = new System.Drawing.Point(22, 22);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(112, 15);
@@ -3448,7 +3450,7 @@ namespace KamertonTest
             // label82
             // 
             this.label82.AutoSize = true;
-            this.label82.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label82.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label82.Location = new System.Drawing.Point(19, 141);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(124, 15);
@@ -3460,19 +3462,20 @@ namespace KamertonTest
             // 
             this.label83.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label83.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label83.Location = new System.Drawing.Point(16, 159);
             this.label83.Name = "label83";
             this.label83.Size = new System.Drawing.Size(171, 20);
             this.label83.TabIndex = 31;
             this.label83.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label83.Click += new System.EventHandler(this.label83_Click);
             // 
             // label78
             // 
-            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label78.Location = new System.Drawing.Point(1, 426);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(963, 57);
@@ -3482,10 +3485,10 @@ namespace KamertonTest
             // 
             // lblResult
             // 
-            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblResult.Location = new System.Drawing.Point(3, 355);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(963, 46);
@@ -3495,13 +3498,13 @@ namespace KamertonTest
             // 
             // Label13
             // 
-            this.Label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.Label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Label13.Location = new System.Drawing.Point(6, 282);
             this.Label13.Name = "Label13";
             this.Label13.Size = new System.Drawing.Size(585, 50);
             this.Label13.TabIndex = 14;
             this.Label13.Text = "Все параметры должны быть выбраны ПРЕЖДЕ, чем открывать порт. После того, как пор" +
-                "т открыт, никаких изменений не может быть сделано";
+    "т открыт, никаких изменений не может быть сделано";
             // 
             // GroupBox3
             // 
@@ -3836,7 +3839,7 @@ namespace KamertonTest
             // groupBox22
             // 
             this.groupBox22.Controls.Add(this.checkBoxSoundAll);
-            this.groupBox22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox22.Location = new System.Drawing.Point(413, 20);
             this.groupBox22.Name = "groupBox22";
             this.groupBox22.Size = new System.Drawing.Size(210, 377);
@@ -3857,7 +3860,7 @@ namespace KamertonTest
             // groupBox18
             // 
             this.groupBox18.Controls.Add(this.checkBoxPTTAll);
-            this.groupBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox18.Location = new System.Drawing.Point(217, 20);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(190, 377);
@@ -3890,7 +3893,7 @@ namespace KamertonTest
             this.groupBox16.Controls.Add(this.checkBoxSenGGRadio2);
             this.groupBox16.Controls.Add(this.checkBoxSenGGRadio1);
             this.groupBox16.Controls.Add(this.checkBoxSenAll);
-            this.groupBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.groupBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox16.Location = new System.Drawing.Point(21, 20);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Size = new System.Drawing.Size(190, 377);

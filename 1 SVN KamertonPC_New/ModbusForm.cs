@@ -512,7 +512,7 @@ namespace KamertonTest
  
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
 
-            startRdReg = 46; // 40046 Адрес дата/время контроллера
+            startRdReg = 46; // 40046 Адрес дата/время контроллера  
             numRdRegs = 8;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
             lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
@@ -747,10 +747,9 @@ namespace KamertonTest
             string binaryResult = "";
             int decimalNum;
             bool[] Dec_bin = new bool[64];
-            //button24.Refresh();
             startRdReg = 1;
             numRdRegs = 7;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);   // 03  Считать число из регистров по адресу  40000 -49999
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);    // 03  Считать число из регистров по адресу  40000 -49999
             label78.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
                 {
@@ -2285,11 +2284,11 @@ namespace KamertonTest
             numVal = Convert.ToInt32(command.Substring(14, 2), CultureInfo.CurrentCulture);
             writeVals[4] = (ushort)numVal;   // 
            
-            startWrReg = 53;
+            startWrReg = 52;              
             numWrRegs = 6;   //
 
             res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
-            startWrReg = 121;
+            startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 14);                          // Записать системное время
           }
 
@@ -2321,10 +2320,10 @@ namespace KamertonTest
             numVal = Convert.ToInt32(command.Substring(10, 2), CultureInfo.CurrentCulture);
             writeVals[4] = (ushort)numVal;   // 
            
-            startWrReg = 53;
+            startWrReg = 52;
             numWrRegs = 6;   //
             res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
-            startWrReg = 121;
+            startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 14);                       // Записать новое время пользователя
           }
 
@@ -2595,7 +2594,7 @@ namespace KamertonTest
            
             //startCoil = 33; // Запустить тест CTS
             //res = myProtocol.writeCoil(slave, startCoil, true); 
-            timer_byte_set.Enabled = true;        // Включить контроль состояния модуля Камертон            
+            timer_byte_set.Enabled = true;                // Включить контроль состояния модуля Камертон            
 
         }
 
@@ -4202,6 +4201,21 @@ namespace KamertonTest
         }
 
         private void checkBoxSenGGRadio1_CheckedChanged (object sender, EventArgs e)
+        {
+
+        }
+
+        private void label30_Click (object sender, EventArgs e)
+        {
+
+        }
+
+        private void label33_Click (object sender, EventArgs e)
+        {
+
+        }
+
+        private void label83_Click (object sender, EventArgs e)
         {
 
         }
