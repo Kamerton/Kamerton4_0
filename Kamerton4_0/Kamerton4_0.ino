@@ -218,38 +218,28 @@ unsigned int adr_set_time                = 36;    // адрес флаг установки
 
 void flash_time()                                              // Программа обработчик прерывания 
 { 
-	//if(prer_Kmerton_On)
-	//{
 		prer_Kmerton_Run = true;
 			//digitalWrite(ledPin12,HIGH);
 		prer_Kamerton();
 			//digitalWrite(ledPin12,LOW);
 		prer_Kmerton_Run = false;
-	//}
 }
 
-void serialEvent2()
-{
-	//while(prer_Kmerton_Run == true) {}  // 
-	//slave.run(); 
-	//control_command();
-
-
-
-
+//void serialEvent2()
+//{
 //	while(prer_Kmerton_Run == 1) {}                                // Подождать окончания прерывания
 //		digitalWrite(ledPin13,HIGH);
 //	 // digitalWrite(ledPin13,!digitalRead(ledPin13));               // Сроб импульс MODBUS
 //		while(prer_Kmerton_Run == 1) {}                                // Подождать окончания прерывания
 //		slave.run(); 
-		Serial.println("slave.run");
+	//	Serial.println("slave.run");
 //		control_command();
 //		digitalWrite(ledPin13,LOW);
 //	while (Serial.available()) 
 //	{
 //		char inChar = (char)Serial.read();
 //	}
-}
+//}
 
 void dateTime(uint16_t* date, uint16_t* time)                  // Программа записи времени и даты файла
 {
@@ -844,15 +834,15 @@ void control_command()
 	{
 		case 1:
 			// regBank.set(7,1);                              // Включить питание Камертон
-			 Serial.println(" sence_all_off");
+			// Serial.println(" sence_all_off");
 			 sence_all_off();                                // Отключить все сенсоры
 			break;
 		case 2:		
-			 Serial.println(" sence_all_on");
+			// Serial.println(" sence_all_on");
 			 sence_all_on();                                 // Включить все сенсоры
 				break;
 		case 3:
-			 Serial.println("test_instruktora");
+			// Serial.println("test_instruktora");
 			 test_instruktora();
 				break;
 		case 4:				
@@ -1342,24 +1332,24 @@ void test_instruktora()
 	  myFile.println("");
 	  myFile.println("Test_instruktora start!");
 	  myFile.println("Komanda sensor Off SpkLout  send!");
-	  regBank.set(29,0);                                    // XP1- 13 HeS2Ls  Отключить сенсор инструктора
+	  regBank.set(29,0);                                                // XP1- 13 HeS2Ls  Отключить сенсор инструктора
 	  myFile.println("Komanda sensor Off SpkRout  send!");
-	  regBank.set(27,0);                                    // XP1- 16 HeS2Rs  Отключить сенсор инструктора c 2  наушниками
+	  regBank.set(27,0);                                                // XP1- 16 HeS2Rs  Отключить сенсор инструктора c 2  наушниками
 	  UpdateRegs(); 
 	  delay(600);
 	  UpdateRegs(); 
 	  delay(600);
-	  byte i5 = regs_in[2];
+	  byte i5 = regs_in[2];                                            // 
 
-		if(bitRead(i5,1) > 0)                              // Проверка  флага подключения гарнитуры инструктора 2 наушниками
+		if(bitRead(i5,1) > 0)                                          // Проверка  флага подключения гарнитуры инструктора 2 наушниками
 		  {
-			int regcount = regBank.get(40127);              // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
-			regcount++;                                     // увеличить счетчик ошибок
-			regBank.set(40127,regcount);                    // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
-			regBank.set(127,1);                             // установить флаг ошибки
-			regBank.set(120,1);                             // установить общий флаг ошибки
-			resistor(1, 255);                               // Установить уровень сигнала
-			resistor(2, 255);                               // Установить уровень сигнала
+			int regcount = regBank.get(40127);                         // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
+			regcount++;                                                // увеличить счетчик ошибок
+			regBank.set(40127,regcount);                               // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
+			regBank.set(127,1);                                        // установить флаг ошибки
+			regBank.set(120,1);                                        // установить общий флаг ошибки
+			resistor(1, 255);                                          // Установить уровень сигнала
+			resistor(2, 255);                                          // Установить уровень сигнала
 			myFile.print("Komanda sensor Off SpkLout  Error! - ");
 			myFile.println(regcount);
 		  }
@@ -1368,13 +1358,13 @@ void test_instruktora()
 			myFile.println("Komanda sensor Off SpkLout  Ok!");
 		  }
 
-		if(bitRead(i5,2) > 0)                                // Проверка  флага подключения гарнитуры инструктора 
+		if(bitRead(i5,2) > 0)                                          // Проверка  флага подключения гарнитуры инструктора 
 		  {
-			 int regcount = regBank.get(40128);              // адрес счетчика ошибки сенсора гарнитуры инструктора
-			 regcount++;                                     // увеличить счетчик ошибок
-			 regBank.set(40128,regcount);                    // адрес счетчика ошибки сенсора гарнитуры инструктора
-			 regBank.set(128,1);                             // установить флаг ошибки
-			 regBank.set(120,1);                             // установить общий флаг ошибки
+			 int regcount = regBank.get(40128);                        // адрес счетчика ошибки сенсора гарнитуры инструктора
+			 regcount++;                                               // увеличить счетчик ошибок
+			 regBank.set(40128,regcount);                              // адрес счетчика ошибки сенсора гарнитуры инструктора
+			 regBank.set(128,1);                                       // установить флаг ошибки
+			 regBank.set(120,1);                                       // установить общий флаг ошибки
 			 myFile.print("Komanda sensor Off SpkRout  Error! - ");
 			 myFile.println(regcount);
 		  }
@@ -1384,21 +1374,21 @@ void test_instruktora()
 		  }
 
 		  myFile.println("Komanda sensor On  SpkLout  send!");
-		  regBank.set(29,1);                             // XP1- 13 HeS2Ls
+		  regBank.set(29,1);                                          // XP1- 13 HeS2Ls
 		  myFile.println("Komanda sensor On  SpkRout  send!");
-		  regBank.set(27,1);                             // XP1- 16 HeS2Rs
+		  regBank.set(27,1);                                          // XP1- 16 HeS2Rs
 		  UpdateRegs(); 
 		  delay(600);
 		  UpdateRegs(); 
 		  delay(600);
 
-		 if(bitRead(i5,1) > 0)                       // Проверка флага подключения гарнитуры инструктора 2 наушниками
+		 if(bitRead(i5,1) > 0)                                        // Проверка флага подключения гарнитуры инструктора 2 наушниками
 			{
-				int regcount = regBank.get(40127);   // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
-				regcount++;                          // увеличить счетчик ошибок
-				regBank.set(40127,regcount);         // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
-				regBank.set(127,1);                  // установить флаг ошибки
-				regBank.set(120,1);                  // установить общий флаг ошибки
+				int regcount = regBank.get(40127);                    // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
+				regcount++;                                           // увеличить счетчик ошибок
+				regBank.set(40127,regcount);                          // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
+				regBank.set(127,1);                                   // установить флаг ошибки
+				regBank.set(120,1);                                   // установить общий флаг ошибки
 				myFile.print("Komanda sensor On  SpkLout  Error! - ");
 				myFile.println(regcount);
 			}
@@ -1406,13 +1396,13 @@ void test_instruktora()
 			{
 				myFile.println("Komanda sensor On  SpkLout  Ok!");
 			}
-			if(bitRead(i5,2) > 0)                     // Проверка флага подключения гарнитуры инструктора
+			if(bitRead(i5,2) > 0)                                      // Проверка флага подключения гарнитуры инструктора
 			 {
-				int regcount = regBank.get(40128);    // адрес счетчика ошибки сенсора гарнитуры инструктора
-				regcount++;                           // увеличить счетчик ошибок
-				regBank.set(40128,regcount);          // адрес счетчика ошибки сенсора гарнитуры инструктора
-				regBank.set(128,1);                   // установить флаг ошибки
-				regBank.set(120,1);                   // установить общий флаг ошибки
+				int regcount = regBank.get(40128);                     // адрес счетчика ошибки сенсора гарнитуры инструктора
+				regcount++;                                            // увеличить счетчик ошибок
+				regBank.set(40128,regcount);                           // адрес счетчика ошибки сенсора гарнитуры инструктора
+				regBank.set(128,1);                                    // установить флаг ошибки
+				regBank.set(120,1);                                    // установить общий флаг ошибки
 				myFile.print("Komanda sensor On  SpkRout  Error! - ");
 				myFile.println(regcount);
 			 }
@@ -1420,23 +1410,23 @@ void test_instruktora()
 			{
 				myFile.println("Komanda sensor On  SpkRout  Ok!");
 			}
-			Serial.println(regBank.get(127));
-			Serial.println(regBank.get(40127));
-			Serial.println(regBank.get(128));
-			Serial.println(regBank.get(40128));
+	//		Serial.println(regBank.get(127));
+	//		Serial.println(regBank.get(40127));
+	//		Serial.println(regBank.get(128));
+	//		Serial.println(regBank.get(40128));
 
 
 
-/*
+
 		 regBank.set(4,0);                                      // XP1- 12 HeS2e  Отключить звук на  микрофон инструктора
 		 myFile.println("Komanda microphon instr. Off send!");
 		 regBank.set(28,0);                                     // XP1- 15 HeS2Ls Отключить PTT инструктора
 		 myFile.println("Komanda PTT instr. Off  send!");
-		 regBank.set(5,1);                                      // Подать сигнал на динамики гарнитуры инструктора
-		 UpdateRegs(); 
+		 regBank.set(5,1);                                      // Подать управляющую команду на вывод 12 ХР1
+		 UpdateRegs();                                          // 
 		 delay(500);
-		 UpdateRegs(); 
-		 delay(100);
+		 //UpdateRegs(); 
+		 //delay(100);
 		i5 = regs_in[3];
 
 		if(bitRead(i5,4)!= 0) 		                            // Проверить отключение микрофона инструктора
@@ -1487,11 +1477,12 @@ void test_instruktora()
 				myFile.print("Komanda FrontR instrukt. Off Error! - ");
 				myFile.println(regcount);
 			}
-		*/
-		
 		delay(100);
 		regBank.set(adr_control_command,0);
 }
+
+
+
 
 void measure_volume(int analog)
 {
@@ -1836,7 +1827,7 @@ modbus registers follow the following format
 	regBank.add(2);     // Реле RL1 Звук
 	regBank.add(3);     // Реле RL2 Звук
 	regBank.add(4);     // Реле RL3 Звук
-	regBank.add(5);     // Реле RL4 XP1 12  HeS2e 
+	regBank.add(5);     // Реле RL4 XP1 12  HeS2e   
 	regBank.add(6);     // Реле RL5 Звук
 	regBank.add(7);     // Реле RL6 Звук
 	regBank.add(8);     // Реле RL7 Питание платы
