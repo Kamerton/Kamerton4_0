@@ -84,6 +84,7 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portModeRegister(P)
 
 void flash_time();
+void serialEvent2();
 void dateTime(uint16_t* date, uint16_t* time);
 void prer_Kamerton();
 void sendPacketK ();
