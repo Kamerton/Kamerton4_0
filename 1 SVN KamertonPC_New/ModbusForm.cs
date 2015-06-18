@@ -602,11 +602,11 @@ namespace KamertonTest
                 label38.Text = (volume1 + "  ");
                 volume2 = readVals[5];
 
-                volume2 = volume2 / 200;  // Индикация напряжения на выходе "LineL"
+                volume2 = volume2 / 200;           // Индикация напряжения на выходе "LineL"
                 //   label39.Text = "";
                 label39.Text = (volume2 + "  ");
 
-                volume3 = readVals[6];  // Индикация напряжения питания платы 12в
+                volume3 = readVals[6];            // Индикация напряжения питания платы 12в
                 volume3 = volume3 * 2.5F;
                 volume3 = volume3 / 100;
                 if (volume3 < 11.5F)
@@ -632,9 +632,9 @@ namespace KamertonTest
                 //    label41.Text = "";                     // Индикация задержки на выключение
                 label41.Text = (readVals[9] + "  ");
 
-                test_countLo = readVals[10];           // Индикация счетчика количества тестов
+                test_countLo = readVals[10];                 // Индикация счетчика количества тестов
                 test_countLo = test_countLo << 16;
-                test_countLo = test_countLo + readVals[11]; // Формирую из двух двухбайтных слов
+                test_countLo = test_countLo + readVals[11];  // Формирую из двух двухбайтных слов
 
                 //   label37.Text = "";
                 label37.Text = (test_countLo + "  ");
@@ -3749,12 +3749,12 @@ namespace KamertonTest
                             writeVals[err] = 0;
                         }
 
-                    startWrReg = 121;                                                                   //  Обнулить счетчики ошибок
-                    numWrRegs = 14;
-                    res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);   // Выполнить сброс счетчиков 40121 - 40130
+                    //startWrReg = 121;                                                                   //  Обнулить счетчики ошибок
+                    //numWrRegs = 14;
+                    //res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);   // Выполнить сброс счетчиков 40121 - 40130
 
                     startWrReg = 121;                                                                   //  Обнулить счетчики ошибок
-                    numWrRegs = 10;   
+                    numWrRegs = 10;
                     res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);   // Выполнить сброс счетчиков 40121 - 40130
                     startWrReg = 131;                                                                   //  Обнулить счетчики ошибок
                     numWrRegs = 10;

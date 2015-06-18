@@ -81,8 +81,8 @@ unsigned int  voltage10 ;
 int analog_tok            = 0;       //
 int analog_12V            = 1;       //
 int analog_tok_x10        = 2;       //
-int analog_radio4         = 3;       //
-int analog_mag4           = 4;       //
+int analog_mag_radio      = 3;       //
+int analog_mag_phone      = 4;       //
 int analog_gg_radio1      = 5;       //
 int analog_gg_radio2      = 6;       //
 int analog_ggs            = 7;       //
@@ -1327,6 +1327,7 @@ void sence_all_on()
 }
 void test_instruktora()
 {
+	  
 	  myFile.println("");
 	  myFile.println("Test_instruktora start!");
 	  myFile.println("Komanda sensor Off SpkLout  send!");
@@ -1337,6 +1338,8 @@ void test_instruktora()
 	  delay(600);                                                       // 
 	  UpdateRegs();                                                     // Выполнить команду отключения сенсоров
 	  delay(600);                                                       //
+
+	  // 1)  Проверка сенсора на отключение гарнитуры инструктора 2 наушниками
 	  byte i5 = regs_in[2];                                             // 
 
 		if(bitRead(i5,1) > 0)                                           // Проверка  флага подключения гарнитуры инструктора 2 наушниками
@@ -1355,6 +1358,10 @@ void test_instruktora()
 		  {
 			myFile.println("Komanda sensor Off SpkLout  Ok!");
 		  }
+
+
+
+	  // 2)  Проверка сенсора на отключения гарнитуры инструктора
 
 		if(bitRead(i5,2) > 0)                                           // Проверка  флага подключения гарнитуры инструктора 
 		  {
@@ -1380,6 +1387,8 @@ void test_instruktora()
 		  UpdateRegs(); 
 		  delay(200);
 
+	  // 3)  Проверка сенсора на подключение гарнитуры инструктора 2 наушниками
+
 		 if(bitRead(i5,1) > 0)                                          // Проверка флага подключения гарнитуры инструктора 2 наушниками
 			{
 				int regcount = regBank.get(40127);                      // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
@@ -1394,6 +1403,8 @@ void test_instruktora()
 			{
 				myFile.println("Komanda sensor On  SpkLout  Ok!");
 			}
+	  // 4)  Проверка сенсора на подключения гарнитуры инструктора
+
 	   if(bitRead(i5,2) > 0)                                            // Проверка флага подключения гарнитуры инструктора
 			 {
 				int regcount = regBank.get(40128);                      // адрес счетчика ошибки сенсора гарнитуры инструктора
@@ -1408,7 +1419,8 @@ void test_instruktora()
 			{
 				myFile.println("Komanda sensor On  SpkRout  Ok!");
 			}
-	//	Serial.println(regBank.get(127));
+
+	//      Serial.println(regBank.get(127));
 	//		Serial.println(regBank.get(40127));
 	//		Serial.println(regBank.get(128));
 	//		Serial.println(regBank.get(40128));
@@ -1420,32 +1432,41 @@ void test_instruktora()
 		 myFile.println("Komanda microphon instr. Off send!");
 		 regBank.set(28,0);                                            // XP1- 15 HeS2Ls Отключить PTT инструктора
 		 myFile.println("Komanda PTT instr. Off  send!");
-		 regBank.set(5,0);                                             // Подать управляющую команду на вывод 12 ХР1 HeS2e
+		 regBank.set(5,0);                                             // Отключить тумблер пульта инструктора (вывод 12 ХР1 HeS2e)
 		 UpdateRegs();                                                 // 
 		 delay(200);
 		 UpdateRegs(); 
 		 delay(100);
-		 i5 = regs_in[3];
 
-		if(bitRead(i5,4)!= 0) 		                                   // Проверить отключение микрофона инструктора
+		 i5 = regs_in[3];                                              // 
+
+		 if(bitRead(i5,4)!= 0) 		                                   // Проверить отключение микрофона инструктора
 			{
 				int regcount = regBank.get(40139);                     // адрес счетчика ошибки отключения микрофона гарнитуры инструктора
 				regcount++;                                            // увеличить счетчик ошибок
 				regBank.set(40139,regcount);                           // адрес счетчика ошибки отключения микрофона гарнитуры инструктора
 				regBank.set(139,1);                                    // установить флаг ошибки отключения микрофона гарнитуры инструктора
 				regBank.set(120,1);                                    // установить общий флаг ошибки
-				myFile.print("Komanda microphon instrukt. Off Error! - ");
+				myFile.print("Komanda microphon instrukt. Off Error! - "); // Микрофон не отключился 
 				myFile.println(regcount);
 			}
-		if(regBank.get(10080)!= 0)                                     // Проверить отключение PTT инструктора
+		else
+			{
+				myFile.println("Komanda microphon instrukt. Ok!");
+			}
+		 if(regBank.get(10081)!= 0)                                    // Проверить отключение PTT инструктора   CTS
 			{
 				int regcount = regBank.get(40140);                     // адрес счетчика ошибки отключения PTT гарнитуры инструктора
 				regcount++;                                            // увеличить счетчик ошибок
 				regBank.set(40140,regcount);                           // адрес счетчика ошибки отключения PTT гарнитуры инструктора
 				regBank.set(140,1);                                    // установить флаг ошибки отключения PTT гарнитуры инструктора
 				regBank.set(120,1);                                    // установить общий флаг ошибки
-				myFile.print("Komanda PTT instrukt. Off Error! - ");
+				myFile.print("Komanda PTT instrukt. Off Error! - ");   // Микрофон не отключился 
 				myFile.println(regcount);
+			}
+		else
+			{
+				myFile.println("Komanda PTT instrukt. Off Ok!");
 			}
 		delay(1000);
 
@@ -1459,7 +1480,7 @@ void test_instruktora()
 				regBank.set(40141,regcount);                           // адрес счетчика ошибки канала динамиков  инструктора
 				regBank.set(141,1);                                    // установить флаг ошибки  канала динамиков  инструктора
 				regBank.set(120,1);                                    // установить общий флаг ошибки 
-				myFile.print("Komanda FrontL instrukt. Off Error! - ");
+				myFile.print("Signal FrontL instrukt. Off Error! - ");
 				myFile.println(regcount);
 			}
 		                                                               // Проверить исправность канала динамиков на отсутствие наводок
@@ -1472,7 +1493,7 @@ void test_instruktora()
 				regBank.set(40142,regcount);                           // адрес счетчика ошибки канала динамиков  гарнитуры инструктора
 				regBank.set(142,1);                                    // установить флаг ошибки канала динамиков  гарнитуры инструктора
 				regBank.set(120,1);                                    // установить общий флаг ошибки
-				myFile.print("Komanda FrontR instrukt. Off Error! - ");
+				myFile.print("Signal FrontR instrukt. Off Error! - ");
 				myFile.println(regcount);
 			}
 
@@ -1480,14 +1501,14 @@ void test_instruktora()
 
 		// +++++++++++++++++++++++++++ Подать сигнал на вход микрофона -----------------------------------------------------------------
 
-		resistor(1, 70);                                           // Установить уровень сигнала 30 мв
-		resistor(2, 70);                                           // Установить уровень сигнала 30 мв
+		resistor(1, 30);                                           // Установить уровень сигнала 30 мв
+		resistor(2, 30);                                           // Установить уровень сигнала 30 мв
 		regBank.set(2,1);                                          // Подать сигнал на вход микрофона Mic2p
 		UpdateRegs();                                              // Выполнить команду
 		delay(300);
 
 		// Заменить на подпрограмму !!
-		//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала в динамиках +++++++++++++++++++++++++++++++++
+		//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
 		measure_volume(analog_FrontL);                                 // Измерить уровень сигнала на выходе FrontL   
 
 		if(voltage10 > volume_porog_D)                                 // volume_porog_D Проверить исправность канала динамиков инструктора
@@ -1497,8 +1518,12 @@ void test_instruktora()
 				regBank.set(40141,regcount);                           // адрес счетчика ошибки канала динамиков  инструктора
 				regBank.set(141,1);                                    // установить флаг ошибки  канала динамиков  инструктора
 				regBank.set(120,1);                                    // установить общий флаг ошибки 
-				myFile.print("Komanda FrontL instrukt. Off Error! - ");
+				myFile.print("Signal FrontL Off Error! - ");
 				myFile.println(regcount);
+			}
+		else
+			{
+				myFile.println("Signal FrontL Off Ok!");
 			}
 		                                                               // Проверить исправность канала динамиков на отсутствие наводок
 		measure_volume(analog_FrontR);                                 // Измерить уровень сигнала на выходе FrontR
@@ -1510,21 +1535,145 @@ void test_instruktora()
 				regBank.set(40142,regcount);                           // адрес счетчика ошибки канала динамиков  гарнитуры инструктора
 				regBank.set(142,1);                                    // установить флаг ошибки канала динамиков  гарнитуры инструктора
 				regBank.set(120,1);                                    // установить общий флаг ошибки
-				myFile.print("Komanda FrontR instrukt. Off Error! - ");
+				myFile.print("Signal FrontR Off Error! - ");
 				myFile.println(regcount);
 			}
+		else
+			{
+				myFile.println("Signal FrontR Off Ok!");
+			}
+		//-------------------------------------------------------------------------------------------------------------------------------
+
+		//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++++++++
+		measure_volume(analog_mag_radio);                                 // Измерить уровень сигнала на выходе mag_radio  
+
+		if(voltage10 > volume_porog_D)                                 // volume_porog_D Проверить исправность канала mag_radio
+			{
+				int regcount = regBank.get(40141);                     // адрес счетчика ошибки канала !!!
+				regcount++;                                            // увеличить счетчик ошибок канала !!!
+				regBank.set(40141,regcount);                           // адрес счетчика ошибки канала !!!
+				regBank.set(141,1);                                    // установить флаг ошибки  канала !!!
+				regBank.set(120,1);                                    // установить общий флаг ошибки 
+				myFile.print("Signal mag radio Off Error! - ");
+				myFile.println(regcount);
+			}
+		else
+			{
+				myFile.println("Signal mag radio Off Ok!");
+			}
+		                                                               // Проверить исправность канала динамиков на отсутствие наводок
+		measure_volume(analog_mag_phone);                              // Измерить уровень сигнала на выходе mag phone 
+		if(voltage10 > volume_porog_D)                                 // volume_porog_D Проверить исправность канала динамиков инструктора
+			{
+				int regcount = regBank.get(40141);                     // адрес счетчика ошибки канала mag phone !!! Изменить адрес
+				regcount++;                                            // увеличить счетчик ошибок канала динамиков 
+				regBank.set(40141,regcount);                           // адрес счетчика ошибки канала mag phone !!!
+				regBank.set(141,1);                                    // установить флаг ошибки  канала mag phone 
+				regBank.set(120,1);                                    // установить общий флаг ошибки 
+				myFile.print("Signal mag phone Off Error! - ");
+				myFile.println(regcount);
+			}
+		else
+			{
+				myFile.println("Signal mag phone  Off Ok!");          //   
+			}
+		//-------------------------------------------------------------------------------------------------------------------------------
+
+
+		//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++
+		measure_volume(analog_ggs);                                    // Измерить уровень сигнала на выходе FrontL   
+
+		if(voltage10 > volume_porog_D)                                 // volume_porog_D Проверить исправность канала динамиков инструктора
+			{
+				int regcount = regBank.get(40141);                     // адрес счетчика ошибки канала динамиков  инструктора
+				regcount++;                                            // увеличить счетчик ошибок канала динамиков 
+				regBank.set(40141,regcount);                           // адрес счетчика ошибки канала динамиков  инструктора
+				regBank.set(141,1);                                    // установить флаг ошибки  канала динамиков  инструктора
+				regBank.set(120,1);                                    // установить общий флаг ошибки 
+				myFile.print("Signal GGS Error! - ");
+				myFile.println(regcount);
+			}
+		else
+			{
+				myFile.println("Signal GGS Ok!");
+			}                                                          // Проверить исправность канала динамиков gg radio1 на отсутствие наводок
+		//++++++++++++++++++++++++++++++ 
+		measure_volume(analog_gg_radio1);                              // Измерить уровень сигнала на выходе gg radio1  
+
+		if(voltage10 > volume_porog_D)                                 // volume_porog_D Проверить исправность канала динамиков gg radio1 !!
+			{
+				int regcount = regBank.get(40141);                     // адрес счетчика ошибки канала динамиков  gg radio1 !!
+				regcount++;                                            // увеличить счетчик ошибок канала динамиков gg radio1 !!
+				regBank.set(40141,regcount);                           // адрес счетчика ошибки канала динамиков  gg radio1 !!
+				regBank.set(141,1);                                    // установить флаг ошибки  канала динамиков  gg radio1 !!
+				regBank.set(120,1);                                    // установить общий флаг ошибки 
+				myFile.print("Signal gg radio1 Error! - ");
+				myFile.println(regcount);
+			}
+		else
+			{
+				myFile.println("Signal gg radio1  Ok!");
+			}                                                          // Проверить исправность канала динамиков gg radio2  на отсутствие наводок
+		//++++++++++++++++++++++++++++++++
+				measure_volume(analog_gg_radio2);                      // Измерить уровень сигнала на выходе gg radio2 
+
+		if(voltage10 > volume_porog_D)                                 // volume_porog_D Проверить исправность канала динамиков gg radio2!!
+			{
+				int regcount = regBank.get(40141);                     // адрес счетчика ошибки канала динамиков  gg radio2!!
+				regcount++;                                            // увеличить счетчик ошибок канала динамиков gg radio2!!
+				regBank.set(40141,regcount);                           // адрес счетчика ошибки канала динамиков gg radio2!!
+				regBank.set(141,1);                                    // установить флаг ошибки  канала динамиков  gg radio2!!
+				regBank.set(120,1);                                    // установить общий флаг ошибки 
+				myFile.print("Signal gg radio2 Error! - ");
+				myFile.println(regcount);
+			}
+		else
+			{
+				myFile.println("Signal gg radio2 Ok!");
+			}                                                              // Проверить исправность канала динамиков на отсутствие наводок
 
 		//-------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 		 regBank.set(5,1);                                             // Подать управляющую команду на вывод 12 ХР1 HeS2e (Включить микрофон)
 		 regBank.set(28,1);                                            // XP1- 15 HeS2Ls Отключить PTT инструктора
 		 UpdateRegs();                                                 // 
-		// delay(3000);
+
+		myFile.print("Microphon instrukt.signal On");                  // 
+   	                                                                   // Проверить LineL (ADC8)
+		measure_volume(analog_LineL);                                  // Измерить уровень сигнала на выходе LineL  
+
+		if(voltage10 > volume_porog_D)                                 // volume_porog_D Проверить исправность канала динамиков инструктора
+			{
+				int regcount = regBank.get(40143);                     // адрес счетчика ошибки микрофона инструктора
+				regcount++;                                            // увеличить счетчик ошибок микрофона инструктора
+				regBank.set(40143,regcount);                           // адрес счетчика ошибки канала LineL микрофона инструктора
+				regBank.set(143,1);                                    // установить флаг ошибки  канала LineL микрофона инструктора
+				regBank.set(120,1);                                    // установить общий флаг ошибки 
+				myFile.print("Microphon instrukt.signal Error! - ");
+				myFile.println(regcount);
+			}
+	    else
+			{
+				myFile.println("Microphon instrukt.signal LineL Ok!");
+			}
 
 
 
-
-		delay(100);
-		regBank.set(adr_control_command,0);
+		 delay(100);
+		 regBank.set(adr_control_command,0);
 }
 
 
@@ -1935,6 +2084,9 @@ modbus registers follow the following format
 	regBank.add(140);   // Флаг ошибки отключения PTT гарнитуры инструктора 
 	regBank.add(141);   // Флаг ошибки динамика гарнитуры инструктора FrontL
 	regBank.add(142);   // Флаг ошибки динамика гарнитуры инструктора FrontR
+	regBank.add(143);   // Флаг ошибки сигнала  LineL гарнитуры инструктора 
+	regBank.add(144);   // Флаг ошибки 
+	regBank.add(145);   // Флаг ошибки
 
 						 //Add Input registers 30001-30040 to the register bank
 
@@ -2132,6 +2284,17 @@ modbus registers follow the following format
 	regBank.add(40140); // адрес счетчика ошибки отключения PTT гарнитуры инструктора
 	regBank.add(40141); // адрес счетчика ошибки динамика гарнитуры инструктора FrontL
 	regBank.add(40142); // адрес счетчика ошибки динамика гарнитуры инструктора FrontR
+	regBank.add(40143); // адрес счетчика ошибки LineL
+	regBank.add(40144); // адрес счетчика ошибки 
+	regBank.add(40145); // адрес счетчика ошибки 
+	regBank.add(40146); // адрес счетчика ошибки 
+	regBank.add(40147); // адрес счетчика ошибки 
+	regBank.add(40148); // адрес счетчика ошибки 
+	regBank.add(40149); // адрес счетчика ошибки 
+	regBank.add(40150); // адрес счетчика ошибки 
+	regBank.add(40151); // адрес счетчика ошибки 
+	regBank.add(40152); // адрес счетчика ошибки 
+	regBank.add(40153); // адрес счетчика ошибки 
 
 	slave._device = &regBank;  
 }
