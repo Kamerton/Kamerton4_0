@@ -1329,7 +1329,9 @@ void test_instruktora()
 {
 	  
 	  myFile.println("");
-	  myFile.println("Test_instruktora start!");
+	  myFile.println("Test_instruktora start!  ");
+	  file_print_date();
+	  myFile.println();
 	  myFile.println("Komanda sensor Off SpkLout  send!");
 	  regBank.set(29,0);                                                // XP1- 13 HeS2Ls  ќтключить сенсор инструктора
 	  myFile.println("Komanda sensor Off SpkRout  send!");
@@ -1483,7 +1485,7 @@ void test_instruktora()
 				myFile.print("Signal FrontL instrukt. Off Error! - ");
 				myFile.println(regcount);
 			}
-		                                                               // ѕроверить исправность канала динамиков на отсутствие наводок
+																	   // ѕроверить исправность канала динамиков на отсутствие наводок
 		measure_volume(analog_FrontR);                                 // »змерить уровень сигнала на выходе FrontR
 
 		if(voltage10 > volume_porog_D)                                 // ѕроверить исправность канала динамиков  инструктора
@@ -1525,7 +1527,7 @@ void test_instruktora()
 			{
 				myFile.println("Signal FrontL Off Ok!");
 			}
-		                                                               // ѕроверить исправность канала динамиков на отсутствие наводок
+																	   // ѕроверить исправность канала динамиков на отсутствие наводок
 		measure_volume(analog_FrontR);                                 // »змерить уровень сигнала на выходе FrontR
 
 		if(voltage10 > volume_porog_D)                                 // ѕроверить исправность канала динамиков  инструктора
@@ -1561,7 +1563,7 @@ void test_instruktora()
 			{
 				myFile.println("Signal mag radio Off Ok!");
 			}
-		                                                               // ѕроверить исправность канала динамиков на отсутствие наводок
+																	   // ѕроверить исправность канала динамиков на отсутствие наводок
 		measure_volume(analog_mag_phone);                              // »змерить уровень сигнала на выходе mag phone 
 		if(voltage10 > volume_porog_D)                                 // volume_porog_D ѕроверить исправность канала динамиков инструктора
 			{
@@ -1652,7 +1654,7 @@ void test_instruktora()
 		 UpdateRegs();                                                 // 
 
 		myFile.print("Microphon instrukt.signal On");                  // 
-   	                                                                   // ѕроверить LineL (ADC8)
+																	   // ѕроверить LineL (ADC8)
 		measure_volume(analog_LineL);                                  // »змерить уровень сигнала на выходе LineL  
 
 		if(voltage10 > volume_porog_D)                                 // volume_porog_D ѕроверить исправность канала динамиков инструктора
@@ -1665,7 +1667,7 @@ void test_instruktora()
 				myFile.print("Microphon instrukt.signal Error! - ");
 				myFile.println(regcount);
 			}
-	    else
+		else
 			{
 				myFile.println("Microphon instrukt.signal LineL Ok!");
 			}
