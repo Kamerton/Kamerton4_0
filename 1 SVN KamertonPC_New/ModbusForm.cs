@@ -2989,7 +2989,7 @@ namespace KamertonTest
         #endregion
 
         #region Test all    
-        // для вызова тестов необходимо отправить по адресу 121  в контроллер номер теста  (1-12)
+        // для вызова тестов необходимо отправить по адресу 120  в контроллер номер теста  (1-12)
         // далее отправить команду (true) вызова  теста по адресу 38
 
         private void sensor_off()// 
@@ -3450,7 +3450,7 @@ namespace KamertonTest
             numRdRegs = 12;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40120 Считать счетчики ошибок  
 
-            startCoil = 121;                                                                    // Начальный Адрес 120 флага индикации возникновения  ошибки
+            startCoil = 120;                                                                    // Начальный Адрес 120 флага индикации возникновения  ошибки
             numCoils = 12;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
 
