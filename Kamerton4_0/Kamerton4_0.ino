@@ -1477,21 +1477,21 @@ void test_instr_on()
 	myFile.println("Komanda sensor On  SpkRout (sensor instr)  send!");
 	regBank.set(27,1);                                            // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
 
-	regBank.set(20,1);     // J8-23     XP7 1 PTT1 Танг. р.
-	regBank.set(15,1);     // XS1 - 5   PTT Мик
+	//regBank.set(20,1);     // J8-23     XP7 1 PTT1 Танг. р.
+	//regBank.set(15,1);     // XS1 - 5   PTT Мик
 	regBank.set(12,1);     // XP8 2 Sence
-	regBank.set(18,1);     // XP1 - 20  HangUp  DCD
+	//regBank.set(18,1);     // XP1 - 20  HangUp  DCD
 	regBank.set(19,1);     // J8-11     XP7 2 Sence  Танг. р.
 	regBank.set(16,1);     // XS1 - 6   Sence Мик
-	regBank.set(17,1);     // J8-12     XP7 4 PTT2   Танг. р.
+	//regBank.set(17,1);     // J8-12     XP7 4 PTT2   Танг. р.
  	regBank.set(31,1);     // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(30,1);     // XP1- 6  HeS1PTT   CTS вкл
-	regBank.set(28,1);     // XP1- 13 HeS2Ls
-	regBank.set(26,1);     // XP1- 17 HaSPTT    CTS DSR вкл.
+	//regBank.set(30,1);     // XP1- 6  HeS1PTT   CTS вкл
+	//regBank.set(28,1);     // XP1- 13 HeS2Ls
+	//regBank.set(26,1);     // XP1- 17 HaSPTT    CTS DSR вкл.
 	regBank.set(25,1);     // XP1- 19 HaSs      Sence подключения трубки      
 	regBank.set(13,1);     // XP8 - 2   Sence Тангента ножная
-	regBank.set(14,1);     // XP8 - 1   PTT 
-	regBank.set(28,1);     // XP1- 15 HeS2PTT   CTS вкл
+	//regBank.set(14,1);     // XP8 - 1   PTT 
+	//regBank.set(28,1);     // XP1- 15 HeS2PTT   CTS вкл
 	regBank.set(32,1);     // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
 
 
