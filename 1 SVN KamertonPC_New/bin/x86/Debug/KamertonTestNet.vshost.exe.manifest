@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KamertonTestNet.exe" size="141824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KamertonTestNet.exe" size="141312">
       <assemblyIdentity name="KamertonTestNet" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>XOWETZhPBFv7eyCPjRzvO58omnQ=</dsig:DigestValue>
+        <dsig:DigestValue>oJ8pv1Yv/7hwM0RdyHWrV0/t5n8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

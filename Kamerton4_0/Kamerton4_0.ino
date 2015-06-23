@@ -62,7 +62,8 @@ unsigned int volume_max  = 0;                       //
 unsigned int volume_min  = 0;                       //
 unsigned int volume_fact = 0;                       //
 unsigned int Array_volume[514];                     //
-unsigned int volume_porog_D = 40;                   // Величина порога при проверке исправности FrontL,FrontR
+unsigned int volume_porog_D = 40;                   // Максимальная величина порога при проверке исправности FrontL,FrontR
+unsigned int volume_porog_L = 200;                  // Минимальная величина порога при проверке исправности FrontL,FrontR
 float voltage ;
 //float voltage_test = 0.60;                        // порог величины синусоиды звука
 unsigned int  voltage10 ;
@@ -1168,7 +1169,7 @@ void sence_all_on()
   regBank.set(14,1);     // XS1 - 5   PTT 
   UpdateRegs(); 
   delay(100);
-
+ // Переделать проверку через  byte i5 = regs_in[2];        
  //1 ок
 	   if(regBank.get(30040) == 0)                  // Флаг счетчика ошибки сенсора Sence "Маг."   ok!
 		  {
@@ -1328,13 +1329,12 @@ void test_instruktora()
 	myFile.println("Test_instruktora start!  ");
 	file_print_date();
 	myFile.println();
-	//int regcount = 0;
 	test_instr_off();                                                 // Отключить реле и сенсоры, прверить отключение
 	test_instr_on();                                                  // Включить необходимые сенсоры, проверить состояние
-	//++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок +++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,40141,141);                         // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,40142,142);                         // Измерить уровень сигнала на выходе FrontR 
-	// +++++++++++++++++++++++++++ Подать сигнал на вход микрофона -----------------------------------------------------------------
+	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
+	measure_vol_min(analog_FrontL,40141,141,20);                         // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,40142,142,20);                         // Измерить уровень сигнала на выходе FrontR 
+	// +++++++++++++++++++++++++++ Подать сигнал на вход микрофона -----------------------------------------------------------
 	resistor(1, 30);                                                  // Установить уровень сигнала 30 мв
 	resistor(2, 30);                                                  // Установить уровень сигнала 30 мв
 	regBank.set(2,1);                                                 // Подать сигнал на вход микрофона Mic2p
@@ -1342,42 +1342,49 @@ void test_instruktora()
 	delay(200);
 	myFile.println("Signal microphone 30mv On");
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,40141,141);                         // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,40142,142);                         // Измерить уровень сигнала на выходе FrontR 
-    //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
-	measure_vol_min(analog_mag_radio,40144,144);                      // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_mag_phone,40145,145);                      // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_FrontL,40141,141,20);                         // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,40142,142,20);                         // Измерить уровень сигнала на выходе FrontR 
+	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
+	measure_vol_min(analog_mag_radio,40144,144,50);                      // Измерить уровень сигнала на выходе mag radio  
+	measure_vol_min(analog_mag_phone,40145,145,20);                      // Измерить уровень сигнала на выходе mag phone
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_ggs,40146,146);                            // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40147,147);                      // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40148,148);                      // Измерить уровень сигнала на выходе GG Radio2
+	measure_vol_min(analog_ggs,40146,146,20);                            // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_gg_radio1,40147,147,60);                      // Измерить уровень сигнала на выходе GG Radio1
+	measure_vol_min(analog_gg_radio2,40148,148,20);                      // Измерить уровень сигнала на выходе GG Radio2
+	//++++++++++++++++++++++++++++++++++ Подать сигнал на другие источники +++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
 	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	regBank.set(5,1);                                                 // Подать управляющую команду на вывод 12 ХР1 HeS2e (Включить микрофон)
 	regBank.set(28,1);                                                // XP1- 15 HeS2Ls Отключить PTT инструктора
+	regBank.set(16,0);                                                // Сенсор микрофона отключить
+    regBank.set(15,0);                                                // РТТ микрофона отключить
+	regBank.set(29,1);                                                // ВКЛ XP1- 13 HeS2Ls Кнопка  ВКЛ флаг подключения гарнитуры инструктора 
 	UpdateRegs();                                                     // 
 	delay(200);                                                       //
 	myFile.println("Microphon instrukt.signal On");                   // 
-		//measure_volume(analog_LineL);                               // Измерить уровень сигнала на выходе gg radio1  
+	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    +++++++++++++++++++++++++++++++++
+	measure_vol_max(analog_LineL,40143,143,200);                          // Измерить уровень сигнала на выходе LineL
+	measure_vol_max(analog_mag_phone,40150,150,200);                      // Измерить уровень сигнала на выходе mag phone
 
-		//if(voltage10 > volume_porog_D)                              // volume_porog_D Проверить исправность канала динамиков gg radio1 
-		//	{
-		//		regcount = regBank.get(40143);                        // адрес счетчика ошибки канала динамиков  gg radio1 
-		//		regcount++;                                           // увеличить счетчик ошибок канала динамиков gg radio1 
-		//		regBank.set(40143,regcount);                          // адрес счетчика ошибки канала динамиков  gg radio1 
-		//		regBank.set(143,1);                                   // установить флаг ошибки  канала динамиков  gg radio1 
-		//		regBank.set(120,1);                                   // установить общий флаг ошибки 
-		//		myFile.print("Microphon instruktora signal Error! - ");
-		//		myFile.println(regcount);
-		//	}
-		//else
-		//	{
-		//		myFile.println("");
-		//	}                                                          // Проверить исправность канала динамиков gg radio2  на отсутствие наводок
-	
-	delay(100);
+
+
+
+
+
+
+
+	//delay(100);
 	regBank.set(29,0);                                                // XP1- 13 HeS2Ls  Отключить сенсор инструктора
 	regBank.set(27,0);                                                // XP1- 16 HeS2Rs  Отключить сенсор инструктора c 2  наушниками
 	regBank.set(16,0);                                                // XP1- 16 HeS2Rs  Отключить сенсор инструктора c 2  наушниками
+	regBank.set(15,0);                                                // РТТ микрофона отключить
 	regBank.set(5,0);                                                 // Подать управляющую команду на вывод 12 ХР1 HeS2e (Выключить микрофон)
 	regBank.set(28,0);                                                // XP1- 15 HeS2Ls Отключить PTT инструктора
 	UpdateRegs();     
@@ -1464,17 +1471,37 @@ void test_instr_off()
 }
 void test_instr_on()
 {
-	  	  int regcount = 0;
-		  myFile.println("Komanda sensor On  SpkLout (sensor 2 instr)  send!");
-		  regBank.set(29,1);                                            // XP1- 13 HeS2Ls  Sence подключения гарнитуры инструктора с 2 наушниками
-		  myFile.println("Komanda sensor On  SpkRout (sensor instr)  send!");
-		  regBank.set(27,1);                                            // XP1- 16 HeS2Rs  Sence подключения гарнитуры инструктора
-		  UpdateRegs(); 
-		  delay(300);
+	int regcount = 0;
+	myFile.println("Komanda sensor On  SpkLout (sensor 2 instr)  send!");
+	regBank.set(29,1);                                            // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
+	myFile.println("Komanda sensor On  SpkRout (sensor instr)  send!");
+	regBank.set(27,1);                                            // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
+
+	regBank.set(20,1);     // J8-23     XP7 1 PTT1 Танг. р.
+	regBank.set(15,1);     // XS1 - 5   PTT Мик
+	regBank.set(12,1);     // XP8 2 Sence
+	regBank.set(18,1);     // XP1 - 20  HangUp  DCD
+	regBank.set(19,1);     // J8-11     XP7 2 Sence  Танг. р.
+	regBank.set(16,1);     // XS1 - 6   Sence Мик
+	regBank.set(17,1);     // J8-12     XP7 4 PTT2   Танг. р.
+ 	regBank.set(31,1);     // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(30,1);     // XP1- 6  HeS1PTT   CTS вкл
+	regBank.set(28,1);     // XP1- 13 HeS2Ls
+	regBank.set(26,1);     // XP1- 17 HaSPTT    CTS DSR вкл.
+	regBank.set(25,1);     // XP1- 19 HaSs      Sence подключения трубки      
+	regBank.set(13,1);     // XP8 - 2   Sence Тангента ножная
+	regBank.set(14,1);     // XP8 - 1   PTT 
+	regBank.set(28,1);     // XP1- 15 HeS2PTT   CTS вкл
+	regBank.set(32,1);     // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
+
+
+
+	UpdateRegs(); 
+	delay(300);
 
 	  // 3)  Проверка сенсора на подключение гарнитуры инструктора 2 наушниками
 		 byte i5 = regs_in[2];   
- 		 if(bitRead(i5,1) == 0)                                          // Проверка флага подключения гарнитуры инструктора 2 наушниками
+		 if(bitRead(i5,1) == 0)                                         // Проверка флага подключения гарнитуры инструктора 2 наушниками
 			{
 				regcount = regBank.get(40127);                          // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
 				regcount++;                                             // увеличить счетчик ошибок
@@ -1521,9 +1548,9 @@ void test_instr_on()
 			}
 		delay(100);
 }
-void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr)
+void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
-	    int regcount = 0;
+		int regcount = 0;
 		measure_volume(istochnik);                                     // Измерить уровень сигнала на выходе
 		switch (adr_flagErr) 
 		{
@@ -1544,9 +1571,9 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr)
 				break;
 			case 147:
 				myFile.print("Signal GG Radio1 Off - ");
-    			break;
+				break;
 			case 148:
-                myFile.print("Signal GG Radio2 Off - ");
+				myFile.print("Signal GG Radio2 Off - ");
 				break;
 			case 8:
 				//выполняется когда  var равно 2
@@ -1559,7 +1586,7 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr)
 				break;
 		}
 
-		if(voltage10 > volume_porog_D)                                 // Проверить исправность канала
+		if(voltage10 >  porogV)                                        // Проверить исправность канала
 			{
 				regcount = regBank.get(adr_count);                     // адрес счетчика ошибки 
 				regcount++;                                            // увеличить счетчик ошибок канала 
@@ -1571,10 +1598,65 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr)
 			}
 		else
 			{
-		    	myFile.println("Ok!");
+				myFile.println("Ok!");
 			}                                     
 }
+void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
+{
+		int regcount = 0;
+		measure_volume(istochnik);                                     // Измерить уровень сигнала на выходе
+		switch (adr_flagErr) 
+		{
+			case 141:
+				myFile.print("Signal FrontL Off    - ");
+				break;
+			case 142:
+				myFile.print("Signal FrontR Off    - ");
+				break;
+			case 143:
+				myFile.print("Signal FrontL On    - ");
+				break;
+			case 144:
+				myFile.print("Signal mag radio Off - ");
+				break;
+			case 145:
+				myFile.print("Signal mag phone Off - ");
+				break;
+			case 146:
+				myFile.print("Signal GGS Off       - ");
+				break;
+			case 147:
+				myFile.print("Signal GG Radio1 Off - ");
+				break;
+			case 148:
+				myFile.print("Signal GG Radio2 Off - ");
+				break;
+			case 150:
+			    myFile.print("Mag phone on - ");
+				break;
+			case 9:
+				//выполняется, когда var равно 1
+				break;
+			case 10:
+				//выполняется когда  var равно 2
+				break;
+		}
 
+		if(voltage10 <  porogV)                                       // Проверить исправность канала
+			{
+				regcount = regBank.get(adr_count);                     // адрес счетчика ошибки 
+				regcount++;                                            // увеличить счетчик ошибок канала 
+				regBank.set(adr_count,regcount);                       // адрес счетчика ошибки канала 
+				regBank.set(adr_flagErr,1);                            // установить флаг ошибки  канала 
+				regBank.set(120,1);                                    // установить общий флаг ошибки 
+				myFile.print("Error! - ");
+				myFile.println(regcount);
+			}
+		else
+			{
+				myFile.println("Ok!");
+			}                                     
+}
 void measure_volume(int analog)
 {
 		volume1     = 0;
@@ -1914,20 +1996,20 @@ modbus registers follow the following format
 обеспечивает более эффективный поиск и регистра и уменьшает количество сообщений
 требуются мастера для извлечения данных.
 */
-	regBank.add(1);     // Реле RL0 Звук
-	regBank.add(2);     // Реле RL1 Звук
-	regBank.add(3);     // Реле RL2 Звук
+	regBank.add(1);     // Реле RL0 Звук  MIC1P
+	regBank.add(2);     // Реле RL1 Звук  MIC2P
+	regBank.add(3);     // Реле RL2 Звук  MIC3P
 	regBank.add(4);     // Реле RL3 Звук  LFE  "Маг."
 	regBank.add(5);     // Реле RL4 XP1 12  HeS2e   
-	regBank.add(6);     // Реле RL5 Звук
-	regBank.add(7);     // Реле RL6 Звук
+	regBank.add(6);     // Реле RL5 Звук Front L, Front R
+	regBank.add(7);     // Реле RL6 Звук Center
 	regBank.add(8);     // Реле RL7 Питание платы
   
 	regBank.add(9);     // Реле RL8 Звук на микрофон
-	regBank.add(10);     // Реле RL9 XP1 10
+	regBank.add(10);    // Реле RL9 XP1 10
 	regBank.add(11);    // Свободен J24 - 2 
 	regBank.add(12);    // Свободен J24 - 1 
-	regBank.add(13);    // XP8 - 2   Sence 
+	regBank.add(13);    // XP8 - 2   Sence Тангента ножная
 	regBank.add(14);    // XP8 - 1   PTT 
 	regBank.add(15);    // XS1 - 5   PTT Мик
 	regBank.add(16);    // XS1 - 6   Sence Мик
@@ -1949,10 +2031,6 @@ modbus registers follow the following format
 	regBank.add(30);    // XP1- 6  HeS1PTT   CTS вкл
 	regBank.add(31);    // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
 	regBank.add(32);    // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
-
-	regBank.add(10081);    // Адрес флагa индикации состояния сигнала CTS
-	regBank.add(10082);    // Адрес флагa индикации состояния сигнала DSR
-	regBank.add(10083);    // Адрес флагa индикации состояния сигнала DCD
 
 	regBank.add(120);   // Флаг индикации возникновения любой ошибки
  
@@ -1987,12 +2065,17 @@ modbus registers follow the following format
 	regBank.add(147);   // Флаг ошибки analog_gg_radio1
 	regBank.add(148);   // Флаг ошибки analog_gg_radio2
 	regBank.add(149);   // Флаг ошибки сенсора микрофона
-	regBank.add(150);   // Флаг ошибки
+	regBank.add(150);   // Флаг ошибки Mag phone on
 	regBank.add(151);   // Флаг ошибки
 	regBank.add(152);   // Флаг ошибки
 	regBank.add(153);   // Флаг ошибки
 	regBank.add(154);   // Флаг ошибки
 	regBank.add(155);   // Флаг ошибки
+
+
+	regBank.add(10081);    // Адрес флагa индикации состояния сигнала CTS
+	regBank.add(10082);    // Адрес флагa индикации состояния сигнала DSR
+	regBank.add(10083);    // Адрес флагa индикации состояния сигнала DCD
 
 						 //Add Input registers 30001-30040 to the register bank
 
@@ -2197,7 +2280,7 @@ modbus registers follow the following format
 	regBank.add(40147); // адрес счетчика ошибки analog_gg_radio1
 	regBank.add(40148); // адрес счетчика ошибки analog_gg_radio2
 	regBank.add(40149); // адрес счетчика ошибки сенсора микрофона
-	regBank.add(40150); // адрес счетчика ошибки 
+	regBank.add(40150); // адрес счетчика ошибки  Mag phone on
 	regBank.add(40151); // адрес счетчика ошибки 
 	regBank.add(40152); // адрес счетчика ошибки 
 	regBank.add(40153); // адрес счетчика ошибки 

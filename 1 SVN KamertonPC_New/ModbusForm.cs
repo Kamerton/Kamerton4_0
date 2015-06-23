@@ -139,16 +139,16 @@ namespace KamertonTest
             {
                 default:
                 case 0:
-                    textBox9.Text += (data.Trim() + "\r\n");
-                    textBox9.Refresh();
+                    //textBox9.Text += (data.Trim() + "\r\n");
+                    //textBox9.Refresh();
                     textBox10.Text += (data.Trim() + "\r\n");
                     textBox10.Refresh();
                     textBox11.Text += (data.Trim() + "\r\n");
                     textBox11.Refresh();
                     break;
                 case 1:
-                    textBox9.Text += (data.Trim() + "\r\n");
-                    textBox9.Refresh();
+                    //textBox9.Text += (data.Trim() + "\r\n");
+                    //textBox9.Refresh();
                     break;
                 case 2:
                     textBox10.Text += (data.Trim() + "\r\n");
@@ -2218,7 +2218,7 @@ namespace KamertonTest
             {
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
                 //  lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-                textBox9.Refresh();
+                //textBox9.Refresh();
 
                 if ((res == BusProtocolErrors.FTALK_SUCCESS))
                 {
@@ -2738,12 +2738,12 @@ namespace KamertonTest
 
         private void button55_Click (object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор ГГ-Радио2
         {
-             startCoil = 24; // Управление сенсорами
+             startCoil = 24;                                                          // Управление сенсорами
              res = myProtocol.writeCoil(slave, startCoil, true); 
         }
         private void button67_Click (object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор ГГ-Радио2
         {
-            startCoil = 24; // Управление сенсорами
+            startCoil = 24;                                                           // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, false); 
         }
 
@@ -3091,7 +3091,7 @@ namespace KamertonTest
                     textBox8.Text += ("Сенсор подключения ГГС не отключился" + "\r\n");
                     textBox8.Refresh();
                 }
-                textBox9.Refresh();
+                //textBox9.Refresh();
                test_end();
             }
         }
@@ -3454,10 +3454,10 @@ namespace KamertonTest
             numCoils = 12;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
 
-            textBox9.Text += ("Вызов программы обработки ошибок" + coilArr[0] + " - " + coilArr[1] + " - " + coilArr[2] + " - " + coilArr[3] + "\r\n");
+          //  textBox9.Text += ("Вызов программы обработки ошибок" + coilArr[0] + " - " + coilArr[1] + " - " + coilArr[2] + " - " + coilArr[3] + "\r\n");
             //textBox9.Text += ("Вызов программы обработки ошибок" + coilArr[4] + " - " + coilArr[5] + " - " + coilArr[6] + " - " + coilArr[7] + "\r\n");
             //textBox9.Text += ("Вызов программы обработки ошибок" + coilArr[8] + " - " + coilArr[9] + " - " + coilArr[10] + " - " + coilArr[11] + "\r\n");
-            textBox9.Refresh();
+           // textBox9.Refresh();
             if (coilArr[0] != false)
             {
               
@@ -3733,17 +3733,17 @@ namespace KamertonTest
             textBox7.Text = ("Выполняется полный  контроль звукового модуля Камертон " + "\r\n");
             textBox7.Text += ("\r\n");
             textBox8.Text = ("");
-            textBox9.Text = ("");
+          //  textBox9.Text = ("");
             textBox7.Refresh();
             textBox8.Refresh();
-            textBox9.Refresh();
+           // textBox9.Refresh();
     
             TestN = 0;                                                                                  // Обнулить счетчик количества выполняемых тестов
             TestRepeatCount = 1;                                                                        // Установить начальный номер  счетчика проходов теста
 
             if (_All_Test_Stop)                                                                         // Проверить наличие завершения выполнения тестов
                {
-                    //  textBox9.Text += ("Старт Обнуление счетчиков  - " + _All_Test_Stop + "\r\n");
+                     // textBox9.Text += ("Старт Обнуление счетчиков  - " + _All_Test_Stop + "\r\n");
                     for (int err = 0; err < 100; err++)                                                 //  Обнулить регистры счетчиков ошибок
                         {
                             writeVals[err] = 0;
@@ -3939,7 +3939,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на закрытие файла отправлена" + "\r\n");
            // textBox9.Text = ("Стоп теста");
             textBox7.Refresh();
-            textBox9.Refresh();
+          //  textBox9.Refresh();
         //    test_end();
 
                 textBox7.Text += "Тест окончен!";
