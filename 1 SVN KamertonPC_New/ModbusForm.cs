@@ -3408,7 +3408,7 @@ namespace KamertonTest
                if (coilArr[0] == true) //есть ошибка
                 {
                     // Обработка ошибки.
-                    textBox8.Text += ("Вызов программы обработки ошибок" + "\r\n");
+                    textBox8.Text += ("Вызов программы обработки ошибок. " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
                     textBox8.Refresh();
 
                     error_All();
