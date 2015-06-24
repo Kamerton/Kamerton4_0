@@ -1372,12 +1372,12 @@ void test_instruktora()
 			regBank.set(120,1);                                          // установить общий флаг ошибки
 			resistor(1, 255);                                            // Установить уровень сигнала в исходное состояниу
 			resistor(2, 255);                                            // Установить уровень сигнала в исходное состояниу
-			myFile.print("Microphone dispetchera On  Error! - ");        // 
+			myFile.print("Microphone dispetchera On  Error!     - ");    // 
 			myFile.println(regcount);                                    // 
 		  }
 		else
 		  {
-			myFile.println("Microphone dispetchera On  Ok!");           // Микрофона диспетчера включился
+			myFile.println("Microphone dispetchera On               Ok!"); // Микрофона диспетчера включился
 		  }
 	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    +++++++++++++++++++++++++++++++++
 	measure_vol_max(analog_LineL,40143,143,200);                        // Измерить уровень сигнала на выходе LineL
@@ -1421,12 +1421,12 @@ void test_instruktora()
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			resistor(1, 255);                                           // Установить уровень сигнала в исходное состояниу
 			resistor(2, 255);                                           // Установить уровень сигнала в исходное состояниу
-			myFile.print("Microphone instruktora On  Error! - ");       // 
+			myFile.print("Microphone instruktora On  Error!     - ");       // 
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.println("Microphone instruktora On  Ok!");           // Микрофона инструктора включился
+			myFile.println("Microphone instruktora On               Ok!");           // Микрофона инструктора включился
 		  }
 
 	myFile.println("Microphon instruktora signal On");                     // 
@@ -1488,36 +1488,36 @@ void test_instr_off()
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			resistor(1, 255);                                           // Установить уровень сигнала в исходное состояниу
 			resistor(2, 255);                                           // Установить уровень сигнала в исходное состояниу
-			myFile.print("Komanda sensor Off instruktora 2  Error! - ");      //  // !!!!
+			myFile.print("Komanda sensor Off instruktora 2 Error!-");      //  // !!!!
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.println("Komanda sensor instruktora 2  Ok!");           // !!!!
+			myFile.println("Komanda sensor Off instruktora 2   Ok!");           // !!!!
 		  }
 
 	  // 2)  Проверка сенсора на отключение гарнитуры инструктора
 
 		if(bitRead(i5,2) > 0)                                           // Проверка  флага на отключение гарнитуры инструктора 
 		  {
-			 regcount = regBank.get(40128);                         // адрес счетчика ошибки сенсора гарнитуры инструктора
+			 regcount = regBank.get(40128);                             // адрес счетчика ошибки сенсора гарнитуры инструктора
 			 regcount++;                                                // увеличить счетчик ошибок
 			 regBank.set(40128,regcount);                               // адрес счетчика ошибки сенсора гарнитуры инструктора
 			 regBank.set(128,1);                                        // установить флаг ошибки
 			 regBank.set(120,1);                                        // установить общий флаг ошибки
-			 myFile.print("Komanda sensor Off instruktora  Error! - ");      // !!!!
+			 myFile.print("Komanda sensor Off instruktora  Error!- ");  // 
 			 myFile.println(regcount);
 		  }
 		else
 		  {
-			 myFile.println("Komanda sensor Off instruktora  Ok!");          // !!!!
+			 myFile.println("Komanda sensor Off instruktora          Ok!");  // 
 		  }
 
 	 // 3)  Проверка сенсора на отключение микрофона
 
 		if(bitRead(i5,5) > 0)                                           // Проверка  флага на отключение микрофона
 		  {
-			 regcount = regBank.get(40149);                             // адрес счетчика ошибки сенсора микрофона !!
+			 regcount = regBank.get(40149);                             // адрес счетчика ошибки сенсора микрофона 
 			 regcount++;                                                // увеличить счетчик ошибок
 			 regBank.set(40149,regcount);                               // адрес счетчика ошибки сенсора микрофона
 			 regBank.set(149,1);                                        // установить флаг ошибки
