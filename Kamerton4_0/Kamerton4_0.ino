@@ -1331,7 +1331,7 @@ void test_instruktora()
 {
 	myFile.println("");
 	myFile.println("Test instruktora start!");
-	//file_print_date();
+	file_print_date();
 	myFile.println();
 	unsigned int regcount = 0;
 	test_instr_off();                                                    // Отключить реле и сенсоры, прверить отключение
@@ -1388,8 +1388,8 @@ void test_instruktora()
 			delay(20);
 		  }
     myFile.println("");
-	myFile.print("Microphone instruktora ");                 // 
-	myFile.println("signal ON");                 // 
+	myFile.print("Microphone instruktora ");                            // 
+	myFile.println("signal ON");                                        // 
 	delay(20);
 	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    ++++++++++++++++++++++++++++++++++++
 	measure_vol_max(analog_LineL,40143,143,200);                        // Измерить уровень сигнала на выходе LineL
@@ -1414,6 +1414,7 @@ void test_instruktora()
 
 void test_dispetchera()
  {
+    
     unsigned int regcount = 0;                                          // 
 	myFile.println("");
 	myFile.println("Test dispetchera start!");
@@ -1437,12 +1438,12 @@ void test_dispetchera()
 			regBank.set(120,1);                                          // установить общий флаг ошибки
 			resistor(1, 255);                                            // Установить уровень сигнала в исходное состояниу
 			resistor(2, 255);                                            // Установить уровень сигнала в исходное состояниу
-			myFile.print("Microphone dispetchera ON  Error! - ");    // 
+			myFile.print("Microphone dispetchera ON  Error! - ");        // 
 			myFile.println(regcount);                                    // 
 		  }
 		else
 		  {
-			myFile.println("Microphone dispetchera ON - Ok!"); // Микрофона диспетчера включился
+			myFile.println("Microphone dispetchera ON - Ok!");           // Микрофона диспетчера включился
 		  }
 	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    ++++++++++++++++++++++++++++++++++++
 	measure_vol_max(analog_LineL,40143,143,200);                        // Измерить уровень сигнала на выходе LineL
