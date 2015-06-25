@@ -842,10 +842,10 @@ void control_command()
 			 test_instruktora();
 				break;
 		case 4:				
-			//test_dispetchera();          //
+			 test_dispetchera();          //
 				break;
 		case 5:
-			// test_MTT();                  //
+			 test_MTT();                  //
 				break;
 		case 6:				
 			// test_tangR();                //
@@ -887,33 +887,37 @@ void control_command()
 
 void sence_all_off()
 {
-  regBank.set(7,1);      // Включить питание Камертон
-  regBank.set(20,0);     // * XP2 Sence "Маг." 
-  regBank.set(21,0);     // * XP5 Sence "ГГC."
-  regBank.set(22,0);     // * XP3 Sence "ГГ-Радио1."  
-  regBank.set(23,0);     // * XP4 Sence "ГГ-Радио2."  
-  regBank.set(15,0);     // * XS1 6 Sence подключения микрофона
+	myFile.println("");
+	myFile.println("Test sensor OFF start!");
+	file_print_date();
+	myFile.println();
+	regBank.set(7,1);      // Включить питание Камертон
+	regBank.set(20,0);     // * XP2 Sence "Маг." 
+	regBank.set(21,0);     // * XP5 Sence "ГГC."
+	regBank.set(22,0);     // * XP3 Sence "ГГ-Радио1."  
+	regBank.set(23,0);     // * XP4 Sence "ГГ-Радио2."  
+	regBank.set(15,0);     // * XS1 6 Sence подключения микрофона
 
-  regBank.set(12,0);     // * XP8 2 Sence тангента ножная
-  regBank.set(18,0);     // * XP7 2 Sence тангента ручная
-  regBank.set(19,0);     // XP7 1 PTT1 тангента ручная
-  regBank.set(16,0);     // XP7 4 PTT2 тангента ручная
-  regBank.set(17,0);     // XP1 - 20  HandUp
+	regBank.set(12,0);     // * XP8 2 Sence тангента ножная
+	regBank.set(18,0);     // * XP7 2 Sence тангента ручная
+	regBank.set(19,0);     // XP7 1 PTT1 тангента ручная
+	regBank.set(16,0);     // XP7 4 PTT2 тангента ручная
+	regBank.set(17,0);     // XP1 - 20  HandUp
 
 
-  regBank.set(31,0);     // * XP1- 1  HeS1Ls   Sence подключения гарнитуры диспетчера
-  regBank.set(30,0);     // * XP1- 5  HeS1Rs   Sence подключения гарнитуры диспетчера с 2 наушниками
-  regBank.set(29,0);     // XP1- 6  HeS1PTT 
-  regBank.set(28,0);     // * XP1- 13 HeS2Ls   Sence подключения гарнитуры инструктора
-  regBank.set(27,0);     // XP1- 15 HeS2PTT 
+	regBank.set(31,0);     // * XP1- 1  HeS1Ls   Sence подключения гарнитуры диспетчера
+	regBank.set(30,0);     // * XP1- 5  HeS1Rs   Sence подключения гарнитуры диспетчера с 2 наушниками
+	regBank.set(29,0);     // XP1- 6  HeS1PTT 
+	regBank.set(28,0);     // * XP1- 13 HeS2Ls   Sence подключения гарнитуры инструктора
+	regBank.set(27,0);     // XP1- 15 HeS2PTT 
 
-  regBank.set(26,0);     // * XP1- 16 HeS2Rs   Sence подключения гарнитуры инструктора с 2 наушниками
-  regBank.set(25,0);     // XP1- 17 HaSPTT   
-  regBank.set(24,1);     // XP1- 19 HaSs
-  regBank.set(13,0);     // XP8 - 1  PTT 
-  regBank.set(14,0);     // XS1 - 5   PTT  
-  UpdateRegs(); 
-  delay(100);
+	regBank.set(26,0);     // * XP1- 16 HeS2Rs   Sence подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(25,0);     // XP1- 17 HaSPTT   
+	regBank.set(24,1);     // XP1- 19 HaSs
+	regBank.set(13,0);     // XP8 - 1  PTT 
+	regBank.set(14,0);     // XS1 - 5   PTT  
+	UpdateRegs(); 
+	delay(100);
 
   
  //1 ок
@@ -1326,8 +1330,8 @@ void sence_all_on()
 void test_instruktora()
 {
 	myFile.println("");
-	myFile.println("Test_instruktora start!  ");
-	file_print_date();
+	myFile.println("Test instruktora start!");
+	//file_print_date();
 	myFile.println();
 	unsigned int regcount = 0;
 	test_instr_off();                                                    // Отключить реле и сенсоры, прверить отключение
@@ -1341,69 +1345,22 @@ void test_instruktora()
 	regBank.set(2,1);                                                    // Подать сигнал на вход микрофона инструктора  Mic2p
 	UpdateRegs();                                                        // Выполнить команду
 	delay(200);
-	myFile.println("Signal microphone instruktora 30mv On");
+	myFile.println("");
+	myFile.print("Signal microphone ");
+	myFile.println("instruktora 30mv  ON");
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,40141,141,25);                         // Измерить уровень сигнала на выходе FrontL   
 	measure_vol_min(analog_FrontR,40142,142,25);                         // Измерить уровень сигнала на выходе FrontR 
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
 	measure_vol_min(analog_mag_radio,40144,144,25);                      // Измерить уровень сигнала на выходе mag radio  
 	measure_vol_min(analog_mag_phone,40145,145,25);                      // Измерить уровень сигнала на выходе mag phone
-	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
+	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС ++++++++++++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_ggs,40146,146,30);                            // Измерить уровень сигнала на выходе GGS
 	measure_vol_min(analog_gg_radio1,40147,147,30);                      // Измерить уровень сигнала на выходе GG Radio1
 	measure_vol_min(analog_gg_radio2,40148,148,30);                      // Измерить уровень сигнала на выходе GG Radio2
-	//++++++++++++++++++++++++++++++++++ Подать сигнал на другие источники +++++++++++++++++++++++++++++++++++++++++++++++++++
-	regBank.set(5,0);                                                    // Подать управляющую команду на вывод 12 ХР1 HeS2e (Выключить микрофон инструктора)
-	regBank.set(10,1);                                                   // Подать управляющую команду на вывод XP1 10 Звук на микрофон диспетчера  включить
-	regBank.set(32,1);                                                   // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
-	regBank.set(31,1);                                                   // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(16,0);                                                   // XS1 - 6   Sence Мик отключить
-	regBank.set(1,1);                                                    // Подать сигнал на вход микрофона диспетчера Mic1p
-	UpdateRegs();   
-	delay(200);
-	myFile.println("Signal microphone dispetchera 30mv On");
-			  byte i5 = regs_in[3];                                      // 
-		if(bitRead(i5,6) == 0)                                           // Проверка  включения микрофона диспетчера
-		  {
-			regcount = regBank.get(40152);                               // адрес счетчика ошибки включения микрофона диспетчера
-			regcount++;                                                  // увеличить счетчик ошибок включения микрофона диспетчера
-			regBank.set(40152,regcount);                                 // адрес счетчика ошибки включения микрофона диспетчера
-			regBank.set(152,1);                                          // установить флаг ошибки
-			regBank.set(120,1);                                          // установить общий флаг ошибки
-			resistor(1, 255);                                            // Установить уровень сигнала в исходное состояниу
-			resistor(2, 255);                                            // Установить уровень сигнала в исходное состояниу
-			myFile.print("Microphone dispetchera On  Error!     - ");    // 
-			myFile.println(regcount);                                    // 
-		  }
-		else
-		  {
-			myFile.println("Microphone dispetchera On               Ok!"); // Микрофона диспетчера включился
-		  }
-	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    +++++++++++++++++++++++++++++++++
-	measure_vol_max(analog_LineL,40143,143,200);                        // Измерить уровень сигнала на выходе LineL
-	measure_vol_max(analog_mag_phone,40150,150,200);                    // Измерить уровень сигнала на выходе mag phone
-	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,40141,141,25);                        // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,40142,142,25);                        // Измерить уровень сигнала на выходе FrontR 
-	measure_vol_min(analog_ggs,40146,146,30);                           // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40147,147,30);                     // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40148,148,30);                     // Измерить уровень сигнала на выходе GG Radio2
 
-
-
-
-
-
-
-
-
-
-
-
-
-	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	regBank.set(10,0);                                                  //Подать управляющую команду на вывод XP1 10 Звук на микрофон диспетчера  отключить
-	regBank.set(1,0);                                                   // Отключить сигнал на вход микрофона диспетчера Mic1p
+	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора +++++++++++++++++++++++++++++++++++++++++++++++
+	myFile.println("");
 	regBank.set(5,1);                                                   // Подать управляющую команду на вывод 12 ХР1 HeS2e (Включить микрофон)
 	regBank.set(28,1);                                                  // XP1- 15 HeS2PTT Включить PTT инструктора
 	regBank.set(16,0);                                                  // Сенсор микрофона отключить
@@ -1411,7 +1368,7 @@ void test_instruktora()
 	regBank.set(29,1);                                                  // ВКЛ XP1- 13 HeS2Ls Кнопка  ВКЛ флаг подключения гарнитуры инструктора 
 	UpdateRegs();                                                       // 
 	delay(200);
-		i5 = regs_in[3];                                                // 
+    byte i5 = regs_in[3];                                               // 
 		if(bitRead(i5,4) == 0)                                          // Проверка  включения микрофона инструктора
 		  {
 			regcount = regBank.get(40151);                              // адрес счетчика ошибки включения микрофона инструктора
@@ -1421,16 +1378,20 @@ void test_instruktora()
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			resistor(1, 255);                                           // Установить уровень сигнала в исходное состояниу
 			resistor(2, 255);                                           // Установить уровень сигнала в исходное состояниу
-			myFile.print("Microphone instruktora On  Error!     - ");       // 
+			myFile.print("Microphone instruktora ON  Error! - ");       // 
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.println("Microphone instruktora On               Ok!");           // Микрофона инструктора включился
+			myFile.print("Microphone instruktora ");                    // Микрофона инструктора включился
+			myFile.println("ON - Ok!");                                 // Микрофона инструктора включился
+			delay(20);
 		  }
-
-	myFile.println("Microphon instruktora signal On");                     // 
-	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    +++++++++++++++++++++++++++++++++
+    myFile.println("");
+	myFile.print("Microphone instruktora ");                 // 
+	myFile.println("signal ON");                 // 
+	delay(20);
+	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    ++++++++++++++++++++++++++++++++++++
 	measure_vol_max(analog_LineL,40143,143,200);                        // Измерить уровень сигнала на выходе LineL
 	measure_vol_max(analog_mag_phone,40150,150,200);                    // Измерить уровень сигнала на выходе mag phone
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
@@ -1440,8 +1401,6 @@ void test_instruktora()
 	measure_vol_min(analog_gg_radio1,40147,147,30);                     // Измерить уровень сигнала на выходе GG Radio1
 	measure_vol_min(analog_gg_radio2,40148,148,30);                     // Измерить уровень сигнала на выходе GG Radio2
 
-
-	//delay(100);
 	regBank.set(29,0);                                                  // XP1- 13 HeS2Ls  Отключить сенсор инструктора
 	regBank.set(27,0);                                                  // XP1- 16 HeS2Rs  Отключить сенсор инструктора c 2  наушниками
 	regBank.set(16,0);                                                  // XP1- 16 HeS2Rs  Отключить сенсор инструктора c 2  наушниками
@@ -1452,11 +1411,108 @@ void test_instruktora()
 	regBank.set(adr_control_command,0);                                 // Завершить программу    
 	delay(100);
 }
+
+void test_dispetchera()
+ {
+    unsigned int regcount = 0;                                          // 
+	myFile.println("");
+	myFile.println("Test dispetchera start!");
+	regBank.set(5,0);                                                    // Подать управляющую команду на вывод 12 ХР1 HeS2e (Выключить микрофон инструктора)
+	regBank.set(10,1);                                                   // Подать управляющую команду на вывод XP1 10 Звук на микрофон диспетчера  включить
+	regBank.set(32,1);                                                   // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
+	regBank.set(31,1);                                                   // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(16,0);                                                   // XS1 - 6   Sence Мик отключить
+	regBank.set(1,1);                                                    // Подать сигнал на вход микрофона диспетчера Mic1p
+	UpdateRegs();   
+	delay(200);
+	myFile.print("Signal microphone ");
+	myFile.println("dispetchera 30mv  ON");
+		 byte i5 = regs_in[3];                                      // 
+		if(bitRead(i5,6) == 0)                                           // Проверка  включения микрофона диспетчера
+		  {
+			regcount = regBank.get(40152);                               // адрес счетчика ошибки включения микрофона диспетчера
+			regcount++;                                                  // увеличить счетчик ошибок включения микрофона диспетчера
+			regBank.set(40152,regcount);                                 // адрес счетчика ошибки включения микрофона диспетчера
+			regBank.set(152,1);                                          // установить флаг ошибки
+			regBank.set(120,1);                                          // установить общий флаг ошибки
+			resistor(1, 255);                                            // Установить уровень сигнала в исходное состояниу
+			resistor(2, 255);                                            // Установить уровень сигнала в исходное состояниу
+			myFile.print("Microphone dispetchera ON  Error! - ");    // 
+			myFile.println(regcount);                                    // 
+		  }
+		else
+		  {
+			myFile.println("Microphone dispetchera ON - Ok!"); // Микрофона диспетчера включился
+		  }
+	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    ++++++++++++++++++++++++++++++++++++
+	measure_vol_max(analog_LineL,40143,143,200);                        // Измерить уровень сигнала на выходе LineL
+	measure_vol_max(analog_mag_phone,40150,150,200);                    // Измерить уровень сигнала на выходе mag phone
+	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
+	measure_vol_min(analog_FrontL,40141,141,25);                        // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,40142,142,25);                        // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_ggs,40146,146,30);                           // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_gg_radio1,40147,147,30);                     // Измерить уровень сигнала на выходе GG Radio1
+	measure_vol_min(analog_gg_radio2,40148,148,30);                     // Измерить уровень сигнала на выходе GG Radio2
+ }
+void test_MTT()
+{
+	myFile.println("");
+	regBank.set(10,0);                                                  // Подать управляющую команду на вывод XP1 10 Звук на микрофон диспетчера  отключить
+	regBank.set(1,0);                                                   // Отключить сигнал на вход микрофона диспетчера Mic1p
+	regBank.set(2,0);                                                   // Отключить сигнал на вход микрофона диспетчера Mic2p
+	regBank.set(3,1);                                                   // Включить сигнал на вход микрофона трубки Mic3p
+	regBank.set(5,0);                                                   // Подать управляющую команду на вывод 12 ХР1 HeS2e (отключить микрофон инструктора)
+	regBank.set(28,0);                                                  // XP1- 15 HeS2PTT Отключить PTT инструктора
+	regBank.set(16,0);                                                  // Сенсор микрофона отключить
+	regBank.set(15,0);                                                  // РТТ микрофона отключить
+	regBank.set(18,0);                                                  // XP1 - 20  HangUp  DCD
+	regBank.set(25,1);                                                  // XP1- 19 HaSs      Sence подключения трубки                                         
+	UpdateRegs();                                                       // 
+	delay(200);
+
+		//if(regBank.get(10083)!= 0)                                      // Проверить XP1 - 20  HangUp  DCD
+		//	{
+		//		regcount = regBank.get(40153);                          // адрес счетчика ошибки отключения XP1 - 20  HangUp  DCD
+		//		regcount++;                                             // увеличить счетчик ошибок
+		//		regBank.set(40153,regcount);                            // адрес счетчика ошибки отключения XP1 - 20  HangUp  DCD
+		//		regBank.set(153,1);                                     // установить флаг ошибки отключения XP1 - 20  HangUp  DCD
+		//		regBank.set(120,1);                                     // установить общий флаг ошибки
+		//		myFile.print("Komanda XP1 - 20  HangUp  DCD OFF Error! - ");   //XP1 - 20  HangUp  DCD
+		//		myFile.println(regcount);
+		//	}
+		//else
+		//	{
+		//	   myFile.println("Komanda XP1 - 20  HangUp  DCD OFF- Ok!"); // XP1 - 20  HangUp  DCD
+		//	}
+
+  //      byte i5 = regs_in[1];                                      // 
+		//if(bitRead(i5,2) == 0)                                           // Проверка  подключения сенсора трубки
+		//  {
+		//	regcount = regBank.get(40154);                               // адрес счетчика ошибки подключения сенсора трубки
+		//	regcount++;                                                  // увеличить счетчик ошибок подключения сенсора трубки
+		//	regBank.set(40154,regcount);                                 // адрес счетчика ошибки подключения сенсора трубки
+		//	regBank.set(154,1);                                          // установить флаг ошибки
+		//	regBank.set(120,1);                                          // установить общий флаг ошибки
+		//	resistor(1, 255);                                            // Установить уровень сигнала в исходное состояниу
+		//	resistor(2, 255);                                            // Установить уровень сигнала в исходное состояниу
+		//	myFile.print("Sence MTT ON  Error! - ");    // 
+		//	myFile.println(regcount);                                    // 
+		//  }
+		//else
+		//  {
+		//	myFile.println("Sence MTT ON - Ok!");                        // Сенсор трубки включился
+		//  }
+
+
+
+}
+
+
 void test_instr_off()
 {
-	  myFile.println("Komanda sensor Off instruktora  send!");              // !!!!
+	  myFile.println("Komanda sensor OFF instruktora   send!");        // 
 	  regBank.set(29,0);                                                // XP1- 13 HeS2Ls  Отключить сенсор инструктора
-	  myFile.println("Komanda sensor Off instruktora 2  send!");              // !!!!
+	  myFile.println("Komanda sensor OFF instruktora 2 send!");        // 
 	  regBank.set(27,0);                                                // XP1- 16 HeS2Rs  Отключить сенсор инструктора c 2  наушниками
 	  regBank.set(16,0);                                                // XS1 - 6   Sence Мик
 	  regBank.set(1,0);                                                 // Реле RL0 Звук
@@ -1469,12 +1525,11 @@ void test_instr_off()
 	  regBank.set(9,0);                                                 // Реле RL8 Звук на микрофон
 	  regBank.set(10,0);                                                // Реле RL9 XP1 10
 	  regBank.set(28,0);                                                // XP1- 15 HeS2Ls Отключить PTT инструктора
-	  myFile.println("Komanda PTT instr. Off  send!");
+	  myFile.println("Komanda PTT instruktora OFF      send!");
 
 	  UpdateRegs();                                                     // Выполнить команду отключения сенсоров
-	  delay(600);                                                       // 
-	  //UpdateRegs();                                                     // Выполнить команду отключения сенсоров
-	  //delay(600);                                                       //
+	  delay(400);                                                       // 
+
 	 unsigned int regcount = 0;
 	 
 	  // 1)  Проверка сенсора на отключение гарнитуры инструктора 2 наушниками
@@ -1488,12 +1543,13 @@ void test_instr_off()
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			resistor(1, 255);                                           // Установить уровень сигнала в исходное состояниу
 			resistor(2, 255);                                           // Установить уровень сигнала в исходное состояниу
-			myFile.print("Komanda sensor Off instruktora 2 Error!-");      //  // !!!!
+			myFile.print("Komanda sensor OFF ");   // 
+			myFile.print("instruktora 2 Error! - ");
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.println("Komanda sensor Off instruktora 2   Ok!");           // !!!!
+			myFile.println("Komanda sensor OFF instruktora 2 - Ok!");   //
 		  }
 
 	  // 2)  Проверка сенсора на отключение гарнитуры инструктора
@@ -1505,12 +1561,12 @@ void test_instr_off()
 			 regBank.set(40128,regcount);                               // адрес счетчика ошибки сенсора гарнитуры инструктора
 			 regBank.set(128,1);                                        // установить флаг ошибки
 			 regBank.set(120,1);                                        // установить общий флаг ошибки
-			 myFile.print("Komanda sensor Off instruktora  Error!- ");  // 
+			 myFile.print("Komanda sensor OFF instruktora  Error! - ");  // 
 			 myFile.println(regcount);
 		  }
 		else
 		  {
-			 myFile.println("Komanda sensor Off instruktora          Ok!");  // 
+			 myFile.println("Komanda sensor OFF instruktora   - Ok!");  // 
 		  }
 
 	 // 3)  Проверка сенсора на отключение микрофона
@@ -1522,20 +1578,20 @@ void test_instr_off()
 			 regBank.set(40149,regcount);                               // адрес счетчика ошибки сенсора микрофона
 			 regBank.set(149,1);                                        // установить флаг ошибки
 			 regBank.set(120,1);                                        // установить общий флаг ошибки
-			 myFile.print("Komanda sensor microphon  Error! - ");
+			 myFile.print("Komanda sensor microphone OFF Error! - ");
 			 myFile.println(regcount);
 		  }
 		else
 		  {
-			 myFile.println("Komanda sensor microphon  Ok!");
+			 myFile.println("Komanda sensor microphone OFF    - Ok!");
 		  }
 }
 void test_instr_on()
 {
 	unsigned int regcount = 0;
-	myFile.println("Komanda sensor On instruktora send!");
+	myFile.println("Komanda sensor ON instruktora    send!");
 	regBank.set(29,1);                                            // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
-	myFile.println("Komanda sensor On instruktora 2 send!");
+	myFile.println("Komanda sensor ON instruktora 2  send!");
 	regBank.set(27,1);                                            // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
 
 	//regBank.set(20,1);     // J8-23     XP7 1 PTT1 Танг. р.
@@ -1555,8 +1611,6 @@ void test_instr_on()
 	//regBank.set(28,1);     // XP1- 15 HeS2PTT   CTS вкл
 	regBank.set(32,1);     // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
 
-
-
 	UpdateRegs(); 
 	delay(300);
 
@@ -1569,12 +1623,12 @@ void test_instr_on()
 				regBank.set(40127,regcount);                            // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
 				regBank.set(127,1);                                     // установить флаг ошибки
 				regBank.set(120,1);                                     // установить общий флаг ошибки
-				myFile.print("Komanda sensor On instruktora 2 Error! - ");
+				myFile.print("Komanda sensor ON instruktora 2 Error! - ");
 				myFile.println(regcount);
 			}
 		else
 			{
-				myFile.println("Komanda sensor On  instruktora 2 Ok!");
+				myFile.println("Komanda sensor ON  instruktora 2 - Ok!");
 			}
 	  // 4)  Проверка сенсора на подключения гарнитуры инструктора
 
@@ -1585,12 +1639,12 @@ void test_instr_on()
 				regBank.set(40128,regcount);                            // адрес счетчика ошибки сенсора гарнитуры инструктора
 				regBank.set(128,1);                                     // установить флаг ошибки
 				regBank.set(120,1);                                     // установить общий флаг ошибки
-				myFile.print("Komanda sensor On  instruktora  Error! - ");
+				myFile.print("Komanda sensor ON  instruktora  Error! - ");
 				myFile.println(regcount);
 			 }
 		else
 			{
-				myFile.println("Komanda sensor On instruktora Ok!");
+				myFile.println("Komanda sensor ON instruktora    - Ok!");
 			}
 
 		 if(regBank.get(10081)!= 0)                                    // Проверить включение PTT инструктора   CTS
@@ -1600,14 +1654,14 @@ void test_instr_on()
 				regBank.set(40140,regcount);                           // адрес счетчика ошибки отключения PTT гарнитуры инструктора
 				regBank.set(140,1);                                    // установить флаг ошибки отключения PTT гарнитуры инструктора
 				regBank.set(120,1);                                    // установить общий флаг ошибки
-				myFile.print("Komanda PTT instrukt.(CTS) Off Error! - ");   // Микрофон не отключился 
+				myFile.print("Komanda PTT instruktora(CTS) OFF Error! - ");   // Микрофон не отключился 
 				myFile.println(regcount);
 			}
 		else
 			{
-				myFile.println("Komanda PTT instrukt. (CTS) Off Ok!");
+			   myFile.println("Komanda PTT instruktora (CTS) OFF- Ok!");
 			}
-		delay(100);
+	//	delay(100);
 }
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
@@ -1616,25 +1670,25 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 		switch (adr_flagErr) 
 		{
 			case 141:
-				myFile.print("Signal FrontL Off    - ");
+				myFile.print("Signal FrontL OFF    - ");
 				break;
 			case 142:
-				myFile.print("Signal FrontR Off    - ");
+				myFile.print("Signal FrontR OFF    - ");
 				break;
 			case 144:
-				myFile.print("Signal mag radio Off - ");
+				myFile.print("Signal mag radio OFF - ");
 				break;
 			case 145:
-				myFile.print("Signal mag phone Off - ");
+				myFile.print("Signal mag phone OFF - ");
 				break;
 			case 146:
-				myFile.print("Signal GGS Off       - ");
+				myFile.print("Signal GGS OFF       - ");
 				break;
 			case 147:
-				myFile.print("Signal GG Radio1 Off - ");
+				myFile.print("Signal GG Radio1 OFF - ");
 				break;
 			case 148:
-				myFile.print("Signal GG Radio2 Off - ");
+				myFile.print("Signal GG Radio2 OFF - ");
 				break;
 			case 8:
 				//выполняется когда  var равно 2
@@ -1669,31 +1723,31 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 		switch (adr_flagErr) 
 		{
 			case 141:
-				myFile.print("Signal FrontL Off    - ");
+				myFile.print("Signal FrontL OFF    - ");
 				break;
 			case 142:
-				myFile.print("Signal FrontR Off    - ");
+				myFile.print("Signal FrontR OFF    - ");
 				break;
 			case 143:
-				myFile.print("Signal FrontL On    - ");
+				myFile.print("Signal FrontL ON     - ");
 				break;
 			case 144:
-				myFile.print("Signal mag radio Off - ");
+				myFile.print("Signal mag radio OFF - ");
 				break;
 			case 145:
-				myFile.print("Signal mag phone Off - ");
+				myFile.print("Signal mag phone OFF - ");
 				break;
 			case 146:
-				myFile.print("Signal GGS Off       - ");
+				myFile.print("Signal GGS OFF       - ");
 				break;
 			case 147:
-				myFile.print("Signal GG Radio1 Off - ");
+				myFile.print("Signal GG Radio1 OFF - ");
 				break;
 			case 148:
-				myFile.print("Signal GG Radio2 Off - ");
+				myFile.print("Signal GG Radio2 OFF - ");
 				break;
 			case 150:
-				myFile.print("Mag phone on - ");
+				myFile.print("Mag phone on         - ");
 				break;
 			case 9:
 				//выполняется, когда var равно 1
@@ -2129,8 +2183,8 @@ modbus registers follow the following format
 	regBank.add(150);   // Флаг ошибки Mag phone on
 	regBank.add(151);   // Флаг ошибки включения микрофона инструктора
 	regBank.add(152);   // Флаг ошибки включения микрофона диспетчера
-	regBank.add(153);   // Флаг ошибки
-	regBank.add(154);   // Флаг ошибки
+	regBank.add(153);   // Флаг ошибки XP1 - 20  HangUp  DCD
+	regBank.add(154);   // Флаг ошибки Sence MTT ON
 	regBank.add(155);   // Флаг ошибки
 
 
@@ -2344,8 +2398,8 @@ modbus registers follow the following format
 	regBank.add(40150); // адрес счетчика ошибки  Mag phone on
 	regBank.add(40151); // адрес счетчика ошибки включения микрофона инструктора 
 	regBank.add(40152); // адрес счетчика ошибки включения микрофона диспетчера
-	regBank.add(40153); // адрес счетчика ошибки 
-	regBank.add(40154); // адрес счетчика ошибки 
+	regBank.add(40153); // адрес счетчика ошибки XP1 - 20  HangUp  DCD
+	regBank.add(40154); // адрес счетчика ошибки Sence MTT ON
 	regBank.add(40155); // адрес счетчика ошибки 
 	regBank.add(40156); // адрес счетчика ошибки 
 

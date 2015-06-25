@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-//using FieldTalk;
 using System.IO;
 using System.IO.Ports;
 using System.Globalization;
@@ -134,8 +133,7 @@ namespace KamertonTest
 
         private void si_DataReceived (string data)
         {
-
-            switch (_SerialMonitor) // Переключатель экранов вывода информации с Serial
+           switch (_SerialMonitor) // Переключатель экранов вывода информации с Serial
             {
                 default:
                 case 0:
@@ -159,8 +157,6 @@ namespace KamertonTest
                     textBox11.Refresh();
                     break;
             }
-
-
         }
       
         private void cmdOpenSerial_Click(object sender, EventArgs e)
@@ -2587,14 +2583,14 @@ namespace KamertonTest
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             progressBar1.Value = 0;
 
-            button32.BackColor = Color.Lime;                              //Изменение цвета кнопок
+            button32.BackColor = Color.Lime;                                           //Изменение цвета кнопок
             button31.BackColor = Color.LightSalmon;
             label102.Text = "Выполняется контроль состояния сенсоров";
             label102.ForeColor = Color.DarkOliveGreen;
            
             //startCoil = 33; // Запустить тест CTS
             //res = myProtocol.writeCoil(slave, startCoil, true); 
-            timer_byte_set.Enabled = true;                // Включить контроль состояния модуля Камертон            
+            timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
 
         }
 
@@ -3614,13 +3610,13 @@ namespace KamertonTest
             {
                 default:
                 case 0:
-                  //  sensor_off();
+                   // sensor_off();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
                     break;
                 case 1:
-                  //  sensor_on();
+                   // sensor_on();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
@@ -3632,13 +3628,13 @@ namespace KamertonTest
                     label98.Refresh();
                     break;
                 case 3:
-                  //  test_dispetchera();
+                    test_dispetchera();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
                     break;
                 case 4:
-                 //   test_MTT();
+                    test_MTT();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();

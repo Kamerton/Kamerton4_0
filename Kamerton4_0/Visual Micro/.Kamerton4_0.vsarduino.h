@@ -109,6 +109,8 @@ void control_command();
 void sence_all_off();
 void sence_all_on();
 void test_instruktora();
+void test_dispetchera();
+void test_MTT();
 void test_instr_off();
 void test_instr_on();
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV);
