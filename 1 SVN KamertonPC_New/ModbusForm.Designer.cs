@@ -103,11 +103,8 @@ namespace KamertonTest
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label92 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label95 = new System.Windows.Forms.Label();
-            this.button25 = new System.Windows.Forms.Button();
-            this.button24 = new System.Windows.Forms.Button();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.label70 = new System.Windows.Forms.Label();
             this.button27 = new System.Windows.Forms.Button();
@@ -1273,11 +1270,8 @@ namespace KamertonTest
             // 
             this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tabPage5.Controls.Add(this.label92);
             this.tabPage5.Controls.Add(this.textBox11);
             this.tabPage5.Controls.Add(this.label95);
-            this.tabPage5.Controls.Add(this.button25);
-            this.tabPage5.Controls.Add(this.button24);
             this.tabPage5.Controls.Add(this.groupBox17);
             this.tabPage5.Controls.Add(this.groupBox14);
             this.tabPage5.Controls.Add(this.label114);
@@ -1295,17 +1289,6 @@ namespace KamertonTest
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Байты обмена с Камертон";
             this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
-            // 
-            // label92
-            // 
-            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label92.Location = new System.Drawing.Point(558, 39);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(189, 18);
-            this.label92.TabIndex = 63;
-            this.label92.Text = "Не применять. Резерв.";
-            this.label92.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label92.Click += new System.EventHandler(this.label92_Click_1);
             // 
             // textBox11
             // 
@@ -1327,26 +1310,6 @@ namespace KamertonTest
             this.label95.Size = new System.Drawing.Size(187, 30);
             this.label95.TabIndex = 52;
             this.label95.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button25
-            // 
-            this.button25.Location = new System.Drawing.Point(671, 12);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(75, 23);
-            this.button25.TabIndex = 50;
-            this.button25.Text = "Стоп";
-            this.button25.UseVisualStyleBackColor = true;
-            this.button25.Click += new System.EventHandler(this.button25_Click);
-            // 
-            // button24
-            // 
-            this.button24.Location = new System.Drawing.Point(561, 13);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(75, 23);
-            this.button24.TabIndex = 49;
-            this.button24.Text = "Старт";
-            this.button24.UseVisualStyleBackColor = true;
-            this.button24.Click += new System.EventHandler(this.button24_Click_1);
             // 
             // groupBox17
             // 
@@ -4466,8 +4429,6 @@ namespace KamertonTest
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Label label95;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Timer timerCTS;
@@ -4490,7 +4451,6 @@ namespace KamertonTest
         private System.Windows.Forms.CheckBox checkBoxSenGGRadio1;
         private System.Windows.Forms.CheckBox checkBoxSoundAll;
         private System.Windows.Forms.CheckBox checkBoxPTTAll;
-        private System.Windows.Forms.Label label92;
         private System.Windows.Forms.Label label70;
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Button button30;
