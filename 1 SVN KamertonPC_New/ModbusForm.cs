@@ -3000,7 +3000,7 @@ namespace KamertonTest
         
             textBox7.Text += ("Команда на отключения сенсоров отправлена" + "\r\n");
             textBox7.Refresh();
-
+            Thread.Sleep(700);
             startRdReg = 24;  // Проверка состояния сенсоров
             numRdRegs = 24;  //24          
             res = myProtocol.readInputRegisters(slave, startRdReg, readVals, numRdRegs);
@@ -3008,17 +3008,17 @@ namespace KamertonTest
 
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
-                if (readVals[0] == 1) //  флаг подключения ГГ Радио2
-                {
-                    textBox8.Text += ("Сенсор ГГ Радио2 не отключился" + "\r\n");
-                    textBox8.Refresh();
-                }
+                //if (readVals[0] == 1) //  флаг подключения ГГ Радио2
+                //{
+                //    textBox8.Text += ("Сенсор ГГ Радио2 не отключился" + "\r\n");
+                //    textBox8.Refresh();
+                //}
 
-                if (readVals[1] == 1) //  флаг подключения ГГ Радио1
-                {
-                    textBox8.Text += ("Сенсор ГГ Радио1 не отключился" + "\r\n");
-                    textBox8.Refresh();
-                }
+                //if (readVals[1] == 1) //  флаг подключения ГГ Радио1
+                //{
+                //    textBox8.Text += ("Сенсор ГГ Радио1 не отключился" + "\r\n");
+                //    textBox8.Refresh();
+                //}
 
                 if (readVals[2] == 1) //  флаг подключения трубки
                 {
@@ -3041,11 +3041,11 @@ namespace KamertonTest
                 }
 
 
-                if (readVals[16] == 1) //   флаг подключения магнитофона
-                {
-                    textBox8.Text += ("Сенсор подключения магнитофона не отключился" + "\r\n");
-                    textBox8.Refresh();
-                }
+                //if (readVals[16] == 1) //   флаг подключения магнитофона
+                //{
+                //    textBox8.Text += ("Сенсор подключения магнитофона не отключился" + "\r\n");
+                //    textBox8.Refresh();
+                //}
 
 
                 if (readVals[17] == 1) //   флаг подключения гарнитуры инструктора 2 наушниками
@@ -3082,11 +3082,11 @@ namespace KamertonTest
                 }
 
 
-                if (readVals[22] == 1) //    флаг подключения ГГС
-                {
-                    textBox8.Text += ("Сенсор подключения ГГС не отключился" + "\r\n");
-                    textBox8.Refresh();
-                }
+                //if (readVals[22] == 1) //    флаг подключения ГГС
+                //{
+                //    textBox8.Text += ("Сенсор подключения ГГС не отключился" + "\r\n");
+                //    textBox8.Refresh();
+                //}
                 //textBox9.Refresh();
                test_end();
             }
@@ -3104,7 +3104,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на включения сенсоров отправлена" + "\r\n");
             textBox7.Refresh();
 
-
+            Thread.Sleep(700);
             startRdReg = 24;  // Проверка состояния сенсоров
             numRdRegs = 24;  //24           
             res = myProtocol.readInputRegisters(slave, startRdReg, readVals, numRdRegs);
@@ -3113,17 +3113,17 @@ namespace KamertonTest
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
 
-                if (readVals[0] == 0) // флаг подключения ГГ Радио2
-                {
-                    textBox8.Text += ("Сенсор ГГ Радио2 не включился" + "\r\n");
-                    textBox8.Refresh();
-                }
+                //if (readVals[0] == 0) // флаг подключения ГГ Радио2
+                //{
+                //    textBox8.Text += ("Сенсор ГГ Радио2 не включился" + "\r\n");
+                //    textBox8.Refresh();
+                //}
 
-                if (readVals[1] == 0) // флаг подключения ГГ Радио1
-                {
-                    textBox8.Text += ("Сенсор ГГ Радио1 не включился" + "\r\n");
-                    textBox8.Refresh();
-                }
+                //if (readVals[1] == 0) // флаг подключения ГГ Радио1
+                //{
+                //    textBox8.Text += ("Сенсор ГГ Радио1 не включился" + "\r\n");
+                //    textBox8.Refresh();
+                //}
 
                 if (readVals[2] == 0) //  флаг подключения трубки
                 {
@@ -3147,11 +3147,11 @@ namespace KamertonTest
                 }
 
 
-                if (readVals[16] == 0) //  флаг подключения магнитофона
-                {
-                    textBox8.Text += ("Сенсор подключения магнитофона не включился" + "\r\n");
-                    textBox8.Refresh();
-                }
+                //if (readVals[16] == 0) //  флаг подключения магнитофона
+                //{
+                //    textBox8.Text += ("Сенсор подключения магнитофона не включился" + "\r\n");
+                //    textBox8.Refresh();
+                //}
 
 
                 if (readVals[17] == 0) //  флаг подключения гарнитуры инструктора 2 наушниками
@@ -3188,11 +3188,11 @@ namespace KamertonTest
                 }
 
 
-                if (readVals[22] == 0) // флаг подключения ГГС
-                {
-                    textBox8.Text += ("Сенсор подключения ГГС не включился" + "\r\n");
-                    textBox8.Refresh();
-                }
+                //if (readVals[22] == 0) // флаг подключения ГГС
+                //{
+                //    textBox8.Text += ("Сенсор подключения ГГС не включился" + "\r\n");
+                //    textBox8.Refresh();
+                //}
      
                 test_end();
             }
@@ -3610,13 +3610,13 @@ namespace KamertonTest
             {
                 default:
                 case 0:
-                   // sensor_off();
+                    sensor_off();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
                     break;
                 case 1:
-                   // sensor_on();
+                    sensor_on();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
