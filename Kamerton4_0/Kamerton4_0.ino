@@ -980,6 +980,14 @@ void sence_all_off()
 			myFile.println("OFF - Ok!");                                 //  Sence подключения трубки  OK!
 		  }
 		*/
+
+
+
+
+
+
+
+		/*
 		if(bitRead(i5,3) != 0)                                          // J8-11     XP7 2 Sence тангента ручная
 		  {
 			regcount = regBank.get(40124);                              // адрес счетчика ошибки Sence тангента ручная
@@ -1012,7 +1020,7 @@ void sence_all_off()
 			myFile.println("OFF - Ok!");                                 // Sence Тангента ножная OK!
 		  }
 
-
+		*/
 		i5 = regs_in[2];                                                // 
 //----------------------------- Отключен -------------------------------------------------------------------
 		//if(bitRead(i5,0) != 0)                                          // XP2-2 Sence "Маг."  
@@ -1030,7 +1038,7 @@ void sence_all_off()
 		//	myFile.print("Sence MAG XP2-2 ");                                      // 
 		//	myFile.println("OFF - Ok!");                                 //  Sence "Маг."  
 		//  }
-
+		/*
 		if(bitRead(i5,1) != 0)                                          // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
 		  {
 			regcount = regBank.get(40127);                              // адрес счетчика ошибки Sence подключения гарнитуры инструктора с 2 наушниками
@@ -1110,6 +1118,7 @@ void sence_all_off()
 			myFile.print("Sensor microphone  XS1 - 6  ");                                      // 
 			myFile.println("OFF - Ok!");                                 //  Sence подключения микрофона OK!
 		  }
+		*/
 //----------------------------- Отключен -------------------------------------------------------------------
 
 		//if(bitRead(i5,6) != 0)                                          // XP5-3     Sence "ГГC."
@@ -1180,7 +1189,6 @@ void sence_all_off()
 }
 void sence_all_on()
 {
-	
 	unsigned int regcount = 0;
 	myFile.println("");
 	myFile.println("Test sensor ON start!");
@@ -1212,8 +1220,6 @@ void sence_all_on()
 	regBank.set(31,1);    // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
 	regBank.set(32,1);    // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
 
-	UpdateRegs(); 
-	delay(400);
 	UpdateRegs(); 
 	delay(400);
 
@@ -1407,6 +1413,27 @@ void sence_all_on()
 			myFile.print("Sensor microphone  XS1 - 6  ");                                      // 
 			myFile.println("ON - Ok!");                                 //  Sence подключения микрофона OK!
 		  }
+
+
+
+
+
+
+
+
+
+
+   delay(100);
+}
+
+void view_registers()
+{
+
+	//  не понятно почему блокирует MODBUS !!!!
+
+
+	//unsigned int regcount = 0;
+	//byte i5 = 0;
 //----------------------------- Отключен -------------------------------------------------------------------
 
 		//if(bitRead(i5,6) == 0)                                          // XP5-3     Sence "ГГC."
@@ -1424,10 +1451,11 @@ void sence_all_on()
 		//	myFile.print("Sensor GGS  XP5-3 Error! - ");                                      // 
 		//	myFile.println("ON - Ok!");                                 //  Sence "ГГC." OK
 		//  }
-/*
-		i5 = regs_in[3];                                                // 
+
+	//	i5 = regs_in[3];                                                // 
 
 //---------------------------------------------------------------------------------------------------------------------------
+	/*
 		if(bitRead(i5,4) == 0)                                          // Реле RL4 XP1 12  HeS2e   Включение микрофона инструктора
 		  {
 			regcount = regBank.get(40139);                              // адрес счетчика ошибки Включение микрофона инструктора
@@ -1435,14 +1463,15 @@ void sence_all_on()
 			regBank.set(40139,regcount);                                // адрес счетчика ошибки Включение микрофона инструктора
 			regBank.set(139,1);                                         // установить флаг ошибки Включение микрофона инструктора
 			regBank.set(120,1);                                         // установить общий флаг ошибки
-			myFile.print("Microphone instruktora Sw.  XP1 12 HeS2e Error! - ");                          // 
-			myFile.println(regcount);                                 // 
+			myFile.print("Microphone instruktora Sw. XP1 12 HeS2e Error! - ");                          // 
+			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.print("Microphone instruktora Sw.  XP1 12 HeS2e ");                                      // 
-			myFile.println("ON - Ok!");                                // Включение микрофона инструктора ОК!
+			myFile.print("Microphone instruktora Sw. XP1 12 HeS2e ");                                      // 
+			myFile.println("ON - Ok!");                                 // Включение микрофона инструктора ОК!
 		  }
+		  
 		if(bitRead(i5,5) == 0)                                          // Включение радиопередачи
 		  {
 			regcount = regBank.get(40156);                              // адрес счетчика ошибки Включение радиопередачи
@@ -1451,13 +1480,33 @@ void sence_all_on()
 			regBank.set(156,1);                                         // установить флаг ошибки Включение радиопередачи
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			myFile.print("Radioperedacha ON  Error! - ");                          // 
-			myFile.println(regcount);                                 // 
+			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
 			myFile.print("Radioperedacha ");                                      // 
 			myFile.println("ON - Ok!");                                 // Включение радиопередачи ОК!
 		  }
+		*/
+	 //  if(bitRead(i5,6) == 0)                                           // Реле RL9 XP1 10 Включение микрофона диспетчера
+		//  {
+		//	regcount = regBank.get(40155);                              // адрес счетчика ошибки Включение радиопередачи
+		//	regcount++;                                                 // увеличить счетчик ошибок Включение радиопередачи
+		//	regBank.set(40155,regcount);                                // адрес счетчика ошибки Включение радиопередачи
+		//	regBank.set(155,1);                                         // установить флаг ошибки Включение радиопередачи
+		//	regBank.set(120,1);                                         // установить общий флаг ошибки
+		//	myFile.print("Microphone Error! - ");   
+		////	myFile.print("Microphone dispetchera ON Error! - ");        // 
+		//	myFile.println(regcount);                                   // 
+		//  }
+		//else
+		//  {
+		//	myFile.print("Microphone dispetchera XP1 10 ");                                      // 
+		//	myFile.println("ON - Ok!");                                 // Включение радиопередачи ОК!
+		//  }
+
+
+		/*
 		if(bitRead(i5,6) == 0)                                          // Реле RL9 XP1 10 Включение микрофона диспетчера
 		  {
 			regcount = regBank.get(40155);                              // адрес счетчика ошибки Включение микрофона диспетчера
@@ -1473,8 +1522,10 @@ void sence_all_on()
 			myFile.print("Microphone dispetchera XP1 10 ");                                      // 
 			myFile.println("ON - Ok!");                                 // Включение микрофона диспетчера ОК!
 		  }
-   delay(100);
-   */
+
+		*/
+
+
 
 }
 void test_instruktora()

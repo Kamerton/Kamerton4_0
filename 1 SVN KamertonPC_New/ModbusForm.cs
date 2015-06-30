@@ -3616,7 +3616,7 @@ namespace KamertonTest
                     label98.Refresh();
                     break;
                 case 1:
-                    sensor_on();
+                //    sensor_on();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();

@@ -108,6 +108,7 @@ void FileClose();
 void control_command();
 void sence_all_off();
 void sence_all_on();
+void view_registers();
 void test_instruktora();
 void test_dispetchera();
 void test_MTT();
