@@ -3169,11 +3169,103 @@ namespace KamertonTest
                  }
 
               }
+            //if (Dec_bin[24] == false) // флаг подключения ГГ Радио2
+            //{
+            //    textBox8.Text += ("Сенсор ГГ Радио2 не включился" + "\r\n");
+            //    textBox8.Refresh();
+            //}
 
+            //if (Dec_bin[25] == false) // флаг подключения ГГ Радио1
+            //{
+            //    textBox8.Text += ("Сенсор ГГ Радио1 не включился" + "\r\n");
+            //    textBox8.Refresh();
+            //}
+
+            if (Dec_bin[26] == false) //  флаг подключения трубки
+            {
+                textBox8.Text += ("Сенсор подключения трубки не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+
+
+
+            if (Dec_bin[27] == false)   // флаг подключения ручной тангенты
+            {
+                textBox8.Text += ("Сенсор подключения ручной тангенты не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+
+
+            if (Dec_bin[28] == false)  // флаг подключения педали
+            {
+                textBox8.Text += ("Сенсор подключения педали не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+
+
+            //if (Dec_bin[40] == false) //  флаг подключения магнитофона
+            //{
+            //    textBox8.Text += ("Сенсор подключения магнитофона не включился" + "\r\n");
+            //    textBox8.Refresh();
+            //}
+
+
+            if (Dec_bin[41] == false) //  флаг подключения гарнитуры инструктора 2 наушниками
+            {
+                textBox8.Text += ("Сенсор одключения гарнитуры инструктора 2 наушниками не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+
+            if (Dec_bin[42] == false) //   флаг подключения гарнитуры инструктора
+            {
+                textBox8.Text += ("Сенсор подключения гарнитуры инструктора не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+
+
+            if (Dec_bin[43] == false) //  флаг подключения гарнитуры диспетчера с 2 наушниками
+            {
+                textBox8.Text += ("Сенсор подключения гарнитуры диспетчера с 2 наушниками не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+
+
+            if (Dec_bin[44] == false) //  флаг подключения гарнитуры диспетчера
+            {
+                textBox8.Text += ("Сенсор подключения гарнитуры диспетчера не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+
+
+            if (Dec_bin[45] == false) //  флаг подключения микрофона XS1 - 6 Sence  
+            {
+                textBox8.Text += ("Сенсор подключения микрофона не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+            if (Dec_bin[46] == false) // флаг подключения ГГС
+            {
+                textBox8.Text += ("Сенсор подключения ГГС не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+            if (Dec_bin[52] == false) //  флаг подключения гарнитуры диспетчера
+            {
+                textBox8.Text += ("Микрофон гарнитуры инструктора не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+
+
+            if (Dec_bin[54] == false) //  флаг подключения микрофона XS1 - 6 Sence  
+            {
+                textBox8.Text += ("Микрофон гарнитуры диспетчера не включился" + "\r\n");
+                textBox8.Refresh();
+            }
+
+  
+            test_end();
 
 //------------------------------------------------------------------------
 
-
+          /*
             startRdReg = 24;  // Проверка состояния сенсоров
             numRdRegs = 24;  //24           
             res = myProtocol.readInputRegisters(slave, startRdReg, readVals, numRdRegs);
@@ -3265,7 +3357,7 @@ namespace KamertonTest
      
                 test_end();
             }
-
+          */
         }
         private void test_instruktora()
         {
