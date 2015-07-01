@@ -1415,14 +1415,6 @@ void sence_all_on()
 		  }
 
 
-
-
-
-
-
-
-
-
    delay(100);
 }
 
