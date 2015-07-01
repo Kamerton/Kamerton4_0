@@ -2549,7 +2549,7 @@ namespace KamertonTest
         {
             if (TabControl1.SelectedIndex == 2)
             {
-                //Polltimer1.Enabled = false;                                            // Запретить опрос состояния
+                //Polltimer1.Enabled = false;                                              // Запретить опрос состояния
                 //timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона
                 //timerCTS.Enabled = false;
                 //timerTestAll.Enabled = false;
@@ -2717,12 +2717,12 @@ namespace KamertonTest
 
         private void button27_Click (object sender, EventArgs e)                      // ВКЛ Реле RL9
         {
-            startCoil = 10; // Управление сенсорами
+            startCoil = 10; // Микрофон диспетчера включить
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
         private void button30_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL9
         {
-            startCoil = 10; // Управление сенсорами
+            startCoil = 10; // Микрофон диспетчера отключить
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
@@ -3002,7 +3002,7 @@ namespace KamertonTest
             textBox7.Refresh();
             Thread.Sleep(700);
             startRdReg = 24;  // Проверка состояния сенсоров
-            numRdRegs = 24;  //24          
+            numRdRegs  = 24;  //24          
             res = myProtocol.readInputRegisters(slave, startRdReg, readVals, numRdRegs);
 
 
@@ -3091,12 +3091,13 @@ namespace KamertonTest
                test_end();
             }
         }
-        private void sensor_on()
+      private void sensor_on()
         {
             ushort[] writeVals = new ushort[2];
-            short[] readVals = new short[32];
-            bool[] coilArr = new bool[34];
-     
+
+            short[] readVals = new short[124];
+            bool[] coilArr = new bool[64];
+            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
       
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 2); // Включить все сенсоры
@@ -3105,6 +3106,74 @@ namespace KamertonTest
             textBox7.Refresh();
 
             Thread.Sleep(700);
+
+// Новый фрагмент чтения регистров 40001-40007
+
+            int startRdReg;
+            int numRdRegs;
+            int i;
+            bool[] coilVals = new bool[64];
+            bool[] coilSensor = new bool[64];
+
+            //*************************  Получить данные состояния модуля Камертон ************************************
+
+            Int64 binaryHolder;
+            string binaryResult = "";
+            int decimalNum;
+            bool[] Dec_bin = new bool[64];
+            startRdReg = 1;
+            numRdRegs = 7;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);    // 03  Считать число из регистров по адресу  40000 -49999
+            label78.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                toolStripStatusLabel1.BackColor = Color.Lime;
+
+                for (int bite_x = 0; bite_x < 7; bite_x++)
+                {
+                    decimalNum = readVals[bite_x];
+                    while (decimalNum > 0)
+                    {
+                        binaryHolder = decimalNum % 2;
+                        binaryResult += binaryHolder;
+                        decimalNum = decimalNum / 2;
+                    }
+
+                    int len_str = binaryResult.Length;
+
+                    while (len_str < 8)
+                    {
+                        binaryResult += 0;
+                        len_str++;
+                    }
+
+                    //****************** Перемена битов ***************************
+                    //binaryArray = binaryResult.ToCharArray();
+                    //Array.Reverse(binaryArray);
+                    //binaryResult = new string(binaryArray);
+                    //*************************************************************
+
+                    for (i = 0; i < 8; i++)                         // 
+                    {
+                        if (binaryResult[i] == '1')
+                        {
+                            Dec_bin[i + (8 * bite_x)] = true;
+                        }
+                        else
+                        {
+                            Dec_bin[i + (8 * bite_x)] = false;
+                        }
+                    }
+                    binaryResult = "";
+                 }
+
+              }
+
+
+//------------------------------------------------------------------------
+
+
             startRdReg = 24;  // Проверка состояния сенсоров
             numRdRegs = 24;  //24           
             res = myProtocol.readInputRegisters(slave, startRdReg, readVals, numRdRegs);
@@ -3616,25 +3685,25 @@ namespace KamertonTest
                     label98.Refresh();
                     break;
                 case 1:
-                //    sensor_on();
+                    sensor_on();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
                     break;
                 case 2:
-                    test_instruktora();
+                //    test_instruktora();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
                     break;
                 case 3:
-                    test_dispetchera();
+                //    test_dispetchera();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
                     break;
                 case 4:
-                    test_MTT();
+                 //   test_MTT();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
