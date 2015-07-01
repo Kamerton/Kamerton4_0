@@ -108,7 +108,6 @@ void FileClose();
 void control_command();
 void sence_all_off();
 void sence_all_on();
-void view_registers();
 void test_instruktora();
 void test_dispetchera();
 void test_MTT();
@@ -121,7 +120,6 @@ void preob_num_str();
 void setup_mcp();
 void setup_resistor();
 void setup_SD();
-void setup_SDFile();
 void setup_regModbus();
 void test_system();
 //
