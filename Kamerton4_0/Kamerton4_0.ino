@@ -530,8 +530,7 @@ void reg_Kamerton()                                       // Подпрограмма преобр
 	regBank.set(adr_reg_ind_CTS, !mcp_Analog.digitalRead(CTS));
 	regBank.set(adr_reg_ind_DSR, !mcp_Analog.digitalRead(DSR));
 	regBank.set(adr_reg_ind_DCD, !mcp_Analog.digitalRead(DCD));
-
-		 
+ 
 }
 void UpdateRegs()                                        // Обновить регистры
 {
