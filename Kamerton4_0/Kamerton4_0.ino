@@ -262,7 +262,6 @@ const char  txt_all_off21[]  PROGMEM           = "Radioperedacha OFF            
 const char  txt_all_off22[]  PROGMEM           = "Radioperedacha                                          ";                           
 const char  txt_all_off23[]  PROGMEM           = "Microphone dispetchera OFF XP1 10              Error! - ";                         
 const char  txt_all_off24[]  PROGMEM           = "Microphone dispetchera                                  ";
-
 const char  txt_test_all0[]  PROGMEM           = "Test instruktora start!"                                 ;
 const char  txt_test_all1[]  PROGMEM           = "Signal microphone  instruktora 30mv  ON"                 ;
 const char  txt_test_all2[]  PROGMEM           = "Microphone instruktora ON                      Error! - ";
@@ -324,17 +323,16 @@ const char  txt_test_all57[]  PROGMEM          = "Signal GG Radio2 OFF - ";
 const char  txt_test_all58[]  PROGMEM          = "Mag phone on         - ";
 const char  txt_test_all59[]  PROGMEM          = "";
 const char  txt_test_all60[]  PROGMEM          = "";
-//const char  txt_test_all[]  PROGMEM           = "";
 
 const char  txt_instr_off0[]  PROGMEM          = "Komanda sence OFF instruktora   send!                   ";
 const char  txt_instr_off1[]  PROGMEM          = "Komanda sence OFF instruktora 2 send!                   ";
 const char  txt_instr_off2[]  PROGMEM          = "Komanda PTT instruktora OFF      send!                  ";
-const char  txt_instr_off3[]  PROGMEM          = "Komanda sence OFF instruktora 2                       - Ok!";
-const char  txt_instr_off4[]  PROGMEM          = "Komanda sence OFF instruktora                  Error! - ";
-const char  txt_instr_off5[]  PROGMEM          = "Komanda sence OFF instruktora                         - Ok!";
-const char  txt_instr_off6[]  PROGMEM          = "Komanda sence microphone OFF                   Error! - ";
-const char  txt_instr_off7[]  PROGMEM          = "Komanda sence microphone OFF                          - Ok!";
-const char  txt_instr_off[]  PROGMEM           = "";
+const char  txt_instr_off3[]  PROGMEM          = "Komanda sence OFF instruktora 2                Error! - ";
+const char  txt_instr_off4[]  PROGMEM          = "Komanda sence OFF instruktora 2                       - Ok!";
+const char  txt_instr_off5[]  PROGMEM          = "Komanda sence OFF instruktora                  Error! - ";
+const char  txt_instr_off6[]  PROGMEM          = "Komanda sence OFF instruktora                         - Ok!";
+const char  txt_instr_off7[]  PROGMEM          = "Komanda sence microphone OFF                   Error! - ";
+const char  txt_instr_off8[]  PROGMEM          = "Komanda sence microphone OFF                          - Ok!";
 
 const char  txt_instr_on0[]  PROGMEM           = "Komanda sence ON instruktora    send!"                   ;
 const char  txt_instr_on1[]  PROGMEM           = "Komanda sence ON instruktora 2  send!"                   ;
@@ -344,9 +342,6 @@ const char  txt_instr_on4[]  PROGMEM           = "Komanda sence ON instruktora  
 const char  txt_instr_on5[]  PROGMEM           = "Komanda sence ON instruktora                          - Ok!";
 const char  txt_instr_on6[]  PROGMEM           = "Komanda PTT instruktora (CTS) OFF              Error! - ";
 const char  txt_instr_on7[]  PROGMEM           = "Komanda PTT instruktora (CTS) OFF                     - Ok!";
-const char  txt_instr_on[]   PROGMEM           = "";
-
-
 
 char buffer[60];  
 const char* const string_table[] PROGMEM = 
@@ -413,11 +408,12 @@ const char* const table_instr_off[] PROGMEM =
 	txt_instr_off0,      //  "Komanda sence OFF instruktora   send!                   ";
 	txt_instr_off1,      //  "Komanda sence OFF instruktora 2 send!                   ";
 	txt_instr_off2,      //  "Komanda PTT instruktora OFF      send!                  ";
-	txt_instr_off3,      //  "Komanda sence OFF instruktora 2 - Ok!                   ";
-	txt_instr_off4,      //  "Komanda sence OFF instruktora                  Error! - ";
-	txt_instr_off5,      //  "Komanda sence OFF instruktora                      - Ok!";
-	txt_instr_off6,      //  "Komanda sence microphone OFF                   Error! - ";
-	txt_instr_off7       //  "Komanda sence microphone OFF                       - Ok!";
+	txt_instr_off3,      //  "Komanda sence OFF instruktora 2                Error! - ";
+	txt_instr_off4,      //  "Komanda sence OFF instruktora 2 - Ok!                   ";
+	txt_instr_off5,      //  "Komanda sence OFF instruktora                  Error! - ";
+	txt_instr_off6,      //  "Komanda sence OFF instruktora                      - Ok!";
+	txt_instr_off7,      //  "Komanda sence microphone OFF                   Error! - ";
+	txt_instr_off8       //  "Komanda sence microphone OFF                       - Ok!";
 };
 
 const char* const table_instr_on[] PROGMEM = 
@@ -1201,13 +1197,6 @@ void sence_all_off()
 //	regBank.set(30,0);    // XP1- 6  HeS1PTT   CTS вкл
 	regBank.set(31,0);    // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
 	regBank.set(32,0);    // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
-
-
-
-
-
-
-
 
 	UpdateRegs(); 
 	delay(300);
@@ -2027,6 +2016,8 @@ void test_MTT()
 
 void test_instr_off()
 {
+	
+	  unsigned int regcount = 0;
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[0])));
 	  myFile.println(buffer);                                           // "Komanda sensor OFF instruktora   send!"
 	  regBank.set(29,0);                                                // XP1- 13 HeS2Ls  Отключить сенсор инструктора
@@ -2049,8 +2040,6 @@ void test_instr_off()
 
 	  UpdateRegs();                                                     // Выполнить команду отключения сенсоров
 	  delay(400);                                                       // 
-
-	 unsigned int regcount = 0;
 	 
 	  // 1)  Проверка сенсора на отключение гарнитуры инструктора 2 наушниками
 	  byte i5 = regs_in[2];                                             // 
@@ -2063,13 +2052,13 @@ void test_instr_off()
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			resistor(1, 255);                                           // Установить уровень сигнала в исходное состояниу
 			resistor(2, 255);                                           // Установить уровень сигнала в исходное состояниу
-			//myFile.print("Komanda sensor OFF ");   // 
-			//myFile.print("instruktora 2 Error! - ");
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[3])));
+			myFile.print(buffer);                                       // "Komanda sensor OFF instruktora 2 Error! - "
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[3])));
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[4])));
 			myFile.println(buffer);                                     // "Komanda sensor OFF instruktora 2 - Ok!"
 		  }
 
@@ -2082,13 +2071,13 @@ void test_instr_off()
 			 regBank.set(40128,regcount);                               // адрес счетчика ошибки сенсора гарнитуры инструктора
 			 regBank.set(128,1);                                        // установить флаг ошибки
 			 regBank.set(120,1);                                        // установить общий флаг ошибки
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[4])));
+			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[5])));
 			 myFile.print(buffer);                                      // "Komanda sensor OFF instruktora  Error! - "
 			 myFile.println(regcount);
 		  }
 		else
 		  {
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[5])));
+			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[6])));
 			 myFile.println(buffer);                                    // "Komanda sensor OFF instruktora   - Ok!"
 		  }
 
@@ -2101,13 +2090,13 @@ void test_instr_off()
 			 regBank.set(40149,regcount);                               // адрес счетчика ошибки сенсора микрофона
 			 regBank.set(149,1);                                        // установить флаг ошибки
 			 regBank.set(120,1);                                        // установить общий флаг ошибки
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[6])));
+			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[7])));
 			 myFile.print(buffer);                                      // "Komanda sensor microphone OFF Error! - "
 			 myFile.println(regcount);
 		  }
 		else
 		  {
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[7])));
+			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[8])));
 			 myFile.println(buffer);                                    // "Komanda sensor microphone OFF    - Ok!"
 		  }
 }
