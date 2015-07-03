@@ -312,15 +312,15 @@ const char  txt_test_all46[]  PROGMEM          = "Signal GG Radio2 OFF          
 const char  txt_test_all47[]  PROGMEM          = "Error! - "                                               ;
 const char  txt_test_all48[]  PROGMEM          = "";
 const char  txt_test_all49[]  PROGMEM          = "";
-const char  txt_test_all50[]  PROGMEM          = "Signal FrontL OFF    - ";
-const char  txt_test_all51[]  PROGMEM          = "Signal FrontR OFF    - ";
-const char  txt_test_all52[]  PROGMEM          = "Signal FrontL ON     - ";
-const char  txt_test_all53[]  PROGMEM          = "Signal mag radio OFF - ";
-const char  txt_test_all54[]  PROGMEM          = "Signal mag phone OFF - ";
-const char  txt_test_all55[]  PROGMEM          = "Signal GGS OFF       - ";
-const char  txt_test_all56[]  PROGMEM          = "Signal GG Radio1 OFF - ";
-const char  txt_test_all57[]  PROGMEM          = "Signal GG Radio2 OFF - ";
-const char  txt_test_all58[]  PROGMEM          = "Mag phone on         - ";
+const char  txt_test_all50[]  PROGMEM          = "Signal FrontL OFF                                     - ";
+const char  txt_test_all51[]  PROGMEM          = "Signal FrontR OFF                                     - ";
+const char  txt_test_all52[]  PROGMEM          = "Signal FrontL ON                                      - ";
+const char  txt_test_all53[]  PROGMEM          = "Signal mag radio OFF                                  - ";
+const char  txt_test_all54[]  PROGMEM          = "Signal mag phone OFF                                  - ";
+const char  txt_test_all55[]  PROGMEM          = "Signal GGS OFF                                        - ";
+const char  txt_test_all56[]  PROGMEM          = "Signal GG Radio1 OFF                                  - ";
+const char  txt_test_all57[]  PROGMEM          = "Signal GG Radio2 OFF                                  - ";
+const char  txt_test_all58[]  PROGMEM          = "Mag phone on                                          - ";
 const char  txt_test_all59[]  PROGMEM          = "";
 const char  txt_test_all60[]  PROGMEM          = "";
 
@@ -1844,13 +1844,13 @@ void test_instruktora()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[1])));
 	myFile.println(buffer);                                              // "Signal microphone  instruktora 30mv  ON"
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,40141,141,25);                         // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,40142,142,25);                         // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_FrontL,   40141,141,25);                      // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40142,142,25);                      // Измерить уровень сигнала на выходе FrontR 
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
 	measure_vol_min(analog_mag_radio,40144,144,25);                      // Измерить уровень сигнала на выходе mag radio  
 	measure_vol_min(analog_mag_phone,40145,145,25);                      // Измерить уровень сигнала на выходе mag phone
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_ggs,40146,146,30);                            // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_ggs,      40146,146,30);                      // Измерить уровень сигнала на выходе GGS
 	measure_vol_min(analog_gg_radio1,40147,147,30);                      // Измерить уровень сигнала на выходе GG Radio1
 	measure_vol_min(analog_gg_radio2,40148,148,30);                      // Измерить уровень сигнала на выходе GG Radio2
 
@@ -1888,12 +1888,12 @@ void test_instruktora()
 	myFile.println(buffer);                                             // "Microphone instruktora signal ON"
 	delay(20);
 	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    ++++++++++++++++++++++++++++++++++++
-	measure_vol_max(analog_LineL,40143,143,200);                        // Измерить уровень сигнала на выходе LineL
+	measure_vol_max(analog_LineL,    40143,143,200);                    // Измерить уровень сигнала на выходе LineL
 	measure_vol_max(analog_mag_phone,40150,150,200);                    // Измерить уровень сигнала на выходе mag phone
    //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,40141,141,25);                        // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,40142,142,25);                        // Измерить уровень сигнала на выходе FrontR 
-	measure_vol_min(analog_ggs,40146,146,30);                           // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_FrontL,   40141,141,25);                     // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40142,142,25);                     // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_ggs,      40146,146,30);                     // Измерить уровень сигнала на выходе GGS
 	measure_vol_min(analog_gg_radio1,40147,147,30);                     // Измерить уровень сигнала на выходе GG Radio1
 	measure_vol_min(analog_gg_radio2,40148,148,30);                     // Измерить уровень сигнала на выходе GG Radio2
 
@@ -2188,47 +2188,49 @@ void test_instr_on()
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
 		int regcount = 0;
-		measure_volume(istochnik);                                     // Измерить уровень сигнала на выходе
+		measure_volume(istochnik);                                               // Измерить уровень сигнала на выходе
 		switch (adr_flagErr) 
 		{
 			case 141:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[40])));
-				myFile.print(buffer);              // "Signal FrontL OFF    - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[40])));  // "Signal FrontL OFF    - "
+				//myFile.print(buffer);              // "Signal FrontL OFF    - "
 				break;
 			case 142:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[41])));
-				myFile.print(buffer);              // "Signal FrontR OFF    - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[41])));  // "Signal FrontR OFF    - "
+				//myFile.print(buffer);              // "Signal FrontR OFF    - "
 				break;
 			case 144:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[42])));
-				myFile.print(buffer);              // "Signal mag radio OFF - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[42])));  // "Signal mag radio OFF - "
+				//myFile.print(buffer);              // "Signal mag radio OFF - "
 				break;
 			case 145:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[43])));
-				myFile.print(buffer);              // "Signal mag phone OFF - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[43])));  // "Signal mag phone OFF - "
+				//myFile.print(buffer);              // "Signal mag phone OFF - "
 				break;
 			case 146:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[44])));
-				myFile.print(buffer);              // "Signal GGS OFF       - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[44])));   // "Signal GGS OFF       - "
+				//myFile.print(buffer);              // "Signal GGS OFF       - "
 				break;
 			case 147:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[45])));
-				myFile.print(buffer);              // "Signal GG Radio1 OFF - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[45])));  // "Signal GG Radio1 OFF - "
+				//print(buffer);              // "Signal GG Radio1 OFF - "
 				break;
 			case 148:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[46])));
-				myFile.print(buffer);              // "Signal GG Radio2 OFF - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[46])));   // "Signal GG Radio2 OFF - "
+				//myFile.print(buffer);              // "Signal GG Radio2 OFF - "
 				break;
-			case 8:
-				//выполняется
-				break;
-			case 9:
-				//выполняется
-				break;
-			case 10:
-				//выполняется 
-				break;
+			//case 8:
+			//	//выполняется
+			//	break;
+			//case 9:
+			//	//выполняется
+			//	break;
+			//case 10:
+			//	//выполняется 
+			//	break;
 		}
+
+		myFile.print(buffer);                                          // 
 
 		if(voltage10 >  porogV)                                        // Проверить исправность канала
 			{
@@ -2249,44 +2251,44 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
 		int regcount = 0;
-		measure_volume(istochnik);                                    // Измерить уровень сигнала на выходе
+		measure_volume(istochnik);                                                  // Измерить уровень сигнала на выходе
 		switch (adr_flagErr) 
 		{
 			case 141:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[50])));
-				myFile.print(buffer);              // "Signal FrontL OFF    - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[50])));     // "Signal FrontL OFF    - "
+				myFile.print(buffer);                                               // "Signal FrontL OFF    - "
 				break;
 			case 142:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[51])));
-				myFile.print(buffer);              // "Signal FrontR OFF    - "
+				myFile.print(buffer);                                               // "Signal FrontR OFF    - "
 				break;
 			case 143:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[52])));
-				myFile.print(buffer);              // "Signal FrontL ON     - "
+				myFile.print(buffer);                                               // "Signal FrontL ON     - "
 				break;
 			case 144:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[53])));
-				myFile.print(buffer);              // "Signal mag radio OFF - "
+				myFile.print(buffer);                                               // "Signal mag radio OFF - "
 				break;
 			case 145:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[54])));
-				myFile.print(buffer);              // "Signal mag phone OFF - "
+				myFile.print(buffer);                                               // "Signal mag phone OFF - "
 				break;
 			case 146:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[55])));
-				myFile.print(buffer);              // "Signal GGS OFF       - "
+				myFile.print(buffer);                                               // "Signal GGS OFF       - "
 				break;
 			case 147:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[56])));
-				myFile.print(buffer);              // "Signal GG Radio1 OFF - "
+				myFile.print(buffer);                                               // "Signal GG Radio1 OFF - "
 				break;
 			case 148:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[57])));
-				myFile.print(buffer);              // "Signal GG Radio2 OFF - "
+				myFile.print(buffer);                                              // "Signal GG Radio2 OFF - "
 				break;
 			case 150:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[58])));
-				myFile.print(buffer);              // "Mag phone on         - "
+				myFile.print(buffer);                                              // "Mag phone on         - "
 				break;
 			case 9:
 				//выполняется, когда var равно 1
