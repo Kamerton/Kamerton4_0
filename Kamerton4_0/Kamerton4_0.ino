@@ -350,7 +350,7 @@ txt_all_off0,     // 0
 txt_all_off1,     // 1  "Test sensor OFF start!";                           
 txt_all_off2,     // 2  "Sence MTT  XP1- 19 HaSs Error! - ";                         
 txt_all_off3,     // 3  "Sence MTT XP1- 19 HaSs ";
-txt_all_off4,     // 4   "OFF - Ok!"                                                  ;                           
+txt_all_off4,     // 4   "OFF - Ok!"                                                ;                           
 txt_all_off5,     // 5  "Tangenta ruchnaja XP7 2  Error! - ";                         
 txt_all_off6,     // 6  "Tangenta ruchnaja XP7 - 2                                 ";
 txt_all_off7,     // 7  "XP8 - 2 Sence tangenta nognaja Error! - ";                           
@@ -1953,12 +1953,12 @@ void test_dispetchera()
 			myFile.println(buffer);                                      // "Microphone dispetchera ON - Ok!" Микрофона диспетчера включился
 		  }
 	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    ++++++++++++++++++++++++++++++++++++
-	measure_vol_max(analog_LineL,40143,143,200);                         // Измерить уровень сигнала на выходе LineL
-	measure_vol_max(analog_mag_phone,40150,150,200);                     // Измерить уровень сигнала на выходе mag phone
+	measure_vol_max(analog_LineL,    40143,143,200);                     // Измерить уровень сигнала на выходе LineL
+//	measure_vol_max(analog_mag_phone,40150,150,200);                     // Измерить уровень сигнала на выходе mag phone
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,40141,141,25);                         // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,40142,142,25);                         // Измерить уровень сигнала на выходе FrontR 
-	measure_vol_min(analog_ggs,40146,146,30);                            // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_FrontL,   40141,141,25);                      // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40142,142,25);                      // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_ggs,      40146,146,30);                      // Измерить уровень сигнала на выходе GGS
 	measure_vol_min(analog_gg_radio1,40147,147,30);                      // Измерить уровень сигнала на выходе GG Radio1
 	measure_vol_min(analog_gg_radio2,40148,148,30);                      // Измерить уровень сигнала на выходе GG Radio2
  }
@@ -2219,6 +2219,9 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[46])));   // "Signal GG Radio2 OFF - "
 				//myFile.print(buffer);              // "Signal GG Radio2 OFF - "
 				break;
+
+
+
 			//case 8:
 			//	//выполняется
 			//	break;
@@ -2305,14 +2308,16 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				regBank.set(adr_count,regcount);                       // адрес счетчика ошибки канала 
 				regBank.set(adr_flagErr,1);                            // установить флаг ошибки  канала 
 				regBank.set(120,1);                                    // установить общий флаг ошибки 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[47])));
-				myFile.print(buffer);                                  // "Error! - "
+			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[47])));
+				myFile.print("Error! - ");                                      // "Error! - "
 				myFile.println(regcount);
 			}
 		else
 			{
 				myFile.println("Ok!");
-			}                                     
+			}    
+
+		myFile.println("**");
 }
 void measure_volume(int analog)
 {
