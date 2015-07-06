@@ -1974,11 +1974,17 @@ void test_dispetchera()
 	myFile.println();
 	unsigned int regcount = 0;
 
+	//	regBank.add(40158);  // Флаг ошибки отключения PTT гарнитуры диспетчера
+	//regBank.add(40159);  // Флаг ошибки отключения микрофона гарнитуры диспетчера
+	//regBank.add(40160);  // Флаг ошибки динамика гарнитуры диспетчера FrontL
+	//regBank.add(40161);  // Флаг ошибки динамика гарнитуры диспетчера FrontR
+	//regBank.add(40162);  // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
+
 	test_disp_off();                                                    // Отключить реле и сенсоры, прверить отключение
 	test_disp_on();                                                     // Включить необходимые сенсоры, проверить состояние
 	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,40141,141,25);                         // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,40142,142,25);                         // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_FrontL,40141,160,25);                         // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,40142,161,25);                         // Измерить уровень сигнала на выходе FrontR 
 	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
 	resistor(1, 30);                                                     // Установить уровень сигнала 30 мв
 	resistor(2, 30);                                                     // Установить уровень сигнала 30 мв
@@ -1989,8 +1995,8 @@ void test_dispetchera()
 	//strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_all[1])));                   !!!!!!!!!!!!!!!!!!
 	myFile.println(buffer);                                              // "Signal microphone   dispetchera 30mv  ON"
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,   40141,141,25);                      // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40142,142,25);                      // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_FrontL,   40141,160,25);                      // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40142,161,25);                      // Измерить уровень сигнала на выходе FrontR 
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
 	measure_vol_min(analog_mag_radio,40144,144,25);                      // Измерить уровень сигнала на выходе mag radio  
 	measure_vol_min(analog_mag_phone,40145,145,25);                      // Измерить уровень сигнала на выходе mag phone
@@ -2241,18 +2247,17 @@ void test_instr_on()
 {
 	unsigned int regcount = 0;
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[0])));
-	myFile.println(buffer);                                       // "Komanda sensor ON instruktora    send!"
-	regBank.set(29,1);                                            // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
+	myFile.println(buffer);                                             // "Komanda sensor ON instruktora    send!"
+	regBank.set(29,1);                                                  // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[1])));
-	myFile.println(buffer);                                       // "Komanda sensor ON instruktora 2  send!"
-	regBank.set(27,1);                                            // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
-	regBank.set(12,1);     // XP8 2 Sence
-	regBank.set(19,1);     // J8-11     XP7 2 Sence  Танг. р.
-	regBank.set(16,1);     // XS1 - 6   Sence Мик
-	regBank.set(31,1);     // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(25,1);     // XP1- 19 HaSs      Sence подключения трубки      
-	regBank.set(13,1);     // XP8 - 2           Sence Тангента ножная
-	regBank.set(32,1);     // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
+	myFile.println(buffer);                                             // "Komanda sensor ON instruktora 2  send!"
+	regBank.set(27,1);                                                  // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(19,1);                                                  // J8-11     XP7 2 Sence  Танг. р.
+	regBank.set(16,1);                                                  // XS1 - 6   Sence Мик
+	regBank.set(31,1);                                                  // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(25,1);                                                  // XP1- 19 HaSs      Sence подключения трубки      
+	regBank.set(13,1);                                                  // XP8 - 2           Sence Тангента ножная
+	regBank.set(32,1);                                                  // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
 
 	UpdateRegs(); 
 	delay(300);
@@ -2312,7 +2317,6 @@ void test_instr_on()
 			}
 	//	delay(100);
 }
-
 
 void test_disp_off()
 {
@@ -2407,7 +2411,6 @@ void test_disp_on()
 	regBank.set(32,1);                                            // XP1- 1  HeS1Ls    Sence подключения гарнитуры диспетчера 
 //!!!		strcpy_P(buffer, (char*)pgm_read_word(&(table_disp[1])));
 	myFile.println(buffer);                                       // "Komanda sensor ON instruktora 2  send!"
-	regBank.set(12,1);                                            // XP8 2 Sence
 	regBank.set(19,1);                                            // J8-11     XP7 2 Sence  Танг. р.
 	regBank.set(16,1);                                            // XS1 - 6   Sence Мик
 	regBank.set(31,1);                                            // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
@@ -2473,9 +2476,6 @@ void test_disp_on()
 	//	delay(100);
 }
 
-
-
-
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
 		int regcount = 0;
@@ -2510,18 +2510,27 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[46])));   // "Signal GG Radio2 OFF - "
 				//myFile.print(buffer);              // "Signal GG Radio2 OFF - "
 				break;
+			case 160:
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[40])));   // "Signal FrontL OFF    - "
+				break;
+			case 161:
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[41])));   // "Signal FrontR OFF    - "
+				break;
+			case 10:
+				//выполняется 
+				break;
+			case 11:
+				//выполняется
+				break;
+			case 12:
+				//выполняется
+				break;
+			case 13:
+				//выполняется 
+				break;
 
 
 
-			//case 8:
-			//	//выполняется
-			//	break;
-			//case 9:
-			//	//выполняется
-			//	break;
-			//case 10:
-			//	//выполняется 
-			//	break;
 		}
 
 		myFile.print(buffer);                                          // 
@@ -2583,6 +2592,12 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			case 150:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[58])));     // "Mag phone on         - "
 		   //  myFile.print(buffer);                                                // "Mag phone on         - "
+				break;
+		     case 160:
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[50])));     // "Signal FrontL OFF    - "
+				break;
+			case 161:
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[51])));     // "Signal FrontR OFF    - "
 				break;
 			case 9:
 				//выполняется, когда var равно 1
@@ -2984,6 +2999,24 @@ modbus registers follow the following format
 	regBank.add(156);   // адрес счетчика ошибки отключения радиопередачи
 	regBank.add(157);   // адрес счетчика ошибки включения радиопередачи
 	regBank.add(158);   // Флаг ошибки отключения PTT гарнитуры диспетчера
+	regBank.add(159);   // Флаг ошибки отключения микрофона гарнитуры диспетчера
+	regBank.add(160);   // Флаг ошибки динамика гарнитуры диспетчера FrontL
+	regBank.add(161);   // Флаг ошибки динамика гарнитуры диспетчера FrontR
+	regBank.add(162);   // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	regBank.add(10081);    // Адрес флагa индикации состояния сигнала CTS
@@ -3140,68 +3173,72 @@ modbus registers follow the following format
 	regBank.add(40095); // адрес секунда adr_Mic_Off_second    
 	*/
 	// Время старта теста
-	regBank.add(40096); // адрес день  adr_Mic_Start_day    
-	regBank.add(40097); // адрес месяц adr_Mic_Start_month  
-	regBank.add(40098); // адрес год adr_Mic_Start_year  
-	regBank.add(40099); // адрес час adr_Mic_Start_hour 
-	regBank.add(40100); // адрес минута adr_Mic_Start_minute 
-	regBank.add(40101); // адрес секунда adr_Mic_Start_second  
+	regBank.add(40096);  // адрес день  adr_Mic_Start_day    
+	regBank.add(40097);  // адрес месяц adr_Mic_Start_month  
+	regBank.add(40098);  // адрес год adr_Mic_Start_year  
+	regBank.add(40099);  // адрес час adr_Mic_Start_hour 
+	regBank.add(40100);  // адрес минута adr_Mic_Start_minute 
+	regBank.add(40101);  // адрес секунда adr_Mic_Start_second  
 
 	// Время окончания теста
-	regBank.add(40102); // адрес день adr_Mic_Stop_day 
-	regBank.add(40103); // адрес месяц adr_Mic_Stop_month 
-	regBank.add(40104); // адрес год adr_Mic_Stop_year
-	regBank.add(40105); // адрес час adr_Mic_Stop_hour 
-	regBank.add(40106); // адрес минута adr_Mic_Stop_minute  
-	regBank.add(40107); // адрес секунда adr_Mic_Stop_second 
+	regBank.add(40102);  // адрес день adr_Mic_Stop_day 
+	regBank.add(40103);  // адрес месяц adr_Mic_Stop_month 
+	regBank.add(40104);  // адрес год adr_Mic_Stop_year
+	regBank.add(40105);  // адрес час adr_Mic_Stop_hour 
+	regBank.add(40106);  // адрес минута adr_Mic_Stop_minute  
+	regBank.add(40107);  // адрес секунда adr_Mic_Stop_second 
 
 	// Продолжительность выполнения теста
-	regBank.add(40108); // адрес день adr_Time_Test_day 
-	regBank.add(40109); // адрес час adr_Time_Test_hour 
-	regBank.add(40110); // адрес минута adr_Time_Test_minute
-	regBank.add(40111); // адрес секунда adr_Time_Test_second
+	regBank.add(40108);  // адрес день adr_Time_Test_day 
+	regBank.add(40109);  // адрес час adr_Time_Test_hour 
+	regBank.add(40110);  // адрес минута adr_Time_Test_minute
+	regBank.add(40111);  // адрес секунда adr_Time_Test_second
  
-	regBank.add(40120); // adr_control_command Адрес передачи комманд на выполнение
-	regBank.add(40121); // адрес счетчика ошибки сенсора Sence "ГГ-Радио1."  ok!
-	regBank.add(40122); // адрес счетчика ошибки сенсора Sence "ГГ-Радио2."  ok!
-	regBank.add(40123); // адрес счетчика ошибки сенсора подключения трубки
-	regBank.add(40124); // адрес счетчика ошибки сенсора  Sence Танг. р. ok!
-	regBank.add(40125); // адрес счетчика ошибки сенсора Sence Танг н. ok!
-	regBank.add(40126); // адрес счетчика ошибки сенсора Sence "Маг."   ok!
-	regBank.add(40127); // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
-	regBank.add(40128); // адрес счетчика ошибки сенсора гарнитуры инструктора
-	regBank.add(40129); // адрес счетчика ошибки сенсора гарнитуры диспетчера с 2 наушниками
+	regBank.add(40120);  // adr_control_command Адрес передачи комманд на выполнение
+	regBank.add(40121);  // адрес счетчика ошибки сенсора Sence "ГГ-Радио1."  ok!
+	regBank.add(40122);  // адрес счетчика ошибки сенсора Sence "ГГ-Радио2."  ok!
+	regBank.add(40123);  // адрес счетчика ошибки сенсора подключения трубки
+	regBank.add(40124);  // адрес счетчика ошибки сенсора  Sence Танг. р. ok!
+	regBank.add(40125);  // адрес счетчика ошибки сенсора Sence Танг н. ok!
+	regBank.add(40126);  // адрес счетчика ошибки сенсора Sence "Маг."   ok!
+	regBank.add(40127);  // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
+	regBank.add(40128);  // адрес счетчика ошибки сенсора гарнитуры инструктора
+	regBank.add(40129);  // адрес счетчика ошибки сенсора гарнитуры диспетчера с 2 наушниками
 
-	regBank.add(40130); // адрес счетчика ошибки сенсора гарнитуры диспетчера
-	regBank.add(40131); // адрес счетчика ошибки сенсора Sence Мик. ok!
-	regBank.add(40132); // адрес счетчика ошибки сенсора Sence "ГГC."   ok!
-	regBank.add(40133); // адрес счетчика ошибки сенсора 
-	regBank.add(40134); // адрес счетчика ошибки сенсора PTT Танг н.  ok!
-	regBank.add(40135); // адрес счетчика ошибки сенсора PTT Мик ok!
-	regBank.add(40136); // адрес счетчика ошибки  PTT2 Танг. р. ok!
-	regBank.add(40137); // адрес счетчика ошибки  HangUp  DCD  ok!
-	regBank.add(40138); // адрес счетчика ошибки  PTT1 Танг. р. ok!
-	regBank.add(40139); // адрес счетчика ошибки отключения микрофона гарнитуры инструктора 
+	regBank.add(40130);  // адрес счетчика ошибки сенсора гарнитуры диспетчера
+	regBank.add(40131);  // адрес счетчика ошибки сенсора Sence Мик. ok!
+	regBank.add(40132);  // адрес счетчика ошибки сенсора Sence "ГГC."   ok!
+	regBank.add(40133);  // адрес счетчика ошибки сенсора 
+	regBank.add(40134);  // адрес счетчика ошибки сенсора PTT Танг н.  ok!
+	regBank.add(40135);  // адрес счетчика ошибки сенсора PTT Мик ok!
+	regBank.add(40136);  // адрес счетчика ошибки  PTT2 Танг. р. ok!
+	regBank.add(40137);  // адрес счетчика ошибки  HangUp  DCD  ok!
+	regBank.add(40138);  // адрес счетчика ошибки  PTT1 Танг. р. ok!
+	regBank.add(40139);  // адрес счетчика ошибки отключения микрофона гарнитуры инструктора 
 
-	regBank.add(40140); // адрес счетчика ошибки отключения PTT гарнитуры инструктора
-	regBank.add(40141); // адрес счетчика ошибки динамика гарнитуры инструктора FrontL
-	regBank.add(40142); // адрес счетчика ошибки динамика гарнитуры инструктора FrontR
-	regBank.add(40143); // адрес счетчика ошибки LineL
-	regBank.add(40144); // адрес счетчика ошибки analog_mag_radio
-	regBank.add(40145); // адрес счетчика ошибки analog_mag_phone
-	regBank.add(40146); // адрес счетчика ошибки analog_ggs
-	regBank.add(40147); // адрес счетчика ошибки analog_gg_radio1
-	regBank.add(40148); // адрес счетчика ошибки analog_gg_radio2
-	regBank.add(40149); // адрес счетчика ошибки сенсора микрофона
-	regBank.add(40150); // адрес счетчика ошибки  Mag phone on
-	regBank.add(40151); // адрес счетчика ошибки включения микрофона инструктора 
-	regBank.add(40152); // адрес счетчика ошибки включения микрофона диспетчера
-	regBank.add(40153); // адрес счетчика ошибки XP1 - 20  HangUp  DCD
-	regBank.add(40154); // адрес счетчика ошибки Sence MTT ON
-	regBank.add(40155); // адрес счетчика ошибки отключения микрофона гарнитуры диспетчера
-	regBank.add(40156); // адрес счетчика ошибки отключения радиопередачи
-	regBank.add(40157); // адрес счетчика ошибки включения радиопередачи
-	regBank.add(40158); // Флаг ошибки отключения PTT гарнитуры диспетчера
+	regBank.add(40140);  // адрес счетчика ошибки отключения PTT гарнитуры инструктора
+	regBank.add(40141);  // адрес счетчика ошибки динамика гарнитуры инструктора FrontL
+	regBank.add(40142);  // адрес счетчика ошибки динамика гарнитуры инструктора FrontR
+	regBank.add(40143);  // адрес счетчика ошибки LineL
+	regBank.add(40144);  // адрес счетчика ошибки analog_mag_radio
+	regBank.add(40145);  // адрес счетчика ошибки analog_mag_phone
+	regBank.add(40146);  // адрес счетчика ошибки analog_ggs
+	regBank.add(40147);  // адрес счетчика ошибки analog_gg_radio1
+	regBank.add(40148);  // адрес счетчика ошибки analog_gg_radio2
+	regBank.add(40149);  // адрес счетчика ошибки сенсора микрофона
+	regBank.add(40150);  // адрес счетчика ошибки  Mag phone on
+	regBank.add(40151);  // адрес счетчика ошибки включения микрофона инструктора 
+	regBank.add(40152);  // адрес счетчика ошибки включения микрофона диспетчера
+	regBank.add(40153);  // адрес счетчика ошибки XP1 - 20  HangUp  DCD
+	regBank.add(40154);  // адрес счетчика ошибки Sence MTT ON
+	regBank.add(40155);  // адрес счетчика ошибки отключения микрофона гарнитуры диспетчера
+	regBank.add(40156);  // адрес счетчика ошибки отключения радиопередачи
+	regBank.add(40157);  // адрес счетчика ошибки включения радиопередачи
+	regBank.add(40158);  // Флаг ошибки отключения PTT гарнитуры диспетчера
+	regBank.add(40159);  // Флаг ошибки отключения микрофона гарнитуры диспетчера
+	regBank.add(40160);  // Флаг ошибки динамика гарнитуры диспетчера FrontL
+	regBank.add(40161);  // Флаг ошибки динамика гарнитуры диспетчера FrontR
+	regBank.add(40162);  // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
 
 	slave._device = &regBank;  
 }
