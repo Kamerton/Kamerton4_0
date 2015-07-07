@@ -115,6 +115,8 @@ void test_instr_off();
 void test_instr_on();
 void test_disp_off();
 void test_disp_on();
+void test_MTT_off();
+void test_MTT_on();
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV);
 void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV);
 void measure_volume(int analog);
