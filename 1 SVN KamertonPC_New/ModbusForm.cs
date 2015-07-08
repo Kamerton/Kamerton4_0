@@ -1486,7 +1486,6 @@ namespace KamertonTest
                         label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
                         toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
         }
-
         private void timerCTS_Tick (object sender, EventArgs e)
         {
 
@@ -3766,7 +3765,7 @@ namespace KamertonTest
                     label98.Refresh();
                     break;
                 case 4:
-                 //   test_MTT();
+                    test_MTT();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();

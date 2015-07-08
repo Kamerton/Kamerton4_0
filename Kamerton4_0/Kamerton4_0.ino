@@ -293,11 +293,11 @@ const char  txt_test_all26[]  PROGMEM          = "";
 const char  txt_test_all27[]  PROGMEM          = "";
 const char  txt_test_all28[]  PROGMEM          = "";
 const char  txt_test_all29[]  PROGMEM          = "";
-const char  txt_test_all30[]  PROGMEM          = "";
-const char  txt_test_all31[]  PROGMEM          = "";
-const char  txt_test_all32[]  PROGMEM          = "";
-const char  txt_test_all33[]  PROGMEM          = "";
-const char  txt_test_all34[]  PROGMEM          = "";
+const char  txt_test_all30[]  PROGMEM          = "Test MTT start!"                                         ;
+const char  txt_test_all31[]  PROGMEM          = "Signal microphone MTT 30mv          ON"                  ;
+const char  txt_test_all32[]  PROGMEM          = "Microphone MTT                      ON         Error! - ";
+const char  txt_test_all33[]  PROGMEM          = "Microphone MTT                      ON                - Ok!";
+const char  txt_test_all34[]  PROGMEM          = "Microphone MTT                      ON"                  ;
 const char  txt_test_all35[]  PROGMEM          = "";
 const char  txt_test_all36[]  PROGMEM          = "";
 const char  txt_test_all37[]  PROGMEM          = "";
@@ -2069,8 +2069,8 @@ void test_dispetchera()
 void test_MTT()
 {
 	myFile.println(""); 
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[20])));
-	myFile.println(buffer);                                               // "Test dispetchera start!"
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[30])));
+	myFile.println(buffer);                                               // "Test MTT start!"
 	myFile.println();
 	unsigned int regcount = 0;
 	test_MTT_off();                                                      // Отключить реле и сенсоры, прверить отключение
@@ -2080,14 +2080,19 @@ void test_MTT()
 	measure_vol_min(analog_FrontL,40161,160,25);                         // Измерить уровень сигнала на выходе FrontL   
 	measure_vol_min(analog_FrontR,40162,161,25);                         // Измерить уровень сигнала на выходе FrontR 
 	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
-	resistor(1, 30);                                                     // Установить уровень сигнала 30 мв
-	resistor(2, 30);                                                     // Установить уровень сигнала 30 мв
-	regBank.set(1,1);                                                    // Подать сигнал на вход микрофона диспетчера Mic1p
+	resistor(1, 130);                                                    // Установить уровень сигнала 30 мв
+	resistor(2, 130);                                                    // Установить уровень сигнала 30 мв
+	regBank.set(3,1);                                                    // Включить сигнал на вход микрофона трубки Mic3p
 	UpdateRegs();                                                        // Выполнить команду
 	delay(200);
 	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[21])));      //   
-	myFile.println(buffer);                                              // "Signal microphone   dispetchera 30mv  ON"
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[31])));      //   
+	myFile.println(buffer);                                              // "Signal microphone   MTT 30mv  ON"
+
+
+	//!!!!!!!!!!!!!!!!!!!!!!
+
+
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,   40141,141,25);                      // Измерить уровень сигнала на выходе FrontL   
 	measure_vol_min(analog_FrontR,   40142,142,25);                      // Измерить уровень сигнала на выходе FrontR 
@@ -2101,38 +2106,37 @@ void test_MTT()
 
 	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
 	myFile.println("");                                                  //
-	regBank.set(10,1);                                                   // Подать управляющую команду на вывод XP1 10 Включение микрофона диспетчера
-	regBank.set(30,1);                                                   // XP1- 6  HeS1PTT   Включить PTT диспетчера
+	regBank.set(10,1);                                                   // Подать управляющую команду на вывод XP1 10 Включение микрофона MTT
+	regBank.set(30,1);                                                   // XP1- 6  HeS1PTT   Включить PTT MTT
 	regBank.set(16,0);                                                   // Сенсор микрофона отключить
 	regBank.set(15,0);                                                   // РТТ микрофона отключить
-	regBank.set(31,1);                                                   // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,1);                                                   // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
+	regBank.set(32,1);                                                   // XP1- 1  HeS1Ls    Sence подкючения MTT
 
 	UpdateRegs();                                                        // 
 	delay(200);                                                          //
 	byte i5 = regs_in[3];                                                // 
-		if(bitRead(i5,6) == 0)                                           // Проверка  включения микрофона диспетчера
+		if(bitRead(i5,6) == 0)                                           // Проверка  включения микрофона MTT
 		  {
-			regcount = regBank.get(40151);                               // адрес счетчика ошибки включения микрофона диспетчера
-			regcount++;                                                  // увеличить счетчик ошибок включения микрофона диспетчера
-			regBank.set(40151,regcount);                                 // адрес счетчика ошибки включения микрофона диспетчера
+			regcount = regBank.get(40151);                               // адрес счетчика ошибки включения микрофона MTT
+			regcount++;                                                  // увеличить счетчик ошибок включения микрофона MTT
+			regBank.set(40151,regcount);                                 // адрес счетчика ошибки включения микрофона MTT
 			regBank.set(151,1);                                          // установить флаг ошибки
 			regBank.set(120,1);                                          // установить общий флаг ошибки
 			resistor(1, 255);                                            // Установить уровень сигнала в исходное состояниe
 			resistor(2, 255);                                            // Установить уровень сигнала в исходное состояниe
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[22])));
-			myFile.print(buffer);                                        // "Microphone dispetchera ON  Error! - "
+			myFile.print(buffer);                                        // "Microphone MTT ON  Error! - "
 			myFile.println(regcount);                                    // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[23])));
-			myFile.println(buffer);                                     //"Microphone dispetchera  ON - Ok!" Микрофон диспетчера включился
+			myFile.println(buffer);                                     //"Microphone MTT  ON - Ok!" Микрофон диспетчера включился
 			delay(20);
 		  }
 	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[24])));     // "Microphone dispetchera signal ON" 
-	myFile.println(buffer);                                             // "Microphone dispetchera signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[24])));     // "Microphone MTT signal ON" 
+	myFile.println(buffer);                                             // "Microphone MTT signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
 	delay(20);
 	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    ++++++++++++++++++++++++++++++++++++
 	measure_vol_max(analog_LineL,    40143,143,200);                    // Измерить уровень сигнала на выходе LineL
@@ -2143,18 +2147,14 @@ void test_MTT()
 	measure_vol_min(analog_ggs,      40146,146,30);                     // Измерить уровень сигнала на выходе GGS
 	measure_vol_min(analog_gg_radio1,40147,147,30);                     // Измерить уровень сигнала на выходе GG Radio1
 	measure_vol_min(analog_gg_radio2,40148,148,30);                     // Измерить уровень сигнала на выходе GG Radio2
-	regBank.set(31,0);                                                  // XP1- 5  HeS1Rs   Отключить Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,0);                                                  // XP1- 1  HeS1Ls   Отключить  Sence подкючения гарнитуры диспетчера
+	regBank.set(32,0);                                                  // XP1- 1  HeS1Ls   Отключить  Sence подкючения MTT
 	regBank.set(15,0);                                                  // РТТ микрофона отключить
-	regBank.set(10,0);                                                  // Подать управляющую команду на вывод XP1 10  (Выключить микрофон диспетчера)
-	regBank.set(30,0);                                                  // XP1- 6  HeS1PTT   Отключить PTT диспетчера
-	regBank.set(28,0);                                                  // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
+	regBank.set(10,0);                                                  // Подать управляющую команду на вывод XP1 10  (Выключить микрофон MTT)
+	regBank.set(30,0);                                                  // XP1- 6  HeS1PTT   Отключить PTT MTT
+	regBank.set(28,0);                                                  // XP1- 15 HeS2PTT   CTS вкл PTT MTT
 	UpdateRegs();     
 	regBank.set(adr_control_command,0);                                 // Завершить программу    
 	delay(100);
-
-
-
 
 
 	//myFile.println("");
@@ -2567,9 +2567,6 @@ void test_MTT_off()
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[0])));
 	  myFile.println(buffer);                                           // "Komanda sensor OFF диспетчера  send!"
 	  regBank.set(32,0);                                                // XP1- 1  HeS1Ls    Отключить сенсор гарнитуры диспетчера
-	  strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[1])));
-	  myFile.println(buffer);                                           // "Komanda sensor OFF диспетчера 2 send!"
-	  regBank.set(31,0);                                                // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
 	  regBank.set(16,0);                                                // XS1 - 6   Sence Мик
 	  regBank.set(1,0);                                                 // Реле RL0 Звук
 	  regBank.set(2,0);                                                 // Реле RL1 Звук
