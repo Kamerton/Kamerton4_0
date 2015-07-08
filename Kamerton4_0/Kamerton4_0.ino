@@ -378,6 +378,10 @@ const char  txt_mtt_off4[]   PROGMEM           = "Komanda sence OFF microphone  
 const char  txt_mtt_off5[]   PROGMEM           = "Komanda sence OFF microphone                          - Ok!";
 const char  txt_mtt_off6[]   PROGMEM           = "Komanda       OFF PTT  MTT (CTS)               Error! - ";
 const char  txt_mtt_off7[]   PROGMEM           = "Komanda       OFF PTT  MTT (CTS)                      - Ok!";
+const char  txt_mtt_off8[]   PROGMEM           = "Komanda       OFF HangUp MTT     send!                   - Ok!";
+const char  txt_mtt_off9[]   PROGMEM           = "Komanda       OFF HangUp MTT                   Error! - ";
+const char  txt_mtt_off10[]  PROGMEM           = "Komanda       OFF HangUp MTT                          - Ok!";
+
 
 const char  txt_mtt_on0[]    PROGMEM           = "Komanda sence ON  MTT            send!"                  ;
 const char  txt_mtt_on1[]    PROGMEM           = "Komanda sence ON  MTT                          Error! - ";
@@ -385,7 +389,9 @@ const char  txt_mtt_on2[]    PROGMEM           = "Komanda sence ON  MTT         
 const char  txt_mtt_on3[]    PROGMEM           = "Komanda       ON  PTT  MTT (CTS)               Error! - ";
 const char  txt_mtt_on4[]    PROGMEM           = "Komanda       ON  PTT  MTT (CTS)                      - Ok!";
 const char  txt_mtt_on5[]    PROGMEM           = "Komanda       ON  PTT  MTT (CTS) send!"                  ;
-
+const char  txt_mtt_on6[]    PROGMEM           = "Komanda       ON  HangUp MTT                   Error! - ";
+const char  txt_mtt_on7[]    PROGMEM           = "Komanda       ON  HangUp MTT                          - Ok!";
+const char  txt_mtt_on8[]    PROGMEM           = "Komanda       ON  HangUp MTT     send!"                  ;
 
 
 
@@ -517,7 +523,10 @@ const char* const table_mtt_off[] PROGMEM =
 	txt_mtt_off4,      // "Komanda sence OFF microphone                   Error! - ";
 	txt_mtt_off5,      // "Komanda sence OFF microphone                          - Ok!";
 	txt_mtt_off6,      // "Komanda       OFF PTT  MTT (CTS)               Error! - ";
-	txt_mtt_off7       // "Komanda       OFF PTT  MTT (CTS)                      - Ok!";
+	txt_mtt_off7,      // "Komanda       OFF PTT  MTT (CTS)                      - Ok!";
+	txt_mtt_off8,      // "Komanda       OFF HangUp MTT     send!                   - Ok!";
+	txt_mtt_off9,      // "Komanda       OFF HangUp MTT                   Error! - ";
+	txt_mtt_off10      // "Komanda       OFF HangUp MTT                          - Ok!";
 };
 
 const char* const table_mtt_on[] PROGMEM = 
@@ -527,7 +536,10 @@ const char* const table_mtt_on[] PROGMEM =
 	txt_mtt_on2,      // "Komanda sence ON  MTT                                 - Ok!";
 	txt_mtt_on3,      // "Komanda       ON  PTT  MTT (CTS)               Error! - ";
 	txt_mtt_on4,      // "Komanda       ON  PTT  MTT (CTS)                      - Ok!";
-	txt_mtt_on5       // "Komanda       ON  PTT  MTT (CTS) send!"                  ;
+	txt_mtt_on5,      // "Komanda       ON  PTT  MTT (CTS) send!"                  ;
+	txt_mtt_on6,      // "Komanda       ON  HangUp MTT                   Error! - ";
+	txt_mtt_on7,      // "Komanda       ON  HangUp MTT                          - Ok!";
+	txt_mtt_on8       // "Komanda       ON  HangUp MTT     send!"                  ;
 };
 
 const char* const table_instr_all[] PROGMEM = 
@@ -2564,9 +2576,9 @@ void test_disp_on()
 void test_MTT_off()
 {
 	  unsigned int regcount = 0;
-	  strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[0])));
-	  myFile.println(buffer);                                           // "Komanda sensor OFF диспетчера  send!"
-	  regBank.set(32,0);                                                // XP1- 1  HeS1Ls    Отключить сенсор гарнитуры диспетчера
+	  strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[0])));
+	  myFile.println(buffer);                                           // "Komanda sence OFF MTT            send!                  
+	  regBank.set(25,0);                                                // XP1- 1  HeS1Ls    Отключить сенсор гарнитуры диспетчера
 	  regBank.set(16,0);                                                // XS1 - 6   Sence Мик
 	  regBank.set(1,0);                                                 // Реле RL0 Звук
 	  regBank.set(2,0);                                                 // Реле RL1 Звук
@@ -2577,8 +2589,8 @@ void test_MTT_off()
 	  regBank.set(7,0);                                                 // Реле RL6 Звук
 	  regBank.set(9,0);                                                 // Реле RL8 Звук на микрофон
 	  regBank.set(10,0);                                                // Реле RL9 XP1 10
-	  regBank.set(30,0);                                                // XP1- 6  HeS1PTT   Отключить PTT диспетчера
-	  strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[2])));
+	  regBank.set(18,0);                                                // XP1 - 20  HangUp  DCD
+	  strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[2])));
 	  myFile.println(buffer);                                           // "Komanda PTT диспетчера OFF send!"
 
 	  UpdateRegs();                                                     // Выполнить команду отключения сенсоров
@@ -3208,7 +3220,7 @@ modbus registers follow the following format
 	regBank.add(23);    // XP3-3     Sence "ГГ-Радио1."
 	regBank.add(24);    // XP4-3     Sence "ГГ-Радио2."
  
-	regBank.add(25);    // XP1- 19 HaSs      Sence подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+	regBank.add(25);    // XP1- 19 HaSs      Sence подключения трубки    MTT                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 	regBank.add(26);    // XP1- 17 HaSPTT    CTS DSR вкл.
 	regBank.add(27);    // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
 	regBank.add(28);    // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
