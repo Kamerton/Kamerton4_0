@@ -2996,7 +2996,7 @@ namespace KamertonTest
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 1); // Отключить все сенсоры
         
-            textBox7.Text += ("Команда на отключения сенсоров отправлена" + "\r\n");
+            textBox7.Text += ("Команда на отключение сенсоров отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(700);
 
@@ -3106,7 +3106,7 @@ namespace KamertonTest
 
             if (Dec_bin[41] == true) //  флаг подключения гарнитуры инструктора 2 наушниками
             {
-                textBox8.Text += ("Сенсор одключения гарнитуры инструктора 2 наушниками не отключился" + "\r\n");
+                textBox8.Text += ("Сенсор отключения гарнитуры инструктора 2 наушниками не отключился" + "\r\n");
                 textBox8.Refresh();
             }
 
@@ -3168,7 +3168,7 @@ namespace KamertonTest
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 2); // Включить все сенсоры
 
-            textBox7.Text += ("Команда на включения сенсоров отправлена" + "\r\n");
+            textBox7.Text += ("Команда на включение сенсоров отправлена" + "\r\n");
             textBox7.Refresh();
 
             Thread.Sleep(600);
@@ -3278,7 +3278,7 @@ namespace KamertonTest
 
             if (Dec_bin[41] == false) //  флаг подключения гарнитуры инструктора 2 наушниками
             {
-                textBox8.Text += ("Сенсор одключения гарнитуры инструктора 2 наушниками не включился" + "\r\n");
+                textBox8.Text += ("Сенсор отключения гарнитуры инструктора 2 наушниками не включился" + "\r\n");
                 textBox8.Refresh();
             }
 
@@ -3339,7 +3339,7 @@ namespace KamertonTest
 
             startWrReg = 120;  // В 40120 ячейке хранится номер теста. Эту ячейку применяет test_switch() Arduino
             res = myProtocol.writeSingleRegister(slave, startWrReg, 3); // Отключить все сенсоры
-            textBox7.Text += ("Команда на проверку Инструктора отправлена" + "\r\n");
+            textBox7.Text += ("Команда на проверку гарнитуры Инструктора отправлена" + "\r\n");
             textBox7.Refresh();
        //     Thread.Sleep(2500);
 
@@ -3354,7 +3354,7 @@ namespace KamertonTest
             res = myProtocol.writeSingleRegister(slave, startWrReg, 4); // Отключить все сенсоры
             startCoil = 38; // Запустить полный тест , адрес в контроллере 37
             res = myProtocol.writeCoil(slave, startCoil, true);
-            textBox7.Text += ("Команда на проверку Диспетчера отправлена" + "\r\n");
+            textBox7.Text += ("Команда на проверку гарнитуры Диспетчера отправлена" + "\r\n");
             textBox7.Refresh();
             startCoil = 248;  //адрес сенсоров
             numCoils = 34;

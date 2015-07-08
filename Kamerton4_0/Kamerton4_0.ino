@@ -273,6 +273,7 @@ const char  txt_test_all6[]  PROGMEM           = "";
 const char  txt_test_all7[]  PROGMEM           = "";
 const char  txt_test_all8[]  PROGMEM           = "";
 const char  txt_test_all9[]  PROGMEM           = "";
+
 const char  txt_test_all10[]  PROGMEM          = "";
 const char  txt_test_all11[]  PROGMEM          = "";
 const char  txt_test_all12[]  PROGMEM          = "";
@@ -283,6 +284,7 @@ const char  txt_test_all16[]  PROGMEM          = "";
 const char  txt_test_all17[]  PROGMEM          = "";
 const char  txt_test_all18[]  PROGMEM          = "";
 const char  txt_test_all19[]  PROGMEM          = "";
+
 const char  txt_test_all20[]  PROGMEM          = " ****** Test dispetchera start! ******"                  ;
 const char  txt_test_all21[]  PROGMEM          = "Signal microphone dispetchera 30mv  ON"                  ;
 const char  txt_test_all22[]  PROGMEM          = "Microphone dispetchera              ON         Error! - ";
@@ -293,6 +295,7 @@ const char  txt_test_all26[]  PROGMEM          = "";
 const char  txt_test_all27[]  PROGMEM          = "";
 const char  txt_test_all28[]  PROGMEM          = "";
 const char  txt_test_all29[]  PROGMEM          = "";
+
 const char  txt_test_all30[]  PROGMEM          = " ****** Test MTT start! ******"                          ;
 const char  txt_test_all31[]  PROGMEM          = "Signal microphone MTT 60mv          ON"                  ;
 const char  txt_test_all32[]  PROGMEM          = "Microphone MTT                      ON         Error! - ";
@@ -303,6 +306,7 @@ const char  txt_test_all36[]  PROGMEM          = "";
 const char  txt_test_all37[]  PROGMEM          = "";
 const char  txt_test_all38[]  PROGMEM          = "";
 const char  txt_test_all39[]  PROGMEM          = "";
+
 const char  txt_test_all40[]  PROGMEM          = "Signal FrontL     OFF                                 - ";
 const char  txt_test_all41[]  PROGMEM          = "Signal FrontR     OFF                                 - ";
 const char  txt_test_all42[]  PROGMEM          = "Signal mag radio  OFF                                 - ";
@@ -313,6 +317,7 @@ const char  txt_test_all46[]  PROGMEM          = "Signal GG Radio2  OFF         
 const char  txt_test_all47[]  PROGMEM          = "Error! - "                                               ;
 const char  txt_test_all48[]  PROGMEM          = "";
 const char  txt_test_all49[]  PROGMEM          = "";
+
 const char  txt_test_all50[]  PROGMEM          = "Signal FrontL     OFF                                 - ";
 const char  txt_test_all51[]  PROGMEM          = "Signal FrontR     OFF                                 - ";
 const char  txt_test_all52[]  PROGMEM          = "Signal FrontL     ON                                  - ";
@@ -321,9 +326,10 @@ const char  txt_test_all54[]  PROGMEM          = "Signal mag phone  OFF         
 const char  txt_test_all55[]  PROGMEM          = "Signal GGS        OFF                                 - ";
 const char  txt_test_all56[]  PROGMEM          = "Signal GG Radio1  OFF                                 - ";
 const char  txt_test_all57[]  PROGMEM          = "Signal GG Radio2  OFF                                 - ";
-const char  txt_test_all58[]  PROGMEM          = "Mag phone         ON                                  - ";
-const char  txt_test_all59[]  PROGMEM          = "";
-const char  txt_test_all60[]  PROGMEM          = "";
+const char  txt_test_all58[]  PROGMEM          = "Signal Mag phone  ON                                  - ";
+const char  txt_test_all59[]  PROGMEM          = "Signal FrontL, FrontR  ON                             - ";
+
+const char  txt_test_all60[]  PROGMEM          = "Signal GGS        ON                                  - ";
 
 const char  txt_instr_off0[]  PROGMEM          = "Komanda sence OFF instruktora   send!                   ";
 const char  txt_instr_off1[]  PROGMEM          = "Komanda sence OFF instruktora 2 send!                   ";
@@ -387,7 +393,7 @@ const char  txt_mtt_off12[]  PROGMEM           = "Komanda       OFF HangUp MTT  
 
 const char  txt_mtt_on0[]    PROGMEM           = "Komanda sence ON  MTT            send!"                  ;
 const char  txt_mtt_on1[]    PROGMEM           = "Komanda       ON  PTT  MTT (CTS) send!"                  ;
-const char  txt_mtt_on2[]    PROGMEM           = "Komanda       ON  HangUp MTT     send!"                  ;
+const char  txt_mtt_on2[]    PROGMEM           = "Komanda            ON  HangUp MTT     send!"             ;
 const char  txt_mtt_on3[]    PROGMEM           = "Komanda sence ON  MTT                          Error! - ";
 const char  txt_mtt_on4[]    PROGMEM           = "Komanda sence ON  MTT                                 - Ok!";
 const char  txt_mtt_on5[]    PROGMEM           = "Komanda       ON  PTT  MTT (CTS)               Error! - ";
@@ -606,7 +612,7 @@ const char* const table_instr_all[] PROGMEM =
 	txt_test_all46,     // "Signal GG Radio2 OFF                                  - ";
 	txt_test_all47,     // "Error! - "                                               ;
 	txt_test_all48,     // "";
-	txt_test_all49,     // ""                                               ;
+	txt_test_all49,     // ""                                                        ;
 
 	txt_test_all50,     // "Signal FrontL OFF                                     - ";
 	txt_test_all51,     // "Signal FrontR OFF                                     - ";
@@ -616,8 +622,8 @@ const char* const table_instr_all[] PROGMEM =
 	txt_test_all55,     // "Signal GGS OFF                                        - ";
 	txt_test_all56,     // "Signal GG Radio1 OFF                                  - ";
 	txt_test_all57,     // "Signal GG Radio2 OFF                                  - ";
-	txt_test_all58,     // "Mag phone on                                          - ";
-	txt_test_all59,     // ;
+	txt_test_all58,     // "Signal Mag phone on                                   - ";
+	txt_test_all59,     // "Signal FrontL, FrontR  ON                             - ";
 
 	txt_test_all60      // ;
 };
@@ -2093,138 +2099,64 @@ void test_MTT()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[30])));
 	myFile.println(buffer);                                               // "Test MTT start!"
 	myFile.println();
-	unsigned int regcount = 0;
-	test_MTT_off();                                                      // Отключить реле и сенсоры, прверить отключение
-	test_MTT_on();                                                       // Включить необходимые сенсоры, проверить состояние
+//	unsigned int regcount = 0;
+	test_MTT_off();                                                       // Отключить реле и сенсоры, прверить отключение
+	test_MTT_on();                                                        // Включить необходимые сенсоры, проверить состояние
 	myFile.println("");
+	regBank.set(25,0);                                                    //  XP1- 19 HaSs  Sence подключения трубки    MTT ON
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_on[0])));
+	myFile.println(buffer);                                               // "Komanda sence ON MTT  send!         
 	regBank.set(18,0);                                                    // XP1 - 20  HangUp  DCD
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[2])));
 	myFile.println(buffer);                                               // "Komanda  HangUp MTT OFF send!"
 
 	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,40161,160,25);                         // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,40162,161,25);                         // Измерить уровень сигнала на выходе FrontR 
-	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
-	resistor(1, 130);                                                    // Установить уровень сигнала 30 мв
-	resistor(2, 130);                                                    // Установить уровень сигнала 30 мв
-	regBank.set(3,1);                                                    // Включить сигнал на вход микрофона трубки Mic3p
-
-
-	UpdateRegs();                                                        // Выполнить команду
-	delay(200);
+	measure_vol_min(analog_FrontL,   40141,141,25);                       // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40142,142,25);                       // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_mag_phone,40145,145,25);                       // Измерить уровень сигнала на выходе phone  
+	measure_vol_min(analog_ggs ,     40146,146,25);                       // Измерить уровень сигнала на выходе GGS 
+	measure_vol_min(analog_mag_radio,40144,144,25);                       // Измерить уровень сигнала на выходе mag radio  
+	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона MTT +++++++++++++++++++++++++++++++++++++++++++++++++
+	resistor(1, 130);                                                     // Установить уровень сигнала 60 мв
+	resistor(2, 130);                                                     // Установить уровень сигнала 60 мв
+	regBank.set(3,1);                                                     // Включить сигнал на вход микрофона трубки Mic3p
+	UpdateRegs();                                                         // Выполнить команду
+	delay(400);
 	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[31])));      //   
-	myFile.println(buffer);                                              // "Signal microphone   MTT 60mv  ON"
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[31])));       //   
+	myFile.println(buffer);                                               // "Signal microphone   MTT 60mv  ON"
 
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,   40141,141,25);                      // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40142,142,25);                      // Измерить уровень сигнала на выходе FrontR 
-	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
-	measure_vol_min(analog_mag_radio,40144,144,25);                      // Измерить уровень сигнала на выходе mag radio  
-	measure_vol_min(analog_mag_phone,40145,145,25);                      // Измерить уровень сигнала на выходе mag phone
+	measure_vol_min(analog_FrontL,   40141,141,25);                       // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40142,142,25);                       // Измерить уровень сигнала на выходе FrontR 
+	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линия Radio +++++++++++++++++++++++++++
+	measure_vol_min(analog_mag_radio,40144,144,25);                       // Измерить уровень сигнала на выходе mag radio  
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_ggs,      40146,146,30);                      // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40147,147,30);                      // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40148,148,30);                      // Измерить уровень сигнала на выходе GG Radio2
 
-	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
-	myFile.println("");                                                  //
-	regBank.set(10,1);                                                   // Подать управляющую команду на вывод XP1 10 Включение микрофона MTT
-	regBank.set(30,1);                                                   // XP1- 6  HeS1PTT   Включить PTT MTT
-	regBank.set(16,0);                                                   // Сенсор микрофона отключить
-	regBank.set(15,0);                                                   // РТТ микрофона отключить
-	regBank.set(32,1);                                                   // XP1- 1  HeS1Ls    Sence подкючения MTT
+	measure_vol_min(analog_ggs,      40146,146,35);                       // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_gg_radio1,40147,147,30);                       // Измерить уровень сигнала на выходе GG Radio1
+	measure_vol_min(analog_gg_radio2,40148,148,30);                       // Измерить уровень сигнала на выходе GG Radio2
 
-	UpdateRegs();                                                        // 
-	delay(200);                                                          //
-	byte i5 = regs_in[3];                                                // 
-		if(bitRead(i5,6) == 0)                                           // Проверка  включения микрофона MTT
-		  {
-			regcount = regBank.get(40151);                               // адрес счетчика ошибки включения микрофона MTT
-			regcount++;                                                  // увеличить счетчик ошибок включения микрофона MTT
-			regBank.set(40151,regcount);                                 // адрес счетчика ошибки включения микрофона MTT
-			regBank.set(151,1);                                          // установить флаг ошибки
-			regBank.set(120,1);                                          // установить общий флаг ошибки
-			resistor(1, 255);                                            // Установить уровень сигнала в исходное состояниe
-			resistor(2, 255);                                            // Установить уровень сигнала в исходное состояниe
-			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[22])));
-			myFile.print(buffer);                                        // "Microphone MTT ON  Error! - "
-			myFile.println(regcount);                                    // 
-		  }
-		else
-		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[23])));
-			myFile.println(buffer);                                     //"Microphone MTT  ON - Ok!" Микрофон диспетчера включился
-			delay(20);
-		  }
-	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[24])));     // "Microphone MTT signal ON" 
-	myFile.println(buffer);                                             // "Microphone MTT signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
-	delay(20);
-	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    ++++++++++++++++++++++++++++++++++++
-	measure_vol_max(analog_LineL,    40143,143,200);                    // Измерить уровень сигнала на выходе LineL
-	measure_vol_max(analog_mag_phone,40150,150,200);                    // Измерить уровень сигнала на выходе mag phone
-   //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,   40141,141,25);                     // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40142,142,25);                     // Измерить уровень сигнала на выходе FrontR 
-	measure_vol_min(analog_ggs,      40146,146,30);                     // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40147,147,30);                     // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40148,148,30);                     // Измерить уровень сигнала на выходе GG Radio2
-	regBank.set(32,0);                                                  // XP1- 1  HeS1Ls   Отключить  Sence подкючения MTT
-	regBank.set(15,0);                                                  // РТТ микрофона отключить
-	regBank.set(10,0);                                                  // Подать управляющую команду на вывод XP1 10  (Выключить микрофон MTT)
-	regBank.set(30,0);                                                  // XP1- 6  HeS1PTT   Отключить PTT MTT
-	regBank.set(28,0);                                                  // XP1- 15 HeS2PTT   CTS вкл PTT MTT
-	UpdateRegs();     
-	regBank.set(adr_control_command,0);                                 // Завершить программу    
-	delay(100);
-	
-	//myFile.println("");
-	//regBank.set(10,0);                                                  // Подать управляющую команду на вывод XP1 10 Звук на микрофон диспетчера  отключить
-	//regBank.set(1,0);                                                   // Отключить сигнал на вход микрофона диспетчера Mic1p
-	//regBank.set(2,0);                                                   // Отключить сигнал на вход микрофона диспетчера Mic2p
-	//regBank.set(3,1);                                                   // Включить сигнал на вход микрофона трубки Mic3p
-	//regBank.set(5,0);                                                   // Подать управляющую команду на вывод 12 ХР1 HeS2e (отключить микрофон инструктора)
-	//regBank.set(28,0);                                                  // XP1- 15 HeS2PTT Отключить PTT инструктора
-	//regBank.set(16,0);                                                  // Сенсор микрофона отключить
-	//regBank.set(15,0);                                                  // РТТ микрофона отключить
-	//regBank.set(18,0);                                                  // XP1 - 20  HangUp  DCD
-	//regBank.set(25,1);                                                  // XP1- 19 HaSs      Sence подключения трубки                                         
-	//UpdateRegs();                                                       // 
-	//delay(200);
-
-	//	if(regBank.get(10083)!= 0)                                      // Проверить XP1 - 20  HangUp  DCD
-	//		{
-	//			regcount = regBank.get(40153);                          // адрес счетчика ошибки отключения XP1 - 20  HangUp  DCD
-	//			regcount++;                                             // увеличить счетчик ошибок
-	//			regBank.set(40153,regcount);                            // адрес счетчика ошибки отключения XP1 - 20  HangUp  DCD
-	//			regBank.set(153,1);                                     // установить флаг ошибки отключения XP1 - 20  HangUp  DCD
-	//			regBank.set(120,1);                                     // установить общий флаг ошибки
-	//			myFile.print("Komanda XP1 - 20  HangUp  DCD OFF Error! - ");   //XP1 - 20  HangUp  DCD
-	//			myFile.println(regcount);
-	//		}
-	//	else
-	//		{
-	//		   myFile.println("Komanda XP1 - 20  HangUp  DCD OFF- Ok!"); // XP1 - 20  HangUp  DCD
-	//		}
-
-	//	byte i5 = regs_in[1];                                      // 
-	//	if(bitRead(i5,2) == 0)                                           // Проверка  подключения сенсора трубки
-	//	  {
-	//		regcount = regBank.get(40154);                               // адрес счетчика ошибки подключения сенсора трубки
-	//		regcount++;                                                  // увеличить счетчик ошибок подключения сенсора трубки
-	//		regBank.set(40154,regcount);                                 // адрес счетчика ошибки подключения сенсора трубки
-	//		regBank.set(154,1);                                          // установить флаг ошибки
-	//		regBank.set(120,1);                                          // установить общий флаг ошибки
-	//		resistor(1, 255);                                            // Установить уровень сигнала в исходное состояниу
-	//		resistor(2, 255);                                            // Установить уровень сигнала в исходное состояниу
-	//		myFile.print("Sence MTT ON  Error! - ");    // 
-	//		myFile.println(regcount);                                    // 
-	//	  }
-	//	else
-	//	  {
-	//		myFile.println("Sence MTT ON - Ok!");                        // Сенсор трубки включился
-	//	  }
+	// ++++++++++++++++++++++++++++++++++ Проверить наличие сигнала  ++++++++++++++++++++++++++++++++++++
+	measure_vol_max(analog_LineR,    40171,171,35);                       // Измерить уровень сигнала на выходе LineL
+	measure_vol_max(analog_mag_phone,40150,150,90);                       // Измерить уровень сигнала на выходе mag phone
+	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона MTT +++++++++++++++++++++++++++++++++++++++++++++++++
+	regBank.set(3,0);                                                     // Отключить сигнал на вход микрофона трубки Mic3p
+	regBank.set(6,1);                                                     // Реле RL5. Подать звук Front L, Front R
+	UpdateRegs();                                                         // Выполнить команду
+	delay(200);
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[59])));
+	myFile.println(buffer);                                               // "Signal FrontL, FrontR  ON                             - "
+	measure_vol_min(analog_ggs,      40146,146,35);                       // Измерить уровень сигнала на выходе GGS
+	regBank.set(18,1);                                                    // XP1 - 20  HangUp  DCD ON
+	UpdateRegs();                                                         // Выполнить команду
+	delay(200);
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_on[2])));
+	myFile.println(buffer);                                               // "Komanda  HangUp MTT ON send!"
+    measure_vol_max(analog_ggs,      40172,172,120);                      // Измерить уровень сигнала на выходе mag phone
+	regBank.set(18,0);                                                    // XP1 - 20  HangUp  DCD ON
+	UpdateRegs();                                                         // Выполнить команду
+	delay(200);
 }
 
 
@@ -2889,8 +2821,8 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			//	myFile.print(buffer);                                               // "Signal GG Radio2 OFF - "
 				break;
 			case 150:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[58])));     // "Mag phone on         - "
-		   //  myFile.print(buffer);                                                // "Mag phone on         - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[58])));     // "Signal Mag phone on         - "
+		   //  myFile.print(buffer);                                                // "Signal Mag phone on         - "
 				break;
 			 case 160:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[50])));     // "Signal FrontL OFF    - "
@@ -2898,8 +2830,8 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			case 161:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[51])));     // "Signal FrontR OFF    - "
 				break;
-			case 9:
-				//выполняется, когда var равно 1
+			case 172:
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[60])));     // "Signal FrontR OFF    - "
 				break;
 			case 10:
 				//выполняется когда  var равно 2
@@ -3285,7 +3217,7 @@ modbus registers follow the following format
 	regBank.add(143);   // Флаг ошибки сигнала  LineL гарнитуры инструктора 
 	regBank.add(144);   // Флаг ошибки analog_mag_radio
 	regBank.add(145);   // Флаг ошибки analog_mag_phone
-	regBank.add(146);   // Флаг ошибки analog_ggs
+	regBank.add(146);   // Флаг ошибки analog_ggs OFF
 	regBank.add(147);   // Флаг ошибки analog_gg_radio1
 	regBank.add(148);   // Флаг ошибки analog_gg_radio2
 	regBank.add(149);   // Флаг ошибки сенсора микрофона
@@ -3310,6 +3242,8 @@ modbus registers follow the following format
 	regBank.add(168);   // Флаг ошибки  MTT HangUp OFF (DCD)
 	regBank.add(169);   // Флаг ошибки  MTT HangUp ON  (DCD)
 	regBank.add(170);   // Флаг ошибки  Sence MTT ON
+	regBank.add(171);   // Флаг ошибки сигнала  LineL MTT
+	regBank.add(172);   // Флаг ошибки analog_ggs ON
 
 	regBank.add(10081);    // Адрес флагa индикации состояния сигнала CTS
 	regBank.add(10082);    // Адрес флагa индикации состояния сигнала DSR
@@ -3539,6 +3473,8 @@ modbus registers follow the following format
 	regBank.add(40168);  // адрес счетчика  MTT HangUp OFF (DCD)
 	regBank.add(40169);  // адрес счетчика  MTT HangUp ON  (DCD)
 	regBank.add(40170);  // адрес счетчика ошибки  Sence MTT ON
+	regBank.add(40171);  // адрес счетчика ошибки сигнала  LineL MTT
+	regBank.add(40172);  // адрес счетчика ошибки analog_ggs ON
 
 	slave._device = &regBank;  
 }
