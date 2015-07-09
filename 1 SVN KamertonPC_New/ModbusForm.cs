@@ -3384,23 +3384,23 @@ namespace KamertonTest
             test_end();
         }
         private void test_tangR()
-        {
-            ushort[] writeVals = new ushort[2];
-            bool[] coilArr = new bool[4];
-            startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 6); // Отключить все сенсоры
-            //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
-            //res = myProtocol.writeCoil(slave, startCoil, true);
-            textBox7.Text += ("Команда на проверку Тангента ручная отправлена" + "\r\n");
-            textBox7.Refresh();
-            startCoil = 248;  //адрес сенсоров
-            numCoils = 34;
-            res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
+                ushort[] writeVals = new ushort[2];
+                bool[] coilArr = new bool[4];
+                startWrReg = 120;
+                res = myProtocol.writeSingleRegister(slave, startWrReg, 6); // Отключить все сенсоры
+                //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
+                //res = myProtocol.writeCoil(slave, startCoil, true);
+                textBox7.Text += ("Команда на проверку Тангента ручная отправлена" + "\r\n");
+                textBox7.Refresh();
+                startCoil = 248;  //адрес сенсоров
+                numCoils = 34;
+                res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+                }
+                test_end();
             }
-            test_end();
-        }
         private void test_mikrophon()
         {
             ushort[] writeVals = new ushort[2];
@@ -3441,26 +3441,25 @@ namespace KamertonTest
             test_end();
         }
         private void test_GG_Radio1()
-        {
-            ushort[] writeVals = new ushort[2];
-            bool[] coilArr = new bool[4];
-            startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 9); // Отключить все сенсоры
-            //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
-            //res = myProtocol.writeCoil(slave, startCoil, true);
-            textBox7.Text += ("Команда на проверку ГГ-Радио1 отправлена" + "\r\n");
-            textBox7.Refresh();
-            startCoil = 248;  //адрес сенсоров
-            numCoils = 34;
-            res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
-          ///  lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-
-
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
+                ushort[] writeVals = new ushort[2];
+                bool[] coilArr = new bool[4];
+                startWrReg = 120;
+                res = myProtocol.writeSingleRegister(slave, startWrReg, 9); // Отключить все сенсоры
+                //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
+                //res = myProtocol.writeCoil(slave, startCoil, true);
+                textBox7.Text += ("Команда на проверку ГГ-Радио1 отправлена" + "\r\n");
+                textBox7.Refresh();
+                startCoil = 248;  //адрес сенсоров
+                numCoils = 34;
+                res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
+              ///  lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                    {
+                    }
+                test_end();
             }
-            test_end();
-        }
         private void test_GG_Radio2()
         {
             ushort[] writeVals = new ushort[2];
@@ -3479,7 +3478,7 @@ namespace KamertonTest
             }
             test_end();
         }
-        private void test_mag ()
+        private void test_tangN()
         {
             ushort[] writeVals = new ushort[2];
             bool[] coilArr = new bool[4];
@@ -3487,7 +3486,7 @@ namespace KamertonTest
             res = myProtocol.writeSingleRegister(slave, startWrReg, 11); // Отключить все сенсоры
             //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
             //res = myProtocol.writeCoil(slave, startCoil, true);
-            textBox7.Text += ("Команда на проверку Магнитофона отправлена" + "\r\n");
+            textBox7.Text += ("Команда на проверку 'Тангента ножная' отправлена" + "\r\n");
             textBox7.Refresh();
             startCoil = 248;  //адрес сенсоров
             numCoils = 34;
@@ -3771,7 +3770,7 @@ namespace KamertonTest
                     label98.Refresh();
                     break;
                 case 5:
-                  //  test_tangR();
+                    test_tangR();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
@@ -3801,7 +3800,7 @@ namespace KamertonTest
                     label98.Refresh();
                     break;
                 case 10:
-                 //   test_mag();
+                    test_tangN();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();

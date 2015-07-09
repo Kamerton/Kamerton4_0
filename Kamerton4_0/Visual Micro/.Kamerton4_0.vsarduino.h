@@ -111,6 +111,8 @@ void sence_all_on();
 void test_instruktora();
 void test_dispetchera();
 void test_MTT();
+void test_tangR();
+void test_tangN();
 void test_instr_off();
 void test_instr_on();
 void test_disp_off();
