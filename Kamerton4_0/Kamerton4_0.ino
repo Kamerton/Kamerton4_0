@@ -274,15 +274,15 @@ const char  txt_test_all7[]  PROGMEM           = "";
 const char  txt_test_all8[]  PROGMEM           = "";
 const char  txt_test_all9[]  PROGMEM           = "";
 
-const char  txt_test_all10[]  PROGMEM          = "";
-const char  txt_test_all11[]  PROGMEM          = ""               ;
-const char  txt_test_all12[]  PROGMEM          = ""               ;
-const char  txt_test_all13[]  PROGMEM          = ""               ;
-const char  txt_test_all14[]  PROGMEM          = ""               ;
-const char  txt_test_all15[]  PROGMEM          = ""               ;
-const char  txt_test_all16[]  PROGMEM          = ""               ;
-const char  txt_test_all17[]  PROGMEM          = "";
-const char  txt_test_all18[]  PROGMEM          = "";
+const char  txt_test_all10[]  PROGMEM          = " ****** Test tangenta nognaja start! ******";
+const char  txt_test_all11[]  PROGMEM          = "Komanda sence OFF nognaja ruchnaja send!"                ;
+const char  txt_test_all12[]  PROGMEM          = "Komanda PTT1  OFF nognaja ruchnaja send!"                ;
+const char  txt_test_all13[]  PROGMEM          = "Komanda sence ON  nognaja ruchnaja send!"                ;
+const char  txt_test_all14[]  PROGMEM          = "Komanda PTT1  ON  nognaja ruchnaja send!"                ;
+const char  txt_test_all15[]  PROGMEM          = "Komanda PTT1  OFF nognaja ruchnaja (CTS)       Error! - ";
+const char  txt_test_all16[]  PROGMEM          = "Komanda PTT1  OFF nognaja ruchnaja (CTS)              - Ok!";
+const char  txt_test_all17[]  PROGMEM          = "Komanda PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
+const char  txt_test_all18[]  PROGMEM          = "Komanda PTT1  ON  tangenta ruchnaja (CTS)             - Ok!";
 const char  txt_test_all19[]  PROGMEM          = "";
 
 const char  txt_test_all20[]  PROGMEM          = " ****** Test dispetchera start! ******"                  ;
@@ -2049,6 +2049,8 @@ void test_dispetchera()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[20])));
 	myFile.println(buffer);                                               // "Test dispetchera start!"
 	myFile.println();
+	file_print_date();
+	myFile.println("");
 	unsigned int regcount = 0;
 	test_disp_off();                                                     // Отключить реле и сенсоры, прверить отключение
 	test_disp_on();                                                      // Включить необходимые сенсоры, проверить состояние
@@ -2136,6 +2138,8 @@ void test_MTT()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[30])));
 	myFile.println(buffer);                                               // "Test MTT start!"
 	myFile.println();
+	file_print_date();
+	myFile.println("");
 //	unsigned int regcount = 0;
 	test_MTT_off();                                                       // Отключить реле и сенсоры, прверить отключение
 	test_MTT_on();                                                        // Включить необходимые сенсоры, проверить состояние
@@ -2204,6 +2208,8 @@ void test_tangR()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[60])));
 	myFile.println(buffer);                                                 // "Test tangenta ruchnaja start!"
 	myFile.println();
+	file_print_date();
+	myFile.println("");
 	regBank.set(17,0);                                                      // J8-12     XP7 4 PTT2 тангента ручная DSR
 	regBank.set(19,0);                                                      // J8-11     XP7 2 Sence тангента ручная
 	regBank.set(20,0);                                                      // J8-23     XP7 1 PTT1 тангента ручная CTS

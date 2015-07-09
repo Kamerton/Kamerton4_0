@@ -3157,7 +3157,7 @@ namespace KamertonTest
 
             test_end();
         }
-      private void sensor_on()
+        private void sensor_on()
         {
             ushort[] writeVals = new ushort[2];
 
@@ -3339,7 +3339,7 @@ namespace KamertonTest
 
             startWrReg = 120;  // В 40120 ячейке хранится номер теста. Эту ячейку применяет test_switch() Arduino
             res = myProtocol.writeSingleRegister(slave, startWrReg, 3); // Отключить все сенсоры
-            textBox7.Text += ("Команда на проверку гарнитуры Инструктора отправлена" + "\r\n");
+            textBox7.Text += ("Команда на проверку 'Гарнитура Инструктора' отправлена" + "\r\n");
             textBox7.Refresh();
        //     Thread.Sleep(2500);
 
@@ -3354,7 +3354,7 @@ namespace KamertonTest
             res = myProtocol.writeSingleRegister(slave, startWrReg, 4); // Отключить все сенсоры
             startCoil = 38; // Запустить полный тест , адрес в контроллере 37
             res = myProtocol.writeCoil(slave, startCoil, true);
-            textBox7.Text += ("Команда на проверку гарнитуры Диспетчера отправлена" + "\r\n");
+            textBox7.Text += ("Команда на проверку 'Гарнитура Диспетчера' отправлена" + "\r\n");
             textBox7.Refresh();
             startCoil = 248;  //адрес сенсоров
             numCoils = 34;
@@ -3373,7 +3373,7 @@ namespace KamertonTest
             res = myProtocol.writeSingleRegister(slave, startWrReg, 5); // Отключить все сенсоры
             //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
             //res = myProtocol.writeCoil(slave, startCoil, true);
-            textBox7.Text += ("Команда на проверку МТТ отправлена" + "\r\n");
+            textBox7.Text += ("Команда на проверку 'МТТ' отправлена" + "\r\n");
             textBox7.Refresh();
             startCoil = 248;  //адрес сенсоров
             numCoils = 34;
@@ -3391,7 +3391,7 @@ namespace KamertonTest
                 res = myProtocol.writeSingleRegister(slave, startWrReg, 6); // Отключить все сенсоры
                 //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
                 //res = myProtocol.writeCoil(slave, startCoil, true);
-                textBox7.Text += ("Команда на проверку Тангента ручная отправлена" + "\r\n");
+                textBox7.Text += ("Команда на проверку 'Тангента ручная' отправлена" + "\r\n");
                 textBox7.Refresh();
                 startCoil = 248;  //адрес сенсоров
                 numCoils = 34;
@@ -3409,7 +3409,7 @@ namespace KamertonTest
             res = myProtocol.writeSingleRegister(slave, startWrReg, 7); // Отключить все сенсоры
             //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
             //res = myProtocol.writeCoil(slave, startCoil, true);
-            textBox7.Text += ("Команда на проверку Микрофона отправлена" + "\r\n");
+            textBox7.Text += ("Команда на проверку 'Микрофон' отправлена" + "\r\n");
             textBox7.Refresh();
             startCoil = 248;  //адрес сенсоров
             numCoils = 34;
@@ -3448,7 +3448,7 @@ namespace KamertonTest
                 res = myProtocol.writeSingleRegister(slave, startWrReg, 9); // Отключить все сенсоры
                 //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
                 //res = myProtocol.writeCoil(slave, startCoil, true);
-                textBox7.Text += ("Команда на проверку ГГ-Радио1 отправлена" + "\r\n");
+                textBox7.Text += ("Команда на проверку 'ГГ-Радио1' отправлена" + "\r\n");
                 textBox7.Refresh();
                 startCoil = 248;  //адрес сенсоров
                 numCoils = 34;
@@ -3468,7 +3468,7 @@ namespace KamertonTest
             res = myProtocol.writeSingleRegister(slave, startWrReg, 10); // Отключить все сенсоры
             //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
             //res = myProtocol.writeCoil(slave, startCoil, true);
-            textBox7.Text += ("Команда на проверку ГГ-Радио2 отправлена" + "\r\n");
+            textBox7.Text += ("Команда на проверку 'ГГ-Радио2' отправлена" + "\r\n");
             textBox7.Refresh();
             startCoil = 248;  //адрес сенсоров
             numCoils = 34;
