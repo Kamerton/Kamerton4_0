@@ -108,6 +108,7 @@ void FileClose();
 void control_command();
 void sence_all_off();
 void sence_all_on();
+void test_sence_step(int num_byte, int num_bit);
 void test_instruktora();
 void test_dispetchera();
 void test_MTT();

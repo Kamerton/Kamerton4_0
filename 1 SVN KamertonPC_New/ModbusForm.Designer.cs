@@ -104,7 +104,6 @@ namespace KamertonTest
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label95 = new System.Windows.Forms.Label();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.label70 = new System.Windows.Forms.Label();
             this.button27 = new System.Windows.Forms.Button();
@@ -362,6 +361,12 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label71 = new System.Windows.Forms.Label();
+            this.button24 = new System.Windows.Forms.Button();
+            this.label72 = new System.Windows.Forms.Label();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -402,9 +407,11 @@ namespace KamertonTest
             this.TabControl1.Controls.Add(this.tabPage3);
             this.TabControl1.Controls.Add(this.tabPage4);
             this.TabControl1.Controls.Add(this.tabPage5);
-            this.TabControl1.Controls.Add(this.TabPage2);
-            this.TabControl1.Controls.Add(this.TabPage1);
             this.TabControl1.Controls.Add(this.tabPage6);
+            this.TabControl1.Controls.Add(this.TabPage1);
+            this.TabControl1.Controls.Add(this.TabPage2);
+            this.TabControl1.Controls.Add(this.tabPage7);
+            this.TabControl1.Controls.Add(this.tabPage8);
             this.TabControl1.Location = new System.Drawing.Point(0, 2);
             this.TabControl1.Name = "TabControl1";
             this.TabControl1.SelectedIndex = 0;
@@ -1035,6 +1042,7 @@ namespace KamertonTest
             this.textBox3.TabIndex = 12;
             this.textBox3.Text = "20";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox2
             // 
@@ -1270,8 +1278,11 @@ namespace KamertonTest
             // 
             this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage5.Controls.Add(this.label72);
+            this.tabPage5.Controls.Add(this.button24);
+            this.tabPage5.Controls.Add(this.label71);
+            this.tabPage5.Controls.Add(this.textBox4);
             this.tabPage5.Controls.Add(this.textBox11);
-            this.tabPage5.Controls.Add(this.label95);
             this.tabPage5.Controls.Add(this.groupBox17);
             this.tabPage5.Controls.Add(this.groupBox14);
             this.tabPage5.Controls.Add(this.label114);
@@ -1300,16 +1311,6 @@ namespace KamertonTest
             this.textBox11.Size = new System.Drawing.Size(421, 139);
             this.textBox11.TabIndex = 53;
             this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
-            // 
-            // label95
-            // 
-            this.label95.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label95.Location = new System.Drawing.Point(559, 65);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(187, 30);
-            this.label95.TabIndex = 52;
-            this.label95.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox17
             // 
@@ -4054,6 +4055,66 @@ namespace KamertonTest
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
             // 
+            // tabPage7
+            // 
+            this.tabPage7.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(987, 613);
+            this.tabPage7.TabIndex = 7;
+            this.tabPage7.Text = "Маркировка изделия";
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(987, 613);
+            this.tabPage8.TabIndex = 8;
+            this.tabPage8.Text = "Формирование отчета";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(692, 78);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(54, 20);
+            this.textBox4.TabIndex = 54;
+            this.textBox4.Text = "20";
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label71.Location = new System.Drawing.Point(547, 46);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(213, 15);
+            this.label71.TabIndex = 55;
+            this.label71.Text = "Уровень входного сигнала 1-50 мВ:";
+            this.label71.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label71.Click += new System.EventHandler(this.label71_Click);
+            // 
+            // button24
+            // 
+            this.button24.Location = new System.Drawing.Point(559, 77);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(112, 23);
+            this.button24.TabIndex = 56;
+            this.button24.Text = "Установить";
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(673, 82);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(13, 13);
+            this.label72.TabIndex = 57;
+            this.label72.Text = "=";
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -4429,7 +4490,6 @@ namespace KamertonTest
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Label label95;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Timer timerCTS;
         private System.Windows.Forms.TabPage tabPage6;
@@ -4454,6 +4514,12 @@ namespace KamertonTest
         private System.Windows.Forms.Label label70;
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Button button30;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Label label72;
     }
 }
 

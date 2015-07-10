@@ -4346,6 +4346,57 @@ namespace KamertonTest
 
         }
 
+        private void label71_Click (object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged (object sender, EventArgs e)
+        {
+
+        }
+
+        private void button24_Click (object sender, EventArgs e)
+        {
+            Polltimer1.Enabled = false;
+            timer_byte_set.Enabled = false;
+            timerCTS.Enabled = false;
+            timerTestAll.Enabled = false;
+            short[] writeVals = new short[12];
+            short[] MSK = new short[2];
+            MSK[0] = 5;
+            ushort[] readVals = new ushort[125];
+  
+            bool[] coilVals = new bool[200];
+            bool[] coilArr = new bool[20];
+ 
+            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+
+            textBox4.BackColor = Color.White;
+            writeVals[1] = short.Parse(textBox4.Text, CultureInfo.CurrentCulture);   // Установка уровня входного сигнала
+            int tempK = writeVals[1] * 5;                                            // Установка уровня входного сигнала
+            if (tempK > 250)
+                {
+                    label72.Text = "<";
+                    tempK = 250;
+                    textBox4.Text = "50";
+                    textBox4.BackColor = Color.Red;
+                }
+            else
+                {
+                    label72.Text = "=";
+                    textBox4.BackColor = Color.White;
+                }
+            writeVals[1] = (short) tempK;                 // Установка уровня входного сигнала
+            startWrReg = 41;
+            numWrRegs = 10;                               //
+            res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
+
+            startWrReg = 120;                                                                   // 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 15);                        // 
+
+        }
+
         
     }
 }
