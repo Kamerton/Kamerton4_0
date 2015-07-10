@@ -4358,10 +4358,10 @@ namespace KamertonTest
 
         private void button24_Click (object sender, EventArgs e)
         {
-            Polltimer1.Enabled = false;
-            timer_byte_set.Enabled = false;
-            timerCTS.Enabled = false;
-            timerTestAll.Enabled = false;
+            //Polltimer1.Enabled = false;
+            //timer_byte_set.Enabled = false;
+            //timerCTS.Enabled = false;
+            //timerTestAll.Enabled = false;
             short[] writeVals = new short[12];
             short[] MSK = new short[2];
             MSK[0] = 5;
@@ -4387,13 +4387,14 @@ namespace KamertonTest
                     label72.Text = "=";
                     textBox4.BackColor = Color.White;
                 }
-            writeVals[1] = (short) tempK;                 // Установка уровня входного сигнала
-            startWrReg = 41;
-            numWrRegs = 10;                               //
-            res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
-
+            //writeVals[1] = (short) tempK;                 // Установка уровня входного сигнала
+            //startWrReg = 41;
+            //numWrRegs = 10;                               //
+            //res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
+            startWrReg = 10;                                                                   // 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, (short) tempK);          
             startWrReg = 120;                                                                   // 
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 15);                        // 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 10);                        // 
 
         }
 

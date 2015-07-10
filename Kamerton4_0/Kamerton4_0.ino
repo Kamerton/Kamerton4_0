@@ -1273,7 +1273,8 @@ void control_command()
 		case 9:
 			// test_GG_Radio1();
 				break;
-		case 10:				
+		case 10:	
+			test_sence_step(10, 20);
 			// test_GG_Radio2();
 				break;
 		case 11:				
@@ -1287,6 +1288,9 @@ void control_command()
 				break;
 		case 14:
 			  set_clock();
+				break;
+		case 15:
+		     set_rezistor();
 				break;
 		default:
 		break;
@@ -1954,10 +1958,21 @@ void sence_all_on()
 	delay(100);
 }
 
+void set_rezistor()
+{
+	int mwt = regBank.get(40010);
+	resistor(1, mwt);
+	resistor(2, mwt);
+}
+
+
+
 void test_sence_step(int num_byte, int num_bit)
 {
-
-
+	int mwt = regBank.get(40010);
+	Serial.println(mwt);
+	resistor(1, mwt);
+	resistor(2, mwt);
 }
 
 void test_instruktora()
@@ -3543,7 +3558,7 @@ modbus registers follow the following format
  // 
 	//regBank.add(40008);  // 
 	//regBank.add(40009);  // 
-	//regBank.add(40010);  // 
+	regBank.add(40010);  // 
 	//regBank.add(40011);  // 
 	//regBank.add(40012);  // 
 	//regBank.add(40013);  // 
