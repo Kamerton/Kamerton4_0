@@ -314,20 +314,45 @@ const char  txt_test_all43[]  PROGMEM          = "Signal mag phone  OFF         
 const char  txt_test_all44[]  PROGMEM          = "Signal GGS        OFF                                 - ";
 const char  txt_test_all45[]  PROGMEM          = "Signal GG Radio1  OFF                                 - ";
 const char  txt_test_all46[]  PROGMEM          = "Signal GG Radio2  OFF                                 - ";
-const char  txt_test_all47[]  PROGMEM          = "Error! - "                                               ;
-const char  txt_test_all48[]  PROGMEM          = "";
-const char  txt_test_all49[]  PROGMEM          = "Signal GGS        ON                                  - ";
+const char  txt_test_all47[]  PROGMEM          = "Signal LineL      OFF                                 - ";
+const char  txt_test_all48[]  PROGMEM          = "Signal LineR      OFF                                 - ";
+const char  txt_test_all49[]  PROGMEM          = "Error! - ";
 
-const char  txt_test_all50[]  PROGMEM          = "Signal FrontL     OFF                                 - ";
-const char  txt_test_all51[]  PROGMEM          = "Signal FrontR     OFF                                 - ";
-const char  txt_test_all52[]  PROGMEM          = "Signal FrontL     ON                                  - ";
-const char  txt_test_all53[]  PROGMEM          = "Signal mag radio  OFF                                 - ";
-const char  txt_test_all54[]  PROGMEM          = "Signal mag phone  OFF                                 - ";
-const char  txt_test_all55[]  PROGMEM          = "Signal GGS        OFF                                 - ";
-const char  txt_test_all56[]  PROGMEM          = "Signal GG Radio1  OFF                                 - ";
-const char  txt_test_all57[]  PROGMEM          = "Signal GG Radio2  OFF                                 - ";
-const char  txt_test_all58[]  PROGMEM          = "Signal Mag phone  ON                                  - ";
+const char  txt_test_all50[]  PROGMEM          = "Signal FrontL     ON                                  - ";
+const char  txt_test_all51[]  PROGMEM          = "Signal FrontR     ON                                  - ";
+const char  txt_test_all52[]  PROGMEM          = "Signal mag radio  ON                                  - ";
+const char  txt_test_all53[]  PROGMEM          = "Signal mag phone  ON                                  - ";
+const char  txt_test_all54[]  PROGMEM          = "Signal GGS        ON                                  - ";
+const char  txt_test_all55[]  PROGMEM          = "Signal GG Radio1  ON                                  - ";
+const char  txt_test_all56[]  PROGMEM          = "Signal GG Radio2  ON                                  - ";
+const char  txt_test_all57[]  PROGMEM          = "Signal LineL      ON                                  - ";
+const char  txt_test_all58[]  PROGMEM          = "Signal LineR      ON                                  - ";
 const char  txt_test_all59[]  PROGMEM          = "Signal FrontL, FrontR  ON                             - ";
+
+
+
+
+//const char  txt_test_all40[]  PROGMEM          = "Signal FrontL     OFF                                 - ";
+//const char  txt_test_all41[]  PROGMEM          = "Signal FrontR     OFF                                 - ";
+//const char  txt_test_all42[]  PROGMEM          = "Signal mag radio  OFF                                 - ";
+//const char  txt_test_all43[]  PROGMEM          = "Signal mag phone  OFF                                 - ";
+//const char  txt_test_all44[]  PROGMEM          = "Signal GGS        OFF                                 - ";
+//const char  txt_test_all45[]  PROGMEM          = "Signal GG Radio1  OFF                                 - ";
+//const char  txt_test_all46[]  PROGMEM          = "Signal GG Radio2  OFF                                 - ";
+//const char  txt_test_all47[]  PROGMEM          = "Error! - "                                               ;
+//const char  txt_test_all48[]  PROGMEM          = "";
+//const char  txt_test_all49[]  PROGMEM          = "Signal GGS        ON                                  - ";
+//
+//const char  txt_test_all50[]  PROGMEM          = "Signal FrontL     OFF                                 - ";
+//const char  txt_test_all51[]  PROGMEM          = "Signal FrontR     OFF                                 - ";
+//const char  txt_test_all52[]  PROGMEM          = "Signal FrontL     ON                                  - ";
+//const char  txt_test_all53[]  PROGMEM          = "Signal mag radio  OFF                                 - ";
+//const char  txt_test_all54[]  PROGMEM          = "Signal mag phone  OFF                                 - ";
+//const char  txt_test_all55[]  PROGMEM          = "Signal GGS        OFF                                 - ";
+//const char  txt_test_all56[]  PROGMEM          = "Signal GG Radio1  OFF                                 - ";
+//const char  txt_test_all57[]  PROGMEM          = "Signal GG Radio2  OFF                                 - ";
+//const char  txt_test_all58[]  PROGMEM          = "Signal Mag phone  ON                                  - ";
+//const char  txt_test_all59[]  PROGMEM          = "Signal FrontL, FrontR  ON                             - ";
 
 const char  txt_test_all60[]  PROGMEM          = " ****** Test tangenta ruchnaja start! ******";
 const char  txt_test_all61[]  PROGMEM          = "Komanda sence OFF tangenta ruchnaja send!"               ;
@@ -1274,7 +1299,6 @@ void control_command()
 			// test_GG_Radio1();
 				break;
 		case 10:	
-			test_sence_step(10, 20);
 			// test_GG_Radio2();
 				break;
 		case 11:				
@@ -1290,7 +1314,7 @@ void control_command()
 			  set_clock();
 				break;
 		case 15:
-		     set_rezistor();
+		   //  set_rezistor();
 				break;
 		default:
 		break;
@@ -1965,16 +1989,6 @@ void set_rezistor()
 	resistor(2, mwt);
 }
 
-
-
-void test_sence_step(int num_byte, int num_bit)
-{
-	int mwt = regBank.get(40010);
-	Serial.println(mwt);
-	resistor(1, mwt);
-	resistor(2, mwt);
-}
-
 void test_instruktora()
 {
 	myFile.println("");
@@ -2199,7 +2213,7 @@ void test_MTT()
 	measure_vol_min(analog_gg_radio2,40148,148,30);                       // Измерить уровень сигнала на выходе GG Radio2
 
 	// ++++++++++++++++++++++++++++++++++ Проверить наличие сигнала  ++++++++++++++++++++++++++++++++++++
-	measure_vol_max(analog_LineR,    40171,171,35);                       // Измерить уровень сигнала на выходе LineL
+	measure_vol_max(analog_LineR,    40171,171,35);                       // Измерить уровень сигнала на выходе LineR
 	measure_vol_max(analog_mag_phone,40150,150,90);                       // Измерить уровень сигнала на выходе mag phone
 	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона MTT +++++++++++++++++++++++++++++++++++++++++++++++++
 	regBank.set(3,0);                                                     // Отключить сигнал на вход микрофона трубки Mic3p
@@ -2935,12 +2949,10 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 		switch (adr_flagErr) 
 		{
 			case 141:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[40])));  // "Signal FrontL OFF    - "
-				//myFile.print(buffer);              // "Signal FrontL OFF    - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[40])));  //  * Signal FrontL     OFF  
 				break;
 			case 142:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[41])));  // "Signal FrontR OFF    - "
-				//myFile.print(buffer);              // "Signal FrontR OFF    - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[41])));  //  *"Signal FrontR     OFF  
 				break;
 			case 144:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[42])));  // "Signal mag radio OFF - "
@@ -2985,22 +2997,22 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 
 		}
 
-		myFile.print(buffer);                                          // 
+		myFile.print(buffer);                                                       // 
 
-		if(voltage10 >  porogV)                                        // Проверить исправность канала
+		if(voltage10 >  porogV)                                                     // Проверить исправность канала
 			{
-				regcount = regBank.get(adr_count);                     // адрес счетчика ошибки 
-				regcount++;                                            // увеличить счетчик ошибок канала 
-				regBank.set(adr_count,regcount);                       // адрес счетчика ошибки канала 
-				regBank.set(adr_flagErr,1);                            // установить флаг ошибки  канала 
-				regBank.set(120,1);                                    // установить общий флаг ошибки 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[47])));   // "Error! - "
-				myFile.print(buffer);                                  // "Error! - "
+				regcount = regBank.get(adr_count);                                  // адрес счетчика ошибки 
+				regcount++;                                                         // увеличить счетчик ошибок канала 
+				regBank.set(adr_count,regcount);                                    // адрес счетчика ошибки канала 
+				regBank.set(adr_flagErr,1);                                         // установить флаг ошибки  канала 
+				regBank.set(120,1);                                                 // установить общий флаг ошибки 
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[49])));     // "Error! - "
+				myFile.print(buffer);                                               // "Error! - "
 				myFile.println(regcount);
 			}
 		else
 			{
-				myFile.println("Ok!");
+				myFile.println("Pass!");                                            // Проверка прошла
 			}                                     
 }
 void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
@@ -3018,8 +3030,8 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				//myFile.print(buffer);                                             // "Signal FrontR OFF    - "
 				break;
 			case 143:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[52])));     // "Signal FrontL ON     - "
-			//	myFile.print(buffer);                                               // "Signal FrontL ON     - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[57])));     // Signal LineL      ON    
+				//	myFile.print(buffer);                                            
 				break;
 			case 144:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[53])));     // "Signal mag radio OFF - "
@@ -3059,20 +3071,20 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				break;
 		}
 		myFile.print(buffer);    
-		if(voltage10 <  porogV)                                       // Проверить исправность канала
+		if(voltage10 <  porogV)                                                       // Проверить исправность канала
 			{
-				regcount = regBank.get(adr_count);                     // адрес счетчика ошибки 
-				regcount++;                                            // увеличить счетчик ошибок канала 
-				regBank.set(adr_count,regcount);                       // адрес счетчика ошибки канала 
-				regBank.set(adr_flagErr,1);                            // установить флаг ошибки  канала 
-				regBank.set(120,1);                                    // установить общий флаг ошибки 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[47])));
-				myFile.print(buffer);                                      // "Error! - "
+				regcount = regBank.get(adr_count);                                    // адрес счетчика ошибки 
+				regcount++;                                                           // увеличить счетчик ошибок канала 
+				regBank.set(adr_count,regcount);                                      // адрес счетчика ошибки канала 
+				regBank.set(adr_flagErr,1);                                           // установить флаг ошибки  канала 
+				regBank.set(120,1);                                                   // установить общий флаг ошибки 
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[49])));       // "Error! - "
+				myFile.print(buffer);                                                 // "Error! - "
 				myFile.println(regcount);
 			}
 		else
 			{
-				myFile.println("Ok!");
+				myFile.println("Pass");                                               // Проверка прошла
 			}    
 }
 void measure_volume(int analog)
@@ -3411,26 +3423,26 @@ modbus registers follow the following format
 
 	regBank.add(120);   // Флаг индикации возникновения любой ошибки
  
-	regBank.add(121);   // Флаг счетчика ошибки сенсора Sence "ГГ-Радио1."  ok!
-	regBank.add(122);   // Флаг счетчика ошибки сенсора Sence "ГГ-Радио2."  ok!
-	regBank.add(123);   // Флаг счетчика ошибки сенсора подключения трубки
-	regBank.add(124);   // Флаг счетчика ошибки сенсора Sence Танг. р. ok!
-	regBank.add(125);   // Флаг счетчика ошибки сенсора Sence Танг н. ok!
-	regBank.add(126);   // Флаг счетчика ошибки сенсора Sence "Маг."   ok!
-	regBank.add(127);   // Флаг счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
-	regBank.add(128);   // Флаг счетчика ошибки сенсора гарнитуры инструктора
-	regBank.add(129);   // Флаг счетчика ошибки сенсора гарнитуры диспетчера с 2 наушниками
-	regBank.add(130);   // Флаг счетчика ошибки сенсора гарнитуры диспетчера
-	regBank.add(131);   // Флаг счетчика ошибки сенсора Sence Мик. ok!
-	regBank.add(132);   // Флаг счетчика ошибки сенсора Sence "ГГC."   ok!
+	regBank.add(121);   // Флаг ошибки сенсора Sence "ГГ-Радио1."  ok!
+	regBank.add(122);   // Флаг ошибки сенсора Sence "ГГ-Радио2."  ok!
+	regBank.add(123);   // Флаг ошибки сенсора подключения трубки
+	regBank.add(124);   // Флаг ошибки сенсора Sence Танг. р. ok!
+	regBank.add(125);   // Флаг ошибки сенсора Sence Танг н. ok!
+	regBank.add(126);   // Флаг ошибки сенсора Sence "Маг."   ok!
+	regBank.add(127);   // Флаг ошибки сенсора гарнитуры инструктора с 2 наушниками
+	regBank.add(128);   // Флаг ошибки сенсора гарнитуры инструктора
+	regBank.add(129);   // Флаг ошибки сенсора гарнитуры диспетчера с 2 наушниками
+	regBank.add(130);   // Флаг ошибки сенсора гарнитуры диспетчера
+	regBank.add(131);   // Флаг ошибки сенсора Sence Мик. ok!
+	regBank.add(132);   // Флаг ошибки сенсора Sence "ГГC."   ok!
 
-	regBank.add(133);   // Флаг счетчика ошибки сенсора 
-	regBank.add(134);   // Флаг счетчика ошибки сенсора PTT Танг н.  ok!
-	regBank.add(135);   // Флаг счетчика ошибки сенсора PTT Мик ok!
+	regBank.add(133);   // Флаг ошибки сенсора 
+	regBank.add(134);   // Флаг ошибки сенсора PTT Танг н.  ok!
+	regBank.add(135);   // Флаг ошибки сенсора PTT Мик ok!
 
-	regBank.add(136);   // Флаг счетчика ошибки  PTT2 Танг. р. ok!
-	regBank.add(137);   // Флаг счетчика ошибки  HangUp  DCD  ok!
-	regBank.add(138);   // Флаг счетчика ошибки  PTT1 Танг. р. ok!
+	regBank.add(136);   // Флаг ошибки  PTT2 Танг. р. ok!
+	regBank.add(137);   // Флаг ошибки  HangUp  DCD  ok!
+	regBank.add(138);   // Флаг ошибки  PTT1 Танг. р. ok!
 	regBank.add(139);   // Флаг ошибки отключения микрофона гарнитуры инструктора
 	regBank.add(140);   // Флаг ошибки отключения PTT гарнитуры инструктора 
 	regBank.add(141);   // Флаг ошибки динамика гарнитуры инструктора FrontL
@@ -3448,8 +3460,8 @@ modbus registers follow the following format
 	regBank.add(153);   // Флаг ошибки XP1 - 20  HangUp  DCD
 	regBank.add(154);   // Флаг ошибки Sence MTT ON
 	regBank.add(155);   // Флаг ошибки отключения микрофона гарнитуры диспетчера
-	regBank.add(156);   // адрес счетчика ошибки отключения радиопередачи
-	regBank.add(157);   // адрес счетчика ошибки включения радиопередачи
+	regBank.add(156);   // Флаг ошибки отключения радиопередачи
+	regBank.add(157);   // Флаг ошибки включения радиопередачи
 	regBank.add(158);   // Флаг ошибки отключения PTT гарнитуры диспетчера
 	regBank.add(159);   // Флаг ошибки отключения микрофона гарнитуры диспетчера
 	regBank.add(160);   // Флаг ошибки динамика гарнитуры диспетчера FrontL
@@ -3704,10 +3716,10 @@ modbus registers follow the following format
 	regBank.add(40170);  // адрес счетчика ошибки  Sence MTT ON
 	regBank.add(40171);  // адрес счетчика ошибки сигнала  LineL MTT
 	regBank.add(40172);  // адрес счетчика ошибки analog_ggs ON
-	regBank.add(40173);  // Флаг ошибки "Komanda PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";
-	regBank.add(40174);  // Флаг ошибки "Komanda PTT2  OFF tangenta ruchnaja (CTS)      Error! - ";
-	regBank.add(40175);  // Флаг ошибки "Komanda PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
-	regBank.add(40176);  // Флаг ошибки "Komanda PTT2  ON  tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(40173);  // адрес счетчика "Komanda PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(40174);  // адрес счетчика "Komanda PTT2  OFF tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(40175);  // адрес счетчика "Komanda PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(40176);  // адрес счетчика "Komanda PTT2  ON  tangenta ruchnaja (CTS)      Error! - ";
 
 
 	slave._device = &regBank;  

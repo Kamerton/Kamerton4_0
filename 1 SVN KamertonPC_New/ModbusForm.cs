@@ -4322,8 +4322,6 @@ namespace KamertonTest
 
             }
 
-
-
         }
 
         private void checkBoxSenGGRadio1_CheckedChanged (object sender, EventArgs e)
@@ -4394,8 +4392,69 @@ namespace KamertonTest
             startWrReg = 10;                                                                   // 
             res = myProtocol.writeSingleRegister(slave, startWrReg, (short) tempK);          
             startWrReg = 120;                                                                   // 
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 10);                        // 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 15);                        // 
 
+        }
+
+        private void checkBoxPTTAll_CheckedChanged (object sender, EventArgs e)
+        {
+            if (checkBoxPTTAll.Checked == true)
+            {
+                // Включить проверку РТТ
+
+                checkBox1.Checked = true;
+                checkBox2.Checked = true;
+                checkBox3.Checked = true;
+                checkBox4.Checked = true;
+                checkBox5.Checked = true;
+                checkBox6.Checked = true;
+                checkBox7.Checked = true;
+                checkBox8.Checked = true;
+            }
+            else
+            {
+                // Отключить проверку РТТ
+                checkBox1.Checked = false;
+                checkBox2.Checked = false;
+                checkBox3.Checked = false;
+                checkBox4.Checked = false;
+                checkBox5.Checked = false;
+                checkBox6.Checked = false;
+                checkBox7.Checked = false;
+                checkBox8.Checked = false;
+
+            }
+        }
+
+        private void checkBoxSoundAll_CheckedChanged (object sender, EventArgs e)
+        {
+            if (checkBoxSoundAll.Checked == true)
+            {
+                // Включить проверку звука
+
+                checkBox10.Checked = true;
+                checkBox11.Checked = true;
+                checkBox12.Checked = true;
+                checkBox13.Checked = true;
+                checkBox14.Checked = true;
+                checkBox15.Checked = true;
+                checkBox16.Checked = true;
+                checkBox17.Checked = true;
+            }
+            else
+            {
+                // Отключить проверку звука
+
+                checkBox10.Checked = false;
+                checkBox11.Checked = false;
+                checkBox12.Checked = false;
+                checkBox13.Checked = false;
+                checkBox14.Checked = false;
+                checkBox15.Checked = false;
+                checkBox16.Checked = false;
+                checkBox17.Checked = false;
+            
+            }
         }
 
         
