@@ -1313,7 +1313,7 @@ void control_command()
 			  set_clock();
 				break;
 		case 15:
-		   //  set_rezistor();
+		     set_rezistor();
 				break;
 		default:
 		break;
