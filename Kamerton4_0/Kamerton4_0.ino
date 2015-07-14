@@ -455,10 +455,189 @@ const char  txt_mtt_on10[]   PROGMEM           = "Komanda       ON  HangUp MTT  
 
 
 
+const char  txt_error0[]  PROGMEM           = "";
+const char  txt_error1[]  PROGMEM           = "";
+const char  txt_error2[]  PROGMEM           = "";
+const char  txt_error3[]  PROGMEM           = "";
+const char  txt_error4[]  PROGMEM           = "";
+const char  txt_error5[]  PROGMEM           = "";
+const char  txt_error6[]  PROGMEM           = "";
+const char  txt_error7[]  PROGMEM           = "";
+const char  txt_error8[]  PROGMEM           = "";
+const char  txt_error9[]  PROGMEM           = "";
+
+const char  txt_error10[]  PROGMEM          = "";
+const char  txt_error11[]  PROGMEM          = "";
+const char  txt_error12[]  PROGMEM          = "";
+const char  txt_error13[]  PROGMEM          = "";
+const char  txt_error14[]  PROGMEM          = "";
+const char  txt_error15[]  PROGMEM          = "";
+const char  txt_error16[]  PROGMEM          = "";
+const char  txt_error17[]  PROGMEM          = "";
+const char  txt_error18[]  PROGMEM          = "";
+const char  txt_error19[]  PROGMEM          = "";
+
+const char  txt_error20[]  PROGMEM          = "";
+const char  txt_error21[]  PROGMEM          = "";
+const char  txt_error22[]  PROGMEM          = "";
+const char  txt_error23[]  PROGMEM          = "";
+const char  txt_error24[]  PROGMEM          = "";
+const char  txt_error25[]  PROGMEM          = "";
+const char  txt_error26[]  PROGMEM          = "";
+const char  txt_error27[]  PROGMEM          = "";
+const char  txt_error28[]  PROGMEM          = "";
+const char  txt_error29[]  PROGMEM          = "";
+
+const char  txt_error30[]  PROGMEM          = "";
+const char  txt_error31[]  PROGMEM          = "";
+const char  txt_error32[]  PROGMEM          = "";
+const char  txt_error33[]  PROGMEM          = "";
+const char  txt_error34[]  PROGMEM          = "";
+const char  txt_error35[]  PROGMEM          = "";
+const char  txt_error36[]  PROGMEM          = "";
+const char  txt_error37[]  PROGMEM          = "";
+const char  txt_error38[]  PROGMEM          = "";
+const char  txt_error39[]  PROGMEM          = "";
+
+const char  txt_error40[]  PROGMEM          = "";
+const char  txt_error41[]  PROGMEM          = "";
+const char  txt_error42[]  PROGMEM          = "";
+const char  txt_error43[]  PROGMEM          = "";
+const char  txt_error44[]  PROGMEM          = "";
+const char  txt_error45[]  PROGMEM          = "";
+const char  txt_error46[]  PROGMEM          = "";
+const char  txt_error47[]  PROGMEM          = "";
+const char  txt_error48[]  PROGMEM          = "";
+const char  txt_error49[]  PROGMEM          = "";
+
+const char  txt_error50[]  PROGMEM          = "";
+const char  txt_error51[]  PROGMEM          = "";
+const char  txt_error52[]  PROGMEM          = "";
+const char  txt_error53[]  PROGMEM          = "";
+const char  txt_error54[]  PROGMEM          = "";
+const char  txt_error55[]  PROGMEM          = "";
+const char  txt_error56[]  PROGMEM          = "";
+const char  txt_error57[]  PROGMEM          = "";
+const char  txt_error58[]  PROGMEM          = "";
+const char  txt_error59[]  PROGMEM          = "";
+
+const char  txt_error60[]  PROGMEM          = "";
+const char  txt_error61[]  PROGMEM          = "";
+const char  txt_error62[]  PROGMEM          = "";
+const char  txt_error63[]  PROGMEM          = "";
+const char  txt_error64[]  PROGMEM          = "";
+const char  txt_error65[]  PROGMEM          = "";
+const char  txt_error66[]  PROGMEM          = "";
+const char  txt_error67[]  PROGMEM          = "";
+const char  txt_error68[]  PROGMEM          = "";
+const char  txt_error69[]  PROGMEM          = "";
+
+const char  txt_error70[]  PROGMEM          = "";
+const char  txt_error71[]  PROGMEM          = "";
+const char  txt_error72[]  PROGMEM          = "";
+const char  txt_error73[]  PROGMEM          = "";
+const char  txt_error74[]  PROGMEM          = "";
+const char  txt_error75[]  PROGMEM          = "";
+const char  txt_error76[]  PROGMEM          = "";
+const char  txt_error77[]  PROGMEM          = "";
+const char  txt_error78[]  PROGMEM          = "";
+const char  txt_error79[]  PROGMEM          = "";
 
 
 
 char buffer[100];  
+
+const char* const string_table_err[] PROGMEM = 
+{
+txt_error0,               //
+txt_error1,               //
+txt_error2,               //
+txt_error3,               //
+txt_error4,               //
+txt_error5,               //
+txt_error6,               //
+txt_error7,               //
+txt_error8,               //
+txt_error9,               //
+
+txt_error10,              //
+txt_error11,              //
+txt_error12,              //
+txt_error13,              //
+txt_error14,              //
+txt_error15,              //
+txt_error16,              //
+txt_error17,              //
+txt_error18,              //
+txt_error19,              //
+
+txt_error20,              //
+txt_error21,              //
+txt_error22,              //
+txt_error23,              //
+txt_error24,              //
+txt_error25,              //
+txt_error26,              //
+txt_error27,              //
+txt_error28,              //
+txt_error29,              //
+
+txt_error30,              //
+txt_error31,              //
+txt_error32,              //
+txt_error33,              //
+txt_error34,              //
+txt_error35,              //
+txt_error36,              //
+txt_error37,              //
+txt_error38,              //
+txt_error39,              //
+
+txt_error40,              //
+txt_error41,              //
+txt_error42,              //
+txt_error43,              //
+txt_error44,              //
+txt_error45,              //
+txt_error46,              //
+txt_error47,              //
+txt_error48,              //
+txt_error49,              //
+
+txt_error50,              //
+txt_error51,              //
+txt_error52,              //
+txt_error53,              //
+txt_error54,              //
+txt_error55,              //
+txt_error56,              //
+txt_error57,              //
+txt_error58,              //
+txt_error59,              //
+
+txt_error60,              //
+txt_error61,              //
+txt_error62,              //
+txt_error63,              //
+txt_error64,              //
+txt_error65,              //
+txt_error66,              //
+txt_error67,              //
+txt_error68,              //
+txt_error69,              //
+
+txt_error70,              //
+txt_error71,              //
+txt_error72,              //
+txt_error73,              //
+txt_error74,              //
+txt_error75,              //
+txt_error76,              //
+txt_error77,              //
+txt_error78,              //
+txt_error79               //
+};
+
 const char* const string_table[] PROGMEM = 
 {
 txt_all_off0,     // 0
@@ -661,7 +840,7 @@ const char* const table_instr_all[] PROGMEM =
 	txt_test_all46,     // "Signal GG Radio2 OFF                                  - ";
 	txt_test_all47,     // "Error! - "                                               ;
 	txt_test_all48,     // "";
-	txt_test_all49,     // ""                                                        ;
+	txt_test_all49,     // "    Error! - "; 
 
 	txt_test_all50,     // "Signal FrontL OFF                                     - ";
 	txt_test_all51,     // "Signal FrontR OFF                                     - ";
