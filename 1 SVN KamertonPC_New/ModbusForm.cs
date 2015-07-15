@@ -3758,19 +3758,19 @@ namespace KamertonTest
                     label98.Refresh();
                     break;
                 case 3:
-                    test_dispetchera();
+                 //   test_dispetchera();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
                     break;
                 case 4:
-                    test_MTT();
+               //     test_MTT();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
                     break;
                 case 5:
-                    test_tangR();
+                 //   test_tangR();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
@@ -3800,7 +3800,7 @@ namespace KamertonTest
                     label98.Refresh();
                     break;
                 case 10:
-                    test_tangN();
+                  //  test_tangN();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
@@ -3828,6 +3828,7 @@ namespace KamertonTest
                     timerTestAll.Enabled = false;
                     textBox7.Text += ("Тест завершен" + "\r\n");
                     textBox7.Text += ("\r\n");
+
                     _All_Test_Stop =false;
                 }
             if (radioButton2.Checked & TestN == 12)
@@ -3863,7 +3864,18 @@ namespace KamertonTest
             textBox7.Refresh();
             textBox8.Refresh();
            // textBox9.Refresh();
-    
+            if (radioButton2.Checked)
+            {
+                startCoil = 118;                                                          // Управление сенсорами
+                res = myProtocol.writeCoil(slave, startCoil, true);
+            }
+            else
+            {
+                startCoil = 118;                                                          // Управление сенсорами
+                res = myProtocol.writeCoil(slave, startCoil, false);
+            }
+
+
             TestN = 0;                                                                                  // Обнулить счетчик количества выполняемых тестов
             TestRepeatCount = 1;                                                                        // Установить начальный номер  счетчика проходов теста
 
@@ -4281,7 +4293,8 @@ namespace KamertonTest
 
         private void radioButton1_CheckedChanged (object sender, EventArgs e)
         {
-
+                    startCoil = 119;                                                          // Управление сенсорами
+                    res = myProtocol.writeCoil(slave, startCoil, false); 
         }
 
      
@@ -4455,6 +4468,12 @@ namespace KamertonTest
                 checkBox17.Checked = false;
             
             }
+        }
+
+        private void radioButton2_CheckedChanged (object sender, EventArgs e)
+        {
+                startCoil = 119;                                                          // Управление сенсорами
+                res = myProtocol.writeCoil(slave, startCoil, true); 
         }
 
         

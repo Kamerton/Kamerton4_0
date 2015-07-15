@@ -164,6 +164,7 @@ byte regs_crc[1];                                   // Регистры работы с платой 
 
 byte Stop_Kam = 0;                                  // Флаг индикации чтения инф. из Камертона
 bool prer_Kmerton_On = true;                        // Флаг разрешение прерывания Камертон
+bool test_repeat     = true;                        // Флаг повторения теста
 volatile bool prer_Kmerton_Run = false;              // Флаг разрешение прерывания Камертон
 #define BUFFER_SIZEK 64                             // Размер буфера Камертон не более 128 байт
 unsigned char bufferK;                              // Счетчик количества принимаемых байт
@@ -213,25 +214,25 @@ const unsigned int adr_set_time           PROGMEM       = 36;    // адрес флаг у
 //---------------------------Тексты файлов  ---------------------------------------------------
 const char  txt_all_on0[]   PROGMEM            = "";       
 const char  txt_all_on1[]   PROGMEM            = " ****** Test sensor ON start! ******"                    ;                           
-const char  txt_all_on2[]   PROGMEM            = "Sence MTT                     XP1- 19 HaSs              Error! - ";                         
-const char  txt_all_on3[]   PROGMEM            = "Sence MTT                     XP1- 19 HaSs     ";
+const char  txt_all_on2[]   PROGMEM            = "Sensor MTT                     XP1- 19 HaSs              Error! - ";                         
+const char  txt_all_on3[]   PROGMEM            = "Sensor MTT                     XP1- 19 HaSs     ";
 const char  txt_all_on4[]   PROGMEM            = "ON - Pass"                                                ;
-const char  txt_all_on5[]   PROGMEM            = "Sence Tangenta ruchnaja       XP7 - 2                   Error! - ";    
-const char  txt_all_on6[]   PROGMEM            = "Sence Tangenta ruchnaja       XP7 - 2          ";    
-const char  txt_all_on7[]   PROGMEM            = "Sensor garnitura dispetchera  XP1 - 1  HeS1Ls           Error! - ";         
-const char  txt_all_on8[]   PROGMEM            = "Sence tangenta nognaja        XP8 - 2                   Error! - ";          
-const char  txt_all_on9[]   PROGMEM            = "Sence tang. nogn.             XP8 - 2          ";      
-const char  txt_all_on10[]  PROGMEM            = "Sence garnitura dispetchera   XP1 - 1  HeS1Ls  ";        
-const char  txt_all_on11[]  PROGMEM            = "Sence garnitura instruktora 2 XP1 - 16 HeS2Rs           Error! - ";      
-const char  txt_all_on12[]  PROGMEM            = "Sence garnitura instruktora 2 XP1 - 16 HeS2Rs  ";                         
-const char  txt_all_on13[]  PROGMEM            = "Sence microphone              XS1 - 6                   Error! - ";
-const char  txt_all_on14[]  PROGMEM            = "Sence garnitura instruktora   XP1 - 13 HeS2Ls           Error! - ";
-const char  txt_all_on15[]  PROGMEM            = "Sence garnitura instruktora   XP1 - 13 HeS2Ls  ";    
-const char  txt_all_on16[]  PROGMEM            = "Sence microphone              XS1 - 6          ";    
-const char  txt_all_on17[]  PROGMEM            = "Sence garnitura dispetchera 2 XP1 - 13 HeS2Ls           Error! - ";         
-const char  txt_all_on18[]  PROGMEM            = "Sence garnitura dispetchera 2 XP1 - 13 HeS2Ls  ";          
-const char  txt_all_on19[]  PROGMEM            = "Microphone instruktora Sw.    XP1 - 12 HeS2e            Error! - ";        
-const char  txt_all_on20[]  PROGMEM            = "Microphone instruktora Sw.    XP1 - 12 HeS2e   ";         
+const char  txt_all_on5[]   PROGMEM            = "Sensor Tangenta ruchnaja       XP7 - 2                   Error! - ";    
+const char  txt_all_on6[]   PROGMEM            = "Sensor Tangenta ruchnaja       XP7 - 2          ";    
+const char  txt_all_on7[]   PROGMEM            = "Sensor garnitura dispetchera   XP1 - 1  HeS1Ls           Error! - ";         
+const char  txt_all_on8[]   PROGMEM            = "Sensor tangenta nognaja        XP8 - 2                   Error! - ";          
+const char  txt_all_on9[]   PROGMEM            = "Sensor tang. nogn.             XP8 - 2          ";      
+const char  txt_all_on10[]  PROGMEM            = "Sensor garnitura dispetchera   XP1 - 1  HeS1Ls  ";        
+const char  txt_all_on11[]  PROGMEM            = "Sensor garnitura headset instructor 2 XP1 - 16 HeS2Rs           Error! - ";      
+const char  txt_all_on12[]  PROGMEM            = "Sensor garnitura headset instructor 2 XP1 - 16 HeS2Rs  ";                         
+const char  txt_all_on13[]  PROGMEM            = "Sensor microphone              XS1 - 6                   Error! - ";
+const char  txt_all_on14[]  PROGMEM            = "Sensor garnitura headset instructor   XP1 - 13 HeS2Ls           Error! - ";
+const char  txt_all_on15[]  PROGMEM            = "Sensor garnitura headset instructor   XP1 - 13 HeS2Ls  ";    
+const char  txt_all_on16[]  PROGMEM            = "Sensor microphone              XS1 - 6          ";    
+const char  txt_all_on17[]  PROGMEM            = "Sensor garnitura dispetchera 2 XP1 - 13 HeS2Ls           Error! - ";         
+const char  txt_all_on18[]  PROGMEM            = "Sensor garnitura dispetchera 2 XP1 - 13 HeS2Ls  ";          
+const char  txt_all_on19[]  PROGMEM            = "Microphone headset instructor Sw.    XP1 - 12 HeS2e            Error! - ";        
+const char  txt_all_on20[]  PROGMEM            = "Microphone headset instructor Sw.    XP1 - 12 HeS2e   ";         
 const char  txt_all_on21[]  PROGMEM            = "Radioperedacha ON                                       Error! - ";          
 const char  txt_all_on22[]  PROGMEM            = "Radioperedacha                                 ";        
 const char  txt_all_on23[]  PROGMEM            = "Microphone dispetchera ON                               Error! - ";         
@@ -239,35 +240,35 @@ const char  txt_all_on24[]  PROGMEM            = "Microphone dispetchera        
 
 const char  txt_all_off0[]   PROGMEM           = "";    
 const char  txt_all_off1[]   PROGMEM           = " ****** Test sensor OFF start! ******"          ;                           
-const char  txt_all_off2[]   PROGMEM           = "Sence MTT                     XP1- 19 HaSs              Error! - ";                         
-const char  txt_all_off3[]   PROGMEM           = "Sence MTT                     XP1- 19 HaSs    ";
+const char  txt_all_off2[]   PROGMEM           = "Sensor MTT                     XP1- 19 HaSs              Error! - ";                         
+const char  txt_all_off3[]   PROGMEM           = "Sensor MTT                     XP1- 19 HaSs    ";
 const char  txt_all_off4[]   PROGMEM           = "OFF - Pass"                                               ;                           
-const char  txt_all_off5[]   PROGMEM           = "Sence tangenta ruchnaja       XP7 - 2                   Error! - ";                         
-const char  txt_all_off6[]   PROGMEM           = "Sence tangenta ruchnaja       XP7 - 2         ";
-const char  txt_all_off7[]   PROGMEM           = "Sence tangenta nognaja        XP8 - 2                   Error! - ";                           
-const char  txt_all_off8[]   PROGMEM           = "Sence tangenta nognaja        XP8 - 2         ";                         
-const char  txt_all_off9[]   PROGMEM           = "Sence garnitura instruktora 2 XP1- 16 HeS2Rs            Error! - ";
-const char  txt_all_off10[]  PROGMEM           = "Sence garnitura instruktora 2 XP1- 16 HeS2Rs  ";                           
-const char  txt_all_off11[]  PROGMEM           = "Sence garnitura instruktora   XP1- 13 HeS2Ls            Error! - ";                         
-const char  txt_all_off12[]  PROGMEM           = "Sence garnitura instruktora   XP1- 13 HeS2Ls  ";
-const char  txt_all_off13[]  PROGMEM           = "Sence garnitura dispetchera 2 XP1- 13 HeS2Ls            Error! - ";                           
-const char  txt_all_off14[]  PROGMEM           = "Sence garnitura dispetchera 2 XP1- 13 HeS2Ls  ";                         
-const char  txt_all_off15[]  PROGMEM           = "Sence garnitura dispetchera   XP1- 1  HeS1Ls            Error! - ";
-const char  txt_all_off16[]  PROGMEM           = "Sence garnitura dispetchera   XP1- 1  HeS1Ls  ";                           
-const char  txt_all_off17[]  PROGMEM           = "Sence microphone              XS1 - 6                   Error! - ";                         
-const char  txt_all_off18[]  PROGMEM           = "Sence microphone              XS1 - 6         ";
-const char  txt_all_off19[]  PROGMEM           = "Microphone instruktora Sw.    XP1 12 HeS2e              Error! - ";                           
-const char  txt_all_off20[]  PROGMEM           = "Microphone instruktora Sw.    XP1 12 HeS2e    ";                         
+const char  txt_all_off5[]   PROGMEM           = "Sensor tangenta ruchnaja       XP7 - 2                   Error! - ";                         
+const char  txt_all_off6[]   PROGMEM           = "Sensor tangenta ruchnaja       XP7 - 2         ";
+const char  txt_all_off7[]   PROGMEM           = "Sensor tangenta nognaja        XP8 - 2                   Error! - ";                           
+const char  txt_all_off8[]   PROGMEM           = "Sensor tangenta nognaja        XP8 - 2         ";                         
+const char  txt_all_off9[]   PROGMEM           = "Sensor garnitura headset instructor 2 XP1- 16 HeS2Rs            Error! - ";
+const char  txt_all_off10[]  PROGMEM           = "Sensor garnitura headset instructor 2 XP1- 16 HeS2Rs  ";                           
+const char  txt_all_off11[]  PROGMEM           = "Sensor garnitura headset instructor   XP1- 13 HeS2Ls            Error! - ";                         
+const char  txt_all_off12[]  PROGMEM           = "Sensor garnitura headset instructor   XP1- 13 HeS2Ls  ";
+const char  txt_all_off13[]  PROGMEM           = "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls            Error! - ";                           
+const char  txt_all_off14[]  PROGMEM           = "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  ";                         
+const char  txt_all_off15[]  PROGMEM           = "Sensor garnitura dispetchera   XP1- 1  HeS1Ls            Error! - ";
+const char  txt_all_off16[]  PROGMEM           = "Sensor garnitura dispetchera   XP1- 1  HeS1Ls  ";                           
+const char  txt_all_off17[]  PROGMEM           = "Sensor microphone              XS1 - 6                   Error! - ";                         
+const char  txt_all_off18[]  PROGMEM           = "Sensor microphone              XS1 - 6         ";
+const char  txt_all_off19[]  PROGMEM           = "Microphone headset instructor Sw.    XP1 12 HeS2e              Error! - ";                           
+const char  txt_all_off20[]  PROGMEM           = "Microphone headset instructor Sw.    XP1 12 HeS2e    ";                         
 const char  txt_all_off21[]  PROGMEM           = "Radioperedacha OFF                                      Error! - ";
 const char  txt_all_off22[]  PROGMEM           = "Radioperedacha                                ";                           
 const char  txt_all_off23[]  PROGMEM           = "Microphone dispetchera OFF    XP1 10                    Error! - ";                         
 const char  txt_all_off24[]  PROGMEM           = "Microphone dispetchera                        ";
 //**********************************************************************************************************
-const char  txt_test_all0[]  PROGMEM           = " ****** Test instruktora start! ******"                  ;
-const char  txt_test_all1[]  PROGMEM           = "Signal microphone  instruktora 30mv  ON"                 ;
-const char  txt_test_all2[]  PROGMEM           = "Microphone instruktora               ON                 Error! - ";
-const char  txt_test_all3[]  PROGMEM           = "Microphone instruktora               ON           - Pass";
-const char  txt_test_all4[]  PROGMEM           = "Microphone instruktora signal        ON"                 ;
+const char  txt_test_all0[]  PROGMEM           = " ****** Test headset instructor start! ******";
+const char  txt_test_all1[]  PROGMEM           = "Signal headset instructor microphone 30mv   ON"                 ;
+const char  txt_test_all2[]  PROGMEM           = "Headset instructor Microphone               ON                  Error! - ";
+const char  txt_test_all3[]  PROGMEM           = "Microphone headset instructor               ON            - Pass";
+const char  txt_test_all4[]  PROGMEM           = "Microphone headset instructor signal        ON"                 ;
 const char  txt_test_all5[]  PROGMEM           = "";
 const char  txt_test_all6[]  PROGMEM           = "";
 const char  txt_test_all7[]  PROGMEM           = "";
@@ -275,14 +276,14 @@ const char  txt_test_all8[]  PROGMEM           = "";
 const char  txt_test_all9[]  PROGMEM           = "";
 
 const char  txt_test_all10[]  PROGMEM          = " ****** Test tangenta nognaja start! ******";
-const char  txt_test_all11[]  PROGMEM          = "Komanda sence OFF nognaja ruchnaja send!"                ;
-const char  txt_test_all12[]  PROGMEM          = "Komanda PTT1  OFF nognaja ruchnaja send!"                ;
-const char  txt_test_all13[]  PROGMEM          = "Komanda sence ON  nognaja ruchnaja send!"                ;
-const char  txt_test_all14[]  PROGMEM          = "Komanda PTT1  ON  nognaja ruchnaja send!"                ;
-const char  txt_test_all15[]  PROGMEM          = "Komanda PTT1  OFF nognaja ruchnaja (CTS)                Error! - ";
-const char  txt_test_all16[]  PROGMEM          = "Komanda PTT1  OFF nognaja ruchnaja (CTS)          - Pass";
-const char  txt_test_all17[]  PROGMEM          = "Komanda PTT1  ON  tangenta ruchnaja (CTS)               Error! - ";
-const char  txt_test_all18[]  PROGMEM          = "Komanda PTT1  ON  tangenta ruchnaja (CTS)         - Pass";
+const char  txt_test_all11[]  PROGMEM          = "Command sensor OFF nognaja ruchnaja send!"                ;
+const char  txt_test_all12[]  PROGMEM          = "Command PTT1   OFF nognaja ruchnaja send!"                ;
+const char  txt_test_all13[]  PROGMEM          = "Command sensor ON  nognaja ruchnaja send!"                ;
+const char  txt_test_all14[]  PROGMEM          = "Command PTT1   ON  nognaja ruchnaja send!"                ;
+const char  txt_test_all15[]  PROGMEM          = "Command PTT1   OFF nognaja ruchnaja (CTS)                Error! - ";
+const char  txt_test_all16[]  PROGMEM          = "Command PTT1   OFF nognaja ruchnaja (CTS)          - Pass";
+const char  txt_test_all17[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)               Error! - ";
+const char  txt_test_all18[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)         - Pass";
 const char  txt_test_all19[]  PROGMEM          = "";
 
 const char  txt_test_all20[]  PROGMEM          = " ****** Test dispetchera start! ******"                  ;
@@ -354,21 +355,21 @@ const char  txt_test_all59[]  PROGMEM          = "Signal FrontL, FrontR  ON ";
 //const char  txt_test_all59[]  PROGMEM          = "Signal FrontL, FrontR  ON                             - ";
 
 const char  txt_test_all60[]  PROGMEM          = " ****** Test tangenta ruchnaja start! ******";
-const char  txt_test_all61[]  PROGMEM          = "Komanda sence OFF tangenta ruchnaja send!"               ;
-const char  txt_test_all62[]  PROGMEM          = "Komanda PTT1  OFF tangenta ruchnaja send!"               ;
-const char  txt_test_all63[]  PROGMEM          = "Komanda PTT2  OFF tangenta ruchnaja send!"               ;
-const char  txt_test_all64[]  PROGMEM          = "Komanda sence ON  tangenta ruchnaja send!"               ;
-const char  txt_test_all65[]  PROGMEM          = "Komanda PTT1  ON  tangenta ruchnaja send!"               ;
-const char  txt_test_all66[]  PROGMEM          = "Komanda PTT2  ON  tangenta ruchnaja send!"               ;
-const char  txt_test_all67[]  PROGMEM          = "Komanda PTT1  OFF tangenta ruchnaja (CTS)               Error! - ";
-const char  txt_test_all68[]  PROGMEM          = "Komanda PTT1  OFF tangenta ruchnaja (CTS)         - Pass";
-const char  txt_test_all69[]  PROGMEM          = "Komanda PTT2  OFF tangenta ruchnaja (DCR)               Error! - ";
+const char  txt_test_all61[]  PROGMEM          = "Command sensor OFF tangenta ruchnaja send!"               ;
+const char  txt_test_all62[]  PROGMEM          = "Command PTT1   OFF tangenta ruchnaja send!"               ;
+const char  txt_test_all63[]  PROGMEM          = "Command PTT2   OFF tangenta ruchnaja send!"               ;
+const char  txt_test_all64[]  PROGMEM          = "Command sensor ON  tangenta ruchnaja send!"               ;
+const char  txt_test_all65[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja send!"               ;
+const char  txt_test_all66[]  PROGMEM          = "Command PTT2   ON  tangenta ruchnaja send!"               ;
+const char  txt_test_all67[]  PROGMEM          = "Command PTT1   OFF tangenta ruchnaja (CTS)                      Error! - ";
+const char  txt_test_all68[]  PROGMEM          = "Command PTT1   OFF tangenta ruchnaja (CTS)                - Pass";
+const char  txt_test_all69[]  PROGMEM          = "Command PTT2   OFF tangenta ruchnaja (DCR)                      Error! - ";
 
-const char  txt_test_all70[]  PROGMEM          = "Komanda PTT2  OFF tangenta ruchnaja (DCR)         - Pass";
-const char  txt_test_all71[]  PROGMEM          = "Komanda PTT1  ON  tangenta ruchnaja (CTS)               Error! - ";
-const char  txt_test_all72[]  PROGMEM          = "Komanda PTT1  ON  tangenta ruchnaja (CTS)         - Pass";
-const char  txt_test_all73[]  PROGMEM          = "Komanda PTT2  ON  tangenta ruchnaja (DCR)               Error! - ";
-const char  txt_test_all74[]  PROGMEM          = "Komanda PTT2  ON  tangenta ruchnaja (DCR)         - Pass";
+const char  txt_test_all70[]  PROGMEM          = "Command PTT2   OFF tangenta ruchnaja (DCR)                - Pass";
+const char  txt_test_all71[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)                      Error! - ";
+const char  txt_test_all72[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)                - Pass";
+const char  txt_test_all73[]  PROGMEM          = "Command PTT2   ON  tangenta ruchnaja (DCR)                      Error! - ";
+const char  txt_test_all74[]  PROGMEM          = "Command PTT2   ON  tangenta ruchnaja (DCR)                - Pass";
 const char  txt_test_all75[]  PROGMEM          = "";
 const char  txt_test_all76[]  PROGMEM          = "";
 const char  txt_test_all77[]  PROGMEM          = "";
@@ -380,168 +381,168 @@ const char  txt_test_all79[]  PROGMEM          = "";
 
 
 //**********************************************************************************************************
-const char  txt_instr_off0[]  PROGMEM          = "Komanda sence OFF instruktora   send!"                   ;
-const char  txt_instr_off1[]  PROGMEM          = "Komanda sence OFF instruktora 2 send!"                   ;
-const char  txt_instr_off2[]  PROGMEM          = "Komanda PTT   OFF instruktora   send!"                   ;
-const char  txt_instr_off3[]  PROGMEM          = "Komanda sence OFF instruktora 2                         Error! - ";
-const char  txt_instr_off4[]  PROGMEM          = "Komanda sence OFF instruktora 2                   - Pass";
-const char  txt_instr_off5[]  PROGMEM          = "Komanda sence OFF instruktora                           Error! - ";
-const char  txt_instr_off6[]  PROGMEM          = "Komanda sence OFF instruktora                     - Pass";
-const char  txt_instr_off7[]  PROGMEM          = "Komanda sence OFF microphone                            Error! - ";
-const char  txt_instr_off8[]  PROGMEM          = "Komanda sence OFF microphone                      - Pass";
-const char  txt_instr_off9[]  PROGMEM          = "Komanda       OFF PTT instruktora (CTS)                 Error! - ";
-const char  txt_instr_off10[] PROGMEM          = "Komanda       OFF PTT instruktora (CTS)           - Pass";
+const char  txt_instr_off0[]  PROGMEM          = "Command sensor OFF headset instructor            send!"                   ; // OK
+const char  txt_instr_off1[]  PROGMEM          = "Command sensor OFF headset instructor 2          send!"                   ; // OK
+const char  txt_instr_off2[]  PROGMEM          = "Command PTT    OFF headset instructor            send!"                   ; // ok
+const char  txt_instr_off3[]  PROGMEM          = "Command sensor OFF headset instructor 2                         Error! - ";
+const char  txt_instr_off4[]  PROGMEM          = "Command sensor OFF headset instructor 2                   - Pass";
+const char  txt_instr_off5[]  PROGMEM          = "Command sensor OFF headset instructor                           Error! - ";
+const char  txt_instr_off6[]  PROGMEM          = "Command sensor OFF headset instructor                     - Pass";
+const char  txt_instr_off7[]  PROGMEM          = "Command sensor OFF microphone                                   Error! - ";
+const char  txt_instr_off8[]  PROGMEM          = "Command sensor OFF microphone                             - Pass";
+const char  txt_instr_off9[]  PROGMEM          = "Command        OFF PTT headset instructor (CTS)                 Error! - ";
+const char  txt_instr_off10[] PROGMEM          = "Command        OFF PTT headset instructor (CTS)           - Pass";
 
-const char  txt_instr_on0[]  PROGMEM           = "Komanda sence ON  instruktora    send!"                  ;
-const char  txt_instr_on1[]  PROGMEM           = "Komanda sence ON  instruktora 2  send!"                  ;
-const char  txt_instr_on2[]  PROGMEM           = "Komanda sence ON  instruktora 2                         Error! - ";
-const char  txt_instr_on3[]  PROGMEM           = "Komanda sence ON  instruktora 2                   - Pass";
-const char  txt_instr_on4[]  PROGMEM           = "Komanda sence ON  instruktora                           Error! - ";
-const char  txt_instr_on5[]  PROGMEM           = "Komanda sence ON  instruktora                     - Pass";
-const char  txt_instr_on6[]  PROGMEM           = "Komanda       ON  PTT instruktora (CTS)                 Error! - ";
-const char  txt_instr_on7[]  PROGMEM           = "Komanda       ON  PTT instruktora (CTS)           - Pass";
-const char  txt_instr_on8[]  PROGMEM           = "Komanda       ON  PTT instruktora (CTS)  send!";
-
-
-const char  txt_disp_off0[]  PROGMEM           = "Komanda sence OFF dispetchera   send!";
-const char  txt_disp_off1[]  PROGMEM           = "Komanda sence OFF dispetchera 2 send!";
-const char  txt_disp_off2[]  PROGMEM           = "Komanda PTT   OFF dispetchera   send!";
-const char  txt_disp_off3[]  PROGMEM           = "Komanda sence OFF dispetchera 2                         Error! - ";
-const char  txt_disp_off4[]  PROGMEM           = "Komanda sence OFF dispetchera 2                   - Pass";
-const char  txt_disp_off5[]  PROGMEM           = "Komanda sence OFF dispetchera                           Error! - ";
-const char  txt_disp_off6[]  PROGMEM           = "Komanda sence OFF dispetchera                     - Pass";
-const char  txt_disp_off7[]  PROGMEM           = "Komanda sence OFF microphone                            Error! - ";
-const char  txt_disp_off8[]  PROGMEM           = "Komanda sence OFF microphone                      - Pass";
-const char  txt_disp_off9[]  PROGMEM           = "Komanda       OFF PTT dispetchera (CTS)                 Error! - ";
-const char  txt_disp_off10[] PROGMEM           = "Komanda       OFF PTT dispetchera (CTS)           - Pass";
-
-const char  txt_disp_on0[]   PROGMEM           = "Komanda sence ON  dispetchera    send!";
-const char  txt_disp_on1[]   PROGMEM           = "Komanda sence ON  dispetchera 2  send!";
-const char  txt_disp_on2[]   PROGMEM           = "Komanda sence ON  dispetchera 2                         Error! - ";
-const char  txt_disp_on3[]   PROGMEM           = "Komanda sence ON  dispetchera 2                   - Pass";
-const char  txt_disp_on4[]   PROGMEM           = "Komanda sence ON  dispetchera                           Error! - ";
-const char  txt_disp_on5[]   PROGMEM           = "Komanda sence ON  dispetchera                     - Pass";
-const char  txt_disp_on6[]   PROGMEM           = "Komanda       ON  PTT dispetchera (CTS)                 Error! - ";
-const char  txt_disp_on7[]   PROGMEM           = "Komanda       ON  PTT dispetchera (CTS)           - Pass";
-const char  txt_disp_on8[]   PROGMEM           = "Komanda       ON  PTT dispetchera (CTS) send!";
-
-const char  txt_mtt_off0[]   PROGMEM           = "Komanda sence OFF MTT            send!";
-const char  txt_mtt_off1[]   PROGMEM           = "Komanda PTT   OFF MTT            send!";
-const char  txt_mtt_off2[]   PROGMEM           = "Komanda       OFF HangUp MTT     send!";
-const char  txt_mtt_off3[]   PROGMEM           = "Komanda sence OFF MTT                                   Error! - ";
-const char  txt_mtt_off4[]   PROGMEM           = "Komanda sence OFF MTT                             - Pass";
-const char  txt_mtt_off5[]   PROGMEM           = "Komanda sence OFF microphone                            Error! - ";
-const char  txt_mtt_off6[]   PROGMEM           = "Komanda sence OFF microphone                      - Pass";
-const char  txt_mtt_off7[]   PROGMEM           = "Komanda       OFF PTT  MTT (CTS)                        Error! - ";
-const char  txt_mtt_off8[]   PROGMEM           = "Komanda       OFF PTT  MTT (CTS)                  - Pass";
-const char  txt_mtt_off9[]   PROGMEM           = "Komanda       OFF PTT  MTT (DSR)                        Error! - ";
-const char  txt_mtt_off10[]  PROGMEM           = "Komanda       OFF PTT  MTT (DSR)                  - Pass";
-const char  txt_mtt_off11[]  PROGMEM           = "Komanda       OFF HangUp MTT                            Error! - ";
-const char  txt_mtt_off12[]  PROGMEM           = "Komanda       OFF HangUp MTT                      - Pass";
+const char  txt_instr_on0[]  PROGMEM           = "Command sensor ON  headset instructor            send!"                   ; // ok
+const char  txt_instr_on1[]  PROGMEM           = "Command sensor ON  headset instructor 2          send!"                   ; // ok
+const char  txt_instr_on2[]  PROGMEM           = "Command sensor ON  headset instructor 2                         Error! - ";
+const char  txt_instr_on3[]  PROGMEM           = "Command sensor ON  headset instructor 2                   - Pass";
+const char  txt_instr_on4[]  PROGMEM           = "Command sensor ON  headset instructor                           Error! - ";
+const char  txt_instr_on5[]  PROGMEM           = "Command sensor ON  headset instructor                     - Pass";
+const char  txt_instr_on6[]  PROGMEM           = "Command        ON  PTT headset instructor (CTS)                 Error! - ";
+const char  txt_instr_on7[]  PROGMEM           = "Command        ON  PTT headset instructor (CTS)           - Pass";
+const char  txt_instr_on8[]  PROGMEM           = "Command        ON  PTT headset instructor (CTS)  send!";
 
 
-const char  txt_mtt_on0[]    PROGMEM           = "Komanda sence ON  MTT            send!";
-const char  txt_mtt_on1[]    PROGMEM           = "Komanda       ON  PTT  MTT (CTS) send!";
-const char  txt_mtt_on2[]    PROGMEM           = "Komanda       ON  HangUp MTT     send!";
-const char  txt_mtt_on3[]    PROGMEM           = "Komanda sence ON  MTT                                   Error! - ";
-const char  txt_mtt_on4[]    PROGMEM           = "Komanda sence ON  MTT                             - Pass";
-const char  txt_mtt_on5[]    PROGMEM           = "Komanda       ON  PTT  MTT (CTS)                        Error! - ";
-const char  txt_mtt_on6[]    PROGMEM           = "Komanda       ON  PTT  MTT (CTS)                  - Pass";
-const char  txt_mtt_on7[]    PROGMEM           = "Komanda       ON  PTT  MTT (DSR)                        Error! - ";
-const char  txt_mtt_on8[]    PROGMEM           = "Komanda       ON  PTT  MTT (DSR)                  - Pass";
-const char  txt_mtt_on9[]    PROGMEM           = "Komanda       ON  HangUp MTT                            Error! - ";
-const char  txt_mtt_on10[]   PROGMEM           = "Komanda       ON  HangUp MTT                      - Pass";
+const char  txt_disp_off0[]  PROGMEM           = "Command sensor OFF dispetchera   send!";
+const char  txt_disp_off1[]  PROGMEM           = "Command sensor OFF dispetchera 2 send!";
+const char  txt_disp_off2[]  PROGMEM           = "Command PTT    OFF dispetchera   send!";
+const char  txt_disp_off3[]  PROGMEM           = "Command sensor OFF dispetchera 2                                Error! - ";
+const char  txt_disp_off4[]  PROGMEM           = "Command sensor OFF dispetchera 2                          - Pass";
+const char  txt_disp_off5[]  PROGMEM           = "Command sensor OFF dispetchera                                  Error! - ";
+const char  txt_disp_off6[]  PROGMEM           = "Command sensor OFF dispetchera                            - Pass";
+const char  txt_disp_off7[]  PROGMEM           = "Command sensor OFF microphone                                   Error! - ";
+const char  txt_disp_off8[]  PROGMEM           = "Command sensor OFF microphone                             - Pass";
+const char  txt_disp_off9[]  PROGMEM           = "Command        OFF PTT dispetchera (CTS)                        Error! - ";
+const char  txt_disp_off10[] PROGMEM           = "Command        OFF PTT dispetchera (CTS)                  - Pass";
+
+const char  txt_disp_on0[]   PROGMEM           = "Command sensor ON  dispetchera    send!";
+const char  txt_disp_on1[]   PROGMEM           = "Command sensor ON  dispetchera 2  send!";
+const char  txt_disp_on2[]   PROGMEM           = "Command sensor ON  dispetchera 2                                Error! - ";
+const char  txt_disp_on3[]   PROGMEM           = "Command sensor ON  dispetchera 2                          - Pass";
+const char  txt_disp_on4[]   PROGMEM           = "Command sensor ON  dispetchera                                  Error! - ";
+const char  txt_disp_on5[]   PROGMEM           = "Command sensor ON  dispetchera                            - Pass";
+const char  txt_disp_on6[]   PROGMEM           = "Command        ON  PTT dispetchera (CTS)                        Error! - ";
+const char  txt_disp_on7[]   PROGMEM           = "Command        ON  PTT dispetchera (CTS)                  - Pass";
+const char  txt_disp_on8[]   PROGMEM           = "Command        ON  PTT dispetchera (CTS) send!";
+
+const char  txt_mtt_off0[]   PROGMEM           = "Command sensor OFF MTT            send!";
+const char  txt_mtt_off1[]   PROGMEM           = "Command PTT    OFF MTT            send!";
+const char  txt_mtt_off2[]   PROGMEM           = "Command        OFF HangUp MTT     send!";
+const char  txt_mtt_off3[]   PROGMEM           = "Command sensor OFF MTT                                          Error! - ";
+const char  txt_mtt_off4[]   PROGMEM           = "Command sensor OFF MTT                                    - Pass";
+const char  txt_mtt_off5[]   PROGMEM           = "Command sensor OFF microphone                                   Error! - ";
+const char  txt_mtt_off6[]   PROGMEM           = "Command sensor OFF microphone                             - Pass";
+const char  txt_mtt_off7[]   PROGMEM           = "Command        OFF PTT  MTT (CTS)                        Error! - ";
+const char  txt_mtt_off8[]   PROGMEM           = "Command        OFF PTT  MTT (CTS)                  - Pass";
+const char  txt_mtt_off9[]   PROGMEM           = "Command        OFF PTT  MTT (DSR)                        Error! - ";
+const char  txt_mtt_off10[]  PROGMEM           = "Command        OFF PTT  MTT (DSR)                  - Pass";
+const char  txt_mtt_off11[]  PROGMEM           = "Command        OFF HangUp MTT                            Error! - ";
+const char  txt_mtt_off12[]  PROGMEM           = "Command        OFF HangUp MTT                      - Pass";
+
+
+const char  txt_mtt_on0[]    PROGMEM           = "Command sensor ON  MTT            send!";
+const char  txt_mtt_on1[]    PROGMEM           = "Command        ON  PTT  MTT (CTS) send!";
+const char  txt_mtt_on2[]    PROGMEM           = "Command        ON  HangUp MTT     send!";
+const char  txt_mtt_on3[]    PROGMEM           = "Command sensor ON  MTT                                   Error! - ";
+const char  txt_mtt_on4[]    PROGMEM           = "Command sensor ON  MTT                             - Pass";
+const char  txt_mtt_on5[]    PROGMEM           = "Command        ON  PTT  MTT (CTS)                        Error! - ";
+const char  txt_mtt_on6[]    PROGMEM           = "Command        ON  PTT  MTT (CTS)                  - Pass";
+const char  txt_mtt_on7[]    PROGMEM           = "Command        ON  PTT  MTT (DSR)                        Error! - ";
+const char  txt_mtt_on8[]    PROGMEM           = "Command        ON  PTT  MTT (DSR)                  - Pass";
+const char  txt_mtt_on9[]    PROGMEM           = "Command        ON  HangUp MTT                            Error! - ";
+const char  txt_mtt_on10[]   PROGMEM           = "Command        ON  HangUp MTT                      - Pass";
 
 
 
 
-const char  txt_error0[]  PROGMEM           = "";
-const char  txt_error1[]  PROGMEM           = "";
-const char  txt_error2[]  PROGMEM           = "";
-const char  txt_error3[]  PROGMEM           = "";
-const char  txt_error4[]  PROGMEM           = "";
-const char  txt_error5[]  PROGMEM           = "";
-const char  txt_error6[]  PROGMEM           = "";
-const char  txt_error7[]  PROGMEM           = "";
-const char  txt_error8[]  PROGMEM           = "";
-const char  txt_error9[]  PROGMEM           = "";
+const char  txt_error0[]  PROGMEM              = "";
+const char  txt_error1[]  PROGMEM              = "";
+const char  txt_error2[]  PROGMEM              = "";
+const char  txt_error3[]  PROGMEM              = "";
+const char  txt_error4[]  PROGMEM              = "";
+const char  txt_error5[]  PROGMEM              = "";
+const char  txt_error6[]  PROGMEM              = "";
+const char  txt_error7[]  PROGMEM              = "";
+const char  txt_error8[]  PROGMEM              = "";
+const char  txt_error9[]  PROGMEM              = "";
 
-const char  txt_error10[]  PROGMEM          = "";
-const char  txt_error11[]  PROGMEM          = "";
-const char  txt_error12[]  PROGMEM          = "";
-const char  txt_error13[]  PROGMEM          = "";
-const char  txt_error14[]  PROGMEM          = "";
-const char  txt_error15[]  PROGMEM          = "";
-const char  txt_error16[]  PROGMEM          = "";
-const char  txt_error17[]  PROGMEM          = "";
-const char  txt_error18[]  PROGMEM          = "";
-const char  txt_error19[]  PROGMEM          = "";
+const char  txt_error10[]  PROGMEM             = "";
+const char  txt_error11[]  PROGMEM             = "";
+const char  txt_error12[]  PROGMEM             = "";
+const char  txt_error13[]  PROGMEM             = "";
+const char  txt_error14[]  PROGMEM             = "";
+const char  txt_error15[]  PROGMEM             = "";
+const char  txt_error16[]  PROGMEM             = "";
+const char  txt_error17[]  PROGMEM             = "";
+const char  txt_error18[]  PROGMEM             = "";
+const char  txt_error19[]  PROGMEM             = "";
+  
+const char  txt_error20[]  PROGMEM             = "";
+const char  txt_error21[]  PROGMEM             = "";
+const char  txt_error22[]  PROGMEM             = "";
+const char  txt_error23[]  PROGMEM             = "";
+const char  txt_error24[]  PROGMEM             = "";
+const char  txt_error25[]  PROGMEM             = "";
+const char  txt_error26[]  PROGMEM             = "";
+const char  txt_error27[]  PROGMEM             = "";
+const char  txt_error28[]  PROGMEM             = "";
+const char  txt_error29[]  PROGMEM             = "";
 
-const char  txt_error20[]  PROGMEM          = "";
-const char  txt_error21[]  PROGMEM          = "";
-const char  txt_error22[]  PROGMEM          = "";
-const char  txt_error23[]  PROGMEM          = "";
-const char  txt_error24[]  PROGMEM          = "";
-const char  txt_error25[]  PROGMEM          = "";
-const char  txt_error26[]  PROGMEM          = "";
-const char  txt_error27[]  PROGMEM          = "";
-const char  txt_error28[]  PROGMEM          = "";
-const char  txt_error29[]  PROGMEM          = "";
+const char  txt_error30[]  PROGMEM             = "";
+const char  txt_error31[]  PROGMEM             = "";
+const char  txt_error32[]  PROGMEM             = "";
+const char  txt_error33[]  PROGMEM             = "";
+const char  txt_error34[]  PROGMEM             = "";
+const char  txt_error35[]  PROGMEM             = "";
+const char  txt_error36[]  PROGMEM             = "";
+const char  txt_error37[]  PROGMEM             = "";
+const char  txt_error38[]  PROGMEM             = "";
+const char  txt_error39[]  PROGMEM             = "";
 
-const char  txt_error30[]  PROGMEM          = "";
-const char  txt_error31[]  PROGMEM          = "";
-const char  txt_error32[]  PROGMEM          = "";
-const char  txt_error33[]  PROGMEM          = "";
-const char  txt_error34[]  PROGMEM          = "";
-const char  txt_error35[]  PROGMEM          = "";
-const char  txt_error36[]  PROGMEM          = "";
-const char  txt_error37[]  PROGMEM          = "";
-const char  txt_error38[]  PROGMEM          = "";
-const char  txt_error39[]  PROGMEM          = "";
+const char  txt_error40[]  PROGMEM             = "";
+const char  txt_error41[]  PROGMEM             = "Test headset instructor ** Signal FrontL    OFF                     - ";
+const char  txt_error42[]  PROGMEM             = "Test headset instructor ** Signal FrontR    OFF                     - ";
+const char  txt_error43[]  PROGMEM             = "Test headset instructor ** Signal LineL     ON                      - ";
+const char  txt_error44[]  PROGMEM             = "Test headset instructor ** Signal mag radio OFF                     - ";
+const char  txt_error45[]  PROGMEM             = "Test headset instructor ** Signal mag phone OFF                     - ";
+const char  txt_error46[]  PROGMEM             = "Test headset instructor ** Signal GGS       OFF                     - ";
+const char  txt_error47[]  PROGMEM             = "Test headset instructor ** Signal GG Radio1 OFF                     - ";
+const char  txt_error48[]  PROGMEM             = "Test headset instructor ** Signal GG Radio2 OFF                     - ";
+const char  txt_error49[]  PROGMEM             = "";
 
-const char  txt_error40[]  PROGMEM          = "";
-const char  txt_error41[]  PROGMEM          = "";
-const char  txt_error42[]  PROGMEM          = "";
-const char  txt_error43[]  PROGMEM          = "";
-const char  txt_error44[]  PROGMEM          = "";
-const char  txt_error45[]  PROGMEM          = "";
-const char  txt_error46[]  PROGMEM          = "";
-const char  txt_error47[]  PROGMEM          = "";
-const char  txt_error48[]  PROGMEM          = "";
-const char  txt_error49[]  PROGMEM          = "";
+const char  txt_error50[]  PROGMEM             = "Test headset instructor ** Signal Mag phone ON                      - ";
+const char  txt_error51[]  PROGMEM             = "";
+const char  txt_error52[]  PROGMEM             = "";
+const char  txt_error53[]  PROGMEM             = "";
+const char  txt_error54[]  PROGMEM             = "";
+const char  txt_error55[]  PROGMEM             = "";
+const char  txt_error56[]  PROGMEM             = "";
+const char  txt_error57[]  PROGMEM             = "";
+const char  txt_error58[]  PROGMEM             = "";
+const char  txt_error59[]  PROGMEM             = "";
 
-const char  txt_error50[]  PROGMEM          = "";
-const char  txt_error51[]  PROGMEM          = "";
-const char  txt_error52[]  PROGMEM          = "";
-const char  txt_error53[]  PROGMEM          = "";
-const char  txt_error54[]  PROGMEM          = "";
-const char  txt_error55[]  PROGMEM          = "";
-const char  txt_error56[]  PROGMEM          = "";
-const char  txt_error57[]  PROGMEM          = "";
-const char  txt_error58[]  PROGMEM          = "";
-const char  txt_error59[]  PROGMEM          = "";
+const char  txt_error60[]  PROGMEM             = "Test headset instructor ** Signal FrontL    OFF                     - ";
+const char  txt_error61[]  PROGMEM             = "";
+const char  txt_error62[]  PROGMEM             = "";
+const char  txt_error63[]  PROGMEM             = "";
+const char  txt_error64[]  PROGMEM             = "";
+const char  txt_error65[]  PROGMEM             = "";
+const char  txt_error66[]  PROGMEM             = "";
+const char  txt_error67[]  PROGMEM             = "";
+const char  txt_error68[]  PROGMEM             = "";
+const char  txt_error69[]  PROGMEM             = "";
 
-const char  txt_error60[]  PROGMEM          = "";
-const char  txt_error61[]  PROGMEM          = "";
-const char  txt_error62[]  PROGMEM          = "";
-const char  txt_error63[]  PROGMEM          = "";
-const char  txt_error64[]  PROGMEM          = "";
-const char  txt_error65[]  PROGMEM          = "";
-const char  txt_error66[]  PROGMEM          = "";
-const char  txt_error67[]  PROGMEM          = "";
-const char  txt_error68[]  PROGMEM          = "";
-const char  txt_error69[]  PROGMEM          = "";
-
-const char  txt_error70[]  PROGMEM          = "";
-const char  txt_error71[]  PROGMEM          = "";
-const char  txt_error72[]  PROGMEM          = "";
-const char  txt_error73[]  PROGMEM          = "";
-const char  txt_error74[]  PROGMEM          = "";
-const char  txt_error75[]  PROGMEM          = "";
-const char  txt_error76[]  PROGMEM          = "";
-const char  txt_error77[]  PROGMEM          = "";
-const char  txt_error78[]  PROGMEM          = "";
-const char  txt_error79[]  PROGMEM          = "";
+const char  txt_error70[]  PROGMEM             = "";
+const char  txt_error71[]  PROGMEM             = "";
+const char  txt_error72[]  PROGMEM             = "";
+const char  txt_error73[]  PROGMEM             = "";
+const char  txt_error74[]  PROGMEM             = "";
+const char  txt_error75[]  PROGMEM             = "";
+const char  txt_error76[]  PROGMEM             = "";
+const char  txt_error77[]  PROGMEM             = "Test headset instructor ** Signal LineL     OFF                     - ";
+const char  txt_error78[]  PROGMEM             = "Test headset instructor ** Signal LineR     OFF                     - ";
+const char  txt_error79[]  PROGMEM             = "";
 
 
 
@@ -594,17 +595,17 @@ txt_error38,              //
 txt_error39,              //
 
 txt_error40,              //
-txt_error41,              //
-txt_error42,              //
-txt_error43,              //
-txt_error44,              //
-txt_error45,              //
-txt_error46,              //
-txt_error47,              //
-txt_error48,              //
+txt_error41,              // "Signal FrontL    OFF                              - ";
+txt_error42,              // "Signal FrontR    OFF                              - ";
+txt_error43,              // "Signal LineL     ON                               - ";
+txt_error44,              // "Signal mag radio OFF                              - ";
+txt_error45,              // "Signal mag phone OFF                              - ";
+txt_error46,              // "Signal GGS       OFF                              - ";
+txt_error47,              // "Signal GG Radio1 OFF                              - ";
+txt_error48,              // "Signal GG Radio2 OFF                              - ";
 txt_error49,              //
 
-txt_error50,              //
+txt_error50,              // "Signal Mag phone ON                               - ";
 txt_error51,              //
 txt_error52,              //
 txt_error53,              //
@@ -633,8 +634,8 @@ txt_error73,              //
 txt_error74,              //
 txt_error75,              //
 txt_error76,              //
-txt_error77,              //
-txt_error78,              //
+txt_error77,              // "Signal LineL OFF                                  - ";
+txt_error78,              // "Signal LineR OFF                                  - ";
 txt_error79               //
 };
 
@@ -642,25 +643,25 @@ const char* const string_table[] PROGMEM =
 {
 txt_all_off0,     // 0
 txt_all_off1,     // 1  "Test sensor OFF start!";                           
-txt_all_off2,     // 2  "Sence MTT  XP1- 19 HaSs Error! - ";                         
-txt_all_off3,     // 3  "Sence MTT XP1- 19 HaSs ";
+txt_all_off2,     // 2  "sensor MTT  XP1- 19 HaSs Error! - ";                         
+txt_all_off3,     // 3  "sensor MTT XP1- 19 HaSs ";
 txt_all_off4,     // 4   "OFF - Ok!"                                                ;                           
 txt_all_off5,     // 5  "Tangenta ruchnaja XP7 2  Error! - ";                         
 txt_all_off6,     // 6  "Tangenta ruchnaja XP7 - 2                                 ";
-txt_all_off7,     // 7  "XP8 - 2 Sence tangenta nognaja Error! - ";                           
-txt_all_off8,     // 8  "XP8 - 2 Sence tangenta nognaja ";                         
-txt_all_off9,     // 9  Sensor garnitura instruktora 2  XP1- 16 HeS2Rs  Error!   - ";
-txt_all_off10,    // 10  "Sensor garnitura instruktora 2  XP1- 16 HeS2Rs           ";                           
-txt_all_off11,    // 11  "Sensor garnitura instruktora XP1- 13 HeS2Ls  Error!    - ";                         
-txt_all_off12,    // 12  "Sensor garnitura instruktora XP1- 13 HeS2Ls              ";
+txt_all_off7,     // 7  "XP8 - 2 sensor tangenta nognaja Error! - ";                           
+txt_all_off8,     // 8  "XP8 - 2 sensor tangenta nognaja ";                         
+txt_all_off9,     // 9  Sensor garnitura headset instructor 2  XP1- 16 HeS2Rs  Error!   - ";
+txt_all_off10,    // 10  "Sensor garnitura headset instructor 2  XP1- 16 HeS2Rs           ";                           
+txt_all_off11,    // 11  "Sensor garnitura headset instructor XP1- 13 HeS2Ls  Error!    - ";                         
+txt_all_off12,    // 12  "Sensor garnitura headset instructor XP1- 13 HeS2Ls              ";
 txt_all_off13,    // 13  "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  Error!  - ";                           
 txt_all_off14,    // 14  "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls            ";                         
 txt_all_off15,    // 15  "Sensor garnitura dispetchera XP1- 1  HeS1Ls Error!     - ";
 txt_all_off16,    // 16  "Sensor garnitura dispetchera XP1- 1  HeS1Ls              ";                           
 txt_all_off17,    // 17  "Sensor microphone  XS1 - 6 Error!                      - ";                         
 txt_all_off18,    // 18  "Sensor microphone  XS1 - 6                               ";
-txt_all_off19,    // 19  "Microphone instruktora Sw.  XP1 12 HeS2e Error!        - ";                           
-txt_all_off20,    // 20  "Microphone instruktora Sw.  XP1 12 HeS2e                 ";                         
+txt_all_off19,    // 19  "Microphone headset instructor Sw.  XP1 12 HeS2e Error!        - ";                           
+txt_all_off20,    // 20  "Microphone headset instructor Sw.  XP1 12 HeS2e                 ";                         
 txt_all_off21,    // 21  "Radioperedacha OFF  Error!                             - ";
 txt_all_off22,    // 22  "Radioperedacha           "                                ;                           
 txt_all_off23,    // 23  "Microphone dispetchera OFF XP1 10    Error!            - ";                         
@@ -672,25 +673,25 @@ const char* const string_table_On[] PROGMEM =
 {
 	txt_all_on0,      // 0  "Test sensor ON start!";                    
 	txt_all_on1,      // 1  "Test sensor ON start!";                           
-	txt_all_on2,      // 2  "Sence MTT  XP1- 19 HaSs Error! - ";                         
-	txt_all_on3,      // 3  "Sence MTT XP1- 19 HaSs";
+	txt_all_on2,      // 2  "sensor MTT  XP1- 19 HaSs Error! - ";                         
+	txt_all_on3,      // 3  "sensor MTT XP1- 19 HaSs";
 	txt_all_on4,      // 4  "ON - Ok!"                                                 ;
 	txt_all_on5,      // 5  "XP7 2 Tang. ruch . Error!                              - ";    
 	txt_all_on6,      // 6  "XP7 - 2 Tang. ruch .                                     ";    
 	txt_all_on7,      // 7  "Sensor garnitura dispetchera XP1- 1  HeS1Ls Error!     - ";         
-	txt_all_on8,      // 8  "XP8 - 2 Sence tang. nogn. Error!                       - ";          
-	txt_all_on9,      // 9  "XP8 - 2 Sence tang. nogn.                                ";      
+	txt_all_on8,      // 8  "XP8 - 2 sensor tang. nogn. Error!                       - ";          
+	txt_all_on9,      // 9  "XP8 - 2 sensor tang. nogn.                                ";      
 	txt_all_on10,     // 10  "Sensor garnitura dispetchera XP1- 1  HeS1Ls              ";        
-	txt_all_on11,     // 11  "Sensor garnitura instruktora 2  XP1- 16 HeS2Rs  Error! - ";      
-	txt_all_on12,     // 12  "Sensor garnitura instruktora 2  XP1- 16 HeS2Rs           ";                         
+	txt_all_on11,     // 11  "Sensor garnitura headset instructor 2  XP1- 16 HeS2Rs  Error! - ";      
+	txt_all_on12,     // 12  "Sensor garnitura headset instructor 2  XP1- 16 HeS2Rs           ";                         
 	txt_all_on13,     // 13  "Sensor microphone  XS1 - 6 Error! -                      ";
-	txt_all_on14,     // 14  "Sensor garnitura instruktora XP1- 13 HeS2Ls  Error!    - ";
-	txt_all_on15,     // 15  "Sensor garnitura instruktora XP1- 13 HeS2Ls              ";    
+	txt_all_on14,     // 14  "Sensor garnitura headset instructor XP1- 13 HeS2Ls  Error!    - ";
+	txt_all_on15,     // 15  "Sensor garnitura headset instructor XP1- 13 HeS2Ls              ";    
 	txt_all_on16,     // 16  "Sensor microphone  XS1 - 6                               ";    
 	txt_all_on17,     // 17  "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  Error!  - ";         
 	txt_all_on18,     // 18  "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls            ";          
-	txt_all_on19,     // 19 "Microphone instruktora Sw. XP1 12 HeS2e Error! -          ";        
-	txt_all_on20,     // 20  "Microphone instruktora Sw. XP1 12 HeS2e                  ";         
+	txt_all_on19,     // 19 "Microphone headset instructor Sw. XP1 12 HeS2e Error! -          ";        
+	txt_all_on20,     // 20  "Microphone headset instructor Sw. XP1 12 HeS2e                  ";         
 	txt_all_on21,     // 21  "Radioperedacha ON  Error! -                              ";          
 	txt_all_on22,     // 22  "Radioperedacha                                           ";        
 	txt_all_on23,     // 23  "Microphone dispetchera ON Error! -                       ";         
@@ -699,99 +700,99 @@ const char* const string_table_On[] PROGMEM =
 
 const char* const table_instr_off[] PROGMEM = 
 {
-	txt_instr_off0,      //  "Komanda sence OFF instruktora   send!                   ";
-	txt_instr_off1,      //  "Komanda sence OFF instruktora 2 send!                   ";
-	txt_instr_off2,      //  "Komanda PTT instruktora OFF      send!                  ";
-	txt_instr_off3,      //  "Komanda sence OFF instruktora 2                Error! - ";
-	txt_instr_off4,      //  "Komanda sence OFF instruktora 2 - Ok!                   ";
-	txt_instr_off5,      //  "Komanda sence OFF instruktora                  Error! - ";
-	txt_instr_off6,      //  "Komanda sence OFF instruktora                         - Ok!";
-	txt_instr_off7,      //  "Komanda sence microphone OFF                   Error! - ";
-	txt_instr_off8,      //  "Komanda sence microphone OFF                          - Ok!";
-	txt_instr_off9,      //  "Komanda PTT instruktora (CTS) OFF              Error! - ";
-	txt_instr_off10      //  "Komanda PTT instruktora (CTS) OFF                     - Ok!";
+	txt_instr_off0,      //  "Command sensor OFF headset instructor   send!                   ";
+	txt_instr_off1,      //  "Command sensor OFF headset instructor 2 send!                   ";
+	txt_instr_off2,      //  "Command PTT headset instructor OFF      send!                  ";
+	txt_instr_off3,      //  "Command sensor OFF headset instructor 2                Error! - ";
+	txt_instr_off4,      //  "Command sensor OFF headset instructor 2 - Ok!                   ";
+	txt_instr_off5,      //  "Command sensor OFF headset instructor                  Error! - ";
+	txt_instr_off6,      //  "Command sensor OFF headset instructor                         - Ok!";
+	txt_instr_off7,      //  "Command sensor microphone OFF                   Error! - ";
+	txt_instr_off8,      //  "Command sensor microphone OFF                          - Ok!";
+	txt_instr_off9,      //  "Command PTT headset instructor (CTS) OFF              Error! - ";
+	txt_instr_off10      //  "Command PTT headset instructor (CTS) OFF                     - Ok!";
 };
 
 const char* const table_instr_on[] PROGMEM = 
 {
-	txt_instr_on0,      // "Komanda sence ON instruktora    send!"                   ;
-	txt_instr_on1,      // "Komanda sence ON instruktora 2  send!"                   ;
-	txt_instr_on2,      // "Komanda sence ON instruktora 2                 Error! - ";
-	txt_instr_on3,      // "Komanda sence ON instruktora 2                        - Ok!";
-	txt_instr_on4,      // "Komanda sence ON instruktora                   Error! - ";
-	txt_instr_on5,      // "Komanda sence ON instruktora                          - Ok!";
-	txt_instr_on6,      // "Komanda PTT instruktora(CTS) ON                Error! - ";
-	txt_instr_on7,      // "Komanda PTT instruktora (CTS) ON                      - Ok!";
-	txt_instr_on8       // "Komanda PTT instruktora (CTS)  send!"                    ;
+	txt_instr_on0,      // "Command sensor ON headset instructor    send!"                   ;
+	txt_instr_on1,      // "Command sensor ON headset instructor 2  send!"                   ;
+	txt_instr_on2,      // "Command sensor ON headset instructor 2                 Error! - ";
+	txt_instr_on3,      // "Command sensor ON headset instructor 2                        - Ok!";
+	txt_instr_on4,      // "Command sensor ON headset instructor                   Error! - ";
+	txt_instr_on5,      // "Command sensor ON headset instructor                          - Ok!";
+	txt_instr_on6,      // "Command PTT headset instructor(CTS) ON                Error! - ";
+	txt_instr_on7,      // "Command PTT headset instructor (CTS) ON                      - Ok!";
+	txt_instr_on8       // "Command PTT headset instructor (CTS)  send!"                    ;
 };
 
 const char* const table_disp_off[] PROGMEM = 
 {
-	txt_disp_off0,      //  "Komanda sence OFF dispetchera   send!                   ";
-	txt_disp_off1,      //  "Komanda sence OFF dispetchera 2 send!                   ";
-	txt_disp_off2,      //  "Komanda PTT dispetchera OFF      send!                  ";
-	txt_disp_off3,      //  "Komanda sence OFF dispetchera 2                Error! - ";
-	txt_disp_off4,      //  "Komanda sence OFF dispetchera 2 - Ok!                   ";
-	txt_disp_off5,      //  "Komanda sence OFF dispetchera                  Error! - ";
-	txt_disp_off6,      //  "Komanda sence OFF dispetchera                         - Ok!";
-	txt_disp_off7,      //  "Komanda sence microphone OFF                   Error! - ";
-	txt_disp_off8,      //  "Komanda sence microphone OFF                          - Ok!";
-	txt_disp_off9,      //  "Komanda PTT   OFF dispetchera (CTS)            Error! - ";
-	txt_disp_off10      //  "Komanda PTT   OFF dispetchera (CTS)                   - Ok!";
+	txt_disp_off0,      //  "Command sensor OFF dispetchera   send!                   ";
+	txt_disp_off1,      //  "Command sensor OFF dispetchera 2 send!                   ";
+	txt_disp_off2,      //  "Command PTT dispetchera OFF      send!                  ";
+	txt_disp_off3,      //  "Command sensor OFF dispetchera 2                Error! - ";
+	txt_disp_off4,      //  "Command sensor OFF dispetchera 2 - Ok!                   ";
+	txt_disp_off5,      //  "Command sensor OFF dispetchera                  Error! - ";
+	txt_disp_off6,      //  "Command sensor OFF dispetchera                         - Ok!";
+	txt_disp_off7,      //  "Command sensor microphone OFF                   Error! - ";
+	txt_disp_off8,      //  "Command sensor microphone OFF                          - Ok!";
+	txt_disp_off9,      //  "Command PTT   OFF dispetchera (CTS)            Error! - ";
+	txt_disp_off10      //  "Command PTT   OFF dispetchera (CTS)                   - Ok!";
 };
 
 const char* const table_disp_on[] PROGMEM = 
 {
-	txt_disp_on0,      // "Komanda sence ON dispetchera    send!"                   ;
-	txt_disp_on1,      // "Komanda sence ON dispetchera 2  send!"                   ;
-	txt_disp_on2,      // "Komanda sence ON dispetchera 2                 Error! - ";
-	txt_disp_on3,      // "Komanda sence ON dispetchera 2                        - Ok!";
-	txt_disp_on4,      // "Komanda sence ON dispetchera                   Error! - ";
-	txt_disp_on5,      // "Komanda sence ON dispetchera                          - Ok!";
-	txt_disp_on6,      // "Komanda PTT dispetchera OFF                    Error! - ";
-	txt_disp_on7,      // "Komanda PTT dispetchera  OFF                          - Ok!";
-	txt_disp_on8       // "Komanda PTT dispetchera (CTS)  send!"                    ;
+	txt_disp_on0,      // "Command sensor ON dispetchera    send!"                   ;
+	txt_disp_on1,      // "Command sensor ON dispetchera 2  send!"                   ;
+	txt_disp_on2,      // "Command sensor ON dispetchera 2                 Error! - ";
+	txt_disp_on3,      // "Command sensor ON dispetchera 2                        - Ok!";
+	txt_disp_on4,      // "Command sensor ON dispetchera                   Error! - ";
+	txt_disp_on5,      // "Command sensor ON dispetchera                          - Ok!";
+	txt_disp_on6,      // "Command PTT dispetchera OFF                    Error! - ";
+	txt_disp_on7,      // "Command PTT dispetchera  OFF                          - Ok!";
+	txt_disp_on8       // "Command PTT dispetchera (CTS)  send!"                    ;
 };
 
 const char* const table_mtt_off[] PROGMEM = 
 {
-	txt_mtt_off0,      // "Komanda sence OFF MTT            send!                  ";
-	txt_mtt_off1,      // "Komanda PTT   OFF MTT            send!                  ";
-	txt_mtt_off2,      // "Komanda       OFF HangUp MTT     send!"                  ;
-	txt_mtt_off3,      // "Komanda sence OFF MTT                          Error! - ";
-	txt_mtt_off4,      // "Komanda sence OFF MTT                                 - Ok!";
-	txt_mtt_off5,      // "Komanda sence OFF microphone                   Error! - ";
-	txt_mtt_off6,      // "Komanda sence OFF microphone                          - Ok!";
-	txt_mtt_off7,      // "Komanda       OFF PTT  MTT (CTS)               Error! - ";
-	txt_mtt_off8,      // "Komanda       OFF PTT  MTT (CTS)                      - Ok!";
-	txt_mtt_off9,      // "Komanda       OFF PTT  MTT (DSR)               Error! - ";
-	txt_mtt_off10,     // "Komanda       OFF PTT  MTT (DSR)                      - Ok!";
-	txt_mtt_off11,     // "Komanda       OFF HangUp MTT                   Error! - ";
-	txt_mtt_off12      // "Komanda       OFF HangUp MTT                          - Ok!";
+	txt_mtt_off0,      // "Command sensor OFF MTT            send!                  ";
+	txt_mtt_off1,      // "Command PTT   OFF MTT            send!                  ";
+	txt_mtt_off2,      // "Command       OFF HangUp MTT     send!"                  ;
+	txt_mtt_off3,      // "Command sensor OFF MTT                          Error! - ";
+	txt_mtt_off4,      // "Command sensor OFF MTT                                 - Ok!";
+	txt_mtt_off5,      // "Command sensor OFF microphone                   Error! - ";
+	txt_mtt_off6,      // "Command sensor OFF microphone                          - Ok!";
+	txt_mtt_off7,      // "Command       OFF PTT  MTT (CTS)               Error! - ";
+	txt_mtt_off8,      // "Command       OFF PTT  MTT (CTS)                      - Ok!";
+	txt_mtt_off9,      // "Command       OFF PTT  MTT (DSR)               Error! - ";
+	txt_mtt_off10,     // "Command       OFF PTT  MTT (DSR)                      - Ok!";
+	txt_mtt_off11,     // "Command       OFF HangUp MTT                   Error! - ";
+	txt_mtt_off12      // "Command       OFF HangUp MTT                          - Ok!";
 };
 
 const char* const table_mtt_on[] PROGMEM = 
 {
-	txt_mtt_on0,      // "Komanda sence ON  MTT            send!"                  ;
-	txt_mtt_on1,      // "Komanda       ON  PTT  MTT (CTS) send!"                  ;
-	txt_mtt_on2,      // "Komanda       ON  HangUp MTT     send!"                  ;
-	txt_mtt_on3,      // "Komanda sence ON  MTT                          Error! - ";
-	txt_mtt_on4,      // "Komanda sence ON  MTT                                 - Ok!";
-	txt_mtt_on5,      // "Komanda       ON  PTT  MTT (CTS)               Error! - ";
-	txt_mtt_on6,      // "Komanda       ON  PTT  MTT (CTS)                      - Ok!";
-	txt_mtt_on7,      // "Komanda       ON  PTT  MTT (DSR)               Error! - ";
-	txt_mtt_on8,      // "Komanda       ON  PTT  MTT (DSR)                      - Ok!";
-	txt_mtt_on9,      // "Komanda       ON  HangUp MTT                   Error! - ";
-	txt_mtt_on10      // "Komanda       ON  HangUp MTT                          - Ok!";
+	txt_mtt_on0,      // "Command sensor ON  MTT            send!"                  ;
+	txt_mtt_on1,      // "Command       ON  PTT  MTT (CTS) send!"                  ;
+	txt_mtt_on2,      // "Command       ON  HangUp MTT     send!"                  ;
+	txt_mtt_on3,      // "Command sensor ON  MTT                          Error! - ";
+	txt_mtt_on4,      // "Command sensor ON  MTT                                 - Ok!";
+	txt_mtt_on5,      // "Command       ON  PTT  MTT (CTS)               Error! - ";
+	txt_mtt_on6,      // "Command       ON  PTT  MTT (CTS)                      - Ok!";
+	txt_mtt_on7,      // "Command       ON  PTT  MTT (DSR)               Error! - ";
+	txt_mtt_on8,      // "Command       ON  PTT  MTT (DSR)                      - Ok!";
+	txt_mtt_on9,      // "Command       ON  HangUp MTT                   Error! - ";
+	txt_mtt_on10      // "Command       ON  HangUp MTT                          - Ok!";
 };
 
 const char* const table_instr_all[] PROGMEM = 
 {
-	txt_test_all0,      // 0 "Test instruktora start!"                                 ;
-	txt_test_all1,      // 1 "Signal microphone  instruktora 30mv  ON"                 ;
-	txt_test_all2,      // 2 "Microphone instruktora ON                      Error! - ";
-	txt_test_all3,      // 3 "Microphone instruktora  ON                         - Ok!";
-	txt_test_all4,      // 4 "Microphone instruktora signal ON"                        ;
+	txt_test_all0,      // 0 "Test headset instructor start!"                                 ;
+	txt_test_all1,      // 1 "Signal microphone  headset instructor 30mv  ON"                 ;
+	txt_test_all2,      // 2 "Microphone headset instructor ON                      Error! - ";
+	txt_test_all3,      // 3 "Microphone headset instructor  ON                         - Ok!";
+	txt_test_all4,      // 4 "Microphone headset instructor signal ON"                        ;
 	txt_test_all5,      // ;
 	txt_test_all6,      // ;
 	txt_test_all7,      // ;
@@ -854,21 +855,21 @@ const char* const table_instr_all[] PROGMEM =
 	txt_test_all59,     // "Signal FrontL, FrontR  ON                             - ";
 
 	txt_test_all60,     // " ****** Test tangenta ruchnaja start! ******";
-	txt_test_all61,     // "Komanda sence OFF tangenta ruchnaja send!"               ;
-	txt_test_all62,     // "Komanda PTT1  OFF tangenta ruchnaja send!"               ;
-	txt_test_all63,     // "Komanda PTT2  OFF tangenta ruchnaja send!"               ;
-	txt_test_all64,     // "Komanda sence ON  tangenta ruchnaja send!"               ;
-	txt_test_all65,     // "Komanda PTT1  ON  tangenta ruchnaja send!"               ;
-	txt_test_all66,     // "Komanda PTT2  ON  tangenta ruchnaja send!"               ;
-	txt_test_all67,     // "Komanda PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";
-	txt_test_all68,     // "Komanda PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
-	txt_test_all69,     // "Komanda PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
+	txt_test_all61,     // "Command sensor OFF tangenta ruchnaja send!"               ;
+	txt_test_all62,     // "Command PTT1   OFF tangenta ruchnaja send!"               ;
+	txt_test_all63,     // "Command PTT2   OFF tangenta ruchnaja send!"               ;
+	txt_test_all64,     // "Command sensor ON  tangenta ruchnaja send!"               ;
+	txt_test_all65,     // "Command PTT1   ON  tangenta ruchnaja send!"               ;
+	txt_test_all66,     // "Command PTT2   ON  tangenta ruchnaja send!"               ;
+	txt_test_all67,     // "Command PTT1   OFF tangenta ruchnaja (CTS)      Error! - ";
+	txt_test_all68,     // "Command PTT1   OFF tangenta ruchnaja (CTS)             - Ok!";
+	txt_test_all69,     // "Command PTT2   OFF tangenta ruchnaja (DCR)      Error! - ";
 
-	txt_test_all70,     // "Komanda PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
-	txt_test_all71,     // "Komanda PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
-	txt_test_all72,     // "Komanda PTT1  ON  tangenta ruchnaja (CTS)             - Ok!";
-	txt_test_all73,     // "Komanda PTT2  ON  tangenta ruchnaja (DCR)      Error! - ";
-	txt_test_all74,     // "Komanda PTT2  ON  tangenta ruchnaja (DCR)             - Ok!";              ;
+	txt_test_all70,     // "Command PTT2   OFF tangenta ruchnaja (DCR)             - Ok!";
+	txt_test_all71,     // "Command PTT1   ON  tangenta ruchnaja (CTS)      Error! - ";
+	txt_test_all72,     // "Command PTT1   ON  tangenta ruchnaja (CTS)             - Ok!";
+	txt_test_all73,     // "Command PTT2   ON  tangenta ruchnaja (DCR)      Error! - ";
+	txt_test_all74,     // "Command PTT2   ON  tangenta ruchnaja (DCR)             - Ok!";              ;
 	txt_test_all75,     // ""               ;
 	txt_test_all76,     // ""               ;
 	txt_test_all77,     // "";
@@ -1040,6 +1041,14 @@ void reg_Kamerton()                                       // Подпрограмма преобр
 	 regBank.set(40005,regs_in[1]); 
 	 regBank.set(40006,regs_in[2]); 
 	 regBank.set(40007,regs_in[3]); 
+	 if (regBank.get(118)== 0)
+		 {
+			 test_repeat = false;
+		 }
+	else
+		 {
+			test_repeat = true;
+		 }
 }
 void UpdateRegs()                                        // Обновить регистры
 {
@@ -1102,7 +1111,7 @@ void UpdateRegs()                                        // Обновить регистры
 
 	 //-----Установить бит 12
 	  set_rele = regBank.get(13);
-	  mcp_Out1.digitalWrite(12, set_rele);              // XP8 - 2   Sence Тангента ножная
+	  mcp_Out1.digitalWrite(12, set_rele);              // XP8 - 2   sensor Тангента ножная
 
 	 //-----Установить бит 13
 	  set_rele = regBank.get(14);
@@ -1115,7 +1124,7 @@ void UpdateRegs()                                        // Обновить регистры
 
 	  //-----Установить бит 15
 	  set_rele = regBank.get(16);
-	  mcp_Out1.digitalWrite(15, set_rele);              // XS1 - 6   Sence Мик
+	  mcp_Out1.digitalWrite(15, set_rele);              // XS1 - 6   sensor Мик
 
 	  //  Test 3
 	 //-----Первый байт ------------
@@ -1130,7 +1139,7 @@ void UpdateRegs()                                        // Обновить регистры
 
 	 //-----Установить бит 2
 	  set_rele = regBank.get(19);
-	  mcp_Out2.digitalWrite(2, set_rele);                // J8-11     XP7 2 Sence  Танг. р.
+	  mcp_Out2.digitalWrite(2, set_rele);                // J8-11     XP7 2 sensor  Танг. р.
   
 	//-----Установить бит 3
 
@@ -1139,20 +1148,20 @@ void UpdateRegs()                                        // Обновить регистры
 
 	 //-----Установить бит 4
 	  set_rele = regBank.get(21);
-	  mcp_Out2.digitalWrite(4, set_rele);                 // XP2-2     Sence "Маг." 
+	  mcp_Out2.digitalWrite(4, set_rele);                 // XP2-2     sensor "Маг." 
 
 	 //-----Установить бит 5
 
 	  set_rele = regBank.get(22);
-	  mcp_Out2.digitalWrite(5, set_rele);                  // XP5-3     Sence "ГГC."
+	  mcp_Out2.digitalWrite(5, set_rele);                  // XP5-3     sensor "ГГC."
 
 	 //-----Установить бит 6
 	  set_rele = regBank.get(23);
-	  mcp_Out2.digitalWrite(6, set_rele);                  // XP3-3     Sence "ГГ-Радио1."
+	  mcp_Out2.digitalWrite(6, set_rele);                  // XP3-3     sensor "ГГ-Радио1."
 
 	 //-----Установить бит 7
 	  set_rele = regBank.get(24);
-	  mcp_Out2.digitalWrite(7, set_rele);                  // XP4-3     Sence "ГГ-Радио2."
+	  mcp_Out2.digitalWrite(7, set_rele);                  // XP4-3     sensor "ГГ-Радио2."
 
 	  // Test 4
 	//-----Первый байт ------------
@@ -1450,13 +1459,13 @@ void control_command()
 	switch (test_n)
 	{
 		case 1:
-			 sence_all_off();                                // Отключить все сенсоры
+			 sensor_all_off();                                // Отключить все сенсоры
 			break;
 		case 2:		
-			 sence_all_on();                                 // Включить все сенсоры
+			 sensor_all_on();                                 // Включить все сенсоры
 				break;
 		case 3:
-			 test_instruktora();
+			 test_headset_instructor();
 				break;
 		case 4:				
 			 test_dispetchera();          //
@@ -1492,7 +1501,7 @@ void control_command()
 			  set_clock();
 				break;
 		case 15:
-		     set_rezistor();
+			 set_rezistor();
 				break;
 		default:
 		break;
@@ -1501,7 +1510,7 @@ void control_command()
 	regBank.set(adr_control_command,0);
 }
 
-void sence_all_off()
+void sensor_all_off()
 {
 	unsigned int regcount = 0;
 	myFile.println("");
@@ -1512,29 +1521,29 @@ void sence_all_off()
 	regBank.set(8,1);     // Включить питание Камертон
 	regBank.set(5,0);     // Микрофон инструктора отключить
 	regBank.set(10,0);    // Микрофон диспетчера отключить
-	regBank.set(13,0);    // XP8 - 2   Sence Тангента ножная
+	regBank.set(13,0);    // XP8 - 2   sensor Тангента ножная
 	regBank.set(14,0);    // XP8 - 1   PTT     Тангента ножная
 	regBank.set(15,0);    // XS1 - 5   PTT Мик CTS
-	regBank.set(16,0);    // XS1 - 6   Sence подключения микрофона
+	regBank.set(16,0);    // XS1 - 6   sensor подключения микрофона
  
 	regBank.set(17,0);    // J8-12    XP7 4 PTT2 тангента ручная DSR
 	regBank.set(18,0);    // XP1 - 20  HangUp  DCD
-	regBank.set(19,0);    // J8-11     XP7 2 Sence тангента ручная
+	regBank.set(19,0);    // J8-11     XP7 2 sensor тангента ручная
 	regBank.set(20,0);    // J8-23     XP7 1 PTT1 тангента ручная CTS
 	//------------------------- Не используется --------------------
-	//regBank.set(21,0);    // XP2-2     Sence "Маг."  
-	//regBank.set(22,0);    // XP5-3     Sence "ГГC."
-	//regBank.set(23,0);    // XP3-3     Sence "ГГ-Радио1."
-	//regBank.set(24,1);    // XP4-3     Sence "ГГ-Радио2."
+	//regBank.set(21,0);    // XP2-2     sensor "Маг."  
+	//regBank.set(22,0);    // XP5-3     sensor "ГГC."
+	//regBank.set(23,0);    // XP3-3     sensor "ГГ-Радио1."
+	//regBank.set(24,1);    // XP4-3     sensor "ГГ-Радио2."
 	//-------------------------------------------------------------------
-	regBank.set(25,1);    // XP1- 19 HaSs      Sence подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+	regBank.set(25,1);    // XP1- 19 HaSs      sensor подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 	regBank.set(26,0);    // XP1- 17 HaSPTT    CTS DSR вкл.
-	regBank.set(27,0);    // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(27,0);    // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 	regBank.set(28,0);    // XP1- 15 HeS2PTT   CTS вкл
-	regBank.set(29,0);    // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
+	regBank.set(29,0);    // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
 	regBank.set(30,0);    // XP1- 6  HeS1PTT   CTS вкл
-	regBank.set(31,0);    // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,0);    // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
+	regBank.set(31,0);    // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,0);    // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
 	UpdateRegs(); 
 	delay(300);
@@ -1552,13 +1561,12 @@ void sence_all_off()
 	//regBank.add(138);   // Флаг счетчика ошибки  PTT1 Танг. р. ok!
 	//regBank.add(139);   // Флаг ошибки отключения микрофона гарнитуры инструктора
 
-
-		if(bitRead(i50,2) != 0)                                         // XP1- 19 HaSs Sence подключения трубки  
+		if(bitRead(i50,2) != 0)                                         // XP1- 19 HaSs sensor подключения трубки  
 		  {
-			regcount = regBank.get(40123);                              // адрес счетчика ошибки Sence подключения трубки  
-			regcount++;                                                 // увеличить счетчик ошибок Sence подключения трубки  
-			regBank.set(40123,regcount);                                // адрес счетчика ошибки Sence подключения трубки  
-			regBank.set(123,1);                                         // установить флаг ошибки Sence подключения трубки  
+			regcount = regBank.get(40123);                              // адрес счетчика ошибки sensor подключения трубки  
+			regcount++;                                                 // увеличить счетчик ошибок sensor подключения трубки  
+			regBank.set(40123,regcount);                                // адрес счетчика ошибки sensor подключения трубки  
+			regBank.set(123,1);                                         // установить флаг ошибки sensor подключения трубки  
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[2])));
 			myFile.print(buffer);                                       // 
@@ -1566,18 +1574,21 @@ void sence_all_off()
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[3])));
-			myFile.print(buffer);                                        // 
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-			myFile.println(buffer);                                      //  Sence подключения трубки  OK!
+			   if (test_repeat == false)
+			   {
+					strcpy_P(buffer, (char*)pgm_read_word(&(string_table[3])));
+					if (test_repeat == false) myFile.print(buffer);                                        // 
+					strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+					if (test_repeat == false) myFile.println(buffer);                                      //  sensor подключения трубки  OK!
+			   }
 		  }
 	
-		if(bitRead(i50,3) != 0)                                         // J8-11     XP7 2 Sence тангента ручная
+		if(bitRead(i50,3) != 0)                                         // J8-11     XP7 2 sensor тангента ручная
 		  {
-			regcount = regBank.get(40124);                              // адрес счетчика ошибки Sence тангента ручная
-			regcount++;                                                 // увеличить счетчик ошибок Sence тангента ручная
-			regBank.set(40124,regcount);                                // адрес счетчика ошибки Sence тангента ручная
-			regBank.set(124,1);                                         // установить флаг ошибки Sence тангента ручная
+			regcount = regBank.get(40124);                              // адрес счетчика ошибки sensor тангента ручная
+			regcount++;                                                 // увеличить счетчик ошибок sensor тангента ручная
+			regBank.set(40124,regcount);                                // адрес счетчика ошибки sensor тангента ручная
+			regBank.set(124,1);                                         // установить флаг ошибки sensor тангента ручная
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[5])));
 			myFile.print(buffer);                                       // 
@@ -1585,18 +1596,21 @@ void sence_all_off()
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[6])));
-			myFile.print(buffer);                                       // 
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-			myFile.println(buffer);                                     //  Sence тангента ручная OK!
+			if (test_repeat == false)
+			   {
+					strcpy_P(buffer, (char*)pgm_read_word(&(string_table[6])));
+					if (test_repeat == false) myFile.print(buffer);                                       // 
+					strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+					if (test_repeat == false) myFile.println(buffer);                                     //  sensor тангента ручная OK!
+				}
 		  }
 
-		if(bitRead(i50,4) != 0)                                         // XP8 - 2   Sence Тангента ножная
+		if(bitRead(i50,4) != 0)                                         // XP8 - 2   sensor Тангента ножная
 		  {
-			regcount = regBank.get(40125);                              // адрес счетчика ошибки Sence Тангента ножная
-			regcount++;                                                 // увеличить счетчик ошибок  Sence Тангента ножная
-			regBank.set(40125,regcount);                                // адрес счетчика ошибки  Sence Тангента ножная
-			regBank.set(125,1);                                         // установить флаг ошибки Sence Тангента ножная
+			regcount = regBank.get(40125);                              // адрес счетчика ошибки sensor Тангента ножная
+			regcount++;                                                 // увеличить счетчик ошибок  sensor Тангента ножная
+			regBank.set(40125,regcount);                                // адрес счетчика ошибки  sensor Тангента ножная
+			regBank.set(125,1);                                         // установить флаг ошибки sensor Тангента ножная
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[7])));
 			myFile.print(buffer);                                       // 
@@ -1604,18 +1618,21 @@ void sence_all_off()
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[8])));
-			myFile.print(buffer);                                       // 
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-			myFile.println(buffer);                                     // Sence Тангента ножная OK!
+			  if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[8])));
+				if (test_repeat == false) myFile.print(buffer);                                       // 
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+				if (test_repeat == false) myFile.println(buffer);                                     // sensor Тангента ножная OK!
+			  }
 		  }
 
-		if(bitRead(i52,1) != 0)                                         // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
+		if(bitRead(i52,1) != 0)                                         // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 		  {
-			regcount = regBank.get(40127);                              // адрес счетчика ошибки Sence подключения гарнитуры инструктора с 2 наушниками
-			regcount++;                                                 // увеличить счетчик ошибок Sence подключения гарнитуры инструктора с 2 наушниками
-			regBank.set(40127,regcount);                                // адрес счетчика ошибки Sence подключения гарнитуры инструктора с 2 наушниками
-			regBank.set(127,1);                                         // установить флаг ошибки Sence подключения гарнитуры инструктора с 2 наушниками 
+			regcount = regBank.get(40127);                              // адрес счетчика ошибки sensor подключения гарнитуры инструктора с 2 наушниками
+			regcount++;                                                 // увеличить счетчик ошибок sensor подключения гарнитуры инструктора с 2 наушниками
+			regBank.set(40127,regcount);                                // адрес счетчика ошибки sensor подключения гарнитуры инструктора с 2 наушниками
+			regBank.set(127,1);                                         // установить флаг ошибки sensor подключения гарнитуры инструктора с 2 наушниками 
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[9])));
 			myFile.print(buffer);                                       // 
@@ -1623,37 +1640,43 @@ void sence_all_off()
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[10])));
-			myFile.print(buffer);                                       // "Sensor garnitura instruktora 2  XP1- 16 HeS2Rs"
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-			myFile.println(buffer);                                     //  
+			  if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[10])));
+				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor garnitura headset instructor 2  XP1- 16 HeS2Rs"
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+				if (test_repeat == false) myFile.println(buffer);                                     //  
+			  }
 		  }
 
-		if(bitRead(i52,2) != 0)                                         // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
+		if(bitRead(i52,2) != 0)                                         // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
 		  {
-			regcount = regBank.get(40128);                              // адрес счетчика ошибки Sence подключения гарнитуры инструктора
-			regcount++;                                                 // увеличить счетчик ошибок Sence подключения гарнитуры инструктора
-			regBank.set(40128,regcount);                                // адрес счетчика ошибки Sence подключения гарнитуры инструктора 
-			regBank.set(128,1);                                         // установить флаг ошибки Sence подключения гарнитуры инструктора 
+			regcount = regBank.get(40128);                              // адрес счетчика ошибки sensor подключения гарнитуры инструктора
+			regcount++;                                                 // увеличить счетчик ошибок sensor подключения гарнитуры инструктора
+			regBank.set(40128,regcount);                                // адрес счетчика ошибки sensor подключения гарнитуры инструктора 
+			regBank.set(128,1);                                         // установить флаг ошибки sensor подключения гарнитуры инструктора 
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[11])));
-			myFile.print(buffer);                                       // "Sensor garnitura instruktora XP1- 13 HeS2Ls  Error! - "
+			myFile.print(buffer);                                       // "Sensor garnitura headset instructor XP1- 13 HeS2Ls  Error! - "
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[12])));
-			myFile.print(buffer);                                       // "Sensor garnitura instruktora XP1- 13 HeS2Ls    "
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-			myFile.println(buffer);                                     //   Sence подключения гарнитуры инструктора OK!
+			  if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[12])));
+				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor garnitura headset instructor XP1- 13 HeS2Ls    "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+				if (test_repeat == false) myFile.println(buffer);                                     //   sensor подключения гарнитуры инструктора OK!
+			  }
 		  }
 
-		if(bitRead(i52,3) != 0)                                         // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
+		if(bitRead(i52,3) != 0)                                         // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
 		  {
-			regcount = regBank.get(40129);                              // адрес счетчика ошибки Sence подкючения гарнитуры диспетчера с 2 наушниками
-			regcount++;                                                 // увеличить счетчик ошибок Sence подкючения гарнитуры диспетчера с 2 наушниками
-			regBank.set(40129,regcount);                                // адрес счетчика ошибки Sence подкючения гарнитуры диспетчера с 2 наушниками
-			regBank.set(129,1);                                         // установить флаг ошибки Sence подкючения гарнитуры диспетчера с 2 наушниками
+			regcount = regBank.get(40129);                              // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
+			regcount++;                                                 // увеличить счетчик ошибок sensor подкючения гарнитуры диспетчера с 2 наушниками
+			regBank.set(40129,regcount);                                // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
+			regBank.set(129,1);                                         // установить флаг ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[13])));
 			myFile.print(buffer);                                       // "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  Error! - "
@@ -1661,19 +1684,22 @@ void sence_all_off()
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[14])));
-			myFile.print(buffer);                                       // "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  "
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-			myFile.println(buffer);                                     //  Sence подкючения гарнитуры диспетчера с 2 наушниками OK!
+			  if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[14])));
+				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+				if (test_repeat == false) myFile.println(buffer);                                     //  sensor подкючения гарнитуры диспетчера с 2 наушниками OK!
+			  }
 		  }
 
 		
-		if(bitRead(i52,4) != 0)                                         // XP1- 1  HeS1Ls   Sence подкючения гарнитуры диспетчера 
+		if(bitRead(i52,4) != 0)                                         // XP1- 1  HeS1Ls   sensor подкючения гарнитуры диспетчера 
 		  {
-			regcount = regBank.get(40130);                              // адрес счетчика ошибки Sence подкючения гарнитуры диспетчера
-			regcount++;                                                 // увеличить счетчик ошибок Sence подкючения гарнитуры диспетчера 
-			regBank.set(40130,regcount);                                // адрес счетчика ошибки Sence подкючения гарнитуры диспетчера
-			regBank.set(130,1);                                         // установить флаг ошибки Sence подкючения гарнитуры диспетчера
+			regcount = regBank.get(40130);                              // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера
+			regcount++;                                                 // увеличить счетчик ошибок sensor подкючения гарнитуры диспетчера 
+			regBank.set(40130,regcount);                                // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера
+			regBank.set(130,1);                                         // установить флаг ошибки sensor подкючения гарнитуры диспетчера
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[15])));
 			myFile.print(buffer);                                       // "Sensor garnitura dispetchera XP1- 1  HeS1Ls Error! - "
@@ -1681,18 +1707,21 @@ void sence_all_off()
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[16])));
-			myFile.print(buffer);                                       // "Sensor garnitura dispetchera XP1- 1  HeS1Ls    "
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-			myFile.println(buffer);                                     //  Sence подкючения гарнитуры диспетчера  OK!
+			  if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[16])));
+				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor garnitura dispetchera XP1- 1  HeS1Ls    "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+				if (test_repeat == false) myFile.println(buffer);                                     //  sensor подкючения гарнитуры диспетчера  OK!
+			  }
 		  }
 
-		if(bitRead(i52,5) != 0)                                         // XS1 - 6   Sence отключения микрофона
+		if(bitRead(i52,5) != 0)                                         // XS1 - 6   sensor отключения микрофона
 		  {
-			regcount = regBank.get(40131);                              // адрес счетчика ошибки Sence подключения микрофона
-			regcount++;                                                 // увеличить счетчик ошибок Sence подключения микрофона
-			regBank.set(40131,regcount);                                // адрес счетчика ошибки Sence подключения микрофона
-			regBank.set(131,1);                                         // установить флаг ошибки Sence подключения микрофона
+			regcount = regBank.get(40131);                              // адрес счетчика ошибки sensor подключения микрофона
+			regcount++;                                                 // увеличить счетчик ошибок sensor подключения микрофона
+			regBank.set(40131,regcount);                                // адрес счетчика ошибки sensor подключения микрофона
+			regBank.set(131,1);                                         // установить флаг ошибки sensor подключения микрофона
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[17])));
 			myFile.print(buffer);                                       // "Sensor microphone  XS1 - 6 Error! - "
@@ -1700,10 +1729,13 @@ void sence_all_off()
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[18])));
-			myFile.print(buffer);                                       // "Sensor microphone  XS1 - 6  "
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-			myFile.println(buffer);                                     //  Sence отключения микрофона OK!
+			  if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[18])));
+				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor microphone  XS1 - 6  "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+				if (test_repeat == false) myFile.println(buffer);                                     //  sensor отключения микрофона OK!
+			  }
 		  }
 
 		if(bitRead(i53,4) != 0)                                         // Реле RL4 XP1 12  HeS2e   Выключение микрофона инструктора
@@ -1714,15 +1746,18 @@ void sence_all_off()
 			regBank.set(139,1);                                         // установить флаг ошибки Включение микрофона инструктора
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[19])));
-			myFile.print(buffer);                                       // "Microphone instruktora Sw.  XP1 12 HeS2e Error! - "
+			myFile.print(buffer);                                       // "Microphone headset instructor Sw.  XP1 12 HeS2e Error! - "
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[20])));
-			myFile.print(buffer);                                        // "Microphone instruktora Sw.  XP1 12 HeS2e "
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-			myFile.println(buffer);                                     // Выключение микрофона инструктора ОК!
+			  if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[20])));
+				if (test_repeat == false) myFile.print(buffer);                                        // "Microphone headset instructor Sw.  XP1 12 HeS2e "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+				if (test_repeat == false) myFile.println(buffer);                                     // Выключение микрофона инструктора ОК!
+			  }
 		  }
 	   // --------------------------------  Включение радиопередачи пока не определил ------------------------------
 		//if(bitRead(i53,5) != 0)                                         // Выключение радиопередачи
@@ -1757,67 +1792,70 @@ void sence_all_off()
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[24])));
-			myFile.print(buffer);                                       // "Microphone dispetchera   "
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-			myFile.println(buffer);                                     // Выключение микрофона диспетчера ОК!
+			  if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[24])));
+				if (test_repeat == false) myFile.print(buffer);                                       // "Microphone dispetchera   "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+				if (test_repeat == false) myFile.println(buffer);                                     // Выключение микрофона диспетчера ОК!
+			   }
 		  }
 
 
 		//-----------------------------------Отключен, в данной версии не применяется ------------------------------------------------
-	/*	if(bitRead(i50,0) != 0)                                         // XP4-3     Sence "ГГ-Радио2."
+	/*	if(bitRead(i50,0) != 0)                                         // XP4-3     sensor "ГГ-Радио2."
 		  {
-			regcount = regBank.get(40122);                              // адрес счетчика ошибки Sence "ГГ-Радио2."
-			regcount++;                                                 // увеличить счетчик ошибок Sence "ГГ-Радио2."
-			regBank.set(40122,regcount);                                // адрес счетчика ошибки Sence "ГГ-Радио2."
-			regBank.set(122,1);                                         // установить флаг ошибки Sence "ГГ-Радио2."
+			regcount = regBank.get(40122);                              // адрес счетчика ошибки sensor "ГГ-Радио2."
+			regcount++;                                                 // увеличить счетчик ошибок sensor "ГГ-Радио2."
+			regBank.set(40122,regcount);                                // адрес счетчика ошибки sensor "ГГ-Радио2."
+			regBank.set(122,1);                                         // установить флаг ошибки sensor "ГГ-Радио2."
 			regBank.set(120,1);                                         // установить общий флаг ошибки
-			myFile.print("Sence GG Radio 2 Error! - ");                 // 
+			myFile.print("sensor GG Radio 2 Error! - ");                 // 
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.print("Sence GG Radio 2 ");                          // 
-			myFile.println("OFF - Ok!");                                //  Sence "ГГ-Радио2." OK!
+			myFile.print("sensor GG Radio 2 ");                          // 
+			myFile.println("OFF - Ok!");                                //  sensor "ГГ-Радио2." OK!
 		  }
 
-		if(bitRead(i50,1) != 0)                                         // XP3-3     Sence "ГГ-Радио1."
+		if(bitRead(i50,1) != 0)                                         // XP3-3     sensor "ГГ-Радио1."
 		  {
-			regcount = regBank.get(40121);                              // адрес счетчика ошибки  Sence "ГГ-Радио1."
-			regcount++;                                                 // увеличить счетчик ошибок  Sence "ГГ-Радио1."
-			regBank.set(40121,regcount);                                // адрес счетчика ошибки  Sence "ГГ-Радио1."
-			regBank.set(121,1);                                         // установить флаг ошибки  Sence "ГГ-Радио1."
+			regcount = regBank.get(40121);                              // адрес счетчика ошибки  sensor "ГГ-Радио1."
+			regcount++;                                                 // увеличить счетчик ошибок  sensor "ГГ-Радио1."
+			regBank.set(40121,regcount);                                // адрес счетчика ошибки  sensor "ГГ-Радио1."
+			regBank.set(121,1);                                         // установить флаг ошибки  sensor "ГГ-Радио1."
 			regBank.set(120,1);                                         // установить общий флаг ошибки
-			myFile.print("Sence GG Radio 1 Error! - ");                 // 
+			myFile.print("sensor GG Radio 1 Error! - ");                 // 
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.print("Sence GG Radio 1 ");                          // 
-			myFile.println("OFF - Ok!");                                //   Sence "ГГ-Радио1." OK!
+			myFile.print("sensor GG Radio 1 ");                          // 
+			myFile.println("OFF - Ok!");                                //   sensor "ГГ-Радио1." OK!
 		  }
-	if(bitRead(i52,0) != 0)                                             // XP2-2 Sence "Маг."  
+	if(bitRead(i52,0) != 0)                                             // XP2-2 sensor "Маг."  
 		  {
-			regcount = regBank.get(40126);                              // адрес счетчика ошибки Sence "Маг."  
-			regcount++;                                                 // увеличить счетчик ошибок Sence "Маг."  
-			regBank.set(40126,regcount);                                // адрес счетчика ошибки Sence  "Маг."  
-			regBank.set(126,1);                                         // установить флаг ошибки Sence "Маг."  
+			regcount = regBank.get(40126);                              // адрес счетчика ошибки sensor "Маг."  
+			regcount++;                                                 // увеличить счетчик ошибок sensor "Маг."  
+			regBank.set(40126,regcount);                                // адрес счетчика ошибки sensor  "Маг."  
+			regBank.set(126,1);                                         // установить флаг ошибки sensor "Маг."  
 			regBank.set(120,1);                                         // установить общий флаг ошибки
-			myFile.print("Sence MAG XP2-2  Error! - ");                 // 
+			myFile.print("sensor MAG XP2-2  Error! - ");                 // 
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.print("Sence MAG XP2-2 ");                           // 
-			myFile.println("OFF - Ok!");                                //  Sence "Маг."  
+			myFile.print("sensor MAG XP2-2 ");                           // 
+			myFile.println("OFF - Ok!");                                //  sensor "Маг."  
 		  }
 	
-		if(bitRead(i52,6) != 0)                                         // XP5-3     Sence "ГГC."
+		if(bitRead(i52,6) != 0)                                         // XP5-3     sensor "ГГC."
 		  {
-			regcount = regBank.get(40132);                              // адрес счетчика ошибки Sence "ГГC."
-			regcount++;                                                 // увеличить счетчик ошибок Sence "ГГC."
-			regBank.set(40132,regcount);                                // адрес счетчика ошибки Sence "ГГC."
-			regBank.set(132,1);                                         // установить флаг ошибки Sence "ГГC."
+			regcount = regBank.get(40132);                              // адрес счетчика ошибки sensor "ГГC."
+			regcount++;                                                 // увеличить счетчик ошибок sensor "ГГC."
+			regBank.set(40132,regcount);                                // адрес счетчика ошибки sensor "ГГC."
+			regBank.set(132,1);                                         // установить флаг ошибки sensor "ГГC."
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			myFile.print("Sensor GGS  XP5-3 Error! - ");                // 
 			myFile.println(regcount);                                   // 
@@ -1825,7 +1863,7 @@ void sence_all_off()
 		else
 		  {
 			myFile.print("Sensor GGS  XP5-3 Error! - ");                                      // 
-			myFile.println("OFF - Ok!");                                //  Sence "ГГC." OK
+			myFile.println("OFF - Ok!");                                //  sensor "ГГC." OK
 		  }
 
 */
@@ -1835,7 +1873,7 @@ void sence_all_off()
 	regBank.set(adr_control_command,0);                                 // Завершить программу    
 	delay(100);
 }
-void sence_all_on()
+void sensor_all_on()
 {
 	unsigned int regcount = 0;
 	myFile.println("");
@@ -1846,29 +1884,29 @@ void sence_all_on()
 	regBank.set(8,1);     // Включить питание Камертон
 	regBank.set(5,1);     // Микрофон инструктора включить
 	regBank.set(10,1);    // Микрофон диспетчера включить
-	regBank.set(13,1);    // XP8 - 2   Sence Тангента ножная
+	regBank.set(13,1);    // XP8 - 2   sensor Тангента ножная
 	//regBank.set(14,1);    // XP8 - 1   PTT     Тангента ножная
 	//regBank.set(15,1);    // XS1 - 5   PTT Мик CTS
-	regBank.set(16,1);    // XS1 - 6   Sence подключения микрофона
+	regBank.set(16,1);    // XS1 - 6   sensor подключения микрофона
  
 	//regBank.set(17,1);    // J8-12    XP7 4 PTT2 тангента ручная DSR
 	//regBank.set(18,1);    // XP1 - 20  HangUp  DCD
-	regBank.set(19,1);    // J8-11     XP7 2 Sence тангента ручная
+	regBank.set(19,1);    // J8-11     XP7 2 sensor тангента ручная
 	//regBank.set(20,1);    // J8-23     XP7 1 PTT1 тангента ручная CTS
 	//------------------------- Не используется --------------------
-	//regBank.set(21,1);    // XP2-2     Sence "Маг."  
-	//regBank.set(22,1);    // XP5-3     Sence "ГГC."
-	//regBank.set(23,1);    // XP3-3     Sence "ГГ-Радио1."
-	//regBank.set(24,1);    // XP4-3     Sence "ГГ-Радио2."
+	//regBank.set(21,1);    // XP2-2     sensor "Маг."  
+	//regBank.set(22,1);    // XP5-3     sensor "ГГC."
+	//regBank.set(23,1);    // XP3-3     sensor "ГГ-Радио1."
+	//regBank.set(24,1);    // XP4-3     sensor "ГГ-Радио2."
 	//-------------------------------------------------------------------
-	regBank.set(25,0);    // XP1- 19 HaSs      Sence подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+	regBank.set(25,0);    // XP1- 19 HaSs      sensor подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 //	regBank.set(26,1);    // XP1- 17 HaSPTT    CTS DSR вкл.
-	regBank.set(27,1);    // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(27,1);    // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 //	regBank.set(28,1);    // XP1- 15 HeS2PTT   CTS вкл
-	regBank.set(29,1);    // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
+	regBank.set(29,1);    // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
 //	regBank.set(30,1);    // XP1- 6  HeS1PTT   CTS вкл
-	regBank.set(31,1);    // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,1);    // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
+	regBank.set(31,1);    // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,1);    // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
 	UpdateRegs(); 
 	delay(500);
@@ -1880,12 +1918,12 @@ void sence_all_on()
 	//regBank.add(138);   // Флаг счетчика ошибки  PTT1 Танг. р. ok!
 	//regBank.add(139);   // Флаг ошибки отключения микрофона гарнитуры инструктора
 
-		if(bitRead(regs_in[0],2) == 0)                                     // XP1- 19 HaSs Sence подключения трубки  
+		if(bitRead(regs_in[0],2) == 0)                                     // XP1- 19 HaSs sensor подключения трубки  
 		  {
-			regcount = regBank.get(40123);                                 // адрес счетчика ошибки Sence подключения трубки  
-			regcount++;                                                    // увеличить счетчик ошибок Sence подключения трубки  
-			regBank.set(40123,regcount);                                   // адрес счетчика ошибки Sence подключения трубки  
-			regBank.set(123,1);                                            // установить флаг ошибки Sence подключения трубки  
+			regcount = regBank.get(40123);                                 // адрес счетчика ошибки sensor подключения трубки  
+			regcount++;                                                    // увеличить счетчик ошибок sensor подключения трубки  
+			regBank.set(40123,regcount);                                   // адрес счетчика ошибки sensor подключения трубки  
+			regBank.set(123,1);                                            // установить флаг ошибки sensor подключения трубки  
 			regBank.set(120,1);                                            // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[2])));
 			myFile.print(buffer);                                          // 
@@ -1894,17 +1932,17 @@ void sence_all_on()
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[3])));
-			myFile.print(buffer);                                  // 
+			if (test_repeat == false) myFile.print(buffer);                                  // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                //  Sence подключения трубки  OK!
+			if (test_repeat == false) myFile.println(buffer);                                //  sensor подключения трубки  OK!
 		  }
   
-		if(bitRead(regs_in[0],3) == 0)                                  // J8-11     XP7 2 Sence тангента ручная
+		if(bitRead(regs_in[0],3) == 0)                                  // J8-11     XP7 2 sensor тангента ручная
 		  {
-			regcount = regBank.get(40124);                              // адрес счетчика ошибки Sence тангента ручная
-			regcount++;                                                 // увеличить счетчик ошибок Sence тангента ручная
-			regBank.set(40124,regcount);                                // адрес счетчика ошибки Sence тангента ручная
-			regBank.set(124,1);                                         // установить флаг ошибки Sence тангента ручная
+			regcount = regBank.get(40124);                              // адрес счетчика ошибки sensor тангента ручная
+			regcount++;                                                 // увеличить счетчик ошибок sensor тангента ручная
+			regBank.set(40124,regcount);                                // адрес счетчика ошибки sensor тангента ручная
+			regBank.set(124,1);                                         // установить флаг ошибки sensor тангента ручная
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[5])));
 			myFile.print(buffer);               // 
@@ -1913,17 +1951,17 @@ void sence_all_on()
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[6])));
-			myFile.print(buffer);                 // 
+			if (test_repeat == false) myFile.print(buffer);                 // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                 //  Sence тангента ручная OK!
+			if (test_repeat == false) myFile.println(buffer);                                 //  sensor тангента ручная OK!
 		  }
 
-		if(bitRead(regs_in[0],4) == 0)                                  // XP8 - 2   Sence Тангента ножная
+		if(bitRead(regs_in[0],4) == 0)                                  // XP8 - 2   sensor Тангента ножная
 		  {
-			regcount = regBank.get(40125);                              // адрес счетчика ошибки Sence Тангента ножная
-			regcount++;                                                 // увеличить счетчик ошибок  Sence Тангента ножная
-			regBank.set(40125,regcount);                                // адрес счетчика ошибки  Sence Тангента ножная
-			regBank.set(125,1);                                         // установить флаг ошибки Sence Тангента ножная
+			regcount = regBank.get(40125);                              // адрес счетчика ошибки sensor Тангента ножная
+			regcount++;                                                 // увеличить счетчик ошибок  sensor Тангента ножная
+			regBank.set(40125,regcount);                                // адрес счетчика ошибки  sensor Тангента ножная
+			regBank.set(125,1);                                         // установить флаг ошибки sensor Тангента ножная
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[8])));
 			myFile.print(buffer);        // 
@@ -1932,18 +1970,18 @@ void sence_all_on()
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[9])));
-			myFile.print(buffer);                 // 
+			if (test_repeat == false) myFile.print(buffer);                 // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                 // Sence Тангента ножная OK!
+			if (test_repeat == false) myFile.println(buffer);                                 // sensor Тангента ножная OK!
 		  }
 
 
-		if(bitRead(regs_in[2],1) == 0)                                  // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
+		if(bitRead(regs_in[2],1) == 0)                                  // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 		  {
-			regcount = regBank.get(40127);                              // адрес счетчика ошибки Sence подключения гарнитуры инструктора с 2 наушниками
-			regcount++;                                                 // увеличить счетчик ошибок Sence подключения гарнитуры инструктора с 2 наушниками
-			regBank.set(40127,regcount);                                // адрес счетчика ошибки Sence подключения гарнитуры инструктора с 2 наушниками
-			regBank.set(127,1);                                         // установить флаг ошибки Sence подключения гарнитуры инструктора с 2 наушниками 
+			regcount = regBank.get(40127);                              // адрес счетчика ошибки sensor подключения гарнитуры инструктора с 2 наушниками
+			regcount++;                                                 // увеличить счетчик ошибок sensor подключения гарнитуры инструктора с 2 наушниками
+			regBank.set(40127,regcount);                                // адрес счетчика ошибки sensor подключения гарнитуры инструктора с 2 наушниками
+			regBank.set(127,1);                                         // установить флаг ошибки sensor подключения гарнитуры инструктора с 2 наушниками 
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[11])));
 			myFile.print(buffer); // 
@@ -1952,17 +1990,17 @@ void sence_all_on()
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[12])));
-			myFile.print(buffer);          // 
+			if (test_repeat == false) myFile.print(buffer);          // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                 //  
+			if (test_repeat == false) myFile.println(buffer);                                 //  
 		  }
 
-		if(bitRead(regs_in[2],2) == 0)                                  // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
+		if(bitRead(regs_in[2],2) == 0)                                  // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
 		  {
-			regcount = regBank.get(40128);                              // адрес счетчика ошибки Sence подключения гарнитуры инструктора
-			regcount++;                                                 // увеличить счетчик ошибок Sence подключения гарнитуры инструктора
-			regBank.set(40128,regcount);                                // адрес счетчика ошибки Sence подключения гарнитуры инструктора 
-			regBank.set(128,1);                                         // установить флаг ошибки Sence подключения гарнитуры инструктора 
+			regcount = regBank.get(40128);                              // адрес счетчика ошибки sensor подключения гарнитуры инструктора
+			regcount++;                                                 // увеличить счетчик ошибок sensor подключения гарнитуры инструктора
+			regBank.set(40128,regcount);                                // адрес счетчика ошибки sensor подключения гарнитуры инструктора 
+			regBank.set(128,1);                                         // установить флаг ошибки sensor подключения гарнитуры инструктора 
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[14])));
 			myFile.print(buffer);                          // 
@@ -1971,17 +2009,17 @@ void sence_all_on()
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[15])));
-			myFile.print(buffer);                                      // 
+			if (test_repeat == false) myFile.print(buffer);                                      // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                 //   Sence подключения гарнитуры инструктора OK!
+			if (test_repeat == false) myFile.println(buffer);                                 //   sensor подключения гарнитуры инструктора OK!
 		  }
 
-		if(bitRead(regs_in[2],3) == 0)                                  // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
+		if(bitRead(regs_in[2],3) == 0)                                  // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
 		  {
-			regcount = regBank.get(40129);                              // адрес счетчика ошибки Sence подкючения гарнитуры диспетчера с 2 наушниками
-			regcount++;                                                 // увеличить счетчик ошибок Sence подкючения гарнитуры диспетчера с 2 наушниками
-			regBank.set(40129,regcount);                                // адрес счетчика ошибки Sence подкючения гарнитуры диспетчера с 2 наушниками
-			regBank.set(129,1);                                         // установить флаг ошибки Sence подкючения гарнитуры диспетчера с 2 наушниками
+			regcount = regBank.get(40129);                              // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
+			regcount++;                                                 // увеличить счетчик ошибок sensor подкючения гарнитуры диспетчера с 2 наушниками
+			regBank.set(40129,regcount);                                // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
+			regBank.set(129,1);                                         // установить флаг ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[17])));
 			myFile.print(buffer);                          // 
@@ -1990,17 +2028,17 @@ void sence_all_on()
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[18])));
-			myFile.print(buffer);                                      // 
+			if (test_repeat == false) myFile.print(buffer);                                      // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                 //  Sence подкючения гарнитуры диспетчера с 2 наушниками OK!
+			if (test_repeat == false) myFile.println(buffer);                                 //  sensor подкючения гарнитуры диспетчера с 2 наушниками OK!
 		  }
 
-		if(bitRead(regs_in[2],4) == 0)                                  // XP1- 1  HeS1Ls  Sence подкючения гарнитуры диспетчера
+		if(bitRead(regs_in[2],4) == 0)                                  // XP1- 1  HeS1Ls  sensor подкючения гарнитуры диспетчера
 		  {
-			regcount = regBank.get(40130);                              // адрес счетчика ошибки Sence подкючения гарнитуры диспетчера
-			regcount++;                                                 // увеличить счетчик ошибок Sence подкючения гарнитуры диспетчера
-			regBank.set(40130,regcount);                                // адрес счетчика ошибки Sence подкючения гарнитуры диспетчера 
-			regBank.set(130,1);                                         // установить флаг ошибки Sence подкючения гарнитуры диспетчера
+			regcount = regBank.get(40130);                              // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера
+			regcount++;                                                 // увеличить счетчик ошибок sensor подкючения гарнитуры диспетчера
+			regBank.set(40130,regcount);                                // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера 
+			regBank.set(130,1);                                         // установить флаг ошибки sensor подкючения гарнитуры диспетчера
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[7])));
 			myFile.print(buffer);                          // 
@@ -2009,17 +2047,17 @@ void sence_all_on()
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[10])));
-			myFile.print(buffer);                                      // 
+			if (test_repeat == false) myFile.print(buffer);                                      // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                 //  Sence подкючения гарнитуры диспетчера OK!
+			if (test_repeat == false) myFile.println(buffer);                                 //  sensor подкючения гарнитуры диспетчера OK!
 		  }
 
-		if(bitRead(regs_in[2],5) == 0)                                  // XS1 - 6   Sence подключения микрофона
+		if(bitRead(regs_in[2],5) == 0)                                  // XS1 - 6   sensor подключения микрофона
 		  {
-			regcount = regBank.get(40131);                              // адрес счетчика ошибки Sence подключения микрофона
-			regcount++;                                                 // увеличить счетчик ошибок Sence подключения микрофона
-			regBank.set(40131,regcount);                                // адрес счетчика ошибки Sence подключения микрофона
-			regBank.set(131,1);                                         // установить флаг ошибки Sence подключения микрофона
+			regcount = regBank.get(40131);                              // адрес счетчика ошибки sensor подключения микрофона
+			regcount++;                                                 // увеличить счетчик ошибок sensor подключения микрофона
+			regBank.set(40131,regcount);                                // адрес счетчика ошибки sensor подключения микрофона
+			regBank.set(131,1);                                         // установить флаг ошибки sensor подключения микрофона
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[13])));
 			myFile.print(buffer);                                 // 
@@ -2028,9 +2066,9 @@ void sence_all_on()
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[16])));
-			myFile.print(buffer);                                 // 
+			if (test_repeat == false) myFile.print(buffer);                                 // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                //  Sence подключения микрофона OK!
+			if (test_repeat == false) myFile.println(buffer);                                //  sensor подключения микрофона OK!
 		  }
 	
 		if(bitRead(regs_in[3],4) == 0)                                  // Реле RL4 XP1 12  HeS2e   Включение микрофона гарнитуры инструктора
@@ -2047,9 +2085,9 @@ void sence_all_on()
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[20])));
-			myFile.print(buffer);                                 // 
+			if (test_repeat == false) myFile.print(buffer);                                 // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                // Включение микрофона инструктора ОК!
+			if (test_repeat == false) myFile.println(buffer);                                // Включение микрофона инструктора ОК!
 		  }
 		// --------------------------------  Включение радиопередачи пока не определил ------------------------------
 		//if(bitRead(regs_in[3],5) == 0)                                  // Включение радиопередачи
@@ -2086,65 +2124,65 @@ void sence_all_on()
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[24])));
-			myFile.print(buffer);                                       // 
+			if (test_repeat == false) myFile.print(buffer);                                       // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                     // Включение радиопередачи ОК!
+			if (test_repeat == false) myFile.println(buffer);                                     // Включение радиопередачи ОК!
 		  }
 	
 		//-----------------------------------Отключен ------------------------------------------------------------------
-	/*	if(bitRead(regs_in[0],0) == 0)                                  // // XP4-3     Sence "ГГ-Радио2."
+	/*	if(bitRead(regs_in[0],0) == 0)                                  // // XP4-3     sensor "ГГ-Радио2."
 		  {
-			regcount = regBank.get(40122);                              // адрес счетчика ошибки Sence "ГГ-Радио2."
-			regcount++;                                                 // увеличить счетчик ошибок Sence "ГГ-Радио2."
-			regBank.set(40122,regcount);                                // адрес счетчика ошибки Sence "ГГ-Радио2."
-			regBank.set(122,1);                                         // установить флаг ошибки Sence "ГГ-Радио2."
+			regcount = regBank.get(40122);                              // адрес счетчика ошибки sensor "ГГ-Радио2."
+			regcount++;                                                 // увеличить счетчик ошибок sensor "ГГ-Радио2."
+			regBank.set(40122,regcount);                                // адрес счетчика ошибки sensor "ГГ-Радио2."
+			regBank.set(122,1);                                         // установить флаг ошибки sensor "ГГ-Радио2."
 			regBank.set(120,1);                                         // установить общий флаг ошибки
-			myFile.print("Sence GG Radio 2 Error! - ");                 // 
+			myFile.print("sensor GG Radio 2 Error! - ");                 // 
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.print("Sence GG Radio 2 ");                          // 
-			myFile.println(txt_all_on4);                                 //  Sence "ГГ-Радио2." OK!
+			myFile.print("sensor GG Radio 2 ");                          // 
+			myFile.println(txt_all_on4);                                 //  sensor "ГГ-Радио2." OK!
 		  }
 
-		if(bitRead(regs_in[0],1) == 0)                                  // XP3-3     Sence "ГГ-Радио1."
+		if(bitRead(regs_in[0],1) == 0)                                  // XP3-3     sensor "ГГ-Радио1."
 		  {
-			regcount = regBank.get(40121);                              // адрес счетчика ошибки  Sence "ГГ-Радио1."
-			regcount++;                                                 // увеличить счетчик ошибок  Sence "ГГ-Радио1."
-			regBank.set(40121,regcount);                                // адрес счетчика ошибки  Sence "ГГ-Радио1."
-			regBank.set(121,1);                                         // установить флаг ошибки  Sence "ГГ-Радио1."
+			regcount = regBank.get(40121);                              // адрес счетчика ошибки  sensor "ГГ-Радио1."
+			regcount++;                                                 // увеличить счетчик ошибок  sensor "ГГ-Радио1."
+			regBank.set(40121,regcount);                                // адрес счетчика ошибки  sensor "ГГ-Радио1."
+			regBank.set(121,1);                                         // установить флаг ошибки  sensor "ГГ-Радио1."
 			regBank.set(120,1);                                         // установить общий флаг ошибки
-			myFile.print("Sence GG Radio 1 Error! - ");                 // 
+			myFile.print("sensor GG Radio 1 Error! - ");                 // 
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.print("Sence GG Radio 1 ");                          // 
-			myFile.println(txt_all_on4);                                 //   Sence "ГГ-Радио1." OK!
+			myFile.print("sensor GG Radio 1 ");                          // 
+			myFile.println(txt_all_on4);                                 //   sensor "ГГ-Радио1." OK!
 		  }
 
-		if(bitRead(regs_in[2],0) == 0)                                  // XP2-2 Sence "Маг."  
+		if(bitRead(regs_in[2],0) == 0)                                  // XP2-2 sensor "Маг."  
 		  {
-			regcount = regBank.get(40126);                              // адрес счетчика ошибки Sence "Маг."  
-			regcount++;                                                 // увеличить счетчик ошибок Sence "Маг."  
-			regBank.set(40126,regcount);                                // адрес счетчика ошибки Sence  "Маг."  
-			regBank.set(126,1);                                         // установить флаг ошибки Sence "Маг."  
+			regcount = regBank.get(40126);                              // адрес счетчика ошибки sensor "Маг."  
+			regcount++;                                                 // увеличить счетчик ошибок sensor "Маг."  
+			regBank.set(40126,regcount);                                // адрес счетчика ошибки sensor  "Маг."  
+			regBank.set(126,1);                                         // установить флаг ошибки sensor "Маг."  
 			regBank.set(120,1);                                         // установить общий флаг ошибки
-			myFile.print("Sence MAG XP2-2  Error! - ");                 // 
+			myFile.print("sensor MAG XP2-2  Error! - ");                 // 
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
-			myFile.print("Sence MAG XP2-2 ");                           // 
-			myFile.println(txt_all_on4);                                 //  Sence "Маг."  
+			myFile.print("sensor MAG XP2-2 ");                           // 
+			myFile.println(txt_all_on4);                                 //  sensor "Маг."  
 		  }
-		if(bitRead(regs_in[2],6) == 0)                                  // XP5-3     Sence "ГГC."
+		if(bitRead(regs_in[2],6) == 0)                                  // XP5-3     sensor "ГГC."
 		  {
-			regcount = regBank.get(40132);                              // адрес счетчика ошибки Sence "ГГC."
-			regcount++;                                                 // увеличить счетчик ошибок Sence "ГГC."
-			regBank.set(40132,regcount);                                // адрес счетчика ошибки Sence "ГГC."
-			regBank.set(132,1);                                         // установить флаг ошибки Sence "ГГC."
+			regcount = regBank.get(40132);                              // адрес счетчика ошибки sensor "ГГC."
+			regcount++;                                                 // увеличить счетчик ошибок sensor "ГГC."
+			regBank.set(40132,regcount);                                // адрес счетчика ошибки sensor "ГГC."
+			regBank.set(132,1);                                         // установить флаг ошибки sensor "ГГC."
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			myFile.print("Sensor GGS  XP5-3 Error! - ");                // 
 			myFile.println(regcount);                                   // 
@@ -2152,7 +2190,7 @@ void sence_all_on()
 		else
 		  {
 			myFile.print("Sensor GGS  XP5-3 Error! - ");                                      // 
-			myFile.println(txt_all_on4);                                //  Sence "ГГC." OK
+			myFile.println(txt_all_on4);                                //  sensor "ГГC." OK
 		  }
   */
 
@@ -2171,20 +2209,17 @@ void set_rezistor()
 	resistor(2, mwt);
 }
 
-void test_instruktora()
+void test_headset_instructor()
 {
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[0])));
-	myFile.println(buffer);                                                  // "Test instruktora start!"
+	myFile.println(buffer);                                                  // "Test headset instructor start!"
 	file_print_date();
 	myFile.println("");
 	unsigned int regcount = 0;
 	test_instr_off();                                                        // Отключить реле и сенсоры, прверить отключение
 	test_instr_on();                                                         // Включить необходимые сенсоры, проверить состояние
 	myFile.println("");
-	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,40141,141,25);                             // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,40142,142,25);                             // Измерить уровень сигнала на выходе FrontR 
 	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
 	resistor(1, 30);                                                         // Установить уровень сигнала 30 мв
 	resistor(2, 30);                                                         // Установить уровень сигнала 30 мв
@@ -2193,17 +2228,21 @@ void test_instruktora()
 	delay(200);
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[1])));
-	myFile.println(buffer);                                                  // "Signal microphone  instruktora 30mv  ON"
+	if (regBank.get(118)== false) myFile.println(buffer);                                                  // "Signal microphone  headset instructor 30mv  ON"
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,   40141,141,25);                          // Измерить уровень сигнала на выходе FrontL   
 	measure_vol_min(analog_FrontR,   40142,142,25);                          // Измерить уровень сигнала на выходе FrontR 
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
+	measure_vol_min(analog_LineL,    40177,177,25);                          // Измерить уровень сигнала на выходе LineL   
+	measure_vol_min(analog_LineR,    40178,178,25);                          // Измерить уровень сигнала на выходе LineR 
 	measure_vol_min(analog_mag_radio,40144,144,25);                          // Измерить уровень сигнала на выходе mag radio  
 	measure_vol_min(analog_mag_phone,40145,145,25);                          // Измерить уровень сигнала на выходе mag phone
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_ggs,      40146,146,30);                          // Измерить уровень сигнала на выходе GGS
 	measure_vol_min(analog_gg_radio1,40147,147,30);                          // Измерить уровень сигнала на выходе GG Radio1
 	measure_vol_min(analog_gg_radio2,40148,148,30);                          // Измерить уровень сигнала на выходе GG Radio2
+
+	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
 
 	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
 	myFile.println("");                                                      //
@@ -2225,23 +2264,27 @@ void test_instruktora()
 			resistor(1, 255);                                                // Установить уровень сигнала в исходное состояниe
 			resistor(2, 255);                                                // Установить уровень сигнала в исходное состояниe
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[2])));
-			myFile.print(buffer);                                            // "Microphone instruktora ON  Error! - "
+			myFile.print(buffer);                                            // "Microphone headset instructor ON  Error! - "
 			myFile.println(regcount);                                        // 
 		  }
-		else
+		else if (test_repeat == false)
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[3])));
-			myFile.println(buffer);                                          //"Microphone instruktora  ON - Ok!" Микрофона инструктора включился
+			if (test_repeat == false) myFile.println(buffer);                //"Microphone headset instructor  ON - Ok!" Микрофона инструктора включился
 			delay(20);
 		  }
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[4])));
-	myFile.println(buffer);                                                  // "Microphone instruktora signal ON"  Звуковой сигнал подан на вход микрофона инструктора
+	if (test_repeat == false) myFile.println(buffer);                        // "Microphone headset instructor signal ON"  Звуковой сигнал подан на вход микрофона инструктора
 	delay(20);
 	//+++++++++++++++++++++++++++ Проверить наличие сигнала на линиях LineL  mag phone  ++++++++++++++++++++++++++++++++++
+
+
 	measure_vol_max(analog_LineL,    40143,143,200);                         // Измерить уровень сигнала на выходе LineL
 	measure_vol_max(analog_mag_phone,40150,150,200);                         // Измерить уровень сигнала на выходе mag phone
+
    //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
+	measure_vol_min(analog_LineR,    40178,178,25);                          // Измерить уровень сигнала на выходе LineR 
 	measure_vol_min(analog_FrontL,   40141,141,25);                          // Измерить уровень сигнала на выходе FrontL   
 	measure_vol_min(analog_FrontR,   40142,142,25);                          // Измерить уровень сигнала на выходе FrontR 
 	measure_vol_min(analog_ggs,      40146,146,30);                          // Измерить уровень сигнала на выходе GGS
@@ -2263,7 +2306,7 @@ void test_dispetchera()
  {
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[20])));
-	myFile.println(buffer);                                               // "Test dispetchera start!"
+	myFile.println(buffer);                                               // "Test dispetchera start!" dispatcher  supervisor
 	myFile.println();
 	file_print_date();
 	myFile.println("");
@@ -2271,7 +2314,87 @@ void test_dispetchera()
 	test_disp_off();                                                     // Отключить реле и сенсоры, прверить отключение
 	test_disp_on();                                                      // Включить необходимые сенсоры, проверить состояние
 	myFile.println("");
+
+
+		// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
+	resistor(1, 30);                                                         // Установить уровень сигнала 30 мв
+	resistor(2, 30);                                                         // Установить уровень сигнала 30 мв
+	regBank.set(2,1);                                                        // Подать сигнал на вход микрофона инструктора  Mic2p
+	UpdateRegs();                                                            // Выполнить команду
+	delay(200);
+	myFile.println("");
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[1])));
+	if (regBank.get(118)== false) myFile.println(buffer);                                                  // "Signal microphone  headset instructor 30mv  ON"
+	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
+	measure_vol_min(analog_FrontL,   40141,141,25);                          // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40142,142,25);                          // Измерить уровень сигнала на выходе FrontR 
+	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
+	measure_vol_min(analog_LineL,    40177,177,25);                          // Измерить уровень сигнала на выходе LineL   
+	measure_vol_min(analog_LineR,    40178,178,25);                          // Измерить уровень сигнала на выходе LineR 
+	measure_vol_min(analog_mag_radio,40144,144,25);                          // Измерить уровень сигнала на выходе mag radio  
+	measure_vol_min(analog_mag_phone,40145,145,25);                          // Измерить уровень сигнала на выходе mag phone
+	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
+	measure_vol_min(analog_ggs,      40146,146,30);                          // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_gg_radio1,40147,147,30);                          // Измерить уровень сигнала на выходе GG Radio1
+	measure_vol_min(analog_gg_radio2,40148,148,30);                          // Измерить уровень сигнала на выходе GG Radio2
+
+	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
+
+	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
+	myFile.println("");                                                      //
+	regBank.set(5,1);                                                        // Подать управляющую команду на вывод 12 ХР1 HeS2e (Включить микрофон)
+	regBank.set(28,1);                                                       // XP1- 15 HeS2PTT Включить PTT инструктора
+	regBank.set(16,0);                                                       // Сенсор микрофона отключить
+	regBank.set(15,0);                                                       // РТТ микрофона отключить
+	regBank.set(29,1);                                                       // ВКЛ XP1- 13 HeS2Ls Кнопка  ВКЛ флаг подключения гарнитуры инструктора 
+	UpdateRegs();                                                            // 
+	delay(200);                                                              //
+	byte i5 = regs_in[3];                                                    // 
+		if(bitRead(i5,4) == 0)                                               // Проверка  включения микрофона инструктора
+		  {
+			regcount = regBank.get(40151);                                   // адрес счетчика ошибки включения микрофона инструктора
+			regcount++;                                                      // увеличить счетчик ошибок включения микрофона инструктора
+			regBank.set(40151,regcount);                                     // адрес счетчика ошибки включения микрофона инструктора
+			regBank.set(151,1);                                              // установить флаг ошибки
+			regBank.set(120,1);                                              // установить общий флаг ошибки
+			resistor(1, 255);                                                // Установить уровень сигнала в исходное состояниe
+			resistor(2, 255);                                                // Установить уровень сигнала в исходное состояниe
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[2])));
+			myFile.print(buffer);                                            // "Microphone headset instructor ON  Error! - "
+			myFile.println(regcount);                                        // 
+		  }
+		else if (test_repeat == false)
+		  {
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[3])));
+			if (test_repeat == false) myFile.println(buffer);                //"Microphone headset instructor  ON - Ok!" Микрофона инструктора включился
+			delay(20);
+		  }
+	myFile.println("");
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[4])));
+	if (test_repeat == false) myFile.println(buffer);                        // "Microphone headset instructor signal ON"  Звуковой сигнал подан на вход микрофона инструктора
+	delay(20);
+	//+++++++++++++++++++++++++++ Проверить наличие сигнала на линиях LineL  mag phone  ++++++++++++++++++++++++++++++++++
+
+
+	measure_vol_max(analog_LineL,    40143,143,200);                         // Измерить уровень сигнала на выходе LineL
+	measure_vol_max(analog_mag_phone,40150,150,200);                         // Измерить уровень сигнала на выходе mag phone
+
+   //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
+	measure_vol_min(analog_LineR,    40178,178,25);                          // Измерить уровень сигнала на выходе LineR 
+	measure_vol_min(analog_FrontL,   40141,141,25);                          // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40142,142,25);                          // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_ggs,      40146,146,30);                          // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_gg_radio1,40147,147,30);                          // Измерить уровень сигнала на выходе GG Radio1
+	measure_vol_min(analog_gg_radio2,40148,148,30);                          // Измерить уровень сигнала на выходе GG Radio2
+
+
+
+
+
+
 	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
+
+	/*
 	measure_vol_min(analog_FrontL,40161,160,25);                         // Измерить уровень сигнала на выходе FrontL   
 	measure_vol_min(analog_FrontR,40162,161,25);                         // Измерить уровень сигнала на выходе FrontR 
 	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -2300,8 +2423,8 @@ void test_dispetchera()
 	regBank.set(30,1);                                                   // XP1- 6  HeS1PTT   Включить PTT диспетчера
 	regBank.set(16,0);                                                   // Сенсор микрофона отключить
 	regBank.set(15,0);                                                   // РТТ микрофона отключить
-	regBank.set(31,1);                                                   // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,1);                                                   // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
+	regBank.set(31,1);                                                   // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,1);                                                   // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
 	UpdateRegs();                                                        // 
 	delay(200);                                                          //
@@ -2338,8 +2461,11 @@ void test_dispetchera()
 	measure_vol_min(analog_ggs,      40146,146,30);                     // Измерить уровень сигнала на выходе GGS
 	measure_vol_min(analog_gg_radio1,40147,147,30);                     // Измерить уровень сигнала на выходе GG Radio1
 	measure_vol_min(analog_gg_radio2,40148,148,30);                     // Измерить уровень сигнала на выходе GG Radio2
-	regBank.set(31,0);                                                  // XP1- 5  HeS1Rs   Отключить Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,0);                                                  // XP1- 1  HeS1Ls   Отключить  Sence подкючения гарнитуры диспетчера
+
+	*/
+
+	regBank.set(31,0);                                                  // XP1- 5  HeS1Rs   Отключить sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,0);                                                  // XP1- 1  HeS1Ls   Отключить  sensor подкючения гарнитуры диспетчера
 	regBank.set(15,0);                                                  // РТТ микрофона отключить
 	regBank.set(10,0);                                                  // Подать управляющую команду на вывод XP1 10  (Выключить микрофон диспетчера)
 	regBank.set(30,0);                                                  // XP1- 6  HeS1PTT   Отключить PTT диспетчера
@@ -2360,12 +2486,12 @@ void test_MTT()
 	test_MTT_off();                                                       // Отключить реле и сенсоры, прверить отключение
 	test_MTT_on();                                                        // Включить необходимые сенсоры, проверить состояние
 	myFile.println("");
-	regBank.set(25,0);                                                    //  XP1- 19 HaSs  Sence подключения трубки    MTT включить
+	regBank.set(25,0);                                                    //  XP1- 19 HaSs  sensor подключения трубки    MTT включить
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_on[0])));
-	myFile.println(buffer);                                               // "Komanda sence ON MTT  send!         
+	myFile.println(buffer);                                               // "Command sensor ON MTT  send!         
 	regBank.set(18,0);                                                    // XP1 - 20  HangUp  DCD Трубку опустить
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[2])));
-	myFile.println(buffer);                                               // "Komanda  HangUp MTT OFF send!"
+	myFile.println(buffer);                                               // "Command  HangUp MTT OFF send!"
 
 	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,   40141,141,25);                       // Измерить уровень сигнала на выходе FrontL   
@@ -2409,7 +2535,7 @@ void test_MTT()
 	UpdateRegs();                                                         // Выполнить команду
 	delay(200);
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_on[2])));
-	myFile.println(buffer);                                               // "Komanda  HangUp MTT ON send!"
+	myFile.println(buffer);                                               // "Command  HangUp MTT ON send!"
 	measure_vol_max(analog_ggs,      40172,172,120);                      // Измерить уровень сигнала на выходе mag phone
 	regBank.set(18,0);                                                    // XP1 - 20  HangUp  DCD ON  Положить трубку
 	regBank.set(26,0);                                                    // XP1- 17 HaSPTT    CTS DSR вкл. Отключить PTT MTT
@@ -2427,24 +2553,24 @@ void test_tangR()
 	file_print_date();
 	myFile.println("");
 	regBank.set(17,0);                                                      // J8-12     XP7 4 PTT2 тангента ручная DSR
-	regBank.set(19,0);                                                      // J8-11     XP7 2 Sence тангента ручная
+	regBank.set(19,0);                                                      // J8-11     XP7 2 sensor тангента ручная
 	regBank.set(20,0);                                                      // J8-23     XP7 1 PTT1 тангента ручная CTS
 	UpdateRegs();                                                           // Выполнить команду
 	delay(400);
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[61])));
-	myFile.println(buffer);                                                 // "Komanda sence OFF tangenta ruchnaja send!"  
+	myFile.println(buffer);                                                 // "Command sensor OFF tangenta ruchnaja send!"  
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[62])));
-	myFile.println(buffer);                                                 // "Komanda PTT1  OFF tangenta ruchnaja send!"   
+	myFile.println(buffer);                                                 // "Command PTT1  OFF tangenta ruchnaja send!"   
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[63])));
-	myFile.println(buffer);                                                 // "Komanda PTT2  OFF tangenta ruchnaja send!" 
+	myFile.println(buffer);                                                 // "Command PTT2  OFF tangenta ruchnaja send!" 
 	byte i50 = regs_in[0];    
 
-	if(bitRead(i50,3) != 0)                                                 // J8-11     XP7 2 Sence тангента ручная
+	if(bitRead(i50,3) != 0)                                                 // J8-11     XP7 2 sensor тангента ручная
 		{
-		regcount = regBank.get(40124);                                      // адрес счетчика ошибки Sence тангента ручная
-		regcount++;                                                         // увеличить счетчик ошибок Sence тангента ручная
-		regBank.set(40124,regcount);                                        // адрес счетчика ошибки Sence тангента ручная
-		regBank.set(124,1);                                                 // установить флаг ошибки Sence тангента ручная
+		regcount = regBank.get(40124);                                      // адрес счетчика ошибки sensor тангента ручная
+		regcount++;                                                         // увеличить счетчик ошибок sensor тангента ручная
+		regBank.set(40124,regcount);                                        // адрес счетчика ошибки sensor тангента ручная
+		regBank.set(124,1);                                                 // установить флаг ошибки sensor тангента ручная
 		regBank.set(120,1);                                                 // установить общий флаг ошибки
 		strcpy_P(buffer, (char*)pgm_read_word(&(string_table[5])));         //
 		myFile.print(buffer);                                               // 
@@ -2455,7 +2581,7 @@ void test_tangR()
 		strcpy_P(buffer, (char*)pgm_read_word(&(string_table[6])));
 		myFile.print(buffer);                                               // 
 		strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-		myFile.println(buffer);                                             //  Sence тангента ручная OK!
+		myFile.println(buffer);                                             //  sensor тангента ручная OK!
 		}
 
 	 UpdateRegs(); 
@@ -2468,13 +2594,13 @@ void test_tangR()
 			 regBank.set(173,1);                                            // установить флаг ошибки
 			 regBank.set(120,1);                                            // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[67])));
-			 myFile.print(buffer);                                          // "Komanda PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";  
+			 myFile.print(buffer);                                          // "Command PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";  
 			 myFile.println(regcount);
 		  }
 		else
 		  {
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[68])));// "Komanda PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
-			 myFile.println(buffer);                                        // "Komanda PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
+			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[68])));// "Command PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
+			 myFile.println(buffer);                                        // "Command PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
 		  }
 
 	 // 3)  Проверка  на отключение PTT2 тангента ручная (DSR)
@@ -2486,38 +2612,38 @@ void test_tangR()
 			 regBank.set(40174,regcount);                                   // адрес счетчика ошибки  PTT  MTT (DSR)
 			 regBank.set(174,1);                                            // установить флаг ошибки
 			 regBank.set(120,1);                                            // установить общий флаг ошибки
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[69])));// "Komanda PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
-			 myFile.print(buffer);                                          // "Komanda PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
+			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[69])));// "Command PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
+			 myFile.print(buffer);                                          // "Command PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
 			 myFile.println(regcount);
 		  }
 		else
 		  {
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[70])));// "Komanda PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
-			 myFile.println(buffer);                                        // "Komanda PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
+			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[70])));// "Command PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
+			 myFile.println(buffer);                                        // "Command PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
 		  }
 
-	regBank.set(19,1);    // J8-11     XP7 2 Sence тангента ручная
+	regBank.set(19,1);    // J8-11     XP7 2 sensor тангента ручная
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[64])));
-	myFile.println(buffer);                                                 // "Komanda sence OFF tangenta ruchnaja send!"  
+	myFile.println(buffer);                                                 // "Command sensor OFF tangenta ruchnaja send!"  
 	regBank.set(17,1);    // J8-12     XP7 4 PTT2 тангента ручная DSR
 
 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[65])));
-	myFile.println(buffer);                                                 // "Komanda PTT1  OFF tangenta ruchnaja send!"   
+	myFile.println(buffer);                                                 // "Command PTT1  OFF tangenta ruchnaja send!"   
 	regBank.set(20,1);    // J8-23     XP7 1 PTT1 тангента ручная CTS
 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[66])));
-	myFile.println(buffer);                                                 // "Komanda PTT2  OFF tangenta ruchnaja send!" 
+	myFile.println(buffer);                                                 // "Command PTT2  OFF tangenta ruchnaja send!" 
 
 	UpdateRegs();                                                           // Выполнить команду
 	delay(400);
 
-			if(bitRead(regs_in[0],3) == 0)                                  // J8-11     XP7 2 Sence тангента ручная
+			if(bitRead(regs_in[0],3) == 0)                                  // J8-11     XP7 2 sensor тангента ручная
 		  {
-			regcount = regBank.get(40124);                                  // адрес счетчика ошибки Sence тангента ручная
-			regcount++;                                                     // увеличить счетчик ошибок Sence тангента ручная
-			regBank.set(40124,regcount);                                    // адрес счетчика ошибки Sence тангента ручная
-			regBank.set(124,1);                                             // установить флаг ошибки Sence тангента ручная
+			regcount = regBank.get(40124);                                  // адрес счетчика ошибки sensor тангента ручная
+			regcount++;                                                     // увеличить счетчик ошибок sensor тангента ручная
+			regBank.set(40124,regcount);                                    // адрес счетчика ошибки sensor тангента ручная
+			regBank.set(124,1);                                             // установить флаг ошибки sensor тангента ручная
 			regBank.set(120,1);                                             // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[5])));
 			myFile.print(buffer);                                           // 
@@ -2528,7 +2654,7 @@ void test_tangR()
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[6])));
 			myFile.print(buffer);                 // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                        //  Sence тангента ручная OK!
+			myFile.println(buffer);                                        //  sensor тангента ручная OK!
 		  }
 	 UpdateRegs(); 
 	  // 2)  Проверка  на отключение J8-23     XP7 1 PTT1 тангента ручная CTS
@@ -2540,13 +2666,13 @@ void test_tangR()
 			 regBank.set(175,1);                                            // установить флаг ошибки
 			 regBank.set(120,1);                                            // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[71])));
-			 myFile.print(buffer);                                          // "Komanda PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";  
+			 myFile.print(buffer);                                          // "Command PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";  
 			 myFile.println(regcount);
 		  }
 		else
 		  {
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[72])));// "Komanda PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
-			 myFile.println(buffer);                                        // "Komanda PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
+			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[72])));// "Command PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
+			 myFile.println(buffer);                                        // "Command PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
 		  }
 
 	 // 3)  Проверка  на отключение PTT2 тангента ручная (DSR)
@@ -2558,17 +2684,17 @@ void test_tangR()
 			 regBank.set(40176,regcount);                                   // адрес счетчика ошибки  PTT  MTT (DSR)
 			 regBank.set(176,1);                                            // установить флаг ошибки
 			 regBank.set(120,1);                                            // установить общий флаг ошибки
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[73])));// "Komanda PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
-			 myFile.print(buffer);                                          // "Komanda PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
+			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[73])));// "Command PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
+			 myFile.print(buffer);                                          // "Command PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
 			 myFile.println(regcount);
 		  }
 		else
 		  {
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[74])));// "Komanda PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
-			 myFile.println(buffer);                                        // "Komanda PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
+			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[74])));// "Command PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
+			 myFile.println(buffer);                                        // "Command PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
 		  }
 	regBank.set(17,0);                                                      // J8-12     XP7 4 PTT2 тангента ручная DSR
-	regBank.set(19,0);                                                      // J8-11     XP7 2 Sence тангента ручная
+	regBank.set(19,0);                                                      // J8-11     XP7 2 sensor тангента ручная
 	regBank.set(20,0);                                                      // J8-23     XP7 1 PTT1 тангента ручная CTS
 	UpdateRegs();                                                           // Выполнить команду
 	regBank.set(adr_control_command,0);                                     // Завершить программу    
@@ -2585,141 +2711,141 @@ void test_instr_off()
 {
 	  unsigned int regcount = 0;
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[0])));
-	  myFile.println(buffer);                                           // "Komanda sensor OFF instruktora   send!"
-	  regBank.set(29,0);                                                // XP1- 13 HeS2Ls  Отключить сенсор инструктора
+	  if (test_repeat == false) myFile.println(buffer);                     // "Command sensor OFF headset instructor   send!"
+	  regBank.set(29,0);                                                    // XP1- 13 HeS2Ls  Отключить сенсор инструктора
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[1])));
-	  myFile.println(buffer);                                           // "Komanda sensor OFF instruktora 2 send!"
-	  regBank.set(27,0);                                                // XP1- 16 HeS2Rs  Отключить сенсор инструктора c 2  наушниками
-	  regBank.set(16,0);                                                // XS1 - 6   Sence Мик
-	  regBank.set(1,0);                                                 // Реле RL0 Звук
-	  regBank.set(2,0);                                                 // Реле RL1 Звук
-	  regBank.set(3,0);                                                 // Реле RL2 Звук
-	  regBank.set(4,0);                                                 // Реле RL3 Звук  LFE  "Маг."
-	  regBank.set(5,0);                                                 // Реле RL4 XP1 12  HeS2e 
-	  regBank.set(6,0);                                                 // Реле RL5 Звук
-	  regBank.set(7,0);                                                 // Реле RL6 Звук
-	  regBank.set(9,0);                                                 // Реле RL8 Звук на микрофон
-	  regBank.set(10,0);                                                // Реле RL9 XP1 10
-	  regBank.set(28,0);                                                // XP1- 15 HeS2Ls Отключить PTT инструктора
+	  if (test_repeat == false) myFile.println(buffer);                                           // "Command sensor OFF headset instructor 2 send!"
+	  regBank.set(27,0);                                                    // XP1- 16 HeS2Rs  Отключить сенсор инструктора c 2  наушниками
+	  regBank.set(16,0);                                                    // XS1 - 6   sensor Мик
+	  regBank.set(1,0);                                                     // Реле RL0 Звук
+	  regBank.set(2,0);                                                     // Реле RL1 Звук
+	  regBank.set(3,0);                                                     // Реле RL2 Звук
+	  regBank.set(4,0);                                                     // Реле RL3 Звук  LFE  "Маг."
+	  regBank.set(5,0);                                                     // Реле RL4 XP1 12  HeS2e 
+	  regBank.set(6,0);                                                     // Реле RL5 Звук
+	  regBank.set(7,0);                                                     // Реле RL6 Звук
+	  regBank.set(9,0);                                                     // Реле RL8 Звук на микрофон
+	  regBank.set(10,0);                                                    // Реле RL9 XP1 10
+	  regBank.set(28,0);                                                    // XP1- 15 HeS2Ls Отключить PTT инструктора
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[2])));
-	  myFile.println(buffer);                                           // "Komanda PTT instruktora OFF      send!"
+	  if (test_repeat == false) myFile.println(buffer);                                           // "Command PTT headset instructor OFF      send!"
 
-	  UpdateRegs();                                                     // Выполнить команду отключения сенсоров
-	  delay(400);                                                       // 
+	  UpdateRegs();                                                         // Выполнить команду отключения сенсоров
+	  delay(400);                                                           // 
 	 
 	  // 1)  Проверка сенсора на отключение гарнитуры инструктора 2 наушниками
-	  byte i5 = regs_in[2];                                             // 
-		if(bitRead(i5,1) > 0)                                           // Проверка  флага на отключение гарнитуры инструктора 2 наушниками
+	  byte i5 = regs_in[2];                                                 // 
+		if(bitRead(i5,1) > 0)                                               // Проверка  флага на отключение гарнитуры инструктора 2 наушниками
 		  {
-			regcount = regBank.get(40127);                              // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
-			regcount++;                                                 // увеличить счетчик ошибок
-			regBank.set(40127,regcount);                                // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
-			regBank.set(127,1);                                         // установить флаг ошибки
-			regBank.set(120,1);                                         // установить общий флаг ошибки
-			resistor(1, 255);                                           // Установить уровень сигнала в исходное состояниу
-			resistor(2, 255);                                           // Установить уровень сигнала в исходное состояниу
+			regcount = regBank.get(40127);                                  // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
+			regcount++;                                                     // увеличить счетчик ошибок
+			regBank.set(40127,regcount);                                    // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
+			regBank.set(127,1);                                             // установить флаг ошибки
+			regBank.set(120,1);                                             // установить общий флаг ошибки
+			resistor(1, 255);                                               // Установить уровень сигнала в исходное состояниу
+			resistor(2, 255);                                               // Установить уровень сигнала в исходное состояниу
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[3])));
-			myFile.print(buffer);                                       // "Komanda sensor OFF instruktora 2 Error! - "
-			myFile.println(regcount);                                   // 
+			myFile.print(buffer);                                           // "Command sensor OFF headset instructor 2 Error! - "
+			myFile.println(regcount);                                       // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[4])));
-			myFile.println(buffer);                                     // "Komanda sensor OFF instruktora 2 - Ok!"
+			if (test_repeat == false) myFile.println(buffer);               // "Command sensor OFF headset instructor 2 - Ok!"
 		  }
 
 	  // 2)  Проверка сенсора на отключение гарнитуры инструктора
 
-		if(bitRead(i5,2) > 0)                                           // Проверка  флага на отключение гарнитуры инструктора 
+		if(bitRead(i5,2) > 0)                                               // Проверка  флага на отключение гарнитуры инструктора 
 		  {
-			 regcount = regBank.get(40128);                             // адрес счетчика ошибки сенсора гарнитуры инструктора
-			 regcount++;                                                // увеличить счетчик ошибок
-			 regBank.set(40128,regcount);                               // адрес счетчика ошибки сенсора гарнитуры инструктора
-			 regBank.set(128,1);                                        // установить флаг ошибки
-			 regBank.set(120,1);                                        // установить общий флаг ошибки
+			 regcount = regBank.get(40128);                                 // адрес счетчика ошибки сенсора гарнитуры инструктора
+			 regcount++;                                                    // увеличить счетчик ошибок
+			 regBank.set(40128,regcount);                                   // адрес счетчика ошибки сенсора гарнитуры инструктора
+			 regBank.set(128,1);                                            // установить флаг ошибки
+			 regBank.set(120,1);                                            // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[5])));
-			 myFile.print(buffer);                                      // "Komanda sensor OFF instruktora  Error! - "
+			 myFile.print(buffer);                                          // "Command sensor OFF headset instructor  Error! - "
 			 myFile.println(regcount);
 		  }
 		else
 		  {
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[6])));
-			 myFile.println(buffer);                                    // "Komanda sensor OFF instruktora   - Ok!"
+			 if (test_repeat == false) myFile.println(buffer);              // "Command sensor OFF headset instructor   - Ok!"
 		  }
 
 	 // 3)  Проверка сенсора на отключение микрофона
 
-		if(bitRead(i5,5) > 0)                                           // Проверка  флага на отключение микрофона
+		if(bitRead(i5,5) > 0)                                               // Проверка  флага на отключение микрофона
 		  {
-			 regcount = regBank.get(40149);                             // адрес счетчика ошибки сенсора микрофона 
-			 regcount++;                                                // увеличить счетчик ошибок
-			 regBank.set(40149,regcount);                               // адрес счетчика ошибки сенсора микрофона
-			 regBank.set(149,1);                                        // установить флаг ошибки
-			 regBank.set(120,1);                                        // установить общий флаг ошибки
+			 regcount = regBank.get(40149);                                 // адрес счетчика ошибки сенсора микрофона 
+			 regcount++;                                                    // увеличить счетчик ошибок
+			 regBank.set(40149,regcount);                                   // адрес счетчика ошибки сенсора микрофона
+			 regBank.set(149,1);                                            // установить флаг ошибки
+			 regBank.set(120,1);                                            // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[7])));
-			 myFile.print(buffer);                                      // "Komanda sensor microphone OFF Error! - "
+			 myFile.print(buffer);                                          // "Command sensor microphone OFF Error! - "
 			 myFile.println(regcount);
 		  }
 		else
 		  {
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[8])));
-			 myFile.println(buffer);                                    // "Komanda sensor microphone OFF    - Ok!"
+			 if (test_repeat == false) myFile.println(buffer);              // "Command sensor microphone OFF    - Ok!"
 		  }
 		UpdateRegs(); 
-	   if(regBank.get(adr_reg_ind_CTS)!= 0)                                       // Проверить включение PTT инструктора   CTS
+	   if(regBank.get(adr_reg_ind_CTS)!= 0)                                 // Проверить включение PTT инструктора   CTS
 		  {
-			regcount = regBank.get(40140);                              // адрес счетчика ошибки отключения PTT гарнитуры инструктора
-			regcount++;                                                 // увеличить счетчик ошибок
-			regBank.set(40140,regcount);                                // адрес счетчика ошибки отключения PTT гарнитуры инструктора
-			regBank.set(140,1);                                         // установить флаг ошибки отключения PTT гарнитуры инструктора
-			regBank.set(120,1);                                         // установить общий флаг ошибки
+			regcount = regBank.get(40140);                                  // адрес счетчика ошибки отключения PTT гарнитуры инструктора
+			regcount++;                                                     // увеличить счетчик ошибок
+			regBank.set(40140,regcount);                                    // адрес счетчика ошибки отключения PTT гарнитуры инструктора
+			regBank.set(140,1);                                             // установить флаг ошибки отключения PTT гарнитуры инструктора
+			regBank.set(120,1);                                             // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[9])));
-			myFile.print(buffer);                                       // "Komanda PTT instruktora(CTS) OFF Error! - " Микрофон не отключился 
+			myFile.print(buffer);                                           // "Command PTT headset instructor(CTS) OFF Error! - " Микрофон не отключился 
 			myFile.println(regcount);
 		 }
 	  else
 		 {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_off[10])));
-			myFile.println(buffer);                                     // "Komanda PTT instruktora (CTS) OFF- Ok!"
+			if (test_repeat == false) myFile.println(buffer);               // "Command PTT headset instructor (CTS) OFF- Ok!"
 		 }
 }
 void test_instr_on()
 {
 	unsigned int regcount = 0;
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[0])));
-	myFile.println(buffer);                                             // "Komanda sensor ON instruktora    send!"
-	regBank.set(29,1);                                                  // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
+	if (test_repeat == false) myFile.println(buffer);                       // "Command sensor ON headset instructor    send!"
+	regBank.set(29,1);                                                      // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[1])));
-	myFile.println(buffer);                                             // "Komanda sensor ON instruktora 2  send!"
-	regBank.set(27,1);                                                  // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
-	regBank.set(19,1);                                                  // J8-11     XP7 2 Sence  Танг. р.
-	regBank.set(16,1);                                                  // XS1 - 6   Sence Мик
-	regBank.set(25,1);                                                  // XP1- 19 HaSs      Sence подключения трубки      
-	regBank.set(13,1);                                                  // XP8 - 2           Sence Тангента ножная
-	regBank.set(28,1);                                                  // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
+	if (test_repeat == false) myFile.println(buffer);                       // "Command sensor ON headset instructor 2  send!"
+	regBank.set(27,1);                                                      // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(19,1);                                                      // J8-11     XP7 2 sensor  Танг. р.
+	regBank.set(16,1);                                                      // XS1 - 6   sensor Мик
+	regBank.set(25,1);                                                      // XP1- 19 HaSs      sensor подключения трубки      
+	regBank.set(13,1);                                                      // XP8 - 2           sensor Тангента ножная
+	regBank.set(28,1);                                                      // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[8])));
-	myFile.println(buffer);                                             // "Komanda PTT ON instruktora  send!"
+	if (test_repeat == false) myFile.println(buffer);                                             // "Command PTT ON headset instructor  send!"
 
 	UpdateRegs(); 
 	delay(300);
 
 	  // 3)  Проверка сенсора на подключение гарнитуры инструктора 2 наушниками
 		 byte i5 = regs_in[2];   
-		 if(bitRead(i5,1) == 0)                                         // Проверка флага подключения гарнитуры инструктора 2 наушниками
+		 if(bitRead(i5,1) == 0)                                             // Проверка флага подключения гарнитуры инструктора 2 наушниками
 			{
-				regcount = regBank.get(40127);                          // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
-				regcount++;                                             // увеличить счетчик ошибок
-				regBank.set(40127,regcount);                            // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
-				regBank.set(127,1);                                     // установить флаг ошибки
-				regBank.set(120,1);                                     // установить общий флаг ошибки
+				regcount = regBank.get(40127);                              // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
+				regcount++;                                                 // увеличить счетчик ошибок
+				regBank.set(40127,regcount);                                // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
+				regBank.set(127,1);                                         // установить флаг ошибки
+				regBank.set(120,1);                                         // установить общий флаг ошибки
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[2])));
-				myFile.print(buffer);                                   // "Komanda sensor ON instruktora 2 Error! - "
+				myFile.print(buffer);                                       // "Command sensor ON headset instructor 2 Error! - "
 				myFile.println(regcount);
 			}
 		else
 			{
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[3])));
-				myFile.println(buffer);                                 // "Komanda sensor ON  instruktora 2 - Ok!"
+				if (test_repeat == false) myFile.println(buffer);            // "Command sensor ON  headset instructor 2 - Ok!"
 			}
 	  // 4)  Проверка сенсора на подключения гарнитуры инструктора
 
@@ -2731,13 +2857,13 @@ void test_instr_on()
 				regBank.set(128,1);                                     // установить флаг ошибки
 				regBank.set(120,1);                                     // установить общий флаг ошибки
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[4])));
-				myFile.print(buffer);                                   // "Komanda sensor ON  instruktora  Error! - "
+				myFile.print(buffer);                                   // "Command sensor ON  headset instructor  Error! - "
 				myFile.println(regcount);
 			 }
 		else
 			{
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[5])));
-				myFile.println(buffer);                                // "Komanda sensor ON instruktora    - Ok!"
+				if (test_repeat == false) myFile.println(buffer);                                // "Command sensor ON headset instructor    - Ok!"
 			}
 		UpdateRegs(); 
 
@@ -2749,13 +2875,13 @@ void test_instr_on()
 				regBank.set(140,1);                                    // установить флаг ошибки отключения PTT гарнитуры инструктора
 				regBank.set(120,1);                                    // установить общий флаг ошибки
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[6])));
-				myFile.print(buffer);                                  // "Komanda PTT instruktora(CTS) ON Error! - " Микрофон не отключился 
+				myFile.print(buffer);                                  // "Command PTT headset instructor(CTS) ON Error! - " Микрофон не отключился 
 				myFile.println(regcount);
 			}
 		else
 			{
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_on[7])));
-				myFile.println(buffer);                               // "Komanda PTT instruktora (CTS) ON- Ok!"
+				if (test_repeat == false) myFile.println(buffer);                               // "Command PTT headset instructor (CTS) ON- Ok!"
 			}
 }
 
@@ -2763,12 +2889,12 @@ void test_disp_off()
 {
 	  unsigned int regcount = 0;
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[0])));
-	  myFile.println(buffer);                                           // "Komanda sensor OFF диспетчера  send!"
+	  if (test_repeat == false) myFile.println(buffer);                                           // "Command sensor OFF диспетчера  send!"
 	  regBank.set(32,0);                                                // XP1- 1  HeS1Ls    Отключить сенсор гарнитуры диспетчера
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[1])));
-	  myFile.println(buffer);                                           // "Komanda sensor OFF диспетчера 2 send!"
-	  regBank.set(31,0);                                                // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
-	  regBank.set(16,0);                                                // XS1 - 6   Sence Мик
+	  if (test_repeat == false) myFile.println(buffer);                                           // "Command sensor OFF диспетчера 2 send!"
+	  regBank.set(31,0);                                                // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	  regBank.set(16,0);                                                // XS1 - 6   sensor Мик
 	  regBank.set(1,0);                                                 // Реле RL0 Звук
 	  regBank.set(2,0);                                                 // Реле RL1 Звук
 	  regBank.set(3,0);                                                 // Реле RL2 Звук
@@ -2780,7 +2906,7 @@ void test_disp_off()
 	  regBank.set(10,0);                                                // Реле RL9 XP1 10
 	  regBank.set(30,0);                                                // XP1- 6  HeS1PTT   Отключить PTT диспетчера
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[2])));
-	  myFile.println(buffer);                                           // "Komanda PTT диспетчера OFF send!"
+	  if (test_repeat == false) myFile.println(buffer);                                           // "Command PTT диспетчера OFF send!"
 
 	  UpdateRegs();                                                     // Выполнить команду отключения сенсоров
 	  delay(400);                                                       // 
@@ -2797,13 +2923,13 @@ void test_disp_off()
 			resistor(1, 255);                                           // Установить уровень сигнала в исходное состояниу
 			resistor(2, 255);                                           // Установить уровень сигнала в исходное состояниу
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[3])));
-			myFile.print(buffer);                                       // "Komanda sensor OFF dispetchera 2 Error! - "
+			myFile.print(buffer);                                       // "Command sensor OFF dispetchera 2 Error! - "
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[4])));
-			myFile.println(buffer);                                     // "Komanda sensor OFF dispetchera 2 - Ok!"
+			if (test_repeat == false) myFile.println(buffer);                                     // "Command sensor OFF dispetchera 2 - Ok!"
 		  }
 
 	  // 2)  Проверка сенсора на отключение гарнитуры диспетчера
@@ -2816,13 +2942,13 @@ void test_disp_off()
 			 regBank.set(130,1);                                        // установить флаг ошибки
 			 regBank.set(120,1);                                        // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[5])));
-			 myFile.print(buffer);                                      // "Komanda sensor OFF dispetchera  Error! - "
+			 myFile.print(buffer);                                      // "Command sensor OFF dispetchera  Error! - "
 			 myFile.println(regcount);
 		  }
 		else
 		  {
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[6])));
-			 myFile.println(buffer);                                    // "Komanda sensor OFF dispetchera   - Ok!"
+			 if (test_repeat == false) myFile.println(buffer);                                    // "Command sensor OFF dispetchera   - Ok!"
 		  }
 
 	 // 3)  Проверка сенсора на отключение микрофона
@@ -2835,13 +2961,13 @@ void test_disp_off()
 			 regBank.set(149,1);                                        // установить флаг ошибки
 			 regBank.set(120,1);                                        // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[7])));
-			 myFile.print(buffer);                                      // "Komanda sensor microphone OFF Error! - "
+			 myFile.print(buffer);                                      // "Command sensor microphone OFF Error! - "
 			 myFile.println(regcount);
 		  }
 		else
 		  {
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[8])));
-			 myFile.println(buffer);                                    // "Komanda sensor microphone OFF    - Ok!"
+			 if (test_repeat == false) myFile.println(buffer);                                    // "Command sensor microphone OFF    - Ok!"
 		  }
 
 	   UpdateRegs(); 
@@ -2853,33 +2979,33 @@ void test_disp_off()
 			regBank.set(158,1);                                         // установить флаг ошибки отключения PTT гарнитуры диспетчера
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[9])));
-			myFile.print(buffer);                                       // "Komanda PTT dispetchera (CTS) OFF Error! - " Микрофон не отключился 
+			myFile.print(buffer);                                       // "Command PTT dispetchera (CTS) OFF Error! - " Микрофон не отключился 
 			myFile.println(regcount);
 		 }
 	  else
 		 {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[10])));
-			myFile.println(buffer);                                     // "Komanda PTT dispetchera (CTS) OFF- Ok!"
+			if (test_repeat == false) myFile.println(buffer);                                     // "Command PTT dispetchera (CTS) OFF- Ok!"
 		 }
 }
 void test_disp_on()
 {
 	unsigned int regcount = 0;
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[0])));
-	myFile.println(buffer);                                       // "Komanda sensor ON dispetchera send!"
-	regBank.set(32,1);                                            // XP1- 1  HeS1Ls    Sence подключения гарнитуры диспетчера 
+	if (test_repeat == false) myFile.println(buffer);                   // "Command sensor ON dispetchera send!"
+	regBank.set(32,1);                                                  // XP1- 1  HeS1Ls    sensor подключения гарнитуры диспетчера 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[1])));
-	myFile.println(buffer);                                       // "Komanda sensor ON dispetchera 2  send!"
-	regBank.set(31,1);                                            // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(19,1);                                            // J8-11     XP7 2 Sence  Танг. р.
-	regBank.set(16,1);                                            // XS1 - 6   Sence Мик
-	regBank.set(25,1);                                            // XP1- 19 HaSs      Sence подключения трубки      
-	regBank.set(13,1);                                            // XP8 - 2           Sence Тангента ножная
-	regBank.set(30,1);                                            // XP1- 6  HeS1PTT   Включить PTT диспетчера
+	if (test_repeat == false) myFile.println(buffer);                   // "Command sensor ON dispetchera 2  send!"
+	regBank.set(31,1);                                                  // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(19,1);                                                  // J8-11     XP7 2 sensor  Танг. р.
+	regBank.set(16,1);                                                  // XS1 - 6   sensor Мик
+	regBank.set(25,1);                                                  // XP1- 19 HaSs      sensor подключения трубки      
+	regBank.set(13,1);                                                  // XP8 - 2           sensor Тангента ножная
+	regBank.set(30,1);                                                  // XP1- 6  HeS1PTT   Включить PTT диспетчера
 	UpdateRegs(); 
 	delay(300);
 
-	  // 3)  Проверка сенсора на подключение гарнитуры инструктора 2 наушниками
+	  // 3)  Проверка сенсора на подключение гарнитуры диспетчера 2 наушниками
 		 byte i5 = regs_in[2];   
 		 if(bitRead(i5,3) == 0)                                         // Проверка флага подключения гарнитуры диспетчера 2 наушниками
 			{
@@ -2889,15 +3015,15 @@ void test_disp_on()
 				regBank.set(129,1);                                     // установить флаг ошибки
 				regBank.set(120,1);                                     // установить общий флаг ошибки
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[2])));
-				myFile.print(buffer);                                   // "Komanda sensor ON dispetchera 2 Error! - "
+				myFile.print(buffer);                                   // "Command sensor ON dispetchera 2 Error! - "
 				myFile.println(regcount);
 			}
 		else
 			{
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[3])));
-				myFile.println(buffer);                                 // "Komanda sensor ON  dispetchera 2 - Ok!"
+				if (test_repeat == false) myFile.println(buffer);                                 // "Command sensor ON  dispetchera 2 - Ok!"
 			}
-	  // 4)  Проверка сенсора на подключения гарнитуры инструктора
+	  // 4)  Проверка сенсора на подключения гарнитуры диспетчера
 
 	   if(bitRead(i5,4) == 0)                                            // Проверка флага подключения гарнитуры диспетчера
 			 {
@@ -2907,13 +3033,13 @@ void test_disp_on()
 				regBank.set(130,1);                                     // установить флаг ошибки
 				regBank.set(120,1);                                     // установить общий флаг ошибки
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[4])));
-				myFile.print(buffer);                                   // "Komanda sensor ON  dispetchera  Error! - "
+				myFile.print(buffer);                                   // "Command sensor ON  dispetchera  Error! - "
 				myFile.println(regcount);
 			 }
 		else
 			{
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[5])));
-				myFile.println(buffer);                                // "Komanda sensor ON dispetchera    - Ok!"
+				if (test_repeat == false) myFile.println(buffer);                                // "Command sensor ON dispetchera    - Ok!"
 			}
 
 		 UpdateRegs(); 
@@ -2925,30 +3051,29 @@ void test_disp_on()
 				regBank.set(158,1);                                    // установить флаг ошибки отключения PTT гарнитуры диспетчера
 				regBank.set(120,1);                                    // установить общий флаг ошибки
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[6])));
-				myFile.print(buffer);                                  // "Komanda PTT dispetchera OFF Error! - " Микрофон не отключился 
+				myFile.print(buffer);                                  // "Command PTT dispetchera OFF Error! - " Микрофон не отключился 
 				myFile.println(regcount);
 			}
 		else
 			{
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[7])));
-				myFile.println(buffer);                               // "Komanda PTT dispetchera OFF- Ok!"
+				if (test_repeat == false) myFile.println(buffer);                               // "Command PTT dispetchera OFF- Ok!"
 			}
-	//	delay(100);
 }
 
 void test_MTT_off()
 {
 	  unsigned int regcount = 0;
-	  regBank.set(25,1);                                                    // XP1- 19 HaSs      Sence подключения трубки    MTT  OFF       
+	  regBank.set(25,1);                                                    // XP1- 19 HaSs      sensor подключения трубки    MTT  OFF       
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[0])));
-	  myFile.println(buffer);                                               // "Komanda sence OFF MTT  send!                  
+	  if (test_repeat == false) myFile.println(buffer);                                               // "Command sensor OFF MTT  send!                  
 	  regBank.set(26,0);                                                    // XP1- 17 HaSPTT    CTS DSR вкл. Отключить PTT MTT
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[1])));
-	  myFile.println(buffer);                                               // "Komanda PTT MTT OFF send!"
+	  if (test_repeat == false) myFile.println(buffer);                                               // "Command PTT MTT OFF send!"
 	  regBank.set(18,0);                                                    // XP1 - 20  HangUp  DCD
 	  strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[2])));
-	  myFile.println(buffer);                                               // "Komanda  HangUp MTT OFF send!"
-	  regBank.set(16,0);                                                    // XS1 - 6   Sence Мик
+	  if (test_repeat == false) myFile.println(buffer);                                               // "Command  HangUp MTT OFF send!"
+	  regBank.set(16,0);                                                    // XS1 - 6   sensor Мик
 	  regBank.set(1,0);                                                     // Реле RL0 Звук
 	  regBank.set(2,0);                                                     // Реле RL1 Звук
 	  regBank.set(3,0);                                                     // Реле RL2 Звук
@@ -2972,13 +3097,13 @@ void test_MTT_off()
 			resistor(1, 255);                                               // Установить уровень сигнала в исходное состояние
 			resistor(2, 255);                                               // Установить уровень сигнала в исходное состояние
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[3])));
-			myFile.print(buffer);                                           // "Komanda sensor OFF МТТ Error! - "
+			myFile.print(buffer);                                           // "Command sensor OFF МТТ Error! - "
 			myFile.println(regcount);                                       // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[4])));
-			myFile.println(buffer);                                         // "Komanda sensor OFF  МТТ - Ok!"
+			if (test_repeat == false) myFile.println(buffer);                                         // "Command sensor OFF  МТТ - Ok!"
 		  }
 		   UpdateRegs(); 
 	  // 2)  Проверка  на отключение PTT  MTT (CTS)
@@ -2990,13 +3115,13 @@ void test_MTT_off()
 			 regBank.set(164,1);                                            // установить флаг ошибки
 			 regBank.set(120,1);                                            // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[7])));
-			 myFile.print(buffer);                                          // "Komanda       OFF PTT  MTT (CTS)   Error! - 
+			 myFile.print(buffer);                                          // "Command       OFF PTT  MTT (CTS)   Error! - 
 			 myFile.println(regcount);
 		  }
 		else
 		  {
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[8])));
-			 myFile.println(buffer);                                        // "Komanda       OFF PTT  MTT (CTS)  - Ok!"
+			 if (test_repeat == false) myFile.println(buffer);                                        // "Command       OFF PTT  MTT (CTS)  - Ok!"
 		  }
 
 	 // 3)  Проверка  на отключение PTT  MTT (DSR)
@@ -3009,13 +3134,13 @@ void test_MTT_off()
 			 regBank.set(165,1);                                            // установить флаг ошибки
 			 regBank.set(120,1);                                            // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[9])));
-			 myFile.print(buffer);                                          // "Komanda       OFF PTT  MTT (DSR)  Error! - "
+			 myFile.print(buffer);                                          // "Command       OFF PTT  MTT (DSR)  Error! - "
 			 myFile.println(regcount);
 		  }
 		else
 		  {
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[10])));
-			 myFile.println(buffer);                                        // "Komanda       OFF PTT  MTT (DSR)  - Ok!"
+			 if (test_repeat == false) myFile.println(buffer);                                        // "Command       OFF PTT  MTT (DSR)  - Ok!"
 		  }
 
 	   if(regBank.get(adr_reg_ind_DCD)!= 0)                                 // Проверить включение HangUp  DCD
@@ -3026,27 +3151,27 @@ void test_MTT_off()
 			regBank.set(169,1);                                             // установить флаг ошибки отключения HangUp  DCD
 			regBank.set(120,1);                                             // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[11])));
-			myFile.print(buffer);                                           // "Komanda HangUp  DCD OFF Error! - "  
+			myFile.print(buffer);                                           // "Command HangUp  DCD OFF Error! - "  
 			myFile.println(regcount);
 		 }
 	  else
 		 {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[12])));
-			myFile.println(buffer);                                         // "Komanda HangUp  DCD OFF- Ok!"
+			if (test_repeat == false) myFile.println(buffer);                                         // "Command HangUp  DCD OFF- Ok!"
 		 }
 }
 void test_MTT_on()
 {
 	unsigned int regcount = 0;
-	regBank.set(25,0);                                                      //  XP1- 19 HaSs  Sence подключения трубки    MTT ON
+	regBank.set(25,0);                                                      //  XP1- 19 HaSs  sensor подключения трубки    MTT ON
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_on[0])));
-	myFile.println(buffer);                                                 // "Komanda sence ON MTT  send!                  
+	if (test_repeat == false) myFile.println(buffer);                                                 // "Command sensor ON MTT  send!                  
 	regBank.set(26,1);                                                      // XP1- 17 HaSPTT    CTS DSR вкл. включить PTT MTT
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_on[1])));
-	myFile.println(buffer);                                                 // "Komanda PTT MTT ON send!"
+	if (test_repeat == false) myFile.println(buffer);                                                 // "Command PTT MTT ON send!"
 	regBank.set(18,1);                                                      // XP1 - 20  HangUp  DCD ON
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_on[2])));
-	myFile.println(buffer);                                                 // "Komanda  HangUp MTT ON send!"
+	if (test_repeat == false) myFile.println(buffer);                                                 // "Command  HangUp MTT ON send!"
 
 	UpdateRegs(); 
 	delay(300);
@@ -3063,13 +3188,13 @@ void test_MTT_on()
 			resistor(1, 255);                                               // Установить уровень сигнала в исходное состояние
 			resistor(2, 255);                                               // Установить уровень сигнала в исходное состояние
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_on[3])));
-			myFile.print(buffer);                                           // "Komanda sensor ON МТТ Error! - "
+			myFile.print(buffer);                                           // "Command sensor ON МТТ Error! - "
 			myFile.println(regcount);                                       // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_on[4])));
-			myFile.println(buffer);                                         // "Komanda sensor ON  МТТ - Ok!"
+			if (test_repeat == false) myFile.println(buffer);                                         // "Command sensor ON  МТТ - Ok!"
 		  }
 		UpdateRegs(); 
 	  // 2)  Проверка  на отключение PTT  MTT (CTS)
@@ -3081,13 +3206,13 @@ void test_MTT_on()
 			 regBank.set(166,1);                                            // установить флаг ошибки
 			 regBank.set(120,1);                                            // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[7])));
-			 myFile.print(buffer);                                          // "Komanda       ON PTT  MTT (CTS)   Error! - 
+			 myFile.print(buffer);                                          // "Command       ON PTT  MTT (CTS)   Error! - 
 			 myFile.println(regcount);
 		  }
 		else
 		  {
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[8])));
-			 myFile.println(buffer);                                        // "Komanda       ON PTT  MTT (CTS)  - Ok!"
+			if (test_repeat == false)  myFile.println(buffer);                                        // "Command       ON PTT  MTT (CTS)  - Ok!"
 		  }
 
 	 // 3)  Проверка  на отключение PTT  MTT (DSR)
@@ -3100,13 +3225,13 @@ void test_MTT_on()
 			 regBank.set(167,1);                                            // установить флаг ошибки
 			 regBank.set(120,1);                                            // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[9])));
-			 myFile.print(buffer);                                          // "Komanda       OFF PTT  MTT (DSR)  Error! - "
+			 myFile.print(buffer);                                          // "Command       OFF PTT  MTT (DSR)  Error! - "
 			 myFile.println(regcount);
 		  }
 		else
 		  {
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[10])));
-			 myFile.println(buffer);                                        // "Komanda       OFF PTT  MTT (DSR)  - Ok!"
+			 if (test_repeat == false) myFile.println(buffer);                                        // "Command       OFF PTT  MTT (DSR)  - Ok!"
 		  }
 
 	   if(regBank.get(adr_reg_ind_DCD)== 0)                                 // Проверить включение HangUp  DCD
@@ -3117,13 +3242,13 @@ void test_MTT_on()
 			regBank.set(169,1);                                             // установить флаг ошибки отключения HangUp  DCD
 			regBank.set(120,1);                                             // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[11])));
-			myFile.print(buffer);                                           // "Komanda HangUp  DCD OFF Error! - "  
+			myFile.print(buffer);                                           // "Command HangUp  DCD OFF Error! - "  
 			myFile.println(regcount);
 		 }
 	  else
 		 {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_mtt_off[12])));
-			myFile.println(buffer);                                         // "Komanda HangUp  DCD OFF- Ok!"
+			if (test_repeat == false) myFile.println(buffer);                                         // "Command HangUp  DCD OFF- Ok!"
 		 }
 }
 
@@ -3134,37 +3259,37 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 		switch (adr_flagErr) 
 		{
 			case 141:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[40])));   //  * Signal FrontL     OFF  
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[41])));   // "Signal FrontL     OFF                             - ";
 				break;
 			case 142:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[41])));   //  *"Signal FrontR     OFF  
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[42])));   // "Signal FrontR     OFF                             - ";
 				break;
 			case 144:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[42])));   // *"Signal mag radio OFF - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[44])));   // "Signal mag radio OFF                              - ";
 				break;
 			case 145:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[43])));   // *"Signal mag phone OFF - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[45])));   // "Signal mag phone OFF                              - ";
 				break;
 			case 146:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[44])));   // "Signal GGS OFF       - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[46])));   // "Signal GGS OFF                                    - ";
 				break;
 			case 147:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[45])));   // "Signal GG Radio1 OFF - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[47])));    // "Signal GG Radio1 OFF                              - ";
 				break;
 			case 148:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[46])));   // "Signal GG Radio2 OFF - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[48])));    // "Signal GG Radio2 OFF                              - ";
 				break;
 			case 160:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[40])));   // "Signal FrontL OFF    - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[40])));     // "Signal FrontL OFF    - "
 				break;
 			case 161:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[41])));   // "Signal FrontR OFF    - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[41])));     // "Signal FrontR OFF    - "
 				break;
-			case 10:
-				//выполняется 
+			case 177:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[77])));     // "Signal LineL OFF                                  - ";
 				break;
-			case 11:
-				//выполняется
+			case 178:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[78])));     // "Signal LineR OFF                                  - ";
 				break;
 			case 12:
 				//выполняется
@@ -3177,10 +3302,9 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 
 		}
 
-		myFile.print(buffer);                                                       // 
-
 		if(voltage10 >  porogV)                                                     // Проверить исправность канала
 			{
+				myFile.print(buffer); 
 				regcount = regBank.get(adr_count);                                  // адрес счетчика ошибки 
 				regcount++;                                                         // увеличить счетчик ошибок канала 
 				regBank.set(adr_count,regcount);                                    // адрес счетчика ошибки канала 
@@ -3192,7 +3316,12 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			}
 		else
 			{
-				myFile.println("Pass");                                             // Проверка прошла
+				if (test_repeat == false)
+				{
+					//Serial.println();
+				   myFile.print(buffer); 
+				   myFile.println("Pass");  // Проверка прошла
+				}
 			}                                     
 }
 void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
@@ -3203,15 +3332,12 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 		{
 			case 141:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[50])));     // "Signal FrontL OFF    - "
-			//	myFile.print(buffer);                                            
 				break;
 			case 142:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[51])));     // "Signal FrontR OFF    - "
-				//myFile.print(buffer);                                             // "Signal FrontR OFF    - "
 				break;
 			case 143:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[57])));     // Signal LineL      ON    
-				//	myFile.print(buffer);                                            
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[43])));     // "Signal LineL     ON                               - ";
 				break;
 			case 144:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[53])));     // "Signal mag radio OFF - "
@@ -3234,8 +3360,7 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			//	myFile.print(buffer);                                               // "Signal GG Radio2 OFF - "
 				break;
 			case 150:
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[58])));     // "Signal Mag phone on         - "
-		   //  myFile.print(buffer);                                                // "Signal Mag phone on         - "
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[50])));    // "Signal Mag phone ON                               - ";
 				break;
 			 case 160:
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[50])));     // "Signal FrontL OFF    - "
@@ -3250,9 +3375,10 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				//выполняется когда  var равно 2
 				break;
 		}
-		myFile.print(buffer);    
+
 		if(voltage10 <  porogV)                                                       // Проверить исправность канала
 			{
+				myFile.print(buffer); 
 				regcount = regBank.get(adr_count);                                    // адрес счетчика ошибки 
 				regcount++;                                                           // увеличить счетчик ошибок канала 
 				regBank.set(adr_count,regcount);                                      // адрес счетчика ошибки канала 
@@ -3264,7 +3390,11 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			}
 		else
 			{
-				myFile.println("Pass");                                               // Проверка прошла
+			  if (regBank.get(118) == 0)
+				{
+				   myFile.print(buffer); 
+				   myFile.println("Pass");  // Проверка прошла
+				}
 			}    
 }
 void measure_volume(int analog)
@@ -3402,21 +3532,21 @@ void setup_mcp()
   mcp_Out1.pinMode(9, OUTPUT);    // Свободен J24 - 3    
   mcp_Out1.pinMode(10, OUTPUT);   // Свободен J24 - 2    
   mcp_Out1.pinMode(11, OUTPUT);   // Свободен J24 - 1   
-  mcp_Out1.pinMode(12, OUTPUT);   // XP8 - 2  Sence     
+  mcp_Out1.pinMode(12, OUTPUT);   // XP8 - 2  sensor     
   mcp_Out1.pinMode(13, OUTPUT);   // XP8 - 1  PTT       
   mcp_Out1.pinMode(14, OUTPUT);   // XS1 - 5   PTT      
-  mcp_Out1.pinMode(15, OUTPUT);   // XS1 - 6 Sence      
+  mcp_Out1.pinMode(15, OUTPUT);   // XS1 - 6 sensor      
 
 	
   mcp_Out2.begin(6);              //  Адрес (6) второго  расширителя портов
   mcp_Out2.pinMode(0, OUTPUT);    // J8-12    XP7 4 PTT2    
   mcp_Out2.pinMode(1, OUTPUT);    // XP1 - 20  HandUp    
-  mcp_Out2.pinMode(2, OUTPUT);    // J8-11    XP7 2 Sence
+  mcp_Out2.pinMode(2, OUTPUT);    // J8-11    XP7 2 sensor
   mcp_Out2.pinMode(3, OUTPUT);    // J8-23    XP7 1 PTT1    
-  mcp_Out2.pinMode(4, OUTPUT);    // XP2-2    Sence "Маг."    
-  mcp_Out2.pinMode(5, OUTPUT);    // XP5-3    Sence "ГГC." 
-  mcp_Out2.pinMode(6, OUTPUT);    // XP3-3    Sence "ГГ-Радио1."
-  mcp_Out2.pinMode(7, OUTPUT);    // XP4-3    Sence "ГГ-Радио2."
+  mcp_Out2.pinMode(4, OUTPUT);    // XP2-2    sensor "Маг."    
+  mcp_Out2.pinMode(5, OUTPUT);    // XP5-3    sensor "ГГC." 
+  mcp_Out2.pinMode(6, OUTPUT);    // XP3-3    sensor "ГГ-Радио1."
+  mcp_Out2.pinMode(7, OUTPUT);    // XP4-3    sensor "ГГ-Радио2."
   
   mcp_Out2.pinMode(8, OUTPUT);    // XP1- 19 HaSs
   mcp_Out2.pinMode(9, OUTPUT);    // XP1- 17 HaSPTT
@@ -3578,43 +3708,45 @@ modbus registers follow the following format
 	regBank.add(10);    // Реле RL9 XP1 10 Включение микрофона диспетчера
 	regBank.add(11);    // Свободен J24 - 2 
 	regBank.add(12);    // Свободен J24 - 1 
-	regBank.add(13);    // XP8 - 2   Sence Тангента ножная
+	regBank.add(13);    // XP8 - 2   sensor Тангента ножная
 	regBank.add(14);    // XP8 - 1   PTT Тангента ножная
 	regBank.add(15);    // XS1 - 5   PTT Мик
-	regBank.add(16);    // XS1 - 6   Sence Мик
+	regBank.add(16);    // XS1 - 6   sensor Мик
  
 	regBank.add(17);    // J8-12     XP7 4 PTT2   Танг. р.
 	regBank.add(18);    // XP1 - 20  HangUp  DCD
-	regBank.add(19);    // J8-11     XP7 2 Sence  Танг. р.
+	regBank.add(19);    // J8-11     XP7 2 sensor  Танг. р.
 	regBank.add(20);    // J8-23     XP7 1 PTT1 Танг. р.
-	regBank.add(21);    // XP2-2     Sence "Маг."  
-	regBank.add(22);    // XP5-3     Sence "ГГC."
-	regBank.add(23);    // XP3-3     Sence "ГГ-Радио1."
-	regBank.add(24);    // XP4-3     Sence "ГГ-Радио2."
+	regBank.add(21);    // XP2-2     sensor "Маг."  
+	regBank.add(22);    // XP5-3     sensor "ГГC."
+	regBank.add(23);    // XP3-3     sensor "ГГ-Радио1."
+	regBank.add(24);    // XP4-3     sensor "ГГ-Радио2."
  
-	regBank.add(25);    // XP1- 19 HaSs      Sence подключения трубки    MTT                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+	regBank.add(25);    // XP1- 19 HaSs      sensor подключения трубки    MTT                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 	regBank.add(26);    // XP1- 17 HaSPTT    CTS DSR вкл.
-	regBank.add(27);    // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
+	regBank.add(27);    // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 	regBank.add(28);    // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
-	regBank.add(29);    // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
+	regBank.add(29);    // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
 	regBank.add(30);    // XP1- 6  HeS1PTT   CTS вкл
-	regBank.add(31);    // XP1- 5  HeS1Rs    Sence подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.add(32);    // XP1- 1  HeS1Ls    Sence подкючения гарнитуры диспетчера
+	regBank.add(31);    // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.add(32);    // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
+	regBank.add(118);   // Флаг индикации многоразовой проверки
+	regBank.add(119);   // 
 	regBank.add(120);   // Флаг индикации возникновения любой ошибки
  
-	regBank.add(121);   // Флаг ошибки сенсора Sence "ГГ-Радио1."  ok!
-	regBank.add(122);   // Флаг ошибки сенсора Sence "ГГ-Радио2."  ok!
+	regBank.add(121);   // Флаг ошибки сенсора sensor "ГГ-Радио1."  ok!
+	regBank.add(122);   // Флаг ошибки сенсора sensor "ГГ-Радио2."  ok!
 	regBank.add(123);   // Флаг ошибки сенсора подключения трубки
-	regBank.add(124);   // Флаг ошибки сенсора Sence Танг. р. ok!
-	regBank.add(125);   // Флаг ошибки сенсора Sence Танг н. ok!
-	regBank.add(126);   // Флаг ошибки сенсора Sence "Маг."   ok!
+	regBank.add(124);   // Флаг ошибки сенсора sensor Танг. р. ok!
+	regBank.add(125);   // Флаг ошибки сенсора sensor Танг н. ok!
+	regBank.add(126);   // Флаг ошибки сенсора sensor "Маг."   ok!
 	regBank.add(127);   // Флаг ошибки сенсора гарнитуры инструктора с 2 наушниками
 	regBank.add(128);   // Флаг ошибки сенсора гарнитуры инструктора
 	regBank.add(129);   // Флаг ошибки сенсора гарнитуры диспетчера с 2 наушниками
 	regBank.add(130);   // Флаг ошибки сенсора гарнитуры диспетчера
-	regBank.add(131);   // Флаг ошибки сенсора Sence Мик. ok!
-	regBank.add(132);   // Флаг ошибки сенсора Sence "ГГC."   ok!
+	regBank.add(131);   // Флаг ошибки сенсора sensor Мик. ok!
+	regBank.add(132);   // Флаг ошибки сенсора sensor "ГГC."   ok!
 
 	regBank.add(133);   // Флаг ошибки сенсора 
 	regBank.add(134);   // Флаг ошибки сенсора PTT Танг н.  ok!
@@ -3638,7 +3770,7 @@ modbus registers follow the following format
 	regBank.add(151);   // Флаг ошибки включения микрофона инструктора
 	regBank.add(152);   // Флаг ошибки включения микрофона диспетчера
 	regBank.add(153);   // Флаг ошибки XP1 - 20  HangUp  DCD
-	regBank.add(154);   // Флаг ошибки Sence MTT ON
+	regBank.add(154);   // Флаг ошибки sensor MTT ON
 	regBank.add(155);   // Флаг ошибки отключения микрофона гарнитуры диспетчера
 	regBank.add(156);   // Флаг ошибки отключения радиопередачи
 	regBank.add(157);   // Флаг ошибки включения радиопередачи
@@ -3647,21 +3779,22 @@ modbus registers follow the following format
 	regBank.add(160);   // Флаг ошибки динамика гарнитуры диспетчера FrontL
 	regBank.add(161);   // Флаг ошибки динамика гарнитуры диспетчера FrontR
 	regBank.add(162);   // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
-	regBank.add(163);   // Флаг ошибки Sence MTT OFF
+	regBank.add(163);   // Флаг ошибки sensor MTT OFF
 	regBank.add(164);   // Флаг ошибки  MTT PTT OFF (CTS) 
 	regBank.add(165);   // Флаг ошибки  MTT PTT OFF (DSR) 
 	regBank.add(166);   // Флаг ошибки  MTT PTT ON  (CTS) 
 	regBank.add(167);   // Флаг ошибки  MTT PTT ON  (DSR)
 	regBank.add(168);   // Флаг ошибки  MTT HangUp OFF (DCD)
 	regBank.add(169);   // Флаг ошибки  MTT HangUp ON  (DCD)
-	regBank.add(170);   // Флаг ошибки  Sence MTT ON
+	regBank.add(170);   // Флаг ошибки  sensor MTT ON
 	regBank.add(171);   // Флаг ошибки сигнала  LineL MTT
 	regBank.add(172);   // Флаг ошибки analog_ggs ON
-	regBank.add(173);   // Флаг ошибки "Komanda PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";
-	regBank.add(174);   // Флаг ошибки "Komanda PTT2  OFF tangenta ruchnaja (CTS)      Error! - ";
-	regBank.add(175);   // Флаг ошибки "Komanda PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
-	regBank.add(176);   // Флаг ошибки "Komanda PTT2  ON  tangenta ruchnaja (CTS)      Error! - ";
-
+	regBank.add(173);   // Флаг ошибки "Command PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(174);   // Флаг ошибки "Command PTT2  OFF tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(175);   // Флаг ошибки "Command PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(176);   // Флаг ошибки "Command PTT2  ON  tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(177);   // Флаг ошибки сигнала  LineL гарнитуры инструктора 
+	regBank.add(178);   // Флаг ошибки сигнала  LineR гарнитуры инструктора 
 
 
 
@@ -3724,7 +3857,7 @@ modbus registers follow the following format
 	//regBank.add(30042);  // байт 3 прием бит 2 - Камертон   флаг подключения гарнитуры инструктора
 	//regBank.add(30043);  // байт 3 прием бит 3 - Камертон   флаг подключения гарнитуры диспетчера с 2 наушниками
 	//regBank.add(30044);  // байт 3 прием бит 4 - Камертон   флаг подключения гарнитуры диспетчера
-	//regBank.add(30045);  // байт 3 прием бит 5 - Камертон   флаг подключения микрофона XS1 - 6 Sence
+	//regBank.add(30045);  // байт 3 прием бит 5 - Камертон   флаг подключения микрофона XS1 - 6 sensor
 	//regBank.add(30046);  // байт 3 прием бит 6 - Камертон   флаг подключения ГГС
 	//regBank.add(30047);  // байт 3 прием бит 7 - Камертон   "0" 
  // 
@@ -3842,19 +3975,19 @@ modbus registers follow the following format
 	regBank.add(40111);  // адрес секунда adr_Time_Test_second
  
 	regBank.add(40120);  // adr_control_command Адрес передачи комманд на выполнение
-	regBank.add(40121);  // адрес счетчика ошибки сенсора Sence "ГГ-Радио1."  ok!
-	regBank.add(40122);  // адрес счетчика ошибки сенсора Sence "ГГ-Радио2."  ok!
+	regBank.add(40121);  // адрес счетчика ошибки сенсора sensor "ГГ-Радио1."  ok!
+	regBank.add(40122);  // адрес счетчика ошибки сенсора sensor "ГГ-Радио2."  ok!
 	regBank.add(40123);  // адрес счетчика ошибки сенсора подключения трубки
-	regBank.add(40124);  // адрес счетчика ошибки сенсора  Sence Танг. р. ok!
-	regBank.add(40125);  // адрес счетчика ошибки сенсора Sence Танг н. ok!
-	regBank.add(40126);  // адрес счетчика ошибки сенсора Sence "Маг."   ok!
+	regBank.add(40124);  // адрес счетчика ошибки сенсора  sensor Танг. р. ok!
+	regBank.add(40125);  // адрес счетчика ошибки сенсора sensor Танг н. ok!
+	regBank.add(40126);  // адрес счетчика ошибки сенсора sensor "Маг."   ok!
 	regBank.add(40127);  // адрес счетчика ошибки сенсора гарнитуры инструктора с 2 наушниками
 	regBank.add(40128);  // адрес счетчика ошибки сенсора гарнитуры инструктора
 	regBank.add(40129);  // адрес счетчика ошибки сенсора гарнитуры диспетчера с 2 наушниками
 
 	regBank.add(40130);  // адрес счетчика ошибки сенсора гарнитуры диспетчера
-	regBank.add(40131);  // адрес счетчика ошибки сенсора Sence Мик. ok!
-	regBank.add(40132);  // адрес счетчика ошибки сенсора Sence "ГГC."   ok!
+	regBank.add(40131);  // адрес счетчика ошибки сенсора sensor Мик. ok!
+	regBank.add(40132);  // адрес счетчика ошибки сенсора sensor "ГГC."   ok!
 	regBank.add(40133);  // адрес счетчика ошибки сенсора 
 	regBank.add(40134);  // адрес счетчика ошибки сенсора PTT Танг н.  ok!
 	regBank.add(40135);  // адрес счетчика ошибки сенсора PTT Мик ok!
@@ -3877,7 +4010,7 @@ modbus registers follow the following format
 	regBank.add(40151);  // адрес счетчика ошибки включения микрофона инструктора 
 	regBank.add(40152);  // адрес счетчика ошибки включения микрофона диспетчера
 	regBank.add(40153);  // адрес счетчика ошибки XP1 - 20  HangUp  DCD
-	regBank.add(40154);  // адрес счетчика ошибки Sence MTT ON
+	regBank.add(40154);  // адрес счетчика ошибки sensor MTT ON
 	regBank.add(40155);  // адрес счетчика ошибки отключения микрофона гарнитуры диспетчера
 	regBank.add(40156);  // адрес счетчика ошибки отключения радиопередачи
 	regBank.add(40157);  // адрес счетчика ошибки включения радиопередачи
@@ -3886,20 +4019,22 @@ modbus registers follow the following format
 	regBank.add(40160);  // адрес счетчика ошибки динамика гарнитуры диспетчера FrontL
 	regBank.add(40161);  // адрес счетчика ошибки динамика гарнитуры диспетчера FrontR
 	regBank.add(40162);  // адрес счетчика ошибки сигнала  LineL гарнитуры диспетчера 
-	regBank.add(40163);  // адрес счетчика ошибки Sence MTT OFF
-	regBank.add(40164);  // адрес счетчика  MTT PTT OFF (CTS) 
-	regBank.add(40165);  // адрес счетчика  MTT PTT OFF (DSR) 
-	regBank.add(40166);  // адрес счетчика  MTT PTT ON  (CTS) 
-	regBank.add(40167);  // адрес счетчика  MTT PTT ON  (DSR)
-	regBank.add(40168);  // адрес счетчика  MTT HangUp OFF (DCD)
-	regBank.add(40169);  // адрес счетчика  MTT HangUp ON  (DCD)
-	regBank.add(40170);  // адрес счетчика ошибки  Sence MTT ON
+	regBank.add(40163);  // адрес счетчика ошибки sensor MTT OFF
+	regBank.add(40164);  // адрес счетчика ошибки   MTT PTT OFF (CTS) 
+	regBank.add(40165);  // адрес счетчика ошибки   MTT PTT OFF (DSR) 
+	regBank.add(40166);  // адрес счетчика ошибки   MTT PTT ON  (CTS) 
+	regBank.add(40167);  // адрес счетчика ошибки   MTT PTT ON  (DSR)
+	regBank.add(40168);  // адрес счетчика ошибки   MTT HangUp OFF (DCD)
+	regBank.add(40169);  // адрес счетчика ошибки   MTT HangUp ON  (DCD)
+	regBank.add(40170);  // адрес счетчика ошибки  sensor MTT ON
 	regBank.add(40171);  // адрес счетчика ошибки сигнала  LineL MTT
 	regBank.add(40172);  // адрес счетчика ошибки analog_ggs ON
-	regBank.add(40173);  // адрес счетчика "Komanda PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";
-	regBank.add(40174);  // адрес счетчика "Komanda PTT2  OFF tangenta ruchnaja (CTS)      Error! - ";
-	regBank.add(40175);  // адрес счетчика "Komanda PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
-	regBank.add(40176);  // адрес счетчика "Komanda PTT2  ON  tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(40173);  // адрес счетчика ошибки "Command PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(40174);  // адрес счетчика ошибки  "Command PTT2  OFF tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(40175);  // адрес счетчика ошибки  "Command PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(40176);  // адрес счетчика ошибки  "Command PTT2  ON  tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(40177);  // адрес счетчика ошибки сигнала  LineL гарнитуры инструктора 
+	regBank.add(40178);  // адрес счетчика ошибки сигнала  LineR гарнитуры инструктора 
 
 
 	slave._device = &regBank;  
@@ -3988,7 +4123,7 @@ void setup()
 	regs_in[3]= 0x00;                               // 
 //	reg_Kamerton();
 	regBank.set(8,1);                               // Включить питание Камертон
-//	sence_all_off();
+//	sensor_all_off();
 	UpdateRegs();                                   // Обновить информацию в регистрах
 
 	#if FASTADC                                     // Ускорить считывание аналогового канала
@@ -4053,7 +4188,7 @@ void loop()
 	 //Serial.print("--");
 	 //Serial.println(regBank.get(40007),HEX); 
 
-	//Serial.print(	regBank.get(136),HEX);    // XP1- 16 HeS2Rs    Sence подключения гарнитуры инструктора с 2 наушниками
+	//Serial.print(	regBank.get(136),HEX);    // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 	//Serial.print("--");
-	//Serial.println(	regBank.get(137),HEX);    // XP1- 13 HeS2Ls    Sence подключения гарнитуры инструктора 
+	//Serial.println(	regBank.get(137),HEX);    // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
 }

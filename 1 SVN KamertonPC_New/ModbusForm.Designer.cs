@@ -103,6 +103,8 @@ namespace KamertonTest
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button25 = new System.Windows.Forms.Button();
             this.label72 = new System.Windows.Forms.Label();
             this.button24 = new System.Windows.Forms.Button();
             this.label71 = new System.Windows.Forms.Label();
@@ -263,8 +265,24 @@ namespace KamertonTest
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.checkBoxSoundAll = new System.Windows.Forms.CheckBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBoxPTTAll = new System.Windows.Forms.CheckBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.checkBoxSenGGS = new System.Windows.Forms.CheckBox();
@@ -367,24 +385,6 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
-            this.button25 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -493,6 +493,7 @@ namespace KamertonTest
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Многоразовая проверка";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -1320,6 +1321,24 @@ namespace KamertonTest
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Байты обмена с Камертон";
             this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(692, 28);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(54, 20);
+            this.textBox5.TabIndex = 59;
+            this.textBox5.Text = "20";
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(559, 26);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(112, 23);
+            this.button25.TabIndex = 58;
+            this.button25.Text = "Яркость";
+            this.button25.UseVisualStyleBackColor = true;
             // 
             // label72
             // 
@@ -3111,6 +3130,86 @@ namespace KamertonTest
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "Настройка прверки звука";
             // 
+            // checkBox17
+            // 
+            this.checkBox17.AutoSize = true;
+            this.checkBox17.Location = new System.Drawing.Point(6, 247);
+            this.checkBox17.Name = "checkBox17";
+            this.checkBox17.Size = new System.Drawing.Size(102, 19);
+            this.checkBox17.TabIndex = 23;
+            this.checkBox17.Text = "Магнитофон";
+            this.checkBox17.UseVisualStyleBackColor = true;
+            // 
+            // checkBox16
+            // 
+            this.checkBox16.AutoSize = true;
+            this.checkBox16.Location = new System.Drawing.Point(6, 222);
+            this.checkBox16.Name = "checkBox16";
+            this.checkBox16.Size = new System.Drawing.Size(48, 19);
+            this.checkBox16.TabIndex = 22;
+            this.checkBox16.Text = "ГГС";
+            this.checkBox16.UseVisualStyleBackColor = true;
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Location = new System.Drawing.Point(6, 197);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(89, 19);
+            this.checkBox15.TabIndex = 21;
+            this.checkBox15.Text = "ГГ Радио 2";
+            this.checkBox15.UseVisualStyleBackColor = true;
+            // 
+            // checkBox14
+            // 
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.Location = new System.Drawing.Point(6, 172);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(89, 19);
+            this.checkBox14.TabIndex = 20;
+            this.checkBox14.Text = "ГГ Радио 1";
+            this.checkBox14.UseVisualStyleBackColor = true;
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Location = new System.Drawing.Point(6, 147);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(89, 19);
+            this.checkBox13.TabIndex = 19;
+            this.checkBox13.Text = "Микрофон";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(6, 122);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(51, 19);
+            this.checkBox12.TabIndex = 18;
+            this.checkBox12.Text = "МТТ";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Location = new System.Drawing.Point(6, 97);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(158, 19);
+            this.checkBox11.TabIndex = 17;
+            this.checkBox11.Text = "Гарнитура диспетчера";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(6, 72);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(163, 19);
+            this.checkBox10.TabIndex = 16;
+            this.checkBox10.Text = "Гарнитура инструктора";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
             // checkBoxSoundAll
             // 
             this.checkBoxSoundAll.AutoSize = true;
@@ -3140,6 +3239,86 @@ namespace KamertonTest
             this.groupBox18.TabIndex = 1;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "Настройка прверки управления";
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(6, 247);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(152, 19);
+            this.checkBox8.TabIndex = 22;
+            this.checkBox8.Text = "РТТ тангента ножная";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(6, 222);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(76, 19);
+            this.checkBox7.TabIndex = 21;
+            this.checkBox7.Text = "РТТ МТТ";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(6, 197);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(119, 19);
+            this.checkBox6.TabIndex = 20;
+            this.checkBox6.Text = "РТТ диспетчера";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(6, 172);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(124, 19);
+            this.checkBox5.TabIndex = 19;
+            this.checkBox5.Text = "РТТ инструктора";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(6, 147);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(117, 19);
+            this.checkBox4.TabIndex = 18;
+            this.checkBox4.Text = "Трубка поднята";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(6, 122);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(154, 19);
+            this.checkBox3.TabIndex = 17;
+            this.checkBox3.Text = "PTT2 Тангента ручная";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(6, 97);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(154, 19);
+            this.checkBox2.TabIndex = 16;
+            this.checkBox2.Text = "PTT1 Тангента ручная";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(6, 72);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(114, 19);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.Text = "PTT Микрофон";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // checkBoxPTTAll
             // 
@@ -4152,184 +4331,6 @@ namespace KamertonTest
             // 
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
-            // 
-            // button25
-            // 
-            this.button25.Location = new System.Drawing.Point(559, 26);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(112, 23);
-            this.button25.TabIndex = 58;
-            this.button25.Text = "Яркость";
-            this.button25.UseVisualStyleBackColor = true;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(692, 28);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(54, 20);
-            this.textBox5.TabIndex = 59;
-            this.textBox5.Text = "20";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 72);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(114, 19);
-            this.checkBox1.TabIndex = 15;
-            this.checkBox1.Text = "PTT Микрофон";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(6, 97);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(154, 19);
-            this.checkBox2.TabIndex = 16;
-            this.checkBox2.Text = "PTT1 Тангента ручная";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(6, 122);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(154, 19);
-            this.checkBox3.TabIndex = 17;
-            this.checkBox3.Text = "PTT2 Тангента ручная";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(6, 147);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(117, 19);
-            this.checkBox4.TabIndex = 18;
-            this.checkBox4.Text = "Трубка поднята";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(6, 172);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(124, 19);
-            this.checkBox5.TabIndex = 19;
-            this.checkBox5.Text = "РТТ инструктора";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(6, 197);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(119, 19);
-            this.checkBox6.TabIndex = 20;
-            this.checkBox6.Text = "РТТ диспетчера";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(6, 222);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(76, 19);
-            this.checkBox7.TabIndex = 21;
-            this.checkBox7.Text = "РТТ МТТ";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(6, 247);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(152, 19);
-            this.checkBox8.TabIndex = 22;
-            this.checkBox8.Text = "РТТ тангента ножная";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(6, 72);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(163, 19);
-            this.checkBox10.TabIndex = 16;
-            this.checkBox10.Text = "Гарнитура инструктора";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(6, 97);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(158, 19);
-            this.checkBox11.TabIndex = 17;
-            this.checkBox11.Text = "Гарнитура диспетчера";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // checkBox12
-            // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(6, 122);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(51, 19);
-            this.checkBox12.TabIndex = 18;
-            this.checkBox12.Text = "МТТ";
-            this.checkBox12.UseVisualStyleBackColor = true;
-            // 
-            // checkBox13
-            // 
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(6, 147);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(89, 19);
-            this.checkBox13.TabIndex = 19;
-            this.checkBox13.Text = "Микрофон";
-            this.checkBox13.UseVisualStyleBackColor = true;
-            // 
-            // checkBox14
-            // 
-            this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(6, 172);
-            this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(89, 19);
-            this.checkBox14.TabIndex = 20;
-            this.checkBox14.Text = "ГГ Радио 1";
-            this.checkBox14.UseVisualStyleBackColor = true;
-            // 
-            // checkBox15
-            // 
-            this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(6, 197);
-            this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(89, 19);
-            this.checkBox15.TabIndex = 21;
-            this.checkBox15.Text = "ГГ Радио 2";
-            this.checkBox15.UseVisualStyleBackColor = true;
-            // 
-            // checkBox16
-            // 
-            this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(6, 222);
-            this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(48, 19);
-            this.checkBox16.TabIndex = 22;
-            this.checkBox16.Text = "ГГС";
-            this.checkBox16.UseVisualStyleBackColor = true;
-            // 
-            // checkBox17
-            // 
-            this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(6, 247);
-            this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(102, 19);
-            this.checkBox17.TabIndex = 23;
-            this.checkBox17.Text = "Магнитофон";
-            this.checkBox17.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

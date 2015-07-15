@@ -56,3 +56,5 @@
 	regBank.add(174);   // Флаг ошибки "Komanda PTT2  OFF tangenta ruchnaja (CTS)      Error! - ";
 	regBank.add(175);   // Флаг ошибки "Komanda PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
 	regBank.add(176);   // Флаг ошибки "Komanda PTT2  ON  tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(177);   // Флаг ошибки сигнала  LineL гарнитуры инструктора 
+	regBank.add(178);   // Флаг ошибки сигнала  LineR гарнитуры инструктора 
