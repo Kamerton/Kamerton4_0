@@ -1,0 +1,58 @@
+	regBank.add(121);   // Флаг ошибки сенсора Sence "ГГ-Радио1."  ok!
+	regBank.add(122);   // Флаг ошибки сенсора Sence "ГГ-Радио2."  ok!
+	regBank.add(123);   // Флаг ошибки сенсора подключения трубки
+	regBank.add(124);   // Флаг ошибки сенсора Sence Танг. р. ok!
+	regBank.add(125);   // Флаг ошибки сенсора Sence Танг н. ok!
+	regBank.add(126);   // Флаг ошибки сенсора Sence "Маг."   ok!
+	regBank.add(127);   // Флаг ошибки сенсора гарнитуры инструктора с 2 наушниками
+	regBank.add(128);   // Флаг ошибки сенсора гарнитуры инструктора
+	regBank.add(129);   // Флаг ошибки сенсора гарнитуры диспетчера с 2 наушниками
+	regBank.add(130);   // Флаг ошибки сенсора гарнитуры диспетчера
+	regBank.add(131);   // Флаг ошибки сенсора Sence Мик. ok!
+	regBank.add(132);   // Флаг ошибки сенсора Sence "ГГC."   ok!
+
+	regBank.add(133);   // Флаг ошибки сенсора 
+	regBank.add(134);   // Флаг ошибки сенсора PTT Танг н.  ok!
+	regBank.add(135);   // Флаг ошибки сенсора PTT Мик ok!
+
+	regBank.add(136);   // Флаг ошибки  PTT2 Танг. р. ok!
+	regBank.add(137);   // Флаг ошибки  HangUp  DCD  ok!
+	regBank.add(138);   // Флаг ошибки  PTT1 Танг. р. ok!
+	regBank.add(139);   // Флаг ошибки отключения микрофона гарнитуры инструктора
+	regBank.add(140);   // Флаг ошибки отключения PTT гарнитуры инструктора 
+	regBank.add(141);   // Флаг ошибки динамика гарнитуры инструктора FrontL
+	regBank.add(142);   // Флаг ошибки динамика гарнитуры инструктора FrontR
+	regBank.add(143);   // Флаг ошибки сигнала  LineL гарнитуры инструктора 
+	regBank.add(144);   // Флаг ошибки analog_mag_radio
+	regBank.add(145);   // Флаг ошибки analog_mag_phone
+	regBank.add(146);   // Флаг ошибки analog_ggs OFF
+	regBank.add(147);   // Флаг ошибки analog_gg_radio1
+	regBank.add(148);   // Флаг ошибки analog_gg_radio2
+	regBank.add(149);   // Флаг ошибки сенсора микрофона
+	regBank.add(150);   // Флаг ошибки Mag phone on
+	regBank.add(151);   // Флаг ошибки включения микрофона инструктора
+	regBank.add(152);   // Флаг ошибки включения микрофона диспетчера
+	regBank.add(153);   // Флаг ошибки XP1 - 20  HangUp  DCD
+	regBank.add(154);   // Флаг ошибки Sence MTT ON
+	regBank.add(155);   // Флаг ошибки отключения микрофона гарнитуры диспетчера
+	regBank.add(156);   // Флаг ошибки отключения радиопередачи
+	regBank.add(157);   // Флаг ошибки включения радиопередачи
+	regBank.add(158);   // Флаг ошибки отключения PTT гарнитуры диспетчера
+	regBank.add(159);   // Флаг ошибки отключения микрофона гарнитуры диспетчера
+	regBank.add(160);   // Флаг ошибки динамика гарнитуры диспетчера FrontL
+	regBank.add(161);   // Флаг ошибки динамика гарнитуры диспетчера FrontR
+	regBank.add(162);   // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
+	regBank.add(163);   // Флаг ошибки Sence MTT OFF
+	regBank.add(164);   // Флаг ошибки  MTT PTT OFF (CTS) 
+	regBank.add(165);   // Флаг ошибки  MTT PTT OFF (DSR) 
+	regBank.add(166);   // Флаг ошибки  MTT PTT ON  (CTS) 
+	regBank.add(167);   // Флаг ошибки  MTT PTT ON  (DSR)
+	regBank.add(168);   // Флаг ошибки  MTT HangUp OFF (DCD)
+	regBank.add(169);   // Флаг ошибки  MTT HangUp ON  (DCD)
+	regBank.add(170);   // Флаг ошибки  Sence MTT ON
+	regBank.add(171);   // Флаг ошибки сигнала  LineL MTT
+	regBank.add(172);   // Флаг ошибки analog_ggs ON
+	regBank.add(173);   // Флаг ошибки "Komanda PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(174);   // Флаг ошибки "Komanda PTT2  OFF tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(175);   // Флаг ошибки "Komanda PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
+	regBank.add(176);   // Флаг ошибки "Komanda PTT2  ON  tangenta ruchnaja (CTS)      Error! - ";
