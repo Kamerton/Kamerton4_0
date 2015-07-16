@@ -213,62 +213,62 @@ const unsigned int adr_set_time           PROGMEM       = 36;    // адрес флаг у
 
 //---------------------------Тексты файлов  ---------------------------------------------------
 const char  txt_all_on0[]   PROGMEM            = "";       
-const char  txt_all_on1[]   PROGMEM            = " ****** Test sensor ON start! ******"                    ;                           
-const char  txt_all_on2[]   PROGMEM            = "Sensor MTT                     XP1- 19 HaSs              Error! - ";                         
-const char  txt_all_on3[]   PROGMEM            = "Sensor MTT                     XP1- 19 HaSs     ";
-const char  txt_all_on4[]   PROGMEM            = "ON - Pass"                                                ;
-const char  txt_all_on5[]   PROGMEM            = "Sensor Tangenta ruchnaja       XP7 - 2                   Error! - ";    
-const char  txt_all_on6[]   PROGMEM            = "Sensor Tangenta ruchnaja       XP7 - 2          ";    
-const char  txt_all_on7[]   PROGMEM            = "Sensor garnitura dispetchera   XP1 - 1  HeS1Ls           Error! - ";         
-const char  txt_all_on8[]   PROGMEM            = "Sensor tangenta nognaja        XP8 - 2                   Error! - ";          
-const char  txt_all_on9[]   PROGMEM            = "Sensor tang. nogn.             XP8 - 2          ";      
-const char  txt_all_on10[]  PROGMEM            = "Sensor garnitura dispetchera   XP1 - 1  HeS1Ls  ";        
-const char  txt_all_on11[]  PROGMEM            = "Sensor garnitura headset instructor 2 XP1 - 16 HeS2Rs           Error! - ";      
-const char  txt_all_on12[]  PROGMEM            = "Sensor garnitura headset instructor 2 XP1 - 16 HeS2Rs  ";                         
-const char  txt_all_on13[]  PROGMEM            = "Sensor microphone              XS1 - 6                   Error! - ";
-const char  txt_all_on14[]  PROGMEM            = "Sensor garnitura headset instructor   XP1 - 13 HeS2Ls           Error! - ";
-const char  txt_all_on15[]  PROGMEM            = "Sensor garnitura headset instructor   XP1 - 13 HeS2Ls  ";    
-const char  txt_all_on16[]  PROGMEM            = "Sensor microphone              XS1 - 6          ";    
-const char  txt_all_on17[]  PROGMEM            = "Sensor garnitura dispetchera 2 XP1 - 13 HeS2Ls           Error! - ";         
-const char  txt_all_on18[]  PROGMEM            = "Sensor garnitura dispetchera 2 XP1 - 13 HeS2Ls  ";          
-const char  txt_all_on19[]  PROGMEM            = "Microphone headset instructor Sw.    XP1 - 12 HeS2e            Error! - ";        
-const char  txt_all_on20[]  PROGMEM            = "Microphone headset instructor Sw.    XP1 - 12 HeS2e   ";         
-const char  txt_all_on21[]  PROGMEM            = "Radioperedacha ON                                       Error! - ";          
-const char  txt_all_on22[]  PROGMEM            = "Radioperedacha                                 ";        
-const char  txt_all_on23[]  PROGMEM            = "Microphone dispetchera ON                               Error! - ";         
-const char  txt_all_on24[]  PROGMEM            = "Microphone dispetchera        XP1 10           ";          
+const char  txt_all_on1[]   PROGMEM            = " ****** Test sensor ON start! ******";                           
+const char  txt_all_on2[]   PROGMEM            = "Sensor MTT                          XP1- 19 HaSs                     Error! - ";                         
+const char  txt_all_on3[]   PROGMEM            = "Sensor MTT                          XP1- 19 HaSs            ";
+const char  txt_all_on4[]   PROGMEM            = "ON  - Pass"                                                      ;
+const char  txt_all_on5[]   PROGMEM            = "Sensor Tangenta ruchnaja            XP7 - 2                          Error! - ";    
+const char  txt_all_on6[]   PROGMEM            = "Sensor Tangenta ruchnaja            XP7 - 2                 ";    
+const char  txt_all_on7[]   PROGMEM            = "Sensor headset dispatcher           XP1 - 1  HeS1Ls                  Error! - ";         
+const char  txt_all_on8[]   PROGMEM            = "Sensor tangenta nognaja             XP8 - 2                          Error! - ";          
+const char  txt_all_on9[]   PROGMEM            = "Sensor tang. nogn.                  XP8 - 2                 ";      
+const char  txt_all_on10[]  PROGMEM            = "Sensor headset dispatcher           XP1 - 1  HeS1Ls         ";        
+const char  txt_all_on11[]  PROGMEM            = "Sensor headset instructor 2         XP1 - 16 HeS2Rs                  Error! - ";      
+const char  txt_all_on12[]  PROGMEM            = "Sensor headset instructor 2         XP1 - 16 HeS2Rs         ";                         
+const char  txt_all_on13[]  PROGMEM            = "Sensor microphone                   XS1 - 6                          Error! - ";
+const char  txt_all_on14[]  PROGMEM            = "Sensor headset instructor           XP1 - 13 HeS2Ls                  Error! - ";
+const char  txt_all_on15[]  PROGMEM            = "Sensor headset instructor           XP1 - 13 HeS2Ls         ";    
+const char  txt_all_on16[]  PROGMEM            = "Sensor microphone                   XS1 - 6                 ";    
+const char  txt_all_on17[]  PROGMEM            = "Sensor headset dispatcher 2         XP1 - 13 HeS2Ls                  Error! - ";         
+const char  txt_all_on18[]  PROGMEM            = "Sensor headset dispatcher 2         XP1 - 13 HeS2Ls         ";          
+const char  txt_all_on19[]  PROGMEM            = "Microphone headset instructor       XP1 - 12 HeS2e                   Error! - ";        
+const char  txt_all_on20[]  PROGMEM            = "Microphone headset instructor       XP1 - 12 HeS2e          ";         
+const char  txt_all_on21[]  PROGMEM            = "Radioperedacha ON                                                    Error! - ";          
+const char  txt_all_on22[]  PROGMEM            = "Radioperedacha                                              ";        
+const char  txt_all_on23[]  PROGMEM            = "Microphone dispatcher ON                                             Error! - ";         
+const char  txt_all_on24[]  PROGMEM            = "Microphone dispatcher               XP1 10                  ";          
 
 const char  txt_all_off0[]   PROGMEM           = "";    
-const char  txt_all_off1[]   PROGMEM           = " ****** Test sensor OFF start! ******"          ;                           
-const char  txt_all_off2[]   PROGMEM           = "Sensor MTT                     XP1- 19 HaSs              Error! - ";                         
-const char  txt_all_off3[]   PROGMEM           = "Sensor MTT                     XP1- 19 HaSs    ";
+const char  txt_all_off1[]   PROGMEM           = " ****** Test sensor OFF start! ******" ;                           
+const char  txt_all_off2[]   PROGMEM           = "Sensor MTT                          XP1- 19 HaSs       Error! - ";                         
+const char  txt_all_off3[]   PROGMEM           = "Sensor MTT                          XP1- 19 HaSs            ";
 const char  txt_all_off4[]   PROGMEM           = "OFF - Pass"                                               ;                           
-const char  txt_all_off5[]   PROGMEM           = "Sensor tangenta ruchnaja       XP7 - 2                   Error! - ";                         
-const char  txt_all_off6[]   PROGMEM           = "Sensor tangenta ruchnaja       XP7 - 2         ";
-const char  txt_all_off7[]   PROGMEM           = "Sensor tangenta nognaja        XP8 - 2                   Error! - ";                           
-const char  txt_all_off8[]   PROGMEM           = "Sensor tangenta nognaja        XP8 - 2         ";                         
-const char  txt_all_off9[]   PROGMEM           = "Sensor garnitura headset instructor 2 XP1- 16 HeS2Rs            Error! - ";
-const char  txt_all_off10[]  PROGMEM           = "Sensor garnitura headset instructor 2 XP1- 16 HeS2Rs  ";                           
-const char  txt_all_off11[]  PROGMEM           = "Sensor garnitura headset instructor   XP1- 13 HeS2Ls            Error! - ";                         
-const char  txt_all_off12[]  PROGMEM           = "Sensor garnitura headset instructor   XP1- 13 HeS2Ls  ";
-const char  txt_all_off13[]  PROGMEM           = "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls            Error! - ";                           
-const char  txt_all_off14[]  PROGMEM           = "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  ";                         
-const char  txt_all_off15[]  PROGMEM           = "Sensor garnitura dispetchera   XP1- 1  HeS1Ls            Error! - ";
-const char  txt_all_off16[]  PROGMEM           = "Sensor garnitura dispetchera   XP1- 1  HeS1Ls  ";                           
-const char  txt_all_off17[]  PROGMEM           = "Sensor microphone              XS1 - 6                   Error! - ";                         
-const char  txt_all_off18[]  PROGMEM           = "Sensor microphone              XS1 - 6         ";
-const char  txt_all_off19[]  PROGMEM           = "Microphone headset instructor Sw.    XP1 12 HeS2e              Error! - ";                           
-const char  txt_all_off20[]  PROGMEM           = "Microphone headset instructor Sw.    XP1 12 HeS2e    ";                         
-const char  txt_all_off21[]  PROGMEM           = "Radioperedacha OFF                                      Error! - ";
-const char  txt_all_off22[]  PROGMEM           = "Radioperedacha                                ";                           
-const char  txt_all_off23[]  PROGMEM           = "Microphone dispetchera OFF    XP1 10                    Error! - ";                         
-const char  txt_all_off24[]  PROGMEM           = "Microphone dispetchera                        ";
+const char  txt_all_off5[]   PROGMEM           = "Sensor tangenta ruchnaja            XP7 - 2            Error! - ";                         
+const char  txt_all_off6[]   PROGMEM           = "Sensor tangenta ruchnaja            XP7 - 2                 ";
+const char  txt_all_off7[]   PROGMEM           = "Sensor tangenta nognaja             XP8 - 2            Error! - ";                           
+const char  txt_all_off8[]   PROGMEM           = "Sensor tangenta nognaja             XP8 - 2                 ";                         
+const char  txt_all_off9[]   PROGMEM           = "Sensor headset headset instructor 2 XP1- 16 HeS2Rs     Error! - ";
+const char  txt_all_off10[]  PROGMEM           = "Sensor headset headset instructor 2 XP1- 16 HeS2Rs          ";                           
+const char  txt_all_off11[]  PROGMEM           = "Sensor headset headset instructor   XP1- 13 HeS2Ls     Error! - ";                         
+const char  txt_all_off12[]  PROGMEM           = "Sensor headset headset instructor   XP1- 13 HeS2Ls          ";
+const char  txt_all_off13[]  PROGMEM           = "Sensor headset dispatcher 2         XP1- 13 HeS2Ls     Error! - ";                           
+const char  txt_all_off14[]  PROGMEM           = "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          ";                         
+const char  txt_all_off15[]  PROGMEM           = "Sensor headset dispatcher           XP1- 1  HeS1Ls     Error! - ";
+const char  txt_all_off16[]  PROGMEM           = "Sensor headset dispatcher           XP1- 1  HeS1Ls          ";                           
+const char  txt_all_off17[]  PROGMEM           = "Sensor microphone                   XS1 - 6            Error! - ";                         
+const char  txt_all_off18[]  PROGMEM           = "Sensor microphone                   XS1 - 6                 ";
+const char  txt_all_off19[]  PROGMEM           = "Microphone headset instructor Sw.   XP1 12 HeS2e       Error! - ";                           
+const char  txt_all_off20[]  PROGMEM           = "Microphone headset instructor Sw.   XP1 12 HeS2e            ";                         
+const char  txt_all_off21[]  PROGMEM           = "Radioperedacha OFF                                     Error! - ";
+const char  txt_all_off22[]  PROGMEM           = "Radioperedacha                                              ";                           
+const char  txt_all_off23[]  PROGMEM           = "Microphone dispatcher OFF           XP1 10             Error! - ";                         
+const char  txt_all_off24[]  PROGMEM           = "Microphone dispatcher                                       ";
 //**********************************************************************************************************
 const char  txt_test_all0[]  PROGMEM           = " ****** Test headset instructor start! ******";
-const char  txt_test_all1[]  PROGMEM           = "Signal headset instructor microphone 30mv   ON"                 ;
-const char  txt_test_all2[]  PROGMEM           = "Headset instructor Microphone               ON                  Error! - ";
-const char  txt_test_all3[]  PROGMEM           = "Microphone headset instructor               ON            - Pass";
-const char  txt_test_all4[]  PROGMEM           = "Microphone headset instructor signal        ON"                 ;
+const char  txt_test_all1[]  PROGMEM           = "Signal headset instructor microphone 30mv   ON"                  ;
+const char  txt_test_all2[]  PROGMEM           = "Headset instructor Microphone               ON         Error! - ";
+const char  txt_test_all3[]  PROGMEM           = "Microphone headset instructor               ON                  - Pass";
+const char  txt_test_all4[]  PROGMEM           = "Microphone headset instructor signal        ON"                  ;
 const char  txt_test_all5[]  PROGMEM           = "";
 const char  txt_test_all6[]  PROGMEM           = "";
 const char  txt_test_all7[]  PROGMEM           = "";
@@ -280,17 +280,17 @@ const char  txt_test_all11[]  PROGMEM          = "Command sensor OFF nognaja ruc
 const char  txt_test_all12[]  PROGMEM          = "Command PTT1   OFF nognaja ruchnaja send!"                ;
 const char  txt_test_all13[]  PROGMEM          = "Command sensor ON  nognaja ruchnaja send!"                ;
 const char  txt_test_all14[]  PROGMEM          = "Command PTT1   ON  nognaja ruchnaja send!"                ;
-const char  txt_test_all15[]  PROGMEM          = "Command PTT1   OFF nognaja ruchnaja (CTS)                Error! - ";
-const char  txt_test_all16[]  PROGMEM          = "Command PTT1   OFF nognaja ruchnaja (CTS)          - Pass";
-const char  txt_test_all17[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)               Error! - ";
-const char  txt_test_all18[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)         - Pass";
+const char  txt_test_all15[]  PROGMEM          = "Command PTT1   OFF nognaja ruchnaja (CTS)              Error! - ";
+const char  txt_test_all16[]  PROGMEM          = "Command PTT1   OFF nognaja ruchnaja (CTS)                       - Pass";
+const char  txt_test_all17[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)             Error! - ";
+const char  txt_test_all18[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)                      - Pass";
 const char  txt_test_all19[]  PROGMEM          = "";
 
-const char  txt_test_all20[]  PROGMEM          = " ****** Test dispetchera start! ******"                  ;
-const char  txt_test_all21[]  PROGMEM          = "Signal microphone dispetchera 30mv  ON"                  ;
-const char  txt_test_all22[]  PROGMEM          = "Microphone dispetchera              ON                  Error! - ";
-const char  txt_test_all23[]  PROGMEM          = "Microphone dispetchera              ON            - Pass";
-const char  txt_test_all24[]  PROGMEM          = "Microphone dispetchera signal       ON"                  ;
+const char  txt_test_all20[]  PROGMEM          = " ****** Test dispatcher start! ******"                  ;
+const char  txt_test_all21[]  PROGMEM          = "Signal microphone dispatcher 30mv  ON"                  ;
+const char  txt_test_all22[]  PROGMEM          = "Microphone dispatcher              ON                  Error! - ";
+const char  txt_test_all23[]  PROGMEM          = "Microphone dispatcher              ON                           - Pass";
+const char  txt_test_all24[]  PROGMEM          = "Microphone dispatcher signal       ON"                  ;
 const char  txt_test_all25[]  PROGMEM          = "";
 const char  txt_test_all26[]  PROGMEM          = "";
 const char  txt_test_all27[]  PROGMEM          = "";
@@ -299,8 +299,8 @@ const char  txt_test_all29[]  PROGMEM          = "";
 
 const char  txt_test_all30[]  PROGMEM          = " ****** Test MTT start! ******"                          ;
 const char  txt_test_all31[]  PROGMEM          = "Signal microphone MTT 60mv          ON"                  ;
-const char  txt_test_all32[]  PROGMEM          = "Microphone MTT                      ON                  Error! - ";
-const char  txt_test_all33[]  PROGMEM          = "Microphone MTT                      ON            - Pass";
+const char  txt_test_all32[]  PROGMEM          = "Microphone MTT                      ON                 Error! - ";
+const char  txt_test_all33[]  PROGMEM          = "Microphone MTT                      ON                          - Pass";
 const char  txt_test_all34[]  PROGMEM          = "Microphone MTT                      ON"                  ;
 const char  txt_test_all35[]  PROGMEM          = "";
 const char  txt_test_all36[]  PROGMEM          = "";
@@ -361,15 +361,15 @@ const char  txt_test_all63[]  PROGMEM          = "Command PTT2   OFF tangenta ru
 const char  txt_test_all64[]  PROGMEM          = "Command sensor ON  tangenta ruchnaja send!"               ;
 const char  txt_test_all65[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja send!"               ;
 const char  txt_test_all66[]  PROGMEM          = "Command PTT2   ON  tangenta ruchnaja send!"               ;
-const char  txt_test_all67[]  PROGMEM          = "Command PTT1   OFF tangenta ruchnaja (CTS)                      Error! - ";
-const char  txt_test_all68[]  PROGMEM          = "Command PTT1   OFF tangenta ruchnaja (CTS)                - Pass";
-const char  txt_test_all69[]  PROGMEM          = "Command PTT2   OFF tangenta ruchnaja (DCR)                      Error! - ";
+const char  txt_test_all67[]  PROGMEM          = "Command PTT1   OFF tangenta ruchnaja (CTS)             Error! - ";
+const char  txt_test_all68[]  PROGMEM          = "Command PTT1   OFF tangenta ruchnaja (CTS)                      - Pass";
+const char  txt_test_all69[]  PROGMEM          = "Command PTT2   OFF tangenta ruchnaja (DCR)             Error! - ";
 
-const char  txt_test_all70[]  PROGMEM          = "Command PTT2   OFF tangenta ruchnaja (DCR)                - Pass";
-const char  txt_test_all71[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)                      Error! - ";
-const char  txt_test_all72[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)                - Pass";
-const char  txt_test_all73[]  PROGMEM          = "Command PTT2   ON  tangenta ruchnaja (DCR)                      Error! - ";
-const char  txt_test_all74[]  PROGMEM          = "Command PTT2   ON  tangenta ruchnaja (DCR)                - Pass";
+const char  txt_test_all70[]  PROGMEM          = "Command PTT2   OFF tangenta ruchnaja (DCR)                      - Pass";
+const char  txt_test_all71[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)             Error! - ";
+const char  txt_test_all72[]  PROGMEM          = "Command PTT1   ON  tangenta ruchnaja (CTS)                      - Pass";
+const char  txt_test_all73[]  PROGMEM          = "Command PTT2   ON  tangenta ruchnaja (DCR)             Error! - ";
+const char  txt_test_all74[]  PROGMEM          = "Command PTT2   ON  tangenta ruchnaja (DCR)                      - Pass";
 const char  txt_test_all75[]  PROGMEM          = "";
 const char  txt_test_all76[]  PROGMEM          = "";
 const char  txt_test_all77[]  PROGMEM          = "";
@@ -385,73 +385,73 @@ const char  txt_instr_off0[]  PROGMEM          = "Command sensor OFF headset ins
 const char  txt_instr_off1[]  PROGMEM          = "Command sensor OFF headset instructor 2          send!"                   ; // OK
 const char  txt_instr_off2[]  PROGMEM          = "Command PTT    OFF headset instructor            send!"                   ; // ok
 const char  txt_instr_off3[]  PROGMEM          = "Command sensor OFF headset instructor 2                         Error! - ";
-const char  txt_instr_off4[]  PROGMEM          = "Command sensor OFF headset instructor 2                   - Pass";
+const char  txt_instr_off4[]  PROGMEM          = "Command sensor OFF headset instructor 2                         - Pass";
 const char  txt_instr_off5[]  PROGMEM          = "Command sensor OFF headset instructor                           Error! - ";
-const char  txt_instr_off6[]  PROGMEM          = "Command sensor OFF headset instructor                     - Pass";
+const char  txt_instr_off6[]  PROGMEM          = "Command sensor OFF headset instructor                           - Pass";
 const char  txt_instr_off7[]  PROGMEM          = "Command sensor OFF microphone                                   Error! - ";
-const char  txt_instr_off8[]  PROGMEM          = "Command sensor OFF microphone                             - Pass";
+const char  txt_instr_off8[]  PROGMEM          = "Command sensor OFF microphone                                   - Pass";
 const char  txt_instr_off9[]  PROGMEM          = "Command        OFF PTT headset instructor (CTS)                 Error! - ";
-const char  txt_instr_off10[] PROGMEM          = "Command        OFF PTT headset instructor (CTS)           - Pass";
+const char  txt_instr_off10[] PROGMEM          = "Command        OFF PTT headset instructor (CTS)                 - Pass";
 
 const char  txt_instr_on0[]  PROGMEM           = "Command sensor ON  headset instructor            send!"                   ; // ok
 const char  txt_instr_on1[]  PROGMEM           = "Command sensor ON  headset instructor 2          send!"                   ; // ok
 const char  txt_instr_on2[]  PROGMEM           = "Command sensor ON  headset instructor 2                         Error! - ";
-const char  txt_instr_on3[]  PROGMEM           = "Command sensor ON  headset instructor 2                   - Pass";
+const char  txt_instr_on3[]  PROGMEM           = "Command sensor ON  headset instructor 2                         - Pass";
 const char  txt_instr_on4[]  PROGMEM           = "Command sensor ON  headset instructor                           Error! - ";
-const char  txt_instr_on5[]  PROGMEM           = "Command sensor ON  headset instructor                     - Pass";
+const char  txt_instr_on5[]  PROGMEM           = "Command sensor ON  headset instructor                           - Pass";
 const char  txt_instr_on6[]  PROGMEM           = "Command        ON  PTT headset instructor (CTS)                 Error! - ";
-const char  txt_instr_on7[]  PROGMEM           = "Command        ON  PTT headset instructor (CTS)           - Pass";
+const char  txt_instr_on7[]  PROGMEM           = "Command        ON  PTT headset instructor (CTS)                 - Pass";
 const char  txt_instr_on8[]  PROGMEM           = "Command        ON  PTT headset instructor (CTS)  send!";
 
 
-const char  txt_disp_off0[]  PROGMEM           = "Command sensor OFF dispetchera   send!";
-const char  txt_disp_off1[]  PROGMEM           = "Command sensor OFF dispetchera 2 send!";
-const char  txt_disp_off2[]  PROGMEM           = "Command PTT    OFF dispetchera   send!";
-const char  txt_disp_off3[]  PROGMEM           = "Command sensor OFF dispetchera 2                                Error! - ";
-const char  txt_disp_off4[]  PROGMEM           = "Command sensor OFF dispetchera 2                          - Pass";
-const char  txt_disp_off5[]  PROGMEM           = "Command sensor OFF dispetchera                                  Error! - ";
-const char  txt_disp_off6[]  PROGMEM           = "Command sensor OFF dispetchera                            - Pass";
+const char  txt_disp_off0[]  PROGMEM           = "Command sensor OFF dispatcher   send!";
+const char  txt_disp_off1[]  PROGMEM           = "Command sensor OFF dispatcher 2 send!";
+const char  txt_disp_off2[]  PROGMEM           = "Command PTT    OFF dispatcher   send!";
+const char  txt_disp_off3[]  PROGMEM           = "Command sensor OFF dispatcher 2                                Error! - ";
+const char  txt_disp_off4[]  PROGMEM           = "Command sensor OFF dispatcher 2                                 - Pass";
+const char  txt_disp_off5[]  PROGMEM           = "Command sensor OFF dispatcher                                  Error! - ";
+const char  txt_disp_off6[]  PROGMEM           = "Command sensor OFF dispatcher                                   - Pass";
 const char  txt_disp_off7[]  PROGMEM           = "Command sensor OFF microphone                                   Error! - ";
-const char  txt_disp_off8[]  PROGMEM           = "Command sensor OFF microphone                             - Pass";
-const char  txt_disp_off9[]  PROGMEM           = "Command        OFF PTT dispetchera (CTS)                        Error! - ";
-const char  txt_disp_off10[] PROGMEM           = "Command        OFF PTT dispetchera (CTS)                  - Pass";
+const char  txt_disp_off8[]  PROGMEM           = "Command sensor OFF microphone                                   - Pass";
+const char  txt_disp_off9[]  PROGMEM           = "Command        OFF PTT dispatcher (CTS)                        Error! - ";
+const char  txt_disp_off10[] PROGMEM           = "Command        OFF PTT dispatcher (CTS)                         - Pass";
 
-const char  txt_disp_on0[]   PROGMEM           = "Command sensor ON  dispetchera    send!";
-const char  txt_disp_on1[]   PROGMEM           = "Command sensor ON  dispetchera 2  send!";
-const char  txt_disp_on2[]   PROGMEM           = "Command sensor ON  dispetchera 2                                Error! - ";
-const char  txt_disp_on3[]   PROGMEM           = "Command sensor ON  dispetchera 2                          - Pass";
-const char  txt_disp_on4[]   PROGMEM           = "Command sensor ON  dispetchera                                  Error! - ";
-const char  txt_disp_on5[]   PROGMEM           = "Command sensor ON  dispetchera                            - Pass";
-const char  txt_disp_on6[]   PROGMEM           = "Command        ON  PTT dispetchera (CTS)                        Error! - ";
-const char  txt_disp_on7[]   PROGMEM           = "Command        ON  PTT dispetchera (CTS)                  - Pass";
-const char  txt_disp_on8[]   PROGMEM           = "Command        ON  PTT dispetchera (CTS) send!";
+const char  txt_disp_on0[]   PROGMEM           = "Command sensor ON  dispatcher    send!";
+const char  txt_disp_on1[]   PROGMEM           = "Command sensor ON  dispatcher 2  send!";
+const char  txt_disp_on2[]   PROGMEM           = "Command sensor ON  dispatcher 2                                Error! - ";
+const char  txt_disp_on3[]   PROGMEM           = "Command sensor ON  dispatcher 2                                 - Pass";
+const char  txt_disp_on4[]   PROGMEM           = "Command sensor ON  dispatcher                                  Error! - ";
+const char  txt_disp_on5[]   PROGMEM           = "Command sensor ON  dispatcher                                   - Pass";
+const char  txt_disp_on6[]   PROGMEM           = "Command        ON  PTT dispatcher (CTS)                        Error! - ";
+const char  txt_disp_on7[]   PROGMEM           = "Command        ON  PTT dispatcher (CTS)                         - Pass";
+const char  txt_disp_on8[]   PROGMEM           = "Command        ON  PTT dispatcher (CTS) send!";
 
 const char  txt_mtt_off0[]   PROGMEM           = "Command sensor OFF MTT            send!";
 const char  txt_mtt_off1[]   PROGMEM           = "Command PTT    OFF MTT            send!";
 const char  txt_mtt_off2[]   PROGMEM           = "Command        OFF HangUp MTT     send!";
 const char  txt_mtt_off3[]   PROGMEM           = "Command sensor OFF MTT                                          Error! - ";
-const char  txt_mtt_off4[]   PROGMEM           = "Command sensor OFF MTT                                    - Pass";
+const char  txt_mtt_off4[]   PROGMEM           = "Command sensor OFF MTT                                          - Pass";
 const char  txt_mtt_off5[]   PROGMEM           = "Command sensor OFF microphone                                   Error! - ";
-const char  txt_mtt_off6[]   PROGMEM           = "Command sensor OFF microphone                             - Pass";
+const char  txt_mtt_off6[]   PROGMEM           = "Command sensor OFF microphone                                   - Pass";
 const char  txt_mtt_off7[]   PROGMEM           = "Command        OFF PTT  MTT (CTS)                        Error! - ";
-const char  txt_mtt_off8[]   PROGMEM           = "Command        OFF PTT  MTT (CTS)                  - Pass";
+const char  txt_mtt_off8[]   PROGMEM           = "Command        OFF PTT  MTT (CTS)                               - Pass";
 const char  txt_mtt_off9[]   PROGMEM           = "Command        OFF PTT  MTT (DSR)                        Error! - ";
-const char  txt_mtt_off10[]  PROGMEM           = "Command        OFF PTT  MTT (DSR)                  - Pass";
+const char  txt_mtt_off10[]  PROGMEM           = "Command        OFF PTT  MTT (DSR)                               - Pass";
 const char  txt_mtt_off11[]  PROGMEM           = "Command        OFF HangUp MTT                            Error! - ";
-const char  txt_mtt_off12[]  PROGMEM           = "Command        OFF HangUp MTT                      - Pass";
+const char  txt_mtt_off12[]  PROGMEM           = "Command        OFF HangUp MTT                                   - Pass";
 
 
 const char  txt_mtt_on0[]    PROGMEM           = "Command sensor ON  MTT            send!";
 const char  txt_mtt_on1[]    PROGMEM           = "Command        ON  PTT  MTT (CTS) send!";
 const char  txt_mtt_on2[]    PROGMEM           = "Command        ON  HangUp MTT     send!";
 const char  txt_mtt_on3[]    PROGMEM           = "Command sensor ON  MTT                                   Error! - ";
-const char  txt_mtt_on4[]    PROGMEM           = "Command sensor ON  MTT                             - Pass";
+const char  txt_mtt_on4[]    PROGMEM           = "Command sensor ON  MTT                                          - Pass";
 const char  txt_mtt_on5[]    PROGMEM           = "Command        ON  PTT  MTT (CTS)                        Error! - ";
-const char  txt_mtt_on6[]    PROGMEM           = "Command        ON  PTT  MTT (CTS)                  - Pass";
+const char  txt_mtt_on6[]    PROGMEM           = "Command        ON  PTT  MTT (CTS)                               - Pass";
 const char  txt_mtt_on7[]    PROGMEM           = "Command        ON  PTT  MTT (DSR)                        Error! - ";
-const char  txt_mtt_on8[]    PROGMEM           = "Command        ON  PTT  MTT (DSR)                  - Pass";
+const char  txt_mtt_on8[]    PROGMEM           = "Command        ON  PTT  MTT (DSR)                               - Pass";
 const char  txt_mtt_on9[]    PROGMEM           = "Command        ON  HangUp MTT                            Error! - ";
-const char  txt_mtt_on10[]   PROGMEM           = "Command        ON  HangUp MTT                      - Pass";
+const char  txt_mtt_on10[]   PROGMEM           = "Command        ON  HangUp MTT                                   - Pass";
 
 
 
@@ -501,17 +501,17 @@ const char  txt_error38[]  PROGMEM             = "";
 const char  txt_error39[]  PROGMEM             = "";
 
 const char  txt_error40[]  PROGMEM             = "";
-const char  txt_error41[]  PROGMEM             = "Test headset instructor ** Signal FrontL    OFF                     - ";
-const char  txt_error42[]  PROGMEM             = "Test headset instructor ** Signal FrontR    OFF                     - ";
-const char  txt_error43[]  PROGMEM             = "Test headset instructor ** Signal LineL     ON                      - ";
-const char  txt_error44[]  PROGMEM             = "Test headset instructor ** Signal mag radio OFF                     - ";
-const char  txt_error45[]  PROGMEM             = "Test headset instructor ** Signal mag phone OFF                     - ";
-const char  txt_error46[]  PROGMEM             = "Test headset instructor ** Signal GGS       OFF                     - ";
-const char  txt_error47[]  PROGMEM             = "Test headset instructor ** Signal GG Radio1 OFF                     - ";
-const char  txt_error48[]  PROGMEM             = "Test headset instructor ** Signal GG Radio2 OFF                     - ";
+const char  txt_error41[]  PROGMEM             = "Test headset instructor ** Signal FrontL    OFF                 - ";
+const char  txt_error42[]  PROGMEM             = "Test headset instructor ** Signal FrontR    OFF                 - ";
+const char  txt_error43[]  PROGMEM             = "Test headset instructor ** Signal LineL     ON                  - ";
+const char  txt_error44[]  PROGMEM             = "Test headset instructor ** Signal mag radio OFF                 - ";
+const char  txt_error45[]  PROGMEM             = "Test headset instructor ** Signal mag phone OFF                 - ";
+const char  txt_error46[]  PROGMEM             = "Test headset instructor ** Signal GGS       OFF                 - ";
+const char  txt_error47[]  PROGMEM             = "Test headset instructor ** Signal GG Radio1 OFF                 - ";
+const char  txt_error48[]  PROGMEM             = "Test headset instructor ** Signal GG Radio2 OFF                 - ";
 const char  txt_error49[]  PROGMEM             = "";
 
-const char  txt_error50[]  PROGMEM             = "Test headset instructor ** Signal Mag phone ON                      - ";
+const char  txt_error50[]  PROGMEM             = "Test headset instructor ** Signal Mag phone ON                  - ";
 const char  txt_error51[]  PROGMEM             = "";
 const char  txt_error52[]  PROGMEM             = "";
 const char  txt_error53[]  PROGMEM             = "";
@@ -522,7 +522,7 @@ const char  txt_error57[]  PROGMEM             = "";
 const char  txt_error58[]  PROGMEM             = "";
 const char  txt_error59[]  PROGMEM             = "";
 
-const char  txt_error60[]  PROGMEM             = "Test headset instructor ** Signal FrontL    OFF                     - ";
+const char  txt_error60[]  PROGMEM             = "Test headset instructor ** Signal FrontL    OFF                 - ";
 const char  txt_error61[]  PROGMEM             = "";
 const char  txt_error62[]  PROGMEM             = "";
 const char  txt_error63[]  PROGMEM             = "";
@@ -540,8 +540,8 @@ const char  txt_error73[]  PROGMEM             = "";
 const char  txt_error74[]  PROGMEM             = "";
 const char  txt_error75[]  PROGMEM             = "";
 const char  txt_error76[]  PROGMEM             = "";
-const char  txt_error77[]  PROGMEM             = "Test headset instructor ** Signal LineL     OFF                     - ";
-const char  txt_error78[]  PROGMEM             = "Test headset instructor ** Signal LineR     OFF                     - ";
+const char  txt_error77[]  PROGMEM             = "Test headset instructor ** Signal LineL     OFF                 - ";
+const char  txt_error78[]  PROGMEM             = "Test headset instructor ** Signal LineR     OFF                 - ";
 const char  txt_error79[]  PROGMEM             = "";
 
 
@@ -650,22 +650,22 @@ txt_all_off5,     // 5  "Tangenta ruchnaja XP7 2  Error! - ";
 txt_all_off6,     // 6  "Tangenta ruchnaja XP7 - 2                                 ";
 txt_all_off7,     // 7  "XP8 - 2 sensor tangenta nognaja Error! - ";                           
 txt_all_off8,     // 8  "XP8 - 2 sensor tangenta nognaja ";                         
-txt_all_off9,     // 9  Sensor garnitura headset instructor 2  XP1- 16 HeS2Rs  Error!   - ";
-txt_all_off10,    // 10  "Sensor garnitura headset instructor 2  XP1- 16 HeS2Rs           ";                           
-txt_all_off11,    // 11  "Sensor garnitura headset instructor XP1- 13 HeS2Ls  Error!    - ";                         
-txt_all_off12,    // 12  "Sensor garnitura headset instructor XP1- 13 HeS2Ls              ";
-txt_all_off13,    // 13  "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  Error!  - ";                           
-txt_all_off14,    // 14  "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls            ";                         
-txt_all_off15,    // 15  "Sensor garnitura dispetchera XP1- 1  HeS1Ls Error!     - ";
-txt_all_off16,    // 16  "Sensor garnitura dispetchera XP1- 1  HeS1Ls              ";                           
+txt_all_off9,     // 9  Sensor headset headset instructor 2  XP1- 16 HeS2Rs  Error!   - ";
+txt_all_off10,    // 10  "Sensor headset headset instructor 2  XP1- 16 HeS2Rs           ";                           
+txt_all_off11,    // 11  "Sensor headset headset instructor XP1- 13 HeS2Ls  Error!    - ";                         
+txt_all_off12,    // 12  "Sensor headset headset instructor XP1- 13 HeS2Ls              ";
+txt_all_off13,    // 13  "Sensor headset dispatcher 2 XP1- 13 HeS2Ls  Error!  - ";                           
+txt_all_off14,    // 14  "Sensor headset dispatcher 2 XP1- 13 HeS2Ls            ";                         
+txt_all_off15,    // 15  "Sensor headset dispatcher XP1- 1  HeS1Ls Error!     - ";
+txt_all_off16,    // 16  "Sensor headset dispatcher XP1- 1  HeS1Ls              ";                           
 txt_all_off17,    // 17  "Sensor microphone  XS1 - 6 Error!                      - ";                         
 txt_all_off18,    // 18  "Sensor microphone  XS1 - 6                               ";
 txt_all_off19,    // 19  "Microphone headset instructor Sw.  XP1 12 HeS2e Error!        - ";                           
 txt_all_off20,    // 20  "Microphone headset instructor Sw.  XP1 12 HeS2e                 ";                         
 txt_all_off21,    // 21  "Radioperedacha OFF  Error!                             - ";
 txt_all_off22,    // 22  "Radioperedacha           "                                ;                           
-txt_all_off23,    // 23  "Microphone dispetchera OFF XP1 10    Error!            - ";                         
-txt_all_off24     // 24  "Microphone dispetchera   "                                ;
+txt_all_off23,    // 23  "Microphone dispatcher OFF XP1 10    Error!            - ";                         
+txt_all_off24     // 24  "Microphone dispatcher   "                                ;
 
 };
 
@@ -678,24 +678,24 @@ const char* const string_table_On[] PROGMEM =
 	txt_all_on4,      // 4  "ON - Ok!"                                                 ;
 	txt_all_on5,      // 5  "XP7 2 Tang. ruch . Error!                              - ";    
 	txt_all_on6,      // 6  "XP7 - 2 Tang. ruch .                                     ";    
-	txt_all_on7,      // 7  "Sensor garnitura dispetchera XP1- 1  HeS1Ls Error!     - ";         
+	txt_all_on7,      // 7  "Sensor headset dispatcher XP1- 1  HeS1Ls Error!     - ";         
 	txt_all_on8,      // 8  "XP8 - 2 sensor tang. nogn. Error!                       - ";          
 	txt_all_on9,      // 9  "XP8 - 2 sensor tang. nogn.                                ";      
-	txt_all_on10,     // 10  "Sensor garnitura dispetchera XP1- 1  HeS1Ls              ";        
-	txt_all_on11,     // 11  "Sensor garnitura headset instructor 2  XP1- 16 HeS2Rs  Error! - ";      
-	txt_all_on12,     // 12  "Sensor garnitura headset instructor 2  XP1- 16 HeS2Rs           ";                         
+	txt_all_on10,     // 10  "Sensor headset dispatcher XP1- 1  HeS1Ls              ";        
+	txt_all_on11,     // 11  "Sensor headset headset instructor 2  XP1- 16 HeS2Rs  Error! - ";      
+	txt_all_on12,     // 12  "Sensor headset headset instructor 2  XP1- 16 HeS2Rs           ";                         
 	txt_all_on13,     // 13  "Sensor microphone  XS1 - 6 Error! -                      ";
-	txt_all_on14,     // 14  "Sensor garnitura headset instructor XP1- 13 HeS2Ls  Error!    - ";
-	txt_all_on15,     // 15  "Sensor garnitura headset instructor XP1- 13 HeS2Ls              ";    
+	txt_all_on14,     // 14  "Sensor headset headset instructor XP1- 13 HeS2Ls  Error!    - ";
+	txt_all_on15,     // 15  "Sensor headset headset instructor XP1- 13 HeS2Ls              ";    
 	txt_all_on16,     // 16  "Sensor microphone  XS1 - 6                               ";    
-	txt_all_on17,     // 17  "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  Error!  - ";         
-	txt_all_on18,     // 18  "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls            ";          
+	txt_all_on17,     // 17  "Sensor headset dispatcher 2 XP1- 13 HeS2Ls  Error!  - ";         
+	txt_all_on18,     // 18  "Sensor headset dispatcher 2 XP1- 13 HeS2Ls            ";          
 	txt_all_on19,     // 19 "Microphone headset instructor Sw. XP1 12 HeS2e Error! -          ";        
 	txt_all_on20,     // 20  "Microphone headset instructor Sw. XP1 12 HeS2e                  ";         
 	txt_all_on21,     // 21  "Radioperedacha ON  Error! -                              ";          
 	txt_all_on22,     // 22  "Radioperedacha                                           ";        
-	txt_all_on23,     // 23  "Microphone dispetchera ON Error! -                       ";         
-	txt_all_on24      // 24  "Microphone dispetchera XP1 10                            ";   
+	txt_all_on23,     // 23  "Microphone dispatcher ON Error! -                       ";         
+	txt_all_on24      // 24  "Microphone dispatcher XP1 10                            ";   
 };
 
 const char* const table_instr_off[] PROGMEM = 
@@ -728,30 +728,30 @@ const char* const table_instr_on[] PROGMEM =
 
 const char* const table_disp_off[] PROGMEM = 
 {
-	txt_disp_off0,      //  "Command sensor OFF dispetchera   send!                   ";
-	txt_disp_off1,      //  "Command sensor OFF dispetchera 2 send!                   ";
-	txt_disp_off2,      //  "Command PTT dispetchera OFF      send!                  ";
-	txt_disp_off3,      //  "Command sensor OFF dispetchera 2                Error! - ";
-	txt_disp_off4,      //  "Command sensor OFF dispetchera 2 - Ok!                   ";
-	txt_disp_off5,      //  "Command sensor OFF dispetchera                  Error! - ";
-	txt_disp_off6,      //  "Command sensor OFF dispetchera                         - Ok!";
+	txt_disp_off0,      //  "Command sensor OFF dispatcher   send!                   ";
+	txt_disp_off1,      //  "Command sensor OFF dispatcher 2 send!                   ";
+	txt_disp_off2,      //  "Command PTT dispatcher OFF      send!                  ";
+	txt_disp_off3,      //  "Command sensor OFF dispatcher 2                Error! - ";
+	txt_disp_off4,      //  "Command sensor OFF dispatcher 2 - Ok!                   ";
+	txt_disp_off5,      //  "Command sensor OFF dispatcher                  Error! - ";
+	txt_disp_off6,      //  "Command sensor OFF dispatcher                         - Ok!";
 	txt_disp_off7,      //  "Command sensor microphone OFF                   Error! - ";
 	txt_disp_off8,      //  "Command sensor microphone OFF                          - Ok!";
-	txt_disp_off9,      //  "Command PTT   OFF dispetchera (CTS)            Error! - ";
-	txt_disp_off10      //  "Command PTT   OFF dispetchera (CTS)                   - Ok!";
+	txt_disp_off9,      //  "Command PTT   OFF dispatcher (CTS)            Error! - ";
+	txt_disp_off10      //  "Command PTT   OFF dispatcher (CTS)                   - Ok!";
 };
 
 const char* const table_disp_on[] PROGMEM = 
 {
-	txt_disp_on0,      // "Command sensor ON dispetchera    send!"                   ;
-	txt_disp_on1,      // "Command sensor ON dispetchera 2  send!"                   ;
-	txt_disp_on2,      // "Command sensor ON dispetchera 2                 Error! - ";
-	txt_disp_on3,      // "Command sensor ON dispetchera 2                        - Ok!";
-	txt_disp_on4,      // "Command sensor ON dispetchera                   Error! - ";
-	txt_disp_on5,      // "Command sensor ON dispetchera                          - Ok!";
-	txt_disp_on6,      // "Command PTT dispetchera OFF                    Error! - ";
-	txt_disp_on7,      // "Command PTT dispetchera  OFF                          - Ok!";
-	txt_disp_on8       // "Command PTT dispetchera (CTS)  send!"                    ;
+	txt_disp_on0,      // "Command sensor ON dispatcher    send!"                   ;
+	txt_disp_on1,      // "Command sensor ON dispatcher 2  send!"                   ;
+	txt_disp_on2,      // "Command sensor ON dispatcher 2                 Error! - ";
+	txt_disp_on3,      // "Command sensor ON dispatcher 2                        - Ok!";
+	txt_disp_on4,      // "Command sensor ON dispatcher                   Error! - ";
+	txt_disp_on5,      // "Command sensor ON dispatcher                          - Ok!";
+	txt_disp_on6,      // "Command PTT dispatcher OFF                    Error! - ";
+	txt_disp_on7,      // "Command PTT dispatcher  OFF                          - Ok!";
+	txt_disp_on8       // "Command PTT dispatcher (CTS)  send!"                    ;
 };
 
 const char* const table_mtt_off[] PROGMEM = 
@@ -810,10 +810,10 @@ const char* const table_instr_all[] PROGMEM =
 	txt_test_all18,     // ;
 	txt_test_all19,     // ;
 
-	txt_test_all20,     //  "Test dispetchera start!"                                 ;
-	txt_test_all21,     //  "Signal microphone dispetchera 30mv  ON"                  ;
-	txt_test_all22,     //  "Microphone dispetchera ON                      Error! - ";
-	txt_test_all23,     //  "Microphone dispetchera ON                          - Ok!";
+	txt_test_all20,     //  "Test dispatcher start!"                                 ;
+	txt_test_all21,     //  "Signal microphone dispatcher 30mv  ON"                  ;
+	txt_test_all22,     //  "Microphone dispatcher ON                      Error! - ";
+	txt_test_all23,     //  "Microphone dispatcher ON                          - Ok!";
 	txt_test_all24,     // ;
 	txt_test_all25,     // ;
 	txt_test_all26,     // ;
@@ -1468,7 +1468,7 @@ void control_command()
 			 test_headset_instructor();
 				break;
 		case 4:				
-			 test_dispetchera();          //
+			 test_dispatcher();          //
 				break;
 		case 5:
 			 test_MTT();                  //
@@ -1643,7 +1643,7 @@ void sensor_all_off()
 			  if (test_repeat == false)
 			   {
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[10])));
-				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor garnitura headset instructor 2  XP1- 16 HeS2Rs"
+				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor headset headset instructor 2  XP1- 16 HeS2Rs"
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
 				if (test_repeat == false) myFile.println(buffer);                                     //  
 			  }
@@ -1657,7 +1657,7 @@ void sensor_all_off()
 			regBank.set(128,1);                                         // установить флаг ошибки sensor подключения гарнитуры инструктора 
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[11])));
-			myFile.print(buffer);                                       // "Sensor garnitura headset instructor XP1- 13 HeS2Ls  Error! - "
+			myFile.print(buffer);                                       // "Sensor headset headset instructor XP1- 13 HeS2Ls  Error! - "
 			myFile.println(regcount);                                   // 
 		  }
 		else
@@ -1665,7 +1665,7 @@ void sensor_all_off()
 			  if (test_repeat == false)
 			   {
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[12])));
-				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor garnitura headset instructor XP1- 13 HeS2Ls    "
+				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor headset headset instructor XP1- 13 HeS2Ls    "
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
 				if (test_repeat == false) myFile.println(buffer);                                     //   sensor подключения гарнитуры инструктора OK!
 			  }
@@ -1679,7 +1679,7 @@ void sensor_all_off()
 			regBank.set(129,1);                                         // установить флаг ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[13])));
-			myFile.print(buffer);                                       // "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  Error! - "
+			myFile.print(buffer);                                       // "Sensor headset dispatcher 2 XP1- 13 HeS2Ls  Error! - "
 			myFile.println(regcount);                                   // 
 		  }
 		else
@@ -1687,7 +1687,7 @@ void sensor_all_off()
 			  if (test_repeat == false)
 			   {
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[14])));
-				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor garnitura dispetchera 2 XP1- 13 HeS2Ls  "
+				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor headset dispatcher 2 XP1- 13 HeS2Ls  "
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
 				if (test_repeat == false) myFile.println(buffer);                                     //  sensor подкючения гарнитуры диспетчера с 2 наушниками OK!
 			  }
@@ -1702,7 +1702,7 @@ void sensor_all_off()
 			regBank.set(130,1);                                         // установить флаг ошибки sensor подкючения гарнитуры диспетчера
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[15])));
-			myFile.print(buffer);                                       // "Sensor garnitura dispetchera XP1- 1  HeS1Ls Error! - "
+			myFile.print(buffer);                                       // "Sensor headset dispatcher XP1- 1  HeS1Ls Error! - "
 			myFile.println(regcount);                                   // 
 		  }
 		else
@@ -1710,7 +1710,7 @@ void sensor_all_off()
 			  if (test_repeat == false)
 			   {
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[16])));
-				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor garnitura dispetchera XP1- 1  HeS1Ls    "
+				if (test_repeat == false) myFile.print(buffer);                                       // "Sensor headset dispatcher XP1- 1  HeS1Ls    "
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
 				if (test_repeat == false) myFile.println(buffer);                                     //  sensor подкючения гарнитуры диспетчера  OK!
 			  }
@@ -1787,7 +1787,7 @@ void sensor_all_off()
 			regBank.set(155,1);                                         // установить флаг ошибки Включение микрофона диспетчера
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table[23])));
-			myFile.print(buffer);                                       // "Microphone dispetchera OFF XP1 10    Error! - "
+			myFile.print(buffer);                                       // "Microphone dispatcher OFF XP1 10    Error! - "
 			myFile.println(regcount);                                   // 
 		  }
 		else
@@ -1795,7 +1795,7 @@ void sensor_all_off()
 			  if (test_repeat == false)
 			   {
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[24])));
-				if (test_repeat == false) myFile.print(buffer);                                       // "Microphone dispetchera   "
+				if (test_repeat == false) myFile.print(buffer);                                       // "Microphone dispatcher   "
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
 				if (test_repeat == false) myFile.println(buffer);                                     // Выключение микрофона диспетчера ОК!
 			   }
@@ -2302,11 +2302,11 @@ void test_headset_instructor()
 	regBank.set(adr_control_command,0);                                      // Завершить программу    
 	delay(100);
 }
-void test_dispetchera()
+void test_dispatcher()
  {
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[20])));
-	myFile.println(buffer);                                               // "Test dispetchera start!" dispatcher  supervisor
+	myFile.println(buffer);                                               // "Test dispatcher start!" dispatcher  supervisor
 	myFile.println();
 	file_print_date();
 	myFile.println("");
@@ -2405,7 +2405,7 @@ void test_dispetchera()
 	delay(200);
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[21])));      //   
-	myFile.println(buffer);                                              // "Signal microphone   dispetchera 30mv  ON"
+	myFile.println(buffer);                                              // "Signal microphone   dispatcher 30mv  ON"
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,   40141,141,25);                      // Измерить уровень сигнала на выходе FrontL   
 	measure_vol_min(analog_FrontR,   40142,142,25);                      // Измерить уровень сигнала на выходе FrontR 
@@ -2439,18 +2439,18 @@ void test_dispetchera()
 			resistor(1, 255);                                            // Установить уровень сигнала в исходное состояниe
 			resistor(2, 255);                                            // Установить уровень сигнала в исходное состояниe
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[22])));
-			myFile.print(buffer);                                        // "Microphone dispetchera ON  Error! - "
+			myFile.print(buffer);                                        // "Microphone dispatcher ON  Error! - "
 			myFile.println(regcount);                                    // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[23])));
-			myFile.println(buffer);                                     //"Microphone dispetchera  ON - Ok!" Микрофон диспетчера включился
+			myFile.println(buffer);                                     //"Microphone dispatcher  ON - Ok!" Микрофон диспетчера включился
 			delay(20);
 		  }
 	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[24])));     // "Microphone dispetchera signal ON" 
-	myFile.println(buffer);                                             // "Microphone dispetchera signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[24])));     // "Microphone dispatcher signal ON" 
+	myFile.println(buffer);                                             // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
 	delay(20);
 	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    ++++++++++++++++++++++++++++++++++++
 	measure_vol_max(analog_LineL,    40143,143,200);                    // Измерить уровень сигнала на выходе LineL
@@ -2923,13 +2923,13 @@ void test_disp_off()
 			resistor(1, 255);                                           // Установить уровень сигнала в исходное состояниу
 			resistor(2, 255);                                           // Установить уровень сигнала в исходное состояниу
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[3])));
-			myFile.print(buffer);                                       // "Command sensor OFF dispetchera 2 Error! - "
+			myFile.print(buffer);                                       // "Command sensor OFF dispatcher 2 Error! - "
 			myFile.println(regcount);                                   // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[4])));
-			if (test_repeat == false) myFile.println(buffer);                                     // "Command sensor OFF dispetchera 2 - Ok!"
+			if (test_repeat == false) myFile.println(buffer);                                     // "Command sensor OFF dispatcher 2 - Ok!"
 		  }
 
 	  // 2)  Проверка сенсора на отключение гарнитуры диспетчера
@@ -2942,13 +2942,13 @@ void test_disp_off()
 			 regBank.set(130,1);                                        // установить флаг ошибки
 			 regBank.set(120,1);                                        // установить общий флаг ошибки
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[5])));
-			 myFile.print(buffer);                                      // "Command sensor OFF dispetchera  Error! - "
+			 myFile.print(buffer);                                      // "Command sensor OFF dispatcher  Error! - "
 			 myFile.println(regcount);
 		  }
 		else
 		  {
 			 strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[6])));
-			 if (test_repeat == false) myFile.println(buffer);                                    // "Command sensor OFF dispetchera   - Ok!"
+			 if (test_repeat == false) myFile.println(buffer);                                    // "Command sensor OFF dispatcher   - Ok!"
 		  }
 
 	 // 3)  Проверка сенсора на отключение микрофона
@@ -2979,23 +2979,23 @@ void test_disp_off()
 			regBank.set(158,1);                                         // установить флаг ошибки отключения PTT гарнитуры диспетчера
 			regBank.set(120,1);                                         // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[9])));
-			myFile.print(buffer);                                       // "Command PTT dispetchera (CTS) OFF Error! - " Микрофон не отключился 
+			myFile.print(buffer);                                       // "Command PTT dispatcher (CTS) OFF Error! - " Микрофон не отключился 
 			myFile.println(regcount);
 		 }
 	  else
 		 {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_off[10])));
-			if (test_repeat == false) myFile.println(buffer);                                     // "Command PTT dispetchera (CTS) OFF- Ok!"
+			if (test_repeat == false) myFile.println(buffer);                                     // "Command PTT dispatcher (CTS) OFF- Ok!"
 		 }
 }
 void test_disp_on()
 {
 	unsigned int regcount = 0;
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[0])));
-	if (test_repeat == false) myFile.println(buffer);                   // "Command sensor ON dispetchera send!"
+	if (test_repeat == false) myFile.println(buffer);                   // "Command sensor ON dispatcher send!"
 	regBank.set(32,1);                                                  // XP1- 1  HeS1Ls    sensor подключения гарнитуры диспетчера 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[1])));
-	if (test_repeat == false) myFile.println(buffer);                   // "Command sensor ON dispetchera 2  send!"
+	if (test_repeat == false) myFile.println(buffer);                   // "Command sensor ON dispatcher 2  send!"
 	regBank.set(31,1);                                                  // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
 	regBank.set(19,1);                                                  // J8-11     XP7 2 sensor  Танг. р.
 	regBank.set(16,1);                                                  // XS1 - 6   sensor Мик
@@ -3015,13 +3015,13 @@ void test_disp_on()
 				regBank.set(129,1);                                     // установить флаг ошибки
 				regBank.set(120,1);                                     // установить общий флаг ошибки
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[2])));
-				myFile.print(buffer);                                   // "Command sensor ON dispetchera 2 Error! - "
+				myFile.print(buffer);                                   // "Command sensor ON dispatcher 2 Error! - "
 				myFile.println(regcount);
 			}
 		else
 			{
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[3])));
-				if (test_repeat == false) myFile.println(buffer);                                 // "Command sensor ON  dispetchera 2 - Ok!"
+				if (test_repeat == false) myFile.println(buffer);                                 // "Command sensor ON  dispatcher 2 - Ok!"
 			}
 	  // 4)  Проверка сенсора на подключения гарнитуры диспетчера
 
@@ -3033,13 +3033,13 @@ void test_disp_on()
 				regBank.set(130,1);                                     // установить флаг ошибки
 				regBank.set(120,1);                                     // установить общий флаг ошибки
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[4])));
-				myFile.print(buffer);                                   // "Command sensor ON  dispetchera  Error! - "
+				myFile.print(buffer);                                   // "Command sensor ON  dispatcher  Error! - "
 				myFile.println(regcount);
 			 }
 		else
 			{
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[5])));
-				if (test_repeat == false) myFile.println(buffer);                                // "Command sensor ON dispetchera    - Ok!"
+				if (test_repeat == false) myFile.println(buffer);                                // "Command sensor ON dispatcher    - Ok!"
 			}
 
 		 UpdateRegs(); 
@@ -3051,13 +3051,13 @@ void test_disp_on()
 				regBank.set(158,1);                                    // установить флаг ошибки отключения PTT гарнитуры диспетчера
 				regBank.set(120,1);                                    // установить общий флаг ошибки
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[6])));
-				myFile.print(buffer);                                  // "Command PTT dispetchera OFF Error! - " Микрофон не отключился 
+				myFile.print(buffer);                                  // "Command PTT dispatcher OFF Error! - " Микрофон не отключился 
 				myFile.println(regcount);
 			}
 		else
 			{
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[7])));
-				if (test_repeat == false) myFile.println(buffer);                               // "Command PTT dispetchera OFF- Ok!"
+				if (test_repeat == false) myFile.println(buffer);                               // "Command PTT dispatcher OFF- Ok!"
 			}
 }
 
