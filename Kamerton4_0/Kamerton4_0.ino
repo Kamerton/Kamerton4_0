@@ -2263,7 +2263,7 @@ void test_headset_instructor()
 
 
 	measure_vol_max(analog_LineL,    40143,143,200);                         // Измерить уровень сигнала на выходе LineL
-	measure_vol_max(analog_mag_phone,40150,150,200);                         // Измерить уровень сигнала на выходе mag phone
+	measure_vol_max(analog_mag_phone,40149,149,200);                         // Измерить уровень сигнала на выходе mag phone  "Test headset instructor ** Signal Mag phone   ON 
 
    //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_LineR,    40178,178,25);                          // Измерить уровень сигнала на выходе LineR 
@@ -2288,164 +2288,90 @@ void test_headset_dispatcher()
  {
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[20])));
-	myFile.println(buffer);                                                  // "Test dispatcher start!" dispatcher  supervisor
+	myFile.println(buffer);                                                    // "Test dispatcher start!" dispatcher  supervisor
 	myFile.println();
 	file_print_date();
 	myFile.println("");
 	unsigned int regcount = 0;
-	test_disp_off();                                                         // Отключить реле и сенсоры, прверить отключение
-	test_disp_on();                                                          // Включить необходимые сенсоры, проверить состояние
+	test_disp_off();                                                           // Отключить реле и сенсоры, прверить отключение
+	test_disp_on();                                                            // Включить необходимые сенсоры, проверить состояние
 	myFile.println("");
 
 		// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
-	resistor(1, 30);                                                         // Установить уровень сигнала 30 мв
-	resistor(2, 30);                                                         // Установить уровень сигнала 30 мв
-	regBank.set(1,1);                                                        // Подать сигнал на вход микрофона диспетчера Mic1p
-	UpdateRegs();                                                            // Выполнить команду
+	resistor(1, 30);                                                           // Установить уровень сигнала 30 мв
+	resistor(2, 30);                                                           // Установить уровень сигнала 30 мв
+	regBank.set(1,1);                                                          // Подать сигнал на вход микрофона диспетчера Mic1p
+	UpdateRegs();                                                              // Выполнить команду
 	delay(200);
 	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[21])));          //   
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[21])));            //   
 	if (test_repeat == false) myFile.println(buffer);                                                  // "Signal microphone   dispatcher 30mv  ON"
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,   40151,151,25);                          // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40152,152,25);                          // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_FrontL,   40151,151,25);                            // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40152,152,25);                            // Измерить уровень сигнала на выходе FrontR 
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
-	measure_vol_min(analog_LineL,    40179,179,25);                          // Измерить уровень сигнала на выходе LineL   
-	measure_vol_min(analog_LineR,    40180,180,25);                          // Измерить уровень сигнала на выходе LineR 
-	measure_vol_min(analog_mag_radio,40154,154,25);                          // Измерить уровень сигнала на выходе mag radio  
-	measure_vol_min(analog_mag_phone,40155,155,25);                          // Измерить уровень сигнала на выходе mag phone
+	measure_vol_min(analog_LineL,    40179,179,25);                            // Измерить уровень сигнала на выходе LineL   
+	measure_vol_min(analog_LineR,    40180,180,25);                            // Измерить уровень сигнала на выходе LineR 
+	measure_vol_min(analog_mag_radio,40154,154,25);                            // Измерить уровень сигнала на выходе mag radio  
+	measure_vol_min(analog_mag_phone,40155,155,25);                            // Измерить уровень сигнала на выходе mag phone
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_ggs,      40156,156,30);                          // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40157,157,30);                          // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40158,158,30);                          // Измерить уровень сигнала на выходе GG Radio2
+	measure_vol_min(analog_ggs,      40156,156,30);                            // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_gg_radio1,40157,157,30);                            // Измерить уровень сигнала на выходе GG Radio1
+	measure_vol_min(analog_gg_radio2,40158,158,30);                            // Измерить уровень сигнала на выходе GG Radio2
 	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
-	myFile.println("");                                                      //
-	regBank.set(10,1);                                                       // Подать управляющую команду на вывод XP1 10 Включение микрофона диспетчера
-	regBank.set(30,1);                                                       // XP1- 6  HeS1PTT   Включить PTT диспетчера
-	regBank.set(16,0);                                                       // Сенсор микрофона отключить
-	regBank.set(15,0);                                                       // РТТ микрофона отключить
-	regBank.set(31,1);                                                       // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,1);                                                       // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	myFile.println("");                                                        //
+	regBank.set(10,1);                                                         // Подать управляющую команду на вывод XP1 10 Включение микрофона диспетчера
+	regBank.set(30,1);                                                         // XP1- 6  HeS1PTT   Включить PTT диспетчера
+	regBank.set(16,0);                                                         // Сенсор микрофона отключить
+	regBank.set(15,0);                                                         // РТТ микрофона отключить
+	regBank.set(31,1);                                                         // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,1);                                                         // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
-	UpdateRegs();                                                            // 
-	delay(200);                                                              //
-	byte i5 = regs_in[3];                                                    // 
-		if(bitRead(i5,6) == 0)                                               // Проверка  включения микрофона диспетчера
+	UpdateRegs();                                                              // 
+	delay(200);                                                                //
+	byte i5 = regs_in[3];                                                      // 
+		if(bitRead(i5,6) == 0)                                                 // Проверка  включения микрофона диспетчера
 		  {
-			regcount = regBank.get(40182);                                   // адрес счетчика ошибки включения микрофона диспетчера
-			regcount++;                                                      // увеличить счетчик ошибок включения микрофона диспетчера
-			regBank.set(40182,regcount);                                     // адрес счетчика ошибки включения микрофона диспетчера
-			regBank.set(182,1);                                              // установить флаг ошибки
-			regBank.set(120,1);                                              // установить общий флаг ошибки
-			resistor(1, 255);                                                // Установить уровень сигнала в исходное состояниe
-			resistor(2, 255);                                                // Установить уровень сигнала в исходное состояниe
+			regcount = regBank.get(40182);                                     // адрес счетчика ошибки включения микрофона диспетчера
+			regcount++;                                                        // увеличить счетчик ошибок включения микрофона диспетчера
+			regBank.set(40182,regcount);                                       // адрес счетчика ошибки включения микрофона диспетчера
+			regBank.set(182,1);                                                // установить флаг ошибки
+			regBank.set(120,1);                                                // установить общий флаг ошибки
+			resistor(1, 255);                                                  // Установить уровень сигнала в исходное состояниe
+			resistor(2, 255);                                                  // Установить уровень сигнала в исходное состояниe
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[22])));
-			myFile.print(buffer);                                            // "Microphone dispatcher ON  Error! - "
-			myFile.println(regcount);                                        // 
+			myFile.print(buffer);                                              // "Microphone dispatcher ON  Error! - "
+			myFile.println(regcount);                                          // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[23])));
-			if (test_repeat == false) myFile.println(buffer);                                          //"Microphone dispatcher  ON - Ok!" Микрофон диспетчера включился
+			if (test_repeat == false) myFile.println(buffer);                  //"Microphone dispatcher  ON - Ok!" Микрофон диспетчера включился
 			delay(20);
 		  }
 	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[24])));         // "Microphone dispatcher signal ON" 
-	if (test_repeat == false) myFile.println(buffer);                       // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[24])));            // "Microphone dispatcher signal ON" 
+	if (test_repeat == false) myFile.println(buffer);                          // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
 	delay(20);
 	//+++++++++++++++++++++++++++ Проверить наличие сигнала на линиях LineL  mag phone  ++++++++++++++++++++++++++++++++++
-	//measure_vol_max(analog_LineL,    40153,153,200);                         // Измерить уровень сигнала на выходе LineL
-	//measure_vol_max(analog_mag_phone,40150,150,200);                         // Измерить уровень сигнала на выходе mag phone
+	measure_vol_max(analog_LineL,    40153,153,200);                           // Измерить уровень сигнала на выходе LineL  "Test headset dispatcher ** Signal LineL       ON  
+	measure_vol_max(analog_mag_phone,40159,159,200);                           // Измерить уровень сигнала на выходе mag phone "Test headset dispatcher ** Signal Mag phone   ON 
 
    //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_LineR,    40180,180,25);                          // Измерить уровень сигнала на выходе LineR 
-	measure_vol_min(analog_FrontL,   40151,151,25);                          // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40152,152,25);                          // Измерить уровень сигнала на выходе FrontR 
-	measure_vol_min(analog_ggs,      40156,156,30);                          // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40157,157,30);                          // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40158,158,30);                          // Измерить уровень сигнала на выходе GG Radio2
-
-
-	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
-
-	/*
-	measure_vol_min(analog_FrontL,40161,160,25);                         // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,40162,161,25);                         // Измерить уровень сигнала на выходе FrontR 
-	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
-	resistor(1, 30);                                                     // Установить уровень сигнала 30 мв
-	resistor(2, 30);                                                     // Установить уровень сигнала 30 мв
-	regBank.set(1,1);                                                    // Подать сигнал на вход микрофона диспетчера Mic1p
-	UpdateRegs();                                                        // Выполнить команду
-	delay(200);
-	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[21])));      //   
-	myFile.println(buffer);                                              // "Signal microphone   dispatcher 30mv  ON"
-	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,   40141,141,25);                      // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40142,142,25);                      // Измерить уровень сигнала на выходе FrontR 
-	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
-	measure_vol_min(analog_mag_radio,40144,144,25);                      // Измерить уровень сигнала на выходе mag radio  
-	measure_vol_min(analog_mag_phone,40145,145,25);                      // Измерить уровень сигнала на выходе mag phone
-	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_ggs,      40146,146,30);                      // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40147,147,30);                      // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40148,148,30);                      // Измерить уровень сигнала на выходе GG Radio2
-
-	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
-	myFile.println("");                                                  //
-	regBank.set(10,1);                                                   // Подать управляющую команду на вывод XP1 10 Включение микрофона диспетчера
-	regBank.set(30,1);                                                   // XP1- 6  HeS1PTT   Включить PTT диспетчера
-	regBank.set(16,0);                                                   // Сенсор микрофона отключить
-	regBank.set(15,0);                                                   // РТТ микрофона отключить
-	regBank.set(31,1);                                                   // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,1);                                                   // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
-
-	UpdateRegs();                                                        // 
-	delay(200);                                                          //
-	byte i5 = regs_in[3];                                                // 
-		if(bitRead(i5,6) == 0)                                           // Проверка  включения микрофона диспетчера
-		  {
-			regcount = regBank.get(40151);                               // адрес счетчика ошибки включения микрофона диспетчера
-			regcount++;                                                  // увеличить счетчик ошибок включения микрофона диспетчера
-			regBank.set(40151,regcount);                                 // адрес счетчика ошибки включения микрофона диспетчера
-			regBank.set(151,1);                                          // установить флаг ошибки
-			regBank.set(120,1);                                          // установить общий флаг ошибки
-			resistor(1, 255);                                            // Установить уровень сигнала в исходное состояниe
-			resistor(2, 255);                                            // Установить уровень сигнала в исходное состояниe
-			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[22])));
-			myFile.print(buffer);                                        // "Microphone dispatcher ON  Error! - "
-			myFile.println(regcount);                                    // 
-		  }
-		else
-		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[23])));
-			myFile.println(buffer);                                     //"Microphone dispatcher  ON - Ok!" Микрофон диспетчера включился
-			delay(20);
-		  }
-	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[24])));     // "Microphone dispatcher signal ON" 
-	myFile.println(buffer);                                             // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
-	delay(20);
-	//++++++++++++++++++++++++++++++++++ Проверить наличие сигнала на линиях FrontL    ++++++++++++++++++++++++++++++++++++
-	measure_vol_max(analog_LineL,    40143,143,200);                    // Измерить уровень сигнала на выходе LineL
-	measure_vol_max(analog_mag_phone,40150,150,200);                    // Измерить уровень сигнала на выходе mag phone
-   //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,   40141,141,25);                     // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40142,142,25);                     // Измерить уровень сигнала на выходе FrontR 
-	measure_vol_min(analog_ggs,      40146,146,30);                     // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40147,147,30);                     // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40148,148,30);                     // Измерить уровень сигнала на выходе GG Radio2
-
-	*/
-
-	regBank.set(31,0);                                                  // XP1- 5  HeS1Rs   Отключить sensor подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,0);                                                  // XP1- 1  HeS1Ls   Отключить  sensor подкючения гарнитуры диспетчера
-	regBank.set(15,0);                                                  // РТТ микрофона отключить
-	regBank.set(10,0);                                                  // Подать управляющую команду на вывод XP1 10  (Выключить микрофон диспетчера)
-	regBank.set(30,0);                                                  // XP1- 6  HeS1PTT   Отключить PTT диспетчера
-	regBank.set(28,0);                                                  // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
+	measure_vol_min(analog_LineR,    40180,180,25);                            // Измерить уровень сигнала на выходе LineR 
+	measure_vol_min(analog_FrontL,   40151,151,25);                            // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40152,152,25);                            // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_ggs,      40156,156,30);                            // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_gg_radio1,40157,157,30);                            // Измерить уровень сигнала на выходе GG Radio1
+	measure_vol_min(analog_gg_radio2,40158,158,30);                            // Измерить уровень сигнала на выходе GG Radio2
+	regBank.set(31,0);                                                         // XP1- 5  HeS1Rs   Отключить sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,0);                                                         // XP1- 1  HeS1Ls   Отключить  sensor подкючения гарнитуры диспетчера
+	regBank.set(15,0);                                                         // РТТ микрофона отключить
+	regBank.set(10,0);                                                         // Подать управляющую команду на вывод XP1 10  (Выключить микрофон диспетчера)
+	regBank.set(30,0);                                                         // XP1- 6  HeS1PTT   Отключить PTT диспетчера
+	regBank.set(28,0);                                                         // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
 	UpdateRegs();     
-	regBank.set(adr_control_command,0);                                 // Завершить программу    
+	regBank.set(adr_control_command,0);                                        // Завершить программу    
 	delay(100);
  }
 void test_MTT()
@@ -3225,14 +3151,6 @@ void test_MTT_on()
 			if (test_repeat == false) myFile.println(buffer);                                         // "Command HangUp  DCD OFF- Ok!"
 		 }
 }
-
-/*
-const char  txt_error43[]  PROGMEM             = "Test headset instructor ** Signal LineL       ON                - ";
-const char  txt_error49[]  PROGMEM             = "Test headset instructor ** Signal Mag phone   ON                - ";
-const char  txt_error53[]  PROGMEM             = "Test headset dispatcher ** Signal LineL       ON                - ";
-const char  txt_error59[]  PROGMEM             = "Test headset dispatcher ** Signal Mag phone   ON                - ";
-*/
-
 
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
