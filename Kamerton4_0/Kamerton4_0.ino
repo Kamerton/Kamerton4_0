@@ -2307,17 +2307,17 @@ void test_headset_dispatcher()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[21])));          //   
 	if (test_repeat == false) myFile.println(buffer);                                                  // "Signal microphone   dispatcher 30mv  ON"
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,   40141,141,25);                          // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40142,142,25);                          // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_FrontL,   40151,151,25);                          // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40152,152,25);                          // Измерить уровень сигнала на выходе FrontR 
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
-	measure_vol_min(analog_LineL,    40177,177,25);                          // Измерить уровень сигнала на выходе LineL   
-	measure_vol_min(analog_LineR,    40178,178,25);                          // Измерить уровень сигнала на выходе LineR 
-	measure_vol_min(analog_mag_radio,40144,144,25);                          // Измерить уровень сигнала на выходе mag radio  
-	measure_vol_min(analog_mag_phone,40145,145,25);                          // Измерить уровень сигнала на выходе mag phone
+	measure_vol_min(analog_LineL,    40179,179,25);                          // Измерить уровень сигнала на выходе LineL   
+	measure_vol_min(analog_LineR,    40180,180,25);                          // Измерить уровень сигнала на выходе LineR 
+	measure_vol_min(analog_mag_radio,40154,154,25);                          // Измерить уровень сигнала на выходе mag radio  
+	measure_vol_min(analog_mag_phone,40155,155,25);                          // Измерить уровень сигнала на выходе mag phone
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_ggs,      40146,146,30);                          // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40147,147,30);                          // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40148,148,30);                          // Измерить уровень сигнала на выходе GG Radio2
+	measure_vol_min(analog_ggs,      40156,156,30);                          // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_gg_radio1,40157,157,30);                          // Измерить уровень сигнала на выходе GG Radio1
+	measure_vol_min(analog_gg_radio2,40158,158,30);                          // Измерить уровень сигнала на выходе GG Radio2
 	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
 	myFile.println("");                                                      //
 	regBank.set(10,1);                                                       // Подать управляющую команду на вывод XP1 10 Включение микрофона диспетчера
@@ -2351,19 +2351,19 @@ void test_headset_dispatcher()
 		  }
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[24])));         // "Microphone dispatcher signal ON" 
-	if (test_repeat == false) myFile.println(buffer);                                                 // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
+	if (test_repeat == false) myFile.println(buffer);                       // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
 	delay(20);
 	//+++++++++++++++++++++++++++ Проверить наличие сигнала на линиях LineL  mag phone  ++++++++++++++++++++++++++++++++++
-	measure_vol_max(analog_LineL,    40143,143,200);                         // Измерить уровень сигнала на выходе LineL
-	measure_vol_max(analog_mag_phone,40150,150,200);                         // Измерить уровень сигнала на выходе mag phone
+	//measure_vol_max(analog_LineL,    40153,153,200);                         // Измерить уровень сигнала на выходе LineL
+	//measure_vol_max(analog_mag_phone,40150,150,200);                         // Измерить уровень сигнала на выходе mag phone
 
    //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_LineR,    40178,178,25);                          // Измерить уровень сигнала на выходе LineR 
-	measure_vol_min(analog_FrontL,   40141,141,25);                          // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40142,142,25);                          // Измерить уровень сигнала на выходе FrontR 
-	measure_vol_min(analog_ggs,      40146,146,30);                          // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40147,147,30);                          // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40148,148,30);                          // Измерить уровень сигнала на выходе GG Radio2
+	measure_vol_min(analog_LineR,    40180,180,25);                          // Измерить уровень сигнала на выходе LineR 
+	measure_vol_min(analog_FrontL,   40151,151,25);                          // Измерить уровень сигнала на выходе FrontL   
+	measure_vol_min(analog_FrontR,   40152,152,25);                          // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_ggs,      40156,156,30);                          // Измерить уровень сигнала на выходе GGS
+	measure_vol_min(analog_gg_radio1,40157,157,30);                          // Измерить уровень сигнала на выходе GG Radio1
+	measure_vol_min(analog_gg_radio2,40158,158,30);                          // Измерить уровень сигнала на выходе GG Radio2
 
 
 	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
@@ -3226,6 +3226,14 @@ void test_MTT_on()
 		 }
 }
 
+/*
+const char  txt_error43[]  PROGMEM             = "Test headset instructor ** Signal LineL       ON                - ";
+const char  txt_error49[]  PROGMEM             = "Test headset instructor ** Signal Mag phone   ON                - ";
+const char  txt_error53[]  PROGMEM             = "Test headset dispatcher ** Signal LineL       ON                - ";
+const char  txt_error59[]  PROGMEM             = "Test headset dispatcher ** Signal Mag phone   ON                - ";
+*/
+
+
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
 		int regcount = 0;
@@ -3233,38 +3241,62 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 		switch (adr_flagErr) 
 		{
 			case 141:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[41])));   // "Signal FrontL     OFF                             - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[41])));    // "Test headset instructor ** Signal FrontL      OFF               - ";
 				break;
 			case 142:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[42])));   // "Signal FrontR     OFF                             - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[42])));    // "Test headset instructor ** Signal FrontR      OFF               - ";
 				break;
 			case 144:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[44])));   // "Signal mag radio OFF                              - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[44])));    // "Test headset instructor ** Signal mag radio   OFF               - ";
 				break;
 			case 145:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[45])));   // "Signal mag phone OFF                              - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[45])));    // "Test headset instructor ** Signal mag phone   OFF               - ";
 				break;
 			case 146:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[46])));   // "Signal GGS OFF                                    - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[46])));    // "Test headset instructor ** Signal GGS         OFF               - ";
 				break;
 			case 147:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[47])));    // "Signal GG Radio1 OFF                              - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[47])));    // "Test headset instructor ** Signal GG Radio1   OFF               - ";
 				break;
 			case 148:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[48])));    // "Signal GG Radio2 OFF                              - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[48])));    // "Test headset instructor ** Signal GG Radio2   OFF               - ";
 				break;
-			//case 160:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[40])));     // "Signal FrontL OFF    - "
-			//	break;
-			//case 161:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[41])));     // "Signal FrontR OFF    - "
-			//	break;
+			case 151:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[51])));    // "Test headset dispatcher ** Signal FrontL      OFF               - ";
+				break;
+			case 152:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[52])));    // "Test headset dispatcher ** Signal FrontR      OFF               - ";
+				break;
+			case 154:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[54])));    // "Test headset dispatcher ** Signal mag radio   OFF               - ";
+				break;
+			case 155:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[55])));    // "Test headset dispatcher ** Signal mag radio   OFF               - ";
+				break;
+			case 156:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[56])));    // "Test headset dispatcher ** Signal GGS         OFF               - ";
+				break;
+			case 157:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[57])));    // "Test headset dispatcher ** Signal GG Radio1   OFF               - ";
+				break;
+			case 158:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[58])));    // "Test headset dispatcher ** Signal GG Radio2   OFF               - ";
+				break;
 			case 177:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[77])));     // "Signal LineL OFF                                  - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[77])));    // "Test headset instructor ** Signal LineL       OFF               - ";
 				break;
 			case 178:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[78])));     // "Signal LineR OFF                                  - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[78])));    // "Test headset instructor ** Signal LineR       OFF               - ";
 				break;
+			case 179:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[79])));    // "Test headset dispatcher ** Signal LineL       OFF               - ";
+				break;
+			case 180:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[80])));    // "Test headset dispatcher ** Signal LineR       OFF               - ";
+				break;
+
+
+
 			//case 12:
 			//	//выполняется
 			//	break;
@@ -3289,7 +3321,6 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			{
 				if (test_repeat == false)
 				{
-					//Serial.println();
 				   myFile.print(buffer); 
 				   myFile.println("Pass");  // Проверка прошла
 				}
@@ -3301,62 +3332,30 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 		measure_volume(istochnik);                                                  // Измерить уровень сигнала на выходе
 		switch (adr_flagErr) 
 		{
-			//case 141:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[50])));     // "Signal FrontL OFF    - "
-			//	break;
-			//case 142:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[51])));     // "Signal FrontR OFF    - "
-			//	break;
 			case 143:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[43])));     // "Signal LineL     ON                               - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[43])));    // "Test headset instructor ** Signal LineL       ON                - ";
 				break;
-			//case 144:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[53])));     // "Signal mag radio OFF - "
-			//	//myFile.print(buffer);                                               // "Signal mag radio OFF - "
-			//	break;
-			//case 145:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[54])));     // "Signal mag phone OFF - "
-			////	myFile.print(buffer);                                               // "Signal mag phone OFF - "
-			//	break;
-			//case 146:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[55])));     // "Signal GGS OFF       - "
-			////	myFile.print(buffer);                                               // "Signal GGS OFF       - "
-			//	break;
-			//case 147:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[56])));     // "Signal GG Radio1 OFF - "
-			////	myFile.print(buffer);                                               // "Signal GG Radio1 OFF - "
-			//	break;
-			//case 148:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[57])));     // "Signal GG Radio2 OFF - "
-			////	myFile.print(buffer);                                               // "Signal GG Radio2 OFF - "
-			//	break;
 			case 149:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[49])));    // "Signal Mag phone ON                               - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[49])));    // "Test headset instructor ** Signal Mag phone   ON                - ";
 				break;
-			// case 160:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[50])));     // "Signal FrontL OFF    - "
-			//	break;
-			//case 161:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[51])));     // "Signal FrontR OFF    - "
-			//	break;
-			//case 172:
-			//	strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[49])));     // "Signal FrontR OFF    - "
-			//	break;
-			//case 10:
-			//	//выполняется когда  var равно 2
-			//	break;
+		    case 153:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[53])));    // "Test headset dispatcher ** Signal LineL       ON                - ";
+				break;
+			case 159:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[59])));    // "Test headset dispatcher ** Signal Mag phone   ON                - ";
+				break;
 		}
 
-		if(voltage10 <  porogV)                                                       // Проверить исправность канала
+		if(voltage10 <  porogV)                                                     // Проверить исправность канала
 			{
 				myFile.print(buffer); 
-				regcount = regBank.get(adr_count);                                    // адрес счетчика ошибки 
-				regcount++;                                                           // увеличить счетчик ошибок канала 
-				regBank.set(adr_count,regcount);                                      // адрес счетчика ошибки канала 
-				regBank.set(adr_flagErr,1);                                           // установить флаг ошибки  канала 
-				regBank.set(120,1);                                                   // установить общий флаг ошибки 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[49])));       // "Error! - "
-				myFile.print(buffer);                                                 // "Error! - "
+				regcount = regBank.get(adr_count);                                  // адрес счетчика ошибки 
+				regcount++;                                                         // увеличить счетчик ошибок канала 
+				regBank.set(adr_count,regcount);                                    // адрес счетчика ошибки канала 
+				regBank.set(adr_flagErr,1);                                         // установить флаг ошибки  канала 
+				regBank.set(120,1);                                                 // установить общий флаг ошибки 
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_instr_all[49])));     // "Error! - "
+				myFile.print(buffer);                                               // "Error! - "
 				myFile.println(regcount);
 			}
 		else
