@@ -624,7 +624,7 @@ txt_error80               // Резерв адрес счетчика ошибки включения микрофона ди
 const char* const string_table[] PROGMEM = 
 {
 txt_all_off0,     // 0
-txt_all_off1,     // 1  "Test sensor OFF start!";                           
+txt_all_off1,     // 1   " ****** Test sensor OFF start! ******" ;                               
 txt_all_off2,     // 2  "sensor MTT  XP1- 19 HaSs Error! - ";                         
 txt_all_off3,     // 3  "sensor MTT XP1- 19 HaSs ";
 txt_all_off4,     // 4   "OFF - Ok!"                                                ;                           
@@ -654,7 +654,7 @@ txt_all_off24     // 24  "Microphone dispatcher   "                             
 const char* const string_table_On[] PROGMEM = 
 {
 	txt_all_on0,      // 0  "Test sensor ON start!";                    
-	txt_all_on1,      // 1  "Test sensor ON start!";                           
+	txt_all_on1,      // 1  " ****** Test sensor ON start! ******";               
 	txt_all_on2,      // 2  "sensor MTT  XP1- 19 HaSs Error! - ";                         
 	txt_all_on3,      // 3  "sensor MTT XP1- 19 HaSs";
 	txt_all_on4,      // 4  "ON - Ok!"                                                 ;
@@ -1496,36 +1496,36 @@ void sensor_all_off()
 {
 	unsigned int regcount = 0;
 	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(string_table[1])));
-	myFile.println(buffer);
+	strcpy_P(buffer, (char*)pgm_read_word(&(string_table[1])));                     //  " ****** Test sensor OFF start! ******" ;      
+	myFile.println(buffer);                                                         //  " ****** Test sensor OFF start! ******" ;      
 	file_print_date();
 	myFile.println();
-	regBank.set(8,1);     // Включить питание Камертон
-	regBank.set(5,0);     // Микрофон инструктора отключить
-	regBank.set(10,0);    // Микрофон диспетчера отключить
-	regBank.set(13,0);    // XP8 - 2   sensor Тангента ножная
-	regBank.set(14,0);    // XP8 - 1   PTT     Тангента ножная
-	regBank.set(15,0);    // XS1 - 5   PTT Мик CTS
-	regBank.set(16,0);    // XS1 - 6   sensor подключения микрофона
+	regBank.set(8,1);                                                               // Включить питание Камертон
+	regBank.set(5,0);                                                               // Микрофон инструктора отключить
+	regBank.set(10,0);                                                              // Микрофон диспетчера отключить
+	regBank.set(13,0);                                                              // XP8 - 2   sensor Тангента ножная
+	regBank.set(14,0);                                                              // XP8 - 1   PTT     Тангента ножная
+	regBank.set(15,0);                                                              // XS1 - 5   PTT Мик CTS
+	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
  
-	regBank.set(17,0);    // J8-12    XP7 4 PTT2 тангента ручная DSR
-	regBank.set(18,0);    // XP1 - 20  HangUp  DCD
-	regBank.set(19,0);    // J8-11     XP7 2 sensor тангента ручная
-	regBank.set(20,0);    // J8-23     XP7 1 PTT1 тангента ручная CTS
+	regBank.set(17,0);                                                              // J8-12    XP7 4 PTT2 тангента ручная DSR
+	regBank.set(18,0);                                                              // XP1 - 20  HangUp  DCD
+	regBank.set(19,0);                                                              // J8-11     XP7 2 sensor тангента ручная
+	regBank.set(20,0);                                                              // J8-23     XP7 1 PTT1 тангента ручная CTS
 	//------------------------- Не используется --------------------
-	//regBank.set(21,0);    // XP2-2     sensor "Маг."  
-	//regBank.set(22,0);    // XP5-3     sensor "ГГC."
-	//regBank.set(23,0);    // XP3-3     sensor "ГГ-Радио1."
-	//regBank.set(24,1);    // XP4-3     sensor "ГГ-Радио2."
+	//regBank.set(21,0);                                                            // XP2-2     sensor "Маг."  
+	//regBank.set(22,0);                                                            // XP5-3     sensor "ГГC."
+	//regBank.set(23,0);                                                            // XP3-3     sensor "ГГ-Радио1."
+	//regBank.set(24,1);                                                            // XP4-3     sensor "ГГ-Радио2."
 	//-------------------------------------------------------------------
-	regBank.set(25,1);    // XP1- 19 HaSs      sensor подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-	regBank.set(26,0);    // XP1- 17 HaSPTT    CTS DSR вкл.
-	regBank.set(27,0);    // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
-	regBank.set(28,0);    // XP1- 15 HeS2PTT   CTS вкл
-	regBank.set(29,0);    // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
-	regBank.set(30,0);    // XP1- 6  HeS1PTT   CTS вкл
-	regBank.set(31,0);    // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,0);    // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	regBank.set(25,1);                                                              // XP1- 19 HaSs      sensor подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+	regBank.set(26,0);                                                              // XP1- 17 HaSPTT    CTS DSR вкл.
+	regBank.set(27,0);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(28,0);                                                              // XP1- 15 HeS2PTT   CTS вкл
+	regBank.set(29,0);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+	regBank.set(30,0);                                                              // XP1- 6  HeS1PTT   CTS вкл
+	regBank.set(31,0);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,0);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
 	UpdateRegs(); 
 	delay(300);
@@ -1799,40 +1799,40 @@ void sensor_all_off()
 
 
 		//-----------------------------------Отключен, в данной версии не применяется ------------------------------------------------
-	/*	if(bitRead(i50,0) != 0)                                         // XP4-3     sensor "ГГ-Радио2."
+	/*	if(bitRead(i50,0) != 0)                                                     // XP4-3     sensor "ГГ-Радио2."
 		  {
-			regcount = regBank.get(40122);                              // адрес счетчика ошибки sensor "ГГ-Радио2."
-			regcount++;                                                 // увеличить счетчик ошибок sensor "ГГ-Радио2."
-			regBank.set(40122,regcount);                                // адрес счетчика ошибки sensor "ГГ-Радио2."
-			regBank.set(122,1);                                         // установить флаг ошибки sensor "ГГ-Радио2."
-			regBank.set(120,1);                                         // установить общий флаг ошибки
-			myFile.print("sensor GG Radio 2 Error! - ");                 // 
-			myFile.println(regcount);                                   // 
+			regcount = regBank.get(40122);                                          // адрес счетчика ошибки sensor    "ГГ-Радио2."
+			regcount++;                                                             // увеличить счетчик ошибок sensor "ГГ-Радио2."
+			regBank.set(40122,regcount);                                            // адрес счетчика ошибки sensor    "ГГ-Радио2."
+			regBank.set(122,1);                                                     // установить флаг ошибки sensor "ГГ-Радио2."
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			myFile.print("sensor GG Radio 2 Error! - ");                            // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
-			myFile.print("sensor GG Radio 2 ");                          // 
-			myFile.println("OFF - Ok!");                                //  sensor "ГГ-Радио2." OK!
+			myFile.print("sensor GG Radio 2 ");                                     // 
+			myFile.println("OFF - Ok!");                                            //  sensor "ГГ-Радио2." OK!
 		  }
 
-		if(bitRead(i50,1) != 0)                                         // XP3-3     sensor "ГГ-Радио1."
+		if(bitRead(i50,1) != 0)                                                     // XP3-3     sensor "ГГ-Радио1."
 		  {
-			regcount = regBank.get(40121);                              // адрес счетчика ошибки  sensor "ГГ-Радио1."
-			regcount++;                                                 // увеличить счетчик ошибок  sensor "ГГ-Радио1."
-			regBank.set(40121,regcount);                                // адрес счетчика ошибки  sensor "ГГ-Радио1."
-			regBank.set(121,1);                                         // установить флаг ошибки  sensor "ГГ-Радио1."
-			regBank.set(120,1);                                         // установить общий флаг ошибки
-			myFile.print("sensor GG Radio 1 Error! - ");                 // 
-			myFile.println(regcount);                                   // 
+			regcount = regBank.get(40121);                                          // адрес счетчика ошибки  sensor "ГГ-Радио1."
+			regcount++;                                                             // увеличить счетчик ошибок  sensor "ГГ-Радио1."
+			regBank.set(40121,regcount);                                            // адрес счетчика ошибки  sensor "ГГ-Радио1."
+			regBank.set(121,1);                                                     // установить флаг ошибки  sensor "ГГ-Радио1."
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			myFile.print("sensor GG Radio 1 Error! - ");                            // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
-			myFile.print("sensor GG Radio 1 ");                          // 
-			myFile.println("OFF - Ok!");                                //   sensor "ГГ-Радио1." OK!
+			myFile.print("sensor GG Radio 1 ");                                     // 
+			myFile.println("OFF - Ok!");                                            //   sensor "ГГ-Радио1." OK!
 		  }
-	if(bitRead(i52,0) != 0)                                             // XP2-2 sensor "Маг."  
+	if(bitRead(i52,0) != 0)                                                         // XP2-2 sensor "Маг."  
 		  {
-			regcount = regBank.get(40126);                              // адрес счетчика ошибки sensor "Маг."  
+			regcount = regBank.get(40126);                                          // адрес счетчика ошибки sensor "Маг."  
 			regcount++;                                                 // увеличить счетчик ошибок sensor "Маг."  
 			regBank.set(40126,regcount);                                // адрес счетчика ошибки sensor  "Маг."  
 			regBank.set(126,1);                                         // установить флаг ошибки sensor "Маг."  
@@ -1873,217 +1873,211 @@ void sensor_all_on()
 {
 	unsigned int regcount = 0;
 	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[1])));
-	myFile.println(buffer);  // 
+	strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[1])));                  // " ****** Test sensor ON start! ******";    
+	myFile.println(buffer);                                                         // " ****** Test sensor ON start! ******";    
 	file_print_date();
 	myFile.println();
-	regBank.set(8,1);     // Включить питание Камертон
-	regBank.set(5,1);     // Микрофон инструктора включить
-	regBank.set(10,1);    // Микрофон диспетчера включить
-	regBank.set(13,1);    // XP8 - 2   sensor Тангента ножная
-	//regBank.set(14,1);    // XP8 - 1   PTT     Тангента ножная
-	//regBank.set(15,1);    // XS1 - 5   PTT Мик CTS
-	regBank.set(16,1);    // XS1 - 6   sensor подключения микрофона
+	regBank.set(8,1);                                                               // Включить питание Камертон
+	regBank.set(5,1);                                                               // Микрофон инструктора включить
+	regBank.set(10,1);                                                              // Микрофон диспетчера включить
+	regBank.set(13,1);                                                              // XP8 - 2   sensor Тангента ножная
+	//regBank.set(14,1);                                                            // XP8 - 1   PTT     Тангента ножная
+	//regBank.set(15,1);                                                            // XS1 - 5   PTT Мик CTS
+	regBank.set(16,1);                                                              // XS1 - 6   sensor подключения микрофона
  
-	//regBank.set(17,1);    // J8-12    XP7 4 PTT2 тангента ручная DSR
-	//regBank.set(18,1);    // XP1 - 20  HangUp  DCD
-	regBank.set(19,1);    // J8-11     XP7 2 sensor тангента ручная
-	//regBank.set(20,1);    // J8-23     XP7 1 PTT1 тангента ручная CTS
+	//regBank.set(17,1);                                                            // J8-12    XP7 4 PTT2 тангента ручная DSR
+	//regBank.set(18,1);                                                            // XP1 - 20  HangUp  DCD
+	regBank.set(19,1);                                                              // J8-11     XP7 2 sensor тангента ручная
+	//regBank.set(20,1);                                                            // J8-23     XP7 1 PTT1 тангента ручная CTS
 	//------------------------- Не используется --------------------
-	//regBank.set(21,1);    // XP2-2     sensor "Маг."  
-	//regBank.set(22,1);    // XP5-3     sensor "ГГC."
-	//regBank.set(23,1);    // XP3-3     sensor "ГГ-Радио1."
-	//regBank.set(24,1);    // XP4-3     sensor "ГГ-Радио2."
+	//regBank.set(21,1);                                                            // XP2-2     sensor "Маг."  
+	//regBank.set(22,1);                                                            // XP5-3     sensor "ГГC."
+	//regBank.set(23,1);                                                            // XP3-3     sensor "ГГ-Радио1."
+	//regBank.set(24,1);                                                            // XP4-3     sensor "ГГ-Радио2."
 	//-------------------------------------------------------------------
-	regBank.set(25,0);    // XP1- 19 HaSs      sensor подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-//	regBank.set(26,1);    // XP1- 17 HaSPTT    CTS DSR вкл.
-	regBank.set(27,1);    // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
-//	regBank.set(28,1);    // XP1- 15 HeS2PTT   CTS вкл
-	regBank.set(29,1);    // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
-//	regBank.set(30,1);    // XP1- 6  HeS1PTT   CTS вкл
-	regBank.set(31,1);    // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,1);    // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	regBank.set(25,0);                                                              // XP1- 19 HaSs      sensor подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+//	regBank.set(26,1);                                                              // XP1- 17 HaSPTT    CTS DSR вкл.
+	regBank.set(27,1);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+//	regBank.set(28,1);                                                              // XP1- 15 HeS2PTT   CTS вкл
+	regBank.set(29,1);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+//	regBank.set(30,1);                                                              // XP1- 6  HeS1PTT   CTS вкл
+	regBank.set(31,1);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,1);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
 	UpdateRegs(); 
 	delay(500);
 	UpdateRegs(); 
-	//regBank.add(134);   // Флаг счетчика ошибки сенсора PTT Танг н.  ok!
-	//regBank.add(135);   // Флаг счетчика ошибки сенсора PTT Мик ok!
-	//regBank.add(136);   // Флаг счетчика ошибки  PTT2 Танг. р. ok!
-	//regBank.add(137);   // Флаг счетчика ошибки  HangUp  DCD  ok!
-	//regBank.add(138);   // Флаг счетчика ошибки  PTT1 Танг. р. ok!
-	//regBank.add(139);   // Флаг ошибки отключения микрофона гарнитуры инструктора
 
-		if(bitRead(regs_in[0],2) == 0)                                     // XP1- 19 HaSs sensor подключения трубки  
+		if(bitRead(regs_in[0],2) == 0)                                              // XP1- 19 HaSs sensor подключения трубки  
 		  {
-			regcount = regBank.get(40123);                                 // адрес счетчика ошибки sensor подключения трубки  
-			regcount++;                                                    // увеличить счетчик ошибок sensor подключения трубки  
-			regBank.set(40123,regcount);                                   // адрес счетчика ошибки sensor подключения трубки  
-			regBank.set(123,1);                                            // установить флаг ошибки sensor подключения трубки  
-			regBank.set(120,1);                                            // установить общий флаг ошибки
+			regcount = regBank.get(40123);                                          // адрес счетчика ошибки sensor подключения трубки  
+			regcount++;                                                             // увеличить счетчик ошибок sensor подключения трубки  
+			regBank.set(40123,regcount);                                            // адрес счетчика ошибки sensor подключения трубки  
+			regBank.set(123,1);                                                     // установить флаг ошибки sensor подключения трубки  
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[2])));
-			myFile.print(buffer);                                          // 
-			myFile.println(regcount);                                      // 
+			myFile.print(buffer);                                                   // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[3])));
-			if (test_repeat == false) myFile.print(buffer);                                  // 
+			if (test_repeat == false) myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			if (test_repeat == false) myFile.println(buffer);                                //  sensor подключения трубки  OK!
+			if (test_repeat == false) myFile.println(buffer);                       //  sensor подключения трубки  OK!
 		  }
   
-		if(bitRead(regs_in[0],3) == 0)                                  // J8-11     XP7 2 sensor тангента ручная
+		if(bitRead(regs_in[0],3) == 0)                                              // J8-11     XP7 2 sensor тангента ручная
 		  {
-			regcount = regBank.get(40124);                              // адрес счетчика ошибки sensor тангента ручная
-			regcount++;                                                 // увеличить счетчик ошибок sensor тангента ручная
-			regBank.set(40124,regcount);                                // адрес счетчика ошибки sensor тангента ручная
-			regBank.set(124,1);                                         // установить флаг ошибки sensor тангента ручная
-			regBank.set(120,1);                                         // установить общий флаг ошибки
+			regcount = regBank.get(40124);                                          // адрес счетчика ошибки sensor тангента ручная
+			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная
+			regBank.set(40124,regcount);                                            // адрес счетчика ошибки sensor тангента ручная
+			regBank.set(124,1);                                                     // установить флаг ошибки sensor тангента ручная
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[5])));
-			myFile.print(buffer);               // 
-			myFile.println(regcount);                                   // 
+			myFile.print(buffer);                                                   // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[6])));
-			if (test_repeat == false) myFile.print(buffer);                 // 
+			if (test_repeat == false) myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			if (test_repeat == false) myFile.println(buffer);                                 //  sensor тангента ручная OK!
+			if (test_repeat == false) myFile.println(buffer);                       //  sensor тангента ручная OK!
 		  }
 
-		if(bitRead(regs_in[0],4) == 0)                                  // XP8 - 2   sensor Тангента ножная
+		if(bitRead(regs_in[0],4) == 0)                                              // XP8 - 2   sensor Тангента ножная
 		  {
-			regcount = regBank.get(40125);                              // адрес счетчика ошибки sensor Тангента ножная
-			regcount++;                                                 // увеличить счетчик ошибок  sensor Тангента ножная
-			regBank.set(40125,regcount);                                // адрес счетчика ошибки  sensor Тангента ножная
-			regBank.set(125,1);                                         // установить флаг ошибки sensor Тангента ножная
-			regBank.set(120,1);                                         // установить общий флаг ошибки
+			regcount = regBank.get(40125);                                          // адрес счетчика ошибки sensor Тангента ножная
+			regcount++;                                                             // увеличить счетчик ошибок  sensor Тангента ножная
+			regBank.set(40125,regcount);                                            // адрес счетчика ошибки  sensor Тангента ножная
+			regBank.set(125,1);                                                     // установить флаг ошибки sensor Тангента ножная
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[8])));
-			myFile.print(buffer);        // 
-			myFile.println(regcount);                                   // 
+			myFile.print(buffer);                                                   // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[9])));
-			if (test_repeat == false) myFile.print(buffer);                 // 
+			if (test_repeat == false) myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			if (test_repeat == false) myFile.println(buffer);                                 // sensor Тангента ножная OK!
+			if (test_repeat == false) myFile.println(buffer);                       // sensor Тангента ножная OK!
 		  }
 
 
-		if(bitRead(regs_in[2],1) == 0)                                  // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+		if(bitRead(regs_in[2],1) == 0)                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 		  {
-			regcount = regBank.get(40127);                              // адрес счетчика ошибки sensor подключения гарнитуры инструктора с 2 наушниками
-			regcount++;                                                 // увеличить счетчик ошибок sensor подключения гарнитуры инструктора с 2 наушниками
-			regBank.set(40127,regcount);                                // адрес счетчика ошибки sensor подключения гарнитуры инструктора с 2 наушниками
-			regBank.set(127,1);                                         // установить флаг ошибки sensor подключения гарнитуры инструктора с 2 наушниками 
-			regBank.set(120,1);                                         // установить общий флаг ошибки
+			regcount = regBank.get(40127);                                          // адрес счетчика ошибки sensor подключения гарнитуры инструктора с 2 наушниками
+			regcount++;                                                             // увеличить счетчик ошибок sensor подключения гарнитуры инструктора с 2 наушниками
+			regBank.set(40127,regcount);                                            // адрес счетчика ошибки sensor подключения гарнитуры инструктора с 2 наушниками
+			regBank.set(127,1);                                                     // установить флаг ошибки sensor подключения гарнитуры инструктора с 2 наушниками 
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[11])));
 			myFile.print(buffer); // 
-			myFile.println(regcount);                                   // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[12])));
-			if (test_repeat == false) myFile.print(buffer);          // 
+			if (test_repeat == false) myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			if (test_repeat == false) myFile.println(buffer);                                 //  
+			if (test_repeat == false) myFile.println(buffer);                       //  
 		  }
 
-		if(bitRead(regs_in[2],2) == 0)                                  // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+		if(bitRead(regs_in[2],2) == 0)                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
 		  {
-			regcount = regBank.get(40128);                              // адрес счетчика ошибки sensor подключения гарнитуры инструктора
-			regcount++;                                                 // увеличить счетчик ошибок sensor подключения гарнитуры инструктора
-			regBank.set(40128,regcount);                                // адрес счетчика ошибки sensor подключения гарнитуры инструктора 
-			regBank.set(128,1);                                         // установить флаг ошибки sensor подключения гарнитуры инструктора 
-			regBank.set(120,1);                                         // установить общий флаг ошибки
+			regcount = regBank.get(40128);                                          // адрес счетчика ошибки sensor подключения гарнитуры инструктора
+			regcount++;                                                             // увеличить счетчик ошибок sensor подключения гарнитуры инструктора
+			regBank.set(40128,regcount);                                            // адрес счетчика ошибки sensor подключения гарнитуры инструктора 
+			regBank.set(128,1);                                                     // установить флаг ошибки sensor подключения гарнитуры инструктора 
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[14])));
-			myFile.print(buffer);                          // 
-			myFile.println(regcount);                                   // 
+			myFile.print(buffer);                                                   // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[15])));
-			if (test_repeat == false) myFile.print(buffer);                                      // 
+			if (test_repeat == false) myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			if (test_repeat == false) myFile.println(buffer);                                 //   sensor подключения гарнитуры инструктора OK!
+			if (test_repeat == false) myFile.println(buffer);                       //   sensor подключения гарнитуры инструктора OK!
 		  }
 
-		if(bitRead(regs_in[2],3) == 0)                                  // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+		if(bitRead(regs_in[2],3) == 0)                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
 		  {
-			regcount = regBank.get(40129);                              // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
-			regcount++;                                                 // увеличить счетчик ошибок sensor подкючения гарнитуры диспетчера с 2 наушниками
-			regBank.set(40129,regcount);                                // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
-			regBank.set(129,1);                                         // установить флаг ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
-			regBank.set(120,1);                                         // установить общий флаг ошибки
+			regcount = regBank.get(40129);                                          // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
+			regcount++;                                                             // увеличить счетчик ошибок sensor подкючения гарнитуры диспетчера с 2 наушниками
+			regBank.set(40129,regcount);                                            // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
+			regBank.set(129,1);                                                     // установить флаг ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[17])));
-			myFile.print(buffer);                          // 
-			myFile.println(regcount);                                   // 
+			myFile.print(buffer);                                                   // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[18])));
-			if (test_repeat == false) myFile.print(buffer);                                      // 
+			if (test_repeat == false) myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			if (test_repeat == false) myFile.println(buffer);                                 //  sensor подкючения гарнитуры диспетчера с 2 наушниками OK!
+			if (test_repeat == false) myFile.println(buffer);                       //  sensor подкючения гарнитуры диспетчера с 2 наушниками OK!
 		  }
 
-		if(bitRead(regs_in[2],4) == 0)                                  // XP1- 1  HeS1Ls  sensor подкючения гарнитуры диспетчера
+		if(bitRead(regs_in[2],4) == 0)                                              // XP1- 1  HeS1Ls  sensor подкючения гарнитуры диспетчера
 		  {
-			regcount = regBank.get(40130);                              // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера
-			regcount++;                                                 // увеличить счетчик ошибок sensor подкючения гарнитуры диспетчера
-			regBank.set(40130,regcount);                                // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера 
-			regBank.set(130,1);                                         // установить флаг ошибки sensor подкючения гарнитуры диспетчера
-			regBank.set(120,1);                                         // установить общий флаг ошибки
+			regcount = regBank.get(40130);                                          // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера
+			regcount++;                                                             // увеличить счетчик ошибок sensor подкючения гарнитуры диспетчера
+			regBank.set(40130,regcount);                                            // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера 
+			regBank.set(130,1);                                                     // установить флаг ошибки sensor подкючения гарнитуры диспетчера
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[7])));
-			myFile.print(buffer);                          // 
-			myFile.println(regcount);                                   // 
+			myFile.print(buffer);                                                   // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[10])));
-			if (test_repeat == false) myFile.print(buffer);                                      // 
+			if (test_repeat == false) myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			if (test_repeat == false) myFile.println(buffer);                                 //  sensor подкючения гарнитуры диспетчера OK!
+			if (test_repeat == false) myFile.println(buffer);                       //  sensor подкючения гарнитуры диспетчера OK!
 		  }
 
-		if(bitRead(regs_in[2],5) == 0)                                  // XS1 - 6   sensor подключения микрофона
+		if(bitRead(regs_in[2],5) == 0)                                              // XS1 - 6   sensor подключения микрофона
 		  {
-			regcount = regBank.get(40131);                              // адрес счетчика ошибки sensor подключения микрофона
-			regcount++;                                                 // увеличить счетчик ошибок sensor подключения микрофона
-			regBank.set(40131,regcount);                                // адрес счетчика ошибки sensor подключения микрофона
-			regBank.set(131,1);                                         // установить флаг ошибки sensor подключения микрофона
-			regBank.set(120,1);                                         // установить общий флаг ошибки
+			regcount = regBank.get(40131);                                          // адрес счетчика ошибки sensor подключения микрофона
+			regcount++;                                                             // увеличить счетчик ошибок sensor подключения микрофона
+			regBank.set(40131,regcount);                                            // адрес счетчика ошибки sensor подключения микрофона
+			regBank.set(131,1);                                                     // установить флаг ошибки sensor подключения микрофона
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[13])));
-			myFile.print(buffer);                                 // 
-			myFile.println(regcount);                                   // 
+			myFile.print(buffer);                                                   // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[16])));
-			if (test_repeat == false) myFile.print(buffer);                                 // 
+			if (test_repeat == false) myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			if (test_repeat == false) myFile.println(buffer);                                //  sensor подключения микрофона OK!
+			if (test_repeat == false) myFile.println(buffer);                       //  sensor подключения микрофона OK!
 		  }
 	
-		if(bitRead(regs_in[3],4) == 0)                                  // Реле RL4 XP1 12  HeS2e   Включение микрофона гарнитуры инструктора
+		if(bitRead(regs_in[3],4) == 0)                                              // Реле RL4 XP1 12  HeS2e   Включение микрофона гарнитуры инструктора
 		  {
-			regcount = regBank.get(40139);                              // адрес счетчика ошибки Включение микрофона инструктора
-			regcount++;                                                 // увеличить счетчик ошибок Включение микрофона инструктора
-			regBank.set(40139,regcount);                                // адрес счетчика ошибки Включение микрофона инструктора
-			regBank.set(139,1);                                         // установить флаг ошибки Включение микрофона инструктора
-			regBank.set(120,1);                                         // установить общий флаг ошибки
+			regcount = regBank.get(40139);                                          // адрес счетчика ошибки Включение микрофона инструктора
+			regcount++;                                                             // увеличить счетчик ошибок Включение микрофона инструктора
+			regBank.set(40139,regcount);                                            // адрес счетчика ошибки Включение микрофона инструктора
+			regBank.set(139,1);                                                     // установить флаг ошибки Включение микрофона инструктора
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[19])));
-			myFile.print(buffer);                                 // 
-			myFile.println(regcount);                                   // 
+			myFile.print(buffer);                                                   // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[20])));
-			if (test_repeat == false) myFile.print(buffer);                                 // 
+			if (test_repeat == false) myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			if (test_repeat == false) myFile.println(buffer);                                // Включение микрофона инструктора ОК!
+			if (test_repeat == false) myFile.println(buffer);                       // Включение микрофона инструктора ОК!
 		  }
 		// --------------------------------  Включение радиопередачи пока не определил ------------------------------
 		//if(bitRead(regs_in[3],5) == 0)                                  // Включение радиопередачи
@@ -2106,23 +2100,23 @@ void sensor_all_on()
 		//  }
 	
 
-	   if(bitRead(regs_in[3],6) == 0)                                   // Реле RL9 XP1 10 Включение микрофона диспетчера
+	   if(bitRead(regs_in[3],6) == 0)                                               // Реле RL9 XP1 10 Включение микрофона диспетчера
 		  {
-			regcount = regBank.get(40155);                              // адрес счетчика ошибки Включение радиопередачи
-			regcount++;                                                 // увеличить счетчик ошибок Включение радиопередачи
-			regBank.set(40155,regcount);                                // адрес счетчика ошибки Включение радиопередачи
-			regBank.set(155,1);                                         // установить флаг ошибки Включение радиопередачи
-			regBank.set(120,1);                                         // установить общий флаг ошибки
+			regcount = regBank.get(40155);                                          // адрес счетчика ошибки Включение радиопередачи
+			regcount++;                                                             // увеличить счетчик ошибок Включение радиопередачи
+			regBank.set(40155,regcount);                                            // адрес счетчика ошибки Включение радиопередачи
+			regBank.set(155,1);                                                     // установить флаг ошибки Включение радиопередачи
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[23])));
-			myFile.print(buffer);                                       // 
-			myFile.println(regcount);                                   // 
+			myFile.print(buffer);                                                   // 
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[24])));
-			if (test_repeat == false) myFile.print(buffer);                                       // 
+			if (test_repeat == false) myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			if (test_repeat == false) myFile.println(buffer);                                     // Включение радиопередачи ОК!
+			if (test_repeat == false) myFile.println(buffer);                       // Включение радиопередачи ОК!
 		  }
 	
 		//-----------------------------------Отключен ------------------------------------------------------------------
@@ -2190,10 +2184,10 @@ void sensor_all_on()
 		  }
   */
 
-	regBank.set(5,0);     // Микрофон инструктора отключить
-	regBank.set(10,0);    // Микрофон диспетчера отключить
+	regBank.set(5,0);                                                               // Микрофон инструктора отключить
+	regBank.set(10,0);                                                              // Микрофон диспетчера отключить
 	UpdateRegs(); 
-	regBank.set(adr_control_command,0);                                 // Завершить программу    
+	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(100);
 	delay(100);
 }
