@@ -3574,19 +3574,14 @@ namespace KamertonTest
 
             startRdReg = 200;
             numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40120 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40200 Считать счетчики ошибок  
 
-            startCoil = 200;                                                                    // Начальный Адрес 120 флага индикации возникновения  ошибки
+            startCoil = 200;                                                                    // Начальный Адрес 200 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
 
-          //  textBox9.Text += ("Вызов программы обработки ошибок" + coilArr[0] + " - " + coilArr[1] + " - " + coilArr[2] + " - " + coilArr[3] + "\r\n");
-            //textBox9.Text += ("Вызов программы обработки ошибок" + coilArr[4] + " - " + coilArr[5] + " - " + coilArr[6] + " - " + coilArr[7] + "\r\n");
-            //textBox9.Text += ("Вызов программы обработки ошибок" + coilArr[8] + " - " + coilArr[9] + " - " + coilArr[10] + " - " + coilArr[11] + "\r\n");
-           // textBox9.Refresh();
             if (coilArr[0] != false)
             {
-                textBox8.Text +=     ("Ошибка!" + "\r\n");
                 textBox8.Text +=     ("Сенсор  трубки не отключился            < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 200, false);
 
@@ -3594,27 +3589,23 @@ namespace KamertonTest
 
             if (coilArr[1] != false)
                 {
-                    textBox8.Text += ("Ошибка!" + "\r\n");
                     textBox8.Text += ("Сенсор Тангента ручная не отключился    < = " + readVals[1] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 201, false);
                 }
 
             if (coilArr[2] != false)
                 {
-                    textBox8.Text += ("Ошибка!" + "\r\n");
                     textBox8.Text += ("Сенсор Тангента ножная не отключился    < = " + readVals[2] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 202, false);
                 }
 
             if (coilArr[3] != false)
                 {
-                    textBox8.Text += ("Ошибка!" + "\r\n");
                     textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не отключился < = " + readVals[3] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 203, false);
                 }
             if (coilArr[4] != false)
                 {
-                    textBox8.Text += ("Ошибка!" + "\r\n");
                     textBox8.Text += ("Сенсор гарнитуры инструктора  не отключился  < = " + readVals[4] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 204, false);
                 }
@@ -3625,40 +3616,35 @@ namespace KamertonTest
                 }
             if (coilArr[6] != false)
                 {
-                    textBox8.Text += ("Ошибка!" + "\r\n");
                     textBox8.Text += ("Сенсор диспетчера не отключился < = " + readVals[6] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 206, false);
                 }
             if (coilArr[7] != false)
                 {
-                    textBox8.Text += ("Ошибка!" + "\r\n");
                     textBox8.Text += ("Сенсор Микрофона не отключился   < = " + readVals[7] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 207, false);
                 }
             if (coilArr[8] != false)
                 {
-                    textBox8.Text += ("Ошибка!" + "\r\n");
                     textBox8.Text += ("Микрофон инструктора не отключился  < = " + readVals[8] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 208, false);
                 }
             if (coilArr[9] != false)
                 {
-                    textBox8.Text += ("Ошибка!" + "\r\n");
                     textBox8.Text += ("Микрофон инструктора не отключился  < = " + readVals[9] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 209, false);
                 }
 
             startRdReg = 210;
             numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40120 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40210 Считать счетчики ошибок  
 
-            startCoil = 210;                                                                    // Начальный Адрес 120 флага индикации возникновения  ошибки
+            startCoil = 210;                                                                    // Начальный Адрес 210 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
 
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Ошибка!" + "\r\n");
                 textBox8.Text += ("Сенсор  трубки не включился            < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 210, false);
 
@@ -3666,59 +3652,124 @@ namespace KamertonTest
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Ошибка!" + "\r\n");
                 textBox8.Text += ("Сенсор Тангента ручная не включился    < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 211, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Ошибка!" + "\r\n");
                 textBox8.Text += ("Сенсор Тангента ножная не включился    < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 212, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Ошибка!" + "\r\n");
                 textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 213, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Ошибка!" + "\r\n");
                 textBox8.Text += ("Сенсор гарнитуры инструктора  не включился  < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 214, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Ошибка! Сенсор диспетчера с 2 наушниками не включился < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Сенсор диспетчера с 2 наушниками не включился < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 215, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Ошибка!" + "\r\n");
                 textBox8.Text += ("Сенсор диспетчера не включился < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 216, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Ошибка!" + "\r\n");
                 textBox8.Text += ("Сенсор Микрофона не включился   < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 217, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Ошибка!" + "\r\n");
                 textBox8.Text += ("Микрофон инструктора не включился  < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 218, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Ошибка!" + "\r\n");
                 textBox8.Text += ("Микрофон инструктора не включился  < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 219, false);
             }
+
+            startRdReg = 220;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40220 Считать счетчики ошибок  
+
+            startCoil = 220;                                                                    // Начальный Адрес 220 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+                textBox8.Text += ("PTT инструктора не отключился            < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 220, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+           //     textBox8.Text += ("Сенсор Тангента ручная не включился    < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 221, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+             //    textBox8.Text += ("Сенсор Тангента ножная не включился    < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 222, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+              //   textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 223, false);
+            }
+            if (coilArr[4] != false)
+            {
+               //  textBox8.Text += ("Сенсор гарнитуры инструктора  не включился  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 224, false);
+            }
+            if (coilArr[5] != false)
+            {
+             //   textBox8.Text += ("Ошибка! Сенсор диспетчера с 2 наушниками не включился < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 225, false);
+            }
+            if (coilArr[6] != false)
+            {
+               //  textBox8.Text += ("Сенсор диспетчера не включился < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 226, false);
+            }
+            if (coilArr[7] != false)
+            {
+               //   textBox8.Text += ("Сенсор Микрофона не включился   < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 227, false);
+            }
+            if (coilArr[8] != false)
+            {
+                // textBox8.Text += ("Микрофон инструктора не включился  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 228, false);
+            }
+            if (coilArr[9] != false)
+            {
+               //  textBox8.Text += ("Микрофон инструктора не включился  < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 229, false);
+            }
+
+
+
+
+
+
+
+
+
+
             //if (coilArr[10] != false)
             //    {
             //        //textBox8.Text += ("Ошибка сенсора диспетчера                < = " + readVals[10] + ">\r\n");
@@ -3827,7 +3878,7 @@ namespace KamertonTest
                     label98.Refresh();
                     break;
                 case 2:
-                  //  test_instruktora();
+                    test_instruktora();
                     progressBar2.Value += 1;
                     label98.Text = ("" + progressBar2.Value);
                     label98.Refresh();
