@@ -568,7 +568,7 @@ namespace KamertonTest
             // 
             // textBox8
             // 
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox8.Location = new System.Drawing.Point(6, 23);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
