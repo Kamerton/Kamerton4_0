@@ -3611,7 +3611,7 @@ namespace KamertonTest
                 }
             if (coilArr[5] != false)
                 {
-                    textBox8.Text += ("Ошибка! Сенсор диспетчера с 2 наушниками не отключился < = " + readVals[5] + ">\r\n");
+                    textBox8.Text += ("Сенсор диспетчера с 2 наушниками не отключился < = " + readVals[5] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 205, false);
                 }
             if (coilArr[6] != false)
@@ -3631,7 +3631,7 @@ namespace KamertonTest
                 }
             if (coilArr[9] != false)
                 {
-                    textBox8.Text += ("Микрофон инструктора не отключился  < = " + readVals[9] + ">\r\n");
+                    textBox8.Text += ("Микрофон диспетчера не отключился  < = " + readVals[9] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 209, false);
                 }
 
@@ -3694,7 +3694,7 @@ namespace KamertonTest
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Микрофон инструктора не включился  < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Микрофон диспетчера не включился  < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 219, false);
             }
 
@@ -3708,56 +3708,56 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("PTT инструктора не отключился            < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("PTT инструктора не отключился         < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 220, false);
 
             }
 
             if (coilArr[1] != false)
             {
-           //     textBox8.Text += ("Сенсор Тангента ручная не включился    < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("PTT инструктора не включился          < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 221, false);
             }
 
             if (coilArr[2] != false)
             {
-             //    textBox8.Text += ("Сенсор Тангента ножная не включился    < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("PTT диспетчера не отключился          < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 222, false);
             }
 
             if (coilArr[3] != false)
             {
-              //   textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("PTT диспетчера не включился           < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 223, false);
             }
             if (coilArr[4] != false)
             {
-               //  textBox8.Text += ("Сенсор гарнитуры инструктора  не включился  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Сигнал инструктора LineL отсутствует  < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 224, false);
             }
             if (coilArr[5] != false)
             {
-             //   textBox8.Text += ("Ошибка! Сенсор диспетчера с 2 наушниками не включился < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Сигнал инструктора LineR отсутствует   < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 225, false);
             }
             if (coilArr[6] != false)
             {
-               //  textBox8.Text += ("Сенсор диспетчера не включился < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует   < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 226, false);
             }
             if (coilArr[7] != false)
             {
-               //   textBox8.Text += ("Сенсор Микрофона не включился   < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Сигнал диспетчера LineL отсутствует   < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 227, false);
             }
             if (coilArr[8] != false)
             {
-                // textBox8.Text += ("Микрофон инструктора не включился  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Сигнал диспетчера LineR отсутствует  < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 228, false);
             }
             if (coilArr[9] != false)
             {
-               //  textBox8.Text += ("Микрофон инструктора не включился  < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует  < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 229, false);
             }
 
@@ -4600,6 +4600,11 @@ namespace KamertonTest
         {
                 startCoil = 119;                                                          // Управление сенсорами
                 res = myProtocol.writeCoil(slave, startCoil, true); 
+        }
+
+        private void checkBoxSenGar2instr_CheckedChanged (object sender, EventArgs e)
+        {
+
         }
 
         

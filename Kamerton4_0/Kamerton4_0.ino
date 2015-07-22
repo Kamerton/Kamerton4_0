@@ -474,7 +474,7 @@ const char  txt_error1[]  PROGMEM              = "Sensor tangenta ruchnaja      
 const char  txt_error2[]  PROGMEM              = "Sensor tangenta nognaja             XP8 - 2                 OFF - "; 
 const char  txt_error3[]  PROGMEM              = "Sensor headset instructor 2         XP1- 16 HeS2Rs          OFF - ";
 const char  txt_error4[]  PROGMEM              = "Sensor headset instructor           XP1- 13 HeS2Ls          OFF - "; 
-const char  txt_error5[]  PROGMEM              = "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          OFF - ";
+const char  txt_error5[]  PROGMEM              = "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          OFF - "; 
 const char  txt_error6[]  PROGMEM              = "Sensor headset dispatcher           XP1- 1  HeS1Ls          OFF - ";
 const char  txt_error7[]  PROGMEM              = "Sensor microphone                   XS1 - 6                 OFF - "; 
 const char  txt_error8[]  PROGMEM              = "Microphone headset instructor Sw.   XP1 12 HeS2e            OFF - "; 
@@ -485,7 +485,7 @@ const char  txt_error11[]  PROGMEM             = "Sensor tangenta ruchnaja      
 const char  txt_error12[]  PROGMEM             = "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
 const char  txt_error13[]  PROGMEM             = "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
 const char  txt_error14[]  PROGMEM             = "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - "; 
-const char  txt_error15[]  PROGMEM             = "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          ON  - ";
+const char  txt_error15[]  PROGMEM             = "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          ON  - "; 
 const char  txt_error16[]  PROGMEM             = "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";
 const char  txt_error17[]  PROGMEM             = "Sensor microphone                   XS1 - 6                 ON  - "; 
 const char  txt_error18[]  PROGMEM             = "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - "; 
@@ -2243,91 +2243,92 @@ void test_headset_instructor()
 void test_headset_dispatcher()
  {
 	myFile.println(""); 
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[20])));
-	myFile.println(buffer);                                                    // "Test dispatcher start!" dispatcher  supervisor
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[23])));                   // " ****** Test headset dispatcher start! ******"               ;
+	myFile.println(buffer);                                                         // " ****** Test headset dispatcher start! ******"               ;
 	myFile.println();
 	file_print_date();
 	myFile.println("");
 	unsigned int regcount = 0;
-	test_disp_off();                                                           // Отключить реле и сенсоры, прверить отключение
-	test_disp_on();                                                            // Включить необходимые сенсоры, проверить состояние
+	test_disp_off();                                                                // Отключить реле и сенсоры, прверить отключение
+	test_disp_on();                                                                 // Включить необходимые сенсоры, проверить состояние
 	myFile.println("");
 
 		// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
-	resistor(1, 30);                                                           // Установить уровень сигнала 30 мв
-	resistor(2, 30);                                                           // Установить уровень сигнала 30 мв
-	regBank.set(1,1);                                                          // Подать сигнал на вход микрофона диспетчера Mic1p
-	UpdateRegs();                                                              // Выполнить команду
+	resistor(1, 30);                                                                // Установить уровень сигнала 30 мв
+	resistor(2, 30);                                                                // Установить уровень сигнала 30 мв
+	regBank.set(1,1);                                                               // Подать сигнал на вход микрофона диспетчера Mic1p
+	UpdateRegs();                                                                   // Выполнить команду
 	delay(200);
 	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[21])));            //   
-	if (test_repeat == false) myFile.println(buffer);                                                  // "Signal microphone   dispatcher 30mv  ON"
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[13])));                   // "Signal headset dispatcher microphone 30mv     ON"            ;    
+	if (regBank.get(118)== false) myFile.println(buffer);                           // "Signal headset dispatcher microphone 30mv     ON"            ;   
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,   40151,151,25);                            // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40152,152,25);                            // Измерить уровень сигнала на выходе FrontR 
+	measure_vol_min(analog_FrontL,   40240,240,25);                                 // Измерить уровень сигнала на выходе FrontL    "Test headset dispatcher ** Signal FrontL                    OFF - ";
+	measure_vol_min(analog_FrontR,   40241,241,25);                                 // Измерить уровень сигнала на выходе FrontR    "Test headset dispatcher ** Signal FrontR                    OFF - ";
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на "Маг"  линиях Radio, Phane +++++++++++++++++++++++++++
-	measure_vol_min(analog_LineL,    40179,179,25);                            // Измерить уровень сигнала на выходе LineL   
-	measure_vol_min(analog_LineR,    40180,180,25);                            // Измерить уровень сигнала на выходе LineR 
-	measure_vol_min(analog_mag_radio,40154,154,25);                            // Измерить уровень сигнала на выходе mag radio  
-	measure_vol_min(analog_mag_phone,40155,155,25);                            // Измерить уровень сигнала на выходе mag phone
+	measure_vol_min(analog_LineL,    40242,242,25);                                 // Измерить уровень сигнала на выходе LineL     "Test headset dispatcher ** Signal LineL                     OFF - ";
+	measure_vol_min(analog_LineR,    40243,243,25);                                 // Измерить уровень сигнала на выходе LineR     "Test headset dispatcher ** Signal LineR                     OFF - ";
+	measure_vol_min(analog_mag_radio,40244,244,25);                                 // Измерить уровень сигнала на выходе mag radio "Test headset dispatcher ** Signal mag radio                 OFF - ";
+	measure_vol_min(analog_mag_phone,40245,245,25);                                 // Измерить уровень сигнала на выходе mag phone "Test headset dispatcher ** Signal mag phone                 OFF - ";
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_ggs,      40156,156,30);                            // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40157,157,30);                            // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40158,158,30);                            // Измерить уровень сигнала на выходе GG Radio2
+	measure_vol_min(analog_ggs,      40246,246,30);                                 // Измерить уровень сигнала на выходе GGS       "Test headset dispatcher ** Signal GGS                       OFF - ";
+	measure_vol_min(analog_gg_radio1,40247,247,30);                                 // Измерить уровень сигнала на выходе GG Radio1 "Test headset dispatcher ** Signal GG Radio1                 OFF - ";
+	measure_vol_min(analog_gg_radio2,40248,248,30);                                 // Измерить уровень сигнала на выходе GG Radio2 "Test headset dispatcher ** Signal GG Radio2                 OFF - ";
 	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
-	myFile.println("");                                                        //
-	regBank.set(10,1);                                                         // Подать управляющую команду на вывод XP1 10 Включение микрофона диспетчера
-	regBank.set(30,1);                                                         // XP1- 6  HeS1PTT   Включить PTT диспетчера
-	regBank.set(16,0);                                                         // Сенсор микрофона отключить
-	regBank.set(15,0);                                                         // РТТ микрофона отключить
-	regBank.set(31,1);                                                         // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,1);                                                         // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	myFile.println("");                                                             //
+	regBank.set(10,1);                                                              // Подать управляющую команду на вывод XP1 10 Включение микрофона диспетчера
+	regBank.set(30,1);                                                              // XP1- 6  HeS1PTT   Включить PTT диспетчера
+	regBank.set(16,0);                                                              // Сенсор микрофона отключить
+	regBank.set(15,0);                                                              // РТТ микрофона отключить
+	regBank.set(31,1);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,1);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
-	UpdateRegs();                                                              // 
-	delay(200);                                                                //
-	byte i5 = regs_in[3];                                                      // 
-		if(bitRead(i5,6) == 0)                                                 // Проверка  включения микрофона диспетчера
+	UpdateRegs();                                                                   // 
+	delay(200);                                                                     //
+	byte i5 = regs_in[3];                                                           // 
+		if(bitRead(i5,6) == 0)                                                      // Проверка  включения микрофона диспетчера
 		  {
-			regcount = regBank.get(40182);                                     // адрес счетчика ошибки включения микрофона диспетчера
-			regcount++;                                                        // увеличить счетчик ошибок включения микрофона диспетчера
-			regBank.set(40182,regcount);                                       // адрес счетчика ошибки включения микрофона диспетчера
-			regBank.set(182,1);                                                // установить флаг ошибки
-			regBank.set(120,1);                                                // установить общий флаг ошибки
-			resistor(1, 255);                                                  // Установить уровень сигнала в исходное состояниe
-			resistor(2, 255);                                                  // Установить уровень сигнала в исходное состояниe
+			regcount = regBank.get(40182);                                          // адрес счетчика ошибки включения микрофона диспетчера
+			regcount++;                                                             // увеличить счетчик ошибок включения микрофона диспетчера
+			regBank.set(40182,regcount);                                            // адрес счетчика ошибки включения микрофона диспетчера
+			regBank.set(182,1);                                                     // установить флаг ошибки
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			resistor(1, 255);                                                       // Установить уровень сигнала в исходное состояниe
+			resistor(2, 255);                                                       // Установить уровень сигнала в исходное состояниe
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[22])));
-			myFile.print(buffer);                                              // "Microphone dispatcher ON  Error! - "
-			myFile.println(regcount);                                          // 
+			myFile.print(buffer);                                                   // "Microphone dispatcher ON  Error! - "
+			myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[23])));
-			if (test_repeat == false) myFile.println(buffer);                  //"Microphone dispatcher  ON - Ok!" Микрофон диспетчера включился
+			if (test_repeat == false) myFile.println(buffer);                       //"Microphone dispatcher  ON - Ok!" Микрофон диспетчера включился
 			delay(20);
 		  }
 	myFile.println("");
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[24])));            // "Microphone dispatcher signal ON" 
-	if (test_repeat == false) myFile.println(buffer);                          // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[24])));                   // "Microphone dispatcher signal ON" 
+	if (test_repeat == false) myFile.println(buffer);                               // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
 	delay(20);
 	//+++++++++++++++++++++++++++ Проверить наличие сигнала на линиях LineL  mag phone  ++++++++++++++++++++++++++++++++++
-	measure_vol_max(analog_LineL,    40153,153,200);                           // Измерить уровень сигнала на выходе LineL  "Test headset dispatcher ** Signal LineL       ON  
-	measure_vol_max(analog_mag_phone,40159,159,200);                           // Измерить уровень сигнала на выходе mag phone "Test headset dispatcher ** Signal Mag phone   ON 
+	measure_vol_max(analog_LineL,    40227,227,200);                                // Измерить уровень сигнала на выходе LineL     "Test headset dispatcher ** Signal LineL                     ON  - ";
+	measure_vol_max(analog_mag_phone,40229,229,200);                                // Измерить уровень сигнала на выходе mag phone "Test headset dispatcher ** Signal Mag phone                 ON  - ";
 
    //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_LineR,    40180,180,25);                            // Измерить уровень сигнала на выходе LineR 
-	measure_vol_min(analog_FrontL,   40151,151,25);                            // Измерить уровень сигнала на выходе FrontL   
-	measure_vol_min(analog_FrontR,   40152,152,25);                            // Измерить уровень сигнала на выходе FrontR 
-	measure_vol_min(analog_ggs,      40156,156,30);                            // Измерить уровень сигнала на выходе GGS
-	measure_vol_min(analog_gg_radio1,40157,157,30);                            // Измерить уровень сигнала на выходе GG Radio1
-	measure_vol_min(analog_gg_radio2,40158,158,30);                            // Измерить уровень сигнала на выходе GG Radio2
-	regBank.set(31,0);                                                         // XP1- 5  HeS1Rs   Отключить sensor подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,0);                                                         // XP1- 1  HeS1Ls   Отключить  sensor подкючения гарнитуры диспетчера
-	regBank.set(15,0);                                                         // РТТ микрофона отключить
-	regBank.set(10,0);                                                         // Подать управляющую команду на вывод XP1 10  (Выключить микрофон диспетчера)
-	regBank.set(30,0);                                                         // XP1- 6  HeS1PTT   Отключить PTT диспетчера
-	regBank.set(28,0);                                                         // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
+	measure_vol_min(analog_FrontL,   40240,240,25);                                 // Измерить уровень сигнала на выходе FrontL    "Test headset dispatcher ** Signal FrontL                    OFF - ";
+	measure_vol_min(analog_FrontR,   40241,241,25);                                 // Измерить уровень сигнала на выходе FrontR    "Test headset dispatcher ** Signal FrontR                    OFF - ";
+	measure_vol_min(analog_LineR,    40243,243,25);                                 // Измерить уровень сигнала на выходе LineR     "Test headset dispatcher ** Signal LineR                     OFF - ";
+	measure_vol_min(analog_ggs,      40246,246,30);                                 // Измерить уровень сигнала на выходе GGS       "Test headset dispatcher ** Signal GGS                       OFF - ";
+	measure_vol_min(analog_gg_radio1,40247,247,30);                                 // Измерить уровень сигнала на выходе GG Radio1 "Test headset dispatcher ** Signal GG Radio1                 OFF - ";
+	measure_vol_min(analog_gg_radio2,40248,248,30);                                 // Измерить уровень сигнала на выходе GG Radio2 "Test headset dispatcher ** Signal GG Radio2                 OFF - ";
+
+	regBank.set(31,0);                                                              // XP1- 5  HeS1Rs   Отключить sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,0);                                                              // XP1- 1  HeS1Ls   Отключить  sensor подкючения гарнитуры диспетчера
+	regBank.set(15,0);                                                              // РТТ микрофона отключить
+	regBank.set(10,0);                                                              // Подать управляющую команду на вывод XP1 10  (Выключить микрофон диспетчера)
+	regBank.set(30,0);                                                              // XP1- 6  HeS1PTT   Отключить PTT диспетчера
+	regBank.set(28,0);                                                              // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
 	UpdateRegs();     
-	regBank.set(adr_control_command,0);                                        // Завершить программу    
+	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(100);
  }
 void test_MTT()
@@ -2822,7 +2823,7 @@ void test_disp_off()
 //  byte i53 = regs_in[3];    
 	 
 	  // 1)  Проверка сенсора на отключение гарнитуры диспетчера 2 наушниками
-		if(bitRead(i52,1) != 0)                                                     // XP1- 16 HeS2Rs    sensor подключения гарнитуры диспетчера с 2 наушниками
+		if(bitRead(i52,3) != 0)                                                     // XP1- 16 HeS2Rs    sensor подключения гарнитуры диспетчера с 2 наушниками
 		  {
 			regcount = regBank.get(40205);                                          // адрес счетчика ошибки    sensor подключения гарнитуры диспетчера с 2 наушниками
 			regcount++;                                                             // увеличить счетчик ошибок sensor подключения гарнитуры диспетчера с 2 наушниками
@@ -2846,7 +2847,7 @@ void test_disp_off()
 			  }
 		  }
 
-		if(bitRead(i52,2) != 0)                                                     //"Sensor headset dispatcher           XP1- 1  HeS1Ls          OFF - "  подключения гарнитуры диспетчера
+		if(bitRead(i52,4) != 0)                                                     //"Sensor headset dispatcher           XP1- 1  HeS1Ls          OFF - "  подключения гарнитуры диспетчера
 		  {
 			regcount = regBank.get(40206);                                          // адрес счетчика ошибки sensor подключения гарнитуры диспетчера
 			regcount++;                                                             // увеличить счетчик ошибок sensor подключения гарнитуры диспетчера
@@ -2945,15 +2946,15 @@ void test_disp_on()
 //	byte i53 = regs_in[3];    
 
 	  // 3)  Проверка сенсора на подключение гарнитуры диспетчера 2 наушниками
-			if(bitRead(i52,1) == 0)                                                 // XP1- 16 HeS2Rs    sensor подключения гарнитуры диспетчера с 2 наушниками
+		if(bitRead(i52,3) == 0)                                                 // XP1- 16 HeS2Rs    sensor подключения гарнитуры диспетчера с 2 наушниками
 		  {
-			regcount = regBank.get(40213);                                          // адрес счетчика ошибки    sensor подключения гарнитуры диспетчера с 2 наушниками
+			regcount = regBank.get(40215);                                          // адрес счетчика ошибки    sensor подключения гарнитуры диспетчера с 2 наушниками
 			regcount++;                                                             // увеличить счетчик ошибок sensor подключения гарнитуры диспетчера с 2 наушниками
-			regBank.set(40213,regcount);                                            // адрес счетчика ошибки    sensor подключения гарнитуры диспетчера с 2 наушниками
-			regBank.set(213,1);                                                     // установить флаг ошибки   sensor подключения гарнитуры диспетчера с 2 наушниками 
+			regBank.set(40215,regcount);                                            // адрес счетчика ошибки    sensor подключения гарнитуры диспетчера с 2 наушниками
+			regBank.set(215,1);                                                     // установить флаг ошибки   sensor подключения гарнитуры диспетчера с 2 наушниками 
 			regBank.set(120,1);                                                     // установить общий флаг ошибки
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[13])));        // "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
-			myFile.print(buffer);                                                   // "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";   
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[15])));        // "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          ON  - "; 
+			myFile.print(buffer);                                                   // "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          ON  - ";  
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
 			myFile.println(regcount);                                               // Показания счетчика ошибок
@@ -2962,22 +2963,22 @@ void test_disp_on()
 		  {
 			  if (test_repeat == false)
 			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[13])));    // "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[15])));    // "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          ON  - "; 
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset instructor 2 включен  - Pass
+				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          ON  - ";  включен  - Pass
 			  }
 		  }
 
-		if(bitRead(i52,2) == 0)                                                     // XP1- 13 HeS2Ls    sensor подключения гарнитуры диспетчера 
+		if(bitRead(i52,4) == 0)                                                     // XP1- 13 HeS2Ls    sensor подключения гарнитуры диспетчера 
 		  {
-			regcount = regBank.get(40214);                                          // адрес счетчика ошибки    sensor подключения гарнитуры диспетчера
+			regcount = regBank.get(40216);                                          // адрес счетчика ошибки    sensor подключения гарнитуры диспетчера
 			regcount++;                                                             // увеличить счетчик ошибок sensor подключения гарнитуры диспетчера
-			regBank.set(40214,regcount);                                            // адрес счетчика ошибки    sensor подключения гарнитуры диспетчера 
-			regBank.set(214,1);                                                     // установить флаг ошибки   sensor подключения гарнитуры диспетчера 
+			regBank.set(40216,regcount);                                            // адрес счетчика ошибки    sensor подключения гарнитуры диспетчера 
+			regBank.set(216,1);                                                     // установить флаг ошибки   sensor подключения гарнитуры диспетчера 
 			regBank.set(120,1);                                                     // установить общий флаг ошибки
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[14])));        // "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - ";   
-			myFile.print(buffer);                                                   // "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - ";    
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[16])));        // "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";  
+			myFile.print(buffer);                                                   // "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";  
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
 			myFile.println(regcount);                                               // Показания счетчика ошибок
@@ -2986,24 +2987,24 @@ void test_disp_on()
 		  {
 			  if (test_repeat == false)
 			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[14])));    // "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - "; 
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[16])));    // "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				myFile.println(buffer);                   // "Sensor headset instructor включен  - Pass
+				myFile.println(buffer);                                             // "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - " включен  - Pass
 			  }
 		  }
 
 		UpdateRegs(); 
 
-	   if(regBank.get(adr_reg_ind_CTS)== 0)                                         // Проверить включение PTT диспетчера   CTS "Command PTT headset instructor (CTS)                        ON  - ";
+	   if(regBank.get(adr_reg_ind_CTS)== 0)                                         // Проверить включение PTT диспетчера   "Command PTT headset dispatcher (CTS)                        ON  - ";
 		  {
-			regcount = regBank.get(40221);                                          // адрес счетчика ошибки  отключения PTT гарнитуры диспетчера "Command PTT headset instructor (CTS)                        ON  - ";
+			regcount = regBank.get(40223);                                          // адрес счетчика ошибки  отключения PTT гарнитуры диспетчера "Command PTT headset instructor (CTS)                        ON  - ";
 			regcount++;                                                             // увеличить счетчик ошибок
-			regBank.set(40221,regcount);                                            // адрес счетчика ошибки  отключения PTT гарнитуры диспетчера "Command PTT headset instructor (CTS)                        ON  - ";
-			regBank.set(221,1);                                                     // установить флаг ошибки отключения PTT гарнитуры диспетчера "Command PTT headset instructor (CTS)                       ON  - ";
+			regBank.set(40223,regcount);                                            // адрес счетчика ошибки  отключения PTT гарнитуры диспетчера "Command PTT headset instructor (CTS)                        ON  - ";
+			regBank.set(223,1);                                                     // установить флаг ошибки отключения PTT гарнитуры диспетчера "Command PTT headset instructor (CTS)                       ON  - ";
 			regBank.set(120,1);                                                     // установить общий флаг ошибки
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[21])));        // "Command PTT headset instructor (CTS)                        ON  - "; 
-			myFile.print(buffer);                                                   // "Command PTT headset instructor (CTS)                        ON  - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[23])));        // "Command PTT headset dispatcher (CTS)                        ON  - ";
+			myFile.print(buffer);                                                   // "Command PTT headset dispatcher (CTS)                        ON  - ";
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
 			myFile.println(regcount);                                               // Показания счетчика ошибок
@@ -3012,78 +3013,12 @@ void test_disp_on()
 		 {
 		   if (test_repeat == false)
 		   {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[21])));        // "Command PTT headset instructor (CTS)                        ON  - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[23])));        // "Command PTT headset dispatcher (CTS)                        ON  - ";
 			myFile.print(buffer);                                                   // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
-			if (test_repeat == false) myFile.println(buffer);                       // "Command PTT headset instructor (CTS)                        ON  - "  включен  - Pass
+			if (test_repeat == false) myFile.println(buffer);                       // "Command PTT headset dispatcher (CTS)                        ON  - "  включен  - Pass
 		   }
 		 }
-
-
-
-
-
-
-/*
-
-	UpdateRegs(); 
-	delay(300);
-
-	  // 3)  Проверка сенсора на подключение гарнитуры диспетчера 2 наушниками
-		 byte i5 = regs_in[2];   
-		 if(bitRead(i5,3) == 0)                                         // Проверка флага подключения гарнитуры диспетчера 2 наушниками
-			{
-				regcount = regBank.get(40129);                          // адрес счетчика ошибки сенсора гарнитуры диспетчера с 2 наушниками
-				regcount++;                                             // увеличить счетчик ошибок
-				regBank.set(40129,regcount);                            // адрес счетчика ошибки сенсора гарнитуры диспетчера с 2 наушниками
-				regBank.set(129,1);                                     // установить флаг ошибки
-				regBank.set(120,1);                                     // установить общий флаг ошибки
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[2])));
-				myFile.print(buffer);                                   // "Command sensor ON dispatcher 2 Error! - "
-				myFile.println(regcount);
-			}
-		else
-			{
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[3])));
-				if (test_repeat == false) myFile.println(buffer);                                 // "Command sensor ON  dispatcher 2 - Ok!"
-			}
-	  // 4)  Проверка сенсора на подключения гарнитуры диспетчера
-
-	   if(bitRead(i5,4) == 0)                                            // Проверка флага подключения гарнитуры диспетчера
-			 {
-				regcount = regBank.get(40130);                          // адрес счетчика ошибки сенсора гарнитуры диспетчера
-				regcount++;                                             // увеличить счетчик ошибок
-				regBank.set(40130,regcount);                            // адрес счетчика ошибки сенсора гарнитуры диспетчера
-				regBank.set(130,1);                                     // установить флаг ошибки
-				regBank.set(120,1);                                     // установить общий флаг ошибки
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[4])));
-				myFile.print(buffer);                                   // "Command sensor ON  dispatcher  Error! - "
-				myFile.println(regcount);
-			 }
-		else
-			{
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[5])));
-				if (test_repeat == false) myFile.println(buffer);                                // "Command sensor ON dispatcher    - Ok!"
-			}
-
-		 UpdateRegs(); 
-		 if(regBank.get(adr_reg_ind_CTS)== 0)                          // Проверить включение PTT диспетчера   CTS
-			{
-				regcount = regBank.get(40158);                         // адрес счетчика ошибки отключения PTT гарнитуры диспетчера
-				regcount++;                                            // увеличить счетчик ошибок
-				regBank.set(40158,regcount);                           // адрес счетчика ошибки отключения PTT гарнитуры диспетчера
-				regBank.set(158,1);                                    // установить флаг ошибки отключения PTT гарнитуры диспетчера
-				regBank.set(120,1);                                    // установить общий флаг ошибки
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[6])));
-				myFile.print(buffer);                                  // "Command PTT dispatcher OFF Error! - " Микрофон не отключился 
-				myFile.println(regcount);
-			}
-		else
-			{
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_disp_on[7])));
-				if (test_repeat == false) myFile.println(buffer);                               // "Command PTT dispatcher OFF- Ok!"
-			}
-		 */
 }
 
 void test_MTT_off()
@@ -3825,27 +3760,27 @@ modbus registers follow the following format
 	regBank.add(138);   // Флаг ошибки  PTT1 Танг. р. ok!
 	regBank.add(139);   // Флаг ошибки отключения микрофона гарнитуры инструктора
 
-	regBank.add(140);   // Флаг ошибки отключения PTT гарнитуры инструктора 
-	regBank.add(141);   // Флаг ошибки динамика гарнитуры инструктора FrontL
-	regBank.add(142);   // Флаг ошибки динамика гарнитуры инструктора FrontR
-	regBank.add(143);   // Флаг ошибки сигнала  LineL гарнитуры инструктора 
-	regBank.add(144);   // Флаг ошибки инструктора analog_mag_radio
-	regBank.add(145);   // Флаг ошибки инструктора analog_mag_phone
-	regBank.add(146);   // Флаг ошибки инструктора analog_ggs OFF
-	regBank.add(147);   // Флаг ошибки инструктора analog_gg_radio1
-	regBank.add(148);   // Флаг ошибки инструктора analog_gg_radio2
-	regBank.add(149);   // Флаг ошибки инструктора Mag phone on
+	//regBank.add(140);   // Флаг ошибки отключения PTT гарнитуры инструктора 
+	//regBank.add(141);   // Флаг ошибки динамика гарнитуры инструктора FrontL
+	//regBank.add(142);   // Флаг ошибки динамика гарнитуры инструктора FrontR
+	//regBank.add(143);   // Флаг ошибки сигнала  LineL гарнитуры инструктора 
+	//regBank.add(144);   // Флаг ошибки инструктора analog_mag_radio
+	//regBank.add(145);   // Флаг ошибки инструктора analog_mag_phone
+	//regBank.add(146);   // Флаг ошибки инструктора analog_ggs OFF
+	//regBank.add(147);   // Флаг ошибки инструктора analog_gg_radio1
+	//regBank.add(148);   // Флаг ошибки инструктора analog_gg_radio2
+	//regBank.add(149);   // Флаг ошибки инструктора Mag phone on
 
-	regBank.add(150);   // Флаг ошибки отключения PTT гарнитуры диспетчера 
-	regBank.add(151);   // Флаг ошибки динамика гарнитуры диспетчера FrontL
-	regBank.add(152);   // Флаг ошибки динамика гарнитуры диспетчера FrontR
-	regBank.add(153);   // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
-	regBank.add(154);   // Флаг ошибки диспетчера analog_mag_radio
-	regBank.add(155);   // Флаг ошибки диспетчера analog_mag_phone
-	regBank.add(156);   // Флаг ошибки диспетчера analog_ggs OFF
-	regBank.add(157);   // Флаг ошибки диспетчера analog_gg_radio1
-	regBank.add(158);   // Флаг ошибки диспетчера analog_gg_radio2
-	regBank.add(159);   // Флаг ошибки диспетчера Mag phone on
+	//regBank.add(150);   // Флаг ошибки отключения PTT гарнитуры диспетчера 
+	//regBank.add(151);   // Флаг ошибки динамика гарнитуры диспетчера FrontL
+	//regBank.add(152);   // Флаг ошибки динамика гарнитуры диспетчера FrontR
+	//regBank.add(153);   // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
+	//regBank.add(154);   // Флаг ошибки диспетчера analog_mag_radio
+	//regBank.add(155);   // Флаг ошибки диспетчера analog_mag_phone
+	//regBank.add(156);   // Флаг ошибки диспетчера analog_ggs OFF
+	//regBank.add(157);   // Флаг ошибки диспетчера analog_gg_radio1
+	//regBank.add(158);   // Флаг ошибки диспетчера analog_gg_radio2
+	//regBank.add(159);   // Флаг ошибки диспетчера Mag phone on
 
 
 	//regBank.add(150);   // Флаг 
@@ -3859,9 +3794,9 @@ modbus registers follow the following format
 	//regBank.add(158);   // Флаг ошибки отключения PTT гарнитуры диспетчера
 	//regBank.add(159);   // Флаг ошибки отключения микрофона гарнитуры диспетчера
 
-	regBank.add(160);   // Флаг ошибки динамика гарнитуры диспетчера FrontL
-	regBank.add(161);   // Флаг ошибки динамика гарнитуры диспетчера FrontR
-	regBank.add(162);   // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
+	//regBank.add(160);   // Флаг ошибки динамика гарнитуры диспетчера FrontL
+	//regBank.add(161);   // Флаг ошибки динамика гарнитуры диспетчера FrontR
+	//regBank.add(162);   // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
 	regBank.add(163);   // Флаг ошибки sensor MTT OFF
 	regBank.add(164);   // Флаг ошибки  MTT PTT OFF (CTS) 
 	regBank.add(165);   // Флаг ошибки  MTT PTT OFF (DSR) 
@@ -3877,13 +3812,13 @@ modbus registers follow the following format
 	regBank.add(174);   // Флаг ошибки "Command PTT2  OFF tangenta ruchnaja (CTS)      Error! - ";
 	regBank.add(175);   // Флаг ошибки "Command PTT1  ON  tangenta ruchnaja (CTS)      Error! - ";
 	regBank.add(176);   // Флаг ошибки "Command PTT2  ON  tangenta ruchnaja (CTS)      Error! - ";
-	regBank.add(177);   // Флаг ошибки сигнала  LineL гарнитуры инструктора 
-	regBank.add(178);   // Флаг ошибки сигнала  LineR гарнитуры инструктора 
-	regBank.add(179);   // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
+	//regBank.add(177);   // Флаг ошибки сигнала  LineL гарнитуры инструктора 
+	//regBank.add(178);   // Флаг ошибки сигнала  LineR гарнитуры инструктора 
+	//regBank.add(179);   // Флаг ошибки сигнала  LineL гарнитуры диспетчера 
 
-	regBank.add(180);   // Флаг ошибки сигнала  LineR гарнитуры диспетчера 
-	regBank.add(181);   // Флаг ошибки включения микрофона инструктора
-	regBank.add(182);   // Флаг ошибки включения микрофона диспетчера
+	//regBank.add(180);   // Флаг ошибки сигнала  LineR гарнитуры диспетчера 
+	//regBank.add(181);   // Флаг ошибки включения микрофона инструктора
+	//regBank.add(182);   // Флаг ошибки включения микрофона диспетчера
 
 
 
@@ -4158,32 +4093,32 @@ modbus registers follow the following format
 	//regBank.add(139);   // Флаг ошибки отключения микрофона гарнитуры инструктора
 
 
-	regBank.add(40140);  // адрес счетчика ошибки отключения PTT гарнитуры инструктора
-	regBank.add(40141);  // адрес счетчика ошибки динамика гарнитуры инструктора FrontL
-	regBank.add(40142);  // адрес счетчика ошибки динамика гарнитуры инструктора FrontR
-	regBank.add(40143);  // адрес счетчика ошибки инструктора LineL
-	regBank.add(40144);  // адрес счетчика ошибки инструктора analog_mag_radio
-	regBank.add(40145);  // адрес счетчика ошибки инструктора analog_mag_phone
-	regBank.add(40146);  // адрес счетчика ошибки инструктора analog_ggs
-	regBank.add(40147);  // адрес счетчика ошибки инструктора analog_gg_radio1
-	regBank.add(40148);  // адрес счетчика ошибки инструктора analog_gg_radio2
-	regBank.add(40149);  // адрес счетчика ошибки инструктора Mag phone on
+	//regBank.add(40140);  // адрес счетчика ошибки отключения PTT гарнитуры инструктора
+	//regBank.add(40141);  // адрес счетчика ошибки динамика гарнитуры инструктора FrontL
+	//regBank.add(40142);  // адрес счетчика ошибки динамика гарнитуры инструктора FrontR
+	//regBank.add(40143);  // адрес счетчика ошибки инструктора LineL
+	//regBank.add(40144);  // адрес счетчика ошибки инструктора analog_mag_radio
+	//regBank.add(40145);  // адрес счетчика ошибки инструктора analog_mag_phone
+	//regBank.add(40146);  // адрес счетчика ошибки инструктора analog_ggs
+	//regBank.add(40147);  // адрес счетчика ошибки инструктора analog_gg_radio1
+	//regBank.add(40148);  // адрес счетчика ошибки инструктора analog_gg_radio2
+	//regBank.add(40149);  // адрес счетчика ошибки инструктора Mag phone on
 
 
-	regBank.add(40150);  // адрес счетчика ошибки отключения PTT гарнитуры диспетчера
-	regBank.add(40151);  // адрес счетчика ошибки динамика гарнитуры диспетчера FrontL
-	regBank.add(40152);  // адрес счетчика ошибки динамика гарнитуры диспетчера FrontR
-	regBank.add(40153);  // адрес счетчика ошибки диспетчера LineL
-	regBank.add(40154);  // адрес счетчика ошибки диспетчера analog_mag_radio
-	regBank.add(40155);  // адрес счетчика ошибки диспетчера analog_mag_phone
-	regBank.add(40156);  // адрес счетчика ошибки диспетчера analog_ggs
-	regBank.add(40157);  // адрес счетчика ошибки диспетчера analog_gg_radio1
-	regBank.add(40158);  // адрес счетчика ошибки диспетчера analog_gg_radio2
-	regBank.add(40159);  // адрес счетчика ошибки диспетчера Mag phone on
+	//regBank.add(40150);  // адрес счетчика ошибки отключения PTT гарнитуры диспетчера
+	//regBank.add(40151);  // адрес счетчика ошибки динамика гарнитуры диспетчера FrontL
+	//regBank.add(40152);  // адрес счетчика ошибки динамика гарнитуры диспетчера FrontR
+	//regBank.add(40153);  // адрес счетчика ошибки диспетчера LineL
+	//regBank.add(40154);  // адрес счетчика ошибки диспетчера analog_mag_radio
+	//regBank.add(40155);  // адрес счетчика ошибки диспетчера analog_mag_phone
+	//regBank.add(40156);  // адрес счетчика ошибки диспетчера analog_ggs
+	//regBank.add(40157);  // адрес счетчика ошибки диспетчера analog_gg_radio1
+	//regBank.add(40158);  // адрес счетчика ошибки диспетчера analog_gg_radio2
+	//regBank.add(40159);  // адрес счетчика ошибки диспетчера Mag phone on
 
-	regBank.add(40160);  // адрес счетчика ошибки динамика гарнитуры диспетчера FrontL
-	regBank.add(40161);  // адрес счетчика ошибки динамика гарнитуры диспетчера FrontR
-	regBank.add(40162);  // адрес счетчика ошибки сигнала  LineL гарнитуры диспетчера 
+	//regBank.add(40160);  // адрес счетчика ошибки динамика гарнитуры диспетчера FrontL
+	//regBank.add(40161);  // адрес счетчика ошибки динамика гарнитуры диспетчера FrontR
+	//regBank.add(40162);  // адрес счетчика ошибки сигнала  LineL гарнитуры диспетчера 
 	regBank.add(40163);  // адрес счетчика ошибки sensor MTT OFF
 	regBank.add(40164);  // адрес счетчика ошибки MTT PTT OFF (CTS) 
 	regBank.add(40165);  // адрес счетчика ошибки MTT PTT OFF (DSR) 
@@ -4203,11 +4138,11 @@ modbus registers follow the following format
 	regBank.add(40178);  // адрес счетчика ошибки сигнала  LineR гарнитуры инструктора 
 	regBank.add(40179);  // адрес счетчика ошибки сигнала  LineL гарнитуры диспетчера 
 
-	regBank.add(40180);  // адрес счетчика ошибки сигнала  LineR гарнитуры диспетчера 
-	regBank.add(40181);  // адрес счетчика ошибки включения микрофона инструктора
-	regBank.add(40182);  // адрес счетчика ошибки включения микрофона диспетчера
-	regBank.add(40183);  // адрес счетчика ошибки отключения микрофона гарнитуры диспетчера
-	regBank.add(40184);  // адрес счетчика ошибки отключения микрофона гарнитуры диспетчера
+	//regBank.add(40180);  // адрес счетчика ошибки сигнала  LineR гарнитуры диспетчера 
+	//regBank.add(40181);  // адрес счетчика ошибки включения микрофона инструктора
+	//regBank.add(40182);  // адрес счетчика ошибки включения микрофона диспетчера
+	//regBank.add(40183);  // адрес счетчика ошибки отключения микрофона гарнитуры диспетчера
+	//regBank.add(40184);  // адрес счетчика ошибки отключения микрофона гарнитуры диспетчера
 
 
 
