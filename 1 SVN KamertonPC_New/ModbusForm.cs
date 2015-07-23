@@ -113,8 +113,7 @@ namespace KamertonTest
 
         private void serviceSet ()
         {
-            checkBoxPTTAll.Checked = true;
-            checkBoxSoundAll.Checked = true;
+       
             checkBoxSenAll.Checked = true;
             //checkBoxSenGGRadio1.Checked = true;
             //checkBoxSenGGRadio2.Checked = true;
@@ -3496,24 +3495,24 @@ namespace KamertonTest
             }
             test_end();
         }
-        private void test_mic_off ()
-        {
-            ushort[] writeVals = new ushort[2];
-            bool[] coilArr = new bool[4];
-            startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 7); // Отключить все сенсоры
-            //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
-            //res = myProtocol.writeCoil(slave, startCoil, true);
-            textBox7.Text += ("Команда на проверку отключения микрофона отправлена" + "\r\n");
-            textBox7.Refresh();
-            startCoil = 248;  //адрес сенсоров
-            numCoils = 34;
-            res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-            }
-            test_end();
-        }
+        //private void test_mic_off ()
+        //{
+        //    ushort[] writeVals = new ushort[2];
+        //    bool[] coilArr = new bool[4];
+        //    startWrReg = 120;
+        //    res = myProtocol.writeSingleRegister(slave, startWrReg, 7); // Отключить все сенсоры
+        //    //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
+        //    //res = myProtocol.writeCoil(slave, startCoil, true);
+        //    textBox7.Text += ("Команда на проверку отключения микрофона отправлена" + "\r\n");
+        //    textBox7.Refresh();
+        //    startCoil = 248;  //адрес сенсоров
+        //    numCoils = 34;
+        //    res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
+        //    if ((res == BusProtocolErrors.FTALK_SUCCESS))
+        //    {
+        //    }
+        //    test_end();
+        //}
 
         private void test_end ()
         {
@@ -3859,6 +3858,7 @@ namespace KamertonTest
          }
 
 //*******************************************
+     
         private void timerTestAll_Tick (object sender, EventArgs e)        // Тестирование программы общего теста
         {
            
@@ -3866,77 +3866,106 @@ namespace KamertonTest
             {
                 default:
                 case 0:
-                    sensor_off();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                    break;
+                    if (checkBoxSensors1.Checked || radioButton1.Checked )
+                    {
+                        sensor_off();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                        break;
+                    
                 case 1:
-                   sensor_on();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                        if (checkBoxSensors1.Checked || radioButton1.Checked)
+                        {
+                            sensor_on();
+                            progressBar2.Value += 1;
+                            label98.Text = ("" + progressBar2.Value);
+                            label98.Refresh();
+                        }
                     break;
                 case 2:
-                    test_instruktora();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                    if (checkBoxSenGar1instr.Checked || radioButton1.Checked)
+                    {
+                        test_instruktora();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
                     break;
                 case 3:
-                    test_dispetchera();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                    if (checkBoxSenGar1disp.Checked || radioButton1.Checked)
+                    {
+                        test_dispetchera();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
                     break;
                 case 4:
-               //     test_MTT();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                    if (checkBoxSenTrubka.Checked || radioButton1.Checked)
+                    {
+                        test_MTT();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
                     break;
                 case 5:
-                 //   test_tangR();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                    if (checkBoxSenTangRuch.Checked || radioButton1.Checked)
+                    {
+                        test_tangR();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
                     break;
                 case 6:
-                  //  test_mikrophon();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                    if (checkBoxSenMicrophon.Checked || radioButton1.Checked)
+                    {
+                        test_mikrophon();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
                     break;
                 case 7:
-                  //  testGGS();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                    if (checkBoxSenGGS.Checked || radioButton1.Checked)
+                    {
+                        testGGS();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
                     break;
                 case 8:
-                //    test_GG_Radio1();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                    if (checkBoxSenGGRadio1.Checked || radioButton1.Checked)
+                    {
+                        test_GG_Radio1();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
                     break;
                 case 9:
-                //    test_GG_Radio2();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                    if (checkBoxSenGGRadio2.Checked || radioButton1.Checked)
+                    {
+                        test_GG_Radio2();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
                     break;
                 case 10:
-                  //  test_tangN();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                    if (checkBoxSenTangN.Checked || radioButton1.Checked)
+                    {
+                        test_tangN();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
                     break;
-                case 11:
-                  //  test_mic_off();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                    break;
+           
             }
 
             TestN++;                  // Увеличить счетчик проходов теста
@@ -3949,7 +3978,7 @@ namespace KamertonTest
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
 
-            if (radioButton1.Checked & TestN == 12)
+            if (radioButton1.Checked & TestN == 11)
                 {
                     timerTestAll.Enabled = false;
                     textBox7.Text += ("Тест завершен" + "\r\n");
@@ -3957,7 +3986,7 @@ namespace KamertonTest
 
                     _All_Test_Stop =false;
                 }
-            if (radioButton2.Checked & TestN == 12)
+            if (radioButton2.Checked & TestN == 11)
                 {
                     timerTestAll.Enabled = true;
                     TestN = 0;
@@ -4419,8 +4448,7 @@ namespace KamertonTest
 
         private void radioButton1_CheckedChanged (object sender, EventArgs e)
         {
-                    startCoil = 119;                                                          // Управление сенсорами
-                    res = myProtocol.writeCoil(slave, startCoil, false); 
+   
         }
 
      
@@ -4429,18 +4457,15 @@ namespace KamertonTest
             if (checkBoxSenAll.Checked == true)
             {
                 // Включить проверку всех сенсоров
-
-                checkBoxSenGGRadio1.Checked = true;
-                checkBoxSenGGRadio2.Checked = true;
+                checkBoxSensors1.Checked = true;
+                checkBoxSenGar1instr.Checked = true;
+                checkBoxSenGar1disp.Checked = true;
                 checkBoxSenTrubka.Checked = true;
                 checkBoxSenTangN.Checked = true;
                 checkBoxSenTangRuch.Checked = true;
-                checkBoxSenMag.Checked = true;
-                checkBoxSenGar2instr.Checked = true;
-                checkBoxSenGar1instr.Checked = true;
-                checkBoxSenGar2disp.Checked = true;
-                checkBoxSenGar1disp.Checked = true;
                 checkBoxSenMicrophon.Checked = true;
+                checkBoxSenGGRadio1.Checked = true;
+                checkBoxSenGGRadio2.Checked = true;
                 checkBoxSenGGS.Checked = true;
             }
             else
@@ -4451,14 +4476,11 @@ namespace KamertonTest
                 checkBoxSenTrubka.Checked = false;
                 checkBoxSenTangN.Checked = false;
                 checkBoxSenTangRuch.Checked = false;
-                checkBoxSenMag.Checked = false;
-                checkBoxSenGar2instr.Checked = false;
+                checkBoxSensors1.Checked = false;
                 checkBoxSenGar1instr.Checked = false;
-                checkBoxSenGar2disp.Checked = false;
                 checkBoxSenGar1disp.Checked = false;
                 checkBoxSenMicrophon.Checked = false;
                 checkBoxSenGGS.Checked = false;
-
             }
 
         }
@@ -4535,73 +4557,11 @@ namespace KamertonTest
 
         }
 
-        private void checkBoxPTTAll_CheckedChanged (object sender, EventArgs e)
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxPTTAll.Checked == true)
-            {
-                // Включить проверку РТТ
 
-                checkBox1.Checked = true;
-                checkBox2.Checked = true;
-                checkBox3.Checked = true;
-                checkBox4.Checked = true;
-                checkBox5.Checked = true;
-                checkBox6.Checked = true;
-                checkBox7.Checked = true;
-                checkBox8.Checked = true;
-            }
-            else
-            {
-                // Отключить проверку РТТ
-                checkBox1.Checked = false;
-                checkBox2.Checked = false;
-                checkBox3.Checked = false;
-                checkBox4.Checked = false;
-                checkBox5.Checked = false;
-                checkBox6.Checked = false;
-                checkBox7.Checked = false;
-                checkBox8.Checked = false;
-
-            }
         }
-
-        private void checkBoxSoundAll_CheckedChanged (object sender, EventArgs e)
-        {
-            if (checkBoxSoundAll.Checked == true)
-            {
-                // Включить проверку звука
-
-                checkBox10.Checked = true;
-                checkBox11.Checked = true;
-                checkBox12.Checked = true;
-                checkBox13.Checked = true;
-                checkBox14.Checked = true;
-                checkBox15.Checked = true;
-                checkBox16.Checked = true;
-                checkBox17.Checked = true;
-            }
-            else
-            {
-                // Отключить проверку звука
-
-                checkBox10.Checked = false;
-                checkBox11.Checked = false;
-                checkBox12.Checked = false;
-                checkBox13.Checked = false;
-                checkBox14.Checked = false;
-                checkBox15.Checked = false;
-                checkBox16.Checked = false;
-                checkBox17.Checked = false;
-            
-            }
-        }
-
-        private void radioButton2_CheckedChanged (object sender, EventArgs e)
-        {
-                startCoil = 119;                                                          // Управление сенсорами
-                res = myProtocol.writeCoil(slave, startCoil, true); 
-        }
-
+   
         private void checkBoxSenGar2instr_CheckedChanged (object sender, EventArgs e)
         {
 

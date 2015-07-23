@@ -265,6 +265,7 @@ namespace KamertonTest
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.checkBoxSensors1 = new System.Windows.Forms.CheckBox();
             this.checkBoxSenGGS = new System.Windows.Forms.CheckBox();
             this.checkBoxSenMicrophon = new System.Windows.Forms.CheckBox();
             this.checkBoxSenGar1disp = new System.Windows.Forms.CheckBox();
@@ -362,7 +363,6 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
-            this.checkBoxSensors1 = new System.Windows.Forms.CheckBox();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -3106,6 +3106,16 @@ namespace KamertonTest
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Настройка проверки сенсоров";
             // 
+            // checkBoxSensors1
+            // 
+            this.checkBoxSensors1.AutoSize = true;
+            this.checkBoxSensors1.Location = new System.Drawing.Point(16, 110);
+            this.checkBoxSensors1.Name = "checkBoxSensors1";
+            this.checkBoxSensors1.Size = new System.Drawing.Size(77, 19);
+            this.checkBoxSensors1.TabIndex = 26;
+            this.checkBoxSensors1.Text = "Сенсоры";
+            this.checkBoxSensors1.UseVisualStyleBackColor = true;
+            // 
             // checkBoxSenGGS
             // 
             this.checkBoxSenGGS.AutoSize = true;
@@ -4053,16 +4063,6 @@ namespace KamertonTest
             // 
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
-            // 
-            // checkBoxSensors1
-            // 
-            this.checkBoxSensors1.AutoSize = true;
-            this.checkBoxSensors1.Location = new System.Drawing.Point(16, 110);
-            this.checkBoxSensors1.Name = "checkBoxSensors1";
-            this.checkBoxSensors1.Size = new System.Drawing.Size(77, 19);
-            this.checkBoxSensors1.TabIndex = 26;
-            this.checkBoxSensors1.Text = "Сенсоры";
-            this.checkBoxSensors1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
