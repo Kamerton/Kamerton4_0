@@ -4010,6 +4010,7 @@ namespace KamertonTest
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             button11.BackColor = Color.Lime;
             button11.Refresh();
+            label92.Text = ("Не забываем нажать кн.  СТОП для записи файла!"); 
             button9.BackColor = Color.LightSalmon;
             button9.Refresh();
             textBox7.Text = ("Выполняется полный  контроль звукового модуля Камертон " + "\r\n");
@@ -4225,6 +4226,7 @@ namespace KamertonTest
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             button9.BackColor = Color.Red;
             button11.BackColor = Color.White;
+            label92.Text = (""); 
             textBox7.Text += ("Тест остановлен" + "\r\n");
             progressBar2.Value = 0;
             startWrReg = 120;
@@ -4563,6 +4565,11 @@ namespace KamertonTest
         }
    
         private void checkBoxSenGar2instr_CheckedChanged (object sender, EventArgs e)
+        {
+
+        }
+
+        private void label92_Click_2 (object sender, EventArgs e)
         {
 
         }

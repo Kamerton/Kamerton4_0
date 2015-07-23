@@ -363,6 +363,7 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
+            this.label92 = new System.Windows.Forms.Label();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -416,6 +417,7 @@ namespace KamertonTest
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage3.Controls.Add(this.label92);
             this.tabPage3.Controls.Add(this.groupBox21);
             this.tabPage3.Controls.Add(this.radioButton2);
             this.tabPage3.Controls.Add(this.radioButton1);
@@ -4064,6 +4066,18 @@ namespace KamertonTest
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
             // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label92.ForeColor = System.Drawing.Color.Red;
+            this.label92.Location = new System.Drawing.Point(239, 15);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(0, 15);
+            this.label92.TabIndex = 20;
+            this.label92.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label92.Click += new System.EventHandler(this.label92_Click_2);
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -4461,6 +4475,7 @@ namespace KamertonTest
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.CheckBox checkBoxSensors1;
+        private System.Windows.Forms.Label label92;
     }
 }
 
