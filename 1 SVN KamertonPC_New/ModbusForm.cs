@@ -3384,12 +3384,11 @@ namespace KamertonTest
         }
         private void test_tangR()
             {
+
                 ushort[] writeVals = new ushort[2];
                 bool[] coilArr = new bool[4];
                 startWrReg = 120;
-                res = myProtocol.writeSingleRegister(slave, startWrReg, 6); // Отключить все сенсоры
-                //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
-                //res = myProtocol.writeCoil(slave, startCoil, true);
+                res = myProtocol.writeSingleRegister(slave, startWrReg, 6); // 
                 textBox7.Text += ("Команда на проверку 'Тангента ручная' отправлена" + "\r\n");
                 textBox7.Refresh();
                 startCoil = 248;  //адрес сенсоров
@@ -3524,7 +3523,7 @@ namespace KamertonTest
 
             startCoil = 120;                                     //Адрес флага общей ошибки
             numCoils = 1;
-            Thread.Sleep(1600);
+            Thread.Sleep(1000);
           
            do {
                 res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
@@ -3542,7 +3541,7 @@ namespace KamertonTest
                     // textBox9.Refresh();
                 }
              
-               res = myProtocol.readMultipleRegisters(slave, 120, readVals, 1);  // Ожидание кода подтверждения окончания проверки
+               res = myProtocol.readMultipleRegisters(slave, 120, readVals, 1);  // Ожидание кода подтверждения окончания проверки  Адрес передачи подтверждения 40120
 
                 if ((res == BusProtocolErrors.FTALK_SUCCESS))
                 {
@@ -4010,7 +4009,7 @@ namespace KamertonTest
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             button11.BackColor = Color.Lime;
             button11.Refresh();
-            label92.Text = ("Не забываем нажать кн.  СТОП для записи файла!"); 
+            label92.Text = ("Не забываем нажать кнопку [СТОП] после выполнения теста!"); 
             button9.BackColor = Color.LightSalmon;
             button9.Refresh();
             textBox7.Text = ("Выполняется полный  контроль звукового модуля Камертон " + "\r\n");

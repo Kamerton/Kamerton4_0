@@ -251,10 +251,15 @@ const char  txt_message32[]   PROGMEM            = "Command HangUp ON  MTT      
 const char  txt_message33[]   PROGMEM            = "Signal MTT microphone 30mv                    ON"            ;
 const char  txt_message34[]   PROGMEM            = "Microphone MTT signal                         ON"            ;  
 const char  txt_message35[]   PROGMEM            = "Signal FrontL, FrontR                         ON "           ;
-const char  txt_message36[]   PROGMEM            = " "              ;
-const char  txt_message37[]   PROGMEM            = " "              ;
-const char  txt_message38[]   PROGMEM            = " "              ;
-const char  txt_message39[]   PROGMEM            = " "              ;
+const char  txt_message36[]   PROGMEM            = " ****** Test tangenta ruchnaja start! ******"                ;
+const char  txt_message37[]   PROGMEM            = "Command sensor OFF tangenta ruchnaja             send!"      ;
+const char  txt_message38[]   PROGMEM            = "Command PTT1   OFF tangenta ruchnaja             send!"      ;
+const char  txt_message39[]   PROGMEM            = "Command PTT2   OFF tangenta ruchnaja             send!"      ; 
+
+const char  txt_message40[]   PROGMEM            = "Command sensor ON  tangenta ruchnaja             send!"      ;
+const char  txt_message41[]   PROGMEM            = "Command PTT1   ON  tangenta ruchnaja             send!"      ;
+const char  txt_message42[]   PROGMEM            = "Command PTT2   ON  tangenta ruchnaja             send!"      ;
+
 
 const char  txt_all_on0[]   PROGMEM            = "";       
 const char  txt_all_on1[]   PROGMEM            = " ****** Test sensor ON start! ******";                           
@@ -553,12 +558,12 @@ const char  txt_error67[]  PROGMEM             = "Test MTT HangUp (DCD)         
 const char  txt_error68[]  PROGMEM             = "Test MTT HangUp (DCD)                                       ON  - ";
 const char  txt_error69[]  PROGMEM             = "";
 
-const char  txt_error70[]  PROGMEM             = "";
-const char  txt_error71[]  PROGMEM             = "";
-const char  txt_error72[]  PROGMEM             = "";
-const char  txt_error73[]  PROGMEM             = "";
-const char  txt_error74[]  PROGMEM             = "";
-const char  txt_error75[]  PROGMEM             = "";
+const char  txt_error70[]  PROGMEM             = "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
+const char  txt_error71[]  PROGMEM             = "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
+const char  txt_error72[]  PROGMEM             = "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
+const char  txt_error73[]  PROGMEM             = "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
+const char  txt_error74[]  PROGMEM             = "Command sensor tangenta ruchnaja                            OFF - ";
+const char  txt_error75[]  PROGMEM             = "Command sensor tangenta ruchnaja                            ON  - ";
 const char  txt_error76[]  PROGMEM             = "";
 const char  txt_error77[]  PROGMEM             = "";
 const char  txt_error78[]  PROGMEM             = "";
@@ -619,7 +624,14 @@ txt_message31,                                // "Command PTT    ON  MTT        
 txt_message32,                                // "Command HangUp ON  MTT                           send!"      ;
 txt_message33,                                // "Signal MTT microphone 30mv                    ON"            ;
 txt_message34,                                // "Microphone MTT signal                         ON"            ;  
-txt_message35                                 // "Signal FrontL, FrontR                         ON "           ;
+txt_message35,                                // "Signal FrontL, FrontR                         ON "           ;
+txt_message36,                                // " ****** Test tangenta ruchnaja start! ******"                ;
+txt_message37,                                // "Command sensor OFF tangenta ruchnaja             send!"      ;
+txt_message38,                                // "Command PTT1   OFF tangenta ruchnaja             send!"      ;
+txt_message39,                                // "Command PTT2   OFF tangenta ruchnaja             send!"      ; 
+txt_message40,                                // "Command sensor ON  tangenta ruchnaja             send!"      ;
+txt_message41,                                // "Command PTT1   ON  tangenta ruchnaja             send!"      ;
+txt_message42                                 // "Command PTT2   ON  tangenta ruchnaja             send!"      ;
 };
 
 const char* const string_table_err[] PROGMEM = 
@@ -701,12 +713,12 @@ txt_error67,                                  // "Test MTT HangUp (DCD)         
 txt_error68,                                  // "Test MTT HangUp (DCD)                                       ON  - ";
 txt_error69,                                  //
 
-txt_error70,                                  //
-txt_error71,                                  //
-txt_error72,                                  //
-txt_error73,                                  //
-txt_error74,                                  //
-txt_error75,                                  //
+txt_error70,                                  // "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
+txt_error71,                                  // "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
+txt_error72,                                  // "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
+txt_error73,                                  // "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
+txt_error74,                                  // "Command sensor tangenta ruchnaja                            OFF - ";
+txt_error75,                                  // "Command sensor tangenta ruchnaja                            ON  - ";
 txt_error76,                                  //
 txt_error77,                                  //  
 txt_error78,                                  //  
@@ -1483,6 +1495,7 @@ void FileOpen()
 	  file_print_date();
 	  myFile.println ("");
 	  delay(100);
+	  regBank.set(adr_control_command,0);
 }
 void FileClose()
 {
@@ -1515,7 +1528,7 @@ void FileClose()
 		  Serial.print(file_name);
 		  Serial.println(" doesn't exist.");  
 	  }
- 
+    regBank.set(adr_control_command,0);
 }
 
 void control_command()
@@ -1538,7 +1551,7 @@ void control_command()
 	12 - Открыть файл
 	13 - Закрыть файл
 	14 - Записать время
-
+	15 - Установить уровень сигнала
 
 	*/
 	UpdateRegs() ;
@@ -1556,13 +1569,13 @@ void control_command()
 		case 3:
 			 test_headset_instructor();
 				break;
-		case 4:				
+		case 4:	
 			 test_headset_dispatcher();                                             //
 				break;
 		case 5:
 			 test_MTT();                                                            //
 				break;
-		case 6:				
+		case 6:	
 			 test_tangR();                                                          //
 				break;
 		case 7:
@@ -1593,10 +1606,10 @@ void control_command()
 			 set_rezistor();
 				break;
 		default:
+			regBank.set(adr_control_command,0);
 		break;
 
 	 }
-	regBank.set(adr_control_command,0);
 }
 
 void sensor_all_off()
@@ -2158,6 +2171,7 @@ void set_rezistor()
 	int mwt = regBank.get(40010);
 	resistor(1, mwt);
 	resistor(2, mwt);
+	regBank.set(adr_control_command,0);
 }
 
 void test_headset_instructor()
@@ -2170,16 +2184,16 @@ void test_headset_instructor()
 	unsigned int regcount = 0;
 	test_instr_off();                                                               // Отключить реле и сенсоры, прверить отключение
 	test_instr_on();                                                                // Включить необходимые сенсоры, проверить состояние
-	myFile.println("");
+	//myFile.println("");
 	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
 	resistor(1, 30);                                                                // Установить уровень сигнала 30 мв
 	resistor(2, 30);                                                                // Установить уровень сигнала 30 мв
 	regBank.set(2,1);                                                               // Подать сигнал на вход микрофона инструктора  Mic2p
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(200);
-	myFile.println("");
+	//myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[4])));                    // "Signal headset instructor microphone 30mv     ON"            ;   
-	if (regBank.get(118)== false) myFile.println(buffer);                           // "Signal headset instructor microphone 30mv     ON"            ;   
+	if (test_repeat == false)  myFile.println(buffer);                           // "Signal headset instructor microphone 30mv     ON"            ;   
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,   40230,230,25);                                 // Измерить уровень сигнала на выходе FrontL    "Test headset instructor ** Signal FrontL                    OFF - ";
 	measure_vol_min(analog_FrontR,   40231,231,25);                                 // Измерить уровень сигнала на выходе FrontR    "Test headset instructor ** Signal FrontR                    OFF - ";
@@ -2194,7 +2208,7 @@ void test_headset_instructor()
 	measure_vol_min(analog_gg_radio2,40238,238,30);                                 // Измерить уровень сигнала на выходе GG Radio2 "Test headset instructor ** Signal GG Radio2                 OFF - ";
 
 	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
-	myFile.println("");                                                             //
+	//myFile.println("");                                                             //
 	regBank.set(5,1);                                                               // Подать управляющую команду на вывод 12 ХР1 HeS2e (Включить микрофон)
 	regBank.set(28,1);                                                              // XP1- 15 HeS2PTT Включить PTT инструктора
 	regBank.set(16,0);                                                              // Сенсор микрофона отключить
@@ -2221,12 +2235,12 @@ void test_headset_instructor()
 			  if (test_repeat == false)
 			   {
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[18])));    // "Sensor microphone                   XS1 - 6                 ON  - "; 
-				myFile.print(buffer);                                               // 
+				if (test_repeat == false) myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				myFile.println(buffer);                                             // Микрофон инструктора включен  - Pass
+				if (test_repeat == false) myFile.println(buffer);                                             // Микрофон инструктора включен  - Pass
 			  }
 		  }
-	myFile.println("");
+//	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[5])));                    // "Microphone headset instructor signal          ON"            ;  
 	if (test_repeat == false) myFile.println(buffer);                               // "Microphone headset instructor signal          ON"            ;    Звуковой сигнал подан на вход микрофона инструктора
 	delay(20);
@@ -2259,7 +2273,6 @@ void test_headset_dispatcher()
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[23])));                   // " ****** Test headset dispatcher start! ******"               ;
 	myFile.println(buffer);                                                         // " ****** Test headset dispatcher start! ******"               ;
-	myFile.println();
 	file_print_date();
 	myFile.println("");
 	unsigned int regcount = 0;
@@ -2275,7 +2288,7 @@ void test_headset_dispatcher()
 	delay(200);
 	//myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[13])));                   // "Signal headset dispatcher microphone 30mv     ON"            ;    
-	if (regBank.get(118)== false) myFile.println(buffer);                           // "Signal headset dispatcher microphone 30mv     ON"            ;   
+	if (test_repeat == false)  myFile.println(buffer);                           // "Signal headset dispatcher microphone 30mv     ON"            ;   
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,   40240,240,25);                                 // Измерить уровень сигнала на выходе FrontL    "Test headset dispatcher ** Signal FrontL                    OFF - ";
 	measure_vol_min(analog_FrontR,   40241,241,25);                                 // Измерить уровень сигнала на выходе FrontR    "Test headset dispatcher ** Signal FrontR                    OFF - ";
@@ -2309,15 +2322,24 @@ void test_headset_dispatcher()
 			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			resistor(1, 255);                                                       // Установить уровень сигнала в исходное состояниe
 			resistor(2, 255);                                                       // Установить уровень сигнала в исходное состояниe
-			strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[22])));
-			myFile.print(buffer);                                                   // "Microphone dispatcher ON  Error! - "
-			myFile.println(regcount);                                               // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[18])));        // "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - "; 
+			myFile.print(buffer);                                                   // "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - "; 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+			//strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[22])));
+			//myFile.print(buffer);                                                   // "Microphone dispatcher ON  Error! - "
+			//myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[23])));
-			if (test_repeat == false) myFile.println(buffer);                       //"Microphone dispatcher  ON - Ok!" Микрофон диспетчера включился
-			delay(20);
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[18])));    // "Sensor microphone                   XS1 - 6                 ON  - "; 
+				if (test_repeat == false) myFile.print(buffer);                                               // 
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+				if (test_repeat == false) myFile.println(buffer);                                             // Микрофон инструктора включен  - Pass
+			//strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[23])));
+			//if (test_repeat == false) myFile.println(buffer);                       //"Microphone dispatcher  ON - Ok!" Микрофон диспетчера включился
+			//delay(20);
 		  }
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[24])));                   // "Microphone dispatcher signal ON" 
@@ -2349,20 +2371,19 @@ void test_MTT()
 {
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[24])));                   // " ****** Test MTT start! ******"                              ; 
-	if (regBank.get(118)== false) myFile.println(buffer);                                                         // " ****** Test MTT start! ******"                              ; 
-	myFile.println();
+	myFile.println(buffer);                                                         // " ****** Test MTT start! ******"                              ; 
 	file_print_date();
 	myFile.println("");
 //	unsigned int regcount = 0;
-	test_MTT_off();                                                       // Отключить реле и сенсоры, прверить отключение
-	test_MTT_on();                                                        // Включить необходимые сенсоры, проверить состояние
-	myFile.println("");
-	regBank.set(25,0);                                                    //  XP1- 19 HaSs  sensor подключения трубки    MTT включить должно быть в "0"
+	test_MTT_off();                                                                 // Отключить реле и сенсоры, прверить отключение
+	test_MTT_on();                                                                  // Включить необходимые сенсоры, проверить состояние
+//	myFile.println("");
+	regBank.set(25,0);                                                              //  XP1- 19 HaSs  sensor подключения трубки    MTT включить должно быть в "0"
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[30])));
-	if (regBank.get(118)== false) myFile.println(buffer);                                               // "Command sensor ON MTT  send!         
-	regBank.set(18,0);                                                    // XP1 - 20  HangUp  DCD Трубку поднять DCD должно быть в "0"
+	if (test_repeat == false)  myFile.println(buffer);                                               // "Command sensor ON MTT  send!         
+	regBank.set(18,0);                                                              // XP1 - 20  HangUp  DCD Трубку поднять DCD должно быть в "0"
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[32])));
-	if (regBank.get(118)== false) myFile.println(buffer);                                               // "Command  HangUp MTT OFF send!"
+	if (test_repeat == false)  myFile.println(buffer);                                               // "Command  HangUp MTT OFF send!"
 
 	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,    40250,250,25);                                // Измерить уровень сигнала на выходе FrontL    "Test MTT ** Signal FrontL                                   OFF - ";
@@ -2381,9 +2402,9 @@ void test_MTT()
 	regBank.set(3,1);                                                               // Включить сигнал на вход микрофона трубки Mic3p
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
-	myFile.println("");
+	//myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[33])));                   // "Signal MTT microphone 30mv                    ON"            ;
-	if (regBank.get(118)== false) myFile.println(buffer);                           // "Signal MTT microphone 30mv                    ON"            ;
+	if (test_repeat == false) myFile.println(buffer);                               // "Signal MTT microphone 30mv                    ON"            ;
 
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях  +++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,    40250,250,25);                                // Измерить уровень сигнала на выходе FrontL    "Test MTT ** Signal FrontL                                   OFF - ";
@@ -2407,7 +2428,7 @@ void test_MTT()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(200);
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[35])));                   //   
-	if (regBank.get(118)== false) myFile.println(buffer);                                                         // "Signal FrontL, FrontR  ON                             - "
+	if (test_repeat == false) myFile.println(buffer);                               // "Signal FrontL, FrontR  ON                             - "
 	measure_vol_min(analog_ggs,       40256,256,30);                                // Измерить уровень сигнала на выходе GGS       "Test MTT ** Signal GGS                                      OFF - ";
 	regBank.set(18,1);                                                              // XP1 - 20  HangUp  DCD ON
 	UpdateRegs();                                                                   // Выполнить команду
@@ -2425,157 +2446,193 @@ void test_tangR()
 {
 	unsigned int regcount = 0;
 	myFile.println(""); 
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[60])));
-	myFile.println(buffer);                                                 // "Test tangenta ruchnaja start!"
-	myFile.println();
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[36])));                   // " ****** Test tangenta ruchnaja start! ******"                ;
+	myFile.println(buffer);                              //
 	file_print_date();
 	myFile.println("");
-	regBank.set(17,0);                                                      // J8-12     XP7 4 PTT2 тангента ручная DSR
-	regBank.set(19,0);                                                      // J8-11     XP7 2 sensor тангента ручная
-	regBank.set(20,0);                                                      // J8-23     XP7 1 PTT1 тангента ручная CTS
-	UpdateRegs();                                                           // Выполнить команду
+	regBank.set(17,0);                                                              // J8-12     XP7 4 PTT2 тангента ручная DSR
+	regBank.set(19,0);                                                              // J8-11     XP7 2 sensor тангента ручная
+	regBank.set(20,0);                                                              // J8-23     XP7 1 PTT1 тангента ручная CTS
+	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[61])));
-	myFile.println(buffer);                                                 // "Command sensor OFF tangenta ruchnaja send!"  
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[62])));
-	myFile.println(buffer);                                                 // "Command PTT1  OFF tangenta ruchnaja send!"   
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[63])));
-	myFile.println(buffer);                                                 // "Command PTT2  OFF tangenta ruchnaja send!" 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[37])));                   // "Command sensor OFF tangenta ruchnaja             send!"      ;
+	if (test_repeat == false)  myFile.println(buffer);                              //
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[38])));                   // "Command PTT1   OFF tangenta ruchnaja             send!"      ;
+	if (test_repeat == false)  myFile.println(buffer);                              //
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[39])));                   // "Command PTT2   OFF tangenta ruchnaja             send!"      ; 
+	if (test_repeat == false) myFile.println(buffer);                               // "Command PTT2   OFF tangenta ruchnaja             send!"      ; 
+
 	byte i50 = regs_in[0];    
 
-	if(bitRead(i50,3) != 0)                                                 // J8-11     XP7 2 sensor тангента ручная
+
+	if(bitRead(i50,3) != 0)                                                         // J8-11     XP7 2 sensor тангента ручная               "Command sensor tangenta ruchnaja                            OFF - ";
 		{
-		regcount = regBank.get(40124);                                      // адрес счетчика ошибки sensor тангента ручная
-		regcount++;                                                         // увеличить счетчик ошибок sensor тангента ручная
-		regBank.set(40124,regcount);                                        // адрес счетчика ошибки sensor тангента ручная
-		regBank.set(124,1);                                                 // установить флаг ошибки sensor тангента ручная
-		regBank.set(120,1);                                                 // установить общий флаг ошибки
-		strcpy_P(buffer, (char*)pgm_read_word(&(string_table[5])));         //
-		myFile.print(buffer);                                               // 
-		myFile.println(regcount);                                           // 
+			regcount = regBank.get(40274);                                          // адрес счетчика ошибки sensor тангента ручная     "Command sensor tangenta ruchnaja                            OFF - ";
+			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная  "Command sensor tangenta ruchnaja                            OFF - ";
+			regBank.set(40274,regcount);                                            // адрес счетчика ошибки sensor тангента ручная     "Command sensor tangenta ruchnaja                            OFF - ";
+			regBank.set(274,1);                                                       // установить флаг ошибки sensor тангента ручная
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[74])));        // "Command sensor tangenta ruchnaja                            OFF - ";
+			myFile.print(buffer);                                                   // "Command sensor tangenta ruchnaja                            OFF - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
 		}
 	else
 		{
-		strcpy_P(buffer, (char*)pgm_read_word(&(string_table[6])));
-		myFile.print(buffer);                                               // 
-		strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-		myFile.println(buffer);                                             //  sensor тангента ручная OK!
+		  if (test_repeat == false)
+		  {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[74])));        // "Command sensor tangenta ruchnaja                            OFF - ";
+			myFile.print(buffer);                                                   // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Command sensor tangenta ruchnaja                            OFF - ";  - Pass
+		  }
 		}
 
 	 UpdateRegs(); 
 	  // 2)  Проверка  на отключение J8-23     XP7 1 PTT1 тангента ручная CTS
-		if(regBank.get(adr_reg_ind_CTS) != 0)                               // Проверка  на отключение XP7 1 PTT1 тангента ручная CTS
+		if(regBank.get(adr_reg_ind_CTS) != 0)                                       // Проверка  на отключение XP7 1 PTT1 тангента ручная CTS "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
 		  {
-			 regcount = regBank.get(40173);                                 // адрес счетчика ошибки PTT  MTT (CTS)
-			 regcount++;                                                    // увеличить счетчик ошибок
-			 regBank.set(40173,regcount);                                   // адрес счетчика ошибки PTT  MTT (CTS)
-			 regBank.set(173,1);                                            // установить флаг ошибки
-			 regBank.set(120,1);                                            // установить общий флаг ошибки
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[67])));
-			 myFile.print(buffer);                                          // "Command PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";  
-			 myFile.println(regcount);
+			regcount = regBank.get(40270);                                          // адрес счетчика ошибки PTT  MTT (CTS)               "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
+			regcount++;                                                             // увеличить счетчик ошибок
+			regBank.set(40270,regcount);                                            // адрес счетчика ошибки PTT  MTT (CTS)
+			regBank.set(270,1);                                                     // установить флаг ошибки
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[70])));        // "Command PTT1 tangenta ruchnaja (CTS)                        OFF - "; 
+			myFile.print(buffer);                                                   // "Command PTT1 tangenta ruchnaja (CTS)                        OFF - "; 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
 		  }
 		else
 		  {
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[68])));// "Command PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
-			 myFile.println(buffer);                                        // "Command PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
+		  if (test_repeat == false)
+		   {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[70])));        // "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
+			myFile.print(buffer);                                                   // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";  - Pass
 		  }
+		 }
 
 	 // 3)  Проверка  на отключение PTT2 тангента ручная (DSR)
 
-		if(regBank.get(adr_reg_ind_DSR) != 0)                               // Проверка  на отключение  PTT2 тангента ручная (DSR)
+		if(regBank.get(adr_reg_ind_DSR) != 0)                                       // Проверка  на отключение  PTT2 тангента ручная (DSR) "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
 		  {
-			 regcount = regBank.get(40174);                                 // адрес счетчика ошибки  PTT  MTT (DSR)
-			 regcount++;                                                    // увеличить счетчик ошибок
-			 regBank.set(40174,regcount);                                   // адрес счетчика ошибки  PTT  MTT (DSR)
-			 regBank.set(174,1);                                            // установить флаг ошибки
-			 regBank.set(120,1);                                            // установить общий флаг ошибки
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[69])));// "Command PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
-			 myFile.print(buffer);                                          // "Command PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
-			 myFile.println(regcount);
+			regcount = regBank.get(40271);                                          // адрес счетчика ошибки  PTT  MTT (DSR)                "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
+			regcount++;                                                             // увеличить счетчик ошибок
+			regBank.set(40271,regcount);                                            // адрес счетчика ошибки  PTT  MTT (DSR)                 "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
+			regBank.set(271,1);                                                     // установить флаг ошибки
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[71])));        // "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
+			myFile.print(buffer);                                                   // "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
 		  }
 		else
 		  {
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[70])));// "Command PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
-			 myFile.println(buffer);                                        // "Command PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
+		  if (test_repeat == false)
+		   {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[71])));        // "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
+			myFile.print(buffer);                                                   // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";  - Pass
+		   }
 		  }
 
 	regBank.set(19,1);    // J8-11     XP7 2 sensor тангента ручная
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[64])));
-	myFile.println(buffer);                                                 // "Command sensor OFF tangenta ruchnaja send!"  
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[40])));                   // "Command sensor ON  tangenta ruchnaja             send!"      ;
+	if (test_repeat == false) myFile.println(buffer);                               // "Command sensor ON  tangenta ruchnaja             send!"      ;
 	regBank.set(17,1);    // J8-12     XP7 4 PTT2 тангента ручная DSR
-
-
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[65])));
-	myFile.println(buffer);                                                 // "Command PTT1  OFF tangenta ruchnaja send!"   
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[41])));                   // "Command PTT1   ON  tangenta ruchnaja             send!"      ;
+	if (test_repeat == false) myFile.println(buffer);                               // "Command PTT1   ON  tangenta ruchnaja             send!"      ;
 	regBank.set(20,1);    // J8-23     XP7 1 PTT1 тангента ручная CTS
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[42])));                   // "Command PTT2   ON  tangenta ruchnaja             send!"      ;
+	if (test_repeat == false) myFile.println(buffer);                               //
 
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[66])));
-	myFile.println(buffer);                                                 // "Command PTT2  OFF tangenta ruchnaja send!" 
-
-	UpdateRegs();                                                           // Выполнить команду
+	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
 
-			if(bitRead(regs_in[0],3) == 0)                                  // J8-11     XP7 2 sensor тангента ручная
+			if(bitRead(regs_in[0],3) == 0)                                          // J8-11     XP7 2 sensor тангента ручная             "Command sensor tangenta ruchnaja                            ON  - ";
 		  {
-			regcount = regBank.get(40124);                                  // адрес счетчика ошибки sensor тангента ручная
-			regcount++;                                                     // увеличить счетчик ошибок sensor тангента ручная
-			regBank.set(40124,regcount);                                    // адрес счетчика ошибки sensor тангента ручная
-			regBank.set(124,1);                                             // установить флаг ошибки sensor тангента ручная
-			regBank.set(120,1);                                             // установить общий флаг ошибки
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[5])));
-			myFile.print(buffer);                                           // 
-			myFile.println(regcount);                                       // 
+			regcount = regBank.get(40275);                                          // адрес счетчика ошибки sensor тангента ручная       "Command sensor tangenta ruchnaja                            ON  - ";
+			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная    "Command sensor tangenta ruchnaja                            ON  - ";
+			regBank.set(40275,regcount);                                            // адрес счетчика ошибки sensor тангента ручная
+			regBank.set(275,1);                                                     // установить флаг ошибки sensor тангента ручная
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[75])));        // "Command sensor tangenta ruchnaja                            ON  - ";
+			myFile.print(buffer);                                                   // "Command sensor tangenta ruchnaja                            ON  - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
 		  }
 		else
 		  {
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[6])));
-			myFile.print(buffer);                 // 
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_On[4])));
-			myFile.println(buffer);                                        //  sensor тангента ручная OK!
+		  if (test_repeat == false)
+		   {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[75])));        // "Command sensor tangenta ruchnaja                            ON  - ";
+			myFile.print(buffer);                         // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Command sensor tangenta ruchnaja                            ON  - "; - Pass
+		  }
 		  }
 	 UpdateRegs(); 
 	  // 2)  Проверка  на отключение J8-23     XP7 1 PTT1 тангента ручная CTS
-		if(regBank.get(adr_reg_ind_CTS) == 0)                               // Проверка  на отключение XP7 1 PTT1 тангента ручная CTS
+		if(regBank.get(adr_reg_ind_CTS) == 0)                                       // Проверка  на отключение XP7 1 PTT1 тангента ручная CTS    "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
 		  {
-			 regcount = regBank.get(40175);                                 // адрес счетчика ошибки PTT  MTT (CTS)
-			 regcount++;                                                    // увеличить счетчик ошибок
-			 regBank.set(40175,regcount);                                   // адрес счетчика ошибки PTT  MTT (CTS)
-			 regBank.set(175,1);                                            // установить флаг ошибки
-			 regBank.set(120,1);                                            // установить общий флаг ошибки
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[71])));
-			 myFile.print(buffer);                                          // "Command PTT1  OFF tangenta ruchnaja (CTS)      Error! - ";  
-			 myFile.println(regcount);
+			regcount = regBank.get(40272);                                          // адрес счетчика ошибки PTT  MTT (CTS)                      "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
+			regcount++;                                                             // увеличить счетчик ошибок
+			regBank.set(40272,regcount);                                            // адрес счетчика ошибки PTT  MTT (CTS)
+			regBank.set(272,1);                                                     // установить флаг ошибки
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[72])));        // "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
+			myFile.print(buffer);                                                   // "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
 		  }
 		else
 		  {
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[72])));// "Command PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
-			 myFile.println(buffer);                                        // "Command PTT1  OFF tangenta ruchnaja (CTS)             - Ok!";
+		   if (test_repeat == false)
+		   {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[72])));        // "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
+			myFile.print(buffer);                                                   // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Command PTT1 tangenta ruchnaja (CTS)                        ON  - "; - Pass
+		   }
 		  }
 
 	 // 3)  Проверка  на отключение PTT2 тангента ручная (DSR)
 
-		if(regBank.get(adr_reg_ind_DSR) == 0)                               // Проверка  на отключение  PTT2 тангента ручная (DSR)
+		if(regBank.get(adr_reg_ind_DSR) == 0)                                       // Проверка  на отключение  PTT2 тангента ручная (DSR)    "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
 		  {
-			 regcount = regBank.get(40176);                                 // адрес счетчика ошибки  PTT  MTT (DSR)
-			 regcount++;                                                    // увеличить счетчик ошибок
-			 regBank.set(40176,regcount);                                   // адрес счетчика ошибки  PTT  MTT (DSR)
-			 regBank.set(176,1);                                            // установить флаг ошибки
-			 regBank.set(120,1);                                            // установить общий флаг ошибки
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[73])));// "Command PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
-			 myFile.print(buffer);                                          // "Command PTT2  OFF tangenta ruchnaja (DCR)      Error! - ";
-			 myFile.println(regcount);
+			regcount = regBank.get(40273);                                          // адрес счетчика ошибки  PTT  MTT (DSR)                   "Command PTT2 tangenta ruchnaja (DCR)                        ON  - "; 
+			regcount++;                                                             // увеличить счетчик ошибок
+			regBank.set(40273,regcount);                                            // адрес счетчика ошибки  PTT  MTT (DSR)                    "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
+			regBank.set(273,1);                                                     // установить флаг ошибки
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[73])));        // "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
+			myFile.print(buffer);                                                   // "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
 		  }
 		else
 		  {
-			 strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[74])));// "Command PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
-			 myFile.println(buffer);                                        // "Command PTT2  OFF tangenta ruchnaja (DCR)             - Ok!";
+		   if (test_repeat == false)
+		   {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[73])));        // "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
+			myFile.print(buffer);                                                   // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";  - Pass
+		   }
 		  }
-	regBank.set(17,0);                                                      // J8-12     XP7 4 PTT2 тангента ручная DSR
-	regBank.set(19,0);                                                      // J8-11     XP7 2 sensor тангента ручная
-	regBank.set(20,0);                                                      // J8-23     XP7 1 PTT1 тангента ручная CTS
-	UpdateRegs();                                                           // Выполнить команду
-	regBank.set(adr_control_command,0);                                     // Завершить программу    
+	regBank.set(17,0);                                                              // J8-12     XP7 4 PTT2 тангента ручная DSR
+	regBank.set(19,0);                                                              // J8-11     XP7 2 sensor тангента ручная
+	regBank.set(20,0);                                                              // J8-23     XP7 1 PTT1 тангента ручная CTS
+	UpdateRegs();                                                                   // Выполнить команду
+	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(100);
 }
 void test_tangN()
@@ -2645,9 +2702,7 @@ void test_instr_off()
 	UpdateRegs();                                                                   // Выполнить команду отключения сенсоров
 	delay(300);
 	UpdateRegs(); 
-//	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
-//  byte i53 = regs_in[3];    
 	 
 	  // 1)  Проверка сенсора на отключение гарнитуры инструктора 2 наушниками
 		if(bitRead(i52,1) != 0)                                                     // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
@@ -2670,7 +2725,7 @@ void test_instr_off()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[3])));     // "Sensor headset instructor 2         XP1- 16 HeS2Rs          OFF - ";
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset instructor 2 отключен  - Pass
+				myFile.println(buffer);                                             // "Sensor headset instructor 2 отключен  - Pass
 			  }
 		  }
 
@@ -2718,9 +2773,9 @@ void test_instr_off()
 			 if (test_repeat == false)
 			   {
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[7])));     // "Sensor microphone                   XS1 - 6                 OFF - ";  
-				myFile.print(buffer);                                               // 
+				if (test_repeat == false) myFile.print(buffer);                     // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				myFile.println(buffer);                                             // "Sensor microphone                   XS1 - 6                 OFF - ";   отключен  - Pass
+				if (test_repeat == false) myFile.println(buffer);                   // "Sensor microphone                   XS1 - 6                 OFF - ";   отключен  - Pass
 			   }
 		  }
 
@@ -2768,10 +2823,7 @@ void test_instr_on()
 	UpdateRegs();                                                                   // Выполнить команду включения сенсоров
 	delay(300);
 	UpdateRegs(); 
-//	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
-//	byte i53 = regs_in[3];    
-
 	  // 3)  Проверка сенсора на подключение гарнитуры инструктора 2 наушниками
 			if(bitRead(i52,1) == 0)                                                 // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 		  {
@@ -2793,7 +2845,7 @@ void test_instr_on()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[13])));    // "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset instructor 2 включен  - Pass
+				myFile.println(buffer);                                             // "Sensor headset instructor 2 включен  - Pass
 			  }
 		  }
 
@@ -2817,7 +2869,7 @@ void test_instr_on()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[14])));    // "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - "; 
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				myFile.println(buffer);                   // "Sensor headset instructor включен  - Pass
+				myFile.println(buffer);                                             // "Sensor headset instructor включен  - Pass
 			  }
 		  }
 
@@ -2843,7 +2895,7 @@ void test_instr_on()
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[21])));        // "Command PTT headset instructor (CTS)                        ON  - ";
 			myFile.print(buffer);                                                   // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
-			if (test_repeat == false) myFile.println(buffer);                       // "Command PTT headset instructor (CTS)                        ON  - "  включен  - Pass
+			myFile.println(buffer);                                                 // "Command PTT headset instructor (CTS)                        ON  - "  включен  - Pass
 		   }
 		 }
 }
@@ -2874,9 +2926,7 @@ void test_disp_off()
 	UpdateRegs();                                                                   // Выполнить команду отключения сенсоров
 	delay(300);
 	UpdateRegs(); 
-//	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
-//  byte i53 = regs_in[3];    
 	 
 	  // 1)  Проверка сенсора на отключение гарнитуры диспетчера 2 наушниками
 		if(bitRead(i52,3) != 0)                                                     // XP1- 16 HeS2Rs    sensor подключения гарнитуры диспетчера с 2 наушниками
@@ -2899,7 +2949,7 @@ void test_disp_off()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[5])));     // "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          OFF - ";
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          OFF - " отключен  - Pass
+				myFile.println(buffer);                                             // "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          OFF - " отключен  - Pass
 			  }
 		  }
 
@@ -2997,9 +3047,7 @@ void test_disp_on()
 	UpdateRegs();                                                                   // Выполнить команду включения сенсоров
 	delay(300);
 	UpdateRegs(); 
-//	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
-//	byte i53 = regs_in[3];    
 
 	  // 3)  Проверка сенсора на подключение гарнитуры диспетчера 2 наушниками
 		if(bitRead(i52,3) == 0)                                                 // XP1- 16 HeS2Rs    sensor подключения гарнитуры диспетчера с 2 наушниками
@@ -3022,7 +3070,7 @@ void test_disp_on()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[15])));    // "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          ON  - "; 
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          ON  - ";  включен  - Pass
+				myFile.println(buffer);                                             // "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          ON  - ";  включен  - Pass
 			  }
 		  }
 
@@ -3072,7 +3120,7 @@ void test_disp_on()
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[23])));        // "Command PTT headset dispatcher (CTS)                        ON  - ";
 			myFile.print(buffer);                                                   // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
-			if (test_repeat == false) myFile.println(buffer);                       // "Command PTT headset dispatcher (CTS)                        ON  - "  включен  - Pass
+			myFile.println(buffer);                                                 // "Command PTT headset dispatcher (CTS)                        ON  - "  включен  - Pass
 		   }
 		 }
 }
@@ -3126,7 +3174,7 @@ void test_MTT_off()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[0])));     // "Sensor MTT                     XP1- 19 HaSs   OFF               - ";  
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   //  sensor  трубки отключен  - Pass
+				myFile.println(buffer);                                             //  sensor  трубки отключен  - Pass
 			   }
 		  }
 		   UpdateRegs(); 
@@ -3152,7 +3200,7 @@ void test_MTT_off()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[63])));    // "Test MTT PTT    (CTS)                                       OFF - ";
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Test MTT PTT    (CTS)                                       OFF - ";
+			    myFile.println(buffer);                                             // "Test MTT PTT    (CTS)                                       OFF - ";
 			   }                   
 		  }
 
@@ -3178,7 +3226,7 @@ void test_MTT_off()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[64])));    // "Test MTT PTT    (DSR)                                       OFF - ";
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Test MTT PTT    (DSR)                                       OFF - ";
+				myFile.println(buffer);                                             // "Test MTT PTT    (DSR)                                       OFF - ";
 			   }             
 		  }
 
@@ -3202,7 +3250,7 @@ void test_MTT_off()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[67])));    // "Test MTT HangUp (DCD)                                       OFF - ";
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Test MTT HangUp (DCD)                                       OFF - ";
+				myFile.println(buffer);                                             // "Test MTT HangUp (DCD)                                       OFF - ";
 			   }             
 		 }
 }
@@ -3224,9 +3272,6 @@ void test_MTT_on()
 
 	  // 1)  Проверка сенсора MTT на включение 
 	byte i50 = regs_in[0];    
-//	byte i52 = regs_in[2];    
-//	byte i53 = regs_in[3];  
-
 		if(bitRead(i50,2) == 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            ON  - ";
 		  {
 			regcount = regBank.get(40210);                                          // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            ON  - ";
@@ -3247,7 +3292,7 @@ void test_MTT_on()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[10])));    // "Sensor MTT                     XP1- 19 HaSs   ON                 - ";  
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   //  sensor  трубки включен  - Pass
+				myFile.println(buffer);                                             //  sensor  трубки включен  - Pass
 			   }
 		  }
 
@@ -3273,7 +3318,7 @@ void test_MTT_on()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[65])));    // "Test MTT PTT    (CTS)                                       ON  - "; 
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   //  "Test MTT PTT    (CTS)                                       ON  - " трубки включен  - Pass
+				myFile.println(buffer);                                             //  "Test MTT PTT    (CTS)                                       ON  - " трубки включен  - Pass
 			   }
 		  }
 
@@ -3299,7 +3344,7 @@ void test_MTT_on()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[66])));    // "Test MTT PTT    (DSR)                                       ON  - ";
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   //  "Test MTT PTT    (DSR)                                       ON  - " трубки включен  - Pass
+				myFile.println(buffer);                                             //  "Test MTT PTT    (DSR)                                       ON  - " трубки включен  - Pass
 			   }
 		  }
 
@@ -3323,7 +3368,7 @@ void test_MTT_on()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[68])));    // "Test MTT HangUp (DCD)                                       ON  - "; 
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   //  "Test MTT HangUp (DCD)                                       ON  - ";трубки включен  - Pass
+				myFile.println(buffer);                                             //  "Test MTT HangUp (DCD)                                       ON  - ";трубки включен  - Pass
 			   }
 		 }
 }
@@ -3907,13 +3952,19 @@ modbus registers follow the following format
 	regBank.add(260);                         // Флаг ошибки "Test MTT ** Signal LineL                                    ON  - ";
 	regBank.add(261);                         // Флаг ошибки "Test MTT ** Signal LineR                                    ON  - ";  
 	regBank.add(262);                         // Флаг ошибки "Test MTT ** Signal Mag phone                                ON  - ";
-	regBank.add(262);                         // Флаг ошибки "Test MTT ** Signal Mag phone                                ON  - ";
 	regBank.add(263);                         // Флаг ошибки "Test MTT PTT    (CTS)                                       OFF - ";
 	regBank.add(264);                         // Флаг ошибки "Test MTT PTT    (DSR)                                       OFF - ";
 	regBank.add(265);                         // Флаг ошибки "Test MTT PTT    (CTS)                                       ON  - ";
 	regBank.add(266);                         // Флаг ошибки "Test MTT PTT    (DSR)                                       ON  - ";
 	regBank.add(267);                         // Флаг ошибки "Test MTT HangUp (DCD)                                       OFF - ";
 	regBank.add(268);                         // Флаг ошибки "Test MTT HangUp (DCD)                                       ON  - ";
+
+	regBank.add(270);                         // Флаг ошибки "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
+	regBank.add(271);                         // Флаг ошибки "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
+	regBank.add(272);                         // Флаг ошибки "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
+	regBank.add(273);                         // Флаг ошибки "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
+	regBank.add(274);                         // Флаг ошибки "Command sensor tangenta ruchnaja                            OFF - ";
+	regBank.add(275);                         // Флаг ошибки "Command sensor tangenta ruchnaja                            ON  - ";
 
 
 
@@ -4258,6 +4309,12 @@ modbus registers follow the following format
 	regBank.add(40267);                         // Aдрес счетчика ошибки "Test MTT HangUp (DCD)                                       OFF - ";
 	regBank.add(40268);                         // Aдрес счетчика ошибки "Test MTT HangUp (DCD)                                       ON  - ";
 
+	regBank.add(40270);                         // Aдрес счетчика ошибки "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
+	regBank.add(40271);                         // Aдрес счетчика ошибки "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
+	regBank.add(40272);                         // Aдрес счетчика ошибки "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
+	regBank.add(40273);                         // Aдрес счетчика ошибки "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
+	regBank.add(40274);                         // Aдрес счетчика ошибки "Command sensor tangenta ruchnaja                            OFF - ";
+	regBank.add(40275);                         // Aдрес счетчика ошибки "Command sensor tangenta ruchnaja                            ON  - ";
 
 
 
