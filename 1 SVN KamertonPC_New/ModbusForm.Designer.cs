@@ -31,6 +31,7 @@ namespace KamertonTest
             this.components = new System.ComponentModel.Container();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label92 = new System.Windows.Forms.Label();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -363,7 +364,14 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
-            this.label92 = new System.Windows.Forms.Label();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.label95 = new System.Windows.Forms.Label();
+            this.label101 = new System.Windows.Forms.Label();
+            this.label133 = new System.Windows.Forms.Label();
+            this.button81 = new System.Windows.Forms.Button();
+            this.button82 = new System.Windows.Forms.Button();
+            this.label134 = new System.Windows.Forms.Label();
+            this.button83 = new System.Windows.Forms.Button();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -392,6 +400,7 @@ namespace KamertonTest
             this.GroupBox5.SuspendLayout();
             this.GroupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.groupBox18.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl1
@@ -437,6 +446,18 @@ namespace KamertonTest
             this.tabPage3.Size = new System.Drawing.Size(987, 613);
             this.tabPage3.TabIndex = 5;
             this.tabPage3.Text = "Полный тест";
+            // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label92.ForeColor = System.Drawing.Color.Red;
+            this.label92.Location = new System.Drawing.Point(239, 15);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(0, 15);
+            this.label92.TabIndex = 20;
+            this.label92.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label92.Click += new System.EventHandler(this.label92_Click_2);
             // 
             // groupBox21
             // 
@@ -3080,6 +3101,7 @@ namespace KamertonTest
             // 
             this.tabPage6.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage6.Controls.Add(this.groupBox18);
             this.tabPage6.Controls.Add(this.groupBox16);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
@@ -3319,6 +3341,7 @@ namespace KamertonTest
             this.label80.Size = new System.Drawing.Size(171, 20);
             this.label80.TabIndex = 34;
             this.label80.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label80.Click += new System.EventHandler(this.label80_Click);
             // 
             // label81
             // 
@@ -4066,17 +4089,90 @@ namespace KamertonTest
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
             // 
-            // label92
+            // groupBox18
             // 
-            this.label92.AutoSize = true;
-            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label92.ForeColor = System.Drawing.Color.Red;
-            this.label92.Location = new System.Drawing.Point(239, 15);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(0, 15);
-            this.label92.TabIndex = 20;
-            this.label92.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label92.Click += new System.EventHandler(this.label92_Click_2);
+            this.groupBox18.Controls.Add(this.button83);
+            this.groupBox18.Controls.Add(this.label134);
+            this.groupBox18.Controls.Add(this.button82);
+            this.groupBox18.Controls.Add(this.button81);
+            this.groupBox18.Controls.Add(this.label133);
+            this.groupBox18.Controls.Add(this.label101);
+            this.groupBox18.Controls.Add(this.label95);
+            this.groupBox18.Location = new System.Drawing.Point(339, 20);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(322, 390);
+            this.groupBox18.TabIndex = 1;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "Управление файлами";
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Location = new System.Drawing.Point(15, 33);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(122, 13);
+            this.label95.TabIndex = 0;
+            this.label95.Text = "Текущий номер файла";
+            this.label95.Click += new System.EventHandler(this.label95_Click);
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(15, 101);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(159, 13);
+            this.label101.TabIndex = 1;
+            this.label101.Text = "Установить номер файла в \'0\'";
+            // 
+            // label133
+            // 
+            this.label133.AutoSize = true;
+            this.label133.Location = new System.Drawing.Point(15, 137);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(148, 13);
+            this.label133.TabIndex = 2;
+            this.label133.Text = "Форматировать SD память";
+            this.label133.Click += new System.EventHandler(this.label133_Click_1);
+            // 
+            // button81
+            // 
+            this.button81.Location = new System.Drawing.Point(227, 96);
+            this.button81.Name = "button81";
+            this.button81.Size = new System.Drawing.Size(75, 23);
+            this.button81.TabIndex = 3;
+            this.button81.Text = "Сброс в \'0\'";
+            this.button81.UseVisualStyleBackColor = true;
+            this.button81.Click += new System.EventHandler(this.button81_Click);
+            // 
+            // button82
+            // 
+            this.button82.Location = new System.Drawing.Point(227, 133);
+            this.button82.Name = "button82";
+            this.button82.Size = new System.Drawing.Size(75, 23);
+            this.button82.TabIndex = 4;
+            this.button82.Text = "Формат SD";
+            this.button82.UseVisualStyleBackColor = true;
+            // 
+            // label134
+            // 
+            this.label134.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label134.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label134.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label134.Location = new System.Drawing.Point(18, 58);
+            this.label134.Name = "label134";
+            this.label134.Size = new System.Drawing.Size(147, 20);
+            this.label134.TabIndex = 35;
+            this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button83
+            // 
+            this.button83.Location = new System.Drawing.Point(227, 59);
+            this.button83.Name = "button83";
+            this.button83.Size = new System.Drawing.Size(75, 23);
+            this.button83.TabIndex = 36;
+            this.button83.Text = "Получить";
+            this.button83.UseVisualStyleBackColor = true;
+            this.button83.Click += new System.EventHandler(this.button83_Click);
             // 
             // Form1
             // 
@@ -4134,6 +4230,8 @@ namespace KamertonTest
             this.GroupBox4.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4476,6 +4574,14 @@ namespace KamertonTest
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.CheckBox checkBoxSensors1;
         private System.Windows.Forms.Label label92;
+        private System.Windows.Forms.GroupBox groupBox18;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.Button button82;
+        private System.Windows.Forms.Button button81;
+        private System.Windows.Forms.Label label133;
+        private System.Windows.Forms.Button button83;
+        private System.Windows.Forms.Label label134;
     }
 }
 

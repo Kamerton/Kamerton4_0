@@ -116,6 +116,11 @@ const int adr_temp_day         PROGMEM           = 240;          // Адрес хранен
 const int adr_temp_mon         PROGMEM           = 241;          // Адрес хранения переменной месяц
 const int adr_temp_year        PROGMEM           = 242;          // Адрес хранения переменной год  
 const int adr_file_name_count  PROGMEM           = 243;          // Адрес хранения переменной счетчика номера файла
+//const unsigned int reg_temp_year        PROGMEM           = 40112;        // Регистр хранения переменной год  
+//const unsigned int reg_temp_mon         PROGMEM           = 40113;        // Регистр хранения переменной год  
+//const unsigned int reg_temp_day         PROGMEM           = 40114;        // Регистр хранения переменной год  
+//const unsigned int reg_file_name        PROGMEM           = 40115;        // Регистр хранения переменной год  
+
 //------------------------------------------------------------------------------------------------------------------
 
 //*********************Работа с именем файла ******************************
@@ -208,6 +213,11 @@ const unsigned int adr_Time_Test_day      PROGMEM       = 40108; // адрес день
 const unsigned int adr_Time_Test_hour     PROGMEM       = 40109; // адрес час
 const unsigned int adr_Time_Test_minute   PROGMEM       = 40110; // адрес минута
 const unsigned int adr_Time_Test_second   PROGMEM       = 40111; // адрес секунда
+
+const unsigned int adr_reg_temp_year      PROGMEM       = 40112; // Регистр хранения переменной год  
+const unsigned int adr_reg_temp_mon       PROGMEM       = 40113; // Регистр хранения переменной месяц
+const unsigned int adr_reg_temp_day       PROGMEM       = 40114; // Регистр хранения переменной день 
+const unsigned int adr_reg_file_name      PROGMEM       = 40115; // Регистр хранения счетчик файлов  
 
 const unsigned int adr_set_time           PROGMEM       = 36;    // адрес флаг установки
 
@@ -501,7 +511,7 @@ const char  txt_error15[]  PROGMEM             = "Sensor headset dispatcher 2   
 const char  txt_error16[]  PROGMEM             = "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";
 const char  txt_error17[]  PROGMEM             = "Sensor microphone                   XS1 - 6                 ON  - "; 
 const char  txt_error18[]  PROGMEM             = "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - "; 
-const char  txt_error19[]  PROGMEM             = "Microphone headset dispatcher Sw.   XP1 12 HeS2e            ON  - "; 
+const char  txt_error19[]  PROGMEM             = "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - "; 
   
 const char  txt_error20[]  PROGMEM             = "Command PTT headset instructor (CTS)                        OFF - ";
 const char  txt_error21[]  PROGMEM             = "Command PTT headset instructor (CTS)                        ON  - ";
@@ -656,7 +666,7 @@ txt_error15,                                  // "Sensor headset dispatcher 2   
 txt_error16,                                  // "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";
 txt_error17,                                  // "Sensor microphone                   XS1 - 6                 ON  - "; 
 txt_error18,                                  // "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - "; 
-txt_error19,                                  // "Microphone headset dispatcher Sw.   XP1 12 HeS2e            ON  - "; 
+txt_error19,                                  // "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - "; 
 
 txt_error20,                                  // "Command PTT headset instructor (CTS)                        OFF - ";
 txt_error21,                                  // "Command PTT headset instructor (CTS)                        ON  - ";
@@ -1353,33 +1363,33 @@ void data_clock_exchange()
 	uint16_t year_temp = now.year()-2000;
 	uint8_t day_temp = now.day();
 	uint8_t mon_temp = now.month();
-		 
-	byte  b = i2c_eeprom_read_byte(0x50, adr_temp_day); //access an address from the memory
+
+	byte  b = i2c_eeprom_read_byte(0x50, adr_temp_day);                             //access an address from the memory
 		delay(10);
 
 		if (b != day_temp)
 			{
 				i2c_eeprom_write_byte(0x50, adr_temp_day, day_temp);
-				i2c_eeprom_write_byte(0x50, adr_file_name_count,0);// при смене даты счетчик номера файла сбросить в "0"
+				i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                 // при смене даты счетчик номера файла сбросить в "0"
 			}
 
-		  b = i2c_eeprom_read_byte(0x50, adr_temp_mon); //access an address from the memory
-		  delay(10);
+		  b = i2c_eeprom_read_byte(0x50, adr_temp_mon);                             //access an address from the memory
+ 		  delay(10);
 
 		if (b!= mon_temp)
 			{
 				i2c_eeprom_write_byte(0x50, adr_temp_mon,mon_temp);
-				i2c_eeprom_write_byte(0x50, adr_file_name_count,0);// при смене даты счетчик номера файла сбросить в "0"
+				i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                 // при смене даты счетчик номера файла сбросить в "0"
 			}
 		
-		  b = i2c_eeprom_read_byte(0x50, adr_temp_year); //access an address from the memory
+		  b = i2c_eeprom_read_byte(0x50, adr_temp_year);                            //access an address from the memory
 		  delay(10);
 
 
 		if (b!= year_temp)
 			{
 				i2c_eeprom_write_byte(0x50, adr_temp_year,year_temp);
-				i2c_eeprom_write_byte(0x50, adr_file_name_count,0);// при смене даты счетчик номера файла сбросить в "0"
+				i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                 // при смене даты счетчик номера файла сбросить в "0"
 			}
 }
 void time_control() // Программа записи текущего времени в регистры для передачи в ПК
@@ -1470,13 +1480,14 @@ void FileOpen()
 			regBank.set(adr_Time_Test_second, 0); 
 	
 
-	data_clock_exchange();                               // Проверить не изменилась ли дата
+	data_clock_exchange();                                                          // Проверить не изменилась ли дата
 
-	file_name_count = i2c_eeprom_read_byte(0x50, adr_file_name_count); // считать текущий номер файла из памяти
+	file_name_count = i2c_eeprom_read_byte(0x50, adr_file_name_count);              // считать текущий номер файла из памяти
+//	regBank.set(reg_file_name,file_name_count);                                     // Регистр  хранения переменной день
 
-	preob_num_str();                                     // сформировать имя файла из даты и счетчика файлов
+	preob_num_str();                                                                // сформировать имя файла из даты и счетчика файлов
  
-	 if (SD.exists(file_name))                           // проверить есть ли такой файл
+	 if (SD.exists(file_name))                                                      // проверить есть ли такой файл
 	  { 
 
 		Serial.print(file_name);
@@ -1528,9 +1539,37 @@ void FileClose()
 		  Serial.print(file_name);
 		  Serial.println(" doesn't exist.");  
 	  }
-    regBank.set(adr_control_command,0);
+	regBank.set(adr_control_command,0);
 }
 
+void send_file_Name()
+{
+	byte  b = i2c_eeprom_read_byte(0x50, adr_temp_day);                             //access an address from the memory
+	regBank.set(adr_reg_temp_day,b);                                                // Регистр  хранения переменной день
+	Serial.println(regBank.get(adr_reg_temp_day));
+	b = i2c_eeprom_read_byte(0x50, adr_temp_mon);                                   //access an address from the memory
+	regBank.set(adr_reg_temp_mon,b);                                                // Регистр  хранения переменной месяц
+	Serial.println(regBank.get(adr_reg_temp_mon));
+	b = i2c_eeprom_read_byte(0x50, adr_temp_year);                                  //access an address from the memory
+	regBank.set(adr_reg_temp_year,b);                                               // Регистр  хранения переменной год - 2000
+	Serial.println(regBank.get(adr_reg_temp_year));
+	b = i2c_eeprom_read_byte(0x50, adr_file_name_count);                            // считать текущий номер файла из памяти
+	regBank.set(adr_reg_file_name,b);                                               // Регистр  хранения переменной 
+	Serial.println(regBank.get(adr_reg_file_name));
+	regBank.set(adr_control_command,0);
+}
+
+void set_namber_file_zero()
+{
+   i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                             // счетчик номера файла сбросить в "0"
+   regBank.set(adr_control_command,0);
+}
+void format_SD()
+{
+
+
+   regBank.set(adr_control_command,0);
+}
 void control_command()
 {
 	/*
@@ -1604,6 +1643,15 @@ void control_command()
 				break;
 		case 15:
 			 set_rezistor();
+				break;
+		case 16:
+			 send_file_Name();                  //
+				break;
+		case 17:
+			 set_namber_file_zero();            //
+				break;
+		case 18:
+			 format_SD();                       //
 				break;
 		default:
 			regBank.set(adr_control_command,0);
@@ -2288,7 +2336,7 @@ void test_headset_dispatcher()
 	delay(200);
 	//myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[13])));                   // "Signal headset dispatcher microphone 30mv     ON"            ;    
-	if (test_repeat == false)  myFile.println(buffer);                           // "Signal headset dispatcher microphone 30mv     ON"            ;   
+	if (test_repeat == false)  myFile.println(buffer);                              // "Signal headset dispatcher microphone 30mv     ON"            ;   
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,   40240,240,25);                                 // Измерить уровень сигнала на выходе FrontL    "Test headset dispatcher ** Signal FrontL                    OFF - ";
 	measure_vol_min(analog_FrontR,   40241,241,25);                                 // Измерить уровень сигнала на выходе FrontR    "Test headset dispatcher ** Signal FrontR                    OFF - ";
@@ -2315,33 +2363,30 @@ void test_headset_dispatcher()
 	byte i5 = regs_in[3];                                                           // 
 		if(bitRead(i5,6) == 0)                                                      // Проверка  включения микрофона диспетчера
 		  {
-			regcount = regBank.get(40182);                                          // адрес счетчика ошибки включения микрофона диспетчера
-			regcount++;                                                             // увеличить счетчик ошибок включения микрофона диспетчера
+			regcount = regBank.get(40182);                                          // адрес счетчика ошибки включения микрофона диспетчера          "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - "; 
+			regcount++;                                                             // увеличить счетчик ошибок включения микрофона диспетчера       "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - "; 
 			regBank.set(40182,regcount);                                            // адрес счетчика ошибки включения микрофона диспетчера
 			regBank.set(182,1);                                                     // установить флаг ошибки
 			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			resistor(1, 255);                                                       // Установить уровень сигнала в исходное состояниe
 			resistor(2, 255);                                                       // Установить уровень сигнала в исходное состояниe
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[18])));        // "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - "; 
-			myFile.print(buffer);                                                   // "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - "; 
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[19])));        // "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - "; 
+			myFile.print(buffer);                                                   // "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - "; 
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
 			myFile.println(regcount);                                               // Показания счетчика ошибок
-			//strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[22])));
-			//myFile.print(buffer);                                                   // "Microphone dispatcher ON  Error! - "
-			//myFile.println(regcount);                                               // 
 		  }
 		else
 		  {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[18])));    // "Sensor microphone                   XS1 - 6                 ON  - "; 
+			 if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[19])));    // "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - "; 
 				if (test_repeat == false) myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                                             // Микрофон инструктора включен  - Pass
-			//strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[23])));
-			//if (test_repeat == false) myFile.println(buffer);                       //"Microphone dispatcher  ON - Ok!" Микрофон диспетчера включился
-			//delay(20);
+				if (test_repeat == false) myFile.println(buffer);                                             // "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - ";  - Pass
+			   }
 		  }
-	myFile.println("");
+	//myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_txt_all[24])));                   // "Microphone dispatcher signal ON" 
 	if (test_repeat == false) myFile.println(buffer);                               // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
 	delay(20);
@@ -3200,7 +3245,7 @@ void test_MTT_off()
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[63])));    // "Test MTT PTT    (CTS)                                       OFF - ";
 				myFile.print(buffer);                                               // 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-			    myFile.println(buffer);                                             // "Test MTT PTT    (CTS)                                       OFF - ";
+				myFile.println(buffer);                                             // "Test MTT PTT    (CTS)                                       OFF - ";
 			   }                   
 		  }
 
@@ -4228,7 +4273,12 @@ modbus registers follow the following format
 	regBank.add(40109);  // адрес час adr_Time_Test_hour 
 	regBank.add(40110);  // адрес минута adr_Time_Test_minute
 	regBank.add(40111);  // адрес секунда adr_Time_Test_second
- 
+
+	regBank.add(40112);  // Адрес хранения переменной год 
+	regBank.add(40113);  // Адрес хранения переменной месяц 
+	regBank.add(40114);  // Адрес хранения переменной день
+	regBank.add(40115);  // Адрес хранения переменной счетчика номера файла
+
 	regBank.add(40120);  // adr_control_command Адрес передачи комманд на выполнение
 
 

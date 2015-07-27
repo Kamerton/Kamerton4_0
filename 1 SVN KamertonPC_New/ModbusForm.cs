@@ -518,7 +518,7 @@ namespace KamertonTest
 
                 label83.Text = "";
                 label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-            }
+             }
 
 
             else
@@ -4569,6 +4569,104 @@ namespace KamertonTest
         }
 
         private void label92_Click_2 (object sender, EventArgs e)
+        {
+
+        }
+
+        private void label95_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button81_Click(object sender, EventArgs e)
+        {
+            ushort[] writeVals = new ushort[2];
+            bool[] coilArr = new bool[4];
+            startWrReg = 120;
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 17); // 
+           // test_end();
+        }
+
+        private void label133_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button83_Click(object sender, EventArgs e)
+        {
+
+            short[] readVals = new short[125];
+            int slave;
+            int startRdReg;
+            int startWrReg;
+            int numRdRegs;
+            int res;
+
+            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+
+            ushort[] writeVals = new ushort[2];
+       //     bool[] coilArr = new bool[12];
+            startWrReg = 120;
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 16); // 
+            test_end();
+
+
+
+            startRdReg = 112; // 40046 Адрес дата/время контроллера  
+            numRdRegs = 4;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+            lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                toolStripStatusLabel1.BackColor = Color.Lime;
+                if(readVals[3]!= 0)
+                {
+                    readVals[3]--;
+                }
+
+                label134.Text = "";
+                label134.Text = (label134.Text + readVals[0]);
+                if (readVals[1] < 10)
+                {
+                    label134.Text += ("0" + readVals[1]);
+                }
+                else
+                {
+                    label134.Text += (readVals[1]);
+                }
+                if (readVals[2] < 10)
+                {
+                    label134.Text += ("0" + readVals[2]);
+                }
+                else
+                {
+                    label134.Text += (readVals[2]);
+                }
+                if (readVals[3] < 10)
+                {
+                    label134.Text += ("0" + readVals[3] + ".TXT");
+                }
+                else
+                {
+                    label134.Text += (readVals[3] + ".TXT");
+                }
+
+            }
+
+
+            else
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                toolStripStatusLabel1.BackColor = Color.Red;
+                timer_byte_set.Enabled = false;
+                timer_Mic_test.Enabled = false;
+                timerCTS.Enabled = false;
+                timerTestAll.Enabled = false;
+            }
+        }
+
+        private void label80_Click(object sender, EventArgs e)
         {
 
         }
