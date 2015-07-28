@@ -3849,6 +3849,336 @@ namespace KamertonTest
                 res = myProtocol.writeCoil(slave, 229, false);
             }
 
+            startRdReg = 230;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40230 Считать счетчики ошибок  
+
+            startCoil = 230;                                                                    // Начальный Адрес 230 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+                textBox8.Text += ("Test headset instructor ** Signal FrontL     OFF  < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 230, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+                textBox8.Text += ("Test headset instructor ** Signal FrontR      OFF < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 231, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+                textBox8.Text += ("Test headset instructor ** Signal LineL       OFF  < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 232, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+                textBox8.Text += ("Test headset instructor ** Signal LineR       OFF   < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 233, false);
+            }
+            if (coilArr[4] != false)
+            {
+                textBox8.Text += ("Test headset instructor ** Signal mag radio    OFF  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 234, false);
+            }
+            if (coilArr[5] != false)
+            {
+                textBox8.Text += ("Test headset instructor ** Signal mag phone    OFF   < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 235, false);
+            }
+            if (coilArr[6] != false)
+            {
+                textBox8.Text += ("Test headset instructor ** Signal GGS          OFF   < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 236, false);
+            }
+            if (coilArr[7] != false)
+            {
+                textBox8.Text += ("Test headset instructor ** Signal GG Radio1    OFF  < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 237, false);
+            }
+            if (coilArr[8] != false)
+            {
+                textBox8.Text += ("Test headset instructor ** Signal GG Radio2    OFF  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 238, false);
+            }
+            if (coilArr[9] != false)
+            {
+                textBox8.Text += ("  < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 239, false);
+            }
+
+
+            startRdReg = 240;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40240 Считать счетчики ошибок  
+
+            startCoil = 240;                                                                    // Начальный Адрес 240 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+                textBox8.Text += ("Test headset dispatcher ** Signal FrontL     OFF  < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 240, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+                textBox8.Text += ("Test headset dispatcher ** Signal FrontR      OFF < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 241, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+                textBox8.Text += ("Test headset dispatcher ** Signal LineL       OFF  < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 242, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+                textBox8.Text += ("Test headset dispatcher ** Signal LineR       OFF   < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 243, false);
+            }
+            if (coilArr[4] != false)
+            {
+                textBox8.Text += ("Test headset dispatcher ** Signal mag radio    OFF  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 244, false);
+            }
+            if (coilArr[5] != false)
+            {
+                textBox8.Text += ("Test headset dispatcher ** Signal mag phone    OFF   < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 245, false);
+            }
+            if (coilArr[6] != false)
+            {
+                textBox8.Text += ("Test headset dispatcher ** Signal GGS          OFF   < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 246, false);
+            }
+            if (coilArr[7] != false)
+            {
+                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio1    OFF  < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 247, false);
+            }
+            if (coilArr[8] != false)
+            {
+                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio2    OFF  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 248, false);
+            }
+            if (coilArr[9] != false)
+            {
+                textBox8.Text += ("  < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 249, false);
+            }
+
+
+            startRdReg = 250;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40250 Считать счетчики ошибок  
+
+            startCoil = 250;                                                                    // Начальный Адрес 250 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal FrontL                    OFF  < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 250, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal FrontR                     OFF < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 251, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal LineL                       OFF  < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 252, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal LineR                       OFF   < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 253, false);
+            }
+            if (coilArr[4] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal mag radio                   OFF  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 254, false);
+            }
+            if (coilArr[5] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal mag phone                   OFF   < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 255, false);
+            }
+            if (coilArr[6] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal GGS                         OFF   < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 256, false);
+            }
+            if (coilArr[7] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal GG Radio1                   OFF  < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 257, false);
+            }
+            if (coilArr[8] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal GG Radio2                   OFF  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 258, false);
+            }
+            if (coilArr[9] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal GGS                         ON  < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 259, false);
+            }
+
+
+            startRdReg = 260;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40260 Считать счетчики ошибок  
+
+            startCoil = 260;                                                                    // Начальный Адрес 260 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal LineL                       ON  < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 260, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal LineR                       ON < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 261, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+                textBox8.Text += ("Test MTT ** Signal Mag phone                   ON < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 262, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+                textBox8.Text += ("Test MTT PTT    (CTS)                          OFF   < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 263, false);
+            }
+            if (coilArr[4] != false)
+            {
+                textBox8.Text += ("Test MTT PTT    (DSR)                          OFF  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 264, false);
+            }
+            if (coilArr[5] != false)
+            {
+                textBox8.Text += ("Test MTT PTT    (CTS)                          ON   < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 265, false);
+            }
+            if (coilArr[6] != false)
+            {
+                textBox8.Text += ("Test MTT PTT    (DSR)                          ON   < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 266, false);
+            }
+            if (coilArr[7] != false)
+            {
+                textBox8.Text += ("Test MTT HangUp (DCD)                          OFF  < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 267, false);
+            }
+            if (coilArr[8] != false)
+            {
+                textBox8.Text += ("Test MTT HangUp (DCD)                          ON  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 268, false);
+            }
+            if (coilArr[9] != false)
+            {
+                textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 269, false);
+            }
+
+
+
+            startRdReg = 270;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
+
+            startCoil = 270;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 260, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 261, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 262, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 263, false);
+            }
+            if (coilArr[4] != false)
+            {
+                textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 264, false);
+            }
+            if (coilArr[5] != false)
+            {
+                textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 265, false);
+            }
+            if (coilArr[6] != false)
+            {
+                textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 266, false);
+            }
+            if (coilArr[7] != false)
+            {
+                textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 267, false);
+            }
+            if (coilArr[8] != false)
+            {
+                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 268, false);
+            }
+            if (coilArr[9] != false)
+            {
+                textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 269, false);
+            }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
