@@ -4084,7 +4084,7 @@ namespace KamertonTest
                     textBox7.Text += ("\r\n");
                     textBox7.Text += ("Повтор теста " + TestRepeatCount + "\r\n");
                     textBox7.Text += ("\r\n");
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1500);
                 }
         }
 

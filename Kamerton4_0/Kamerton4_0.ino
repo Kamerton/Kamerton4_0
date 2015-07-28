@@ -265,6 +265,19 @@ const char  txt_message39[]   PROGMEM            = "Command PTT2   OFF tangenta 
 const char  txt_message40[]   PROGMEM            = "Command sensor ON  tangenta ruchnaja             send!"      ;
 const char  txt_message41[]   PROGMEM            = "Command PTT1   ON  tangenta ruchnaja             send!"      ;
 const char  txt_message42[]   PROGMEM            = "Command PTT2   ON  tangenta ruchnaja             send!"      ;
+const char  txt_message43[]   PROGMEM            = " ****** Test tangenta nognaja start! ******"                 ;
+const char  txt_message44[]   PROGMEM            = "Command sensor OFF tangenta nognaja              send!"      ;
+const char  txt_message45[]   PROGMEM            = "Command PTT    OFF tangenta nognaja              send!"      ;
+const char  txt_message46[]   PROGMEM            = "Command sensor ON  tangenta nognaja              send!"      ;
+const char  txt_message47[]   PROGMEM            = "Command PTT    ON  tangenta nognaja              send!"      ;
+
+
+
+
+
+
+
+
 
 
 const char  txt_all_on0[]   PROGMEM            = "";       
@@ -498,7 +511,7 @@ const char  txt_error7[]  PROGMEM              = "Sensor microphone             
 const char  txt_error8[]  PROGMEM              = "Microphone headset instructor Sw.   XP1 12 HeS2e            OFF - "; 
 const char  txt_error9[]  PROGMEM              = "Microphone headset dispatcher Sw.   XP1 12 HeS2e            OFF - ";  
 
-const char  txt_error10[]  PROGMEM             = "Sensor MTT                          XP1- 19 HaSs            ON  - ";
+const char  txt_error10[]  PROGMEM             = "Sensor MTT                          XP1- 19 HaSs            ON  - "; 
 const char  txt_error11[]  PROGMEM             = "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
 const char  txt_error12[]  PROGMEM             = "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
 const char  txt_error13[]  PROGMEM             = "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
@@ -568,28 +581,30 @@ const char  txt_error70[]  PROGMEM             = "Command PTT1 tangenta ruchnaja
 const char  txt_error71[]  PROGMEM             = "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
 const char  txt_error72[]  PROGMEM             = "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
 const char  txt_error73[]  PROGMEM             = "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
-const char  txt_error74[]  PROGMEM             = "Command sensor tangenta ruchnaja                            OFF - ";
-const char  txt_error75[]  PROGMEM             = "Command sensor tangenta ruchnaja                            ON  - ";
-const char  txt_error76[]  PROGMEM             = "";
-const char  txt_error77[]  PROGMEM             = "";
-const char  txt_error78[]  PROGMEM             = "";
-const char  txt_error79[]  PROGMEM             = "";
+const char  txt_error74[]  PROGMEM             = "Command sensor tangenta ruchnaja    XP7 - 2                 OFF - ";
+const char  txt_error75[]  PROGMEM             = "Command sensor tangenta ruchnaja    XP7 - 2                 ON  - ";
+const char  txt_error76[]  PROGMEM             = "Command sensor tangenta nognaja     XP8 - 2                 OFF - ";
+const char  txt_error77[]  PROGMEM             = "Command sensor tangenta nognaja     XP8 - 2                 ON  - ";
+const char  txt_error78[]  PROGMEM             = "Command PTT tangenta nognaja (CTS)  XP8 - 1                 OFF - ";
+const char  txt_error79[]  PROGMEM             = "Command PTT tangenta nognaja (CTS)  XP8 - 1                 ON  - ";
+
+
 
 const char  txt_error80[]  PROGMEM             = "";
-const char  txt_error81[]  PROGMEM             = ""; // адрес счетчика ошибки включения микрофона инструктора
-const char  txt_error82[]  PROGMEM             = ""; // адрес счетчика ошибки включения микрофона диспетчера
-const char  txt_error83[]  PROGMEM             = "Sensor MTT                          XP1- 19 HaSs            ON  - ";
-const char  txt_error84[]  PROGMEM             = "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
-const char  txt_error85[]  PROGMEM             = "Sensor tangenta nognaja             XP8 - 2                 ON  - ";   
+const char  txt_error81[]  PROGMEM             = "";  
+const char  txt_error82[]  PROGMEM             = "";  
+const char  txt_error83[]  PROGMEM             = "";
+const char  txt_error84[]  PROGMEM             = "";
+const char  txt_error85[]  PROGMEM             = "";   
 const char  txt_error86[]  PROGMEM             = "";
-const char  txt_error87[]  PROGMEM             = "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
-const char  txt_error88[]  PROGMEM             = "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - ";   
-const char  txt_error89[]  PROGMEM             = "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          ON  - ";    
+const char  txt_error87[]  PROGMEM             = "";
+const char  txt_error88[]  PROGMEM             = "";   
+const char  txt_error89[]  PROGMEM             = "";    
 
-const char  txt_error90[]  PROGMEM             = "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";
-const char  txt_error91[]  PROGMEM             = "Sensor microphone                   XS1 - 6                 ON  - "; 
-const char  txt_error92[]  PROGMEM             = "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - ";    
-const char  txt_error93[]  PROGMEM             = "Microphone headset dispatcher Sw.   XP1 12 HeS2e            ON  - ";  
+const char  txt_error90[]  PROGMEM             = "";
+const char  txt_error91[]  PROGMEM             = ""; 
+const char  txt_error92[]  PROGMEM             = "";    
+const char  txt_error93[]  PROGMEM             = "";  
 
 char buffer[100];  
 
@@ -637,7 +652,17 @@ txt_message38,                                // "Command PTT1   OFF tangenta ru
 txt_message39,                                // "Command PTT2   OFF tangenta ruchnaja             send!"      ; 
 txt_message40,                                // "Command sensor ON  tangenta ruchnaja             send!"      ;
 txt_message41,                                // "Command PTT1   ON  tangenta ruchnaja             send!"      ;
-txt_message42                                 // "Command PTT2   ON  tangenta ruchnaja             send!"      ;
+txt_message42,                                // "Command PTT2   ON  tangenta ruchnaja             send!"      ;
+txt_message43,                                // " ****** Test tangenta nognaja start! ******"                 ;
+txt_message44,                                // "Command sensor OFF tangenta nognaja              send!"      ;
+txt_message45,                                // "Command PTT    OFF tangenta nognaja              send!"      ;
+txt_message46,                                // "Command sensor ON  tangenta nognaja              send!"      ;
+txt_message47                                 // "Command PTT    ON  tangenta nognaja              send!"      ;
+
+
+
+
+
 };
 
 const char* const string_table_err[] PROGMEM = 
@@ -725,26 +750,26 @@ txt_error72,                                  // "Command PTT1 tangenta ruchnaja
 txt_error73,                                  // "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
 txt_error74,                                  // "Command sensor tangenta ruchnaja                            OFF - ";
 txt_error75,                                  // "Command sensor tangenta ruchnaja                            ON  - ";
-txt_error76,                                  //
-txt_error77,                                  //  
-txt_error78,                                  //  
-txt_error79,                                  // 
+txt_error76,                                  // "Command sensor tangenta nognaja     XP8 - 2                 OFF - ";
+txt_error77,                                  // "Command sensor tangenta nognaja     XP8 - 2                 ON  - ";
+txt_error78,                                  // "Command PTT tangenta nognaja (CTS)  XP8 - 1                 OFF - ";  
+txt_error79,                                  // "Command PTT tangenta nognaja (CTS)  XP8 - 1                 ON  - "; 
 
-txt_error80,                                  // "Test headset dispatcher ** Signal LineR       OFF               - ";
-txt_error81,                                  // Резерв адрес счетчика ошибки включения микрофона инструктора
-txt_error82,                                  // Резерв адрес счетчика ошибки включения микрофона диспетчера
-txt_error83,                                  // "Sensor MTT                          XP1- 19 HaSs            ON  - ";
-txt_error84,                                  // "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
-txt_error85,                                  // "Sensor tangenta nognaja             XP8 - 2                 ON  - ";   
-txt_error86,                                  // "";
-txt_error87,                                  // "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
-txt_error88,                                  // "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - ";   
-txt_error89,                                  // "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          ON  - ";    
+txt_error80,                                  //  
+txt_error81,                                  // 
+txt_error82,                                  //  
+txt_error83,                                  //  
+txt_error84,                                  // 
+txt_error85,                                  // 
+txt_error86,                                  //  
+txt_error87,                                  //  
+txt_error88,                                  //  
+txt_error89,                                  //  
 
-txt_error90,                                  // "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";
-txt_error91,                                  // "Sensor microphone                   XS1 - 6                 ON  - "; 
-txt_error92,                                  // "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - "; 
-txt_error93                                   // "Microphone headset dispatcher Sw.   XP1 12 HeS2e            ON  - ";  
+txt_error90,                                  //  
+txt_error91,                                  // 
+txt_error92,                                  // 
+txt_error93                                   // 
 };
 
 const char* const string_table[] PROGMEM = 
@@ -1390,7 +1415,7 @@ void data_clock_exchange()
 		 regBank.set(adr_reg_temp_year,year_temp); 
 
 		  b = i2c_eeprom_read_byte(0x50, adr_file_name_count);                             //access an address from the memory
-          regBank.set(adr_reg_file_name,b);                                                // Регистр  хранения переменной номер файла
+		  regBank.set(adr_reg_file_name,b);                                                // Регистр  хранения переменной номер файла
 
 }
 void time_control() // Программа записи текущего времени в регистры для передачи в ПК
@@ -1629,7 +1654,7 @@ void control_command()
 			 set_rezistor();
 				break;
 		case 16:
-			                  //
+							  //
 				break;
 		case 17:
 			 set_namber_file_zero();            //
@@ -2499,7 +2524,7 @@ void test_tangR()
 			regcount = regBank.get(40274);                                          // адрес счетчика ошибки sensor тангента ручная     "Command sensor tangenta ruchnaja                            OFF - ";
 			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная  "Command sensor tangenta ruchnaja                            OFF - ";
 			regBank.set(40274,regcount);                                            // адрес счетчика ошибки sensor тангента ручная     "Command sensor tangenta ruchnaja                            OFF - ";
-			regBank.set(274,1);                                                       // установить флаг ошибки sensor тангента ручная
+			regBank.set(274,1);                                                     // установить флаг ошибки sensor тангента ручная
 			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[74])));        // "Command sensor tangenta ruchnaja                            OFF - ";
 			myFile.print(buffer);                                                   // "Command sensor tangenta ruchnaja                            OFF - ";
@@ -2522,9 +2547,9 @@ void test_tangR()
 	  // 2)  Проверка  на отключение J8-23     XP7 1 PTT1 тангента ручная CTS
 		if(regBank.get(adr_reg_ind_CTS) != 0)                                       // Проверка  на отключение XP7 1 PTT1 тангента ручная CTS "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
 		  {
-			regcount = regBank.get(40270);                                          // адрес счетчика ошибки PTT  MTT (CTS)               "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
+			regcount = regBank.get(40270);                                          // адрес счетчика ошибки                                  "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
 			regcount++;                                                             // увеличить счетчик ошибок
-			regBank.set(40270,regcount);                                            // адрес счетчика ошибки PTT  MTT (CTS)
+			regBank.set(40270,regcount);                                            // адрес счетчика ошибки 
 			regBank.set(270,1);                                                     // установить флаг ошибки
 			regBank.set(120,1);                                                     // установить общий флаг ошибки
 			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[70])));        // "Command PTT1 tangenta ruchnaja (CTS)                        OFF - "; 
@@ -2570,13 +2595,13 @@ void test_tangR()
 		   }
 		  }
 
-	regBank.set(19,1);    // J8-11     XP7 2 sensor тангента ручная
+	regBank.set(19,1);                                                              // J8-11     XP7 2 sensor тангента ручная
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[40])));                   // "Command sensor ON  tangenta ruchnaja             send!"      ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Command sensor ON  tangenta ruchnaja             send!"      ;
-	regBank.set(17,1);    // J8-12     XP7 4 PTT2 тангента ручная DSR
+	regBank.set(17,1);                                                              // J8-12     XP7 4 PTT2 тангента ручная DSR
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[41])));                   // "Command PTT1   ON  tangenta ruchnaja             send!"      ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Command PTT1   ON  tangenta ruchnaja             send!"      ;
-	regBank.set(20,1);    // J8-23     XP7 1 PTT1 тангента ручная CTS
+	regBank.set(20,1);                                                              // J8-23     XP7 1 PTT1 тангента ручная CTS
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[42])));                   // "Command PTT2   ON  tangenta ruchnaja             send!"      ;
 	if (test_repeat == false) myFile.println(buffer);                               //
 
@@ -2666,8 +2691,138 @@ void test_tangR()
 }
 void test_tangN()
 {
+	unsigned int regcount = 0;
+	myFile.println(""); 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[43])));                   // " ****** Test tangenta nognaja start! ******"                 ;
+	myFile.println(buffer);                                                         // "Command sensor OFF tangenta nognaja              send!"      ;
+	file_print_date();
+	myFile.println("");
+	regBank.set(13,0);                                                              // XP8 - 2   sensor Тангента ножная
+	regBank.set(14,0);                                                              // XP8 - 1   PTT Тангента ножная
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[44])));                   // "Command sensor OFF tangenta nognaja              send!"      ;
+	if (test_repeat == false)  myFile.println(buffer);                              //
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[45])));                   // "Command PTT    OFF tangenta nognaja              send!"      ;
+	if (test_repeat == false)  myFile.println(buffer);                              //
 
-	regBank.set(adr_control_command,0);                                    // Завершить программу    
+	byte i50 = regs_in[0];    
+	
+	if(bitRead(i50,4) != 0)                                                         // J8-11     XP8 2 sensor тангента                  "Command sensor tangenta nognaja                             OFF - ";
+		{
+			regcount = regBank.get(40276);                                          // адрес счетчика ошибки sensor тангента ручная     "Command sensor tangenta nognaja                             OFF - ";
+			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная  "Command sensor tangenta nognaja                             OFF - ";
+			regBank.set(40276,regcount);                                            // адрес счетчика ошибки sensor тангента ручная     "Command sensor tangenta nognaja                             OFF - ";
+			regBank.set(276,1);                                                     // установить флаг ошибки sensor тангента ручная
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[76])));        // "Command sensor tangenta nognaja                             OFF - ";
+			myFile.print(buffer);                                                   // "Command sensor tangenta nognaja                             OFF - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+		}
+	else
+		{
+		  if (test_repeat == false)
+		  {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[76])));        // "Command sensor tangenta nognaja                             OFF - ";
+			myFile.print(buffer);                                                   // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Command sensor tangenta nognaja                             OFF - "; - Pass
+		  }
+		}
+
+	 UpdateRegs(); 
+	  // 2)  Проверка  на отключение  XP8 1 PTT1 тангента ножная CTS
+		if(regBank.get(adr_reg_ind_CTS) != 0)                                       // Проверка  на отключение XP8 1 PTT1 тангента   "Command PTT tangenta nognaja (CTS)                          OFF - ";
+		  {
+			regcount = regBank.get(40278);                                          // адрес счетчика ошибки 
+			regcount++;                                                             // увеличить счетчик ошибок
+			regBank.set(40278,regcount);                                            // адрес счетчика ошибки                          "Command PTT tangenta nognaja (CTS)                          OFF - ";
+			regBank.set(278,1);                                                     // установить флаг ошибки
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[78])));        // "Command PTT tangenta nognaja (CTS)                          OFF - ";
+			myFile.print(buffer);                                                   // "Command PTT tangenta nognaja (CTS)                          OFF - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+		  }
+		else
+		  {
+		  if (test_repeat == false)
+		   {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[78])));        // "Command PTT tangenta nognaja (CTS)                          OFF - ";
+			myFile.print(buffer);                                                   // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Command PTT tangenta nognaja (CTS)                          OFF - ";
+		  }
+		 }
+
+
+	regBank.set(13,1);                                                              // XP8 2 sensor тангента ножная
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[46])));                   // "Command sensor ON  tangenta ruchnaja             send!"      ;
+	if (test_repeat == false) myFile.println(buffer);                               // "Command sensor ON  tangenta ruchnaja             send!"      ;
+	regBank.set(14,1);                                                              // J8-12     XP7 4 PTT2 тангента ручная DSR
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[47])));                   // "Command PTT1   ON  tangenta ruchnaja             send!"      ;
+	if (test_repeat == false) myFile.println(buffer);                               // "Command PTT1   ON  tangenta ruchnaja             send!"      ;
+
+
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+
+			if(bitRead(regs_in[0],4) == 0)                                          // J8-11     XP7 2 sensor тангента                    "Command sensor tangenta nognaja                             ON  - ";
+		  {
+			regcount = regBank.get(40277);                                          // адрес счетчика ошибки sensor тангента ручная       "Command sensor tangenta nognaja                             ON  - ";
+			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная    "Command sensor tangenta nognaja                             ON  - ";
+			regBank.set(40277,regcount);                                            // адрес счетчика ошибки sensor тангента ручная
+			regBank.set(277,1);                                                     // установить флаг ошибки sensor тангента ручная
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[77])));        // "Command sensor tangenta nognaja                             ON  - ";
+			myFile.print(buffer);                                                   // "Command sensor tangenta nognaja                             ON  - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+		  }
+		else
+		  {
+		  if (test_repeat == false)
+		   {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[77])));        // "Command sensor tangenta nognaja                             ON  - ";
+			myFile.print(buffer);                         // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Command sensor tangenta nognaja                             ON  - ";
+		   }
+		  }
+	 UpdateRegs(); 
+	  // 2)  Проверка  на отключение  XP8 1 PTT1 тангента  CTS
+		if(regBank.get(adr_reg_ind_CTS) == 0)                                       // Проверка  на отключение XP8 1         "Command PTT tangenta nognaja (CTS)                          ON  - ";
+		  {
+			regcount = regBank.get(40279);                                          // адрес счетчика ошибки                 "Command PTT tangenta nognaja (CTS)                          ON  - ";          
+			regcount++;                                                             // увеличить счетчик ошибок
+			regBank.set(40279,regcount);                                            // адрес счетчика ошибки                  "Command PTT tangenta nognaja (CTS)                          ON  - ";
+			regBank.set(279,1);                                                     // установить флаг ошибки
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[79])));        // "Command PTT tangenta nognaja (CTS)                          ON  - ";
+			myFile.print(buffer);                                                   // "Command PTT tangenta nognaja (CTS)                          ON  - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+		  }
+		else
+		  {
+		   if (test_repeat == false)
+		   {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[79])));        // "Command PTT tangenta nognaja (CTS)                          ON  - ";
+			myFile.print(buffer);                                                   // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Command PTT tangenta nognaja (CTS)                          ON  - ";
+		   }
+		  }
+
+	regBank.set(14,0);                                                              //   XP8 1 PTT тангента  
+	regBank.set(13,0);                                                              //   XP8 2 sensor тангента  
+	UpdateRegs();                                                                   // Выполнить команду
+	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(100);
 }
 void test_mikrophon()
@@ -3994,7 +4149,10 @@ modbus registers follow the following format
 	regBank.add(273);                         // Флаг ошибки "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
 	regBank.add(274);                         // Флаг ошибки "Command sensor tangenta ruchnaja                            OFF - ";
 	regBank.add(275);                         // Флаг ошибки "Command sensor tangenta ruchnaja                            ON  - ";
-
+	regBank.add(276);                         // Флаг ошибки "Command sensor tangenta nognaja                             OFF - ";
+	regBank.add(277);                         // Флаг ошибки "Command sensor tangenta nognaja                             ON  - ";
+	regBank.add(278);                         // Флаг ошибки "Command PTT tangenta nognaja (CTS)                          OFF - ";
+	regBank.add(279);                         // Флаг ошибки "Command PTT tangenta nognaja (CTS)                          ON  - ";
 
 
 
@@ -4350,6 +4508,12 @@ modbus registers follow the following format
 	regBank.add(40273);                         // Aдрес счетчика ошибки "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
 	regBank.add(40274);                         // Aдрес счетчика ошибки "Command sensor tangenta ruchnaja                            OFF - ";
 	regBank.add(40275);                         // Aдрес счетчика ошибки "Command sensor tangenta ruchnaja                            ON  - ";
+	regBank.add(40276);                         // Aдрес счетчика ошибки "Command sensor tangenta nognaja                             OFF - ";
+	regBank.add(40277);                         // Aдрес счетчика ошибки "Command sensor tangenta nognaja                             ON  - ";
+	regBank.add(40278);                         // Aдрес счетчика ошибки "Command PTT tangenta nognaja (CTS)                          OFF - ";
+	regBank.add(40279);                         // Aдрес счетчика ошибки "Command PTT tangenta nognaja (CTS)                          ON  - ";
+
+
 
 
 

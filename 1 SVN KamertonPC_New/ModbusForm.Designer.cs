@@ -4125,7 +4125,7 @@ namespace KamertonTest
             // label133
             // 
             this.label133.AutoSize = true;
-            this.label133.Location = new System.Drawing.Point(15, 137);
+            this.label133.Location = new System.Drawing.Point(26, 236);
             this.label133.Name = "label133";
             this.label133.Size = new System.Drawing.Size(148, 13);
             this.label133.TabIndex = 2;
@@ -4134,9 +4134,9 @@ namespace KamertonTest
             // 
             // button81
             // 
-            this.button81.Location = new System.Drawing.Point(227, 96);
+            this.button81.Location = new System.Drawing.Point(208, 96);
             this.button81.Name = "button81";
-            this.button81.Size = new System.Drawing.Size(75, 23);
+            this.button81.Size = new System.Drawing.Size(94, 23);
             this.button81.TabIndex = 3;
             this.button81.Text = "—брос в \'0\'";
             this.button81.UseVisualStyleBackColor = true;
@@ -4144,7 +4144,7 @@ namespace KamertonTest
             // 
             // button82
             // 
-            this.button82.Location = new System.Drawing.Point(227, 133);
+            this.button82.Location = new System.Drawing.Point(227, 231);
             this.button82.Name = "button82";
             this.button82.Size = new System.Drawing.Size(75, 23);
             this.button82.TabIndex = 4;
