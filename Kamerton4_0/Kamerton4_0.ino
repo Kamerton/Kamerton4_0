@@ -116,11 +116,6 @@ const int adr_temp_day         PROGMEM           = 240;          // Адрес хранен
 const int adr_temp_mon         PROGMEM           = 241;          // Адрес хранения переменной месяц
 const int adr_temp_year        PROGMEM           = 242;          // Адрес хранения переменной год  
 const int adr_file_name_count  PROGMEM           = 243;          // Адрес хранения переменной счетчика номера файла
-//const unsigned int reg_temp_year        PROGMEM           = 40112;        // Регистр хранения переменной год  
-//const unsigned int reg_temp_mon         PROGMEM           = 40113;        // Регистр хранения переменной год  
-//const unsigned int reg_temp_day         PROGMEM           = 40114;        // Регистр хранения переменной год  
-//const unsigned int reg_file_name        PROGMEM           = 40115;        // Регистр хранения переменной год  
-
 //------------------------------------------------------------------------------------------------------------------
 
 //*********************Работа с именем файла ******************************
@@ -218,6 +213,7 @@ const unsigned int adr_reg_temp_year      PROGMEM       = 40112; // Регистр хран
 const unsigned int adr_reg_temp_mon       PROGMEM       = 40113; // Регистр хранения переменной месяц
 const unsigned int adr_reg_temp_day       PROGMEM       = 40114; // Регистр хранения переменной день 
 const unsigned int adr_reg_file_name      PROGMEM       = 40115; // Регистр хранения счетчик файлов  
+const unsigned int adr_reg_file_tek       PROGMEM       = 40116; // Регистр хранения счетчик файлов  
 
 const unsigned int adr_set_time           PROGMEM       = 36;    // адрес флаг установки
 
@@ -1372,16 +1368,16 @@ void data_clock_exchange()
 				i2c_eeprom_write_byte(0x50, adr_temp_day, day_temp);
 				i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                 // при смене даты счетчик номера файла сбросить в "0"
 			}
-
+		  regBank.set(adr_reg_temp_day,day_temp);  
 		  b = i2c_eeprom_read_byte(0x50, adr_temp_mon);                             //access an address from the memory
- 		  delay(10);
+		  delay(10);
 
 		if (b!= mon_temp)
 			{
 				i2c_eeprom_write_byte(0x50, adr_temp_mon,mon_temp);
 				i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                 // при смене даты счетчик номера файла сбросить в "0"
 			}
-		
+		  regBank.set(adr_reg_temp_mon,mon_temp); 
 		  b = i2c_eeprom_read_byte(0x50, adr_temp_year);                            //access an address from the memory
 		  delay(10);
 
@@ -1391,6 +1387,11 @@ void data_clock_exchange()
 				i2c_eeprom_write_byte(0x50, adr_temp_year,year_temp);
 				i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                 // при смене даты счетчик номера файла сбросить в "0"
 			}
+		 regBank.set(adr_reg_temp_year,year_temp); 
+
+		  b = i2c_eeprom_read_byte(0x50, adr_file_name_count);                             //access an address from the memory
+          regBank.set(adr_reg_file_name,b);                                                // Регистр  хранения переменной номер файла
+
 }
 void time_control() // Программа записи текущего времени в регистры для передачи в ПК
 {
@@ -1483,10 +1484,9 @@ void FileOpen()
 	data_clock_exchange();                                                          // Проверить не изменилась ли дата
 
 	file_name_count = i2c_eeprom_read_byte(0x50, adr_file_name_count);              // считать текущий номер файла из памяти
-//	regBank.set(reg_file_name,file_name_count);                                     // Регистр  хранения переменной день
-
+	regBank.set(adr_reg_file_name,file_name_count);                                 // Регистр  хранения переменной номер файла
 	preob_num_str();                                                                // сформировать имя файла из даты и счетчика файлов
- 
+ //   regBank.set(adr_reg_file_tek,file_name_count);                                  // Регистр  хранения переменной номер файла
 	 if (SD.exists(file_name))                                                      // проверить есть ли такой файл
 	  { 
 
@@ -1542,28 +1542,12 @@ void FileClose()
 	regBank.set(adr_control_command,0);
 }
 
-void send_file_Name()
-{
-	byte  b = i2c_eeprom_read_byte(0x50, adr_temp_day);                             //access an address from the memory
-	regBank.set(adr_reg_temp_day,b);                                                // Регистр  хранения переменной день
-	Serial.println(regBank.get(adr_reg_temp_day));
-	b = i2c_eeprom_read_byte(0x50, adr_temp_mon);                                   //access an address from the memory
-	regBank.set(adr_reg_temp_mon,b);                                                // Регистр  хранения переменной месяц
-	Serial.println(regBank.get(adr_reg_temp_mon));
-	b = i2c_eeprom_read_byte(0x50, adr_temp_year);                                  //access an address from the memory
-	regBank.set(adr_reg_temp_year,b);                                               // Регистр  хранения переменной год - 2000
-	Serial.println(regBank.get(adr_reg_temp_year));
-	b = i2c_eeprom_read_byte(0x50, adr_file_name_count);                            // считать текущий номер файла из памяти
-	regBank.set(adr_reg_file_name,b);                                               // Регистр  хранения переменной 
-	Serial.println(regBank.get(adr_reg_file_name));
-	regBank.set(adr_control_command,0);
-}
-
 void set_namber_file_zero()
 {
-   i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                             // счетчик номера файла сбросить в "0"
+   i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                              // счетчик номера файла сбросить в "0"
+   data_clock_exchange();
    regBank.set(adr_control_command,0);
-}
+ }
 void format_SD()
 {
 
@@ -1645,7 +1629,7 @@ void control_command()
 			 set_rezistor();
 				break;
 		case 16:
-			 send_file_Name();                  //
+			                  //
 				break;
 		case 17:
 			 set_namber_file_zero();            //
@@ -4277,7 +4261,8 @@ modbus registers follow the following format
 	regBank.add(40112);  // Адрес хранения переменной год 
 	regBank.add(40113);  // Адрес хранения переменной месяц 
 	regBank.add(40114);  // Адрес хранения переменной день
-	regBank.add(40115);  // Адрес хранения переменной счетчика номера файла
+	regBank.add(40115);  // Адрес хранения переменной счетчика последнего номера файла
+	regBank.add(40116);  // Адрес хранения переменной счетчика текущего номера файла
 
 	regBank.add(40120);  // adr_control_command Адрес передачи комманд на выполнение
 
@@ -4555,6 +4540,7 @@ void setup()
 //	reg_Kamerton();
 	regBank.set(8,1);                               // Включить питание Камертон
 //	sensor_all_off();
+	data_clock_exchange();
 	UpdateRegs();                                   // Обновить информацию в регистрах
 
 	#if FASTADC                                     // Ускорить считывание аналогового канала

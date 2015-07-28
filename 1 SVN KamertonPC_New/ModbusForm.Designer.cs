@@ -371,7 +371,6 @@ namespace KamertonTest
             this.button81 = new System.Windows.Forms.Button();
             this.button82 = new System.Windows.Forms.Button();
             this.label134 = new System.Windows.Forms.Label();
-            this.button83 = new System.Windows.Forms.Button();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -4091,7 +4090,6 @@ namespace KamertonTest
             // 
             // groupBox18
             // 
-            this.groupBox18.Controls.Add(this.button83);
             this.groupBox18.Controls.Add(this.label134);
             this.groupBox18.Controls.Add(this.button82);
             this.groupBox18.Controls.Add(this.button81);
@@ -4163,16 +4161,6 @@ namespace KamertonTest
             this.label134.Size = new System.Drawing.Size(147, 20);
             this.label134.TabIndex = 35;
             this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button83
-            // 
-            this.button83.Location = new System.Drawing.Point(227, 59);
-            this.button83.Name = "button83";
-            this.button83.Size = new System.Drawing.Size(75, 23);
-            this.button83.TabIndex = 36;
-            this.button83.Text = "Получить";
-            this.button83.UseVisualStyleBackColor = true;
-            this.button83.Click += new System.EventHandler(this.button83_Click);
             // 
             // Form1
             // 
@@ -4580,7 +4568,6 @@ namespace KamertonTest
         private System.Windows.Forms.Button button82;
         private System.Windows.Forms.Button button81;
         private System.Windows.Forms.Label label133;
-        private System.Windows.Forms.Button button83;
         private System.Windows.Forms.Label label134;
     }
 }

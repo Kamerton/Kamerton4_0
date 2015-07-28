@@ -105,7 +105,6 @@ void serial_print_date();
 void resistor(int resist, int valresist);
 void FileOpen();
 void FileClose();
-void send_file_Name();
 void set_namber_file_zero();
 void format_SD();
 void control_command();

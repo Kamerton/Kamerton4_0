@@ -479,6 +479,58 @@ namespace KamertonTest
 
         }
 
+        private void file_fakt_namber()
+        {
+                short[] readVals = new short[125];
+                int slave;
+                int startRdReg;
+                int numRdRegs;
+                slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                startRdReg = 112; // 40046 Адрес дата/время контроллера  
+                numRdRegs = 4;
+                res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+                lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                    toolStripStatusLabel1.BackColor = Color.Lime;
+
+                   // textBox9.Text = "\r\n";
+                    textBox9.Text += "Текущий номер файла   -   ";
+                    textBox9.Text += (readVals[0]);
+                    if (readVals[1] < 10)
+                    {
+                        textBox9.Text += ("0" + readVals[1]);
+                    }
+                    else
+                    {
+                        textBox9.Text += (readVals[1]);
+                    }
+                    if (readVals[2] < 10)
+                    {
+                        textBox9.Text += ("0" + readVals[2]);
+                    }
+                    else
+                    {
+                        textBox9.Text += (readVals[2]);
+                    }
+                    if (readVals[3] < 10)
+                    {
+                        textBox9.Text += ("0" + readVals[3] + ".TXT" + "\r\n");
+                    }
+                    else
+                    {
+                        textBox9.Text += (readVals[3] + ".TXT" + "\r\n");
+                    }
+                  }
+            
+                else
+                {
+                    toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                    toolStripStatusLabel1.BackColor = Color.Red;
+                 }
+        }
+
         #region Load Listboxes
         private void LoadListboxes()
             {
@@ -518,8 +570,46 @@ namespace KamertonTest
 
                 label83.Text = "";
                 label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-             }
 
+
+                startRdReg = 112; // 40046 Адрес дата/время контроллера  
+                numRdRegs = 4;
+                res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+                lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                    toolStripStatusLabel1.BackColor = Color.Lime;
+
+                    label134.Text = "";
+                    label134.Text = (label134.Text + readVals[0]);
+                    if (readVals[1] < 10)
+                    {
+                        label134.Text += ("0" + readVals[1]);
+                    }
+                    else
+                    {
+                        label134.Text += (readVals[1]);
+                    }
+                    if (readVals[2] < 10)
+                    {
+                        label134.Text += ("0" + readVals[2]);
+                    }
+                    else
+                    {
+                        label134.Text += (readVals[2]);
+                    }
+                    if (readVals[3] < 10)
+                    {
+                        label134.Text += ("0" + readVals[3] + ".TXT");
+                    }
+                    else
+                    {
+                        label134.Text += (readVals[3] + ".TXT");
+                    }
+
+                }
+             }
 
             else
             {
@@ -3994,7 +4084,7 @@ namespace KamertonTest
                     textBox7.Text += ("\r\n");
                     textBox7.Text += ("Повтор теста " + TestRepeatCount + "\r\n");
                     textBox7.Text += ("\r\n");
-                    // Thread.Sleep(500);
+                    Thread.Sleep(1000);
                 }
         }
 
@@ -4015,9 +4105,11 @@ namespace KamertonTest
             textBox7.Text = ("Выполняется полный  контроль звукового модуля Камертон " + "\r\n");
             textBox7.Text += ("\r\n");
             textBox8.Text = ("");
+            textBox9.Text = ("");
             textBox7.Refresh();
             textBox8.Refresh();
-            if (radioButton2.Checked)
+            textBox9.Refresh();
+              if (radioButton2.Checked)
             {
                 startCoil = 118;                                                          // Управление сенсорами
                 res = myProtocol.writeCoil(slave, startCoil, true);
@@ -4070,8 +4162,9 @@ namespace KamertonTest
                     res = myProtocol.forceMultipleCoils(slave, startCoil, coilArr, numCoils);          // 15 (0F) Записать бит false или true  по адресу 0-9999                 
                     startWrReg = 120;                                                                   // Команда на открытие файла отправлена
                     res = myProtocol.writeSingleRegister(slave, startWrReg, 12);                        // Команда на открытие файла отправлена
-                    textBox7.Text += ("Команда на открытие файла отправлена" + "\r\n");
+                    textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
                     textBox7.Refresh();
+                    file_fakt_namber();
                     _All_Test_Stop = false;                                                             // Установить флаг запуска теста
                 }
 /*
@@ -4230,10 +4323,10 @@ namespace KamertonTest
             progressBar2.Value = 0;
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 13); // Команда на закрытие файла отправлена
-            textBox7.Text += ("Команда на закрытие файла отправлена" + "\r\n");
+            textBox9.Text += ("Команда на закрытие файла отправлена" + "\r\n");
            // textBox9.Text = ("Стоп теста");
             textBox7.Refresh();
-          //  textBox9.Refresh();
+            textBox9.Refresh();
         //    test_end();
 
                 textBox7.Text += "Тест окончен!";
@@ -4592,81 +4685,7 @@ namespace KamertonTest
 
         }
 
-        private void button83_Click(object sender, EventArgs e)
-        {
-
-            short[] readVals = new short[125];
-            int slave;
-            int startRdReg;
-            int startWrReg;
-            int numRdRegs;
-            int res;
-
-            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-
-            ushort[] writeVals = new ushort[2];
-       //     bool[] coilArr = new bool[12];
-            startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 16); // 
-            test_end();
-
-
-
-            startRdReg = 112; // 40046 Адрес дата/время контроллера  
-            numRdRegs = 4;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-            lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-                toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                toolStripStatusLabel1.BackColor = Color.Lime;
-                if(readVals[3]!= 0)
-                {
-                    readVals[3]--;
-                }
-
-                label134.Text = "";
-                label134.Text = (label134.Text + readVals[0]);
-                if (readVals[1] < 10)
-                {
-                    label134.Text += ("0" + readVals[1]);
-                }
-                else
-                {
-                    label134.Text += (readVals[1]);
-                }
-                if (readVals[2] < 10)
-                {
-                    label134.Text += ("0" + readVals[2]);
-                }
-                else
-                {
-                    label134.Text += (readVals[2]);
-                }
-                if (readVals[3] < 10)
-                {
-                    label134.Text += ("0" + readVals[3] + ".TXT");
-                }
-                else
-                {
-                    label134.Text += (readVals[3] + ".TXT");
-                }
-
-            }
-
-
-            else
-            {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
-                toolStripStatusLabel1.BackColor = Color.Red;
-                timer_byte_set.Enabled = false;
-                timer_Mic_test.Enabled = false;
-                timerCTS.Enabled = false;
-                timerTestAll.Enabled = false;
-            }
-        }
-
-        private void label80_Click(object sender, EventArgs e)
+          private void label80_Click(object sender, EventArgs e)
         {
 
         }
