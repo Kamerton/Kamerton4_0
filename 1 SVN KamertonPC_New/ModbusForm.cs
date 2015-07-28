@@ -2204,138 +2204,138 @@ namespace KamertonTest
 
         private void button1_Click(object sender, EventArgs e)                         // Кнопка "Старт" теста микрофона
          {
-             Polltimer1.Enabled = false;
-             timer_byte_set.Enabled = false;
-             timerCTS.Enabled = false;
-             timerTestAll.Enabled = false;
-            short[] writeVals = new short[12];
-            short[] MSK = new short[2];
-            MSK[0] = 5;
-            ushort[] readVals = new ushort[125];
-            label89.Text = "";                    // Текст о включении
-            textBox10.Text = "";                  // Текст очистить
+         //    Polltimer1.Enabled = false;
+         //    timer_byte_set.Enabled = false;
+         //    timerCTS.Enabled = false;
+         //    timerTestAll.Enabled = false;
+         //   short[] writeVals = new short[12];
+         //   short[] MSK = new short[2];
+         //   MSK[0] = 5;
+         //   ushort[] readVals = new ushort[125];
+         //   label89.Text = "";                    // Текст о включении
+         //   textBox10.Text = "";                  // Текст очистить
 
-            bool[] coilVals = new bool[200];
-            bool[] coilArr = new bool[20];
-            _SerialMonitor = 2;
-         //   if (!(_serialPort.IsOpen))
-         //       _serialPort.Open();
+         //   bool[] coilVals = new bool[200];
+         //   bool[] coilArr = new bool[20];
+         //   _SerialMonitor = 2;
+         ////   if (!(_serialPort.IsOpen))
+         ////       _serialPort.Open();
                    
-            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+         //   slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
              
-            textBox3.BackColor = Color.White;
-            writeVals[0] = short.Parse(textBox2.Text, CultureInfo.CurrentCulture);   // Установка времени отсечки на включение
-            writeVals[1] = short.Parse(textBox3.Text, CultureInfo.CurrentCulture);   // Установка уровня входного сигнала
-            int tempK =  writeVals[1] * 5;               // Установка уровня входного сигнала
-            if (tempK > 250)
-            {
-                tempK = 250;
-                textBox3.Text = ">50";
-                textBox3.BackColor = Color.Red;
-            }
-            writeVals[1] = (short)tempK;                 // Установка уровня входного сигнала
-            writeVals[5] = short.Parse(textBox1.Text, CultureInfo.CurrentCulture);   // Установка времени отсечки на выключение
+         //   textBox3.BackColor = Color.White;
+         //   writeVals[0] = short.Parse(textBox2.Text, CultureInfo.CurrentCulture);   // Установка времени отсечки на включение
+         //   writeVals[1] = short.Parse(textBox3.Text, CultureInfo.CurrentCulture);   // Установка уровня входного сигнала
+         //   int tempK =  writeVals[1] * 5;               // Установка уровня входного сигнала
+         //   if (tempK > 250)
+         //   {
+         //       tempK = 250;
+         //       textBox3.Text = ">50";
+         //       textBox3.BackColor = Color.Red;
+         //   }
+         //   writeVals[1] = (short)tempK;                 // Установка уровня входного сигнала
+         //   writeVals[5] = short.Parse(textBox1.Text, CultureInfo.CurrentCulture);   // Установка времени отсечки на выключение
 
-            startWrReg = 41 ;
-            numWrRegs = 10;   //
-            res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
+         //   startWrReg = 41 ;
+         //   numWrRegs = 10;   //
+         //   res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
 
 
-            startCoil = 36; // Запустить тест CTS
-            numCoils = 1;
-            coilVals[0] = true;
+         //   startCoil = 36; // Запустить тест CTS
+         //   numCoils = 1;
+         //   coilVals[0] = true;
           
-            res = myProtocol.forceMultipleCoils(slave, startCoil, coilVals, numCoils);  // Write Coils
+         //   res = myProtocol.forceMultipleCoils(slave, startCoil, coilVals, numCoils);  // Write Coils
 
-            startRdReg = 97; // 40085 Адрес время старта
-            numRdRegs = 6;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-           // lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
+         //   startRdReg = 97; // 40085 Адрес время старта
+         //   numRdRegs = 6;
+         //   res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+         //  // lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+         //   if ((res == BusProtocolErrors.FTALK_SUCCESS))
+         //   {
 
-                label51.Text = "";
-                label51.Text = (label51.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-                label52.Text = "";
-                label52.Text = (" 0 . 0 . 0000  0:0:0");
-            }
+         //       label51.Text = "";
+         //       label51.Text = (label51.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
+         //       label52.Text = "";
+         //       label52.Text = (" 0 . 0 . 0000  0:0:0");
+         //   }
 
-            startRdReg = 109; // 40109 Адрес время выполнения теста
-            numRdRegs = 4;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-           // lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
+         //   startRdReg = 109; // 40109 Адрес время выполнения теста
+         //   numRdRegs = 4;
+         //   res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+         //  // lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+         //   if ((res == BusProtocolErrors.FTALK_SUCCESS))
+         //   {
 
-                label54.Text = "";
-                label54.Text = (label54.Text + readVals[0] + " / " + readVals[1] + " / " + readVals[2] + " / " + readVals[3]);
+         //       label54.Text = "";
+         //       label54.Text = (label54.Text + readVals[0] + " / " + readVals[1] + " / " + readVals[2] + " / " + readVals[3]);
 
-            }
+         //   }
          
-            timer_Mic_test.Enabled = true;
-            button1.BackColor = Color.Lime;
-            button2.BackColor = Color.LightSalmon;
+         //   timer_Mic_test.Enabled = true;
+         //   button1.BackColor = Color.Lime;
+         //   button2.BackColor = Color.LightSalmon;
             
             }
    
         private void button2_Click(object sender, EventArgs e)                         // Кнопка "Стоп" теста микрофона
         {
            
-            short[] writeVals = new short[125];
-            int slave;
-            int res;
-            int startCoil;
-            int numCoils;
-            bool[] coilVals = new bool[200];
-            bool[] coilArr = new bool[2];
-            ushort[] readVals = new ushort[125];
+         //   short[] writeVals = new short[125];
+         //   int slave;
+         //   int res;
+         //   int startCoil;
+         //   int numCoils;
+         //   bool[] coilVals = new bool[200];
+         //   bool[] coilArr = new bool[2];
+         //   ushort[] readVals = new ushort[125];
 
-            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-            startCoil = 36; // Остановить тест CTS
-            numCoils = 1;
-            coilVals[0] = false;
-            res = myProtocol.forceMultipleCoils(slave, startCoil, coilVals, numCoils);  // Write Coils     
+         //   slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+         //   startCoil = 36; // Остановить тест CTS
+         //   numCoils = 1;
+         //   coilVals[0] = false;
+         //   res = myProtocol.forceMultipleCoils(slave, startCoil, coilVals, numCoils);  // Write Coils     
         
-            startRdReg = 36; // 40120 Адрес 
-            numRdRegs = 2;
-            do
-            {
-                res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-                //  lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-                //textBox9.Refresh();
+         //   startRdReg = 36; // 40120 Адрес 
+         //   numRdRegs = 2;
+         //   do
+         //   {
+         //       res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+         //       //  lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+         //       //textBox9.Refresh();
 
-                if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                {
-                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                    toolStripStatusLabel1.BackColor = Color.Lime;
-                }
-
-
-                else
-                {
-                    toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
-                    toolStripStatusLabel1.BackColor = Color.Red;
-                    Polltimer1.Enabled = false;
-                    timer_byte_set.Enabled = false;
-                    timer_Mic_test.Enabled = false;
-                    timerCTS.Enabled = false;
-                    timerTestAll.Enabled = false;
-                }
+         //       if ((res == BusProtocolErrors.FTALK_SUCCESS))
+         //       {
+         //           toolStripStatusLabel1.Text = "    MODBUS ON    ";
+         //           toolStripStatusLabel1.BackColor = Color.Lime;
+         //       }
 
 
-            } while (readVals[0] != 0);
+         //       else
+         //       {
+         //           toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+         //           toolStripStatusLabel1.BackColor = Color.Red;
+         //           Polltimer1.Enabled = false;
+         //           timer_byte_set.Enabled = false;
+         //           timer_Mic_test.Enabled = false;
+         //           timerCTS.Enabled = false;
+         //           timerTestAll.Enabled = false;
+         //       }
 
-            button2.BackColor = Color.Red;
-            textBox3.BackColor = Color.White;
 
-         //   Polltimer1.Enabled = true;
-         //   Thread.Sleep(600);
+         //   } while (readVals[0] != 0);
+
+         //   button2.BackColor = Color.Red;
+         //   textBox3.BackColor = Color.White;
+
+         ////   Polltimer1.Enabled = true;
+         ////   Thread.Sleep(600);
 
           
-            Polltimer1.Enabled = true;
+         //   Polltimer1.Enabled = true;
 
-          //  _serialPort.Close();
-          //    Polltimer1.Enabled = true;
+         // //  _serialPort.Close();
+         // //    Polltimer1.Enabled = true;
 
             
         }
