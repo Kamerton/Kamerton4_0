@@ -34,9 +34,7 @@ namespace KamertonTest
     {
        
         private MbusMasterFunctions myProtocol;
-     
-        //UInt32 result1 = 0;
-       // bool[] coilSensor ;
+ 
         private int slave;
         private int startCoil;
         private int numCoils;
@@ -115,20 +113,7 @@ namespace KamertonTest
         {
        
             checkBoxSenAll.Checked = true;
-            //checkBoxSenGGRadio1.Checked = true;
-            //checkBoxSenGGRadio2.Checked = true;
-            //checkBoxSenTrubka.Checked = true;
-            //checkBoxSenTangN.Checked = true;
-            //checkBoxSenTangRuch.Checked = true;
-            //checkBoxSenMag.Checked = true;
-            //checkBoxSenGar2instr.Checked = true;
-            //checkBoxSenGar1instr.Checked = true;
-            //checkBoxSenGar2disp.Checked = true;
-            //checkBoxSenGar1disp.Checked = true;
-            //checkBoxSenMicrophon.Checked = true;
-            //checkBoxSenGGS.Checked = true;
-
-        }
+         }
 
         private void si_DataReceived (string data)
         {

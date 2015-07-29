@@ -373,8 +373,8 @@ const char  txt_error77[]  PROGMEM             = "Command sensor tangenta nognaj
 const char  txt_error78[]  PROGMEM             = "Command PTT tangenta nognaja (CTS)  XP8 - 1                 OFF - ";
 const char  txt_error79[]  PROGMEM             = "Command PTT tangenta nognaja (CTS)  XP8 - 1                 ON  - ";
 
-const char  txt_error80[]  PROGMEM             = "";
-const char  txt_error81[]  PROGMEM             = "";  
+const char  txt_error80[]  PROGMEM             = "Test GGS ** Signal                                          OFF - ";
+const char  txt_error81[]  PROGMEM             = "Test GGS ** Signal                                          ON  - ";
 const char  txt_error82[]  PROGMEM             = "";  
 const char  txt_error83[]  PROGMEM             = "";
 const char  txt_error84[]  PROGMEM             = "";
@@ -547,8 +547,8 @@ txt_error77,                                  // "Command sensor tangenta nognaj
 txt_error78,                                  // "Command PTT tangenta nognaja (CTS)  XP8 - 1                 OFF - ";  
 txt_error79,                                  // "Command PTT tangenta nognaja (CTS)  XP8 - 1                 ON  - "; 
 
-txt_error80,                                  //  
-txt_error81,                                  // 
+txt_error80,                                  // "Test GGS ** Signal                                          OFF - ";
+txt_error81,                                  // "Test GGS ** Signal                                          ON   - ";
 txt_error82,                                  //  
 txt_error83,                                  //  
 txt_error84,                                  // 
@@ -2389,8 +2389,45 @@ void test_mikrophon()
 }
 void testGGS()
 {
+	unsigned int regcount = 0;
+	myFile.println(""); 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[48])));                   // " ****** Test GGS start! ******"      ;
+	myFile.println(buffer);                                                         // " ****** Test GGS start! ******"      ;
+	file_print_date();
+	myFile.println("");
+	regBank.set(25,1);                                                              // XP1- 19 HaSs      sensor подключения трубки          
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+		UpdateRegs(); 
+	delay(300);
+	UpdateRegs(); 
+	byte i50 = regs_in[0];    
+	//byte i52 = regs_in[2];    
+	//byte i53 = regs_in[3];    
 
-
+		if(bitRead(i50,2) != 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            OFF - ";
+		  {
+			regcount = regBank.get(40200);                                          // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            OFF - ";
+			regcount++;                                                             // увеличить счетчик ошибок sensor отключения трубки  "Sensor MTT                          XP1- 19 HaSs            OFF - ";
+			regBank.set(40200,regcount);                                            // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            OFF - ";  
+			regBank.set(200,1);                                                     // установить флаг ошибки                             "Sensor MTT                          XP1- 19 HaSs            OFF - ";
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[0])));         // "Sensor MTT                      XP1- 19 HaSs   OFF               - ";  
+			myFile.print(buffer);                                                   // "Sensor MTT                     XP1- 19 HaSs   OFF               - ";  
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+		  }
+		else
+		  {
+			   if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[0])));     // "Sensor MTT                     XP1- 19 HaSs   OFF               - ";  
+				myFile.print(buffer);                                               // 
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+				if (test_repeat == false) myFile.println(buffer);                   //  sensor  трубки отключен  - Pass
+			   }
+		  }
 
 	UpdateRegs();     
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
@@ -3706,6 +3743,9 @@ modbus registers follow the following format
 	regBank.add(278);                         // Флаг ошибки "Command PTT tangenta nognaja (CTS)                          OFF - ";
 	regBank.add(279);                         // Флаг ошибки "Command PTT tangenta nognaja (CTS)                          ON  - ";
 
+	regBank.add(280);                         // Флаг ошибки "Test GGS ** Signal                                          OFF - ";
+	regBank.add(281);                         // Флаг ошибки "Test GGS ** Signal                                          ON   - ";
+
 
 	regBank.add(10081);    // Адрес флагa индикации состояния сигнала CTS
 	regBank.add(10082);    // Адрес флагa индикации состояния сигнала DSR
@@ -3977,6 +4017,9 @@ modbus registers follow the following format
 	regBank.add(40277);                         // Aдрес счетчика ошибки "Command sensor tangenta nognaja                             ON  - ";
 	regBank.add(40278);                         // Aдрес счетчика ошибки "Command PTT tangenta nognaja (CTS)                          OFF - ";
 	regBank.add(40279);                         // Aдрес счетчика ошибки "Command PTT tangenta nognaja (CTS)                          ON  - ";
+
+	regBank.add(40280);                         // Aдрес счетчика ошибки "Test GGS ** Signal                                          OFF - ";
+	regBank.add(40281);                         // Aдрес счетчика ошибки "Test GGS ** Signal                                          ON   - ";
 
 
 	slave._device = &regBank;  
