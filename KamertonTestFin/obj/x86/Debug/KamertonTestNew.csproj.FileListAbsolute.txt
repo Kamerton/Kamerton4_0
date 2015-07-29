@@ -1,0 +1,32 @@
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\bin\x86\Debug\KamertonTestNet.exe.config
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\bin\x86\Debug\KamertonTestNet.exe.manifest
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\bin\x86\Debug\KamertonTestNet.application
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\bin\x86\Debug\KamertonTestNet.exe
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\bin\x86\Debug\KamertonTestNet.pdb
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\bin\x86\Debug\mbusmaster.net.dll
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\obj\x86\Debug\KamertonTest.Form1.resources
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\obj\x86\Debug\KamertonTestNet.Properties.Resources.resources
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\obj\x86\Debug\KamertonTestNet.Resource1.resources
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\obj\x86\Debug\KamertonTestNet.exe.manifest
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\obj\x86\Debug\KamertonTestNet.application
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\obj\x86\Debug\KamertonTestNet.exe
+E:\1 SVN Kamerton4_0\trunk\1 SVN KamertonPC_New\obj\x86\Debug\KamertonTestNet.pdb
+E:\KamertonTestFin\bin\x86\Debug\KamertonTestNet.exe.config
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestNet.exe
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestNet.pdb
+E:\KamertonTestFin\bin\x86\Debug\KamertonTestNet.exe.manifest
+E:\KamertonTestFin\bin\x86\Debug\KamertonTestNet.application
+E:\KamertonTestFin\bin\x86\Debug\KamertonTestNet.exe
+E:\KamertonTestFin\bin\x86\Debug\KamertonTestNet.pdb
+E:\KamertonTestFin\bin\x86\Debug\mbusmaster.net.dll
+E:\KamertonTestFin\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\KamertonTestFin\obj\x86\Debug\KamertonTest.Form1.resources
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestNet.Properties.Resources.resources
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestNet.Resource1.resources
+E:\KamertonTestFin\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\KamertonTestFin\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestNet.exe.manifest
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestNet.application

@@ -1,0 +1,16 @@
+E:\KamertonTestFin\bin\x86\Debug\mbusmaster.net.dll
+E:\KamertonTestFin\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\KamertonTestFin\obj\x86\Debug\KamertonTest.Form1.resources
+E:\KamertonTestFin\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\KamertonTestFin\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\KamertonTestFin\bin\x86\Debug\KamertonTestFin.exe.config
+E:\KamertonTestFin\bin\x86\Debug\KamertonTestFin.exe.manifest
+E:\KamertonTestFin\bin\x86\Debug\KamertonTestFin.application
+E:\KamertonTestFin\bin\x86\Debug\KamertonTestFin.exe
+E:\KamertonTestFin\bin\x86\Debug\KamertonTestFin.pdb
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestFin.Properties.Resources.resources
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestFin.Resource1.resources
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestFin.exe.manifest
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestFin.application
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestFin.exe
+E:\KamertonTestFin\obj\x86\Debug\KamertonTestFin.pdb

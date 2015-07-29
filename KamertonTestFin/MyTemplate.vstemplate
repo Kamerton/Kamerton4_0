@@ -1,0 +1,39 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>KamertonTestFin</Name>
+    <Description>&lt;Нет описания&gt;</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>KamertonTestFin</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="KamertonTestNew.csproj" File="KamertonTestNew.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="false" TargetFileName="0831.ico">0831.ico</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="app.config">app.config</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="KamertonTestNet_TemporaryKey.pfx">KamertonTestNet_TemporaryKey.pfx</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="kcontrol2.ico">kcontrol2.ico</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ModbusForm.cs">ModbusForm.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ModbusForm.Designer.cs">ModbusForm.Designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ModbusForm.resx">ModbusForm.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.resx">Resources.resx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Resources.Designer.cs">Resources.Designer.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Resource1.resx">Resource1.resx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Resource1.Designer.cs">Resource1.Designer.cs</ProjectItem>
+      <Folder Name="Resources" TargetFolderName="Resources">
+        <ProjectItem ReplaceParameters="false" TargetFileName="btSetCustom.Image.png">btSetCustom.Image.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="btSetSystem.Image.png">btSetSystem.Image.png</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
