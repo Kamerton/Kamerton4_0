@@ -49,60 +49,6 @@ namespace KamertonTest
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.button9 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label89 = new System.Windows.Forms.Label();
-            this.label88 = new System.Windows.Forms.Label();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.label87 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label79 = new System.Windows.Forms.Label();
-            this.label76 = new System.Windows.Forms.Label();
-            this.label75 = new System.Windows.Forms.Label();
-            this.label74 = new System.Windows.Forms.Label();
-            this.label73 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.label66 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.label86 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label77 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button25 = new System.Windows.Forms.Button();
@@ -265,6 +211,11 @@ namespace KamertonTest
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.label134 = new System.Windows.Forms.Label();
+            this.button81 = new System.Windows.Forms.Button();
+            this.label101 = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.checkBoxSensors1 = new System.Windows.Forms.CheckBox();
             this.checkBoxSenGGS = new System.Windows.Forms.CheckBox();
@@ -364,23 +315,11 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
-            this.groupBox18 = new System.Windows.Forms.GroupBox();
-            this.label95 = new System.Windows.Forms.Label();
-            this.label101 = new System.Windows.Forms.Label();
-            this.label133 = new System.Windows.Forms.Label();
-            this.button81 = new System.Windows.Forms.Button();
-            this.button82 = new System.Windows.Forms.Button();
-            this.label134 = new System.Windows.Forms.Label();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
             this.groupBox20.SuspendLayout();
             this.groupBox19.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            this.groupBox10.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox8.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.groupBox17.SuspendLayout();
             this.groupBox14.SuspendLayout();
@@ -389,6 +328,7 @@ namespace KamertonTest
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.groupBox18.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox12.SuspendLayout();
@@ -399,7 +339,6 @@ namespace KamertonTest
             this.GroupBox5.SuspendLayout();
             this.GroupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox18.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl1
@@ -408,7 +347,6 @@ namespace KamertonTest
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl1.Controls.Add(this.tabPage3);
-            this.TabControl1.Controls.Add(this.tabPage4);
             this.TabControl1.Controls.Add(this.tabPage5);
             this.TabControl1.Controls.Add(this.tabPage6);
             this.TabControl1.Controls.Add(this.TabPage1);
@@ -637,659 +575,6 @@ namespace KamertonTest
             this.button11.Text = "Старт";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click_1);
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tabPage4.Controls.Add(this.textBox10);
-            this.tabPage4.Controls.Add(this.label89);
-            this.tabPage4.Controls.Add(this.label88);
-            this.tabPage4.Controls.Add(this.groupBox11);
-            this.tabPage4.Controls.Add(this.groupBox10);
-            this.tabPage4.Controls.Add(this.groupBox9);
-            this.tabPage4.Controls.Add(this.groupBox8);
-            this.tabPage4.Controls.Add(this.button2);
-            this.tabPage4.Controls.Add(this.button1);
-            this.tabPage4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(987, 613);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Тест микрофона";
-            // 
-            // textBox10
-            // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox10.Location = new System.Drawing.Point(524, 373);
-            this.textBox10.Multiline = true;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox10.Size = new System.Drawing.Size(450, 220);
-            this.textBox10.TabIndex = 26;
-            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
-            // 
-            // label89
-            // 
-            this.label89.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label89.ForeColor = System.Drawing.Color.Red;
-            this.label89.Location = new System.Drawing.Point(256, 11);
-            this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(691, 33);
-            this.label89.TabIndex = 25;
-            this.label89.Text = ".";
-            this.label89.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label88
-            // 
-            this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label88.ForeColor = System.Drawing.Color.Red;
-            this.label88.Location = new System.Drawing.Point(191, 509);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(213, 53);
-            this.label88.TabIndex = 24;
-            this.label88.Text = "Максимальная продолжительность   проведения непрерывного теста 50 дней!";
-            this.label88.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label88.Click += new System.EventHandler(this.label88_Click);
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox11.Controls.Add(this.label87);
-            this.groupBox11.Controls.Add(this.label53);
-            this.groupBox11.Controls.Add(this.label54);
-            this.groupBox11.Controls.Add(this.label79);
-            this.groupBox11.Controls.Add(this.label76);
-            this.groupBox11.Controls.Add(this.label75);
-            this.groupBox11.Controls.Add(this.label74);
-            this.groupBox11.Controls.Add(this.label73);
-            this.groupBox11.Controls.Add(this.label52);
-            this.groupBox11.Controls.Add(this.label50);
-            this.groupBox11.Controls.Add(this.label51);
-            this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox11.Location = new System.Drawing.Point(686, 65);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(210, 291);
-            this.groupBox11.TabIndex = 23;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Время выполнения теста";
-            // 
-            // label87
-            // 
-            this.label87.AutoSize = true;
-            this.label87.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label87.Location = new System.Drawing.Point(35, 164);
-            this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(131, 16);
-            this.label87.TabIndex = 33;
-            this.label87.Text = "дней/час./мин./сек.";
-            this.label87.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label53
-            // 
-            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label53.Location = new System.Drawing.Point(16, 107);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(171, 37);
-            this.label53.TabIndex = 32;
-            this.label53.Text = "Продолжительность выполнения теста";
-            this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label54
-            // 
-            this.label54.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label54.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label54.Location = new System.Drawing.Point(16, 144);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(171, 20);
-            this.label54.TabIndex = 31;
-            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label79
-            // 
-            this.label79.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label79.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label79.Location = new System.Drawing.Point(19, 253);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(171, 20);
-            this.label79.TabIndex = 30;
-            this.label79.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label76
-            // 
-            this.label76.AutoSize = true;
-            this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label76.Location = new System.Drawing.Point(43, 237);
-            this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(123, 16);
-            this.label76.TabIndex = 29;
-            this.label76.Text = "Системное время";
-            this.label76.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label76.Click += new System.EventHandler(this.label76_Click);
-            // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label75.Location = new System.Drawing.Point(35, 194);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(138, 16);
-            this.label75.TabIndex = 28;
-            this.label75.Text = "Время контроллера";
-            this.label75.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label75.Click += new System.EventHandler(this.label75_Click);
-            // 
-            // label74
-            // 
-            this.label74.AutoSize = true;
-            this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label74.Location = new System.Drawing.Point(35, 65);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(132, 16);
-            this.label74.TabIndex = 27;
-            this.label74.Text = "Время завершения";
-            this.label74.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label73.Location = new System.Drawing.Point(53, 20);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(97, 16);
-            this.label73.TabIndex = 26;
-            this.label73.Text = "Время старта";
-            this.label73.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label73.Click += new System.EventHandler(this.label73_Click);
-            // 
-            // label52
-            // 
-            this.label52.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label52.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label52.Location = new System.Drawing.Point(16, 82);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(171, 20);
-            this.label52.TabIndex = 19;
-            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label52.Click += new System.EventHandler(this.label52_Click);
-            // 
-            // label50
-            // 
-            this.label50.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label50.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label50.Location = new System.Drawing.Point(19, 210);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(171, 20);
-            this.label50.TabIndex = 20;
-            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label50.Click += new System.EventHandler(this.label50_Click);
-            // 
-            // label51
-            // 
-            this.label51.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label51.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label51.Location = new System.Drawing.Point(16, 36);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(171, 20);
-            this.label51.TabIndex = 18;
-            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label51.Click += new System.EventHandler(this.label51_Click);
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.BackColor = System.Drawing.Color.OldLace;
-            this.groupBox10.Controls.Add(this.label66);
-            this.groupBox10.Controls.Add(this.label65);
-            this.groupBox10.Controls.Add(this.label64);
-            this.groupBox10.Controls.Add(this.label63);
-            this.groupBox10.Controls.Add(this.label62);
-            this.groupBox10.Controls.Add(this.label49);
-            this.groupBox10.Controls.Add(this.label48);
-            this.groupBox10.Controls.Add(this.label47);
-            this.groupBox10.Controls.Add(this.label46);
-            this.groupBox10.Controls.Add(this.label45);
-            this.groupBox10.Controls.Add(this.label44);
-            this.groupBox10.Location = new System.Drawing.Point(26, 373);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(492, 124);
-            this.groupBox10.TabIndex = 4;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Ошибки выполнения теста";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label66.Location = new System.Drawing.Point(322, 15);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(140, 30);
-            this.label66.TabIndex = 25;
-            this.label66.Text = "Время  возникновения\r\n последней  ошибки";
-            this.label66.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label65.Location = new System.Drawing.Point(240, 23);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(66, 15);
-            this.label65.TabIndex = 24;
-            this.label65.Text = "% Ошибок";
-            this.label65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label64.Location = new System.Drawing.Point(155, 25);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(47, 15);
-            this.label64.TabIndex = 23;
-            this.label64.Text = "Кол-во";
-            this.label64.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label63
-            // 
-            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label63.Location = new System.Drawing.Point(8, 75);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(123, 40);
-            this.label63.TabIndex = 22;
-            this.label63.Text = "Ошибка задержки на выключение :";
-            this.label63.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label63.Click += new System.EventHandler(this.label63_Click);
-            // 
-            // label62
-            // 
-            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label62.Location = new System.Drawing.Point(8, 42);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(122, 33);
-            this.label62.TabIndex = 21;
-            this.label62.Text = "Ошибка задержки на включение :";
-            this.label62.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label62.Click += new System.EventHandler(this.label62_Click);
-            // 
-            // label49
-            // 
-            this.label49.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label49.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label49.Location = new System.Drawing.Point(304, 85);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(170, 20);
-            this.label49.TabIndex = 20;
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label49.Click += new System.EventHandler(this.label49_Click);
-            // 
-            // label48
-            // 
-            this.label48.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label48.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label48.Location = new System.Drawing.Point(304, 50);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(170, 20);
-            this.label48.TabIndex = 19;
-            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label48.Click += new System.EventHandler(this.label48_Click);
-            // 
-            // label47
-            // 
-            this.label47.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label47.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label47.Location = new System.Drawing.Point(225, 85);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(73, 20);
-            this.label47.TabIndex = 18;
-            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label47.Click += new System.EventHandler(this.label47_Click);
-            // 
-            // label46
-            // 
-            this.label46.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label46.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label46.Location = new System.Drawing.Point(225, 50);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(73, 20);
-            this.label46.TabIndex = 17;
-            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label45
-            // 
-            this.label45.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label45.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label45.Location = new System.Drawing.Point(136, 85);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(83, 20);
-            this.label45.TabIndex = 16;
-            this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label45.Click += new System.EventHandler(this.label45_Click);
-            // 
-            // label44
-            // 
-            this.label44.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label44.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label44.Location = new System.Drawing.Point(136, 50);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(83, 20);
-            this.label44.TabIndex = 15;
-            this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.groupBox9.Controls.Add(this.label86);
-            this.groupBox9.Controls.Add(this.label69);
-            this.groupBox9.Controls.Add(this.label68);
-            this.groupBox9.Controls.Add(this.label67);
-            this.groupBox9.Controls.Add(this.textBox3);
-            this.groupBox9.Controls.Add(this.textBox2);
-            this.groupBox9.Controls.Add(this.textBox1);
-            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox9.Location = new System.Drawing.Point(371, 65);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(300, 291);
-            this.groupBox9.TabIndex = 3;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Установка параметрой измерения";
-            // 
-            // label86
-            // 
-            this.label86.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label86.ForeColor = System.Drawing.Color.Red;
-            this.label86.Location = new System.Drawing.Point(26, 253);
-            this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(236, 35);
-            this.label86.TabIndex = 22;
-            this.label86.Text = "Изменения параметров вносить до  старта теста !";
-            this.label86.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label69.Location = new System.Drawing.Point(6, 120);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(213, 15);
-            this.label69.TabIndex = 18;
-            this.label69.Text = "Уровень входного сигнала 1-50 мВ:";
-            this.label69.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label68.Location = new System.Drawing.Point(15, 89);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(204, 15);
-            this.label68.TabIndex = 17;
-            this.label68.Text = "Время отсечки на выключение мс";
-            this.label68.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label68.Click += new System.EventHandler(this.label68_Click);
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label67.Location = new System.Drawing.Point(21, 58);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(198, 15);
-            this.label67.TabIndex = 16;
-            this.label67.Text = "Время отсечки на включение мс:";
-            this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(227, 119);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(54, 24);
-            this.textBox3.TabIndex = 12;
-            this.textBox3.Text = "20";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(227, 88);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(22, 24);
-            this.textBox2.TabIndex = 11;
-            this.textBox2.Text = "10";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(227, 57);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(22, 24);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.Text = "10";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.BackColor = System.Drawing.SystemColors.Info;
-            this.groupBox8.Controls.Add(this.label77);
-            this.groupBox8.Controls.Add(this.label61);
-            this.groupBox8.Controls.Add(this.label60);
-            this.groupBox8.Controls.Add(this.label59);
-            this.groupBox8.Controls.Add(this.label58);
-            this.groupBox8.Controls.Add(this.label57);
-            this.groupBox8.Controls.Add(this.label56);
-            this.groupBox8.Controls.Add(this.label55);
-            this.groupBox8.Controls.Add(this.label43);
-            this.groupBox8.Controls.Add(this.label42);
-            this.groupBox8.Controls.Add(this.label41);
-            this.groupBox8.Controls.Add(this.label40);
-            this.groupBox8.Controls.Add(this.label39);
-            this.groupBox8.Controls.Add(this.label38);
-            this.groupBox8.Controls.Add(this.label37);
-            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox8.Location = new System.Drawing.Point(26, 65);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(330, 291);
-            this.groupBox8.TabIndex = 2;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Информация о тесте микрофона";
-            // 
-            // label77
-            // 
-            this.label77.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label77.Location = new System.Drawing.Point(51, 20);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(217, 26);
-            this.label77.TabIndex = 22;
-            this.label77.Text = "Информация выполнения процесса";
-            this.label77.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label61.Location = new System.Drawing.Point(7, 240);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(177, 15);
-            this.label61.TabIndex = 21;
-            this.label61.Text = "Ток потребления модуля мА :";
-            this.label61.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label60.Location = new System.Drawing.Point(7, 210);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(195, 15);
-            this.label60.TabIndex = 20;
-            this.label60.Text = "Напряжение питания модуля В :";
-            this.label60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label59.Location = new System.Drawing.Point(7, 180);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(183, 15);
-            this.label59.TabIndex = 19;
-            this.label59.Text = "Задержка на выключение мВ :";
-            this.label59.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label59.Click += new System.EventHandler(this.label59_Click);
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label58.Location = new System.Drawing.Point(7, 150);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(174, 15);
-            this.label58.TabIndex = 18;
-            this.label58.Text = "Задержка на включение мВ :";
-            this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label57.Location = new System.Drawing.Point(7, 120);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(163, 15);
-            this.label57.TabIndex = 17;
-            this.label57.Text = "Уровень сигнала Line L  В :";
-            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label56.Location = new System.Drawing.Point(7, 90);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(149, 15);
-            this.label56.TabIndex = 16;
-            this.label56.Text = "Уровень сигнала Маг В :";
-            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label55.Location = new System.Drawing.Point(8, 60);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(149, 15);
-            this.label55.TabIndex = 15;
-            this.label55.Text = "Счетчик проходов теста";
-            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label43
-            // 
-            this.label43.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label43.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label43.Location = new System.Drawing.Point(223, 237);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(83, 20);
-            this.label43.TabIndex = 14;
-            this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label42
-            // 
-            this.label42.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label42.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label42.Location = new System.Drawing.Point(223, 207);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(83, 20);
-            this.label42.TabIndex = 13;
-            this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label41
-            // 
-            this.label41.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label41.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label41.Location = new System.Drawing.Point(223, 177);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(83, 20);
-            this.label41.TabIndex = 12;
-            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label40
-            // 
-            this.label40.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label40.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label40.Location = new System.Drawing.Point(223, 147);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(83, 20);
-            this.label40.TabIndex = 11;
-            this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label39
-            // 
-            this.label39.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label39.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label39.Location = new System.Drawing.Point(223, 117);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(83, 20);
-            this.label39.TabIndex = 10;
-            this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label38
-            // 
-            this.label38.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label38.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label38.Location = new System.Drawing.Point(223, 87);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(83, 20);
-            this.label38.TabIndex = 9;
-            this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label37
-            // 
-            this.label37.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label37.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label37.Location = new System.Drawing.Point(168, 57);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(138, 20);
-            this.label37.TabIndex = 8;
-            this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(130, 11);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 25);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Стоп";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(24, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 25);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Старт";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabPage5
             // 
@@ -3108,6 +2393,59 @@ namespace KamertonTest
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Настройка проверки";
             // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.label134);
+            this.groupBox18.Controls.Add(this.button81);
+            this.groupBox18.Controls.Add(this.label101);
+            this.groupBox18.Controls.Add(this.label95);
+            this.groupBox18.Location = new System.Drawing.Point(339, 20);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(322, 390);
+            this.groupBox18.TabIndex = 1;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "Управление файлами";
+            // 
+            // label134
+            // 
+            this.label134.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label134.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label134.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label134.Location = new System.Drawing.Point(18, 58);
+            this.label134.Name = "label134";
+            this.label134.Size = new System.Drawing.Size(147, 20);
+            this.label134.TabIndex = 35;
+            this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button81
+            // 
+            this.button81.Location = new System.Drawing.Point(208, 96);
+            this.button81.Name = "button81";
+            this.button81.Size = new System.Drawing.Size(94, 23);
+            this.button81.TabIndex = 3;
+            this.button81.Text = "Сброс в \'0\'";
+            this.button81.UseVisualStyleBackColor = true;
+            this.button81.Click += new System.EventHandler(this.button81_Click);
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(15, 101);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(159, 13);
+            this.label101.TabIndex = 1;
+            this.label101.Text = "Установить номер файла в \'0\'";
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Location = new System.Drawing.Point(15, 33);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(122, 13);
+            this.label95.TabIndex = 0;
+            this.label95.Text = "Текущий номер файла";
+            this.label95.Click += new System.EventHandler(this.label95_Click);
+            // 
             // groupBox16
             // 
             this.groupBox16.Controls.Add(this.checkBoxSensors1);
@@ -4060,11 +3398,6 @@ namespace KamertonTest
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLabel2.Text = "Время :";
             // 
-            // timer_Mic_test
-            // 
-            this.timer_Mic_test.Interval = 1000;
-            this.timer_Mic_test.Tick += new System.EventHandler(this.timer_Mic_test_Tick);
-            // 
             // timer_byte_set
             // 
             this.timer_byte_set.Interval = 300;
@@ -4088,80 +3421,6 @@ namespace KamertonTest
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
             // 
-            // groupBox18
-            // 
-            this.groupBox18.Controls.Add(this.label134);
-            this.groupBox18.Controls.Add(this.button82);
-            this.groupBox18.Controls.Add(this.button81);
-            this.groupBox18.Controls.Add(this.label133);
-            this.groupBox18.Controls.Add(this.label101);
-            this.groupBox18.Controls.Add(this.label95);
-            this.groupBox18.Location = new System.Drawing.Point(339, 20);
-            this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(322, 390);
-            this.groupBox18.TabIndex = 1;
-            this.groupBox18.TabStop = false;
-            this.groupBox18.Text = "Управление файлами";
-            // 
-            // label95
-            // 
-            this.label95.AutoSize = true;
-            this.label95.Location = new System.Drawing.Point(15, 33);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(122, 13);
-            this.label95.TabIndex = 0;
-            this.label95.Text = "Текущий номер файла";
-            this.label95.Click += new System.EventHandler(this.label95_Click);
-            // 
-            // label101
-            // 
-            this.label101.AutoSize = true;
-            this.label101.Location = new System.Drawing.Point(15, 101);
-            this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(159, 13);
-            this.label101.TabIndex = 1;
-            this.label101.Text = "Установить номер файла в \'0\'";
-            // 
-            // label133
-            // 
-            this.label133.AutoSize = true;
-            this.label133.Location = new System.Drawing.Point(26, 236);
-            this.label133.Name = "label133";
-            this.label133.Size = new System.Drawing.Size(148, 13);
-            this.label133.TabIndex = 2;
-            this.label133.Text = "Форматировать SD память";
-            this.label133.Click += new System.EventHandler(this.label133_Click_1);
-            // 
-            // button81
-            // 
-            this.button81.Location = new System.Drawing.Point(208, 96);
-            this.button81.Name = "button81";
-            this.button81.Size = new System.Drawing.Size(94, 23);
-            this.button81.TabIndex = 3;
-            this.button81.Text = "Сброс в \'0\'";
-            this.button81.UseVisualStyleBackColor = true;
-            this.button81.Click += new System.EventHandler(this.button81_Click);
-            // 
-            // button82
-            // 
-            this.button82.Location = new System.Drawing.Point(227, 231);
-            this.button82.Name = "button82";
-            this.button82.Size = new System.Drawing.Size(75, 23);
-            this.button82.TabIndex = 4;
-            this.button82.Text = "Формат SD";
-            this.button82.UseVisualStyleBackColor = true;
-            // 
-            // label134
-            // 
-            this.label134.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label134.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label134.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label134.Location = new System.Drawing.Point(18, 58);
-            this.label134.Name = "label134";
-            this.label134.Size = new System.Drawing.Size(147, 20);
-            this.label134.TabIndex = 35;
-            this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -4180,16 +3439,6 @@ namespace KamertonTest
             this.groupBox20.PerformLayout();
             this.groupBox19.ResumeLayout(false);
             this.groupBox19.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.groupBox17.ResumeLayout(false);
@@ -4201,6 +3450,8 @@ namespace KamertonTest
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.tabPage6.ResumeLayout(false);
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
             this.TabPage1.ResumeLayout(false);
@@ -4218,8 +3469,6 @@ namespace KamertonTest
             this.GroupBox4.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox18.ResumeLayout(false);
-            this.groupBox18.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4290,7 +3539,6 @@ namespace KamertonTest
         private System.Windows.Forms.Label Label20;
         private System.Windows.Forms.TextBox txtNumCoils;
         private System.Windows.Forms.TextBox txtStartCoil;
-        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Timer Polltimer1;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -4314,54 +3562,8 @@ namespace KamertonTest
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Label label66;
-        private System.Windows.Forms.Label label65;
-        private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.Label label69;
-        private System.Windows.Forms.Label label68;
-        private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.Label label61;
-        private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label label76;
-        private System.Windows.Forms.Label label75;
-        private System.Windows.Forms.Label label74;
-        private System.Windows.Forms.Label label73;
-        private System.Windows.Forms.Label label77;
         private System.Windows.Forms.Label label78;
         private System.Windows.Forms.Timer timer_Mic_test;
-        private System.Windows.Forms.Label label79;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Label label84;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
@@ -4372,14 +3574,8 @@ namespace KamertonTest
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label85;
-        private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.Label label87;
-        private System.Windows.Forms.Label label88;
-        private System.Windows.Forms.Label label89;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
@@ -4534,7 +3730,6 @@ namespace KamertonTest
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.GroupBox groupBox21;
-        private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Timer timerCTS;
         private System.Windows.Forms.TabPage tabPage6;
@@ -4565,9 +3760,7 @@ namespace KamertonTest
         private System.Windows.Forms.GroupBox groupBox18;
         private System.Windows.Forms.Label label101;
         private System.Windows.Forms.Label label95;
-        private System.Windows.Forms.Button button82;
         private System.Windows.Forms.Button button81;
-        private System.Windows.Forms.Label label133;
         private System.Windows.Forms.Label label134;
     }
 }

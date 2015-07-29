@@ -71,7 +71,7 @@ namespace KamertonTest
                     ToolTip1.SetToolTip(cmbRetry, "Сколько раз повторить операцию, если в первый раз не принят?");
                     ToolTip1.SetToolTip(cmbSerialProtocol, "Выбор протокола COM: ASCII или RTU");
                     ToolTip1.SetToolTip(cmbTcpProtocol, "Выбор протокола Ethernet: MODBUS/TCP или Encapsulated RTU над TCP");
-                    ToolTip1.SetToolTip(textBox1, "Время задержки измерения в миллисекундах");
+                 //   ToolTip1.SetToolTip(textBox1, "Время задержки измерения в миллисекундах");
                     cmbComPort.SelectedIndex = 0;
                     cmbParity.SelectedIndex = 0;
                     cmbStopBits.SelectedIndex = 0;
@@ -138,8 +138,6 @@ namespace KamertonTest
                 case 0:
                     //textBox9.Text += (data.Trim() + "\r\n");
                     //textBox9.Refresh();
-                    textBox10.Text += (data.Trim() + "\r\n");
-                    textBox10.Refresh();
                     textBox11.Text += (data.Trim() + "\r\n");
                     textBox11.Refresh();
                     break;
@@ -148,9 +146,7 @@ namespace KamertonTest
                     //textBox9.Refresh();
                     break;
                 case 2:
-                    textBox10.Text += (data.Trim() + "\r\n");
-                    textBox10.Refresh();
-                    break;
+                      break;
                 case 3:
                     textBox11.Text += (data.Trim() + "\r\n");
                     textBox11.Refresh();
@@ -625,191 +621,7 @@ namespace KamertonTest
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
             //  timer_Mic_test.Enabled = false;
         }
-        private void timer_Mic_test_Tick (object sender, EventArgs e)
-        {
-            short[] writeVals = new short[125];
-            ushort[] readVals = new ushort[125];
-            UInt32 test_countLo = 0;
-            int res;
-            bool[] coilVals = new bool[200];
-            bool[] coilArr = new bool[2];
-            float volume1 = 0.1F;
-            float volume2 = 0.1F;
-            float volume3 = 0.1F;
-            float volume4 = 0.1F;
-            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-
-            startCoil = 63;
-            numCoils = 1;
-            res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
-
-            if (res == BusProtocolErrors.FTALK_SUCCESS)
-            {
-                if (coilArr[0])
-                {
-                    label77.Text = "";
-                    label77.Text = "Тест выполняется";
-                    label77.BackColor = Color.Lime;
-                }
-                else
-                {
-                    label77.Text = "";
-                    label77.Text = "Тест остановлен";
-                    button1.BackColor = Color.White;
-                    label77.BackColor = Color.Pink;
-
-                    startRdReg = 103; // 40103 Адрес время прекращения теста
-                    numRdRegs = 6;
-                    res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-                    lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-                    if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                    {
-
-                        label52.Text = "";
-                        label52.Text = (label52.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-
-                    }
-
-                   
-                }
-            }
-            startRdReg = 22; // 40022 Адрес счетчика тестов
-            numRdRegs = 12;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-
-                volume1 = readVals[4];    // Индикация напряжения на выходе "Маг"
-                volume1 = volume1 / 400;  // реальное напряжение больше в 4 раза. Коеффициент усиления усилителя 4.166
-                //   label38.Text = "";
-                label38.Text = (volume1 + "  ");
-                volume2 = readVals[5];
-
-                volume2 = volume2 / 200;           // Индикация напряжения на выходе "LineL"
-                //   label39.Text = "";
-                label39.Text = (volume2 + "  ");
-
-                volume3 = readVals[6];            // Индикация напряжения питания платы 12в
-                volume3 = volume3 * 2.5F;
-                volume3 = volume3 / 100;
-                if (volume3 < 11.5F)
-                {
-                    label42.BackColor = Color.Red;
-                }
-                else
-                {
-                    label42.BackColor = Color.Lime;
-                }
-
-                //   label42.Text = "";
-                label42.Text = (volume3 + "  ");  // Индикация напряжения питания платы 12в
-
-                volume4 = readVals[7];            // Индикация величины тока питания платы 
-                volume4 = volume4 / 100;          // Необходима корректировка
-                //    label43.Text = "";
-                label43.Text = (volume4 + "  ");
-
-                //    label40.Text = "";                     // Индикация задержки на включение
-                label40.Text = (readVals[8] + "  ");
-
-                //    label41.Text = "";                     // Индикация задержки на выключение
-                label41.Text = (readVals[9] + "  ");
-
-                test_countLo = readVals[10];                 // Индикация счетчика количества тестов
-                test_countLo = test_countLo << 16;
-                test_countLo = test_countLo + readVals[11];  // Формирую из двух двухбайтных слов
-
-                //   label37.Text = "";
-                label37.Text = (test_countLo + "  ");
-
-            }
-
-            startRdReg = 61; // 40061 Адрес счетчика ошибок
-            numRdRegs = 20;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-                label44.Text = "";
-                label44.Text = (label44.Text + (readVals[0] + "  "));
-
-                label46.Text = "";
-                label46.Text = (readVals[12] + "  ");
-
-                label45.Text = "";
-                label45.Text = (label45.Text + (readVals[1] + "  "));
-
-                label47.Text = "";
-                label47.Text = (readVals[13] + "  ");
-
-            }
-
-            startRdReg = 85; // 40085 Адрес время возникновения ошибки
-            numRdRegs = 12;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-                label48.Text = "";
-                label48.Text = (label48.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-
-                label49.Text = "";
-                label49.Text = (label49.Text + readVals[6] + "." + readVals[7] + "." + readVals[8] + "   " + readVals[9] + ":" + readVals[10] + ":" + readVals[11]);
-
-            }
-
-
-            startRdReg = 47; // 40047 Адрес  дата/время контроллера
-            numRdRegs = 8;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-            // lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-                label50.Text = "";
-                label50.Text = (label50.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-
-                label83.Text = "";
-                label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-            }
-
-            startRdReg = 109; // 40109 Адрес время выполнения теста
-            numRdRegs = 4;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-                label54.Text = "";
-                label54.Text = (label54.Text + readVals[0] + " / " + readVals[1] + " / " + readVals[2] + " / " + readVals[3]);
-
-            }
-
-
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-                toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                toolStripStatusLabel1.BackColor = Color.Lime;
-            }
-
-            else
-            {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
-                toolStripStatusLabel1.BackColor = Color.Red;
-                Polltimer1.Enabled = false;
-                timer_Mic_test.Enabled = false;
-                label89.Text = " Для продолжения теста после восстановления связи нажмите кнопку Старт ";// Текст о включении
-            }
-
-            label79.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
-            toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture));
-
-        }
+ 
         private void timer_byte_set_Tick (object sender, EventArgs e)
         {
             short[] readVals = new short[124];
@@ -2201,145 +2013,7 @@ namespace KamertonTest
         {
 
         }
-
-        private void button1_Click(object sender, EventArgs e)                         // Кнопка "Старт" теста микрофона
-         {
-         //    Polltimer1.Enabled = false;
-         //    timer_byte_set.Enabled = false;
-         //    timerCTS.Enabled = false;
-         //    timerTestAll.Enabled = false;
-         //   short[] writeVals = new short[12];
-         //   short[] MSK = new short[2];
-         //   MSK[0] = 5;
-         //   ushort[] readVals = new ushort[125];
-         //   label89.Text = "";                    // Текст о включении
-         //   textBox10.Text = "";                  // Текст очистить
-
-         //   bool[] coilVals = new bool[200];
-         //   bool[] coilArr = new bool[20];
-         //   _SerialMonitor = 2;
-         ////   if (!(_serialPort.IsOpen))
-         ////       _serialPort.Open();
-                   
-         //   slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-             
-         //   textBox3.BackColor = Color.White;
-         //   writeVals[0] = short.Parse(textBox2.Text, CultureInfo.CurrentCulture);   // Установка времени отсечки на включение
-         //   writeVals[1] = short.Parse(textBox3.Text, CultureInfo.CurrentCulture);   // Установка уровня входного сигнала
-         //   int tempK =  writeVals[1] * 5;               // Установка уровня входного сигнала
-         //   if (tempK > 250)
-         //   {
-         //       tempK = 250;
-         //       textBox3.Text = ">50";
-         //       textBox3.BackColor = Color.Red;
-         //   }
-         //   writeVals[1] = (short)tempK;                 // Установка уровня входного сигнала
-         //   writeVals[5] = short.Parse(textBox1.Text, CultureInfo.CurrentCulture);   // Установка времени отсечки на выключение
-
-         //   startWrReg = 41 ;
-         //   numWrRegs = 10;   //
-         //   res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
-
-
-         //   startCoil = 36; // Запустить тест CTS
-         //   numCoils = 1;
-         //   coilVals[0] = true;
-          
-         //   res = myProtocol.forceMultipleCoils(slave, startCoil, coilVals, numCoils);  // Write Coils
-
-         //   startRdReg = 97; // 40085 Адрес время старта
-         //   numRdRegs = 6;
-         //   res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-         //  // lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-         //   if ((res == BusProtocolErrors.FTALK_SUCCESS))
-         //   {
-
-         //       label51.Text = "";
-         //       label51.Text = (label51.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-         //       label52.Text = "";
-         //       label52.Text = (" 0 . 0 . 0000  0:0:0");
-         //   }
-
-         //   startRdReg = 109; // 40109 Адрес время выполнения теста
-         //   numRdRegs = 4;
-         //   res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-         //  // lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-         //   if ((res == BusProtocolErrors.FTALK_SUCCESS))
-         //   {
-
-         //       label54.Text = "";
-         //       label54.Text = (label54.Text + readVals[0] + " / " + readVals[1] + " / " + readVals[2] + " / " + readVals[3]);
-
-         //   }
-         
-         //   timer_Mic_test.Enabled = true;
-         //   button1.BackColor = Color.Lime;
-         //   button2.BackColor = Color.LightSalmon;
-            
-            }
-   
-        private void button2_Click(object sender, EventArgs e)                         // Кнопка "Стоп" теста микрофона
-        {
-           
-         //   short[] writeVals = new short[125];
-         //   int slave;
-         //   int res;
-         //   int startCoil;
-         //   int numCoils;
-         //   bool[] coilVals = new bool[200];
-         //   bool[] coilArr = new bool[2];
-         //   ushort[] readVals = new ushort[125];
-
-         //   slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-         //   startCoil = 36; // Остановить тест CTS
-         //   numCoils = 1;
-         //   coilVals[0] = false;
-         //   res = myProtocol.forceMultipleCoils(slave, startCoil, coilVals, numCoils);  // Write Coils     
-        
-         //   startRdReg = 36; // 40120 Адрес 
-         //   numRdRegs = 2;
-         //   do
-         //   {
-         //       res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-         //       //  lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-         //       //textBox9.Refresh();
-
-         //       if ((res == BusProtocolErrors.FTALK_SUCCESS))
-         //       {
-         //           toolStripStatusLabel1.Text = "    MODBUS ON    ";
-         //           toolStripStatusLabel1.BackColor = Color.Lime;
-         //       }
-
-
-         //       else
-         //       {
-         //           toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
-         //           toolStripStatusLabel1.BackColor = Color.Red;
-         //           Polltimer1.Enabled = false;
-         //           timer_byte_set.Enabled = false;
-         //           timer_Mic_test.Enabled = false;
-         //           timerCTS.Enabled = false;
-         //           timerTestAll.Enabled = false;
-         //       }
-
-
-         //   } while (readVals[0] != 0);
-
-         //   button2.BackColor = Color.Red;
-         //   textBox3.BackColor = Color.White;
-
-         ////   Polltimer1.Enabled = true;
-         ////   Thread.Sleep(600);
-
-          
-         //   Polltimer1.Enabled = true;
-
-         // //  _serialPort.Close();
-         // //    Polltimer1.Enabled = true;
-
-            
-        }
-
+  
         private void button3_Click(object sender, EventArgs e)                         // Записать системное время
           { 
 
@@ -4785,84 +4459,7 @@ namespace KamertonTest
         }
         #endregion
 
-        private void textBox10_TextChanged (object sender, EventArgs e)
-        {
-            textBox10.SelectionStart = textBox10.Text.Length;
-            textBox10.ScrollToCaret();
-            textBox10.Refresh();
-        }
-      
-        private void button24_Click_1 (object sender, EventArgs e)                           // Старт CTS
-        {
-            //timerTestAll.Enabled = false;
-                       
-            //Polltimer1.Enabled = false;
-            //timer_Mic_test.Enabled = false;
-            //timer_byte_set.Enabled = false;
-            //textBox11.Text = ("");
-            // _SerialMonitor = 3;
-            //timerCTS.Enabled = true;
-            //ushort[] writeVals = new ushort[20];
-            //bool[] coilArr = new bool[34];
-            //progressBar2.Value = 0;
-            //slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-            //button24.BackColor = Color.Lime;
-            //button24.Refresh();
-            //button25.BackColor = Color.LightSalmon;
-            //button25.Refresh();
-
-           
-            //bool[] coilVals = new bool[200];
-            //slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-            //progressBar1.Value = 0;
-
-            //label95.Text = "Выполняется тест CTS";
-            //label95.ForeColor = Color.DarkOliveGreen;
-
-            //startCoil = 35; // Запустить тест CTS
-            //res = myProtocol.writeCoil(slave, startCoil, true);
-            ////  timer_byte_set.Enabled = true;
-            
-
-
-            //label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
-            //toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
-                       
-        }
-
-        private void button25_Click (object sender, EventArgs e)                             // Стоп CTS
-        {
-          //  timerTestAll.Enabled = false;
-
-          //  ushort[] writeVals = new ushort[20];
-          //  bool[] coilArr = new bool[34];
-
-          //  slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-
-
-          //  startCoil = 35; // Остановить тест CTS
-
-          //  res = myProtocol.writeCoil(slave, startCoil, false);
-          //  button25.BackColor = Color.Red;
-          //  button24.BackColor = Color.White;
-          //  label95.Text = "Тест CTS ОСТАНОВЛЕН";
-          //  label95.ForeColor = Color.Red;
-          //  progressBar1.Value = 0;
-          //  timer_byte_set.Enabled = false;
-          //  timerCTS.Enabled = false;
-
-          //  Thread.Sleep(4000);
-
-
-          //  Polltimer1.Enabled = true;
-
-          ////  _serialPort.Close();
-
-          //  label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
-          //  toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
-
-        }
-
+ 
         private void textBox11_TextChanged (object sender, EventArgs e)
         {
             textBox11.SelectionStart = textBox11.Text.Length;
@@ -5015,10 +4612,15 @@ namespace KamertonTest
 
         }
 
-          private void label80_Click(object sender, EventArgs e)
+        private void label80_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void label37_Click(object sender, EventArgs e)
+          {
+
+          }
 
         
     }

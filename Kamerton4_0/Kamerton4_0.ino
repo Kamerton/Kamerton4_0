@@ -270,6 +270,19 @@ const char  txt_message44[]   PROGMEM            = "Command sensor OFF tangenta 
 const char  txt_message45[]   PROGMEM            = "Command PTT    OFF tangenta nognaja              send!"      ;
 const char  txt_message46[]   PROGMEM            = "Command sensor ON  tangenta nognaja              send!"      ;
 const char  txt_message47[]   PROGMEM            = "Command PTT    ON  tangenta nognaja              send!"      ;
+const char  txt_message48[]   PROGMEM            = " ****** Test GGS start! ******"      ;
+const char  txt_message49[]   PROGMEM            = "Signal GGS  FrontL, FrontR   30mv             ON"            ;
+
+const char  txt_message50[]   PROGMEM            = ""      ;
+const char  txt_message51[]   PROGMEM            = ""      ;
+const char  txt_message52[]   PROGMEM            = ""      ;
+const char  txt_message53[]   PROGMEM            = ""      ;
+const char  txt_message54[]   PROGMEM            = ""      ;
+const char  txt_message55[]   PROGMEM            = ""      ;
+const char  txt_message56[]   PROGMEM            = ""      ;
+const char  txt_message57[]   PROGMEM            = ""      ;
+const char  txt_message58[]   PROGMEM            = ""      ;
+const char  txt_message59[]   PROGMEM            = ""      ;
 
 //++++++++++++++++++++++++++++++ Тексты ошибок ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const char  txt_error0[]  PROGMEM              = "Sensor MTT                          XP1- 19 HaSs            OFF - ";
@@ -427,7 +440,20 @@ txt_message43,                                // " ****** Test tangenta nognaja 
 txt_message44,                                // "Command sensor OFF tangenta nognaja              send!"      ;
 txt_message45,                                // "Command PTT    OFF tangenta nognaja              send!"      ;
 txt_message46,                                // "Command sensor ON  tangenta nognaja              send!"      ;
-txt_message47                                 // "Command PTT    ON  tangenta nognaja              send!"      ;
+txt_message47,                                // "Command PTT    ON  tangenta nognaja              send!"      ;
+txt_message48,                                // " ****** Test GGS start! ******"      ;
+txt_message49,                                // ""      ;
+
+txt_message50,                                // ""      ;
+txt_message51,                                // ""      ;
+txt_message52,                                // ""      ;
+txt_message53,                                // ""      ;
+txt_message54,                                // ""      ;
+txt_message55,                                // ""      ;
+txt_message56,                                // ""      ;
+txt_message57,                                // ""      ;
+txt_message58,                                // ""      ;
+txt_message59                                 // ""      ;
 
 };
 
@@ -1185,7 +1211,7 @@ void control_command()
 			 set_namber_file_zero();            //
 				break;
 		case 18:
-			 format_SD();                       //
+			// format_SD();                       //
 				break;
 		default:
 			regBank.set(adr_control_command,0);
