@@ -3,11 +3,6 @@
   <assemblyIdentity name="KamertonTestFin.application" version="1.0.0.24" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <description asmv2:publisher="Decima" asmv2:product="KamertonTestFin" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true">
-    <subscription>
-      <update>
-        <beforeApplicationStartup />
-      </update>
-    </subscription>
     <deploymentProvider codebase="http://nto-moseichuk/KamertonTestFin/KamertonTestFin.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
@@ -21,7 +16,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>He6BHya3IaHFSfyZVLfVWBuW5q0=</dsig:DigestValue>
+        <dsig:DigestValue>YnTLPAgQ8aVJ93XflKkL9MgnZUE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
