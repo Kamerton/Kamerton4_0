@@ -5,7 +5,7 @@
     <InstallUrlHistory />
     <SupportUrlHistory />
     <UpdateUrlHistory>http://localhost/KamertonTestFin/</UpdateUrlHistory>
-    <BootstrapperUrlHistory>E:\1 SVN Kamerton4_0\trunk\KamertonTestFin</BootstrapperUrlHistory>
+    <BootstrapperUrlHistory>file:///C:/VirtualBuffer/|E:\1 SVN Kamerton4_0\trunk\KamertonTestFin</BootstrapperUrlHistory>
     <ErrorReportUrlHistory />
     <FallbackCulture>ru-RU</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
