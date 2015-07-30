@@ -486,7 +486,7 @@ namespace KamertonTest
                 int startRdReg;
                 int numRdRegs;
                 slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-                startRdReg = 112; // 40046 Адрес дата/время контроллера  
+                startRdReg = 112; // 
                 numRdRegs = 4;
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
                 lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
@@ -494,8 +494,6 @@ namespace KamertonTest
                 {
                     toolStripStatusLabel1.Text = "    MODBUS ON    ";
                     toolStripStatusLabel1.BackColor = Color.Lime;
-
-                   // textBox9.Text = "\r\n";
                     textBox9.Text += "Текущий номер файла   -   ";
                     textBox9.Text += (readVals[0]);
                     if (readVals[1] < 10)

@@ -271,7 +271,7 @@ const char  txt_message45[]   PROGMEM            = "Command PTT    OFF tangenta 
 const char  txt_message46[]   PROGMEM            = "Command sensor ON  tangenta nognaja              send!"      ;
 const char  txt_message47[]   PROGMEM            = "Command PTT    ON  tangenta nognaja              send!"      ;
 const char  txt_message48[]   PROGMEM            = " ****** Test GGS start! ******"      ;
-const char  txt_message49[]   PROGMEM            = "Signal GGS  FrontL, FrontR   30mv             ON"            ;
+const char  txt_message49[]   PROGMEM            = "Signal GGS  FrontL, FrontR   0,7v             ON"            ;
 
 const char  txt_message50[]   PROGMEM            = ""      ;
 const char  txt_message51[]   PROGMEM            = ""      ;
@@ -373,21 +373,25 @@ const char  txt_error77[]  PROGMEM             = "Command sensor tangenta nognaj
 const char  txt_error78[]  PROGMEM             = "Command PTT tangenta nognaja (CTS)  XP8 - 1                 OFF - ";
 const char  txt_error79[]  PROGMEM             = "Command PTT tangenta nognaja (CTS)  XP8 - 1                 ON  - ";
 
-const char  txt_error80[]  PROGMEM             = "Test GGS ** Signal                                          OFF - ";
-const char  txt_error81[]  PROGMEM             = "Test GGS ** Signal                                          ON  - ";
-const char  txt_error82[]  PROGMEM             = "";  
-const char  txt_error83[]  PROGMEM             = "";
-const char  txt_error84[]  PROGMEM             = "";
-const char  txt_error85[]  PROGMEM             = "";   
-const char  txt_error86[]  PROGMEM             = "";
-const char  txt_error87[]  PROGMEM             = "";
-const char  txt_error88[]  PROGMEM             = "";   
-const char  txt_error89[]  PROGMEM             = "";    
+const char  txt_error80[]  PROGMEM             = "Test GGS ** Signal FrontL                                   OFF - ";
+const char  txt_error81[]  PROGMEM             = "Test GGS ** Signal FrontR                                   OFF - ";
+const char  txt_error82[]  PROGMEM             = "Test GGS ** Signal LineL                                    OFF - ";
+const char  txt_error83[]  PROGMEM             = "Test GGS ** Signal LineR                                    OFF - ";
+const char  txt_error84[]  PROGMEM             = "Test GGS ** Signal mag radio                                OFF - ";
+const char  txt_error85[]  PROGMEM             = "Test GGS ** Signal mag phone                                OFF - ";
+const char  txt_error86[]  PROGMEM             = "Test GGS ** Signal GGS                                      OFF - ";
+const char  txt_error87[]  PROGMEM             = "Test GGS ** Signal GG Radio1                                OFF - ";
+const char  txt_error88[]  PROGMEM             = "Test GGS ** Signal GG Radio2                                OFF - ";
+const char  txt_error89[]  PROGMEM             = "Test GGS ** Signal GGS                                      ON  - ";
 
-const char  txt_error90[]  PROGMEM             = "";
-const char  txt_error91[]  PROGMEM             = ""; 
-const char  txt_error92[]  PROGMEM             = "";    
+const char  txt_error90[]  PROGMEM             = "Test GGS ** Signal FrontL                                   ON  - ";
+const char  txt_error91[]  PROGMEM             = "Test GGS ** Signal FrontR                                   ON  - ";
+const char  txt_error92[]  PROGMEM             = "Test GGS ** Signal mag phone                                ON  - ";
 const char  txt_error93[]  PROGMEM             = "";  
+const char  txt_error94[]  PROGMEM             = "";
+const char  txt_error95[]  PROGMEM             = ""; 
+const char  txt_error96[]  PROGMEM             = "";    
+const char  txt_error97[]  PROGMEM             = "";  
 
 char buffer[100];  
 
@@ -442,7 +446,7 @@ txt_message45,                                // "Command PTT    OFF tangenta no
 txt_message46,                                // "Command sensor ON  tangenta nognaja              send!"      ;
 txt_message47,                                // "Command PTT    ON  tangenta nognaja              send!"      ;
 txt_message48,                                // " ****** Test GGS start! ******"      ;
-txt_message49,                                // ""      ;
+txt_message49,                                // "Signal GGS  FrontL, FrontR   0,7v             ON"            ;
 
 txt_message50,                                // ""      ;
 txt_message51,                                // ""      ;
@@ -547,20 +551,20 @@ txt_error77,                                  // "Command sensor tangenta nognaj
 txt_error78,                                  // "Command PTT tangenta nognaja (CTS)  XP8 - 1                 OFF - ";  
 txt_error79,                                  // "Command PTT tangenta nognaja (CTS)  XP8 - 1                 ON  - "; 
 
-txt_error80,                                  // "Test GGS ** Signal                                          OFF - ";
-txt_error81,                                  // "Test GGS ** Signal                                          ON   - ";
-txt_error82,                                  //  
-txt_error83,                                  //  
-txt_error84,                                  // 
-txt_error85,                                  // 
-txt_error86,                                  //  
-txt_error87,                                  //  
-txt_error88,                                  //  
-txt_error89,                                  //  
+txt_error80,                                  // "Test GGS ** Signal FrontL                                   OFF - ";
+txt_error81,                                  // "Test GGS ** Signal FrontR                                   OFF - ";
+txt_error82,                                  // "Test GGS ** Signal LineL                                    OFF - ";
+txt_error83,                                  // "Test GGS ** Signal LineR                                    OFF - ";
+txt_error84,                                  // "Test GGS ** Signal mag radio                                OFF - ";
+txt_error85,                                  // "Test GGS ** Signal mag phone                                OFF - ";
+txt_error86,                                  // "Test GGS ** Signal GGS                                      OFF - ";
+txt_error87,                                  // "Test GGS ** Signal GG Radio1                                OFF - ";
+txt_error88,                                  // "Test GGS ** Signal GG Radio2                                OFF - ";
+txt_error89,                                  // "Test GGS ** Signal GGS                                      ON  - ";
 
-txt_error90,                                  //  
-txt_error91,                                  // 
-txt_error92,                                  // 
+txt_error90,                                  // "Test GGS ** Signal FrontL                                   ON  - ";
+txt_error91,                                  // "Test GGS ** Signal FrontR                                   ON  - ";
+txt_error92,                                  // "Test GGS ** Signal mag phone                                ON  - ";
 txt_error93                                   // 
 };
 
@@ -1199,7 +1203,7 @@ void control_command()
 			  FileClose();
 				break;
 		case 14:
-			  set_clock();
+			 // set_clock();
 				break;
 		case 15:
 			 set_rezistor();
@@ -2018,6 +2022,7 @@ void test_MTT()
 	//measure_vol_min(analog_LineR,     40253,253,25);                              // Измерить уровень сигнала на выходе LineR     "Test MTT ** Signal LineR                                    OFF - ";
 	measure_vol_min(analog_mag_radio, 40254,254,25);                                // Измерить уровень сигнала на выходе FrontR    "Test MTT ** Signal mag radio                                OFF - ";
 	//measure_vol_min(analog_mag_phone, 40255,255,25);                              // Измерить уровень сигнала на выходе LineR     "Test MTT ** Signal mag phone                                OFF - ";
+	Serial.println("Signal GGS");
 	measure_vol_min(analog_ggs,       40256,256,30);                                // Измерить уровень сигнала на выходе GGS       "Test MTT ** Signal GGS                                      OFF - ";
 	measure_vol_min(analog_gg_radio1, 40257,257,30);                                // Измерить уровень сигнала на выходе GG Radio1 "Test MTT ** Signal GG Radio1                                OFF - ";
 	measure_vol_min(analog_gg_radio2, 40258,258,30);                                // Измерить уровень сигнала на выходе GG Radio2 "Test MTT ** Signal GG Radio2                                OFF - ";
@@ -2395,15 +2400,14 @@ void testGGS()
 	myFile.println(buffer);                                                         // " ****** Test GGS start! ******"      ;
 	file_print_date();
 	myFile.println("");
-	regBank.set(25,1);                                                              // XP1- 19 HaSs      sensor подключения трубки          
+	regBank.set(25,1);                                                              // XP1- 19 HaSs      sensor подключения трубки  
+	regBank.set(6,0);                                                               // Реле RL5 Звук Front L, Front R
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
-		UpdateRegs(); 
+	UpdateRegs(); 
 	delay(300);
 	UpdateRegs(); 
 	byte i50 = regs_in[0];    
-	//byte i52 = regs_in[2];    
-	//byte i53 = regs_in[3];    
 
 		if(bitRead(i50,2) != 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            OFF - ";
 		  {
@@ -2428,8 +2432,54 @@ void testGGS()
 				if (test_repeat == false) myFile.println(buffer);                   //  sensor  трубки отключен  - Pass
 			   }
 		  }
+		//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	measure_vol_min(analog_FrontL,    40280,280,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontL                                   OFF - ";
+	measure_vol_min(analog_FrontR,    40281,281,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontR                                   OFF - ";
+	measure_vol_min(analog_LineL,     40282,282,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
+	measure_vol_min(analog_LineR,     40283,283,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
+	measure_vol_min(analog_mag_radio, 40284,284,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
+	measure_vol_min(analog_mag_phone, 40285,285,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag phone                                OFF - ";
+	measure_vol_min(analog_ggs,       40286,286,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
+	measure_vol_min(analog_gg_radio1, 40287,287,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
+	measure_vol_min(analog_gg_radio2, 40288,288,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
+	//----------------------------------------------------------------------------------------------------------------------------------------
 
-	UpdateRegs();     
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[49])));                   // "Signal GGS  FrontL, FrontR   0,7v             ON"            ;
+	if (test_repeat == false) myFile.println(buffer);                                                         // "Signal GGS  FrontL, FrontR   0,7v             ON"            ;
+	regBank.set(6,1);                                                               // Реле RL5 Звук Front L, Front R
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+
+	measure_vol_max(analog_FrontL,    40290,290,40);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontL                                   ON  - ";
+	measure_vol_max(analog_FrontR,    40291,291,40);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontR                                   ON  - ";
+	measure_vol_min(analog_LineL,     40282,282,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
+	measure_vol_min(analog_LineR,     40283,283,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
+	measure_vol_min(analog_mag_radio, 40284,284,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
+	measure_vol_max(analog_mag_phone, 40292,292,50);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag phone                                ON  - ";
+	measure_vol_max(analog_ggs,       40289,289,160);                               // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      ON  - ";
+	measure_vol_min(analog_gg_radio1, 40287,287,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
+	measure_vol_min(analog_gg_radio2, 40288,288,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
+
+	regBank.set(25,0);                                                              // XP1- 19 HaSs      sensor подключения трубки          
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+	UpdateRegs(); 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[30])));                   // "Command sensor ON  MTT                           send!"      ;
+	if (test_repeat == false) myFile.println(buffer);                                                         // "Command sensor ON  MTT                           send!"      ;
+
+	measure_vol_max(analog_FrontL,    40290,290,40);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontL                                   ON  - ";
+	measure_vol_max(analog_FrontR,    40291,291,40);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontR                                   ON  - ";
+	measure_vol_min(analog_LineL,     40282,282,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
+	measure_vol_min(analog_LineR,     40283,283,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
+	measure_vol_min(analog_mag_radio, 40284,284,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
+	measure_vol_max(analog_mag_phone, 40292,292,50);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag phone                                ON  - ";
+	measure_vol_min(analog_ggs,       40286,286,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
+	measure_vol_min(analog_gg_radio1, 40287,287,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
+	measure_vol_min(analog_gg_radio2, 40288,288,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
+
+	regBank.set(6,0);                                                               // Реле RL5 Звук Front L, Front R
+	UpdateRegs();    
+	delay(300);
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 }
 void test_GG_Radio1()
@@ -3232,6 +3282,34 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			case 258:
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[58])));    // "Test MTT ** Signal GG Radio2                                OFF - ";
 				break;
+			case 280:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[80])));    //  ошибки "Test GGS ** Signal FrontL                                   OFF - ";
+				break;
+			case 281:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[81])));    // ошибки "Test GGS ** Signal FrontR                                   OFF - ";
+				break;
+			case 282:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[82])));    // ошибки "Test GGS ** Signal LineL                                    OFF - ";
+				break;
+			case 283:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[83])));    // ошибки "Test GGS ** Signal LineR                                    OFF - ";
+				break;
+			case 284:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[84])));    // ошибки "Test GGS ** Signal mag radio                                OFF - ";
+				break;
+			case 285:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[85])));    // ошибки "Test GGS ** Signal mag phone                                OFF - ";
+				break;
+			case 286:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[86])));    // ошибки "Test GGS ** Signal GGS                                      OFF - ";
+				break;
+			case 287:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[87])));    // ошибки "Test GGS ** Signal GG Radio1                                OFF - ";
+				break;
+			case 288:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[88])));    // "Test GGS ** Signal GG Radio2                                OFF - ";
+				break;
+
 		}
 		if(voltage10 >  porogV)                                                     // Проверить исправность канала
 			{
@@ -3291,8 +3369,21 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			case 262:
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[62])));    // "Test MTT ** Signal Mag phone                                ON  - ";
 				break;
+			case 289:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[89])));    // ошибки "Test GGS ** Signal GGS                                      ON  - ";
+				break;
+			case 290:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[90])));    // ошибки "Test GGS ** Signal FrontL                                   ON  - ";
+				break;
+			case 291:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[91])));    // ошибки "Test GGS ** Signal FrontR                                   ON  - ";
+				break;
+			case 292:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[92])));    // ошибки "Test GGS ** Signal mag phone                                ON  - ";
+				break;
 		}
-		
+
+	
 		if(voltage10 <  porogV)                                                     // Проверить исправность канала
 			{
 				myFile.print(buffer); 
@@ -3743,8 +3834,22 @@ modbus registers follow the following format
 	regBank.add(278);                         // Флаг ошибки "Command PTT tangenta nognaja (CTS)                          OFF - ";
 	regBank.add(279);                         // Флаг ошибки "Command PTT tangenta nognaja (CTS)                          ON  - ";
 
-	regBank.add(280);                         // Флаг ошибки "Test GGS ** Signal                                          OFF - ";
-	regBank.add(281);                         // Флаг ошибки "Test GGS ** Signal                                          ON   - ";
+	regBank.add(280);                         // Флаг ошибки "Test GGS ** Signal FrontL                                   OFF - ";
+	regBank.add(281);                         // Флаг ошибки "Test GGS ** Signal FrontR                                   OFF - ";
+	regBank.add(282);                         // Флаг ошибки "Test GGS ** Signal LineL                                    OFF - ";
+	regBank.add(283);                         // Флаг ошибки "Test GGS ** Signal LineR                                    OFF - ";
+	regBank.add(284);                         // Флаг ошибки "Test GGS ** Signal mag radio                                OFF - ";
+	regBank.add(285);                         // Флаг ошибки "Test GGS ** Signal mag phone                                OFF - ";
+	regBank.add(286);                         // Флаг ошибки "Test GGS ** Signal GGS                                      OFF - ";
+	regBank.add(287);                         // Флаг ошибки "Test GGS ** Signal GG Radio1                                OFF - ";
+	regBank.add(288);                         // Флаг ошибки "Test GGS ** Signal GG Radio2                                OFF - ";
+	regBank.add(289);                         // Флаг ошибки "Test GGS ** Signal GGS                                      ON  - ";
+
+	regBank.add(290);                         // Флаг ошибки "Test GGS ** Signal FrontL                                   ON  - ";
+	regBank.add(291);                         // Флаг ошибки "Test GGS ** Signal FrontR                                   ON  - ";
+	regBank.add(292);                         // Флаг ошибки "Test GGS ** Signal mag phone                                ON  - ";
+
+
 
 
 	regBank.add(10081);    // Адрес флагa индикации состояния сигнала CTS
@@ -4018,8 +4123,20 @@ modbus registers follow the following format
 	regBank.add(40278);                         // Aдрес счетчика ошибки "Command PTT tangenta nognaja (CTS)                          OFF - ";
 	regBank.add(40279);                         // Aдрес счетчика ошибки "Command PTT tangenta nognaja (CTS)                          ON  - ";
 
-	regBank.add(40280);                         // Aдрес счетчика ошибки "Test GGS ** Signal                                          OFF - ";
-	regBank.add(40281);                         // Aдрес счетчика ошибки "Test GGS ** Signal                                          ON   - ";
+	regBank.add(40280);                         // Aдрес счетчика ошибки "Test GGS ** Signal FrontL                                   OFF - ";
+	regBank.add(40281);                         // Aдрес счетчика ошибки "Test GGS ** Signal FrontR                                   OFF - ";
+	regBank.add(40282);                         // Aдрес счетчика ошибки "Test GGS ** Signal LineL                                    OFF - ";
+	regBank.add(40283);                         // Aдрес счетчика ошибки "Test GGS ** Signal LineR                                    OFF - ";
+	regBank.add(40284);                         // Aдрес счетчика ошибки "Test GGS ** Signal mag radio                                OFF - ";
+	regBank.add(40285);                         // Aдрес счетчика ошибки "Test GGS ** Signal mag phone                                OFF - ";
+	regBank.add(40286);                         // Aдрес счетчика ошибки "Test GGS ** Signal GGS                                      OFF - ";
+	regBank.add(40287);                         // Aдрес счетчика ошибки "Test GGS ** Signal GG Radio1                                OFF - ";
+	regBank.add(40288);                         // Aдрес счетчика ошибки "Test GGS ** Signal GG Radio2                                OFF - ";
+	regBank.add(40289);                         // Aдрес счетчика ошибки "Test GGS ** Signal GGS                                      ON  - ";
+
+	regBank.add(40290);                         // Aдрес счетчика ошибки "Test GGS ** Signal FrontL                                   ON  - ";
+	regBank.add(40291);                         // Aдрес счетчика ошибки "Test GGS ** Signal FrontR                                   ON  - ";
+	regBank.add(40292);                         // Aдрес счетчика ошибки "Test GGS ** Signal mag phone                                ON  - ";
 
 
 	slave._device = &regBank;  
