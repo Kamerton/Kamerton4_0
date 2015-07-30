@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="KamertonTestFin.exe" version="1.0.0.26" publicKeyToken="bb86fa4dfc5118b0" language="neutral" processorArchitecture="x86" type="win32" />
+  <description asmv2:iconFile="kcontrol2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="KamertonTestFin" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+    <commandLine file="KamertonTestFin.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          Параметры манифеста UAC
+          При необходимости изменить уровень управления учетными записями Windows замените 
+          узел requestedExecutionLevel одним из следующих значений.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+        Если вы хотите использовать виртуализацию файлов и реестра для обратной
+             совместимости, удалите узел requestedExecutionLevel.
+ -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KamertonTestFin.exe" size="136192">
+      <assemblyIdentity name="KamertonTestFin" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>pH80eztF/Fh4j9aJc0pTF1zulUs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="mbusmaster.net.dll" size="134144">
+      <assemblyIdentity name="mbusmaster.net" version="2.7.1.0" publicKeyToken="E3FE03AEDE4B4746" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>vRHnFhzmefbYK9glBZG0u8DW5GQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="KamertonTestFin.exe.config" size="144">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>cpzNzlRjZspwKGLNlX6RAlU3880=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="kcontrol2.ico" size="9662">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>sNhm4hj0k1WWNuphLRzULshOe4U=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DECIMA\moseichuk" issuerKeyHash="4f6f68dc3f3bc6d49b50187f78202755df0416ce" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>qOWYYZvInLEfG3L237dsM6i2oQ8=</DigestValue></Reference></SignedInfo><SignatureValue>UdnZEtvc5og3EmvvZHcSm2og/bbyAJ20EphwHyFS5am1A0DaZlfTeyffmbRG3sx2pszcWH57oQbAFqlF3uGT7JbxG2YwM4Y3LZaQ0+A8qhoDnSObybwzElgZNzKxcrkaB2vhr8iT0sNc5uCGEFaqQPIFkRwbfJYkVSqxgsdyZr4=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>qE1CVZGNDEXTxOEOqhXVoWCJf2oJ2C8/OZkaSaaC7XMlmfhrvH8nFa1TRg69O23bRsqLrlnjC41cKDNVYjSnvdEubajbSiJGUoxijuEBmGLcgWsDltMVQ6RkWyNK1lFyo4Rn6eEiEvnyaBQpXaFoM0+pjFdsEY7NJtQm2qqGO5U=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="0fa1b6a8336cb7dff6721b1fb19cc89b6198e5a8" Description="" Url=""><as:assemblyIdentity name="KamertonTestFin.exe" version="1.0.0.26" publicKeyToken="bb86fa4dfc5118b0" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DECIMA\moseichuk</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>yvm2C31XDuuFAD2mcxxCs3D+eGM=</DigestValue></Reference></SignedInfo><SignatureValue>l60z+ch2eO6T+f5UKR4h4gpxKgse6thIfxNqkZhAq/61/IB50SEsHSc4x+fY7SURXSbUCpKXuEYo2ijHHIpsUO73Ls5p9mk5TYWYIhJuVeR3B8UG+tMVX9L0mGVMyPhHz+BFfX5b7wtN/27IEu59AkSfpyFqJ592zkMdDSFfmBA=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>qE1CVZGNDEXTxOEOqhXVoWCJf2oJ2C8/OZkaSaaC7XMlmfhrvH8nFa1TRg69O23bRsqLrlnjC41cKDNVYjSnvdEubajbSiJGUoxijuEBmGLcgWsDltMVQ6RkWyNK1lFyo4Rn6eEiEvnyaBQpXaFoM0+pjFdsEY7NJtQm2qqGO5U=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB0TCCAT6gAwIBAgIQBcAZPh94srVBATsHASo6OTAJBgUrDgMCHQUAMCsxKTAnBgNVBAMeIABEAEUAQwBJAE0AQQBcAG0AbwBzAGUAaQBjAGgAdQBrMB4XDTE0MDkyNDEwNTAxMVoXDTE1MDkyNDE2NTAxMVowKzEpMCcGA1UEAx4gAEQARQBDAEkATQBBAFwAbQBvAHMAZQBpAGMAaAB1AGswgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKhNQlWRjQxF08ThDqoV1aFgiX9qCdgvPzmZGkmmgu1zJZn4a7x/JxWtU0YOvTtt20bKi65Z4wuNXCgzVWI0p73RLm2o20oiRlKMYo7hAZhi3IFrA5bTFUOkZFsjStZRcqOEZ+nhIhL58mgUKV2haDNPqYxXbBGOzSbUJtqqhjuVAgMBAAEwCQYFKw4DAh0FAAOBgQAI0+Xi71qeQr2f4LqTYf1rr4X5/dM+wes5enXBwOtbJcu/MfW48wmlinGyugsPo7fDk7q1Us2z/710M16QZbbikbcQn8SV1SX6HOP+z/G0pgZ32tYYSkvlLvSzWf87oNdEhG6AzSBhqRBX8mlgSyypwUYuB+5+clRfOFAjBEx+mw==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

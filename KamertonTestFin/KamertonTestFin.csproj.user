@@ -4,8 +4,8 @@
     <PublishUrlHistory>E:\1 SVN Kamerton4_0\trunk\KamertonTestFin\publish\|publish\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
-    <UpdateUrlHistory />
-    <BootstrapperUrlHistory />
+    <UpdateUrlHistory>http://localhost/KamertonTestFin/</UpdateUrlHistory>
+    <BootstrapperUrlHistory>E:\1 SVN Kamerton4_0\trunk\KamertonTestFin</BootstrapperUrlHistory>
     <ErrorReportUrlHistory />
     <FallbackCulture>ru-RU</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
