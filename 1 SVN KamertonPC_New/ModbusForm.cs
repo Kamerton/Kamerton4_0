@@ -570,7 +570,7 @@ namespace KamertonTest
                 label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
 
 
-                startRdReg = 112; // 40046 Адрес дата/время контроллера  
+                startRdReg = 112; // 40112 Адрес  
                 numRdRegs = 4;
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
                 lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));

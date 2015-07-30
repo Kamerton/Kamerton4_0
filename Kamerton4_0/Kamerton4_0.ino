@@ -930,8 +930,9 @@ void set_clock()
 		int minute = regBank.get(adr_set_kontrol_minute);  
 		int second = 0;
 		DateTime set_time = DateTime(year, month, day, hour, minute, second); // «анести данные о времени в строку "set_time"
-		RTC.adjust(set_time);                                // «аписать врем€ в контроллер часов  
-		regBank.set(adr_set_time, 0);                        // «аписать в регистр признак окончани€ выполнени€ команды
+		RTC.adjust(set_time);                                                 // «аписать врем€ в контроллер часов  
+		Serial.println("set_clock");
+		regBank.set(adr_set_time, 0);                                         // «аписать в регистр признак окончани€ выполнени€ команды
 }
 void data_clock_exchange()
 {
@@ -1203,7 +1204,7 @@ void control_command()
 			  FileClose();
 				break;
 		case 14:
-			 // set_clock();
+			  set_clock();
 				break;
 		case 15:
 			 set_rezistor();
@@ -1218,10 +1219,11 @@ void control_command()
 			// format_SD();                       //
 				break;
 		default:
-			regBank.set(adr_control_command,0);
+		//	regBank.set(adr_control_command,0);
 		break;
 
 	 }
+	regBank.set(adr_control_command,0);
 }
 
 void sensor_all_off()
