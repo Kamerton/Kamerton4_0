@@ -30,3 +30,6 @@ E:\1 SVN Kamerton4_0\trunk\KamertonTestFin\obj\x86\Debug\GenerateResource.read.1
 E:\1 SVN Kamerton4_0\trunk\KamertonTestFin\obj\x86\Debug\GenerateResource.write.1.tlog
 E:\1 SVN Kamerton4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.exe.manifest
 E:\1 SVN Kamerton4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.application
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\bin\x86\Debug\KamertonTestFin.exe.config
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.exe
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.pdb

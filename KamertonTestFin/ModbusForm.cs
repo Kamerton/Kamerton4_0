@@ -4001,7 +4001,7 @@ namespace KamertonTest
                 case 6:
                     if (checkBoxSenMicrophon.Checked || radioButton1.Checked)
                     {
-                        test_mikrophon();
+                        test_tangN();
                         progressBar2.Value += 1;
                         label98.Text = ("" + progressBar2.Value);
                         label98.Refresh();
@@ -4037,7 +4037,7 @@ namespace KamertonTest
                 case 10:
                     if (checkBoxSenTangN.Checked || radioButton1.Checked)
                     {
-                        test_tangN();
+                        test_mikrophon();
                         progressBar2.Value += 1;
                         label98.Text = ("" + progressBar2.Value);
                         label98.Refresh();
