@@ -232,7 +232,7 @@ const char  txt_message9[]    PROGMEM            = "Command sensor OFF microphon
 const char  txt_message10[]   PROGMEM            = "Command sensor ON  headset instructor 2          send!"      ;     
 const char  txt_message11[]   PROGMEM            = "Command sensor ON  headset instructor            send!"      ;     
 const char  txt_message12[]   PROGMEM            = "Command        ON  PTT headset instructor (CTS)  send!"      ;  
-const char  txt_message13[]   PROGMEM            = "Signal headset dispatcher microphone 30mv     ON"            ;   
+const char  txt_message13[]   PROGMEM            = "Signal headset dispatcher microphone 30 mV    ON"            ;   
 const char  txt_message14[]   PROGMEM            = "Microphone headset dispatcher signal          ON"            ;     
 const char  txt_message15[]   PROGMEM            = "Command sensor OFF headset dispatcher 2          send!"      ;    
 const char  txt_message16[]   PROGMEM            = "Command sensor OFF headset dispatcher            send!"      ;   
@@ -254,7 +254,7 @@ const char  txt_message29[]   PROGMEM            = "Command HangUp OFF MTT      
 const char  txt_message30[]   PROGMEM            = "Command sensor ON  MTT                           send!"      ;
 const char  txt_message31[]   PROGMEM            = "Command PTT    ON  MTT                           send!"      ;
 const char  txt_message32[]   PROGMEM            = "Command HangUp ON  MTT                           send!"      ;
-const char  txt_message33[]   PROGMEM            = "Signal MTT microphone 30mv                    ON"            ;
+const char  txt_message33[]   PROGMEM            = "Signal MTT microphone 30 mV                   ON"            ;
 const char  txt_message34[]   PROGMEM            = "Microphone MTT signal                         ON"            ;  
 const char  txt_message35[]   PROGMEM            = "Signal FrontL, FrontR                         ON "           ;
 const char  txt_message36[]   PROGMEM            = " ****** Test tangenta ruchnaja start! ******"                ;
@@ -271,12 +271,12 @@ const char  txt_message45[]   PROGMEM            = "Command PTT    OFF tangenta 
 const char  txt_message46[]   PROGMEM            = "Command sensor ON  tangenta nognaja              send!"      ;
 const char  txt_message47[]   PROGMEM            = "Command PTT    ON  tangenta nognaja              send!"      ;
 const char  txt_message48[]   PROGMEM            = " ****** Test GGS start! ******"      ;
-const char  txt_message49[]   PROGMEM            = "Signal GGS  FrontL, FrontR   0,7v             ON"            ;
+const char  txt_message49[]   PROGMEM            = "Signal GGS  FrontL, FrontR   0,7V             ON"            ;
 
-const char  txt_message50[]   PROGMEM            = ""      ;
-const char  txt_message51[]   PROGMEM            = ""      ;
-const char  txt_message52[]   PROGMEM            = ""      ;
-const char  txt_message53[]   PROGMEM            = ""      ;
+const char  txt_message50[]   PROGMEM            = " ****** Test Radio1 start! ******"                           ;
+const char  txt_message51[]   PROGMEM            = "Signal Radio1 200 mV    LFE                   ON"            ;
+const char  txt_message52[]   PROGMEM            = " ****** Test Radio2 start! ******"      ;
+const char  txt_message53[]   PROGMEM            = "Signal Radio1 300 mV    Center                ON"            ;
 const char  txt_message54[]   PROGMEM            = ""      ;
 const char  txt_message55[]   PROGMEM            = ""      ;
 const char  txt_message56[]   PROGMEM            = ""      ;
@@ -392,6 +392,30 @@ const char  txt_error94[]  PROGMEM             = "";
 const char  txt_error95[]  PROGMEM             = ""; 
 const char  txt_error96[]  PROGMEM             = "";    
 const char  txt_error97[]  PROGMEM             = "";  
+const char  txt_error98[]  PROGMEM             = "";    
+const char  txt_error99[]  PROGMEM             = "";  
+
+const char  txt_error100[]  PROGMEM            = "Test Radio1 ** Signal FrontL                                OFF - ";
+const char  txt_error101[]  PROGMEM            = "Test Radio1 ** Signal FrontR                                OFF - ";
+const char  txt_error102[]  PROGMEM            = "Test Radio1 ** Signal LineL                                 OFF - ";
+const char  txt_error103[]  PROGMEM            = "Test Radio1 ** Signal LineR                                 OFF - ";
+const char  txt_error104[]  PROGMEM            = "Test Radio1 ** Signal mag radio                             OFF - ";
+const char  txt_error105[]  PROGMEM            = "Test Radio1 ** Signal mag phone                             OFF - ";
+const char  txt_error106[]  PROGMEM            = "Test Radio1 ** Signal GGS                                   OFF - ";
+const char  txt_error107[]  PROGMEM            = "Test Radio1 ** Signal GG Radio1                             OFF - ";
+const char  txt_error108[]  PROGMEM            = "Test Radio1 ** Signal GG Radio2                             OFF - ";
+const char  txt_error109[]  PROGMEM            = "Test Radio1 ** Signal Radio1                                ON  - ";
+
+const char  txt_error110[]  PROGMEM            = "Test Radio2 ** Signal FrontL                                OFF - ";
+const char  txt_error111[]  PROGMEM            = "Test Radio2 ** Signal FrontR                                OFF - ";
+const char  txt_error112[]  PROGMEM            = "Test Radio2 ** Signal LineL                                 OFF - ";
+const char  txt_error113[]  PROGMEM            = "Test Radio2 ** Signal LineR                                 OFF - ";
+const char  txt_error114[]  PROGMEM            = "Test Radio2 ** Signal mag radio                             OFF - ";
+const char  txt_error115[]  PROGMEM            = "Test Radio2 ** Signal mag phone                             OFF - ";
+const char  txt_error116[]  PROGMEM            = "Test Radio2 ** Signal GGS                                   OFF - ";
+const char  txt_error117[]  PROGMEM            = "Test Radio2 ** Signal GG Radio1                             OFF - ";
+const char  txt_error118[]  PROGMEM            = "Test Radio2 ** Signal GG Radio2                             OFF - ";
+const char  txt_error119[]  PROGMEM            = "Test Radio2 ** Signal Radio2                                ON  - ";
 
 char buffer[100];  
 
@@ -448,10 +472,10 @@ txt_message47,                                // "Command PTT    ON  tangenta no
 txt_message48,                                // " ****** Test GGS start! ******"      ;
 txt_message49,                                // "Signal GGS  FrontL, FrontR   0,7v             ON"            ;
 
-txt_message50,                                // ""      ;
-txt_message51,                                // ""      ;
-txt_message52,                                // ""      ;
-txt_message53,                                // ""      ;
+txt_message50,                                // " ****** Test Radio1 start! ******"      ;
+txt_message51,                                // "Signal Radio1 200 mV    LFE                   ON"            ;
+txt_message52,                                //" ****** Test Radio2 start! ******"      ;
+txt_message53,                                // "Signal Radio1 300 mV    Center                ON"            ;
 txt_message54,                                // ""      ;
 txt_message55,                                // ""      ;
 txt_message56,                                // ""      ;
@@ -565,7 +589,42 @@ txt_error89,                                  // "Test GGS ** Signal GGS        
 txt_error90,                                  // "Test GGS ** Signal FrontL                                   ON  - ";
 txt_error91,                                  // "Test GGS ** Signal FrontR                                   ON  - ";
 txt_error92,                                  // "Test GGS ** Signal mag phone                                ON  - ";
-txt_error93                                   // 
+txt_error93,                                  // 
+txt_error94,                                  // 
+txt_error95,                                  // 
+txt_error96,                                  // 
+txt_error97,                                  // 
+txt_error98,                                  //    
+txt_error99,                                  // 
+
+txt_error100,                                 // "Test Radio1 ** Signal FrontL                                OFF - ";
+txt_error101,                                 // "Test Radio1 ** Signal FrontR                                OFF - ";
+txt_error102,                                 // "Test Radio1 ** Signal LineL                                 OFF - ";
+txt_error103,                                 // "Test Radio1 ** Signal LineR                                 OFF - ";
+txt_error104,                                 // "Test Radio1 ** Signal mag radio                             OFF - ";
+txt_error105,                                 // "Test Radio1 ** Signal mag phone                             OFF - ";
+txt_error106,                                 // "Test Radio1 ** Signal GGS                                   OFF - ";
+txt_error107,                                 // "Test Radio1 ** Signal GG Radio1                             OFF - ";
+txt_error108,                                 // "Test Radio1 ** Signal GG Radio2                             OFF - ";
+txt_error109,                                 // "Test Radio1 ** Signal Radio1                                ON  - ";
+
+txt_error110,                                 // "Test Radio2 ** Signal FrontL                                OFF - ";
+txt_error111,                                 // "Test Radio2 ** Signal FrontR                                OFF - ";
+txt_error112,                                 // "Test Radio2 ** Signal LineL                                 OFF - ";
+txt_error113,                                 // "Test Radio2 ** Signal LineR                                 OFF - ";
+txt_error114,                                 // "Test Radio2 ** Signal mag radio                             OFF - ";
+txt_error115,                                 // "Test Radio2 ** Signal mag phone                             OFF - ";
+txt_error116,                                 // "Test Radio2 ** Signal GGS                                   OFF - ";
+txt_error117,                                 // "Test Radio2 ** Signal GG Radio1                             OFF - ";
+txt_error118,                                 // "Test Radio2 ** Signal GG Radio2                             OFF - ";
+txt_error119,                                 // "Test Radio2 ** Signal Radio2                                ON  - ";
+
+txt_error120,  
+
+
+
+
+
 };
 
 // ========================= Блок программ ============================================
@@ -2404,6 +2463,8 @@ void testGGS()
 	myFile.println("");
 	regBank.set(25,1);                                                              // XP1- 19 HaSs      sensor подключения трубки  
 	regBank.set(6,0);                                                               // Реле RL5 Звук Front L, Front R
+	resistor(1, 220);                                                               // Установить уровень сигнала 60 мв
+	resistor(2, 220);                                                               // Установить уровень сигнала 60 мв
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
 	UpdateRegs(); 
@@ -2486,7 +2547,19 @@ void testGGS()
 }
 void test_GG_Radio1()
 {
-
+	unsigned int regcount = 0;
+	myFile.println(""); 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[50])));                   // " ****** Test Radio1 start! ******"                           ;
+	myFile.println(buffer);                                                         // " ****** Test Radio1 start! ******"                           ;
+	file_print_date();
+	myFile.println("");
+	regBank.set(4,0);                                                               // Реле RL3 Звук  LFE  "Маг."
+	resistor(1, 55);                                                                // Установить уровень сигнала 200 мв
+	resistor(2, 55);                                                                // Установить уровень сигнала 200 мв
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+	UpdateRegs(); 
+	delay(300);
 
 
 
@@ -3311,6 +3384,69 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			case 288:
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[88])));    // "Test GGS ** Signal GG Radio2                                OFF - ";
 				break;
+			case 300:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[100])));    //  "Test Radio1 ** Signal FrontL                                OFF - ";
+				break;
+			case 301:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[101])));    // "Test Radio1 ** Signal FrontR                                OFF - ";
+				break;
+			case 302:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[102])));    // "Test Radio1 ** Signal LineL                                 OFF - ";
+				break;
+			case 303:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[103])));    // "Test Radio1 ** Signal LineR                                 OFF - ";
+				break;
+			case 304:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[104])));    // "Test Radio1 ** Signal mag radio                             OFF - ";
+				break;
+			case 305:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[105])));    // "Test Radio1 ** Signal mag phone                             OFF - ";
+				break;
+			case 306:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[106])));    // "Test Radio1 ** Signal GGS                                   OFF - ";
+				break;
+			case 307:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[107])));    // "Test Radio1 ** Signal GG Radio1                             OFF - ";
+				break;
+			case 308:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[108])));    // "Test Radio1 ** Signal GG Radio2                             OFF - ";
+				break;
+			case 310:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[110])));    //  "Test Radio2 ** Signal FrontL                                OFF - ";
+				break;
+			case 311:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[111])));    // "Test Radio2 ** Signal FrontR                                OFF - ";
+				break;
+			case 312:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[112])));    // "Test Radio2 ** Signal LineL                                 OFF - ";
+				break;
+			case 313:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[113])));    // "Test Radio2 ** Signal LineR                                 OFF - ";
+				break;
+			case 314:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[114])));    // "Test Radio2 ** Signal mag radio                             OFF - ";
+				break;
+			case 315:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[115])));    // "Test Radio2 ** Signal mag phone                             OFF - ";
+				break;
+			case 316:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[116])));    // "Test Radio2 ** Signal GGS                                   OFF - ";
+				break;
+			case 317:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[117])));    // "Test Radio2 ** Signal GG Radio1                             OFF - ";
+				break;
+			case 318:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[118])));    // "Test Radio2 ** Signal GG Radio2                             OFF - ";
+				break;
+	//regBank.add(40309);                         // "Test Radio1 ** Signal Radio1                                ON  - ";
+	//regBank.add(40319);                         // "Test Radio2 ** Signal Radio2                                ON  - ";
+
+
+
+
+
+
+
 
 		}
 		if(voltage10 >  porogV)                                                     // Проверить исправность канала
@@ -3382,6 +3518,12 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				break;
 			case 292:
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[92])));    // ошибки "Test GGS ** Signal mag phone                                ON  - ";
+				break;
+			case 309:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[109])));    // "Test Radio1 ** Signal Radio1                                ON  - ";
+				break;
+			case 319:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[119])));    // "Test Radio1 ** Signal Radio2                                ON  - ";
 				break;
 		}
 
@@ -3850,6 +3992,36 @@ modbus registers follow the following format
 	regBank.add(290);                         // Флаг ошибки "Test GGS ** Signal FrontL                                   ON  - ";
 	regBank.add(291);                         // Флаг ошибки "Test GGS ** Signal FrontR                                   ON  - ";
 	regBank.add(292);                         // Флаг ошибки "Test GGS ** Signal mag phone                                ON  - ";
+	regBank.add(293);                         // 
+	regBank.add(294);                         // 
+	regBank.add(295);                         // 
+	regBank.add(296);                         // 
+	regBank.add(297);                         // 
+	regBank.add(298);                         //    
+	regBank.add(299);                         // 
+
+	regBank.add(300);                         // Флаг ошибки "Test Radio1 ** Signal FrontL                                OFF - ";
+	regBank.add(301);                         // Флаг ошибки "Test Radio1 ** Signal FrontR                                OFF - ";
+	regBank.add(302);                         // Флаг ошибки "Test Radio1 ** Signal LineL                                 OFF - ";
+	regBank.add(303);                         // Флаг ошибки "Test Radio1 ** Signal LineR                                 OFF - ";
+	regBank.add(304);                         // Флаг ошибки "Test Radio1 ** Signal mag radio                             OFF - ";
+	regBank.add(305);                         // Флаг ошибки "Test Radio1 ** Signal mag phone                             OFF - ";
+	regBank.add(306);                         // Флаг ошибки "Test Radio1 ** Signal GGS                                   OFF - ";
+	regBank.add(307);                         // Флаг ошибки "Test Radio1 ** Signal GG Radio1                             OFF - ";
+	regBank.add(308);                         // Флаг ошибки "Test Radio1 ** Signal GG Radio2                             OFF - ";
+	regBank.add(309);                         // Флаг ошибки "Test Radio1 ** Signal Radio1                                ON  - ";
+
+	regBank.add(310);                         // Флаг ошибки "Test Radio2 ** Signal FrontL                                OFF - ";
+	regBank.add(311);                         // Флаг ошибки "Test Radio2 ** Signal FrontR                                OFF - ";
+	regBank.add(312);                         // Флаг ошибки "Test Radio2 ** Signal LineL                                 OFF - ";
+	regBank.add(313);                         // Флаг ошибки "Test Radio2 ** Signal LineR                                 OFF - ";
+	regBank.add(314);                         // Флаг ошибки "Test Radio2 ** Signal mag radio                             OFF - ";
+	regBank.add(315);                         // Флаг ошибки "Test Radio2 ** Signal mag phone                             OFF - ";
+	regBank.add(316);                         // Флаг ошибки "Test Radio2 ** Signal GGS                                   OFF - ";
+	regBank.add(317);                         // Флаг ошибки "Test Radio2 ** Signal GG Radio1                             OFF - ";
+	regBank.add(318);                         // Флаг ошибки "Test Radio2 ** Signal GG Radio2                             OFF - ";
+	regBank.add(319);                         // Флаг ошибки "Test Radio2 ** Signal Radio2                                ON  - ";
+
 
 
 
@@ -4139,6 +4311,36 @@ modbus registers follow the following format
 	regBank.add(40290);                         // Aдрес счетчика ошибки "Test GGS ** Signal FrontL                                   ON  - ";
 	regBank.add(40291);                         // Aдрес счетчика ошибки "Test GGS ** Signal FrontR                                   ON  - ";
 	regBank.add(40292);                         // Aдрес счетчика ошибки "Test GGS ** Signal mag phone                                ON  - ";
+	regBank.add(40293);                         // 
+	regBank.add(40294);                         // 
+	regBank.add(40295);                         // 
+	regBank.add(40296);                         // 
+	regBank.add(40297);                         // 
+	regBank.add(40298);                         //    
+	regBank.add(40299);                         // 
+
+	regBank.add(40300);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal FrontL                                OFF - ";
+	regBank.add(40301);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal FrontR                                OFF - ";
+	regBank.add(40302);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal LineL                                 OFF - ";
+	regBank.add(40303);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal LineR                                 OFF - ";
+	regBank.add(40304);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal mag radio                             OFF - ";
+	regBank.add(40305);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal mag phone                             OFF - ";
+	regBank.add(40306);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal GGS                                   OFF - ";
+	regBank.add(40307);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal GG Radio1                             OFF - ";
+	regBank.add(40308);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal GG Radio2                             OFF - ";
+	regBank.add(40309);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal Radio1                                ON  - ";
+
+	regBank.add(40310);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal FrontL                                OFF - ";
+	regBank.add(40311);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal FrontR                                OFF - ";
+	regBank.add(40312);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal LineL                                 OFF - ";
+	regBank.add(40313);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal LineR                                 OFF - ";
+	regBank.add(40314);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal mag radio                             OFF - ";
+	regBank.add(40315);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal mag phone                             OFF - ";
+	regBank.add(40316);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal GGS                                   OFF - ";
+	regBank.add(40317);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal GG Radio1                             OFF - ";
+	regBank.add(40318);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal GG Radio2                             OFF - ";
+	regBank.add(40319);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal Radio2                                ON  - ";
+
 
 
 	slave._device = &regBank;  

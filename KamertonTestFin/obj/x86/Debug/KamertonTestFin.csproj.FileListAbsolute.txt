@@ -33,3 +33,16 @@ E:\1 SVN Kamerton4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.applica
 E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\bin\x86\Debug\KamertonTestFin.exe.config
 E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.exe
 E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.pdb
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\bin\x86\Debug\KamertonTestFin.exe.manifest
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\bin\x86\Debug\KamertonTestFin.application
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\bin\x86\Debug\KamertonTestFin.exe
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\bin\x86\Debug\KamertonTestFin.pdb
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\bin\x86\Debug\mbusmaster.net.dll
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTest.Form1.resources
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.Properties.Resources.resources
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.Resource1.resources
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.exe.manifest
+E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Debug\KamertonTestFin.application
