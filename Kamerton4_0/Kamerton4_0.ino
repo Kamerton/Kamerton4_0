@@ -274,7 +274,7 @@ const char  txt_message48[]   PROGMEM            = " ****** Test GGS start! ****
 const char  txt_message49[]   PROGMEM            = "Signal GGS  FrontL, FrontR   0,7V             ON"            ;
 
 const char  txt_message50[]   PROGMEM            = " ****** Test Radio1 start! ******"                           ;
-const char  txt_message51[]   PROGMEM            = "Signal Radio1 200 mV    LFE                   ON"            ;
+const char  txt_message51[]   PROGMEM            = "Signal Radio1 300 mV    LFE                   ON"            ;
 const char  txt_message52[]   PROGMEM            = " ****** Test Radio2 start! ******"      ;
 const char  txt_message53[]   PROGMEM            = "Signal Radio1 300 mV    Center                ON"            ;
 const char  txt_message54[]   PROGMEM            = ""      ;
@@ -617,9 +617,9 @@ txt_error115,                                 // "Test Radio2 ** Signal mag phon
 txt_error116,                                 // "Test Radio2 ** Signal GGS                                   OFF - ";
 txt_error117,                                 // "Test Radio2 ** Signal GG Radio1                             OFF - ";
 txt_error118,                                 // "Test Radio2 ** Signal GG Radio2                             OFF - ";
-txt_error119,                                 // "Test Radio2 ** Signal Radio2                                ON  - ";
+txt_error119                                  // "Test Radio2 ** Signal Radio2                                ON  - ";
 
-txt_error120,  
+//txt_error120,  
 
 
 
@@ -1239,10 +1239,11 @@ void control_command()
 			 test_MTT();                                                            //
 				break;
 		case 6:	
+			Serial.println("test_tangR");
 			 test_tangR();                                                          //
 				break;
 		case 7:
-			 test_mikrophon();                                                      // Тестирование микрофона
+			test_tangN();
 				break;
 		case 8:				
 			 testGGS();
@@ -1254,7 +1255,7 @@ void control_command()
 			 test_GG_Radio2();
 				break;
 		case 11:				
-			 test_tangN();
+			 test_mikrophon();                                                      // Тестирование микрофона
 				break;
 		case 12:
 			   FileOpen();
@@ -1315,11 +1316,15 @@ void sensor_all_off()
 	regBank.set(32,0);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
 	UpdateRegs(); 
-	delay(300);
+	delay(1300);
 	UpdateRegs(); 
 	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
 	byte i53 = regs_in[3];    
+	Serial.println(i50 ,BIN);
+	Serial.println(i52 ,BIN);
+	Serial.println(i53 ,BIN);
+
 
 		if(bitRead(i50,2) != 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            OFF - ";
 		  {
@@ -1567,6 +1572,7 @@ void sensor_all_off()
 }
 void sensor_all_on()
 {
+	delay(1300);
 	unsigned int regcount = 0;
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[3])));                    // " ****** Test sensor ON start! ******";    
@@ -1584,14 +1590,18 @@ void sensor_all_on()
 	regBank.set(29,1);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
 	regBank.set(31,1);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
 	regBank.set(32,1);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
-
+	delay(1300);
 	UpdateRegs(); 
-	delay(300);
+	delay(1000);
+	UpdateRegs(); 
+	delay(1000);
 	UpdateRegs(); 
 	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
 	byte i53 = regs_in[3];  
-
+Serial.println(i50 ,BIN);
+Serial.println(i52 ,BIN);
+Serial.println(i53 ,BIN);
 		if(bitRead(i50,2) == 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            ON  - ";
 		  {
 			regcount = regBank.get(40210);                                          // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            ON  - ";
@@ -2044,7 +2054,6 @@ void test_MTT()
 	myFile.println(buffer);                                                         // " ****** Test MTT start! ******"                              ; 
 	file_print_date();
 	myFile.println("");
-//	unsigned int regcount = 0;
 	test_MTT_off();                                                                 // Отключить реле и сенсоры, прверить отключение
 	test_MTT_on();                                                                  // Включить необходимые сенсоры, проверить состояние
 //	myFile.println("");
@@ -2072,7 +2081,6 @@ void test_MTT()
 	regBank.set(3,1);                                                               // Включить сигнал на вход микрофона трубки Mic3p
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
-	//myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[33])));                   // "Signal MTT microphone 30mv                    ON"            ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal MTT microphone 30mv                    ON"            ;
 
@@ -2083,7 +2091,6 @@ void test_MTT()
 	//measure_vol_min(analog_LineR,     40253,253,25);                              // Измерить уровень сигнала на выходе LineR     "Test MTT ** Signal LineR                                    OFF - ";
 	measure_vol_min(analog_mag_radio, 40254,254,25);                                // Измерить уровень сигнала на выходе FrontR    "Test MTT ** Signal mag radio                                OFF - ";
 	//measure_vol_min(analog_mag_phone, 40255,255,25);                              // Измерить уровень сигнала на выходе LineR     "Test MTT ** Signal mag phone                                OFF - ";
-	Serial.println("Signal GGS");
 	measure_vol_min(analog_ggs,       40256,256,30);                                // Измерить уровень сигнала на выходе GGS       "Test MTT ** Signal GGS                                      OFF - ";
 	measure_vol_min(analog_gg_radio1, 40257,257,30);                                // Измерить уровень сигнала на выходе GG Radio1 "Test MTT ** Signal GG Radio1                                OFF - ";
 	measure_vol_min(analog_gg_radio2, 40258,258,30);                                // Измерить уровень сигнала на выходе GG Radio2 "Test MTT ** Signal GG Radio2                                OFF - ";
@@ -2465,7 +2472,7 @@ void testGGS()
 	regBank.set(6,0);                                                               // Реле RL5 Звук Front L, Front R
 	resistor(1, 220);                                                               // Установить уровень сигнала 60 мв
 	resistor(2, 220);                                                               // Установить уровень сигнала 60 мв
-	UpdateRegs();                                                                   // Выполнить команду
+	//UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
 	UpdateRegs(); 
 	delay(300);
@@ -2547,31 +2554,96 @@ void testGGS()
 }
 void test_GG_Radio1()
 {
-	unsigned int regcount = 0;
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[50])));                   // " ****** Test Radio1 start! ******"                           ;
 	myFile.println(buffer);                                                         // " ****** Test Radio1 start! ******"                           ;
 	file_print_date();
 	myFile.println("");
 	regBank.set(4,0);                                                               // Реле RL3 Звук  LFE  "Маг."
-	resistor(1, 55);                                                                // Установить уровень сигнала 200 мв
-	resistor(2, 55);                                                                // Установить уровень сигнала 200 мв
+	resistor(1, 110);                                                               // Установить уровень сигнала 300 мв
+	resistor(2, 110);                                                               // Установить уровень сигнала 300 мв
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
 	UpdateRegs(); 
 	delay(300);
+	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	measure_vol_min(analog_FrontL,    40300,300,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
+	measure_vol_min(analog_FrontR,    40301,301,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
+	measure_vol_min(analog_LineL,     40302,302,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
+	measure_vol_min(analog_LineR,     40303,303,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
+	measure_vol_min(analog_mag_radio, 40304,304,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_phone, 40305,305,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
+	measure_vol_min(analog_ggs,       40306,306,25);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
+	measure_vol_min(analog_gg_radio1, 40307,307,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio1                             OFF - ";
+	measure_vol_min(analog_gg_radio2, 40308,308,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
+
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[51])));                   // "Signal Radio1 300 mV    LFE                   ON"            ;
+	if (test_repeat == false) myFile.println(buffer);                               // "Signal Radio1 300 mV    LFE                   ON"            ;
+	regBank.set(4,1);                                                               //  Реле RL3 Звук  LFE  "Маг."
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+
+	measure_vol_min(analog_FrontL,    40300,300,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
+	measure_vol_min(analog_FrontR,    40301,301,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
+	measure_vol_min(analog_LineL,     40302,302,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
+	measure_vol_min(analog_LineR,     40303,303,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
+	measure_vol_min(analog_mag_radio, 40304,304,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_phone, 40305,305,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
+	measure_vol_min(analog_ggs,       40306,306,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
+	measure_vol_max(analog_gg_radio1, 40309,309,250);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
+	measure_vol_min(analog_gg_radio2, 40308,308,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
 
 
-
+	regBank.set(4,0);                                                               // Реле RL3 Звук  LFE  "Маг."
 	UpdateRegs();     
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 }
 void test_GG_Radio2()
 {
 
+	myFile.println(""); 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[52])));                   // " ****** Test Radio2 start! ******"                           ;
+	myFile.println(buffer);                                                         // " ****** Test Radio2 start! ******"                           ;
+	file_print_date();
+	myFile.println("");
+	regBank.set(7,0);                                                               // Реле RL3 Звук  LFE  "Маг."
+	resistor(1, 110);                                                               // Установить уровень сигнала 300 мв
+	resistor(2, 110);                                                               // Установить уровень сигнала 300 мв
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+	UpdateRegs(); 
+	delay(300);
+	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	measure_vol_min(analog_FrontL,    40310,310,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
+	measure_vol_min(analog_FrontR,    40311,311,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
+	measure_vol_min(analog_LineL,     40312,312,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
+	measure_vol_min(analog_LineR,     40313,313,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
+	measure_vol_min(analog_mag_radio, 40314,314,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_phone, 40315,315,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
+	measure_vol_min(analog_ggs,       40316,316,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
+	measure_vol_min(analog_gg_radio1, 40317,317,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio1                             OFF - ";
+	measure_vol_min(analog_gg_radio2, 40318,318,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[53])));                   // "Signal Radio1 300 mV    LFE                   ON"            ;
+	if (test_repeat == false) myFile.println(buffer);                               // "Signal Radio1 300 mV    LFE                   ON"            ;
+	regBank.set(7,1);                                                               //  Реле RL3 Звук  LFE  "Маг."
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+
+	measure_vol_min(analog_FrontL,    40310,310,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
+	measure_vol_min(analog_FrontR,    40311,311,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
+	measure_vol_min(analog_LineL,     40312,312,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
+	measure_vol_min(analog_LineR,     40313,313,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
+	measure_vol_min(analog_mag_radio, 40314,314,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_phone, 40315,315,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
+	measure_vol_min(analog_ggs,       40316,316,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
+	measure_vol_min(analog_gg_radio1, 40317,317,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
+	measure_vol_max(analog_gg_radio2, 40319,319,250);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
+
+
+	regBank.set(7,0);                                                               // Реле RL6 Звук Center
 	UpdateRegs();     
-	regBank.set(adr_control_command,0);                                             // Завершить программу    
+	regBank.set(adr_control_command,0);    
 }
 
 void test_instr_off()
@@ -3438,15 +3510,6 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			case 318:
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[118])));    // "Test Radio2 ** Signal GG Radio2                             OFF - ";
 				break;
-	//regBank.add(40309);                         // "Test Radio1 ** Signal Radio1                                ON  - ";
-	//regBank.add(40319);                         // "Test Radio2 ** Signal Radio2                                ON  - ";
-
-
-
-
-
-
-
 
 		}
 		if(voltage10 >  porogV)                                                     // Проверить исправность канала
