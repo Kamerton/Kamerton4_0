@@ -1295,6 +1295,8 @@ void sensor_all_off()
 	file_print_date();
 	myFile.println();
 	regBank.set(8,1);                                                               // Включить питание Камертон
+	UpdateRegs(); 
+	delay(1000);
 	regBank.set(5,0);                                                               // Микрофон инструктора отключить
 	regBank.set(10,0);                                                              // Микрофон диспетчера отключить
 	regBank.set(13,0);                                                              // XP8 - 2   sensor Тангента ножная
@@ -1316,7 +1318,7 @@ void sensor_all_off()
 	regBank.set(32,0);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
 	UpdateRegs(); 
-	delay(1300);
+	delay(1000);
 	UpdateRegs(); 
 	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
@@ -1572,7 +1574,7 @@ void sensor_all_off()
 }
 void sensor_all_on()
 {
-	delay(1300);
+//	delay(1300);
 	unsigned int regcount = 0;
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[3])));                    // " ****** Test sensor ON start! ******";    
@@ -1580,102 +1582,76 @@ void sensor_all_on()
 	file_print_date();
 	myFile.println();
 	regBank.set(8,1);                                                               // Включить питание Камертон
+	UpdateRegs(); 
+	delay(1000);
+	Serial.println( "sensor_all_on");
+	bool test_sens = true;
+
+/*
 	regBank.set(5,1);                                                               // Микрофон инструктора включить
 	regBank.set(10,1);                                                              // Микрофон диспетчера включить
-	regBank.set(13,1);                                                              // XP8 - 2   sensor Тангента ножная
+
 	regBank.set(16,1);                                                              // XS1 - 6   sensor подключения микрофона
-	regBank.set(19,1);                                                              // J8-11     XP7 2 sensor тангента ручная
-	regBank.set(25,0);                                                              // XP1- 19 HaSs      sensor подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
+	UpdateRegs(); 
+	delay(1000);
+																																																																																																																																			  
+
+	*/
+	//UpdateRegs(); 
+	//delay(1000);
+
 	regBank.set(27,1);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
-	regBank.set(29,1);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
-	regBank.set(31,1);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,1);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
-	delay(1300);
 	UpdateRegs(); 
 	delay(1000);
-	UpdateRegs(); 
-	delay(1000);
-	UpdateRegs(); 
+
 	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
 	byte i53 = regs_in[3];  
-Serial.println(i50 ,BIN);
-Serial.println(i52 ,BIN);
-Serial.println(i53 ,BIN);
-		if(bitRead(i50,2) == 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            ON  - ";
-		  {
-			regcount = regBank.get(40210);                                          // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            ON  - ";
-			regcount++;                                                             // увеличить счетчик ошибок sensor отключения трубки  "Sensor MTT                          XP1- 19 HaSs            ON  - ";
-			regBank.set(40210,regcount);                                            // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            ON  - ";  
-			regBank.set(210,1);                                                     // установить флаг ошибки                             "Sensor MTT                          XP1- 19 HaSs            ON  - ";
-			regBank.set(120,1);                                                     // установить общий флаг ошибки
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[10])));        // "Sensor MTT                      XP1- 19 HaSs   ON                - ";  
-			myFile.print(buffer);                                                   // "Sensor MTT                      XP1- 19 HaSs   ON                - ";  
-			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
-			myFile.print(buffer);                                                   // "    Error! - "; 
-			myFile.println(regcount);                                               // Показания счетчика ошибок
-		  }
-		else
-		  {
-			   if (test_repeat == false)
-			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[10])));    // "Sensor MTT                     XP1- 19 HaSs   ON                 - ";  
-				myFile.print(buffer);                                               // 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   //  sensor  трубки включен  - Pass
-			   }
-		  }
-	
-		if(bitRead(i50,3) == 0)                                                     // J8-11  тангента ручная                           "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
-		  {
-			regcount = regBank.get(40211);                                          // адрес счетчика ошибки sensor тангента ручная     "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
-			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная  "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
-			regBank.set(40211,regcount);                                            // адрес счетчика ошибки sensor тангента ручная     "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
-			regBank.set(211,1);                                                     // установить флаг ошибки sensor тангента ручная    "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
-			regBank.set(120,1);                                                     // установить общий флаг ошибки
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[11])));        // "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
-			myFile.print(buffer);                                                   // "Sensor tangenta ruchnaja            XP7 - 2                 ON  - "; 
-			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
-			myFile.print(buffer);                                                   // "    Error! - "; 
-			myFile.println(regcount);                                               // Показания счетчика ошибок
-		  }
-		else
-		  {
-			if (test_repeat == false)
-			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[11])));    // "Sensor tangenta ruchnaja            XP7 - 2                 ON  - "; 
-				myFile.print(buffer);                                               // 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor tangenta ruchnaja включен  - Pass
+
+
+	//Serial.println(i50 ,HEX);
+	//Serial.println(i52 ,HEX);
+	//Serial.println(i53 ,HEX);
+
+
+   if (i50 == 0xA3)                                                       
+	   {
+		if(i52 == 0x43 )
+			{
+			if(i53 == 0x02 )
+				{
+				if (test_repeat == false)
+					{
+						//Serial.println( "инструктора с 2 наушниками");
+						strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[13])));    // "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
+						myFile.print(buffer);                                               // 
+						strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+						if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset instructor 2 включен  - Pass
+					}
+
 				}
-		  }
+				else
+					{
+					   test_sens = false;
+					}
+			}
 
-		if(bitRead(i50,4) == 0)                                                     // XP8 - 2   sensor Тангента ножная                  "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
-		  {
-			regcount = regBank.get(40212);                                          // адрес счетчика ошибки sensor Тангента ножная      "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
-			regcount++;                                                             // увеличить счетчик ошибок  sensor Тангента ножная  "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
-			regBank.set(40212,regcount);                                            // адрес счетчика ошибки  sensor Тангента ножная     "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
-			regBank.set(212,1);                                                     // установить флаг ошибки sensor Тангента ножная     "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
-			regBank.set(120,1);                                                     // установить общий флаг ошибки
-			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[12])));        // "Sensor tangenta nognaja             XP8 - 2                 ON  - ";   
-			myFile.print(buffer);                                                   // "Sensor tangenta nognaja             XP8 - 2                 ON  - ";   
-			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
-			myFile.print(buffer);                                                   // "    Error! - "; 
-			myFile.println(regcount);                                               // Показания счетчика ошибок
-		  }
 		else
-		  {
-			  if (test_repeat == false)
-			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[12])));    // "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
-				myFile.print(buffer);                                               // 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor tangenta nognaja             XP8 - 2                 ON - ";  включен  - Pass
-			  }
-		  }
+		   {
+			 test_sens = false;
+		   }
 
-		if(bitRead(i52,1) == 0)                                                     // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
-		  {
+	   }
+
+   else 
+   {
+	 test_sens = false;
+   }
+
+if(test_sens == false)
+
+	   {
 			regcount = regBank.get(40213);                                          // адрес счетчика ошибки sensor подключения гарнитуры инструктора с 2 наушниками
 			regcount++;                                                             // увеличить счетчик ошибок sensor подключения гарнитуры инструктора с 2 наушниками
 			regBank.set(40213,regcount);                                            // адрес счетчика ошибки sensor подключения гарнитуры инструктора с 2 наушниками
@@ -1686,20 +1662,52 @@ Serial.println(i53 ,BIN);
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
 			myFile.println(regcount);                                               // Показания счетчика ошибок
-		  }
-		else
-		  {
-			  if (test_repeat == false)
-			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[13])));    // "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
-				myFile.print(buffer);                                               // 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset instructor 2 включен  - Pass
-			  }
-		  }
+	   }
 
-		if(bitRead(i52,2) == 0)                                                     // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
-		  {
+	test_sens = true;                                                               // Флаг выполнения теста
+	regBank.set(27,0);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(29,1);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+	UpdateRegs(); 
+	delay(500);
+	i50 = regs_in[0];    
+	i52 = regs_in[2];    
+	i53 = regs_in[3];  
+
+	   if (i50 == 0xA3)                                                       
+	   {
+		   if(i52 == 0x45 )
+			   {
+				if(i53 == 0x04 )
+					{
+					if (test_repeat == false)
+						{
+							strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[14])));    // "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - "; 
+							myFile.print(buffer);                                               // 
+							strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+							if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset instructor включен  - Pass
+						}
+
+				}
+				else
+					{
+					   test_sens = false;
+					}
+			}
+
+		else
+		   {
+			 test_sens = false;
+		   }
+
+	   }
+
+   else 
+   {
+	 test_sens = false;
+   }
+
+if(test_sens == false)
+	   {
 			regcount = regBank.get(40214);                                          // адрес счетчика ошибки sensor подключения гарнитуры инструктора
 			regcount++;                                                             // увеличить счетчик ошибок sensor подключения гарнитуры инструктора
 			regBank.set(40214,regcount);                                            // адрес счетчика ошибки sensor подключения гарнитуры инструктора 
@@ -1710,20 +1718,52 @@ Serial.println(i53 ,BIN);
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
 			myFile.println(regcount);                                               // Показания счетчика ошибок
-		  }
-		else
-		  {
-			  if (test_repeat == false)
-			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[14])));    // "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - "; 
-				myFile.print(buffer);                                               // 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset instructor включен  - Pass
-			  }
-		  }
+	   }
 
-		if(bitRead(i52,3) == 0)                                                     // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
-		  {
+	test_sens = true;                                                               // Флаг выполнения теста
+	regBank.set(29,0);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+	regBank.set(31,1);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	UpdateRegs(); 
+	delay(500);
+	i50 = regs_in[0];    
+	i52 = regs_in[2];    
+	i53 = regs_in[3];  
+
+	   if (i50 == 0xA3)                                                       
+	   {
+		   if(i52 == 0x49 )
+			   {
+				if(i53 == 0x08 )
+					{
+					if (test_repeat == false)
+						{
+							strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[15])));    // "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          ON  - "; 
+							myFile.print(buffer);                                               // 
+							strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+							if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset dispatcher 2 включен  - Pass
+						}
+
+				}
+				else
+					{
+					   test_sens = false;
+					}
+			}
+
+		else
+		   {
+			 test_sens = false;
+		   }
+
+	   }
+
+   else 
+   {
+	 test_sens = false;
+   }
+
+if(test_sens == false)
+	   {
 			regcount = regBank.get(40215);                                          // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
 			regcount++;                                                             // увеличить счетчик ошибок sensor подкючения гарнитуры диспетчера с 2 наушниками
 			regBank.set(40215,regcount);                                            // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера с 2 наушниками
@@ -1733,22 +1773,57 @@ Serial.println(i53 ,BIN);
 			myFile.print(buffer);                                                   // "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          ON  - ";     
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
-			myFile.println(regcount);                                               // Показания счетчика ошибок
-		  }
-		else
-		  {
-			  if (test_repeat == false)
-			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[15])));    // "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          ON  - "; 
-				myFile.print(buffer);                                               // 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset dispatcher 2 включен  - Pass
-			  }
-		  }
+			myFile.println(regcount);                                               // Показания счетчика ошибок                                            // Показания счетчика ошибок
+	   }
 
-		
-		if(bitRead(i52,4) == 0)                                                     // XP1- 1  HeS1Ls   sensor подкючения гарнитуры диспетчера 
-		  {
+	test_sens = true;                                                               // Флаг выполнения теста
+	regBank.set(31,0);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,1);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	UpdateRegs(); 
+	delay(500);
+	i50 = regs_in[0];    
+	i52 = regs_in[2];    
+	i53 = regs_in[3];  
+
+	Serial.println(i50 ,HEX);
+	Serial.println(i52 ,HEX);
+	Serial.println(i53 ,HEX);
+
+	   if (i50 == 0xA3)                                                       
+	   {
+		   if(i52 == 0x51 )
+			   {
+				if(i53 == 0x01 )
+					{
+					if (test_repeat == false)
+						{
+							strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[16])));    // "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";
+							myFile.print(buffer);                                               // 
+							strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+							if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset dispatcher отключен  - Pass
+						}
+
+				}
+				else
+					{
+					   test_sens = false;
+					}
+			}
+
+		else
+		   {
+			 test_sens = false;
+		   }
+
+	   }
+
+   else 
+   {
+	 test_sens = false;
+   }
+
+if(test_sens == false)
+	   {
 			regcount = regBank.get(40216);                                          // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера
 			regcount++;                                                             // увеличить счетчик ошибок sensor подкючения гарнитуры диспетчера 
 			regBank.set(40216,regcount);                                            // адрес счетчика ошибки sensor подкючения гарнитуры диспетчера
@@ -1758,21 +1833,225 @@ Serial.println(i53 ,BIN);
 			myFile.print(buffer);                                                   // "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON - ";    
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
-			myFile.println(regcount);                                               // Показания счетчика ошибок
-		  }
-		else
-		  {
-			  if (test_repeat == false)
-			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[16])));    // "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";
-				myFile.print(buffer);                                               // 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset dispatcher отключен  - Pass
-			  }
-		  }
+			myFile.println(regcount);                                               // Показания счетчика ошибокчетчика ошибок
+	   }
 
-		if(bitRead(i52,5) == 0)                                                     // XS1 - 6   sensor включения микрофона
-		  {
+	test_sens = true;                                                               // Флаг выполнения теста
+	regBank.set(32,0);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	regBank.set(25,0);                                                              // XP1- 19 HaSs      sensor подключения трубки        
+	UpdateRegs(); 
+	delay(500);
+	i50 = regs_in[0];    
+	i52 = regs_in[2];    
+	i53 = regs_in[3];  
+
+
+	   if (i50 == 0xA7)                                                       
+	   {
+		   if(i52 == 0x41 )
+			   {
+				if(i53 == 0x04 )
+					{
+					if (test_repeat == false)
+						{
+							strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[10])));    // "Sensor MTT                     XP1- 19 HaSs   ON                 - ";  
+							myFile.print(buffer);                                               // 
+							strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+							if (test_repeat == false) myFile.println(buffer);                   //  sensor  трубки включен  - Pass
+						}
+
+				}
+				else
+					{
+					   test_sens = false;
+					}
+			}
+
+		else
+		   {
+			 test_sens = false;
+		   }
+
+	   }
+
+   else 
+   {
+	 test_sens = false;
+   }
+
+if(test_sens == false)
+	   {
+			regcount = regBank.get(40210);                                          // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            ON  - ";
+			regcount++;                                                             // увеличить счетчик ошибок sensor отключения трубки  "Sensor MTT                          XP1- 19 HaSs            ON  - ";
+			regBank.set(40210,regcount);                                            // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            ON  - ";  
+			regBank.set(210,1);                                                     // установить флаг ошибки                             "Sensor MTT                          XP1- 19 HaSs            ON  - ";
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[10])));        // "Sensor MTT                      XP1- 19 HaSs   ON                - ";  
+			myFile.print(buffer);                                                   // "Sensor MTT                      XP1- 19 HaSs   ON                - ";  
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+	   }
+
+	test_sens = true;                                                               // Флаг выполнения теста
+	regBank.set(25,1);                                                              // XP1- 19 HaSs      sensor подключения трубки        
+	regBank.set(19,1);                                                              // J8-11     XP7 2 sensor тангента ручная
+	UpdateRegs(); 
+	delay(500);
+	i50 = regs_in[0];    
+	i52 = regs_in[2];    
+	i53 = regs_in[3];  
+
+
+	   if (i50 == 0xAB)                                                       
+	   {
+		   if(i52 == 0x41 )
+			   {
+				if(i53 == 0x08 )
+					{
+					if (test_repeat == false)
+						{
+							strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[11])));    // "Sensor tangenta ruchnaja            XP7 - 2                 ON  - "; 
+							myFile.print(buffer);                                               // 
+							strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+							if (test_repeat == false) myFile.println(buffer);                   // "Sensor tangenta ruchnaja включен  - Pass
+						}
+
+				}
+				else
+					{
+					   test_sens = false;
+					}
+			}
+
+		else
+		   {
+			 test_sens = false;
+		   }
+
+	   }
+
+   else 
+   {
+	 test_sens = false;
+   }
+
+if(test_sens == false)
+	   {
+			regcount = regBank.get(40211);                                          // адрес счетчика ошибки sensor тангента ручная     "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
+			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная  "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
+			regBank.set(40211,regcount);                                            // адрес счетчика ошибки sensor тангента ручная     "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
+			regBank.set(211,1);                                                     // установить флаг ошибки sensor тангента ручная    "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[11])));        // "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
+			myFile.print(buffer);                                                   // "Sensor tangenta ruchnaja            XP7 - 2                 ON  - "; 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+	   }
+
+	test_sens = true;                                                               // Флаг выполнения теста
+	regBank.set(19,0);                                                              // J8-11     XP7 2 sensor тангента ручная
+	regBank.set(13,1);                                                              // XP8 - 2   sensor Тангента ножная
+	UpdateRegs(); 
+	delay(500);
+	i50 = regs_in[0];    
+	i52 = regs_in[2];    
+	i53 = regs_in[3];  
+
+
+	   if (i50 == 0xB3)                                                       
+	   {
+		   if(i52 == 0x41 )
+			   {
+				if(i53 == 0x01 )
+					{
+					if (test_repeat == false)
+						{
+							strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[12])));    // "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
+							myFile.print(buffer);                                               // 
+							strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+							if (test_repeat == false) myFile.println(buffer);                   // "Sensor tangenta nognaja             XP8 - 2                 ON - ";  включен  -
+						}
+
+				}
+				else
+					{
+					   test_sens = false;
+					}
+			}
+
+		else
+		   {
+			 test_sens = false;
+		   }
+
+	   }
+
+   else 
+   {
+	 test_sens = false;
+   }
+
+if(test_sens == false)
+	   {
+			regcount = regBank.get(40212);                                          // адрес счетчика ошибки sensor Тангента ножная      "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
+			regcount++;                                                             // увеличить счетчик ошибок  sensor Тангента ножная  "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
+			regBank.set(40212,regcount);                                            // адрес счетчика ошибки  sensor Тангента ножная     "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
+			regBank.set(212,1);                                                     // установить флаг ошибки sensor Тангента ножная     "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[12])));        // "Sensor tangenta nognaja             XP8 - 2                 ON  - ";   
+			myFile.print(buffer);                                                   // "Sensor tangenta nognaja             XP8 - 2                 ON  - ";   
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+	   }
+
+	test_sens = true;                                                               // Флаг выполнения теста
+	regBank.set(13,0);                                                              // XP8 - 2   sensor Тангента ножная
+	regBank.set(16,1);                                                              // XS1 - 6   sensor подключения микрофона
+	UpdateRegs(); 
+	delay(500);
+	i50 = regs_in[0];    
+	i52 = regs_in[2];    
+	i53 = regs_in[3];  
+
+
+	   if (i50 == 0xA3)                                                       
+	   {
+		   if(i52 == 0x61 )
+			   {
+				if(i53 == 0x02 )
+					{
+					if (test_repeat == false)
+						{
+							strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[17])));    // "Sensor microphone                   XS1 - 6                 ON  - "; 
+							myFile.print(buffer);                                               // 
+							strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+							if (test_repeat == false) myFile.println(buffer);                   // "Sensor microphone включен  - Pass;  включен  -
+						}
+
+				}
+				else
+					{
+					   test_sens = false;
+					}
+			}
+
+		else
+		   {
+			 test_sens = false;
+		   }
+
+	   }
+
+   else 
+   {
+	 test_sens = false;
+   }
+
+if(test_sens == false)
+	   {
 			regcount = regBank.get(40217);                                          // адрес счетчика ошибки sensor подключения микрофона
 			regcount++;                                                             // увеличить счетчик ошибок sensor подключения микрофона
 			regBank.set(40217,regcount);                                            // адрес счетчика ошибки sensor подключения микрофона
@@ -1783,20 +2062,55 @@ Serial.println(i53 ,BIN);
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
 			myFile.println(regcount);                                               // Показания счетчика ошибок
-		  }
-		else
-		  {
-			  if (test_repeat == false)
-			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[17])));    // "Sensor microphone                   XS1 - 6                 ON  - "; 
-				myFile.print(buffer);                                               // 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // "Sensor microphone включен  - Pass
-			  }
-		  }
+	   }
 
-		if(bitRead(i53,4) == 0)                                                     // Реле RL4 XP1 12  HeS2e   Включение микрофона инструктора
-		  {
+
+
+	test_sens = true;                                                               // Флаг выполнения теста
+	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
+	regBank.set(5,1);                                                               // Микрофон инструктора включить
+	UpdateRegs(); 
+	delay(500);
+	i50 = regs_in[0];    
+	i52 = regs_in[2];    
+	i53 = regs_in[3];  
+
+
+	   if (i50 == 0xA3)                                                       
+	   {
+		   if(i52 == 0x41 )
+			   {
+				if(i53 == 0x11 )
+					{
+					if (test_repeat == false)
+						{
+							strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[18])));    // "Sensor microphone                   XS1 - 6                 ON  - "; 
+							myFile.print(buffer);                                               // 
+							strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+							if (test_repeat == false) myFile.println(buffer);                   // Микрофон инструктора включен  - Pass
+						}
+
+				}
+				else
+					{
+					   test_sens = false;
+					}
+			}
+
+		else
+		   {
+			 test_sens = false;
+		   }
+
+	   }
+
+   else 
+   {
+	 test_sens = false;
+   }
+
+if(test_sens == false)
+	   {
 			regcount = regBank.get(40218);                                          // адрес счетчика ошибки Включение микрофона инструктора
 			regcount++;                                                             // увеличить счетчик ошибок Включение микрофона инструктора
 			regBank.set(40218,regcount);                                            // адрес счетчика ошибки Включение микрофона инструктора
@@ -1807,20 +2121,52 @@ Serial.println(i53 ,BIN);
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
 			myFile.println(regcount);                                               // Показания счетчика ошибок
-		  }
-		else
-		  {
-			  if (test_repeat == false)
-			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[18])));    // "Sensor microphone                   XS1 - 6                 ON  - "; 
-				myFile.print(buffer);                                               // 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // Микрофон инструктора включен  - Pass
-			  }
-		  }
+	   }
 
-		if(bitRead(i53,6) == 0)                                                     // Реле RL9 XP1 10 Выключение микрофона диспетчера
-		  {
+	test_sens = true;                                                               // Флаг выполнения теста
+	regBank.set(5,0);                                                               // Микрофон инструктора отключить
+	regBank.set(10,1);                                                              // Микрофон диспетчера включить
+	UpdateRegs(); 
+	delay(500);
+	i50 = regs_in[0];    
+	i52 = regs_in[2];    
+	i53 = regs_in[3];  
+
+
+	   if (i50 == 0xA3)                                                       
+	   {
+		   if(i52 == 0x41 )
+			   {
+				if(i53 == 0x44 )
+					{
+					if (test_repeat == false)
+						{
+							strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[19])));    // "Microphone headset dispatcher Sw.   XP1 12 HeS2e            ON  - ";
+							myFile.print(buffer);                                               // 
+							strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+							if (test_repeat == false) myFile.println(buffer);                   // Microphone headset dispatcher Sw. включен  - Pass
+						}
+				}
+				else
+					{
+					   test_sens = false;
+					}
+			}
+
+		else
+		   {
+			 test_sens = false;
+		   }
+
+	   }
+
+   else 
+   {
+	 test_sens = false;
+   }
+
+if(test_sens == false)
+	   {
 			regcount = regBank.get(40219);                                          // адрес счетчика ошибки Включение микрофона диспетчера
 			regcount++;                                                             // увеличить счетчик ошибок Включение микрофона диспетчера
 			regBank.set(40219,regcount);                                            // адрес счетчика ошибки Включение микрофона диспетчера
@@ -1831,18 +2177,8 @@ Serial.println(i53 ,BIN);
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
 			myFile.println(regcount);                                               // Показания счетчика ошибок
-		  }
-		else
-		  {
-			  if (test_repeat == false)
-			   {
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[19])));    // "Microphone headset dispatcher Sw.   XP1 12 HeS2e            ON  - ";
-				myFile.print(buffer);                                               // 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
-				if (test_repeat == false) myFile.println(buffer);                   // Microphone headset dispatcher Sw. включен  - Pass
-			   }
-		  }
-	regBank.set(5,0);                                                               // Микрофон инструктора отключить
+	   }
+
 	regBank.set(10,0);                                                              // Микрофон диспетчера отключить
 	UpdateRegs(); 
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
@@ -2043,6 +2379,7 @@ void test_headset_dispatcher()
 	regBank.set(10,0);                                                              // Подать управляющую команду на вывод XP1 10  (Выключить микрофон диспетчера)
 	regBank.set(30,0);                                                              // XP1- 6  HeS1PTT   Отключить PTT диспетчера
 	regBank.set(28,0);                                                              // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
+	regBank.set(1,0);                                                               // Отключить сигнал на вход микрофона диспетчера Mic1p
 	UpdateRegs();     
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(100);
@@ -2116,6 +2453,7 @@ void test_MTT()
 	measure_vol_max(analog_ggs,      40259,259,120);                                //  Измерить уровень сигнала на выходе GGS       "Test MTT ** Signal GGS             On      
 	regBank.set(18,0);                                                              // XP1 - 20  HangUp  DCD ON  Положить трубку
 	regBank.set(26,0);                                                              // XP1- 17 HaSPTT    CTS DSR вкл. Отключить PTT MTT
+	regBank.set(25,1);                                                              //  XP1- 19 HaSs  sensor подключения трубки    MTT отключить должно быть в "1"
 	UpdateRegs();                                                                   // Выполнить команду
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(200);
