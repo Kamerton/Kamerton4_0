@@ -3715,6 +3715,329 @@ namespace KamertonTest
             if (coilArr[0] != false)
             {
                 textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 270, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 271, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 272, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 273, false);
+            }
+            if (coilArr[4] != false)
+            {
+                textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 274, false);
+            }
+            if (coilArr[5] != false)
+            {
+                textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 275, false);
+            }
+            if (coilArr[6] != false)
+            {
+                textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 276, false);
+            }
+            if (coilArr[7] != false)
+            {
+                textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 277, false);
+            }
+            if (coilArr[8] != false)
+            {
+                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 278, false);
+            }
+            if (coilArr[9] != false)
+            {
+                textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 279, false);
+            }
+
+
+            startRdReg = 280;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
+
+            startCoil = 280;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+           //     textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 280, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+             //   textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 281, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 282, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+             //   textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 283, false);
+            }
+            if (coilArr[4] != false)
+            {
+              //  textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 284, false);
+            }
+            if (coilArr[5] != false)
+            {
+              //  textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 285, false);
+            }
+            if (coilArr[6] != false)
+            {
+              //  textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 286, false);
+            }
+            if (coilArr[7] != false)
+            {
+               // textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 287, false);
+            }
+            if (coilArr[8] != false)
+            {
+              //  textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 288, false);
+            }
+            if (coilArr[9] != false)
+            {
+              //  textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 289, false);
+            }
+
+
+            startRdReg = 290;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
+
+            startCoil = 290;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+              //  textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 290, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+              //  textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 291, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+              //  textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 292, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+              //  textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 293, false);
+            }
+            if (coilArr[4] != false)
+            {
+             //   textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 294, false);
+            }
+            if (coilArr[5] != false)
+            {
+             //   textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 295, false);
+            }
+            if (coilArr[6] != false)
+            {
+             //   textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 296, false);
+            }
+            if (coilArr[7] != false)
+            {
+             //   textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 297, false);
+            }
+            if (coilArr[8] != false)
+            {
+             //   textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 298, false);
+            }
+            if (coilArr[9] != false)
+            {
+             //   textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 299, false);
+            }
+
+
+
+            startRdReg = 300;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
+
+            startCoil = 300;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+            //    textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 300, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+            //    textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 301, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+             //   textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 302, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+             //   textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 303, false);
+            }
+            if (coilArr[4] != false)
+            {
+             //   textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 304, false);
+            }
+            if (coilArr[5] != false)
+            {
+             //   textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 305, false);
+            }
+            if (coilArr[6] != false)
+            {
+             //   textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 306, false);
+            }
+            if (coilArr[7] != false)
+            {
+             //   textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 307, false);
+            }
+            if (coilArr[8] != false)
+            {
+            //    textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 308, false);
+            }
+            if (coilArr[9] != false)
+            {
+             //   textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 309, false);
+            }
+
+
+
+            startRdReg = 310;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
+
+            startCoil = 310;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+            //    textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 310, false);
+
+            }
+
+            if (coilArr[1] != false)
+            {
+            //    textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 311, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+            //    textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 312, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+             //   textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 313, false);
+            }
+            if (coilArr[4] != false)
+            {
+                textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 314, false);
+            }
+            if (coilArr[5] != false)
+            {
+            //    textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 315, false);
+            }
+            if (coilArr[6] != false)
+            {
+            //    textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 316, false);
+            }
+            if (coilArr[7] != false)
+            {
+            //    textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 317, false);
+            }
+            if (coilArr[8] != false)
+            {
+            //    textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 318, false);
+            }
+            if (coilArr[9] != false)
+            {
+            //    textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 319, false);
+            }
+
+/*
+
+            startRdReg = 320;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
+
+            startCoil = 320;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+
+            if (coilArr[0] != false)
+            {
+                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 260, false);
 
             }
@@ -3768,21 +4091,7 @@ namespace KamertonTest
             }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 
@@ -4021,8 +4330,8 @@ namespace KamertonTest
             Polltimer1.Enabled = false;
             timer_Mic_test.Enabled = false;
             timer_byte_set.Enabled = false;
-            ushort[] writeVals = new ushort[100];
-            bool[] coilArr = new bool[100];
+            ushort[] writeVals = new ushort[200];
+            bool[] coilArr = new bool[200];
             progressBar2.Value = 0;
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             button11.BackColor = Color.Lime;
@@ -4054,6 +4363,8 @@ namespace KamertonTest
 
             if (_All_Test_Stop)                                                                         // Проверить наличие завершения выполнения тестов
                {
+
+                /*
                      // textBox9.Text += ("Старт Обнуление счетчиков  - " + _All_Test_Stop + "\r\n");
                     for (int err = 0; err < 100; err++)                                                 //  Обнулить регистры счетчиков ошибок
                         {
@@ -4066,7 +4377,7 @@ namespace KamertonTest
 
                     startWrReg = 200;                                                                   //  Обнулить счетчики ошибок
                     numWrRegs = 10;
-                    res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);   // Выполнить сброс счетчиков 40121 - 40130
+                    res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);   // Выполнить сброс счетчиков 40200 - 40210
                     startWrReg = 210;                                                                   //  Обнулить счетчики ошибок
                     numWrRegs = 10;
                     res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);   // Выполнить сброс счетчиков 40131 - 40140
@@ -4088,11 +4399,18 @@ namespace KamertonTest
                     startCoil = 220;
                     numCoils = 10;
                     res = myProtocol.forceMultipleCoils(slave, startCoil, coilArr, numCoils);          // 15 (0F) Записать бит false или true  по адресу 0-9999                 
+                  
+                */
+
+                    startWrReg = 120;                                                                   // Команда на 
+                    res = myProtocol.writeSingleRegister(slave, startWrReg, 16);                        // Команда на сброс счетчиков отправлена
+                    Thread.Sleep(500);
                     startWrReg = 120;                                                                   // Команда на открытие файла отправлена
                     res = myProtocol.writeSingleRegister(slave, startWrReg, 12);                        // Команда на открытие файла отправлена
                     textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
                     textBox7.Refresh();
                     file_fakt_namber();
+                    Thread.Sleep(500);
                     _All_Test_Stop = false;                                                             // Установить флаг запуска теста
                 }
 /*

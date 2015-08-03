@@ -980,6 +980,18 @@ void UpdateRegs()                                        // Обновить регистры
 	  time_control();
 	  prer_Kmerton_On = true;
 }
+void Reg_count_clear()
+{
+	for(unsigned int i = 40200; i<=40319;i++)
+	{
+		regBank.set(i,0);
+	}
+	for(int k = 200; k<=319;k++)
+	{
+		regBank.set(k,false);
+	}
+
+}
 void set_clock()
 {    
 		int day    = regBank.get(adr_set_kontrol_day);  
@@ -1239,7 +1251,6 @@ void control_command()
 			 test_MTT();                                                            //
 				break;
 		case 6:	
-			Serial.println("test_tangR");
 			 test_tangR();                                                          //
 				break;
 		case 7:
@@ -1270,7 +1281,7 @@ void control_command()
 			 set_rezistor();
 				break;
 		case 16:
-							  //
+				Reg_count_clear();			                                        // Сброс счетчиков ошибок                    
 				break;
 		case 17:
 			 set_namber_file_zero();            //
@@ -1323,10 +1334,6 @@ void sensor_all_off()
 	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
 	byte i53 = regs_in[3];    
-	Serial.println(i50 ,BIN);
-	Serial.println(i52 ,BIN);
-	Serial.println(i53 ,BIN);
-
 
 		if(bitRead(i50,2) != 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            OFF - ";
 		  {
@@ -1574,7 +1581,6 @@ void sensor_all_off()
 }
 void sensor_all_on()
 {
-//	delay(1300);
 	unsigned int regcount = 0;
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[3])));                    // " ****** Test sensor ON start! ******";    
@@ -1584,23 +1590,8 @@ void sensor_all_on()
 	regBank.set(8,1);                                                               // Включить питание Камертон
 	UpdateRegs(); 
 	delay(1000);
-	Serial.println( "sensor_all_on");
+	//++++++++++++++++++++++++++++++++++++++++++ Начало проверки ++++++++++++++++++++++++++++++++++++++
 	bool test_sens = true;
-
-/*
-	regBank.set(5,1);                                                               // Микрофон инструктора включить
-	regBank.set(10,1);                                                              // Микрофон диспетчера включить
-
-	regBank.set(16,1);                                                              // XS1 - 6   sensor подключения микрофона
-
-	UpdateRegs(); 
-	delay(1000);
-																																																																																																																																			  
-
-	*/
-	//UpdateRegs(); 
-	//delay(1000);
-
 	regBank.set(27,1);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 	UpdateRegs(); 
 	delay(1000);
@@ -1608,12 +1599,6 @@ void sensor_all_on()
 	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
 	byte i53 = regs_in[3];  
-
-
-	//Serial.println(i50 ,HEX);
-	//Serial.println(i52 ,HEX);
-	//Serial.println(i53 ,HEX);
-
 
    if (i50 == 0xA3)                                                       
 	   {
@@ -1623,7 +1608,6 @@ void sensor_all_on()
 				{
 				if (test_repeat == false)
 					{
-						//Serial.println( "инструктора с 2 наушниками");
 						strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[13])));    // "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
 						myFile.print(buffer);                                               // 
 						strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
@@ -1785,9 +1769,9 @@ if(test_sens == false)
 	i52 = regs_in[2];    
 	i53 = regs_in[3];  
 
-	Serial.println(i50 ,HEX);
-	Serial.println(i52 ,HEX);
-	Serial.println(i53 ,HEX);
+	//Serial.println(i50 ,HEX);
+	//Serial.println(i52 ,HEX);
+	//Serial.println(i53 ,HEX);
 
 	   if (i50 == 0xA3)                                                       
 	   {
@@ -3563,19 +3547,20 @@ void test_MTT_off()
 }
 void test_MTT_on()
 {
+	delay(600);
 	unsigned int regcount = 0;
 	regBank.set(25,0);                                                              //  XP1- 19 HaSs  sensor подключения трубки    MTT ON
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[30])));                   // "Command sensor ON  MTT                           send!"      ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Command sensor ON  MTT                           send!"      ;              
-	regBank.set(26,1);                                                              // XP1- 17 HaSPTT    CTS DSR вкл. включить PTT MTT
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[31])));                   // "Command PTT    ON  MTT                           send!"      ;
-	if (test_repeat == false) myFile.println(buffer);                               // "Command PTT    ON  MTT                           send!"      ;
+	//regBank.set(26,1);                                                              // XP1- 17 HaSPTT    CTS DSR вкл. включить PTT MTT
+	//strcpy_P(buffer, (char*)pgm_read_word(&(table_message[31])));                   // "Command PTT    ON  MTT                           send!"      ;
+	//if (test_repeat == false) myFile.println(buffer);                               // "Command PTT    ON  MTT                           send!"      ;
 	regBank.set(18,1);                                                              // XP1 - 20  HangUp  DCD ON
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[32])));                   // "Command HangUp ON  MTT                           send!"      ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Command HangUp ON  MTT                           send!"      ;
 
 	UpdateRegs(); 
-	delay(300);
+	delay(1000);
 
 	  // 1)  Проверка сенсора MTT на включение 
 	byte i50 = regs_in[0];    
@@ -3603,6 +3588,9 @@ void test_MTT_on()
 			   }
 		  }
 
+		delay(300);
+		UpdateRegs(); 
+		delay(300);
 		UpdateRegs(); 
 	  // 2)  Проверка  на отключение PTT  MTT (CTS)
 		if(regBank.get(adr_reg_ind_CTS) == 0)                                       // Проверка  на включение CTS MTT
@@ -3617,6 +3605,8 @@ void test_MTT_on()
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
 			myFile.print(buffer);                                                   // "    Error! - "; 
 			myFile.println(regcount);                                               // Показания счетчика ошибок
+		    Serial.print("adr_reg_ind_CTS - ");                                      //  
+			Serial.println(regBank.get(adr_reg_ind_CTS));
 		  }
 		else
 		  {
@@ -3630,7 +3620,14 @@ void test_MTT_on()
 		  }
 
 	 // 3)  Проверка  на отключение PTT  MTT (DSR)
-
+	regBank.set(26,1);                                                              // XP1- 17 HaSPTT    CTS DSR вкл. включить PTT MTT
+	delay(100);
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[31])));                   // "Command PTT    ON  MTT                           send!"      ;
+	if (test_repeat == false) myFile.println(buffer);                               // "Command PTT    ON  MTT                           send!"      ;
+	UpdateRegs(); 		
+	delay(600);
+	UpdateRegs(); 		
+	delay(600);
 		if(regBank.get(adr_reg_ind_DSR) == 0)                                       // Проверка  на отключение  PTT  MTT (DSR)
 		  {
 			regcount = regBank.get(40266);                                          // адрес счетчика ошибки  PTT  MTT (DSR) "Test MTT PTT    (DSR)                                       ON  - ";
