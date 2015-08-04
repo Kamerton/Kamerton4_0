@@ -277,8 +277,8 @@ const char  txt_message50[]   PROGMEM            = " ****** Test Radio1 start! *
 const char  txt_message51[]   PROGMEM            = "Signal Radio1 300 mV    LFE                   ON"            ;
 const char  txt_message52[]   PROGMEM            = " ****** Test Radio2 start! ******"      ;
 const char  txt_message53[]   PROGMEM            = "Signal Radio1 300 mV    Center                ON"            ;
-const char  txt_message54[]   PROGMEM            = ""      ;
-const char  txt_message55[]   PROGMEM            = ""      ;
+const char  txt_message54[]   PROGMEM            = " ****** Test miсrophone start! ******"                       ;
+const char  txt_message55[]   PROGMEM            = "Signal miсrophone 30  mV                      ON"            ;
 const char  txt_message56[]   PROGMEM            = ""      ;
 const char  txt_message57[]   PROGMEM            = ""      ;
 const char  txt_message58[]   PROGMEM            = ""      ;
@@ -417,7 +417,18 @@ const char  txt_error117[]  PROGMEM            = "Test Radio2 ** Signal GG Radio
 const char  txt_error118[]  PROGMEM            = "Test Radio2 ** Signal GG Radio2                             OFF - ";
 const char  txt_error119[]  PROGMEM            = "Test Radio2 ** Signal Radio2                                ON  - ";
 
-char buffer[100];  
+const char  txt_error120[]  PROGMEM            = "Test Microphone ** Signal FrontL                            OFF - ";
+const char  txt_error121[]  PROGMEM            = "Test Microphone ** Signal FrontR                            OFF - ";
+const char  txt_error122[]  PROGMEM            = "Test Microphone ** Signal LineL                             OFF - ";
+const char  txt_error123[]  PROGMEM            = "Test Microphone ** Signal LineR                             OFF - ";
+const char  txt_error124[]  PROGMEM            = "Test Microphone ** Signal mag radio                         OFF - ";
+const char  txt_error125[]  PROGMEM            = "Test Microphone ** Signal mag phone                         OFF - ";
+const char  txt_error126[]  PROGMEM            = "Test Microphone ** Signal GGS                               OFF - ";
+const char  txt_error127[]  PROGMEM            = "Test Microphone ** Signal GG Radio1                         OFF - ";
+const char  txt_error128[]  PROGMEM            = "Test Microphone ** Signal GG Radio2                         OFF - ";
+const char  txt_error129[]  PROGMEM            = "Test Microphone ** Signal Radio2                            ON  - ";
+
+char buffer[130];  
 
 const char* const table_message[] PROGMEM = 
 {
@@ -476,8 +487,8 @@ txt_message50,                                // " ****** Test Radio1 start! ***
 txt_message51,                                // "Signal Radio1 200 mV    LFE                   ON"            ;
 txt_message52,                                //" ****** Test Radio2 start! ******"      ;
 txt_message53,                                // "Signal Radio1 300 mV    Center                ON"            ;
-txt_message54,                                // ""      ;
-txt_message55,                                // ""      ;
+txt_message54,                                // " ****** Test miсrophone start! ******"                       ;
+txt_message55,                                // "Signal miсrophone 30  mV                      ON"            ;
 txt_message56,                                // ""      ;
 txt_message57,                                // ""      ;
 txt_message58,                                // ""      ;
@@ -617,13 +628,18 @@ txt_error115,                                 // "Test Radio2 ** Signal mag phon
 txt_error116,                                 // "Test Radio2 ** Signal GGS                                   OFF - ";
 txt_error117,                                 // "Test Radio2 ** Signal GG Radio1                             OFF - ";
 txt_error118,                                 // "Test Radio2 ** Signal GG Radio2                             OFF - ";
-txt_error119                                  // "Test Radio2 ** Signal Radio2                                ON  - ";
+txt_error119,                                 // "Test Radio2 ** Signal Radio2                                ON  - ";
 
-//txt_error120,  
-
-
-
-
+txt_error120,                                 // "Test Microphone ** Signal FrontL                            OFF - ";
+txt_error121,                                 // "Test Microphone ** Signal FrontR                            OFF - ";
+txt_error122,                                 // "Test Microphone ** Signal LineL                             OFF - ";
+txt_error123,                                 // "Test Microphone ** Signal LineR                             OFF - ";
+txt_error124,                                 // "Test Microphone ** Signal mag radio                         OFF - ";
+txt_error125,                                 // "Test Microphone ** Signal mag phone                         OFF - ";
+txt_error126,                                 // "Test Microphone ** Signal GGS                               OFF - ";
+txt_error127,                                 // "Test Microphone ** Signal GG Radio1                         OFF - ";
+txt_error128,                                 // "Test Microphone ** Signal GG Radio2                         OFF - ";
+txt_error129,                                 // "Test Microphone ** Signal Radio2                            ON  - ";
 
 };
 
@@ -2163,7 +2179,28 @@ if(test_sens == false)
 			myFile.println(regcount);                                               // Показания счетчика ошибок
 	   }
 
+	regBank.set(5,0);                                                               // Микрофон инструктора отключить
 	regBank.set(10,0);                                                              // Микрофон диспетчера отключить
+	regBank.set(13,0);                                                              // XP8 - 2   sensor Тангента ножная
+	regBank.set(14,0);                                                              // XP8 - 1   PTT     Тангента ножная
+	regBank.set(15,0);                                                              // XS1 - 5   PTT Мик CTS
+	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
+ 
+	regBank.set(17,0);                                                              // J8-12    XP7 4 PTT2 тангента ручная DSR
+	regBank.set(18,0);                                                              // XP1 - 20  HangUp  DCD
+	regBank.set(19,0);                                                              // J8-11     XP7 2 sensor тангента ручная
+	regBank.set(20,0);                                                              // J8-23     XP7 1 PTT1 тангента ручная CTS
+	regBank.set(25,1);                                                              // XP1- 19 HaSs      sensor подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+	regBank.set(26,0);                                                              // XP1- 17 HaSPTT    CTS DSR вкл.
+	regBank.set(27,0);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(28,0);                                                              // XP1- 15 HeS2PTT   CTS вкл
+	regBank.set(29,0);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+	regBank.set(30,0);                                                              // XP1- 6  HeS1PTT   CTS вкл
+	regBank.set(31,0);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,0);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+
+	UpdateRegs(); 
+	delay(1000);
 	UpdateRegs(); 
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(100);
@@ -2218,7 +2255,7 @@ void test_headset_instructor()
 	regBank.set(15,0);                                                              // РТТ микрофона отключить
 	regBank.set(29,1);                                                              // ВКЛ XP1- 13 HeS2Ls Кнопка  ВКЛ флаг подключения гарнитуры инструктора 
 	UpdateRegs();                                                                   // 
-	delay(200);                                                                     //
+	delay(400);                                                                     //
 	byte i53 = regs_in[3];                                                          // Получить текущее состояние Камертона
 		if(bitRead(i53,4) == 0)                                                     // Реле RL4 XP1 12  HeS2e   Включение микрофона инструктора
 		  {
@@ -2248,8 +2285,8 @@ void test_headset_instructor()
 	if (test_repeat == false) myFile.println(buffer);                               // "Microphone headset instructor signal          ON"            ;    Звуковой сигнал подан на вход микрофона инструктора
 	delay(20);
 	//+++++++++++++++++++++++++++ Проверить наличие сигнала на линиях LineL  mag phone  ++++++++++++++++++++++++++++++++++
-	measure_vol_max(analog_LineL,    40224,224,200);                                // Измерить уровень сигнала на выходе LineL      "Test headset instructor ** Signal LineL                     ON  - ";
-	measure_vol_max(analog_mag_phone,40226,226,200);                                // Измерить уровень сигнала на выходе mag phone  "Test headset instructor ** Signal Mag phone                 ON  - ";
+	measure_vol_max(analog_LineL,    40224,224,150);                                // Измерить уровень сигнала на выходе LineL      "Test headset instructor ** Signal LineL                     ON  - ";
+	measure_vol_max(analog_mag_phone,40226,226,150);                                // Измерить уровень сигнала на выходе mag phone  "Test headset instructor ** Signal Mag phone                 ON  - ";
 
    //++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях +++++++++++++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,   40230,230,25);                                 // Измерить уровень сигнала на выходе FrontL    "Test headset instructor ** Signal FrontL                    OFF - ";
@@ -2266,6 +2303,7 @@ void test_headset_instructor()
 	regBank.set(15,0);                                                              // РТТ микрофона отключить
 	regBank.set(5,0);                                                               // Подать управляющую команду на вывод 12 ХР1 HeS2e (Выключить микрофон инструктора)
 	regBank.set(28,0);                                                              // XP1- 15 HeS2Ls Отключить PTT инструктора
+	regBank.set(2,0);                                                               // Выключить сигнал на вход микрофона инструктора  Mic2p
 	UpdateRegs();     
 
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
@@ -2301,9 +2339,9 @@ void test_headset_dispatcher()
 	measure_vol_min(analog_mag_radio,40244,244,25);                                 // Измерить уровень сигнала на выходе mag radio "Test headset dispatcher ** Signal mag radio                 OFF - ";
 	measure_vol_min(analog_mag_phone,40245,245,25);                                 // Измерить уровень сигнала на выходе mag phone "Test headset dispatcher ** Signal mag phone                 OFF - ";
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях ГГС +++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_ggs,      40246,246,30);                                 // Измерить уровень сигнала на выходе GGS       "Test headset dispatcher ** Signal GGS                       OFF - ";
-	measure_vol_min(analog_gg_radio1,40247,247,30);                                 // Измерить уровень сигнала на выходе GG Radio1 "Test headset dispatcher ** Signal GG Radio1                 OFF - ";
-	measure_vol_min(analog_gg_radio2,40248,248,30);                                 // Измерить уровень сигнала на выходе GG Radio2 "Test headset dispatcher ** Signal GG Radio2                 OFF - ";
+	measure_vol_min(analog_ggs,      40246,246,35);                                 // Измерить уровень сигнала на выходе GGS       "Test headset dispatcher ** Signal GGS                       OFF - ";
+	measure_vol_min(analog_gg_radio1,40247,247,35);                                 // Измерить уровень сигнала на выходе GG Radio1 "Test headset dispatcher ** Signal GG Radio1                 OFF - ";
+	measure_vol_min(analog_gg_radio2,40248,248,35);                                 // Измерить уровень сигнала на выходе GG Radio2 "Test headset dispatcher ** Signal GG Radio2                 OFF - ";
 	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
 //	myFile.println("");                                                             //
 	regBank.set(10,1);                                                              // Подать управляющую команду на вывод XP1 10 Включение микрофона диспетчера
@@ -2438,6 +2476,7 @@ void test_MTT()
 	regBank.set(18,0);                                                              // XP1 - 20  HangUp  DCD ON  Положить трубку
 	regBank.set(26,0);                                                              // XP1- 17 HaSPTT    CTS DSR вкл. Отключить PTT MTT
 	regBank.set(25,1);                                                              //  XP1- 19 HaSs  sensor подключения трубки    MTT отключить должно быть в "1"
+	regBank.set(6,0);                                                               // Реле RL5. Отключить звук Front L, Front R
 	UpdateRegs();                                                                   // Выполнить команду
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(200);
@@ -2773,12 +2812,30 @@ void test_tangN()
 }
 void test_mikrophon()
 {
+//	unsigned int regcount = 0;
+	myFile.println(""); 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[54])));                   // " ****** Test miсrophone start! ******"                       ;
+	myFile.println(buffer);                                                         // " ****** Test miсrophone start! ******"                       ;
+	file_print_date();
+	myFile.println("");
+	regBank.set(16,1);                                                              // XS1 - 6   sensor подключения микрофона
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
 	
+
 	
+		// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона +++++++++++++++++++++++++++++++++++++++++++++++++
+	resistor(1, 60);                                                                // Установить уровень сигнала 60 мв
+	resistor(2, 60);                                                                // Установить уровень сигнала 60 мв
+	regBank.set(9,1);                                                               // Включить сигнал на вход микрофона Реле RL8 Звук на микрофон
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
 	
-	
-	
-	
+
+
+
+	regBank.set(9,0);                                                               // Отключить сигнал на вход микрофона Реле RL8 Звук на микрофон
+	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
 	UpdateRegs();     
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 }
@@ -3796,11 +3853,15 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				regcount = regBank.get(adr_count);                                  // адрес счетчика ошибки 
 				regcount++;                                                         // увеличить счетчик ошибок канала 
 				regBank.set(adr_count,regcount);                                    // адрес счетчика ошибки канала 
+				regBank.set(adr_count+200,voltage10);                               // адрес данных ошибки канала 
 				regBank.set(adr_flagErr,1);                                         // установить флаг ошибки  канала 
 				regBank.set(120,1);                                                 // установить общий флаг ошибки 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));        // "    Error! - "; 
 				myFile.print(buffer);                                               // "    Error! - "; 
-				myFile.println(regcount);                                           // Показания счетчика ошибок
+				myFile.print(regcount);                                             // Показания счетчика ошибок
+				myFile.print("     ");  
+				myFile.print(voltage); 
+				myFile.println(" V");
 			}
 		else
 			{
@@ -3808,7 +3869,10 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				{
 					myFile.print(buffer);                                           // Наименование проверки
 					strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));    // "Pass";
-					myFile.println(buffer);                                         // "Pass";
+					myFile.print(buffer);                                           // "Pass";
+					myFile.print("     ");  
+					myFile.print(voltage); 
+					myFile.println(" V");
 				}
 			}                                     
 }
@@ -3875,11 +3939,15 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				regcount = regBank.get(adr_count);                                  // адрес счетчика ошибки 
 				regcount++;                                                         // увеличить счетчик ошибок канала 
 				regBank.set(adr_count,regcount);                                    // адрес счетчика ошибки канала 
+				regBank.set(adr_count+200,voltage10);                               // адрес данных ошибки канала 
 				regBank.set(adr_flagErr,1);                                         // установить флаг ошибки  канала 
 				regBank.set(120,1);                                                 // установить общий флаг ошибки 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));        // "    Error! - "; 
 				myFile.print(buffer);                                               // "    Error! - "; 
-				myFile.println(regcount);                                           // Показания счетчика ошибок
+				myFile.print(regcount);                                             // Показания счетчика ошибок
+				myFile.print("     ");  
+				myFile.print(voltage); 
+				myFile.println(" V");
 			}
 		else
 			{
@@ -3887,7 +3955,10 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				{
 					myFile.print(buffer);                                           // Наименование проверки
 					strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));    // "Pass";
-					myFile.println(buffer);                                         // "Pass";
+					myFile.print(buffer);                                           // "Pass";
+					myFile.print("     ");  
+					myFile.print(voltage); 
+					myFile.println(" V");
 				}
 			}    
 }
@@ -4363,6 +4434,17 @@ modbus registers follow the following format
 	regBank.add(318);                         // Флаг ошибки "Test Radio2 ** Signal GG Radio2                             OFF - ";
 	regBank.add(319);                         // Флаг ошибки "Test Radio2 ** Signal Radio2                                ON  - ";
 
+	regBank.add(320);                         // Флаг ошибки "Test Microphone ** Signal FrontL                            OFF - ";
+	regBank.add(321);                         // Флаг ошибки "Test Microphone ** Signal FrontR                            OFF - ";
+	regBank.add(322);                         // Флаг ошибки "Test Microphone ** Signal LineL                             OFF - ";
+	regBank.add(323);                         // Флаг ошибки "Test Microphone ** Signal LineR                             OFF - ";
+	regBank.add(324);                         // Флаг ошибки "Test Microphone ** Signal mag radio                         OFF - ";
+	regBank.add(325);                         // Флаг ошибки "Test Microphone ** Signal mag phone                         OFF - ";
+	regBank.add(326);                         // Флаг ошибки "Test Microphone ** Signal GGS                               OFF - ";
+	regBank.add(327);                         // Флаг ошибки "Test Microphone ** Signal GG Radio1                         OFF - ";
+	regBank.add(328);                         // Флаг ошибки "Test Microphone ** Signal GG Radio2                         OFF - ";
+	regBank.add(329);                         // Флаг ошибки "Test Microphone ** Signal Radio2                            ON  - ";
+
 
 
 
@@ -4681,6 +4763,142 @@ modbus registers follow the following format
 	regBank.add(40317);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal GG Radio1                             OFF - ";
 	regBank.add(40318);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal GG Radio2                             OFF - ";
 	regBank.add(40319);                         // Aдрес счетчика ошибки "Test Radio2 ** Signal Radio2                                ON  - ";
+
+	regBank.add(40320);                         // Aдрес счетчика ошибки "Test Microphone ** Signal FrontL                            OFF - ";
+	regBank.add(40321);                         // Aдрес счетчика ошибки "Test Microphone ** Signal FrontR                            OFF - ";
+	regBank.add(40322);                         // Aдрес счетчика ошибки "Test Microphone ** Signal LineL                             OFF - ";
+	regBank.add(40323);                         // Aдрес счетчика ошибки "Test Microphone ** Signal LineR                             OFF - ";
+	regBank.add(40324);                         // Aдрес счетчика ошибки "Test Microphone ** Signal mag radio                         OFF - ";
+	regBank.add(40325);                         // Aдрес счетчика ошибки "Test Microphone ** Signal mag phone                         OFF - ";
+	regBank.add(40326);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GGS                               OFF - ";
+	regBank.add(40327);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GG Radio1                         OFF - ";
+	regBank.add(40328);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GG Radio2                         OFF - ";
+	regBank.add(40329);                         // Aдрес счетчика ошибки "Test Microphone ** Signal Radio2                            ON  - ";
+
+
+	
+	// ++++++++++++++++++++++ Регистры хранения данных при проверке модулей ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	regBank.add(40220);                         // Aдрес  ;
+	regBank.add(40221);                         // Aдрес  ;
+	regBank.add(40222);                         // Aдрес  ;
+	regBank.add(40223);                         // Aдрес  ;
+	regBank.add(40424);                         // Aдрес данных измерения "Test headset instructor ** Signal LineL                     ON  - ";
+	regBank.add(40425);                         // Aдрес данных измерения "Test headset instructor ** Signal LineR                     ON  - ";   
+	regBank.add(40426);                         // Aдрес данных измерения "Test headset instructor ** Signal Mag phone                 ON  - ";
+	regBank.add(40427);                         // Aдрес данных измерения "Test headset dispatcher ** Signal LineL                     ON  - ";
+	regBank.add(40428);                         // Aдрес данных измерения "Test headset dispatcher ** Signal LineR                     ON  - ";  
+	regBank.add(40429);                         // Aдрес данных измерения "Test headset dispatcher ** Signal Mag phone                 ON  - ";
+
+	regBank.add(40430);                         // Aдрес данных измерения "Test headset instructor ** Signal FrontL                    OFF - ";
+	regBank.add(40431);                         // Aдрес данных измерения "Test headset instructor ** Signal FrontR                    OFF - ";
+	regBank.add(40432);                         // Aдрес данных измерения "Test headset instructor ** Signal LineL                     OFF - ";
+	regBank.add(40433);                         // Aдрес данных измерения "Test headset instructor ** Signal LineR                     OFF - ";
+	regBank.add(40434);                         // Aдрес данных измерения "Test headset instructor ** Signal mag radio                 OFF - "; 
+	regBank.add(40435);                         // Aдрес данных измерения "Test headset instructor ** Signal mag phone                 OFF - ";
+	regBank.add(40436);                         // Aдрес данных измерения "Test headset instructor ** Signal GGS                       OFF - ";
+	regBank.add(40437);                         // Aдрес данных измерения "Test headset instructor ** Signal GG Radio1                 OFF - ";
+	regBank.add(40438);                         // Aдрес данных измерения "Test headset instructor ** Signal GG Radio2                 OFF - ";
+	regBank.add(40439);                         //
+
+	regBank.add(40440);                         // Aдрес данных измерения "Test headset dispatcher ** Signal FrontL                    OFF - ";
+	regBank.add(40441);                         // Aдрес данных измерения "Test headset dispatcher ** Signal FrontR                    OFF - ";
+	regBank.add(40442);                         // Aдрес данных измерения "Test headset dispatcher ** Signal LineL                     OFF - "; 
+	regBank.add(40443);                         // Aдрес данных измерения "Test headset dispatcher ** Signal LineR                     OFF - ";
+	regBank.add(40444);                         // Aдрес данных измерения "Test headset dispatcher ** Signal mag radio                 OFF - "; 
+	regBank.add(40445);                         // Aдрес данных измерения "Test headset dispatcher ** Signal mag phone                 OFF - ";
+	regBank.add(40446);                         // Aдрес данных измерения "Test headset dispatcher ** Signal GGS                       OFF - "; 
+	regBank.add(40447);                         // Aдрес данных измерения "Test headset dispatcher ** Signal GG Radio1                 OFF - ";
+	regBank.add(40448);                         // Aдрес данных измерения "Test headset dispatcher ** Signal GG Radio2                 OFF - "; 
+	regBank.add(40449);                         //  
+
+	regBank.add(40450);                         // Aдрес данных измерения "Test MTT ** Signal FrontL                                   OFF - ";
+	regBank.add(40451);                         // Aдрес данных измерения "Test MTT ** Signal FrontR                                   OFF - ";
+	regBank.add(40452);                         // Aдрес данных измерения "Test MTT ** Signal LineL                                    OFF - ";
+	regBank.add(40453);                         // Aдрес данных измерения "Test MTT ** Signal LineR                                    OFF - "; 
+	regBank.add(40454);                         // Aдрес данных измерения "Test MTT ** Signal mag radio                                OFF - ";
+	regBank.add(40455);                         // Aдрес данных измерения "Test MTT ** Signal mag phone                                OFF - ";
+	regBank.add(40456);                         // Aдрес данных измерения "Test MTT ** Signal GGS                                      OFF - ";
+	regBank.add(40457);                         // Aдрес данных измерения "Test MTT ** Signal GG Radio1                                OFF - ";
+	regBank.add(40458);                         // Aдрес данных измерения "Test MTT ** Signal GG Radio2                                OFF - "; 
+	regBank.add(40459);                         // Aдрес данных измерения "Test MTT ** Signal GGS                                      ON  - ";
+
+	regBank.add(40460);                         // Aдрес данных измерения "Test MTT ** Signal LineL                                    ON  - ";
+	regBank.add(40461);                         // Aдрес данных измерения "Test MTT ** Signal LineR                                    ON  - ";  
+	regBank.add(40462);                         // Aдрес данных измерения "Test MTT ** Signal Mag phone                                ON  - ";
+	regBank.add(40463);                         // Aдрес данных измерения "Test MTT PTT    (CTS)                                       OFF - ";
+	regBank.add(40464);                         // 
+	regBank.add(40465);                         // Aдрес данных измерения "Test MTT PTT    (CTS)                                       ON  - ";
+	regBank.add(40466);                         // 
+	regBank.add(40467);                         // Aдрес данных измерения "Test MTT HangUp (DCD)                                       OFF - ";
+	regBank.add(40468);                         // Aдрес данных измерения "Test MTT HangUp (DCD)                                       ON  - ";
+	regBank.add(40469);                         //  
+
+	regBank.add(40470);                         // Aдрес данных измерения "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
+	regBank.add(40471);                         // Aдрес данных измерения "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
+	regBank.add(40472);                         // Aдрес данных измерения "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
+	regBank.add(40473);                         // Aдрес данных измерения "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
+	regBank.add(40474);                         // Aдрес данных измерения "Command sensor tangenta ruchnaja                            OFF - ";
+	regBank.add(40475);                         // Aдрес данных измерения "Command sensor tangenta ruchnaja                            ON  - ";
+	regBank.add(40476);                         // Aдрес данных измерения "Command sensor tangenta nognaja                             OFF - ";
+	regBank.add(40477);                         // Aдрес данных измерения "Command sensor tangenta nognaja                             ON  - ";
+	regBank.add(40478);                         // Aдрес данных измерения "Command PTT tangenta nognaja (CTS)                          OFF - ";
+	regBank.add(40479);                         // Aдрес данных измерения "Command PTT tangenta nognaja (CTS)                          ON  - ";
+
+	regBank.add(40480);                         // Aдрес данных измерения "Test GGS ** Signal FrontL                                   OFF - ";
+	regBank.add(40481);                         // Aдрес данных измерения "Test GGS ** Signal FrontR                                   OFF - ";
+	regBank.add(40482);                         // Aдрес данных измерения "Test GGS ** Signal LineL                                    OFF - ";
+	regBank.add(40483);                         // Aдрес данных измерения "Test GGS ** Signal LineR                                    OFF - ";
+	regBank.add(40484);                         // Aдрес данных измерения "Test GGS ** Signal mag radio                                OFF - ";
+	regBank.add(40485);                         // Aдрес данных измерения "Test GGS ** Signal mag phone                                OFF - ";
+	regBank.add(40486);                         // Aдрес данных измерения "Test GGS ** Signal GGS                                      OFF - ";
+	regBank.add(40487);                         // Aдрес данных измерения "Test GGS ** Signal GG Radio1                                OFF - ";
+	regBank.add(40488);                         // Aдрес данных измерения "Test GGS ** Signal GG Radio2                                OFF - ";
+	regBank.add(40489);                         // Aдрес данных измерения "Test GGS ** Signal GGS                                      ON  - ";
+
+	regBank.add(40490);                         // Aдрес данных измерения "Test GGS ** Signal FrontL                                   ON  - ";
+	regBank.add(40491);                         // Aдрес данных измерения "Test GGS ** Signal FrontR                                   ON  - ";
+	regBank.add(40492);                         // Aдрес данных измерения "Test GGS ** Signal mag phone                                ON  - ";
+	regBank.add(40493);                         // 
+	regBank.add(40494);                         // 
+	regBank.add(40495);                         // 
+	regBank.add(40496);                         // 
+	regBank.add(40497);                         // 
+	regBank.add(40498);                         //    
+	regBank.add(40499);                         // 
+
+	regBank.add(40500);                         // Aдрес данных измерения "Test Radio1 ** Signal FrontL                                OFF - ";
+	regBank.add(40501);                         // Aдрес данных измерения "Test Radio1 ** Signal FrontR                                OFF - ";
+	regBank.add(40502);                         // Aдрес данных измерения "Test Radio1 ** Signal LineL                                 OFF - ";
+	regBank.add(40503);                         // Aдрес данных измерения "Test Radio1 ** Signal LineR                                 OFF - ";
+	regBank.add(40504);                         // Aдрес данных измерения "Test Radio1 ** Signal mag radio                             OFF - ";
+	regBank.add(40505);                         // Aдрес данных измерения "Test Radio1 ** Signal mag phone                             OFF - ";
+	regBank.add(40506);                         // Aдрес данных измерения "Test Radio1 ** Signal GGS                                   OFF - ";
+	regBank.add(40507);                         // Aдрес данных измерения "Test Radio1 ** Signal GG Radio1                             OFF - ";
+	regBank.add(40508);                         // Aдрес данных измерения "Test Radio1 ** Signal GG Radio2                             OFF - ";
+	regBank.add(40509);                         // Aдрес данных измерения "Test Radio1 ** Signal Radio1                                ON  - ";
+
+	regBank.add(40510);                         // Aдрес данных измерения "Test Radio2 ** Signal FrontL                                OFF - ";
+	regBank.add(40511);                         // Aдрес данных измерения "Test Radio2 ** Signal FrontR                                OFF - ";
+	regBank.add(40512);                         // Aдрес данных измерения "Test Radio2 ** Signal LineL                                 OFF - ";
+	regBank.add(40513);                         // Aдрес данных измерения "Test Radio2 ** Signal LineR                                 OFF - ";
+	regBank.add(40514);                         // Aдрес данных измерения "Test Radio2 ** Signal mag radio                             OFF - ";
+	regBank.add(40515);                         // Aдрес данных измерения "Test Radio2 ** Signal mag phone                             OFF - ";
+	regBank.add(40516);                         // Aдрес данных измерения "Test Radio2 ** Signal GGS                                   OFF - ";
+	regBank.add(40517);                         // Aдрес данных измерения "Test Radio2 ** Signal GG Radio1                             OFF - ";
+	regBank.add(40518);                         // Aдрес данных измерения "Test Radio2 ** Signal GG Radio2                             OFF - ";
+	regBank.add(40519);                         // Aдрес данных измерения "Test Radio2 ** Signal Radio2                                ON  - ";
+
+	regBank.add(40520);                         // Aдрес данных измерения "Test Microphone ** Signal FrontL                            OFF - ";
+	regBank.add(40521);                         // Aдрес данных измерения "Test Microphone ** Signal FrontR                            OFF - ";
+	regBank.add(40522);                         // Aдрес данных измерения "Test Microphone ** Signal LineL                             OFF - ";
+	regBank.add(40523);                         // Aдрес данных измерения "Test Microphone ** Signal LineR                             OFF - ";
+	regBank.add(40524);                         // Aдрес данных измерения "Test Microphone ** Signal mag radio                         OFF - ";
+	regBank.add(40525);                         // Aдрес данных измерения "Test Microphone ** Signal mag phone                         OFF - ";
+	regBank.add(40526);                         // Aдрес данных измерения "Test Microphone ** Signal GGS                               OFF - ";
+	regBank.add(40527);                         // Aдрес данных измерения "Test Microphone ** Signal GG Radio1                         OFF - ";
+	regBank.add(40528);                         // Aдрес данных измерения "Test Microphone ** Signal GG Radio2                         OFF - ";
+	regBank.add(40529);                         // Aдрес данных измерения "Test Microphone ** Signal Radio2                            ON  - ";
 
 
 

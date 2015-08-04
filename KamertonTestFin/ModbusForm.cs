@@ -29,12 +29,12 @@ using FieldTalk.Modbus.Master;
 
 namespace KamertonTest
 {
-         
+
     public partial class Form1 : Form
     {
-       
+
         private MbusMasterFunctions myProtocol;
- 
+
         private int slave;
         private int startCoil;
         private int numCoils;
@@ -47,7 +47,7 @@ namespace KamertonTest
         private int TestRepeatCount;
         private int _SerialMonitor;
         static bool _All_Test_Stop = true;
-   
+
         public Form1()
         {
             InitializeComponent();
@@ -59,46 +59,46 @@ namespace KamertonTest
         //                                Parity.None,
         //                                8,
         //                                StopBits.One);
-       
+
         const string fileName = "Kamerton log.txt";
-      
+
 
         private void Form1_Load(object sender, EventArgs e)
-                {
-                    ToolTip1.SetToolTip(txtPollDelay, "Задержка в миллисекундах между двумя последовательными операциями Modbus, 0 для отключения");
-                    ToolTip1.SetToolTip(cmbRetry, "Сколько раз повторить операцию, если в первый раз не принят?");
-                    ToolTip1.SetToolTip(cmbSerialProtocol, "Выбор протокола COM: ASCII или RTU");
-                    ToolTip1.SetToolTip(cmbTcpProtocol, "Выбор протокола Ethernet: MODBUS/TCP или Encapsulated RTU над TCP");
-                 //   ToolTip1.SetToolTip(textBox1, "Время задержки измерения в миллисекундах");
-                    cmbComPort.SelectedIndex = 0;
-                    cmbParity.SelectedIndex = 0;
-                    cmbStopBits.SelectedIndex = 0;
-                    cmbDataBits.SelectedIndex = 0;
-                    cmbBaudRate.SelectedIndex = 5;
-                    cmbSerialProtocol.SelectedIndex = 0;
-                    cmbTcpProtocol.SelectedIndex = 0;
-                    cmbRetry.SelectedIndex = 2;
-                    serial_connect();
-                    cmbCommand.SelectedIndex = 0;
-                    Polltimer1.Enabled      = true;
-                    timer_byte_set.Enabled  = false;
-                    timer_Mic_test.Enabled  = false;
-                    timerCTS.Enabled        = false;
-                    timerTestAll.Enabled    = false;
-                    radioButton1.Checked    = true;
-                    serviceSet();
-                    _SerialMonitor = 0;
-                    // _serialPort.Handshake = Handshake.None;
-                    // _serialPort.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
-                    // _serialPort.ReadTimeout  = 500;
-                    // _serialPort.WriteTimeout = 500;
-                    // if (!(_serialPort.IsOpen))
-                    // _serialPort.Open();
-                }
+        {
+            ToolTip1.SetToolTip(txtPollDelay, "Задержка в миллисекундах между двумя последовательными операциями Modbus, 0 для отключения");
+            ToolTip1.SetToolTip(cmbRetry, "Сколько раз повторить операцию, если в первый раз не принят?");
+            ToolTip1.SetToolTip(cmbSerialProtocol, "Выбор протокола COM: ASCII или RTU");
+            ToolTip1.SetToolTip(cmbTcpProtocol, "Выбор протокола Ethernet: MODBUS/TCP или Encapsulated RTU над TCP");
+            //   ToolTip1.SetToolTip(textBox1, "Время задержки измерения в миллисекундах");
+            cmbComPort.SelectedIndex = 0;
+            cmbParity.SelectedIndex = 0;
+            cmbStopBits.SelectedIndex = 0;
+            cmbDataBits.SelectedIndex = 0;
+            cmbBaudRate.SelectedIndex = 5;
+            cmbSerialProtocol.SelectedIndex = 0;
+            cmbTcpProtocol.SelectedIndex = 0;
+            cmbRetry.SelectedIndex = 2;
+            serial_connect();
+            cmbCommand.SelectedIndex = 0;
+            Polltimer1.Enabled = true;
+            timer_byte_set.Enabled = false;
+            timer_Mic_test.Enabled = false;
+            timerCTS.Enabled = false;
+            timerTestAll.Enabled = false;
+            radioButton1.Checked = true;
+            serviceSet();
+            _SerialMonitor = 0;
+            // _serialPort.Handshake = Handshake.None;
+            // _serialPort.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
+            // _serialPort.ReadTimeout  = 500;
+            // _serialPort.WriteTimeout = 500;
+            // if (!(_serialPort.IsOpen))
+            // _serialPort.Open();
+        }
 
-        private delegate void SetTextDeleg (string text);                  //             
+        private delegate void SetTextDeleg(string text);                  //             
 
-        void sp_DataReceived (object sender, SerialDataReceivedEventArgs e)
+        void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             Thread.Sleep(500);
             //  string data = _serialPort.ReadLine();
@@ -107,17 +107,17 @@ namespace KamertonTest
             //  ---- Метод "si_DataReceived" будет выполнен в потоке UI,
             //  который позволит заполнить текстовое поле TextBox.
             //  this.BeginInvoke(new SetTextDeleg(si_DataReceived), new object[] { data });
-         }
+        }
 
-        private void serviceSet ()
+        private void serviceSet()
         {
-       
+
             checkBoxSenAll.Checked = true;
-         }
+        }
 
-        private void si_DataReceived (string data)
+        private void si_DataReceived(string data)
         {
-           switch (_SerialMonitor) // Переключатель экранов вывода информации с Serial
+            switch (_SerialMonitor) // Переключатель экранов вывода информации с Serial
             {
                 default:
                 case 0:
@@ -131,17 +131,17 @@ namespace KamertonTest
                     //textBox9.Refresh();
                     break;
                 case 2:
-                      break;
+                    break;
                 case 3:
                     textBox11.Text += (data.Trim() + "\r\n");
                     textBox11.Refresh();
                     break;
             }
         }
-      
+
         private void cmdOpenSerial_Click(object sender, EventArgs e)
         {
-              
+
             //
             // First we must instantiate class if we haven't done so already
             //
@@ -228,33 +228,33 @@ namespace KamertonTest
                 default:
                 case 0:
                     parity = MbusSerialMasterProtocol.SER_PARITY_NONE;
-                break;
+                    break;
                 case 1:
                     parity = MbusSerialMasterProtocol.SER_PARITY_EVEN;
-                break;
+                    break;
                 case 2:
                     parity = MbusSerialMasterProtocol.SER_PARITY_ODD;
-                break;
+                    break;
             }
             switch (cmbDataBits.SelectedIndex)
             {
                 default:
                 case 0:
                     dataBits = MbusSerialMasterProtocol.SER_DATABITS_8;
-                break;
+                    break;
                 case 1:
                     dataBits = MbusSerialMasterProtocol.SER_DATABITS_7;
-                break;
+                    break;
             }
             switch (cmbStopBits.SelectedIndex)
             {
                 default:
                 case 0:
                     stopBits = MbusSerialMasterProtocol.SER_STOPBITS_1;
-                break;
+                    break;
                 case 1:
                     stopBits = MbusSerialMasterProtocol.SER_STOPBITS_2;
-                break;
+                    break;
             }
             myProtocol.timeout = timeOut;
             myProtocol.retryCnt = retryCnt;
@@ -274,13 +274,13 @@ namespace KamertonTest
                             + (baudRate + (" baud, "
                             + (dataBits + (" data bits, "
                             + (stopBits + (" stop bits, parity " + parity)))))))));
-                           button5.Enabled = true;
-                           Polltimer1.Enabled = true;
-            } 
+                button5.Enabled = true;
+                Polltimer1.Enabled = true;
+            }
             else
             {
-                    lblResult.Text = (" ошибка была: " + BusProtocolErrors.getBusProtocolErrorText(res));
-                    label78.Text = ("Не удалось открыть протокол!");
+                lblResult.Text = (" ошибка была: " + BusProtocolErrors.getBusProtocolErrorText(res));
+                label78.Text = ("Не удалось открыть протокол!");
             }
         }
 
@@ -289,8 +289,8 @@ namespace KamertonTest
             //
             // First we must instantiate class if we haven't done so already
             //
-          //  CloseButton.Enabled = true;
-          //  cmdOpenSerial.Enabled = false;
+            //  CloseButton.Enabled = true;
+            //  cmdOpenSerial.Enabled = false;
 
 
             if ((myProtocol == null))
@@ -416,7 +416,7 @@ namespace KamertonTest
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
                 toolStripStatusLabel1.Text = ("Последовательный порт успешно открыт с параметрами: "
-                //lblResult.Text = ("Последовательный порт успешно открыт с параметрами: "
+                    //lblResult.Text = ("Последовательный порт успешно открыт с параметрами: "
                             + (cmbComPort.Text + (", "
                             + (baudRate + (" baud, "
                             + (dataBits + (" data bits, "
@@ -447,7 +447,7 @@ namespace KamertonTest
 
                 toolStripStatusLabel1.Text = "    MODBUS ON    ";
                 toolStripStatusLabel1.BackColor = Color.Lime;
-                
+
             }
             else
             {
@@ -462,82 +462,82 @@ namespace KamertonTest
 
         private void file_fakt_namber()
         {
-                short[] readVals = new short[125];
-                int slave;
-                int startRdReg;
-                int numRdRegs;
-                slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-                startRdReg = 112; // 40046 Адрес дата/время контроллера  
-                numRdRegs = 4;
-                res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-                lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-                if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                {
-                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                    toolStripStatusLabel1.BackColor = Color.Lime;
+            short[] readVals = new short[125];
+            int slave;
+            int startRdReg;
+            int numRdRegs;
+            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+            startRdReg = 112; // 40046 Адрес дата/время контроллера  
+            numRdRegs = 4;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+            lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                toolStripStatusLabel1.BackColor = Color.Lime;
 
-                   // textBox9.Text = "\r\n";
-                    textBox9.Text += "Текущий номер файла   -   ";
-                    textBox9.Text += (readVals[0]);
-                    if (readVals[1] < 10)
-                    {
-                        textBox9.Text += ("0" + readVals[1]);
-                    }
-                    else
-                    {
-                        textBox9.Text += (readVals[1]);
-                    }
-                    if (readVals[2] < 10)
-                    {
-                        textBox9.Text += ("0" + readVals[2]);
-                    }
-                    else
-                    {
-                        textBox9.Text += (readVals[2]);
-                    }
-                    if (readVals[3] < 10)
-                    {
-                        textBox9.Text += ("0" + readVals[3] + ".TXT" + "\r\n");
-                    }
-                    else
-                    {
-                        textBox9.Text += (readVals[3] + ".TXT" + "\r\n");
-                    }
-                  }
-            
+                // textBox9.Text = "\r\n";
+                textBox9.Text += "Текущий номер файла   -   ";
+                textBox9.Text += (readVals[0]);
+                if (readVals[1] < 10)
+                {
+                    textBox9.Text += ("0" + readVals[1]);
+                }
                 else
                 {
-                    toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
-                    toolStripStatusLabel1.BackColor = Color.Red;
-                 }
+                    textBox9.Text += (readVals[1]);
+                }
+                if (readVals[2] < 10)
+                {
+                    textBox9.Text += ("0" + readVals[2]);
+                }
+                else
+                {
+                    textBox9.Text += (readVals[2]);
+                }
+                if (readVals[3] < 10)
+                {
+                    textBox9.Text += ("0" + readVals[3] + ".TXT" + "\r\n");
+                }
+                else
+                {
+                    textBox9.Text += (readVals[3] + ".TXT" + "\r\n");
+                }
+            }
+
+            else
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                toolStripStatusLabel1.BackColor = Color.Red;
+            }
         }
 
         #region Load Listboxes
         private void LoadListboxes()
+        {
+            //Three to load - ports, baudrates, datetype.  Also set default textbox values:
+            //1) Available Ports:
+            string[] ports = SerialPort.GetPortNames();
+
+            foreach (string port in ports)
             {
-                //Three to load - ports, baudrates, datetype.  Also set default textbox values:
-                //1) Available Ports:
-                string[] ports = SerialPort.GetPortNames();
-
-                    foreach (string port in ports)
-                    {
-                        cmbComPort.Items.Add(port);
-                    }
-
-                cmbComPort.SelectedIndex = 0;
-
+                cmbComPort.Items.Add(port);
             }
-            #endregion
+
+            cmbComPort.SelectedIndex = 0;
+
+        }
+        #endregion
 
         #region timer all
-        private void Polltimer1_Tick (object sender, EventArgs e)           // Выполняет контроль MODBUS и часов
+        private void Polltimer1_Tick(object sender, EventArgs e)           // Выполняет контроль MODBUS и часов
         {
             short[] readVals = new short[125];
             int slave;
             int startRdReg;
             int numRdRegs;
             int res;
- 
+
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
 
             startRdReg = 46; // 40046 Адрес дата/время контроллера  
@@ -590,7 +590,7 @@ namespace KamertonTest
                     }
 
                 }
-             }
+            }
 
             else
             {
@@ -606,8 +606,8 @@ namespace KamertonTest
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
             //  timer_Mic_test.Enabled = false;
         }
- 
-        private void timer_byte_set_Tick (object sender, EventArgs e)
+
+        private void timer_byte_set_Tick(object sender, EventArgs e)
         {
             short[] readVals = new short[124];
             int slave;
@@ -634,745 +634,745 @@ namespace KamertonTest
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);    // 03  Считать число из регистров по адресу  40000 -49999
             label78.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                toolStripStatusLabel1.BackColor = Color.Lime;
+
+                for (int bite_x = 0; bite_x < 7; bite_x++)
                 {
-                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                    toolStripStatusLabel1.BackColor = Color.Lime;
+                    // textBox11.Text += (bite_x + "  ");
+                    decimalNum = readVals[bite_x];
+                    //    textBox11.Text += (decimalNum +  "\r\n");
+                    while (decimalNum > 0)
+                    {
+                        binaryHolder = decimalNum % 2;
+                        binaryResult += binaryHolder;
+                        decimalNum = decimalNum / 2;
+                    }
 
-                    for (int bite_x = 0; bite_x < 7; bite_x++)
+                    int len_str = binaryResult.Length;
+
+                    while (len_str < 8)
+                    {
+                        binaryResult += 0;
+                        len_str++;
+                    }
+
+                    //****************** Перемена битов ***************************
+                    //binaryArray = binaryResult.ToCharArray();
+                    //Array.Reverse(binaryArray);
+                    //binaryResult = new string(binaryArray);
+                    //*************************************************************
+
+                    //  textBox11.Text = (textBox11.Text + (binaryResult + "\r\n"));
+
+                    for (i = 0; i < 8; i++)                         // 
+                    {
+                        if (binaryResult[i] == '1')
                         {
-                           // textBox11.Text += (bite_x + "  ");
-                            decimalNum = readVals[bite_x];
-                        //    textBox11.Text += (decimalNum +  "\r\n");
-                            while (decimalNum > 0)
-                                {
-                                    binaryHolder = decimalNum % 2;
-                                    binaryResult += binaryHolder;
-                                    decimalNum = decimalNum / 2;
-                                }
-
-                            int len_str = binaryResult.Length;
-
-                            while (len_str < 8)
-                                {
-                                    binaryResult += 0;
-                                    len_str++;
-                                }
-
-                            //****************** Перемена битов ***************************
-                            //binaryArray = binaryResult.ToCharArray();
-                            //Array.Reverse(binaryArray);
-                            //binaryResult = new string(binaryArray);
-                            //*************************************************************
-
-                            //  textBox11.Text = (textBox11.Text + (binaryResult + "\r\n"));
-
-                            for (i = 0; i < 8; i++)                         // 
-                                {
-                                if (binaryResult[i] == '1')
-                                    {
-                                        Dec_bin[i + (8 * bite_x)] = true;
-                                    }
-                                else
-                                    {
-                                        Dec_bin[i + (8 * bite_x)] = false;
-                                    }
-                                //   textBox11.Text = (textBox11.Text + (Dec_bin[i+(8*bite_x)] + " "));
-                                }
-                            binaryResult = "";
-                           //textBox11.Text += ("\r\n");
+                            Dec_bin[i + (8 * bite_x)] = true;
                         }
+                        else
+                        {
+                            Dec_bin[i + (8 * bite_x)] = false;
+                        }
+                        //   textBox11.Text = (textBox11.Text + (Dec_bin[i+(8*bite_x)] + " "));
+                    }
+                    binaryResult = "";
+                    //textBox11.Text += ("\r\n");
+                }
 
-                     }
+            }
 
             //*************************** Вывод состояния битов Камертона *****************************************
 
-                            label30.Text = "";
-                            label31.Text = "";
-                            label32.Text = "";
+            label30.Text = "";
+            label31.Text = "";
+            label32.Text = "";
 
-                            label33.Text = "";
-                            label34.Text = "";
-                            label35.Text = "";
-                            label36.Text = "";
+            label33.Text = "";
+            label34.Text = "";
+            label35.Text = "";
+            label36.Text = "";
 
-                            for (i = 7; i >= 0; i--)
-                                {
-                                    if (Dec_bin[i] == true)
-                                    {
-                                        label30.Text += ("1" + "  ");
-                                    }
-                                    else
-                                    {
-                                        label30.Text += ("0" + "  ");
-                                    }
-                                    if (Dec_bin[i+8] == true)
-                                    {
-                                        label31.Text += ("1" + "  ");
-                                    }
-                                    else
-                                    {
-                                        label31.Text += ("0" + "  ");
-                                    }
+            for (i = 7; i >= 0; i--)
+            {
+                if (Dec_bin[i] == true)
+                {
+                    label30.Text += ("1" + "  ");
+                }
+                else
+                {
+                    label30.Text += ("0" + "  ");
+                }
+                if (Dec_bin[i + 8] == true)
+                {
+                    label31.Text += ("1" + "  ");
+                }
+                else
+                {
+                    label31.Text += ("0" + "  ");
+                }
 
 
-                                    if (Dec_bin[i+16] == true)
-                                    {
-                                        label32.Text += ("1" + "  ");
-                                    }
-                                    else
-                                    {
-                                        label32.Text += ("0" + "  ");
-                                    }
+                if (Dec_bin[i + 16] == true)
+                {
+                    label32.Text += ("1" + "  ");
+                }
+                else
+                {
+                    label32.Text += ("0" + "  ");
+                }
 
-                                    if (Dec_bin[i+24] == true)
-                                    {
-                                        label33.Text += ("1" + "  ");
-                                    }
-                                    else
-                                    {
-                                        label33.Text += ("0" + "  ");
-                                    }
+                if (Dec_bin[i + 24] == true)
+                {
+                    label33.Text += ("1" + "  ");
+                }
+                else
+                {
+                    label33.Text += ("0" + "  ");
+                }
 
-                                    if (Dec_bin[i+32] == true)
-                                    {
-                                        label34.Text += ("1" + "  ");
-                                    }
-                                    else
-                                    {
-                                        label34.Text += ("0" + "  ");
-                                    }
+                if (Dec_bin[i + 32] == true)
+                {
+                    label34.Text += ("1" + "  ");
+                }
+                else
+                {
+                    label34.Text += ("0" + "  ");
+                }
 
-                                    if (Dec_bin[i+40] == true)
-                                    {
-                                        label35.Text += ("1" + "  ");
-                                    }
-                                    else
-                                    {
-                                        label35.Text += ("0" + "  ");
-                                    }
-                                    if (Dec_bin[i+48] == true)
-                                    {
-                                        label36.Text += ("1" + "  ");
-                                    }
-                                    else
-                                    {
-                                        label36.Text += ("0" + "  ");
-                                    }
-                                }
+                if (Dec_bin[i + 40] == true)
+                {
+                    label35.Text += ("1" + "  ");
+                }
+                else
+                {
+                    label35.Text += ("0" + "  ");
+                }
+                if (Dec_bin[i + 48] == true)
+                {
+                    label36.Text += ("1" + "  ");
+                }
+                else
+                {
+                    label36.Text += ("0" + "  ");
+                }
+            }
 
             //***********************************************************************************
 
-                            if (Dec_bin[24] == false) // 30024 флаг подключения ГГ Радио2
-                            {
-                                label103.BackColor = Color.Red;
-                                label103.Text = "0";
-                            }
-                            else
-                            {
-                                label103.BackColor = Color.Lime;
-                                label103.Text = "1";
-                            }
-                            if (Dec_bin[25] == false) // 30025 флаг подключения ГГ Радио1
-                            {
-                                label104.BackColor = Color.Red;
-                                label104.Text = "0";
-                            }
-                            else
-                            {
-                                label104.BackColor = Color.Lime;
-                                label104.Text = "1";
-                            }
+            if (Dec_bin[24] == false) // 30024 флаг подключения ГГ Радио2
+            {
+                label103.BackColor = Color.Red;
+                label103.Text = "0";
+            }
+            else
+            {
+                label103.BackColor = Color.Lime;
+                label103.Text = "1";
+            }
+            if (Dec_bin[25] == false) // 30025 флаг подключения ГГ Радио1
+            {
+                label104.BackColor = Color.Red;
+                label104.Text = "0";
+            }
+            else
+            {
+                label104.BackColor = Color.Lime;
+                label104.Text = "1";
+            }
 
-                            if (Dec_bin[26] == false) // 30026 флаг подключения трубки
-                            {
-                                label105.BackColor = Color.Red;
-                                label105.Text = "0";
-                            }
-                            else
-                            {
-                                label105.BackColor = Color.Lime;
-                                label105.Text = "1";
-                            }
+            if (Dec_bin[26] == false) // 30026 флаг подключения трубки
+            {
+                label105.BackColor = Color.Red;
+                label105.Text = "0";
+            }
+            else
+            {
+                label105.BackColor = Color.Lime;
+                label105.Text = "1";
+            }
 
-                            if (Dec_bin[27] == false)   // 30027 флаг подключения ручной тангенты
-                            {
-                                label106.BackColor = Color.Red;
-                                label106.Text = "0";
-                            }
-                            else
-                            {
-                                label106.BackColor = Color.Lime;
-                                label106.Text = "1";
-                            }
+            if (Dec_bin[27] == false)   // 30027 флаг подключения ручной тангенты
+            {
+                label106.BackColor = Color.Red;
+                label106.Text = "0";
+            }
+            else
+            {
+                label106.BackColor = Color.Lime;
+                label106.Text = "1";
+            }
 
-                            if (Dec_bin[28] == false)  // 30028 флаг подключения педали
-                            {
-                                label107.BackColor = Color.Red;
-                                label107.Text = "0";
-                            }
-                            else
-                            {
-                                label107.BackColor = Color.Lime;
-                                label107.Text = "1";
-                            }
+            if (Dec_bin[28] == false)  // 30028 флаг подключения педали
+            {
+                label107.BackColor = Color.Red;
+                label107.Text = "0";
+            }
+            else
+            {
+                label107.BackColor = Color.Lime;
+                label107.Text = "1";
+            }
 
-                            if (Dec_bin[40] == false) // 30040  флаг подключения магнитофона
-                            {
-                                label108.BackColor = Color.Red;
-                                label108.Text = "0";
-                            }
-                            else
-                            {
-                                label108.BackColor = Color.Lime;
-                                label108.Text = "1";
-                            }
+            if (Dec_bin[40] == false) // 30040  флаг подключения магнитофона
+            {
+                label108.BackColor = Color.Red;
+                label108.Text = "0";
+            }
+            else
+            {
+                label108.BackColor = Color.Lime;
+                label108.Text = "1";
+            }
 
-                            if (Dec_bin[41] == false) // 30041  флаг подключения гарнитуры инструктора 2 наушниками
-                            {
-                                label109.BackColor = Color.Red;
-                                label109.Text = "0";
-                            }
-                            else
-                            {
-                                label109.BackColor = Color.Lime;
-                                label109.Text = "1";
-                            }
+            if (Dec_bin[41] == false) // 30041  флаг подключения гарнитуры инструктора 2 наушниками
+            {
+                label109.BackColor = Color.Red;
+                label109.Text = "0";
+            }
+            else
+            {
+                label109.BackColor = Color.Lime;
+                label109.Text = "1";
+            }
 
-                            if (Dec_bin[42] == false) // 30042  флаг подключения гарнитуры инструктора
-                            {
-                                label110.BackColor = Color.Red;
-                                label110.Text = "0";
-                            }
-                            else
-                            {
-                                label110.BackColor = Color.Lime;
-                                label110.Text = "1";
-                            }
+            if (Dec_bin[42] == false) // 30042  флаг подключения гарнитуры инструктора
+            {
+                label110.BackColor = Color.Red;
+                label110.Text = "0";
+            }
+            else
+            {
+                label110.BackColor = Color.Lime;
+                label110.Text = "1";
+            }
 
-                            if (Dec_bin[43] == false) // 30043  флаг подключения гарнитуры диспетчера с 2 наушниками
-                            {
-                                label111.BackColor = Color.Red;
-                                label111.Text = "0";
-                            }
-                            else
-                            {
-                                label111.BackColor = Color.Lime;
-                                label111.Text = "1";
-                            }
+            if (Dec_bin[43] == false) // 30043  флаг подключения гарнитуры диспетчера с 2 наушниками
+            {
+                label111.BackColor = Color.Red;
+                label111.Text = "0";
+            }
+            else
+            {
+                label111.BackColor = Color.Lime;
+                label111.Text = "1";
+            }
 
-                            if (Dec_bin[44] == false) // 30044  флаг подключения гарнитуры диспетчера
-                            {
-                                label112.BackColor = Color.Red;
-                                label112.Text = "0";
-                            }
-                            else
-                            {
-                                label112.BackColor = Color.Lime;
-                                label112.Text = "1";
-                            }
+            if (Dec_bin[44] == false) // 30044  флаг подключения гарнитуры диспетчера
+            {
+                label112.BackColor = Color.Red;
+                label112.Text = "0";
+            }
+            else
+            {
+                label112.BackColor = Color.Lime;
+                label112.Text = "1";
+            }
 
-                            if (Dec_bin[45] == false) // 30045  флаг подключения микрофона XS1 - 6 Sence
-                            {
-                                label113.BackColor = Color.Red;
-                                label113.Text = "0";
-                            }
-                            else
-                            {
-                                label113.BackColor = Color.Lime;
-                                label113.Text = "1";
-                            }
+            if (Dec_bin[45] == false) // 30045  флаг подключения микрофона XS1 - 6 Sence
+            {
+                label113.BackColor = Color.Red;
+                label113.Text = "0";
+            }
+            else
+            {
+                label113.BackColor = Color.Lime;
+                label113.Text = "1";
+            }
 
-                            if (Dec_bin[46] == false) //  30046  флаг подключения ГГС
-                            {
-                                label115.BackColor = Color.Red;
-                                label115.Text = "0";
-                            }
-                            else
-                            {
-                                label115.BackColor = Color.Lime;
-                                label115.Text = "1";
-                            }
-
-
-                            if (Dec_bin[52] == false) // 30052   флаг выключения ГГС (Mute)
-                            {
-                                label144.BackColor = Color.Red;
-                                label144.Text = "0";
-                            }
-                            else
-                            {
-                                label144.BackColor = Color.Lime;
-                                label144.Text = "1";
-                            }
-
-                            if (Dec_bin[53] == false) // 30053   флаг радиопередачи
-                            {
-                                label143.BackColor = Color.Red;
-                                label143.Text = "0";
-                            }
-                            else
-                            {
-                                label143.BackColor = Color.Lime;
-                                label143.Text = "1";
-                            }
-
-                            if (Dec_bin[54] == false) // 30054   флаг управления микрофонами гарнитур
-                            {
-                                label142.BackColor = Color.Red;
-                                label142.Text = "0";
-                            }
-                            else
-                            {
-                                label142.BackColor = Color.Lime;
-                                label142.Text = "1";
-                            }
-             
-             //********************Вторая колонка ********************
-                startCoil = 1;  //  regBank.add(00001-12);   Отображение соостояния реле 0-9
-                numCoils = 8;
-                res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-                lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+            if (Dec_bin[46] == false) //  30046  флаг подключения ГГС
+            {
+                label115.BackColor = Color.Red;
+                label115.Text = "0";
+            }
+            else
+            {
+                label115.BackColor = Color.Lime;
+                label115.Text = "1";
+            }
 
 
-                if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                    {
+            if (Dec_bin[52] == false) // 30052   флаг выключения ГГС (Mute)
+            {
+                label144.BackColor = Color.Red;
+                label144.Text = "0";
+            }
+            else
+            {
+                label144.BackColor = Color.Lime;
+                label144.Text = "1";
+            }
 
-                        if (coilArr[0] == true)                              //   Реле RL0
-                        {
-                            button37.BackColor = Color.Lime;
-                            button48.BackColor = Color.White;
-                        }
-                        else
-                        {
-                            button48.BackColor = Color.Red;
-                            button37.BackColor = Color.White;
-                        }
-                        if (coilArr[1] == true)                              //   Реле RL1
-                        {
-                            button40.BackColor = Color.Lime;
-                            button53.BackColor = Color.White;
-                        }
-                        else
-                        {
-                            button53.BackColor = Color.Red;
-                            button40.BackColor = Color.White;
-                        }
-                        if (coilArr[2] == true)                              //   Реле RL2
-                        {
-                            button44.BackColor = Color.Lime;
-                            button79.BackColor = Color.White;
-                        }
-                        else
-                        {
-                            button79.BackColor = Color.Red;
-                            button44.BackColor = Color.White;
-                        }
-                        if (coilArr[3] == true)                              //   Реле RL3
-                        {
-                            button49.BackColor = Color.Lime;
-                            button66.BackColor = Color.White;
-                        }
-                        else
-                        {
-                            button66.BackColor = Color.Red;
-                            button49.BackColor = Color.White;
-                        }
-                        if (coilArr[4] == true)                              //   Реле RL4
-                        {
-                            button38.BackColor = Color.Lime;
-                            button52.BackColor = Color.White;
-                        }
-                        else
-                        {
-                            button52.BackColor = Color.Red;
-                            button38.BackColor = Color.White;
-                        }
-                        if (coilArr[5] == true)                              //   Реле RL5
-                        {
-                            button71.BackColor = Color.Lime;
-                            button47.BackColor = Color.White;
-                        }
-                        else
-                        {
-                            button47.BackColor = Color.Red;
-                            button71.BackColor = Color.White;
-                        }
-                        if (coilArr[6] == true)                              //   Реле RL6
-                        {
-                            button69.BackColor = Color.Lime;
-                            button42.BackColor = Color.White;
-                        }
-                        else
-                        {
-                            button42.BackColor = Color.Red;
-                            button69.BackColor = Color.White;
-                        }
-                        if (coilArr[7] == true)                              //   Реле RL7
-                        {
-                            button51.BackColor = Color.Lime;
-                            button45.BackColor = Color.White;
-                        }
-                        else
-                        {
-                            button45.BackColor = Color.Red;
-                            button51.BackColor = Color.White;
-                        }
+            if (Dec_bin[53] == false) // 30053   флаг радиопередачи
+            {
+                label143.BackColor = Color.Red;
+                label143.Text = "0";
+            }
+            else
+            {
+                label143.BackColor = Color.Lime;
+                label143.Text = "1";
+            }
 
-                    }
+            if (Dec_bin[54] == false) // 30054   флаг управления микрофонами гарнитур
+            {
+                label142.BackColor = Color.Red;
+                label142.Text = "0";
+            }
+            else
+            {
+                label142.BackColor = Color.Lime;
+                label142.Text = "1";
+            }
 
-                    startCoil = 9;  //  regBank.add(00009-16);   Отображение соостояния реле 9-16
-                    numCoils = 8;
-                    res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-                    lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-                    if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                        {
-
-                            if (coilArr[0] == true)                              //   Реле RL8 Звук на микрофон regBank.add(9)
-                            {
-                                button46.BackColor = Color.Lime;
-                                button50.BackColor = Color.White;
-                            }
-                            else
-                            {
-                                button50.BackColor = Color.Red;
-                                button46.BackColor = Color.White;
-                            }
-                            if (coilArr[1] == true)                              //   Реле RL9  XP1 10 regBank.add(10)
-                            {
-                                button27.BackColor = Color.Lime;
-                                button30.BackColor = Color.White;
-                            }
-                            else
-                            {
-                                button30.BackColor = Color.Red;
-                                button27.BackColor = Color.White;
-                            }
-
-                            if (coilArr[2] == true)                              //   Свободен regBank.add(11)
-                            {
-                                //button27.BackColor = Color.Lime;
-                                //button30.BackColor = Color.White;
-                            }
-                            else
-                            {
-                                //button30.BackColor = Color.Red;
-                                //button27.BackColor = Color.White;
-                            }
-
-                            if (coilArr[3] == true)                                //   Свободен regBank.add(12)
-                            {
-                                //button27.BackColor = Color.Lime;
-                                //button30.BackColor = Color.White;
-                            }
-                            else
-                            {
-                                //button30.BackColor = Color.Red;
-                                //button27.BackColor = Color.White;
-                            }
+            //********************Вторая колонка ********************
+            startCoil = 1;  //  regBank.add(00001-12);   Отображение соостояния реле 0-9
+            numCoils = 8;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
 
 
-                            if (coilArr[4] == true)                             // XP8 - 2  Sence Танг н. regBank.add(13)
-                            {
-                                button59.BackColor = Color.Lime;
-                                button74.BackColor = Color.White;
-                            }
-                            else
-                            {
-                                button74.BackColor = Color.Red;
-                                button59.BackColor = Color.White;
-                            }
-                            if (coilArr[5] == true)                             //XP8 - 1  PTT Танг н. regBank.add(14)
-                            {
-                                button39.BackColor = Color.Lime;
-                                button41.BackColor = Color.White;
-                            }
-                            else
-                            {
-                                button41.BackColor = Color.Red;
-                                button39.BackColor = Color.White;
-                            }
-                            if (coilArr[6] == true)                             // XS1 - 5   PTT Мик  regBank.add(15)
-                            {
-                                button7.BackColor = Color.Lime;
-                                button18.BackColor = Color.White;
-                            }
-                            else
-                            {
-                                button18.BackColor = Color.Red;
-                                button7.BackColor = Color.White;
-                            }
-                            if (coilArr[7] == true)                             // XS1 - 6 Sence Мик. regBank.add(16)
-                            {
-                                button33.BackColor = Color.Lime;
-                                button34.BackColor = Color.White;
-                            }
-                            else
-                            {
-                                button34.BackColor = Color.Red;
-                                button33.BackColor = Color.White;
-                            }
-                          }
-            
-                       startCoil = 17;  //  regBank.add(00017-24);   Отображение соостояния реле 17-24
-                       numCoils = 8;
-                       res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-                       lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
 
-                       if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                           {
-                               if (coilArr[0] == true)                             // XP7 4 PTT2 Танг. р.  regBank.add(17)
-                               {
-                                   button14.BackColor = Color.Lime;
-                                   button29.BackColor = Color.White;
-                               }
-                               else
-                               {
-                                   button29.BackColor = Color.Red;
-                                   button14.BackColor = Color.White;
-                               }
-                               if (coilArr[1] == true)                             // XP1 - 20  HangUp  DCD regBank.add(18)
-                               {
-                                   button19.BackColor = Color.Lime;
-                                   button26.BackColor = Color.White;
-                               }
-                               else
-                               {
-                                   button26.BackColor = Color.Red;
-                                   button19.BackColor = Color.White;
-                               }
-                               if (coilArr[2] == true)                             // J8-11     XP7 2 Sence  Танг. р. regBank.add(19)
-                               {
-                                   button58.BackColor = Color.Lime;
-                                   button72.BackColor = Color.White;
-                               }
-                               else
-                               {
-                                   button72.BackColor = Color.Red;
-                                   button58.BackColor = Color.White;
-                               }
-                               if (coilArr[3] == true)                             //  XP7 1 PTT1 Танг. р.  regBank.add(20)
-                               {
-                                   button10.BackColor = Color.Lime;
-                                   button23.BackColor = Color.White;
-                               }
-                               else
-                               {
-                                   button23.BackColor = Color.Red;
-                                   button10.BackColor = Color.White;
-                               }
-                               if (coilArr[4] == true)                             // XP2-2    Sence "Маг." 
-                               {
-                                   button60.BackColor = Color.Lime;
-                                   button76.BackColor = Color.White;
-                               }
-                               else
-                               {
-                                   button76.BackColor = Color.Red;
-                                   button60.BackColor = Color.White;
-                               }
-                               if (coilArr[5] == true)                             // XP5-3    Sence "ГГC."
-                               {
-                                   button35.BackColor = Color.Lime;
-                                   button36.BackColor = Color.White;
-                               }
-                               else
-                               {
-                                   button36.BackColor = Color.Red;
-                                   button35.BackColor = Color.White;
-                               }
-                               if (coilArr[6] == true)                             // XP3-3    Sence "ГГ-Радио1."
-                               {
-                                   button56.BackColor = Color.Lime;
-                                   button68.BackColor = Color.White;
-                               }
-                               else
-                               {
-                                   button68.BackColor = Color.Red;
-                                   button56.BackColor = Color.White;
-                               }
-                               if (coilArr[7] == true)                             // XP4-3    Sence "ГГ-Радио2."
-                               {
-                                   button55.BackColor = Color.Lime;
-                                   button67.BackColor = Color.White;
-                               }
-                               else
-                               {
-                                   button67.BackColor = Color.Red;
-                                   button55.BackColor = Color.White;
-                               }   
+                if (coilArr[0] == true)                              //   Реле RL0
+                {
+                    button37.BackColor = Color.Lime;
+                    button48.BackColor = Color.White;
+                }
+                else
+                {
+                    button48.BackColor = Color.Red;
+                    button37.BackColor = Color.White;
+                }
+                if (coilArr[1] == true)                              //   Реле RL1
+                {
+                    button40.BackColor = Color.Lime;
+                    button53.BackColor = Color.White;
+                }
+                else
+                {
+                    button53.BackColor = Color.Red;
+                    button40.BackColor = Color.White;
+                }
+                if (coilArr[2] == true)                              //   Реле RL2
+                {
+                    button44.BackColor = Color.Lime;
+                    button79.BackColor = Color.White;
+                }
+                else
+                {
+                    button79.BackColor = Color.Red;
+                    button44.BackColor = Color.White;
+                }
+                if (coilArr[3] == true)                              //   Реле RL3
+                {
+                    button49.BackColor = Color.Lime;
+                    button66.BackColor = Color.White;
+                }
+                else
+                {
+                    button66.BackColor = Color.Red;
+                    button49.BackColor = Color.White;
+                }
+                if (coilArr[4] == true)                              //   Реле RL4
+                {
+                    button38.BackColor = Color.Lime;
+                    button52.BackColor = Color.White;
+                }
+                else
+                {
+                    button52.BackColor = Color.Red;
+                    button38.BackColor = Color.White;
+                }
+                if (coilArr[5] == true)                              //   Реле RL5
+                {
+                    button71.BackColor = Color.Lime;
+                    button47.BackColor = Color.White;
+                }
+                else
+                {
+                    button47.BackColor = Color.Red;
+                    button71.BackColor = Color.White;
+                }
+                if (coilArr[6] == true)                              //   Реле RL6
+                {
+                    button69.BackColor = Color.Lime;
+                    button42.BackColor = Color.White;
+                }
+                else
+                {
+                    button42.BackColor = Color.Red;
+                    button69.BackColor = Color.White;
+                }
+                if (coilArr[7] == true)                              //   Реле RL7
+                {
+                    button51.BackColor = Color.Lime;
+                    button45.BackColor = Color.White;
+                }
+                else
+                {
+                    button45.BackColor = Color.Red;
+                    button51.BackColor = Color.White;
+                }
 
-                           }
-             
-                       startCoil = 25;  //  regBank.add(00001-12);   Отображение соостояния реле 25-32
-                       numCoils = 8;
-                       res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-                       lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+            }
 
+            startCoil = 9;  //  regBank.add(00009-16);   Отображение соостояния реле 9-16
+            numCoils = 8;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
 
-                       if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                       {
+                if (coilArr[0] == true)                              //   Реле RL8 Звук на микрофон regBank.add(9)
+                {
+                    button46.BackColor = Color.Lime;
+                    button50.BackColor = Color.White;
+                }
+                else
+                {
+                    button50.BackColor = Color.Red;
+                    button46.BackColor = Color.White;
+                }
+                if (coilArr[1] == true)                              //   Реле RL9  XP1 10 regBank.add(10)
+                {
+                    button27.BackColor = Color.Lime;
+                    button30.BackColor = Color.White;
+                }
+                else
+                {
+                    button30.BackColor = Color.Red;
+                    button27.BackColor = Color.White;
+                }
+
+                if (coilArr[2] == true)                              //   Свободен regBank.add(11)
+                {
+                    //button27.BackColor = Color.Lime;
+                    //button30.BackColor = Color.White;
+                }
+                else
+                {
+                    //button30.BackColor = Color.Red;
+                    //button27.BackColor = Color.White;
+                }
+
+                if (coilArr[3] == true)                                //   Свободен regBank.add(12)
+                {
+                    //button27.BackColor = Color.Lime;
+                    //button30.BackColor = Color.White;
+                }
+                else
+                {
+                    //button30.BackColor = Color.Red;
+                    //button27.BackColor = Color.White;
+                }
 
 
-                           if (coilArr[0] == false)                            // XP1- 19 HaSs      Сенсор  подключения трубки       
-                           {
-                               button57.BackColor = Color.Lime;
-                               button70.BackColor = Color.White;
-                           }
-                           else
-                           {
-                               button70.BackColor = Color.Red;
-                               button57.BackColor = Color.White;
-                           }
+                if (coilArr[4] == true)                             // XP8 - 2  Sence Танг н. regBank.add(13)
+                {
+                    button59.BackColor = Color.Lime;
+                    button74.BackColor = Color.White;
+                }
+                else
+                {
+                    button74.BackColor = Color.Red;
+                    button59.BackColor = Color.White;
+                }
+                if (coilArr[5] == true)                             //XP8 - 1  PTT Танг н. regBank.add(14)
+                {
+                    button39.BackColor = Color.Lime;
+                    button41.BackColor = Color.White;
+                }
+                else
+                {
+                    button41.BackColor = Color.Red;
+                    button39.BackColor = Color.White;
+                }
+                if (coilArr[6] == true)                             // XS1 - 5   PTT Мик  regBank.add(15)
+                {
+                    button7.BackColor = Color.Lime;
+                    button18.BackColor = Color.White;
+                }
+                else
+                {
+                    button18.BackColor = Color.Red;
+                    button7.BackColor = Color.White;
+                }
+                if (coilArr[7] == true)                             // XS1 - 6 Sence Мик. regBank.add(16)
+                {
+                    button33.BackColor = Color.Lime;
+                    button34.BackColor = Color.White;
+                }
+                else
+                {
+                    button34.BackColor = Color.Red;
+                    button33.BackColor = Color.White;
+                }
+            }
 
-                           if (coilArr[1] == true)                             // XP1- 17 HaSPTT    CTS DSR вкл. 
-                           {
-                               button16.BackColor = Color.Lime;
-                               button20.BackColor = Color.White;
-                           }
-                           else
-                           {
-                               button20.BackColor = Color.Red;
-                               button16.BackColor = Color.White;
-                           }
+            startCoil = 17;  //  regBank.add(00017-24);   Отображение соостояния реле 17-24
+            numCoils = 8;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
+                if (coilArr[0] == true)                             // XP7 4 PTT2 Танг. р.  regBank.add(17)
+                {
+                    button14.BackColor = Color.Lime;
+                    button29.BackColor = Color.White;
+                }
+                else
+                {
+                    button29.BackColor = Color.Red;
+                    button14.BackColor = Color.White;
+                }
+                if (coilArr[1] == true)                             // XP1 - 20  HangUp  DCD regBank.add(18)
+                {
+                    button19.BackColor = Color.Lime;
+                    button26.BackColor = Color.White;
+                }
+                else
+                {
+                    button26.BackColor = Color.Red;
+                    button19.BackColor = Color.White;
+                }
+                if (coilArr[2] == true)                             // J8-11     XP7 2 Sence  Танг. р. regBank.add(19)
+                {
+                    button58.BackColor = Color.Lime;
+                    button72.BackColor = Color.White;
+                }
+                else
+                {
+                    button72.BackColor = Color.Red;
+                    button58.BackColor = Color.White;
+                }
+                if (coilArr[3] == true)                             //  XP7 1 PTT1 Танг. р.  regBank.add(20)
+                {
+                    button10.BackColor = Color.Lime;
+                    button23.BackColor = Color.White;
+                }
+                else
+                {
+                    button23.BackColor = Color.Red;
+                    button10.BackColor = Color.White;
+                }
+                if (coilArr[4] == true)                             // XP2-2    Sence "Маг." 
+                {
+                    button60.BackColor = Color.Lime;
+                    button76.BackColor = Color.White;
+                }
+                else
+                {
+                    button76.BackColor = Color.Red;
+                    button60.BackColor = Color.White;
+                }
+                if (coilArr[5] == true)                             // XP5-3    Sence "ГГC."
+                {
+                    button35.BackColor = Color.Lime;
+                    button36.BackColor = Color.White;
+                }
+                else
+                {
+                    button36.BackColor = Color.Red;
+                    button35.BackColor = Color.White;
+                }
+                if (coilArr[6] == true)                             // XP3-3    Sence "ГГ-Радио1."
+                {
+                    button56.BackColor = Color.Lime;
+                    button68.BackColor = Color.White;
+                }
+                else
+                {
+                    button68.BackColor = Color.Red;
+                    button56.BackColor = Color.White;
+                }
+                if (coilArr[7] == true)                             // XP4-3    Sence "ГГ-Радио2."
+                {
+                    button55.BackColor = Color.Lime;
+                    button67.BackColor = Color.White;
+                }
+                else
+                {
+                    button67.BackColor = Color.Red;
+                    button55.BackColor = Color.White;
+                }
+
+            }
+
+            startCoil = 25;  //  regBank.add(00001-12);   Отображение соостояния реле 25-32
+            numCoils = 8;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+
+
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
+
+
+                if (coilArr[0] == false)                            // XP1- 19 HaSs      Сенсор  подключения трубки       
+                {
+                    button57.BackColor = Color.Lime;
+                    button70.BackColor = Color.White;
+                }
+                else
+                {
+                    button70.BackColor = Color.Red;
+                    button57.BackColor = Color.White;
+                }
+
+                if (coilArr[1] == true)                             // XP1- 17 HaSPTT    CTS DSR вкл. 
+                {
+                    button16.BackColor = Color.Lime;
+                    button20.BackColor = Color.White;
+                }
+                else
+                {
+                    button20.BackColor = Color.Red;
+                    button16.BackColor = Color.White;
+                }
 
 
 
-                           if (coilArr[2] == true)                             // XP1- 16 HeS2Rs    флаг подключения гарнитуры инструктора с 2 наушниками
-                           {
-                               button61.BackColor = Color.Lime;
-                               button78.BackColor = Color.White;
-                           }
-                           else
-                           {
-                               button78.BackColor = Color.Red;
-                               button61.BackColor = Color.White;
-                           }
+                if (coilArr[2] == true)                             // XP1- 16 HeS2Rs    флаг подключения гарнитуры инструктора с 2 наушниками
+                {
+                    button61.BackColor = Color.Lime;
+                    button78.BackColor = Color.White;
+                }
+                else
+                {
+                    button78.BackColor = Color.Red;
+                    button61.BackColor = Color.White;
+                }
 
 
-                           if (coilArr[3] == true)                             // XP1- 15 HeS2PTT   CTS вкл
-                           {
-                               button28.BackColor = Color.Lime;
-                               button17.BackColor = Color.White;
-                           }
-                           else
-                           {
-                               button17.BackColor = Color.Red;
-                               button28.BackColor = Color.White;
-                           }
+                if (coilArr[3] == true)                             // XP1- 15 HeS2PTT   CTS вкл
+                {
+                    button28.BackColor = Color.Lime;
+                    button17.BackColor = Color.White;
+                }
+                else
+                {
+                    button17.BackColor = Color.Red;
+                    button28.BackColor = Color.White;
+                }
 
-                           if (coilArr[4] == true)                             //    XP1- 13 HeS2Ls    флаг подключения гарнитуры инструктора 
-                           {
-                               button62.BackColor = Color.Lime;
-                               button77.BackColor = Color.White;
-                           }
-                           else
-                           {
-                               button77.BackColor = Color.Red;
-                               button62.BackColor = Color.White;
-                           }
+                if (coilArr[4] == true)                             //    XP1- 13 HeS2Ls    флаг подключения гарнитуры инструктора 
+                {
+                    button62.BackColor = Color.Lime;
+                    button77.BackColor = Color.White;
+                }
+                else
+                {
+                    button77.BackColor = Color.Red;
+                    button62.BackColor = Color.White;
+                }
 
-                           if (coilArr[5] == true)                             //    XP1- 6  HeS1PTT   CTS вкл
-                           {
-                               button8.BackColor = Color.Lime;
-                               button22.BackColor = Color.White;
-                           }
-                           else
-                           {
-                               button22.BackColor = Color.Red;
-                               button8.BackColor = Color.White;
-                           }
+                if (coilArr[5] == true)                             //    XP1- 6  HeS1PTT   CTS вкл
+                {
+                    button8.BackColor = Color.Lime;
+                    button22.BackColor = Color.White;
+                }
+                else
+                {
+                    button22.BackColor = Color.Red;
+                    button8.BackColor = Color.White;
+                }
 
-                           if (coilArr[6] == true)                             //   XP1- 5  HeS1Rs    Флаг подкючения гарнитуры диспетчера с 2 наушниками
-                           {
-                               button63.BackColor = Color.Lime;
-                               button75.BackColor = Color.White;
-                           }
-                           else
-                           {
-                               button75.BackColor = Color.Red;
-                               button63.BackColor = Color.White;
-                           }
+                if (coilArr[6] == true)                             //   XP1- 5  HeS1Rs    Флаг подкючения гарнитуры диспетчера с 2 наушниками
+                {
+                    button63.BackColor = Color.Lime;
+                    button75.BackColor = Color.White;
+                }
+                else
+                {
+                    button75.BackColor = Color.Red;
+                    button63.BackColor = Color.White;
+                }
 
-                           if (coilArr[7] == true)                             //    XP1- 1  HeS1Ls    Флаг подкючения гарнитуры диспетчера
-                           {
-                               button64.BackColor = Color.Lime;
-                               button73.BackColor = Color.White;
-                           }
-                           else
-                           {
-                               button73.BackColor = Color.Red;
-                               button64.BackColor = Color.White;
-                           }
+                if (coilArr[7] == true)                             //    XP1- 1  HeS1Ls    Флаг подкючения гарнитуры диспетчера
+                {
+                    button64.BackColor = Color.Lime;
+                    button73.BackColor = Color.White;
+                }
+                else
+                {
+                    button73.BackColor = Color.Red;
+                    button64.BackColor = Color.White;
+                }
 
 
-                       }
+            }
 
-                        startCoil = 81;  // Флаг 
-                        numCoils = 4;
-                        res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
-                        lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+            startCoil = 81;  // Флаг 
+            numCoils = 4;
+            res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
+            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
 
-                        if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                            {
-                                if (coilArr[0] == false) // бит CTS - 1x81 
-                                {
-                                    label156.BackColor = Color.Red;
-                                    label156.Text = "1";
-                                }
-                                else
-                                {
-                                    label156.BackColor = Color.Lime;
-                                    label156.Text = "0";
-                                }
-                                if (coilArr[1] == false) // бит DSR - 1x82  
-                                {
-                                    label155.BackColor = Color.Red;
-                                    label155.Text = "1";
-                                }
-                                else
-                                {
-                                    label155.BackColor = Color.Lime;
-                                    label155.Text = "0";
-                                }
-                                if (coilArr[2] == false) // // бит DCD -  1x83
-                                {
-                                    label152.BackColor = Color.Red;
-                                    label152.Text = "1";
-                                }
-                                else
-                                {
-                                    label152.BackColor = Color.Lime;
-                                    label152.Text = "0";
-                                }
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
+                if (coilArr[0] == false) // бит CTS - 1x81 
+                {
+                    label156.BackColor = Color.Red;
+                    label156.Text = "1";
+                }
+                else
+                {
+                    label156.BackColor = Color.Lime;
+                    label156.Text = "0";
+                }
+                if (coilArr[1] == false) // бит DSR - 1x82  
+                {
+                    label155.BackColor = Color.Red;
+                    label155.Text = "1";
+                }
+                else
+                {
+                    label155.BackColor = Color.Lime;
+                    label155.Text = "0";
+                }
+                if (coilArr[2] == false) // // бит DCD -  1x83
+                {
+                    label152.BackColor = Color.Red;
+                    label152.Text = "1";
+                }
+                else
+                {
+                    label152.BackColor = Color.Lime;
+                    label152.Text = "0";
+                }
 
-                            }
+            }
 
-                        progressBar1.Value += 1;
-                        label114.Text = ("" + progressBar1.Value);
-                        if (progressBar1.Value == progressBar1.Maximum)
-                            {
-                                progressBar1.Value = 0;
-                            }
+            progressBar1.Value += 1;
+            label114.Text = ("" + progressBar1.Value);
+            if (progressBar1.Value == progressBar1.Maximum)
+            {
+                progressBar1.Value = 0;
+            }
 
-                        if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                            {
-                                toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                                toolStripStatusLabel1.BackColor = Color.Lime;
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                toolStripStatusLabel1.BackColor = Color.Lime;
 
-                                label83.Text = "";
-                                label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-                            }
-                        else
-                            {
-                                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
-                                toolStripStatusLabel1.BackColor = Color.Red;
-                                // Polltimer1.Enabled = false;
-                                timer_Mic_test.Enabled = false;
-                            }
-                        label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
-                        toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
+                label83.Text = "";
+                label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
+            }
+            else
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                toolStripStatusLabel1.BackColor = Color.Red;
+                // Polltimer1.Enabled = false;
+                timer_Mic_test.Enabled = false;
+            }
+            label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
+            toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
         }
-        private void timerCTS_Tick (object sender, EventArgs e)
+        private void timerCTS_Tick(object sender, EventArgs e)
         {
 
             // short[] writeVals = new short[32];
@@ -1387,7 +1387,7 @@ namespace KamertonTest
             bool[] coilVals = new bool[64];
             bool[] coilArr = new bool[34];
             bool[] coilSensor = new bool[64];
-         
+
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
 
             startRdReg = 1;
@@ -1593,7 +1593,7 @@ namespace KamertonTest
 
 
 
-           
+
 
             startCoil = 81;  // Флаг выполнения полного теста
             numCoils = 4;
@@ -1720,7 +1720,7 @@ namespace KamertonTest
                 }
                 catch (OutOfMemoryException ex)
                 {
-                     label78.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
+                    label78.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
                     return;
                 }
             }
@@ -1770,17 +1770,17 @@ namespace KamertonTest
             // Note: The following cast is required as the myProtocol object is declared
             // as the superclass of MbusTcpMasterProtocol. That way myProtocol can
             // represent different protocol types.
-            ((MbusTcpMasterProtocol)myProtocol).port = (short) tcpPort;
-            res = ((MbusTcpMasterProtocol) myProtocol).openProtocol(txtHostName.Text);
+            ((MbusTcpMasterProtocol)myProtocol).port = (short)tcpPort;
+            res = ((MbusTcpMasterProtocol)myProtocol).openProtocol(txtHostName.Text);
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
-                  label78.Text = ("Modbus/TCP port opened successfully with parameters: " + (txtHostName.Text + (", TCP port " + tcpPort)));
-                  button6.Enabled = true;
-                  Polltimer1.Enabled = true;
+                label78.Text = ("Modbus/TCP port opened successfully with parameters: " + (txtHostName.Text + (", TCP port " + tcpPort)));
+                button6.Enabled = true;
+                Polltimer1.Enabled = true;
             }
             else
             {
-                 label78.Text = ("Could not open protocol, error was: " + BusProtocolErrors.getBusProtocolErrorText(res));
+                label78.Text = ("Could not open protocol, error was: " + BusProtocolErrors.getBusProtocolErrorText(res));
             }
         }
 
@@ -1894,7 +1894,7 @@ namespace KamertonTest
                                 lblReadValues.Text = (lblReadValues.Text + (readVals[i] + "  "));
                             }
                         }
-                    break;
+                        break;
                     //
                     // Read Input Registers
                     //
@@ -1909,7 +1909,7 @@ namespace KamertonTest
                                 lblReadValues.Text = (lblReadValues.Text + (readVals[i] + "  "));
                             }
                         }
-                    break;
+                        break;
                     //
                     // Read Coils
                     //
@@ -1927,35 +1927,35 @@ namespace KamertonTest
                                     lblReadValues.Text = (lblReadValues.Text + "0  ");
                             }
                         }
-                    break;
+                        break;
                     //
                     // Write Coils
                     //
                     case 3:
                         res = myProtocol.forceMultipleCoils(slave, startCoil, coilVals, numCoils);
                         lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-                    break;
+                        break;
                     //
                     // Write Holding Registers
                     //
                     case 4:
                         res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
                         lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-                    break;
+                        break;
                     //
                     // Write Single Registers
                     //
                     case 5:
                         res = myProtocol.writeSingleRegister(slave, startWrReg, writeVals[0]);
                         lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-                    break;
+                        break;
                     //
                     // Read/Write Registers
                     //
                     case 6:
                         res = myProtocol.readWriteRegisters(slave, startRdReg, readVals, numRdRegs, startWrReg, writeVals, numWrRegs);
-                        lblResult2.Text = ("Результат: "  + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-                    break;
+                        lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+                        break;
                 }
             }
             catch (Exception ex)
@@ -1963,7 +1963,7 @@ namespace KamertonTest
                 lblResult2.Text = ("Exception occured: " + ex.Message);
             }
         }
-   
+
         private void label24_Click(object sender, EventArgs e)
         {
 
@@ -1983,7 +1983,7 @@ namespace KamertonTest
         {
 
         }
-  
+
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
 
@@ -1998,9 +1998,9 @@ namespace KamertonTest
         {
 
         }
-  
+
         private void button3_Click(object sender, EventArgs e)                         // Записать системное время
-          { 
+        {
 
             ushort[] writeVals = new ushort[20];
             bool[] coilVals = new bool[2];
@@ -2008,13 +2008,13 @@ namespace KamertonTest
             int res;
             int startWrReg;
             int numWrRegs;   //
- 
+
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-            
+
             int numVal = -1;
 
-        //    string command = DateTime.Parse(label80.Text, CultureInfo.CurrentCulture).ToString("ddMMyyyyHHmmss", CultureInfo.CurrentCulture);
-         
+            //    string command = DateTime.Parse(label80.Text, CultureInfo.CurrentCulture).ToString("ddMMyyyyHHmmss", CultureInfo.CurrentCulture);
+
             string command = label80.Text;
             numVal = Convert.ToInt32(command.Substring(0, 2), CultureInfo.CurrentCulture);
             writeVals[0] = (ushort)numVal;   // 
@@ -2026,18 +2026,17 @@ namespace KamertonTest
             writeVals[3] = (ushort)numVal;   // 
             numVal = Convert.ToInt32(command.Substring(14, 2), CultureInfo.CurrentCulture);
             writeVals[4] = (ushort)numVal;   // 
-           
-            startWrReg = 52;              
+
+            startWrReg = 52;
             numWrRegs = 6;   //
 
             res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 14);                          // Записать системное время
-          }
+        }
 
         private void button4_Click(object sender, EventArgs e)                         // Записать пользовательское время
-
-          {
+        {
 
             ushort[] writeVals = new ushort[20];
             bool[] coilVals = new bool[2];
@@ -2045,9 +2044,9 @@ namespace KamertonTest
             int res;
             int startWrReg;
             int numWrRegs;   //
- 
+
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-            
+
             int numVal = -1;
 
             string command = dateTimePicker1.Value.ToString("ddMMyyyyHHmmss", CultureInfo.CurrentCulture);
@@ -2062,13 +2061,13 @@ namespace KamertonTest
             writeVals[3] = (ushort)numVal;   // 
             numVal = Convert.ToInt32(command.Substring(10, 2), CultureInfo.CurrentCulture);
             writeVals[4] = (ushort)numVal;   // 
-           
+
             startWrReg = 52;
             numWrRegs = 6;   //
             res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 14);                       // Записать новое время пользователя
-          }
+        }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -2078,32 +2077,32 @@ namespace KamertonTest
         private void button5_Click(object sender, EventArgs e)                         // Закрыть сериал и протокол
         {
 
-                // Close protocol and serial port
-                  myProtocol.closeProtocol();
-                //    // Indicate result on status line
-                  lblResult.Text =  "Протокол закрыт";
-                //    // Disable button controls
-                   button5.Enabled = false;
-                   cmdOpenSerial.Enabled = true;
-                   Polltimer1.Enabled = false;
-                   toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
-                   toolStripStatusLabel1.BackColor = Color.Red;
+            // Close protocol and serial port
+            myProtocol.closeProtocol();
+            //    // Indicate result on status line
+            lblResult.Text = "Протокол закрыт";
+            //    // Disable button controls
+            button5.Enabled = false;
+            cmdOpenSerial.Enabled = true;
+            Polltimer1.Enabled = false;
+            toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
+            toolStripStatusLabel1.BackColor = Color.Red;
 
 
         }
 
-        private void button6_Click (object sender, EventArgs e)                        // Закрыть TCP и протокол
+        private void button6_Click(object sender, EventArgs e)                        // Закрыть TCP и протокол
         {
-                 // Close protocol and serial port
-                  myProtocol.closeProtocol();
-                //    // Indicate result on status line
-                  lblResult.Text =  "Протокол закрыт";
-                //    // Disable button controls
-                   button6.Enabled = false;
-                   cmdOpenTCP.Enabled = true;
-                   Polltimer1.Enabled = false;
-                   toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
-                   toolStripStatusLabel1.BackColor = Color.Red;
+            // Close protocol and serial port
+            myProtocol.closeProtocol();
+            //    // Indicate result on status line
+            lblResult.Text = "Протокол закрыт";
+            //    // Disable button controls
+            button6.Enabled = false;
+            cmdOpenTCP.Enabled = true;
+            Polltimer1.Enabled = false;
+            toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
+            toolStripStatusLabel1.BackColor = Color.Red;
 
 
         }
@@ -2123,76 +2122,76 @@ namespace KamertonTest
         {
 
         }
-        private void label92_Click_1 (object sender, EventArgs e)
+        private void label92_Click_1(object sender, EventArgs e)
         {
 
         }
-        private void label49_Click (object sender, EventArgs e)
+        private void label49_Click(object sender, EventArgs e)
         {
 
         }
-        private void label104_Click (object sender, EventArgs e)
+        private void label104_Click(object sender, EventArgs e)
         {
 
         }
-        private void label51_Click (object sender, EventArgs e)
+        private void label51_Click(object sender, EventArgs e)
         {
 
         }
-        private void label118_Click (object sender, EventArgs e)
-        {
-
-        }
-
-        private void label116_Click (object sender, EventArgs e)
+        private void label118_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label52_Click (object sender, EventArgs e)
+        private void label116_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label50_Click (object sender, EventArgs e)
+        private void label52_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label59_Click (object sender, EventArgs e)
+        private void label50_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label68_Click (object sender, EventArgs e)
+        private void label59_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label62_Click (object sender, EventArgs e)
+        private void label68_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label159_Click (object sender, EventArgs e)
+        private void label62_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label144_Click (object sender, EventArgs e)
+        private void label159_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label103_Click (object sender, EventArgs e)
+        private void label144_Click(object sender, EventArgs e)
         {
 
         }
-        private void label73_Click (object sender, EventArgs e)
+
+        private void label103_Click(object sender, EventArgs e)
         {
 
         }
-      
+        private void label73_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void label102_Click(object sender, EventArgs e)
         {
 
@@ -2208,91 +2207,91 @@ namespace KamertonTest
 
         }
 
-        private void label142_Click (object sender, EventArgs e)
+        private void label142_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label143_Click (object sender, EventArgs e)
+        private void label143_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label147_Click (object sender, EventArgs e)
+        private void label147_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label156_Click (object sender, EventArgs e)
+        private void label156_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label155_Click (object sender, EventArgs e)
+        private void label155_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label27_Click (object sender, EventArgs e)
+        private void label27_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label133_Click (object sender, EventArgs e)
+        private void label133_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label158_Click (object sender, EventArgs e)
+        private void label158_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label153_Click (object sender, EventArgs e)
+        private void label153_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label129_Click (object sender, EventArgs e)
+        private void label129_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label130_Click (object sender, EventArgs e)
+        private void label130_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label127_Click (object sender, EventArgs e)
+        private void label127_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label105_Click (object sender, EventArgs e)
+        private void label105_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label63_Click (object sender, EventArgs e)
+        private void label63_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label45_Click (object sender, EventArgs e)
+        private void label45_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label47_Click (object sender, EventArgs e)
+        private void label47_Click(object sender, EventArgs e)
         {
 
         }
 
 
-     
-      
+
+
         #region Button test
-        private void tabPage5_Click (object sender, EventArgs e)
+        private void tabPage5_Click(object sender, EventArgs e)
         {
             if (TabControl1.SelectedIndex == 2)
             {
@@ -2318,12 +2317,12 @@ namespace KamertonTest
             }
         }
 
-        private void button32_Click (object sender, EventArgs e)                       //Старт теста "Байты обмена с Камертон"
+        private void button32_Click(object sender, EventArgs e)                       //Старт теста "Байты обмена с Камертон"
         {
-            Polltimer1.Enabled     = false;                                            // Запретить опрос состояния
+            Polltimer1.Enabled = false;                                            // Запретить опрос состояния
             timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона
-            timerCTS.Enabled       = false;
-            timerTestAll.Enabled   = false;
+            timerCTS.Enabled = false;
+            timerTestAll.Enabled = false;
 
 
             bool[] coilVals = new bool[200];
@@ -2334,18 +2333,18 @@ namespace KamertonTest
             button31.BackColor = Color.LightSalmon;
             label102.Text = "Выполняется контроль состояния сенсоров";
             label102.ForeColor = Color.DarkOliveGreen;
-           
+
             //startCoil = 33; // Запустить тест CTS
             //res = myProtocol.writeCoil(slave, startCoil, true); 
             timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
 
         }
 
-        private void button31_Click (object sender, EventArgs e)                       //Останов теста "Байты обмена с Камертон"
+        private void button31_Click(object sender, EventArgs e)                       //Останов теста "Байты обмена с Камертон"
         {
             startCoil = 33; // Остановить тест CTS
 
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
             button31.BackColor = Color.Red;
             button32.BackColor = Color.White;
             label102.Text = "Контроль состояния сенсоров ОСТАНОВЛЕН";
@@ -2355,119 +2354,119 @@ namespace KamertonTest
             Polltimer1.Enabled = true;
         }
 
-        private void progressBar1_Click (object sender, EventArgs e)
+        private void progressBar1_Click(object sender, EventArgs e)
         {
 
         }
 
 
         //****************  Включение реле ************************************************
-        private void button37_Click (object sender, EventArgs e)                      // ВКЛ Реле RL0
+        private void button37_Click(object sender, EventArgs e)                      // ВКЛ Реле RL0
         {
             startCoil = 1; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button48_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL0
+        private void button48_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL0
         {
 
             startCoil = 1; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button40_Click (object sender, EventArgs e)                      // ВКЛ Реле RL1
+        private void button40_Click(object sender, EventArgs e)                      // ВКЛ Реле RL1
         {
             startCoil = 2; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button53_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL1
+        private void button53_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL1
         {
             startCoil = 2; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button44_Click (object sender, EventArgs e)                      // ВКЛ Реле RL2
+        private void button44_Click(object sender, EventArgs e)                      // ВКЛ Реле RL2
         {
             startCoil = 3; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button79_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL2
+        private void button79_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL2
         {
             startCoil = 3; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button49_Click (object sender, EventArgs e)                      // ВКЛ Реле RL3
+        private void button49_Click(object sender, EventArgs e)                      // ВКЛ Реле RL3
         {
             startCoil = 4; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button66_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL3
+        private void button66_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL3
         {
             startCoil = 4; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button38_Click (object sender, EventArgs e)                      // ВКЛ Реле RL4
+        private void button38_Click(object sender, EventArgs e)                      // ВКЛ Реле RL4
         {
             startCoil = 5; // Микрофон инструктора включить
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button52_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL4
+        private void button52_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL4
         {
             startCoil = 5; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button71_Click (object sender, EventArgs e)                      // ВКЛ Реле RL5
+        private void button71_Click(object sender, EventArgs e)                      // ВКЛ Реле RL5
         {
             startCoil = 6; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button47_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL5
+        private void button47_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL5
         {
             startCoil = 6; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button69_Click (object sender, EventArgs e)                      // ВКЛ Реле RL6
+        private void button69_Click(object sender, EventArgs e)                      // ВКЛ Реле RL6
         {
             startCoil = 7; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button42_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL6
+        private void button42_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL6
         {
             startCoil = 7; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button51_Click (object sender, EventArgs e)                      // ВКЛ Реле RL7
+        private void button51_Click(object sender, EventArgs e)                      // ВКЛ Реле RL7
         {
             startCoil = 8; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button45_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL7
+        private void button45_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL7
         {
             startCoil = 8; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button46_Click (object sender, EventArgs e)                      // ВКЛ Реле RL8
+        private void button46_Click(object sender, EventArgs e)                      // ВКЛ Реле RL8
         {
             startCoil = 9; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button50_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL8
+        private void button50_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL8
         {
             startCoil = 9; // Управление сенсорами
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button27_Click (object sender, EventArgs e)                      // ВКЛ Реле RL9
+        private void button27_Click(object sender, EventArgs e)                      // ВКЛ Реле RL9
         {
             startCoil = 10; // Микрофон диспетчера включить
             res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button30_Click (object sender, EventArgs e)                      // ВЫКЛ Реле RL9
+        private void button30_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL9
         {
             startCoil = 10; // Микрофон диспетчера отключить
             res = myProtocol.writeCoil(slave, startCoil, false);
@@ -2479,251 +2478,251 @@ namespace KamertonTest
 
 
 
-        private void button55_Click (object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор ГГ-Радио2
+        private void button55_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор ГГ-Радио2
         {
-             startCoil = 24;                                                          // Управление сенсорами
-             res = myProtocol.writeCoil(slave, startCoil, true); 
+            startCoil = 24;                                                          // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button67_Click (object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор ГГ-Радио2
+        private void button67_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор ГГ-Радио2
         {
             startCoil = 24;                                                           // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button56_Click (object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор ГГ-Радио1
+        private void button56_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор ГГ-Радио1
         {
             startCoil = 23; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button68_Click (object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор ГГ-Радио1
+        private void button68_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор ГГ-Радио1
         {
             startCoil = 23; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button57_Click (object sender, EventArgs e)                      // Кнопка  ВКЛ подключения трубки    XP1- 19 HaSs  
+        private void button57_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ подключения трубки    XP1- 19 HaSs  
         {
             startCoil = 25; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
-        private void button70_Click (object sender, EventArgs e)                      // Кнопка  ОТКЛ подключения трубки    XP1- 19 HaSs  
+        private void button70_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ подключения трубки    XP1- 19 HaSs  
         {
-             startCoil = 25; // Управление сенсорами
-             res = myProtocol.writeCoil(slave, startCoil, true); 
+            startCoil = 25; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button58_Click (object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор  Танг.р 
-        {
-            startCoil = 19; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true); 
-        }
-
-        private void button72_Click (object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор Танг.р 
+        private void button58_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор  Танг.р 
         {
             startCoil = 19; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button59_Click (object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор Танг.н
+        private void button72_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор Танг.р 
+        {
+            startCoil = 19; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
+        }
+
+        private void button59_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор Танг.н
         {
             startCoil = 13; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button74_Click (object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор Танг.н
+        private void button74_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор Танг.н
         {
             startCoil = 13; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button60_Click (object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор  Маг.
+        private void button60_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор  Маг.
         {
             startCoil = 21; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button76_Click (object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор  Маг.
+        private void button76_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор  Маг.
         {
             startCoil = 21; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button61_Click (object sender, EventArgs e)                      // 7 Кнопка  ВКЛ   XP1- 16 HeS2Rs Сенсор подключения гарнитуры инструктора с 2 наушниками
+        private void button61_Click(object sender, EventArgs e)                      // 7 Кнопка  ВКЛ   XP1- 16 HeS2Rs Сенсор подключения гарнитуры инструктора с 2 наушниками
         {
             startCoil = 27; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button78_Click (object sender, EventArgs e)                      // 7 Кнопка  ОТКЛ  XP1- 16 HeS2Rs  Сенсор подключения гарнитуры инструктора с 2 наушниками
+        private void button78_Click(object sender, EventArgs e)                      // 7 Кнопка  ОТКЛ  XP1- 16 HeS2Rs  Сенсор подключения гарнитуры инструктора с 2 наушниками
         {
             startCoil = 27; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button62_Click (object sender, EventArgs e)                      // ВКЛ XP1- 13 HeS2Ls Кнопка  ВКЛ флаг подключения гарнитуры инструктора 
+        private void button62_Click(object sender, EventArgs e)                      // ВКЛ XP1- 13 HeS2Ls Кнопка  ВКЛ флаг подключения гарнитуры инструктора 
         {
             startCoil = 29; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button77_Click (object sender, EventArgs e)                      // ОТКЛ XP1- 13 HeS2Ls Кнопка  ОТКЛ флаг подключения гарнитуры инструктора  
+        private void button77_Click(object sender, EventArgs e)                      // ОТКЛ XP1- 13 HeS2Ls Кнопка  ОТКЛ флаг подключения гарнитуры инструктора  
         {
             startCoil = 29; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button63_Click (object sender, EventArgs e)                      //  XP1- 5  HeS1Rs Кнопка  ВКЛ Флаг подключения гарнитуры диспетчера с 2 наушниками
-        {
-          startCoil = 31; // Управление сенсорами
-          res = myProtocol.writeCoil(slave, startCoil, true); 
-        }
-
-        private void button75_Click (object sender, EventArgs e)                      //  XP1- 5  HeS1Rs Кнопка  ОТКЛ Флаг подключения гарнитуры диспетчера с 2 наушниками
+        private void button63_Click(object sender, EventArgs e)                      //  XP1- 5  HeS1Rs Кнопка  ВКЛ Флаг подключения гарнитуры диспетчера с 2 наушниками
         {
             startCoil = 31; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button64_Click (object sender, EventArgs e)                      // XP1- 1  HeS1Ls  Кнопка  ВКЛ  Флаг подключения гарнитуры диспетчера
+        private void button75_Click(object sender, EventArgs e)                      //  XP1- 5  HeS1Rs Кнопка  ОТКЛ Флаг подключения гарнитуры диспетчера с 2 наушниками
+        {
+            startCoil = 31; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
+        }
+
+        private void button64_Click(object sender, EventArgs e)                      // XP1- 1  HeS1Ls  Кнопка  ВКЛ  Флаг подключения гарнитуры диспетчера
         {
             startCoil = 32; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button73_Click (object sender, EventArgs e)                      // XP1- 1  HeS1Ls  Кнопка  ОТКЛ Флаг подключения гарнитуры диспетчера
+        private void button73_Click(object sender, EventArgs e)                      // XP1- 1  HeS1Ls  Кнопка  ОТКЛ Флаг подключения гарнитуры диспетчера
         {
             startCoil = 32; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button33_Click (object sender, EventArgs e)                      //  Кнопка  ВКЛ Сенсор Мик.
+        private void button33_Click(object sender, EventArgs e)                      //  Кнопка  ВКЛ Сенсор Мик.
         {
             startCoil = 16; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button34_Click (object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор Мик.
+        private void button34_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор Мик.
         {
             startCoil = 16; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button35_Click (object sender, EventArgs e)                      //  Кнопка  ВКЛ Сенсор ГГС
-        {
-           startCoil = 22; // Управление сенсорами
-           res = myProtocol.writeCoil(slave, startCoil, true); 
-        }
-
-        private void button36_Click (object sender, EventArgs e)                      //  Кнопка  ОТКЛ Сенсор ГГС
+        private void button35_Click(object sender, EventArgs e)                      //  Кнопка  ВКЛ Сенсор ГГС
         {
             startCoil = 22; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-  
+        private void button36_Click(object sender, EventArgs e)                      //  Кнопка  ОТКЛ Сенсор ГГС
+        {
+            startCoil = 22; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
+        }
+
+
         //********************** Вторая колонка кнопок*****************************
-        private void label28_Click (object sender, EventArgs e) // 
+        private void label28_Click(object sender, EventArgs e) // 
         {
         }
 
-        private void button7_Click (object sender, EventArgs e)                       // ВКл . XP8 - 1  PTT Мик
-        {
-           startCoil = 15; // Управление сенсорами
-           res = myProtocol.writeCoil(slave, startCoil, true); 
-        }
-
-        private void button18_Click (object sender, EventArgs e)                      // ОТКЛ XP8 - 1  PTT Мик
+        private void button7_Click(object sender, EventArgs e)                       // ВКл . XP8 - 1  PTT Мик
         {
             startCoil = 15; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button10_Click (object sender, EventArgs e)                      // ВКЛ   XP7 1 PTT1 Танг. р.
+        private void button18_Click(object sender, EventArgs e)                      // ОТКЛ XP8 - 1  PTT Мик
         {
-           startCoil = 20; // Управление сенсорами
-           res = myProtocol.writeCoil(slave, startCoil, true); 
+            startCoil = 15; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button23_Click (object sender, EventArgs e)                      // ОТКЛ   XP7 1 PTT1 Танг. р.
+        private void button10_Click(object sender, EventArgs e)                      // ВКЛ   XP7 1 PTT1 Танг. р.
         {
-           startCoil = 20; // Управление сенсорами
-           res = myProtocol.writeCoil(slave, startCoil, false); 
+            startCoil = 20; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button14_Click (object sender, EventArgs e)                      // ВКЛ  XP7 4 PTT2 Танг. р.
+        private void button23_Click(object sender, EventArgs e)                      // ОТКЛ   XP7 1 PTT1 Танг. р.
+        {
+            startCoil = 20; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
+        }
+
+        private void button14_Click(object sender, EventArgs e)                      // ВКЛ  XP7 4 PTT2 Танг. р.
         {
             startCoil = 17; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button29_Click (object sender, EventArgs e)                      // ОТКЛ  XP7 4 PTT2 Танг. р.
+        private void button29_Click(object sender, EventArgs e)                      // ОТКЛ  XP7 4 PTT2 Танг. р.
         {
             startCoil = 17; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button19_Click (object sender, EventArgs e)                      // ВКЛ XP1 - 20  HangUp  DCD
+        private void button19_Click(object sender, EventArgs e)                      // ВКЛ XP1 - 20  HangUp  DCD
         {
-           startCoil = 18; // Управление сенсорами
-             res = myProtocol.writeCoil(slave, startCoil, true); 
+            startCoil = 18; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button26_Click (object sender, EventArgs e)                      // ОТКЛ XP1 - 20  HangUp  DCD
+        private void button26_Click(object sender, EventArgs e)                      // ОТКЛ XP1 - 20  HangUp  DCD
         {
-             startCoil = 18; // Управление сенсорами
-             res = myProtocol.writeCoil(slave, startCoil, false); 
+            startCoil = 18; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button8_Click (object sender, EventArgs e)                       // ВКЛ XP1- 6  HeS1PTT   CTS вкл
+        private void button8_Click(object sender, EventArgs e)                       // ВКЛ XP1- 6  HeS1PTT   CTS вкл
         {
-             startCoil = 30; // Управление сенсорами
-             res = myProtocol.writeCoil(slave, startCoil, true); 
+            startCoil = 30; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button22_Click (object sender, EventArgs e)                      // ОТКЛ  XP1- 6  HeS1PTT   CTS вкл
+        private void button22_Click(object sender, EventArgs e)                      // ОТКЛ  XP1- 6  HeS1PTT   CTS вкл
         {
-             startCoil = 30; // Управление сенсорами
-             res = myProtocol.writeCoil(slave, startCoil, false); 
+            startCoil = 30; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button28_Click (object sender, EventArgs e)                      //ВКЛ  XP1- 15 HeS2PTT   CTS вкл
+        private void button28_Click(object sender, EventArgs e)                      //ВКЛ  XP1- 15 HeS2PTT   CTS вкл
         {
-             startCoil = 28; // Управление сенсорами
-             res = myProtocol.writeCoil(slave, startCoil, true); 
+            startCoil = 28; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button17_Click (object sender, EventArgs e)                      // ОТКЛ  XP1- 15 HeS2PTT   CTS вкл
+        private void button17_Click(object sender, EventArgs e)                      // ОТКЛ  XP1- 15 HeS2PTT   CTS вкл
         {
-             startCoil = 28; // Управление сенсорами
-             res = myProtocol.writeCoil(slave, startCoil, false); 
-        }
-         
-        private void button16_Click (object sender, EventArgs e)                      //ВКЛ  XP1- 17 HaSPTT    CTS DSR вкл.
-        {
-              startCoil = 26; // Управление сенсорами
-             res = myProtocol.writeCoil(slave, startCoil, true); 
+            startCoil = 28; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button20_Click (object sender, EventArgs e)                      //ОТКЛ  XP1- 17 HaSPTT    CTS DSR вкл.
+        private void button16_Click(object sender, EventArgs e)                      //ВКЛ  XP1- 17 HaSPTT    CTS DSR вкл.
         {
-             startCoil = 26; // Управление сенсорами
-             res = myProtocol.writeCoil(slave, startCoil, false); 
+            startCoil = 26; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-   
-        private void button39_Click (object sender, EventArgs e)                      // ВКЛ XP8-1 РТТ Танг. н.
+        private void button20_Click(object sender, EventArgs e)                      //ОТКЛ  XP1- 17 HaSPTT    CTS DSR вкл.
         {
-            startCoil = 14; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true); 
+            startCoil = 26; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button41_Click (object sender, EventArgs e)                      //  ОТКЛ XP8-1  РТТ Танг. н.
+
+        private void button39_Click(object sender, EventArgs e)                      // ВКЛ XP8-1 РТТ Танг. н.
         {
             startCoil = 14; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false); 
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button43_Click (object sender, EventArgs e)
+        private void button41_Click(object sender, EventArgs e)                      //  ОТКЛ XP8-1  РТТ Танг. н.
+        {
+            startCoil = 14; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
+        }
+
+        private void button43_Click(object sender, EventArgs e)
         {
 
         }
@@ -2731,7 +2730,7 @@ namespace KamertonTest
         //**********************************************************************************************
         #endregion
 
-        #region Test all    
+        #region Test all
         // для вызова тестов необходимо отправить по адресу 120  в контроллер номер теста  (1-12)
         // далее отправить команду (true) вызова  теста по адресу 38
 
@@ -2743,7 +2742,7 @@ namespace KamertonTest
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 1); // Отключить все сенсоры
-        
+
             textBox7.Text += ("Команда на отключение сенсоров отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(700);
@@ -2825,7 +2824,7 @@ namespace KamertonTest
 
             if (Dec_bin[26] == true) //  флаг подключения трубки
             {
-          //      textBox8.Text += ("Сенсор подключения трубки не отключился" + "\r\n");
+                //      textBox8.Text += ("Сенсор подключения трубки не отключился" + "\r\n");
                 textBox8.Refresh();
             }
 
@@ -2833,14 +2832,14 @@ namespace KamertonTest
 
             if (Dec_bin[27] == true)   // флаг подключения ручной тангенты
             {
-           //     textBox8.Text += ("Сенсор подключения ручной тангенты не отключился" + "\r\n");
+                //     textBox8.Text += ("Сенсор подключения ручной тангенты не отключился" + "\r\n");
                 textBox8.Refresh();
             }
 
 
             if (Dec_bin[28] == true)  // флаг подключения педали
             {
-          //      textBox8.Text += ("Сенсор подключения педали не отключился" + "\r\n");
+                //      textBox8.Text += ("Сенсор подключения педали не отключился" + "\r\n");
                 textBox8.Refresh();
             }
 
@@ -2854,34 +2853,34 @@ namespace KamertonTest
 
             if (Dec_bin[41] == true) //  флаг подключения гарнитуры инструктора 2 наушниками
             {
-          //      textBox8.Text += ("Сенсор отключения гарнитуры инструктора 2 наушниками не отключился" + "\r\n");
+                //      textBox8.Text += ("Сенсор отключения гарнитуры инструктора 2 наушниками не отключился" + "\r\n");
                 textBox8.Refresh();
             }
 
             if (Dec_bin[42] == true) //   флаг подключения гарнитуры инструктора
             {
-           //     textBox8.Text += ("Сенсор подключения гарнитуры инструктора не отключился" + "\r\n");
+                //     textBox8.Text += ("Сенсор подключения гарнитуры инструктора не отключился" + "\r\n");
                 textBox8.Refresh();
             }
 
 
             if (Dec_bin[43] == true) //  флаг подключения гарнитуры диспетчера с 2 наушниками
             {
-            //    textBox8.Text += ("Сенсор подключения гарнитуры диспетчера с 2 наушниками не отключился" + "\r\n");
+                //    textBox8.Text += ("Сенсор подключения гарнитуры диспетчера с 2 наушниками не отключился" + "\r\n");
                 textBox8.Refresh();
             }
 
 
             if (Dec_bin[44] == true) //  флаг подключения гарнитуры диспетчера
             {
-           //     textBox8.Text += ("Сенсор подключения гарнитуры диспетчера не отключился" + "\r\n");
+                //     textBox8.Text += ("Сенсор подключения гарнитуры диспетчера не отключился" + "\r\n");
                 textBox8.Refresh();
             }
 
 
             if (Dec_bin[45] == true) //  флаг подключения микрофона XS1 - 6 Sence  
             {
-           //     textBox8.Text += ("Сенсор подключения микрофона не отключился" + "\r\n");
+                //     textBox8.Text += ("Сенсор подключения микрофона не отключился" + "\r\n");
                 textBox8.Refresh();
             }
             //if (Dec_bin[46] == true) // флаг подключения ГГС
@@ -2912,7 +2911,7 @@ namespace KamertonTest
             short[] readVals = new short[124];
             bool[] coilArr = new bool[64];
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-      
+
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 2); // Включить все сенсоры
 
@@ -2921,7 +2920,7 @@ namespace KamertonTest
 
             Thread.Sleep(600);
 
-//  фрагмент чтения регистров 40001-40007 состояния "Камертон"
+            //  фрагмент чтения регистров 40001-40007 состояния "Камертон"
 
             int startRdReg;
             int numRdRegs;
@@ -2980,9 +2979,9 @@ namespace KamertonTest
                         }
                     }
                     binaryResult = "";
-                 }
+                }
 
-              }
+            }
             //if (Dec_bin[24] == false) // флаг подключения ГГ Радио2
             //{
             //    textBox8.Text += ("Сенсор ГГ Радио2 не включился" + "\r\n");
@@ -2997,7 +2996,7 @@ namespace KamertonTest
 
             if (Dec_bin[26] == false) //  флаг подключения трубки
             {
-            //    textBox8.Text += ("Сенсор подключения трубки не включился" + "\r\n");
+                //    textBox8.Text += ("Сенсор подключения трубки не включился" + "\r\n");
                 textBox8.Refresh();
             }
 
@@ -3005,14 +3004,14 @@ namespace KamertonTest
 
             if (Dec_bin[27] == false)   // флаг подключения ручной тангенты
             {
-           //     textBox8.Text += ("Сенсор подключения ручной тангенты не включился" + "\r\n");
+                //     textBox8.Text += ("Сенсор подключения ручной тангенты не включился" + "\r\n");
                 textBox8.Refresh();
             }
 
 
             if (Dec_bin[28] == false)  // флаг подключения педали
             {
-            //    textBox8.Text += ("Сенсор подключения педали не включился" + "\r\n");
+                //    textBox8.Text += ("Сенсор подключения педали не включился" + "\r\n");
                 textBox8.Refresh();
             }
 
@@ -3026,34 +3025,34 @@ namespace KamertonTest
 
             if (Dec_bin[41] == false) //  флаг подключения гарнитуры инструктора 2 наушниками
             {
-            //    textBox8.Text += ("Сенсор отключения гарнитуры инструктора 2 наушниками не включился" + "\r\n");
+                //    textBox8.Text += ("Сенсор отключения гарнитуры инструктора 2 наушниками не включился" + "\r\n");
                 textBox8.Refresh();
             }
 
             if (Dec_bin[42] == false) //   флаг подключения гарнитуры инструктора
             {
-            //    textBox8.Text += ("Сенсор подключения гарнитуры инструктора не включился" + "\r\n");
+                //    textBox8.Text += ("Сенсор подключения гарнитуры инструктора не включился" + "\r\n");
                 textBox8.Refresh();
             }
 
 
             if (Dec_bin[43] == false) //  флаг подключения гарнитуры диспетчера с 2 наушниками
             {
-            //    textBox8.Text += ("Сенсор подключения гарнитуры диспетчера с 2 наушниками не включился" + "\r\n");
+                //    textBox8.Text += ("Сенсор подключения гарнитуры диспетчера с 2 наушниками не включился" + "\r\n");
                 textBox8.Refresh();
             }
 
 
             if (Dec_bin[44] == false) //  флаг подключения гарнитуры диспетчера
             {
-            //    textBox8.Text += ("Сенсор подключения гарнитуры диспетчера не включился" + "\r\n");
+                //    textBox8.Text += ("Сенсор подключения гарнитуры диспетчера не включился" + "\r\n");
                 textBox8.Refresh();
             }
 
 
             if (Dec_bin[45] == false) //  флаг подключения микрофона XS1 - 6 Sence  
             {
-            //    textBox8.Text += ("Сенсор подключения микрофона не включился" + "\r\n");
+                //    textBox8.Text += ("Сенсор подключения микрофона не включился" + "\r\n");
                 textBox8.Refresh();
             }
             //if (Dec_bin[46] == false) // флаг подключения ГГС
@@ -3074,7 +3073,7 @@ namespace KamertonTest
             //    textBox8.Refresh();
             //}
 
-  
+
             test_end();
         }
         private void test_instruktora()
@@ -3105,7 +3104,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку 'Гарнитура Диспетчера' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-          test_end();
+            test_end();
         }
         private void test_MTT()
         {
@@ -3119,16 +3118,16 @@ namespace KamertonTest
             test_end();
         }
         private void test_tangR()
-            {
-                ushort[] writeVals = new ushort[2];
-                bool[] coilArr = new bool[4];
-                startWrReg = 120;
-                res = myProtocol.writeSingleRegister(slave, startWrReg, 6); // 
-                textBox7.Text += ("Команда на проверку 'Тангента ручная' отправлена" + "\r\n");
-                textBox7.Refresh();
-                Thread.Sleep(250);
-                test_end();
-            }
+        {
+            ushort[] writeVals = new ushort[2];
+            bool[] coilArr = new bool[4];
+            startWrReg = 120;
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 6); // 
+            textBox7.Text += ("Команда на проверку 'Тангента ручная' отправлена" + "\r\n");
+            textBox7.Refresh();
+            Thread.Sleep(250);
+            test_end();
+        }
         private void test_tangN()
         {
             ushort[] writeVals = new ushort[2];
@@ -3152,16 +3151,16 @@ namespace KamertonTest
             test_end();
         }
         private void test_GG_Radio1()
-            {
-                ushort[] writeVals = new ushort[2];
-                bool[] coilArr = new bool[4];
-                startWrReg = 120;
-                res = myProtocol.writeSingleRegister(slave, startWrReg, 9); // Отключить все сенсоры
-                textBox7.Text += ("Команда на проверку 'ГГ-Радио1' отправлена" + "\r\n");
-                textBox7.Refresh();
-                Thread.Sleep(250);
-                test_end();
-            }
+        {
+            ushort[] writeVals = new ushort[2];
+            bool[] coilArr = new bool[4];
+            startWrReg = 120;
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 9); // Отключить все сенсоры
+            textBox7.Text += ("Команда на проверку 'ГГ-Радио1' отправлена" + "\r\n");
+            textBox7.Refresh();
+            Thread.Sleep(250);
+            test_end();
+        }
         private void test_GG_Radio2()
         {
             ushort[] writeVals = new ushort[2];
@@ -3203,7 +3202,7 @@ namespace KamertonTest
         //    test_end();
         //}
 
-        private void test_end ()
+        private void test_end()
         {
             ushort[] readVals = new ushort[21];
             bool[] coilArr = new bool[2];
@@ -3214,12 +3213,13 @@ namespace KamertonTest
             startCoil = 120;                                     //Адрес флага общей ошибки
             numCoils = 1;
             Thread.Sleep(1000);
-          
-           do {
-                res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
-            //    textBox9.Text += ("Вызов программы обработки ошибок" + coilArr[0] + " - " + coilArr[1] + "\r\n");
 
-               if (coilArr[0] == true) //есть ошибка
+            do
+            {
+                res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
+                //    textBox9.Text += ("Вызов программы обработки ошибок" + coilArr[0] + " - " + coilArr[1] + "\r\n");
+
+                if (coilArr[0] == true) //есть ошибка
                 {
                     // Обработка ошибки.
                     textBox8.Text += ("Вызов программы обработки ошибок. " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
@@ -3227,9 +3227,9 @@ namespace KamertonTest
 
                     error_All();
                     //textBox8.Text += ("Вызов программы обработки ошибок" + "\r\n");
-                   }
-             
-               res = myProtocol.readMultipleRegisters(slave, 120, readVals, 1);  // Ожидание кода подтверждения окончания проверки  Адрес передачи подтверждения 40120
+                }
+
+                res = myProtocol.readMultipleRegisters(slave, 120, readVals, 1);  // Ожидание кода подтверждения окончания проверки  Адрес передачи подтверждения 40120
 
                 if ((res == BusProtocolErrors.FTALK_SUCCESS))
                 {
@@ -3249,13 +3249,14 @@ namespace KamertonTest
                     return;
                 }
             } while (readVals[0] != 0);                                     // Если readVals[0] == 0 , тест завершен
-   
-       textBox7.Text += ("Выполнение команды завершено " + "\r\n" + "\r\n");
-       }
+
+            textBox7.Text += ("Выполнение команды завершено " + "\r\n" + "\r\n");
+        }
 
         private void error_All()
         {
             ushort[] readVals = new ushort[12];
+            ushort[] readVolt = new ushort[12];
             bool[] coilArr = new bool[12];
 
             startRdReg = 200;
@@ -3268,58 +3269,58 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text +=     ("Сенсор  трубки не отключился                                < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Сенсор  трубки не отключился                                < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 200, false);
 
             }
 
             if (coilArr[1] != false)
-                {
-                    textBox8.Text += ("Сенсор Тангента ручная не отключился                        < = " + readVals[1] + ">\r\n");
-                    res = myProtocol.writeCoil(slave, 201, false);
-                }
+            {
+                textBox8.Text += ("Сенсор Тангента ручная не отключился                        < = " + readVals[1] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 201, false);
+            }
 
             if (coilArr[2] != false)
-                {
-                    textBox8.Text += ("Сенсор Тангента ножная не отключился                        < = " + readVals[2] + ">\r\n");
-                    res = myProtocol.writeCoil(slave, 202, false);
-                }
+            {
+                textBox8.Text += ("Сенсор Тангента ножная не отключился                        < = " + readVals[2] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 202, false);
+            }
 
             if (coilArr[3] != false)
-                {
-                    textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не отключился  < = " + readVals[3] + ">\r\n");
-                    res = myProtocol.writeCoil(slave, 203, false);
-                }
+            {
+                textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не отключился  < = " + readVals[3] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 203, false);
+            }
             if (coilArr[4] != false)
-                {
-                    textBox8.Text += ("Сенсор гарнитуры инструктора  не отключился                 < = " + readVals[4] + ">\r\n");
-                    res = myProtocol.writeCoil(slave, 204, false);
-                }
+            {
+                textBox8.Text += ("Сенсор гарнитуры инструктора  не отключился                 < = " + readVals[4] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 204, false);
+            }
             if (coilArr[5] != false)
-                {
-                    textBox8.Text += ("Сенсор диспетчера с 2 наушниками не отключился              < = " + readVals[5] + ">\r\n");
-                    res = myProtocol.writeCoil(slave, 205, false);
-                }
+            {
+                textBox8.Text += ("Сенсор диспетчера с 2 наушниками не отключился              < = " + readVals[5] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 205, false);
+            }
             if (coilArr[6] != false)
-                {
-                    textBox8.Text += ("Сенсор диспетчера не отключился                             < = " + readVals[6] + ">\r\n");
-                    res = myProtocol.writeCoil(slave, 206, false);
-                }
+            {
+                textBox8.Text += ("Сенсор диспетчера не отключился                             < = " + readVals[6] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 206, false);
+            }
             if (coilArr[7] != false)
-                {
-                    textBox8.Text += ("Сенсор Микрофона не отключился                              < = " + readVals[7] + ">\r\n");
-                    res = myProtocol.writeCoil(slave, 207, false);
-                }
+            {
+                textBox8.Text += ("Сенсор Микрофона не отключился                              < = " + readVals[7] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 207, false);
+            }
             if (coilArr[8] != false)
-                {
-                    textBox8.Text += ("Микрофон инструктора не отключился                          < = " + readVals[8] + ">\r\n");
-                    res = myProtocol.writeCoil(slave, 208, false);
-                }
+            {
+                textBox8.Text += ("Микрофон инструктора не отключился                          < = " + readVals[8] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 208, false);
+            }
             if (coilArr[9] != false)
-                {
-                    textBox8.Text += ("Микрофон диспетчера не отключился                           < = " + readVals[9] + ">\r\n");
-                    res = myProtocol.writeCoil(slave, 209, false);
-                }
+            {
+                textBox8.Text += ("Микрофон диспетчера не отключился                           < = " + readVals[9] + ">\r\n");
+                res = myProtocol.writeCoil(slave, 209, false);
+            }
 
             startRdReg = 210;
             numRdRegs = 10;
@@ -3331,177 +3332,177 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Сенсор  трубки не включился                               < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Сенсор  трубки не включился                                 < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 210, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Сенсор Тангента ручная не включился                       < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Сенсор Тангента ручная не включился                         < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 211, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Сенсор Тангента ножная не включился                       < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Сенсор Тангента ножная не включился                         < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 212, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился   < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 213, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Сенсор гарнитуры инструктора  не включился                < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Сенсор гарнитуры инструктора  не включился                  < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 214, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Сенсор диспетчера с 2 наушниками не включился             < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Сенсор диспетчера с 2 наушниками не включился               < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 215, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Сенсор диспетчера не включился                            < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Сенсор диспетчера не включился                              < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 216, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Сенсор Микрофона не включился                             < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Сенсор Микрофона не включился                               < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 217, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Микрофон инструктора не включился                         < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Микрофон инструктора не включился                           < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 218, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Микрофон диспетчера не включился                          < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Микрофон диспетчера не включился                            < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 219, false);
             }
 
             startRdReg = 220;
             numRdRegs = 10;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40220 Считать счетчики ошибок  
-
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40420 Считать счетчики ошибок  
             startCoil = 220;                                                                    // Начальный Адрес 220 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("PTT инструктора не отключился                             < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("PTT инструктора не отключился                               < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 220, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("PTT инструктора не включился                              < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("PTT инструктора не включился                                < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 221, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("PTT диспетчера не отключился                              < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("PTT диспетчера не отключился                                < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 222, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("PTT диспетчера не включился                               < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("PTT диспетчера не включился                                 < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 223, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Сигнал инструктора LineL отсутствует                      < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Сигнал инструктора LineL отсутствует                        < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ \r\n");
                 res = myProtocol.writeCoil(slave, 224, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Сигнал инструктора LineR отсутствует                      < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Сигнал инструктора LineR отсутствует                        < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ \r\n");
                 res = myProtocol.writeCoil(slave, 225, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует       < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует         < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 226, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Сигнал диспетчера LineL отсутствует                       < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Сигнал диспетчера LineL отсутствует                         < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 227, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Сигнал диспетчера LineR отсутствует                       < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Сигнал диспетчера LineR отсутствует                         < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 228, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует        < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует          < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 229, false);
             }
 
             startRdReg = 230;
             numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40230 Считать счетчики ошибок  
-
-            startCoil = 230;                                                                    // Начальный Адрес 230 флага индикации возникновения  ошибки
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40230 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40430 Считать счетчики ошибок  
+            startCoil = 230;                                                                      // Начальный Адрес 230 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal FrontL     OFF          < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal FrontL     OFF            < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 230, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal FrontR      OFF         < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal FrontR      OFF           < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 231, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal LineL       OFF         < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal LineL        OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 232, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal LineR       OFF         < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal LineR        OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 233, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal mag radio    OFF        < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal mag radio    OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 234, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal mag phone    OFF        < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal mag phone    OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 235, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal GGS          OFF        < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal GGS          OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 236, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal GG Radio1    OFF        < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal GG Radio1    OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 237, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal GG Radio2    OFF        < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal GG Radio2    OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 238, false);
             }
             if (coilArr[9] != false)
@@ -3513,162 +3514,162 @@ namespace KamertonTest
 
             startRdReg = 240;
             numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40240 Считать счетчики ошибок  
-
-            startCoil = 240;                                                                    // Начальный Адрес 240 флага индикации возникновения  ошибки
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40240 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40440 Считать счетчики ошибок  
+            startCoil = 240;                                                                      // Начальный Адрес 240 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal FrontL     OFF          < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal FrontL     OFF            < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 240, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal FrontR      OFF         < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal FrontR      OFF           < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 241, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal LineL       OFF         < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal LineL       OFF           < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 242, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal LineR       OFF         < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal LineR       OFF           < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 243, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal mag radio    OFF        < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal mag radio    OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 244, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal mag phone    OFF        < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal mag phone    OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 245, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal GGS          OFF        < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal GGS          OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 246, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio1    OFF        < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio1    OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 247, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio2    OFF        < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio2    OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 248, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("                                                          < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("                                                            < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 249, false);
             }
 
 
             startRdReg = 250;
             numRdRegs = 11;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40250 Считать счетчики ошибок  
-
-            startCoil = 250;                                                                    // Начальный Адрес 250 флага индикации возникновения  ошибки
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40250 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40450 Считать счетчики ошибок  
+            startCoil = 250;                                                                      // Начальный Адрес 250 флага индикации возникновения  ошибки
             numCoils = 11;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal FrontL                      OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal FrontL                      OFF          < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 250, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal FrontR                      OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal FrontR                      OFF          < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 251, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal LineL                       OFF  < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal LineL                       OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 252, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal LineR                       OFF   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal LineR                       OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 253, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal mag radio                   OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal mag radio                   OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 254, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal mag phone                   OFF   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal mag phone                   OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 255, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal GGS                         OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal GGS                         OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 256, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal GG Radio1                   OFF  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal GG Radio1                   OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 257, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal GG Radio2                   OFF  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal GG Radio2                   OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 258, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal GGS                         ON  < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal GGS                         ON           < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 259, false);
             }
 
 
             startRdReg = 260;
             numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40260 Считать счетчики ошибок  
-
-            startCoil = 260;                                                                    // Начальный Адрес 260 флага индикации возникновения  ошибки
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40260 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40460 Считать напряжение ошибок  
+            startCoil = 260;                                                                      // Начальный Адрес 260 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal LineL                       ON  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal LineL                       ON           < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 260, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal LineR                       ON < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal LineR                       ON           < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 261, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal Mag phone                   ON < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal Mag phone                   ON           < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 262, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test MTT PTT    (CTS)                          OFF   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test MTT PTT    (CTS)                          OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 263, false);
             }
             if (coilArr[4] != false)
@@ -3678,7 +3679,7 @@ namespace KamertonTest
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test MTT PTT    (CTS)                          ON   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test MTT PTT    (CTS)                          ON           < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 265, false);
             }
             if (coilArr[6] != false)
@@ -3688,12 +3689,12 @@ namespace KamertonTest
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test MTT HangUp (DCD)                          OFF  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test MTT HangUp (DCD)                          OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 267, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test MTT HangUp (DCD)                          ON  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test MTT HangUp (DCD)                          ON           < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 268, false);
             }
             if (coilArr[9] != false)
@@ -3705,156 +3706,156 @@ namespace KamertonTest
 
             startRdReg = 270;
             numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
-
-            startCoil = 270;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40270 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40470 Считать напряжение ошибок  
+            startCoil = 270;                                                                      // Начальный Адрес 270 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF          < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 270, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF          < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 271, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON           < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 272, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON           < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 273, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Command sensor tangenta ruchnaja               OFF          < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 274, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Command sensor tangenta ruchnaja               ON           < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 275, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Command sensor tangenta nognaja                OFF          < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 276, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Command sensor tangenta nognaja                ON           < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 277, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             OFF < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             OFF          < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 278, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON           < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 279, false);
             }
 
 
             startRdReg = 280;
             numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
-
-            startCoil = 280;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40280 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40480 Считать напряжение ошибок  
+            startCoil = 280;                                                                      // Начальный Адрес 280 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal FrontL                      OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal FrontL                      OFF          < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 280, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal FrontR                      OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal FrontR                      OFF          < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 281, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal LineL                       OFF < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal LineL                       OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 282, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal LineR                       OFF  < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal LineR                       OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 283, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal mag radio                   OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal mag radio                   OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 284, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal mag phone                   OFF  < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal mag phone                   OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 285, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal GGS                         OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal GGS                         OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 286, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal GG Radio1                   OFF  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal GG Radio1                   OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 287, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal GG Radio2                   OFF  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal GG Radio2                   OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 288, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal GGS                         ON < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal GGS                         ON           < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 289, false);
             }
 
 
             startRdReg = 290;
             numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
-
-            startCoil = 290;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40290 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40490 Считать напряжение ошибок  
+            startCoil = 290;                                                                      // Начальный Адрес 290 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal FrontL                      ON   < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal FrontL                      ON           < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 290, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal FrontR                      ON < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal FrontR                      ON           < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 291, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal mag phone                   ON < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal mag phone                   ON           < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 292, false);
             }
 
@@ -3896,143 +3897,206 @@ namespace KamertonTest
 
             startRdReg = 300;
             numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
-
-            startCoil = 300;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40300 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40500 Считать напряжение ошибок  
+            startCoil = 300;                                                                      // Начальный Адрес 300 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal FrontL                   OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal FrontL                   OFF          < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 300, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal FrontR                   OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal FrontR                   OFF          < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 301, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal LineL                    OFF < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal LineL                    OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 302, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal LineR                    OFF   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal LineR                    OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 303, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal mag radio                OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal mag radio                OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 304, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal mag phone                OFF  < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal mag phone                OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 305, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal GGS                      OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal GGS                      OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 306, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal GG Radio1                OFF  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal GG Radio1                OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 307, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal GG Radio2                OFF  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal GG Radio2                OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 308, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal Radio1                   ON < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal Radio1                   ON           < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 309, false);
             }
 
             startRdReg = 310;
             numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
-
-            startCoil = 310;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40310 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40510 Считать напряжение ошибок  
+            startCoil = 310;                                                                      // Начальный Адрес 310 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal FrontL                   OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal FrontL                   OFF          < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 310, false);
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("est Radio2 ** Signal FrontR                    OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal FrontR                   OFF          < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 311, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal LineL                    OFF < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal LineL                    OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 312, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal LineR                    OFF   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal LineR                    OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 313, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal mag radio                OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal mag radio                OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 314, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal mag phone                OFF   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal mag phone                OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 315, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal GGS                      OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal GGS                      OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 316, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal GG Radio1                OFF  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal GG Radio1                OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 317, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal GG Radio2                OFF  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal GG Radio2                OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 318, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal Radio2                   ON < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal Radio2                   ON           < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
                 res = myProtocol.writeCoil(slave, 319, false);
             }
 
-             textBox8.Refresh();
-             res = myProtocol.writeCoil(slave, 120, false);                      // Снять флаг общей ошибки теста
-         }
+            startRdReg = 320;
+            numRdRegs = 10;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40320 Считать счетчики ошибок  
+            res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40520 Считать напряжение ошибок  
+            startCoil = 320;                                                                      // Начальный Адрес 520 флага индикации возникновения  ошибки
+            numCoils = 10;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+            Thread.Sleep(50);
+            if (coilArr[0] != false)
+            {
+                textBox8.Text += ("Test Microphone ** Signal FrontL               OFF          < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
+                res = myProtocol.writeCoil(slave, 320, false);
+            }
 
-//*******************************************
-     
-        private void timerTestAll_Tick (object sender, EventArgs e)        // Тестирование программы общего теста
+            if (coilArr[1] != false)
+            {
+                textBox8.Text += ("Test Microphone ** Signal FrontR               OFF          < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
+                res = myProtocol.writeCoil(slave, 321, false);
+            }
+
+            if (coilArr[2] != false)
+            {
+                textBox8.Text += ("Test Microphone ** Signal LineL                OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
+                res = myProtocol.writeCoil(slave, 322, false);
+            }
+
+            if (coilArr[3] != false)
+            {
+                textBox8.Text += ("Test Microphone ** Signal LineR                OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
+                res = myProtocol.writeCoil(slave, 323, false);
+            }
+            if (coilArr[4] != false)
+            {
+                textBox8.Text += ("Test Microphone ** Signal mag radio            OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
+                res = myProtocol.writeCoil(slave, 324, false);
+            }
+            if (coilArr[5] != false)
+            {
+                textBox8.Text += ("Test Microphone ** Signal mag phone            OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
+                res = myProtocol.writeCoil(slave, 325, false);
+            }
+            if (coilArr[6] != false)
+            {
+                textBox8.Text += ("Test Microphone ** Signal GGS                  OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
+                res = myProtocol.writeCoil(slave, 326, false);
+            }
+            if (coilArr[7] != false)
+            {
+                textBox8.Text += ("Test Microphone ** Signal GG Radio1            OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
+                res = myProtocol.writeCoil(slave, 327, false);
+            }
+            if (coilArr[8] != false)
+            {
+                textBox8.Text += ("Test Microphone ** Signal GG Radio2            OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
+                res = myProtocol.writeCoil(slave, 328, false);
+            }
+            if (coilArr[9] != false)
+            {
+                textBox8.Text += ("Test Microphone ** Signal Radio2               ON           < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
+                res = myProtocol.writeCoil(slave, 329, false);
+            }
+
+            textBox8.Refresh();
+            Thread.Sleep(50);
+            res = myProtocol.writeCoil(slave, 120, false);                      // Снять флаг общей ошибки теста
+        }
+
+        //*******************************************
+
+        private void timerTestAll_Tick(object sender, EventArgs e)        // Тестирование программы общего теста
         {
-           
+
             switch (TestN)  // Определить № теста
             {
                 default:
                 case 0:
-                    if (checkBoxSensors1.Checked || radioButton1.Checked )
+                    if (checkBoxSensors1.Checked || radioButton1.Checked)
                     {
                         sensor_off();
                         progressBar2.Value += 1;
@@ -4040,15 +4104,15 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-                    
+
                 case 1:
-                        if (checkBoxSensors1.Checked || radioButton1.Checked)
-                        {
-                            sensor_on();
-                            progressBar2.Value += 1;
-                            label98.Text = ("" + progressBar2.Value);
-                            label98.Refresh();
-                        }
+                    if (checkBoxSensors1.Checked || radioButton1.Checked)
+                    {
+                        sensor_on();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
                     break;
                 case 2:
                     if (checkBoxSenGar1instr.Checked || radioButton1.Checked)
@@ -4131,41 +4195,41 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-           
+
             }
 
             TestN++;                  // Увеличить счетчик проходов теста
 
             label98.Text = ("" + progressBar2.Value);
             if (progressBar2.Value == progressBar2.Maximum)
-                {
-                    progressBar2.Value = 0;
-                }
+            {
+                progressBar2.Value = 0;
+            }
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
 
             if (radioButton1.Checked & TestN == 11)
-                {
-                    timerTestAll.Enabled = false;
-                    textBox7.Text += ("Тест завершен" + "\r\n");
-                    textBox7.Text += ("\r\n");
+            {
+                timerTestAll.Enabled = false;
+                textBox7.Text += ("Тест завершен" + "\r\n");
+                textBox7.Text += ("\r\n");
 
-                    _All_Test_Stop =false;
-                }
+                _All_Test_Stop = false;
+            }
             if (radioButton2.Checked & TestN == 11)
-                {
-                    timerTestAll.Enabled = true;
-                    TestN = 0;
-                    TestRepeatCount++;
-                    if (TestRepeatCount > 32767) TestRepeatCount = 1;
-                    textBox7.Text += ("\r\n");
-                    textBox7.Text += ("Повтор теста " + TestRepeatCount + "\r\n");
-                    textBox7.Text += ("\r\n");
-                    Thread.Sleep(1500);
-                }
+            {
+                timerTestAll.Enabled = true;
+                TestN = 0;
+                TestRepeatCount++;
+                if (TestRepeatCount > 32767) TestRepeatCount = 1;
+                textBox7.Text += ("\r\n");
+                textBox7.Text += ("Повтор теста " + TestRepeatCount + "\r\n");
+                textBox7.Text += ("\r\n");
+                Thread.Sleep(1500);
+            }
         }
 
-        private void button11_Click_1 (object sender, EventArgs e)         //Старт полного теста
+        private void button11_Click_1(object sender, EventArgs e)         //Старт полного теста
         {
             Polltimer1.Enabled = false;
             timer_Mic_test.Enabled = false;
@@ -4176,7 +4240,7 @@ namespace KamertonTest
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             button11.BackColor = Color.Lime;
             button11.Refresh();
-            label92.Text = ("Не забываем нажать кнопку [СТОП] после выполнения теста!"); 
+            label92.Text = ("Не забываем нажать кнопку [СТОП] после выполнения теста!");
             button9.BackColor = Color.LightSalmon;
             button9.Refresh();
             textBox7.Text = ("Выполняется полный  контроль звукового модуля Камертон " + "\r\n");
@@ -4186,7 +4250,7 @@ namespace KamertonTest
             textBox7.Refresh();
             textBox8.Refresh();
             textBox9.Refresh();
-              if (radioButton2.Checked)
+            if (radioButton2.Checked)
             {
                 startCoil = 118;                                                          // Управление сенсорами
                 res = myProtocol.writeCoil(slave, startCoil, true);
@@ -4202,7 +4266,7 @@ namespace KamertonTest
             TestRepeatCount = 1;                                                                        // Установить начальный номер  счетчика проходов теста
 
             if (_All_Test_Stop)                                                                         // Проверить наличие завершения выполнения тестов
-               {
+            {
 
                 /*
                      // textBox9.Text += ("Старт Обнуление счетчиков  - " + _All_Test_Stop + "\r\n");
@@ -4242,159 +4306,159 @@ namespace KamertonTest
                   
                 */
 
-                    startWrReg = 120;                                                                   // Команда на 
-                    res = myProtocol.writeSingleRegister(slave, startWrReg, 16);                        // Команда на сброс счетчиков отправлена
-                    Thread.Sleep(500);
-                    startWrReg = 120;                                                                   // Команда на открытие файла отправлена
-                    res = myProtocol.writeSingleRegister(slave, startWrReg, 12);                        // Команда на открытие файла отправлена
-                    textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
-                    textBox7.Refresh();
-                    file_fakt_namber();
-                    Thread.Sleep(500);
-                    _All_Test_Stop = false;                                                             // Установить флаг запуска теста
-                }
-/*
-            do
-            {
-                textBox7.Text += ("\r\n");
-                textBox7.Text += ("Выполнение теста N  " + TestRepeatCount + "\r\n");
-                textBox7.Text += ("\r\n");
+                startWrReg = 120;                                                                   // Команда на 
+                res = myProtocol.writeSingleRegister(slave, startWrReg, 16);                        // Команда на сброс счетчиков отправлена
+                Thread.Sleep(500);
+                startWrReg = 120;                                                                   // Команда на открытие файла отправлена
+                res = myProtocol.writeSingleRegister(slave, startWrReg, 12);                        // Команда на открытие файла отправлена
+                textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
+                textBox7.Refresh();
+                file_fakt_namber();
+                Thread.Sleep(500);
+                _All_Test_Stop = false;                                                             // Установить флаг запуска теста
+            }
+            /*
+                        do
+                        {
+                            textBox7.Text += ("\r\n");
+                            textBox7.Text += ("Выполнение теста N  " + TestRepeatCount + "\r\n");
+                            textBox7.Text += ("\r\n");
                 
-                   button9.Refresh();
-                  //  Thread.Sleep(500);
-                  //  sensor_off();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                               button9.Refresh();
+                              //  Thread.Sleep(500);
+                              //  sensor_off();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-                  //  Thread.Sleep(500);
-                  //  sensor_on();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                              //  Thread.Sleep(500);
+                              //  sensor_on();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-                //    Thread.Sleep(500);
-                    test_instruktora();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                            //    Thread.Sleep(500);
+                                test_instruktora();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-              //      Thread.Sleep(500);
-                    test_dispetchera();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                          //      Thread.Sleep(500);
+                                test_dispetchera();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-               //     Thread.Sleep(500);
-                    test_MTT();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                           //     Thread.Sleep(500);
+                                test_MTT();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-                 //   Thread.Sleep(500);
-                    test_tangR();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                             //   Thread.Sleep(500);
+                                test_tangR();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-                //    Thread.Sleep(500);
-                    test_mikrophon();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                            //    Thread.Sleep(500);
+                                test_mikrophon();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-                //    Thread.Sleep(500);
-                    testGGS();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                            //    Thread.Sleep(500);
+                                testGGS();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-                 //   Thread.Sleep(500);
-                    test_GG_Radio1();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                             //   Thread.Sleep(500);
+                                test_GG_Radio1();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-             //       Thread.Sleep(500);
-                    test_GG_Radio2();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                         //       Thread.Sleep(500);
+                                test_GG_Radio2();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-               //     Thread.Sleep(500);
-                    test_mag();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                           //     Thread.Sleep(500);
+                                test_mag();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-              //      Thread.Sleep(500);
-                    test_mic_off();
-                    progressBar2.Value += 1;
-                    if (progressBar2.Value == 100) progressBar2.Value = 0;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
+                                button9.Refresh();
+                          //      Thread.Sleep(500);
+                                test_mic_off();
+                                progressBar2.Value += 1;
+                                if (progressBar2.Value == 100) progressBar2.Value = 0;
+                                label98.Text = ("" + progressBar2.Value);
+                                label98.Refresh();
 
-                    button9.Refresh();
-               //     Thread.Sleep(500);
-                    TestRepeatCount++;
-                    if (TestRepeatCount > 32767) TestRepeatCount = 1;
-                    Thread.Sleep(100);
+                                button9.Refresh();
+                           //     Thread.Sleep(500);
+                                TestRepeatCount++;
+                                if (TestRepeatCount > 32767) TestRepeatCount = 1;
+                                Thread.Sleep(100);
 
-                //if (_All_Test_Stop == true)
-                //{
-                //    break;
-                //}
+                            //if (_All_Test_Stop == true)
+                            //{
+                            //    break;
+                            //}
 
-            } while (radioButton2.Checked && _All_Test_Stop == false);
+                        } while (radioButton2.Checked && _All_Test_Stop == false);
 
 
-            */
+                        */
             //-------------------------------------------------
-               timerTestAll.Enabled = true;
+            timerTestAll.Enabled = true;
 
 
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                {
-                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                    toolStripStatusLabel1.BackColor = Color.Lime;
-                }
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                toolStripStatusLabel1.BackColor = Color.Lime;
+            }
             else
-                {
-                    toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
-                    toolStripStatusLabel1.BackColor = Color.Red;
-                    // Polltimer1.Enabled = false;
-                    timer_Mic_test.Enabled = false;
-                }
-   
-                progressBar2.Value = 0;
-   
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                toolStripStatusLabel1.BackColor = Color.Red;
+                // Polltimer1.Enabled = false;
+                timer_Mic_test.Enabled = false;
+            }
+
+            progressBar2.Value = 0;
+
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
         }
 
-        private void button9_Click (object sender, EventArgs e)            // Стоп полного теста
+        private void button9_Click(object sender, EventArgs e)            // Стоп полного теста
         {
             timerTestAll.Enabled = false;
 
@@ -4404,29 +4468,29 @@ namespace KamertonTest
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             button9.BackColor = Color.Red;
             button11.BackColor = Color.White;
-            label92.Text = (""); 
+            label92.Text = ("");
             textBox7.Text += ("Тест остановлен" + "\r\n");
             progressBar2.Value = 0;
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 13); // Команда на закрытие файла отправлена
             textBox9.Text += ("Команда на закрытие файла отправлена" + "\r\n");
-           // textBox9.Text = ("Стоп теста");
+            // textBox9.Text = ("Стоп теста");
             textBox7.Refresh();
             textBox9.Refresh();
-        //    test_end();
+            //    test_end();
 
-                textBox7.Text += "Тест окончен!";
+            textBox7.Text += "Тест окончен!";
 
-                _All_Test_Stop = true;
-                Polltimer1.Enabled = true;
+            _All_Test_Stop = true;
+            Polltimer1.Enabled = true;
         }
 
-        private void label92_Click (object sender, EventArgs e)
+        private void label92_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button12_Click (object sender, EventArgs e)          // Создать файл
+        private void button12_Click(object sender, EventArgs e)          // Создать файл
         {
             if (!File.Exists(fileName))
             {
@@ -4439,7 +4503,7 @@ namespace KamertonTest
 
         }
 
-        private void button13_Click (object sender, EventArgs e)          // Удалить файл 
+        private void button13_Click(object sender, EventArgs e)          // Удалить файл 
         {
             if (File.Exists(fileName))
             {
@@ -4453,109 +4517,112 @@ namespace KamertonTest
 
         }
 
-        private void button21_Click (object sender, EventArgs e)          // Записать текст в файл 
+        private void button21_Click(object sender, EventArgs e)          // Записать текст в файл 
         {
 
             File.WriteAllText(fileName, textBox9.Text);
         }
 
-        private void button15_Click (object sender, EventArgs e)          // Прочитать файл
+        private void button15_Click(object sender, EventArgs e)          // Прочитать файл
         {
-           if (File.Exists(fileName)) {
-            textBox9.Text = File.ReadAllText(fileName);
-            } else {
+            if (File.Exists(fileName))
+            {
+                textBox9.Text = File.ReadAllText(fileName);
+            }
+            else
+            {
                 MessageBox.Show("Файл НЕ существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } 
-           
-         }
+            }
 
-        private void label145_Click (object sender, EventArgs e)
+        }
+
+        private void label145_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label148_Click (object sender, EventArgs e)
+        private void label148_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void toolStripStatusLabel3_Click (object sender, EventArgs e)
+        private void toolStripStatusLabel3_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label78_Click (object sender, EventArgs e)
+        private void label78_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void lblResult_Click (object sender, EventArgs e)
+        private void lblResult_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void progressBar2_Click (object sender, EventArgs e)
-        {
-            
-        }
-
-        private void statusStrip1_ItemClicked (object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-    
-        private void label128_Click (object sender, EventArgs e)
+        private void progressBar2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox4_TextChanged (object sender, EventArgs e)
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
 
-        private void textBox7_TextChanged (object sender, EventArgs e)
+        private void label128_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
         {
             textBox7.SelectionStart = textBox7.Text.Length;
             textBox7.ScrollToCaret();
             textBox7.Refresh();
         }
 
-        private void textBox8_TextChanged (object sender, EventArgs e)
+        private void textBox8_TextChanged(object sender, EventArgs e)
         {
             textBox8.SelectionStart = textBox8.Text.Length;
             textBox8.ScrollToCaret();
             textBox8.Refresh();
         }
 
-        private void textBox9_TextChanged (object sender, EventArgs e)
+        private void textBox9_TextChanged(object sender, EventArgs e)
         {
             textBox9.SelectionStart = textBox9.Text.Length;
             textBox9.ScrollToCaret();
             textBox9.Refresh();
         }
 
-        private void groupBox21_Enter (object sender, EventArgs e)
+        private void groupBox21_Enter(object sender, EventArgs e)
         {
 
         }
         #endregion
 
- 
-        private void textBox11_TextChanged (object sender, EventArgs e)
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
         {
             textBox11.SelectionStart = textBox11.Text.Length;
             textBox11.ScrollToCaret();
             textBox11.Refresh();
         }
 
-        private void radioButton1_CheckedChanged (object sender, EventArgs e)
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-   
+
         }
 
-     
-        private void checkBox1_CheckedChanged (object sender, EventArgs e)
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxSenAll.Checked == true)
             {
@@ -4588,37 +4655,37 @@ namespace KamertonTest
 
         }
 
-        private void checkBoxSenGGRadio1_CheckedChanged (object sender, EventArgs e)
+        private void checkBoxSenGGRadio1_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label30_Click (object sender, EventArgs e)
+        private void label30_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label33_Click (object sender, EventArgs e)
+        private void label33_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label83_Click (object sender, EventArgs e)
+        private void label83_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label71_Click (object sender, EventArgs e)
+        private void label71_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox3_TextChanged (object sender, EventArgs e)
+        private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button24_Click (object sender, EventArgs e)
+        private void button24_Click(object sender, EventArgs e)
         {
             //Polltimer1.Enabled = false;
             //timer_byte_set.Enabled = false;
@@ -4628,33 +4695,33 @@ namespace KamertonTest
             short[] MSK = new short[2];
             MSK[0] = 5;
             ushort[] readVals = new ushort[125];
-  
+
             bool[] coilVals = new bool[200];
             bool[] coilArr = new bool[20];
- 
+
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
 
             textBox4.BackColor = Color.White;
             writeVals[1] = short.Parse(textBox4.Text, CultureInfo.CurrentCulture);   // Установка уровня входного сигнала
             int tempK = writeVals[1] * 5;                                            // Установка уровня входного сигнала
             if (tempK > 250)
-                {
-                    label72.Text = "<";
-                    tempK = 250;
-                    textBox4.Text = "50";
-                    textBox4.BackColor = Color.Red;
-                }
+            {
+                label72.Text = "<";
+                tempK = 250;
+                textBox4.Text = "50";
+                textBox4.BackColor = Color.Red;
+            }
             else
-                {
-                    label72.Text = "=";
-                    textBox4.BackColor = Color.White;
-                }
+            {
+                label72.Text = "=";
+                textBox4.BackColor = Color.White;
+            }
             //writeVals[1] = (short) tempK;                 // Установка уровня входного сигнала
             //startWrReg = 41;
             //numWrRegs = 10;                               //
             //res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
             startWrReg = 10;                                                                   // 
-            res = myProtocol.writeSingleRegister(slave, startWrReg, (short) tempK);          
+            res = myProtocol.writeSingleRegister(slave, startWrReg, (short)tempK);
             startWrReg = 120;                                                                   // 
             res = myProtocol.writeSingleRegister(slave, startWrReg, 15);                        // 
 
@@ -4664,13 +4731,13 @@ namespace KamertonTest
         {
 
         }
-   
-        private void checkBoxSenGar2instr_CheckedChanged (object sender, EventArgs e)
+
+        private void checkBoxSenGar2instr_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label92_Click_2 (object sender, EventArgs e)
+        private void label92_Click_2(object sender, EventArgs e)
         {
 
         }
@@ -4686,7 +4753,7 @@ namespace KamertonTest
             bool[] coilArr = new bool[4];
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 17);   // 
-           // test_end();
+            // test_end();
         }
 
         private void label133_Click_1(object sender, EventArgs e)
@@ -4700,10 +4767,10 @@ namespace KamertonTest
         }
 
         private void label37_Click(object sender, EventArgs e)
-          {
+        {
 
-          }
+        }
 
-        
+
     }
 }
