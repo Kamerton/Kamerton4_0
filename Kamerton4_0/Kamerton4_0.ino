@@ -2831,7 +2831,7 @@ void testGGS()
 	measure_vol_min(analog_LineR,     40283,283,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
 	measure_vol_min(analog_mag_radio, 40284,284,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
 	measure_vol_min(analog_mag_phone, 40285,285,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag phone                                OFF - ";
-	measure_vol_min(analog_ggs,       40286,286,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
+	measure_vol_min(analog_ggs,       40286,286,30);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
 	measure_vol_min(analog_gg_radio1, 40287,287,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
 	measure_vol_min(analog_gg_radio2, 40288,288,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
 	//----------------------------------------------------------------------------------------------------------------------------------------
@@ -2865,7 +2865,7 @@ void testGGS()
 	measure_vol_min(analog_LineR,     40283,283,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
 	measure_vol_min(analog_mag_radio, 40284,284,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
 	measure_vol_max(analog_mag_phone, 40292,292,50);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag phone                                ON  - ";
-	measure_vol_min(analog_ggs,       40286,286,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
+	measure_vol_min(analog_ggs,       40286,286,30);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
 	measure_vol_min(analog_gg_radio1, 40287,287,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
 	measure_vol_min(analog_gg_radio2, 40288,288,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
 
@@ -2893,9 +2893,9 @@ void test_GG_Radio1()
 	measure_vol_min(analog_FrontR,    40301,301,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
 	measure_vol_min(analog_LineL,     40302,302,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
 	measure_vol_min(analog_LineR,     40303,303,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
-	measure_vol_min(analog_mag_radio, 40304,304,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_radio, 40304,304,30);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
 	measure_vol_min(analog_mag_phone, 40305,305,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
-	measure_vol_min(analog_ggs,       40306,306,25);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
+	measure_vol_min(analog_ggs,       40306,306,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
 	measure_vol_min(analog_gg_radio1, 40307,307,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio1                             OFF - ";
 	measure_vol_min(analog_gg_radio2, 40308,308,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
 
@@ -2909,10 +2909,10 @@ void test_GG_Radio1()
 	measure_vol_min(analog_FrontR,    40301,301,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
 	measure_vol_min(analog_LineL,     40302,302,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
 	measure_vol_min(analog_LineR,     40303,303,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
-	measure_vol_min(analog_mag_radio, 40304,304,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_radio, 40304,304,30);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
 	measure_vol_min(analog_mag_phone, 40305,305,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
 	measure_vol_min(analog_ggs,       40306,306,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
-	measure_vol_max(analog_gg_radio1, 40309,309,250);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
+	measure_vol_max(analog_gg_radio1, 40309,309,220);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
 	measure_vol_min(analog_gg_radio2, 40308,308,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
 
 
@@ -2936,15 +2936,15 @@ void test_GG_Radio2()
 	UpdateRegs(); 
 	delay(300);
 	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,    40310,310,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
-	measure_vol_min(analog_FrontR,    40311,311,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
-	measure_vol_min(analog_LineL,     40312,312,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
-	measure_vol_min(analog_LineR,     40313,313,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
-	measure_vol_min(analog_mag_radio, 40314,314,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
-	measure_vol_min(analog_mag_phone, 40315,315,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
-	measure_vol_min(analog_ggs,       40316,316,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
-	measure_vol_min(analog_gg_radio1, 40317,317,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio1                             OFF - ";
-	measure_vol_min(analog_gg_radio2, 40318,318,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
+	measure_vol_min(analog_FrontL,    40310,310,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
+	measure_vol_min(analog_FrontR,    40311,311,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
+	measure_vol_min(analog_LineL,     40312,312,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
+	measure_vol_min(analog_LineR,     40313,313,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineR                                 OFF - ";
+	measure_vol_min(analog_mag_radio, 40314,314,30);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_phone, 40315,315,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag phone                             OFF - ";
+	measure_vol_min(analog_ggs,       40316,316,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
+	measure_vol_min(analog_gg_radio1, 40317,317,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GG Radio1                             OFF - ";
+	measure_vol_min(analog_gg_radio2, 40318,318,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GG Radio2                             OFF - ";
 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[53])));                   // "Signal Radio1 300 mV    LFE                   ON"            ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal Radio1 300 mV    LFE                   ON"            ;
@@ -2952,15 +2952,15 @@ void test_GG_Radio2()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
 
-	measure_vol_min(analog_FrontL,    40310,310,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
-	measure_vol_min(analog_FrontR,    40311,311,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
-	measure_vol_min(analog_LineL,     40312,312,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
-	measure_vol_min(analog_LineR,     40313,313,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
-	measure_vol_min(analog_mag_radio, 40314,314,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
-	measure_vol_min(analog_mag_phone, 40315,315,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
-	measure_vol_min(analog_ggs,       40316,316,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
-	measure_vol_min(analog_gg_radio1, 40317,317,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
-	measure_vol_max(analog_gg_radio2, 40319,319,250);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
+	measure_vol_min(analog_FrontL,    40310,310,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
+	measure_vol_min(analog_FrontR,    40311,311,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
+	measure_vol_min(analog_LineL,     40312,312,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
+	measure_vol_min(analog_LineR,     40313,313,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineR                                 OFF - ";
+	measure_vol_min(analog_mag_radio, 40314,314,30);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_phone, 40315,315,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag phone                             OFF - ";
+	measure_vol_min(analog_ggs,       40316,316,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
+	measure_vol_min(analog_gg_radio1, 40317,317,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal Radio1                                ON  - ";
+	measure_vol_max(analog_gg_radio2, 40319,319,250);                               // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GG Radio2                             OFF - ";
 
 
 	regBank.set(7,0);                                                               // Реле RL6 Звук Center

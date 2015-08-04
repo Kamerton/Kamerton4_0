@@ -3255,8 +3255,8 @@ namespace KamertonTest
 
         private void error_All()
         {
-            ushort[] readVals = new ushort[32];
-            bool[] coilArr = new bool[32];
+            ushort[] readVals = new ushort[12];
+            bool[] coilArr = new bool[12];
 
             startRdReg = 200;
             numRdRegs = 10;
@@ -3265,7 +3265,7 @@ namespace KamertonTest
             startCoil = 200;                                                                    // Начальный Адрес 200 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
                 textBox8.Text +=     ("Сенсор  трубки не отключился                                < = " + readVals[0] + ">\r\n");
@@ -3328,7 +3328,7 @@ namespace KamertonTest
             startCoil = 210;                                                                    // Начальный Адрес 210 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
                 textBox8.Text += ("Сенсор  трубки не включился                               < = " + readVals[0] + ">\r\n");
@@ -3391,7 +3391,7 @@ namespace KamertonTest
             startCoil = 220;                                                                    // Начальный Адрес 220 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
                 textBox8.Text += ("PTT инструктора не отключился                             < = " + readVals[0] + ">\r\n");
@@ -3454,7 +3454,7 @@ namespace KamertonTest
             startCoil = 230;                                                                    // Начальный Адрес 230 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
                 textBox8.Text += ("Test headset instructor ** Signal FrontL     OFF          < = " + readVals[0] + ">\r\n");
@@ -3518,7 +3518,7 @@ namespace KamertonTest
             startCoil = 240;                                                                    // Начальный Адрес 240 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
                 textBox8.Text += ("Test headset dispatcher ** Signal FrontL     OFF          < = " + readVals[0] + ">\r\n");
@@ -3576,13 +3576,13 @@ namespace KamertonTest
 
 
             startRdReg = 250;
-            numRdRegs = 10;
+            numRdRegs = 11;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40250 Считать счетчики ошибок  
 
             startCoil = 250;                                                                    // Начальный Адрес 250 флага индикации возникновения  ошибки
-            numCoils = 10;
+            numCoils = 11;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
                 textBox8.Text += ("Test MTT ** Signal FrontL                      OFF  < = " + readVals[0] + ">\r\n");
@@ -3646,7 +3646,7 @@ namespace KamertonTest
             startCoil = 260;                                                                    // Начальный Адрес 260 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
                 textBox8.Text += ("Test MTT ** Signal LineL                       ON  < = " + readVals[0] + ">\r\n");
@@ -3710,7 +3710,7 @@ namespace KamertonTest
             startCoil = 270;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
             numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
+            Thread.Sleep(50);
             if (coilArr[0] != false)
             {
                 textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
@@ -3957,8 +3957,6 @@ namespace KamertonTest
                 res = myProtocol.writeCoil(slave, 309, false);
             }
 
-
-
             startRdReg = 310;
             numRdRegs = 10;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
@@ -3971,7 +3969,6 @@ namespace KamertonTest
             {
                 textBox8.Text += ("Test Radio2 ** Signal FrontL                   OFF  < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 310, false);
-
             }
 
             if (coilArr[1] != false)
