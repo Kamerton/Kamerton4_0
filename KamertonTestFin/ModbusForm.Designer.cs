@@ -1447,7 +1447,7 @@ namespace KamertonTest
             this.label93.Name = "label93";
             this.label93.Size = new System.Drawing.Size(80, 23);
             this.label93.TabIndex = 28;
-            this.label93.Text = "HeS1PTT";
+            this.label93.Text = "Дисп. PTT";
             this.label93.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label94
@@ -1503,11 +1503,11 @@ namespace KamertonTest
             // label96
             // 
             this.label96.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label96.Location = new System.Drawing.Point(6, 170);
+            this.label96.Location = new System.Drawing.Point(0, 170);
             this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(80, 23);
+            this.label96.Size = new System.Drawing.Size(86, 23);
             this.label96.TabIndex = 29;
-            this.label96.Text = "HeS2PTT";
+            this.label96.Text = "Инстр.PTT";
             this.label96.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button20
@@ -1557,7 +1557,7 @@ namespace KamertonTest
             this.label100.Name = "label100";
             this.label100.Size = new System.Drawing.Size(80, 23);
             this.label100.TabIndex = 32;
-            this.label100.Text = "HaSPTT";
+            this.label100.Text = "MTT PTT";
             this.label100.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button26

@@ -3268,56 +3268,56 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-                textBox8.Text +=     ("Сенсор  трубки не отключился            < = " + readVals[0] + ">\r\n");
+                textBox8.Text +=     ("Сенсор  трубки не отключился                                < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 200, false);
 
             }
 
             if (coilArr[1] != false)
                 {
-                    textBox8.Text += ("Сенсор Тангента ручная не отключился    < = " + readVals[1] + ">\r\n");
+                    textBox8.Text += ("Сенсор Тангента ручная не отключился                        < = " + readVals[1] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 201, false);
                 }
 
             if (coilArr[2] != false)
                 {
-                    textBox8.Text += ("Сенсор Тангента ножная не отключился    < = " + readVals[2] + ">\r\n");
+                    textBox8.Text += ("Сенсор Тангента ножная не отключился                        < = " + readVals[2] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 202, false);
                 }
 
             if (coilArr[3] != false)
                 {
-                    textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не отключился < = " + readVals[3] + ">\r\n");
+                    textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не отключился  < = " + readVals[3] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 203, false);
                 }
             if (coilArr[4] != false)
                 {
-                    textBox8.Text += ("Сенсор гарнитуры инструктора  не отключился  < = " + readVals[4] + ">\r\n");
+                    textBox8.Text += ("Сенсор гарнитуры инструктора  не отключился                 < = " + readVals[4] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 204, false);
                 }
             if (coilArr[5] != false)
                 {
-                    textBox8.Text += ("Сенсор диспетчера с 2 наушниками не отключился < = " + readVals[5] + ">\r\n");
+                    textBox8.Text += ("Сенсор диспетчера с 2 наушниками не отключился              < = " + readVals[5] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 205, false);
                 }
             if (coilArr[6] != false)
                 {
-                    textBox8.Text += ("Сенсор диспетчера не отключился < = " + readVals[6] + ">\r\n");
+                    textBox8.Text += ("Сенсор диспетчера не отключился                             < = " + readVals[6] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 206, false);
                 }
             if (coilArr[7] != false)
                 {
-                    textBox8.Text += ("Сенсор Микрофона не отключился   < = " + readVals[7] + ">\r\n");
+                    textBox8.Text += ("Сенсор Микрофона не отключился                              < = " + readVals[7] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 207, false);
                 }
             if (coilArr[8] != false)
                 {
-                    textBox8.Text += ("Микрофон инструктора не отключился  < = " + readVals[8] + ">\r\n");
+                    textBox8.Text += ("Микрофон инструктора не отключился                          < = " + readVals[8] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 208, false);
                 }
             if (coilArr[9] != false)
                 {
-                    textBox8.Text += ("Микрофон диспетчера не отключился  < = " + readVals[9] + ">\r\n");
+                    textBox8.Text += ("Микрофон диспетчера не отключился                           < = " + readVals[9] + ">\r\n");
                     res = myProtocol.writeCoil(slave, 209, false);
                 }
 
@@ -3331,20 +3331,20 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Сенсор  трубки не включился            < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Сенсор  трубки не включился                               < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 210, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Сенсор Тангента ручная не включился    < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Сенсор Тангента ручная не включился                       < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 211, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Сенсор Тангента ножная не включился    < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Сенсор Тангента ножная не включился                       < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 212, false);
             }
 
@@ -3355,32 +3355,32 @@ namespace KamertonTest
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Сенсор гарнитуры инструктора  не включился  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Сенсор гарнитуры инструктора  не включился                < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 214, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Сенсор диспетчера с 2 наушниками не включился < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Сенсор диспетчера с 2 наушниками не включился             < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 215, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Сенсор диспетчера не включился < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Сенсор диспетчера не включился                            < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 216, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Сенсор Микрофона не включился   < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Сенсор Микрофона не включился                             < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 217, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Микрофон инструктора не включился  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Микрофон инструктора не включился                         < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 218, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Микрофон диспетчера не включился  < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Микрофон диспетчера не включился                          < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 219, false);
             }
 
@@ -3394,56 +3394,56 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("PTT инструктора не отключился         < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("PTT инструктора не отключился                             < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 220, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("PTT инструктора не включился          < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("PTT инструктора не включился                              < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 221, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("PTT диспетчера не отключился          < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("PTT диспетчера не отключился                              < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 222, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("PTT диспетчера не включился           < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("PTT диспетчера не включился                               < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 223, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Сигнал инструктора LineL отсутствует  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Сигнал инструктора LineL отсутствует                      < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 224, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Сигнал инструктора LineR отсутствует   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Сигнал инструктора LineR отсутствует                      < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 225, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует       < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 226, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Сигнал диспетчера LineL отсутствует   < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Сигнал диспетчера LineL отсутствует                       < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 227, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Сигнал диспетчера LineR отсутствует  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Сигнал диспетчера LineR отсутствует                       < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 228, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует  < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует        < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 229, false);
             }
 
@@ -3457,51 +3457,51 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal FrontL     OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal FrontL     OFF          < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 230, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal FrontR      OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal FrontR      OFF         < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 231, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal LineL       OFF  < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal LineL       OFF         < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 232, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal LineR       OFF   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal LineR       OFF         < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 233, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal mag radio    OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal mag radio    OFF        < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 234, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal mag phone    OFF   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal mag phone    OFF        < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 235, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal GGS          OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal GGS          OFF        < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 236, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal GG Radio1    OFF  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal GG Radio1    OFF        < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 237, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal GG Radio2    OFF  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test headset instructor ** Signal GG Radio2    OFF        < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 238, false);
             }
             if (coilArr[9] != false)
@@ -3521,56 +3521,56 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal FrontL     OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal FrontL     OFF          < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 240, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal FrontR      OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal FrontR      OFF         < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 241, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal LineL       OFF  < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal LineL       OFF         < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 242, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal LineR       OFF   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal LineR       OFF         < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 243, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal mag radio    OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal mag radio    OFF        < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 244, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal mag phone    OFF   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal mag phone    OFF        < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 245, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal GGS          OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal GGS          OFF        < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 246, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio1    OFF  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio1    OFF        < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 247, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio2    OFF  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio2    OFF        < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 248, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("  < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("                                                          < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 249, false);
             }
 
@@ -3585,14 +3585,14 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal FrontL                    OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal FrontL                      OFF  < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 250, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal FrontR                     OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test MTT ** Signal FrontR                      OFF < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 251, false);
             }
 
@@ -3673,7 +3673,7 @@ namespace KamertonTest
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test MTT PTT    (DSR)                          OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += (" < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 264, false);
             }
             if (coilArr[5] != false)
@@ -3683,7 +3683,7 @@ namespace KamertonTest
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test MTT PTT    (DSR)                          ON   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += (" < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 266, false);
             }
             if (coilArr[7] != false)
@@ -3701,7 +3701,6 @@ namespace KamertonTest
                 textBox8.Text += (" < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 269, false);
             }
-
 
 
             startRdReg = 270;
@@ -3758,12 +3757,12 @@ namespace KamertonTest
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             OFF < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 278, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 279, false);
             }
 
@@ -3778,56 +3777,56 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-           //     textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal FrontL                      OFF  < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 280, false);
 
             }
 
             if (coilArr[1] != false)
             {
-             //   textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal FrontR                      OFF < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 281, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal LineL                       OFF < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 282, false);
             }
 
             if (coilArr[3] != false)
             {
-             //   textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal LineR                       OFF  < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 283, false);
             }
             if (coilArr[4] != false)
             {
-              //  textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal mag radio                   OFF  < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 284, false);
             }
             if (coilArr[5] != false)
             {
-              //  textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal mag phone                   OFF  < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 285, false);
             }
             if (coilArr[6] != false)
             {
-              //  textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal GGS                         OFF   < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 286, false);
             }
             if (coilArr[7] != false)
             {
-               // textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal GG Radio1                   OFF  < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 287, false);
             }
             if (coilArr[8] != false)
             {
-              //  textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal GG Radio2                   OFF  < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 288, false);
             }
             if (coilArr[9] != false)
             {
-              //  textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal GGS                         ON < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 289, false);
             }
 
@@ -3842,60 +3841,58 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-              //  textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal FrontL                      ON   < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 290, false);
 
             }
 
             if (coilArr[1] != false)
             {
-              //  textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal FrontR                      ON < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 291, false);
             }
 
             if (coilArr[2] != false)
             {
-              //  textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test GGS ** Signal mag phone                   ON < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 292, false);
             }
 
             if (coilArr[3] != false)
             {
-              //  textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += (" < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 293, false);
             }
             if (coilArr[4] != false)
             {
-             //   textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += (" < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 294, false);
             }
             if (coilArr[5] != false)
             {
-             //   textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("  < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 295, false);
             }
             if (coilArr[6] != false)
             {
-             //   textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("  < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 296, false);
             }
             if (coilArr[7] != false)
             {
-             //   textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("  < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 297, false);
             }
             if (coilArr[8] != false)
             {
-             //   textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("  < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 298, false);
             }
             if (coilArr[9] != false)
             {
-             //   textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                textBox8.Text += (" < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 299, false);
             }
-
-
 
             startRdReg = 300;
             numRdRegs = 10;
@@ -3907,56 +3904,56 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-            //    textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal FrontL                   OFF  < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 300, false);
 
             }
 
             if (coilArr[1] != false)
             {
-            //    textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal FrontR                   OFF < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 301, false);
             }
 
             if (coilArr[2] != false)
             {
-             //   textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal LineL                    OFF < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 302, false);
             }
 
             if (coilArr[3] != false)
             {
-             //   textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal LineR                    OFF   < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 303, false);
             }
             if (coilArr[4] != false)
             {
-             //   textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal mag radio                OFF  < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 304, false);
             }
             if (coilArr[5] != false)
             {
-             //   textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal mag phone                OFF  < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 305, false);
             }
             if (coilArr[6] != false)
             {
-             //   textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal GGS                      OFF   < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 306, false);
             }
             if (coilArr[7] != false)
             {
-             //   textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal GG Radio1                OFF  < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 307, false);
             }
             if (coilArr[8] != false)
             {
-            //    textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal GG Radio2                OFF  < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 308, false);
             }
             if (coilArr[9] != false)
             {
-             //   textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Test Radio1 ** Signal Radio1                   ON < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 309, false);
             }
 
@@ -3972,215 +3969,61 @@ namespace KamertonTest
 
             if (coilArr[0] != false)
             {
-            //    textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal FrontL                   OFF  < = " + readVals[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 310, false);
 
             }
 
             if (coilArr[1] != false)
             {
-            //    textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("est Radio2 ** Signal FrontR                    OFF < = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 311, false);
             }
 
             if (coilArr[2] != false)
             {
-            //    textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal LineL                    OFF < = " + readVals[2] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 312, false);
             }
 
             if (coilArr[3] != false)
             {
-             //   textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal LineR                    OFF   < = " + readVals[3] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 313, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal mag radio                OFF  < = " + readVals[4] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 314, false);
             }
             if (coilArr[5] != false)
             {
-            //    textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal mag phone                OFF   < = " + readVals[5] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 315, false);
             }
             if (coilArr[6] != false)
             {
-            //    textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal GGS                      OFF   < = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 316, false);
             }
             if (coilArr[7] != false)
             {
-            //    textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal GG Radio1                OFF  < = " + readVals[7] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 317, false);
             }
             if (coilArr[8] != false)
             {
-            //    textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal GG Radio2                OFF  < = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 318, false);
             }
             if (coilArr[9] != false)
             {
-            //    textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Test Radio2 ** Signal Radio2                   ON < = " + readVals[9] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 319, false);
             }
 
-/*
-
-            startRdReg = 320;
-            numRdRegs = 10;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40270 Считать счетчики ошибок  
-
-            startCoil = 320;                                                                    // Начальный Адрес 270 флага индикации возникновения  ошибки
-            numCoils = 10;
-            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-
-            if (coilArr[0] != false)
-            {
-                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF  < = " + readVals[0] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 260, false);
-
-            }
-
-            if (coilArr[1] != false)
-            {
-                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF < = " + readVals[1] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 261, false);
-            }
-
-            if (coilArr[2] != false)
-            {
-                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON < = " + readVals[2] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 262, false);
-            }
-
-            if (coilArr[3] != false)
-            {
-                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON   < = " + readVals[3] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 263, false);
-            }
-            if (coilArr[4] != false)
-            {
-                textBox8.Text += ("Command sensor tangenta ruchnaja               OFF  < = " + readVals[4] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 264, false);
-            }
-            if (coilArr[5] != false)
-            {
-                textBox8.Text += ("Command sensor tangenta ruchnaja               ON   < = " + readVals[5] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 265, false);
-            }
-            if (coilArr[6] != false)
-            {
-                textBox8.Text += ("Command sensor tangenta nognaja                OFF   < = " + readVals[6] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 266, false);
-            }
-            if (coilArr[7] != false)
-            {
-                textBox8.Text += ("Command sensor tangenta nognaja                ON  < = " + readVals[7] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 267, false);
-            }
-            if (coilArr[8] != false)
-            {
-                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON  < = " + readVals[8] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 268, false);
-            }
-            if (coilArr[9] != false)
-            {
-                textBox8.Text += (" < = " + readVals[9] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 269, false);
-            }
-
-
-*/
-
-
-
-            //if (coilArr[10] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка сенсора диспетчера                < = " + readVals[10] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 130, false);
-            //    }
-            //if (coilArr[11] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка сенсора Микрофона < = " + readVals[11] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 131, false);
-            //    }
-            //if (coilArr[12] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка сенсора ГГС < = " + readVals[12] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 132, false);
-            //    }
-   
-            //if (coilArr[13] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка сенсора  < = " + readVals[13] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 133, false);
-            //    }
-     
-            //if (coilArr[14] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка сенсора PTT Тангента ножная < = " + readVals[14] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 134, false);
-            //    }
-            //if (coilArr[15] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка сенсора PTT Микрофона < = " + readVals[15] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 135, false);
-            //    }
-            //if (coilArr[16] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка PTT2 Тангента ручная < = " + readVals[16] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 136, false);
-            //    }
-            //if (coilArr[17] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка HangUp  DCD  < = " + readVals[17] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 137, false);
-            //    }
-
-            //if (coilArr[18] != false)
-            //{
-            //    //textBox8.Text += ("Ошибка PTT1 Тангента ручная  < = " + readVals[18] + ">\r\n");
-            //    //textBox8.Refresh();
-            //    //res = myProtocol.writeCoil(slave, 138, false);
-            //}
-
-
-            //if (coilArr[19] != false)
-            //    {
-            //    //textBox8.Text += ("Ошибка отключения микрофона инструктора  < = " + readVals[19] + ">\r\n");
-            //    //textBox8.Refresh();
-            //    //res = myProtocol.writeCoil(slave, 139, false);
-            //     }
-            //if (coilArr[20] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка отключения PTT гарнитуры инструктора        < = " + readVals[20] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 140, false);
-            //    }
-            //if (coilArr[21] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка подключения динамика инструктора FrontL < = " + readVals[21] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 141, false);
-            //    }
-
-            //if (coilArr[22] != false)
-            //    {
-            //        //textBox8.Text += ("Ошибка подключения динамика инструктора FrontR < = " + readVals[22] + ">\r\n");
-            //        //textBox8.Refresh();
-            //        //res = myProtocol.writeCoil(slave, 142, false);
-            //    }
-            textBox8.Refresh();
-             res = myProtocol.writeCoil(slave, 120, false);                     // Снять флаг общей ошибки теста
+             textBox8.Refresh();
+             res = myProtocol.writeCoil(slave, 120, false);                      // Снять флаг общей ошибки теста
          }
 
 //*******************************************
@@ -4247,7 +4090,7 @@ namespace KamertonTest
                     }
                     break;
                 case 6:
-                    if (checkBoxSenMicrophon.Checked || radioButton1.Checked)
+                    if (checkBoxSenTangN.Checked || radioButton1.Checked)
                     {
                         test_tangN();
                         progressBar2.Value += 1;
@@ -4283,7 +4126,7 @@ namespace KamertonTest
                     }
                     break;
                 case 10:
-                    if (checkBoxSenTangN.Checked || radioButton1.Checked)
+                    if (checkBoxSenMicrophon.Checked || radioButton1.Checked)
                     {
                         test_mikrophon();
                         progressBar2.Value += 1;
@@ -4840,12 +4683,12 @@ namespace KamertonTest
 
         }
 
-        private void button81_Click(object sender, EventArgs e)
+        private void button81_Click(object sender, EventArgs e)            //  Установить номер файла в '0'
         {
             ushort[] writeVals = new ushort[2];
             bool[] coilArr = new bool[4];
             startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 17); // 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 17);   // 
            // test_end();
         }
 
