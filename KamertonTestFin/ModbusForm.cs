@@ -47,6 +47,7 @@ namespace KamertonTest
         private int TestRepeatCount;
         private int _SerialMonitor;
         static bool _All_Test_Stop = true;
+        float temp_disp;
 
         public Form1()
         {
@@ -3259,6 +3260,7 @@ namespace KamertonTest
             ushort[] readVolt = new ushort[12];
             bool[] coilArr = new bool[12];
 
+
             startRdReg = 200;
             numRdRegs = 10;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40200 Считать счетчики ошибок  
@@ -3269,56 +3271,64 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Сенсор  трубки не отключился                                < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Сенсор  трубки не отключился                                \t< = " + readVals[0] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 200, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Сенсор Тангента ручная не отключился                        < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Сенсор Тангента ручная не отключился                      \t< = " + readVals[1] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 201, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Сенсор Тангента ножная не отключился                        < = " + readVals[2] + ">\r\n");
-                res = myProtocol.writeCoil(slave, 202, false);
+                textBox8.Text += ("Сенсор Тангента ножная не отключился                      \t< = " + readVals[2] + ">\r\n");
+                textBox8.Refresh();
+                textBox8.Refresh(); res = myProtocol.writeCoil(slave, 202, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не отключился  < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не отключился\t< = " + readVals[3] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 203, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Сенсор гарнитуры инструктора  не отключился                 < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Сенсор гарнитуры инструктора  не отключился               \t< = " + readVals[4] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 204, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Сенсор диспетчера с 2 наушниками не отключился              < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Сенсор диспетчера с 2 наушниками не отключился            \t< = " + readVals[5] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 205, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Сенсор диспетчера не отключился                             < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Сенсор диспетчера не отключился                               \t< = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 206, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Сенсор Микрофона не отключился                              < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Сенсор Микрофона не отключился                                \t< = " + readVals[7] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 207, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Микрофон инструктора не отключился                          < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Микрофон инструктора не отключился                           \t< = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 208, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Микрофон диспетчера не отключился                           < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Микрофон диспетчера не отключился                            \t< = " + readVals[9] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 209, false);
             }
 
@@ -3332,59 +3342,67 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Сенсор  трубки не включился                                 < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Сенсор  трубки не включился                                    \t< = " + readVals[0] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 210, false);
-
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Сенсор Тангента ручная не включился                         < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Сенсор Тангента ручная не включился                       \t< = " + readVals[1] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 211, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Сенсор Тангента ножная не включился                         < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Сенсор Тангента ножная не включился                       \t< = " + readVals[2] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 212, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился   < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился \t< = " + readVals[3] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 213, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Сенсор гарнитуры инструктора  не включился                  < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Сенсор гарнитуры инструктора  не включился                \t< = " + readVals[4] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 214, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Сенсор диспетчера с 2 наушниками не включился               < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Сенсор диспетчера с 2 наушниками не включился          \t< = " + readVals[5] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 215, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Сенсор диспетчера не включился                              < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Сенсор диспетчера не включился                               \t< = " + readVals[6] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 216, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Сенсор Микрофона не включился                               < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Сенсор Микрофона не включился                                \t< = " + readVals[7] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 217, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Микрофон инструктора не включился                           < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Микрофон инструктора не включился                            \t< = " + readVals[8] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 218, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Микрофон диспетчера не включился                            < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Микрофон диспетчера не включился                             \t< = " + readVals[9] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 219, false);
             }
-
+ 
             startRdReg = 220;
             numRdRegs = 10;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40220 Считать счетчики ошибок  
@@ -3395,59 +3413,73 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("PTT инструктора не отключился                               < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("PTT инструктора не отключился                                \t< = " + readVals[0] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 220, false);
-
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("PTT инструктора не включился                                < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("PTT инструктора не включился                                 \t< = " + readVals[1] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 221, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("PTT диспетчера не отключился                                < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("PTT диспетчера не отключился                                 \t< = " + readVals[2] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 222, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("PTT диспетчера не включился                                 < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("PTT диспетчера не включился                                 \t< = " + readVals[3] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 223, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Сигнал инструктора LineL отсутствует                        < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ \r\n");
+                temp_disp = readVolt[4];
+                textBox8.Text += ("Сигнал инструктора LineL отсутствует                      \t< = " + readVals[4] + ">  " + temp_disp/100 + " V \r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 224, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Сигнал инструктора LineR отсутствует                        < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ \r\n");
+                temp_disp = readVolt[5];
+                textBox8.Text += ("Сигнал инструктора LineR отсутствует                      \t< = " + readVals[5] + ">  " + temp_disp / 100 + " V \r\n");
                 res = myProtocol.writeCoil(slave, 225, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует         < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
+                temp_disp = readVolt[6];
+                textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует \t< = " + readVals[6] + ">  " + temp_disp / 100 + " V \r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 226, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Сигнал диспетчера LineL отсутствует                         < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
+                temp_disp = readVolt[7];
+                textBox8.Text += ("Сигнал диспетчера LineL отсутствует                       \t< = " + readVals[7] + ">  " + temp_disp/100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 227, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Сигнал диспетчера LineR отсутствует                         < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
+                temp_disp = readVolt[8];
+                textBox8.Text += ("Сигнал диспетчера LineR отсутствует                       \t< = " + readVals[8] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 228, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует          < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
+                temp_disp = readVolt[9];
+                textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует    \t< = " + readVals[9] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 229, false);
             }
-
+ 
             startRdReg = 230;
             numRdRegs = 10;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40230 Считать счетчики ошибок  
@@ -3458,59 +3490,78 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal FrontL     OFF            < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
+                temp_disp = readVolt[0];
+                textBox8.Text += ("Test headset instructor ** Signal FrontL     \tOFF          \t< = " + readVals[0] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 230, false);
 
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal FrontR      OFF           < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
+                temp_disp = readVolt[1];
+                textBox8.Text += ("Test headset instructor ** Signal FrontR      \tOFF         \t< = " + readVals[1] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 231, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal LineL        OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
+                temp_disp = readVolt[2];
+                textBox8.Text += ("Test headset instructor ** Signal LineL        \tOFF        \t< = " + readVals[2] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 232, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal LineR        OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
+                temp_disp = readVolt[3];
+                textBox8.Text += ("Test headset instructor ** Signal LineR        \tOFF        \t< = " + readVals[3] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 233, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal mag radio    OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
+                temp_disp = readVolt[4];
+                textBox8.Text += ("Test headset instructor ** Signal mag radio    \tOFF        \t< = " + readVals[4] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 234, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal mag phone    OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
+                temp_disp = readVolt[5];
+                textBox8.Text += ("Test headset instructor ** Signal mag phone    \tOFF        \t< = " + readVals[5] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 235, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal GGS          OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
+                temp_disp = readVolt[6];
+                textBox8.Text += ("Test headset instructor ** Signal GGS          \tOFF        \t< = " + readVals[6] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 236, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal GG Radio1    OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
+                temp_disp = readVolt[7];
+                textBox8.Text += ("Test headset instructor ** Signal GG Radio1    \tOFF        \t< = " + readVals[7] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 237, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test headset instructor ** Signal GG Radio2    OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
+                temp_disp = readVolt[8];
+                textBox8.Text += ("Test headset instructor ** Signal GG Radio2    \tOFF        \t< = " + readVals[8] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 238, false);
             }
             if (coilArr[9] != false)
             {
+                temp_disp = readVolt[9];
                 textBox8.Text += ("  < = " + readVals[9] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 239, false);
             }
-
 
             startRdReg = 240;
             numRdRegs = 10;
@@ -3522,59 +3573,76 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal FrontL     OFF            < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
+                temp_disp = readVolt[0];
+                textBox8.Text += ("Test headset dispatcher ** Signal FrontL     \tOFF          \t< = " + readVals[0] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 240, false);
-
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal FrontR      OFF           < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
+                temp_disp = readVolt[1];
+                textBox8.Text += ("Test headset dispatcher ** Signal FrontR      \tOFF         \t< = " + readVals[1] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 241, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal LineL       OFF           < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
+                temp_disp = readVolt[2];
+                textBox8.Text += ("Test headset dispatcher ** Signal LineL       \tOFF         \t< = " + readVals[2] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 242, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal LineR       OFF           < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
+                temp_disp = readVolt[3];
+                textBox8.Text += ("Test headset dispatcher ** Signal LineR       \tOFF         \t< = " + readVals[3] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 243, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal mag radio    OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
+                temp_disp = readVolt[4];
+                textBox8.Text += ("Test headset dispatcher ** Signal mag radio    \tOFF        \t< = " + readVals[4] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 244, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal mag phone    OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
+                temp_disp = readVolt[5];
+                textBox8.Text += ("Test headset dispatcher ** Signal mag phone    \tOFF        \t< = " + readVals[5] + ">  " + temp_disp / 100 + " V\r\n");
                 res = myProtocol.writeCoil(slave, 245, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal GGS          OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
+                temp_disp = readVolt[6];
+                textBox8.Text += ("Test headset dispatcher ** Signal GGS          \tOFF        \t< = " + readVals[6] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 246, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio1    OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
+                temp_disp = readVolt[7];
+                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio1    \tOFF        \t< = " + readVals[7] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 247, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio2    OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
+                temp_disp = readVolt[8];
+                textBox8.Text += ("Test headset dispatcher ** Signal GG Radio2    \tOFF        \t< = " + readVals[8] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 248, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("                                                            < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
+                temp_disp = readVolt[9];
+                textBox8.Text += ("                                                          \t< = " + readVals[9] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 249, false);
             }
-
 
             startRdReg = 250;
             numRdRegs = 11;
@@ -3586,59 +3654,76 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal FrontL                      OFF          < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
+                temp_disp = readVolt[0];
+                textBox8.Text += ("Test MTT ** Signal FrontL                      \tOFF        \t< = " + readVals[0] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 250, false);
-
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal FrontR                      OFF          < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
+                temp_disp = readVolt[1];
+                textBox8.Text += ("Test MTT ** Signal FrontR                      \tOFF        \t< = " + readVals[1] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 251, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal LineL                       OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
+                temp_disp = readVolt[2];
+                textBox8.Text += ("Test MTT ** Signal LineL                       \tOFF        \t< = " + readVals[2] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 252, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal LineR                       OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
+                temp_disp = readVolt[3];
+                textBox8.Text += ("Test MTT ** Signal LineR                       \tOFF        \t< = " + readVals[3] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 253, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal mag radio                   OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
+                temp_disp = readVolt[4];
+                textBox8.Text += ("Test MTT ** Signal mag radio                   \tOFF        \t< = " + readVals[4] + ">  " + temp_disp / 100 + " V\r\n");
                 res = myProtocol.writeCoil(slave, 254, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal mag phone                   OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
+                temp_disp = readVolt[5];
+                textBox8.Text += ("Test MTT ** Signal mag phone                   \tOFF        \t< = " + readVals[5] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 255, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal GGS                         OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
+                temp_disp = readVolt[6];
+                textBox8.Text += ("Test MTT ** Signal GGS                         \tOFF        \t< = " + readVals[6] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 256, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal GG Radio1                   OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
+                temp_disp = readVolt[7];
+                textBox8.Text += ("Test MTT ** Signal GG Radio1                   \tOFF        \t< = " + readVals[7] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 257, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal GG Radio2                   OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
+                temp_disp = readVolt[8];
+                textBox8.Text += ("Test MTT ** Signal GG Radio2                   \tOFF        \t< = " + readVals[8] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 258, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal GGS                         ON           < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
+                temp_disp = readVolt[9];
+                textBox8.Text += ("Test MTT ** Signal GGS                         \tON         \t< = " + readVals[9] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 259, false);
             }
-
 
             startRdReg = 260;
             numRdRegs = 10;
@@ -3650,59 +3735,75 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal LineL                       ON           < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
+                temp_disp = readVolt[0];
+                textBox8.Text += ("Test MTT ** Signal LineL                       \tON         \t< = " + readVals[0] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 260, false);
-
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal LineR                       ON           < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
+                temp_disp = readVolt[1];
+                textBox8.Text += ("Test MTT ** Signal LineR                       \tON         \t< = " + readVals[1] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 261, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test MTT ** Signal Mag phone                   ON           < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
+                temp_disp = readVolt[2];
+                textBox8.Text += ("Test MTT ** Signal Mag phone                 \tON         \t< = " + readVals[2] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 262, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test MTT PTT    (CTS)                          OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
+                temp_disp = readVolt[3];
+                textBox8.Text += ("Test MTT PTT    (CTS)                          \tOFF        \t< = " + readVals[3] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 263, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += (" < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Test microphone PTT  (CTS)                     \t OFF       \t< = " + readVals[4] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 264, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test MTT PTT    (CTS)                          ON           < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
+                temp_disp = readVolt[5];
+                textBox8.Text += ("Test MTT PTT    (CTS)                          \tON         \t< = " + readVals[5] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 265, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += (" < = " + readVals[6] + ">\r\n");
+                temp_disp = readVolt[6];
+                textBox8.Text += ("Test microphone PTT  (CTS)                     \tON         \t< = " + readVals[6] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 266, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test MTT HangUp (DCD)                          OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
+                temp_disp = readVolt[7];
+                textBox8.Text += ("Test MTT HangUp (DCD)                          \tOFF        \t< = " + readVals[7] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 267, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test MTT HangUp (DCD)                          ON           < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
+                temp_disp = readVolt[8];
+                textBox8.Text += ("Test MTT HangUp (DCD)                          \tON         \t< = " + readVals[8] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 268, false);
             }
             if (coilArr[9] != false)
             {
                 textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 269, false);
             }
-
 
             startRdReg = 270;
             numRdRegs = 10;
@@ -3714,59 +3815,65 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           OFF          < = " + readVals[0] + ">\r\n");
+                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           \tOFF        \t< = " + readVals[0] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 270, false);
-
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           OFF          < = " + readVals[1] + ">\r\n");
+                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           \tOFF        \t< = " + readVals[1] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 271, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           ON           < = " + readVals[2] + ">\r\n");
+                textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           \tON         \t< = " + readVals[2] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 272, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           ON           < = " + readVals[3] + ">\r\n");
+                textBox8.Text += ("Command PTT2 tangenta ruchnaja (DCR)           \tON         \t< = " + readVals[3] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 273, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Command sensor tangenta ruchnaja               OFF          < = " + readVals[4] + ">\r\n");
+                textBox8.Text += ("Command sensor tangenta ruchnaja               \tOFF        \t< = " + readVals[4] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 274, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Command sensor tangenta ruchnaja               ON           < = " + readVals[5] + ">\r\n");
+                textBox8.Text += ("Command sensor tangenta ruchnaja               \tON         \t< = " + readVals[5] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 275, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Command sensor tangenta nognaja                OFF          < = " + readVals[6] + ">\r\n");
+                textBox8.Text += ("Command sensor tangenta nognaja                \tOFF        \t< = " + readVals[6] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 276, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Command sensor tangenta nognaja                ON           < = " + readVals[7] + ">\r\n");
+                textBox8.Text += ("Command sensor tangenta nognaja                \tON         \t< = " + readVals[7] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 277, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             OFF          < = " + readVals[8] + ">\r\n");
+                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             \tOFF        \t< = " + readVals[8] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 278, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             ON           < = " + readVals[9] + ">\r\n");
+                textBox8.Text += ("Command PTT tangenta nognaja (CTS)             \tON         \t< = " + readVals[9] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 279, false);
             }
-
 
             startRdReg = 280;
             numRdRegs = 10;
@@ -3778,59 +3885,75 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal FrontL                      OFF          < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
+                temp_disp = readVolt[0];
+                textBox8.Text += ("Test GGS ** Signal FrontL                      \tOFF        \t< = " + readVals[0] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 280, false);
-
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal FrontR                      OFF          < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
+                temp_disp = readVolt[1];
+                textBox8.Text += ("Test GGS ** Signal FrontR                     \tOFF         \t< = " + readVals[1] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 281, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal LineL                       OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
+                temp_disp = readVolt[2];
+                textBox8.Text += ("Test GGS ** Signal LineL                       \tOFF        \t< = " + readVals[2] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 282, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal LineR                       OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
+                temp_disp = readVolt[3];
+                textBox8.Text += ("Test GGS ** Signal LineR                       \tOFF        \t< = " + readVals[3] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 283, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal mag radio                   OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
+                temp_disp = readVolt[4];
+                textBox8.Text += ("Test GGS ** Signal mag radio                   \tOFF        \t< = " + readVals[4] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 284, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal mag phone                   OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
+                temp_disp = readVolt[5];
+                textBox8.Text += ("Test GGS ** Signal mag phone                   \tOFF        \t< = " + readVals[5] + ">  " + temp_disp / 100 + " V\r\n");
                 res = myProtocol.writeCoil(slave, 285, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal GGS                         OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
+                temp_disp = readVolt[6];
+                textBox8.Text += ("Test GGS ** Signal GGS                         \tOFF        \t< = " + readVals[6] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 286, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal GG Radio1                   OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
+                temp_disp = readVolt[7];
+                textBox8.Text += ("Test GGS ** Signal GG Radio1                   \tOFF        \t< = " + readVals[7] + ">  " + temp_disp / 100 + " V\r\n");
                 res = myProtocol.writeCoil(slave, 287, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal GG Radio2                   OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
+                temp_disp = readVolt[8];
+                textBox8.Text += ("Test GGS ** Signal GG Radio2                   \tOFF        \t< = " + readVals[8] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 288, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal GGS                         ON           < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
+                temp_disp = readVolt[9];
+                textBox8.Text += ("Test GGS ** Signal GGS                         \tON         \t< = " + readVals[9] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 289, false);
             }
-
 
             startRdReg = 290;
             numRdRegs = 10;
@@ -3842,20 +3965,25 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal FrontL                      ON           < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
+                temp_disp = readVolt[0];
+                textBox8.Text += ("Test GGS ** Signal FrontL                      \tON         \t< = " + readVals[0] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 290, false);
-
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal FrontR                      ON           < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
+                temp_disp = readVolt[1];
+                textBox8.Text += ("Test GGS ** Signal FrontR                     \tON          \t< = " + readVals[1] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 291, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test GGS ** Signal mag phone                   ON           < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
+                temp_disp = readVolt[2];
+                textBox8.Text += ("Test GGS ** Signal mag phone                   \tON         \t < = " + readVals[2] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 292, false);
             }
 
@@ -3867,34 +3995,40 @@ namespace KamertonTest
             if (coilArr[4] != false)
             {
                 textBox8.Text += (" < = " + readVals[4] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 294, false);
             }
             if (coilArr[5] != false)
             {
                 textBox8.Text += ("  < = " + readVals[5] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 295, false);
             }
             if (coilArr[6] != false)
             {
                 textBox8.Text += ("  < = " + readVals[6] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 296, false);
             }
             if (coilArr[7] != false)
             {
                 textBox8.Text += ("  < = " + readVals[7] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 297, false);
             }
             if (coilArr[8] != false)
             {
                 textBox8.Text += ("  < = " + readVals[8] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 298, false);
             }
             if (coilArr[9] != false)
             {
                 textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 299, false);
             }
-
+  
             startRdReg = 300;
             numRdRegs = 10;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40300 Считать счетчики ошибок  
@@ -3905,59 +4039,77 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal FrontL                   OFF          < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
+                temp_disp = readVolt[0];
+                textBox8.Text += ("Test Radio1 ** Signal FrontL                   \tOFF        \t< = " + readVals[0] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 300, false);
-
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal FrontR                   OFF          < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
+                temp_disp = readVolt[1];
+                textBox8.Text += ("Test Radio1 ** Signal FrontR                   \tOFF        \t< = " + readVals[1] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 301, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal LineL                    OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
+                temp_disp = readVolt[2];
+                textBox8.Text += ("Test Radio1 ** Signal LineL                    \tOFF        \t< = " + readVals[2] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 302, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal LineR                    OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
+                temp_disp = readVolt[3];
+                textBox8.Text += ("Test Radio1 ** Signal LineR                    \tOFF        \t< = " + readVals[3] + ">  " + temp_disp / 100 + " V\r\n");
                 res = myProtocol.writeCoil(slave, 303, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal mag radio                OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
+                temp_disp = readVolt[4];
+                textBox8.Text += ("Test Radio1 ** Signal mag radio                \tOFF        \t< = " + readVals[4] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 304, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal mag phone                OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
+                temp_disp = readVolt[5];
+                textBox8.Text += ("Test Radio1 ** Signal mag phone                \tOFF        \t< = " + readVals[5] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 305, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal GGS                      OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
+                temp_disp = readVolt[6];
+                textBox8.Text += ("Test Radio1 ** Signal GGS                      \tOFF        \t< = " + readVals[6] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 306, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal GG Radio1                OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
+                temp_disp = readVolt[7];
+                textBox8.Text += ("Test Radio1 ** Signal GG Radio1                \tOFF        \t< = " + readVals[7] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 307, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal GG Radio2                OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
+                temp_disp = readVolt[8];
+                textBox8.Text += ("Test Radio1 ** Signal GG Radio2                \tOFF        \t< = " + readVals[8] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 308, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Test Radio1 ** Signal Radio1                   ON           < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
+                temp_disp = readVolt[9];
+                textBox8.Text += ("Test Radio1 ** Signal Radio1                   \tON         \t< = " + readVals[9] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 309, false);
             }
-
+ 
             startRdReg = 310;
             numRdRegs = 10;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40310 Считать счетчики ошибок  
@@ -3968,58 +4120,78 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal FrontL                   OFF          < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
+                temp_disp = readVolt[0];
+                textBox8.Text += ("Test Radio2 ** Signal FrontL                   \tOFF        \t< = " + readVals[0] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 310, false);
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal FrontR                   OFF          < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
+                temp_disp = readVolt[1];
+                textBox8.Text += ("Test Radio2 ** Signal FrontR                   \tOFF        \t< = " + readVals[1] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 311, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal LineL                    OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
+                temp_disp = readVolt[2];
+                textBox8.Text += ("Test Radio2 ** Signal LineL                    \tOFF        \t< = " + readVals[2] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 312, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal LineR                    OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
+                temp_disp = readVolt[3];
+                textBox8.Text += ("Test Radio2 ** Signal LineR                    \tOFF        \t< = " + readVals[3] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 313, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal mag radio                OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
+                temp_disp = readVolt[4];
+                textBox8.Text += ("Test Radio2 ** Signal mag radio                \tOFF        \t< = " + readVals[4] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 314, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal mag phone                OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
+                temp_disp = readVolt[5];
+                textBox8.Text += ("Test Radio2 ** Signal mag phone                \tOFF        \t< = " + readVals[5] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 315, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal GGS                      OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
+                temp_disp = readVolt[6];
+                textBox8.Text += ("Test Radio2 ** Signal GGS                      \tOFF        \t< = " + readVals[6] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 316, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal GG Radio1                OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
+                temp_disp = readVolt[7];
+                textBox8.Text += ("Test Radio2 ** Signal GG Radio1                \tOFF        \t< = " + readVals[7] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 317, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal GG Radio2                OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
+                temp_disp = readVolt[8];
+                textBox8.Text += ("Test Radio2 ** Signal GG Radio2                \tOFF        \t< = " + readVals[8] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 318, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Test Radio2 ** Signal Radio2                   ON           < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
+                temp_disp = readVolt[9];
+                textBox8.Text += ("Test Radio2 ** Signal Radio2                   \tON         \t< = " + readVals[9] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 319, false);
             }
-
+ 
             startRdReg = 320;
             numRdRegs = 10;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40320 Считать счетчики ошибок  
@@ -4030,55 +4202,74 @@ namespace KamertonTest
             Thread.Sleep(50);
             if (coilArr[0] != false)
             {
-                textBox8.Text += ("Test Microphone ** Signal FrontL               OFF          < = " + readVals[0] + ">  " + readVolt[0] * 10 + " мВ\r\n");
+                temp_disp = readVolt[0];
+                textBox8.Text += ("Test Microphone ** Signal FrontL               \tOFF        \t< = " + readVals[0] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 320, false);
             }
 
             if (coilArr[1] != false)
             {
-                textBox8.Text += ("Test Microphone ** Signal FrontR               OFF          < = " + readVals[1] + ">  " + readVolt[1] * 10 + " мВ\r\n");
+                temp_disp = readVolt[1];
+                textBox8.Text += ("Test Microphone ** Signal FrontR               \tOFF        \t< = " + readVals[1] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 321, false);
             }
 
             if (coilArr[2] != false)
             {
-                textBox8.Text += ("Test Microphone ** Signal LineL                OFF          < = " + readVals[2] + ">  " + readVolt[2] * 10 + " мВ\r\n");
+                temp_disp = readVolt[2];
+                textBox8.Text += ("Test Microphone ** Signal LineL                \tOFF        \t< = " + readVals[2] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 322, false);
             }
 
             if (coilArr[3] != false)
             {
-                textBox8.Text += ("Test Microphone ** Signal LineR                OFF          < = " + readVals[3] + ">  " + readVolt[3] * 10 + " мВ\r\n");
+                temp_disp = readVolt[3];
+                textBox8.Text += ("Test Microphone ** Signal LineR                \tOFF        \t< = " + readVals[3] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 323, false);
             }
             if (coilArr[4] != false)
             {
-                textBox8.Text += ("Test Microphone ** Signal mag radio            OFF          < = " + readVals[4] + ">  " + readVolt[4] * 10 + " мВ\r\n");
+                temp_disp = readVolt[4];
+                textBox8.Text += ("Test Microphone ** Signal mag radio            \tOFF        \t< = " + readVals[4] + ">  " + temp_disp / 100 + " V\r\n");
                 res = myProtocol.writeCoil(slave, 324, false);
             }
             if (coilArr[5] != false)
             {
-                textBox8.Text += ("Test Microphone ** Signal mag phone            OFF          < = " + readVals[5] + ">  " + readVolt[5] * 10 + " мВ\r\n");
+                temp_disp = readVolt[5];
+                textBox8.Text += ("Test Microphone ** Signal mag phone            \tOFF        \t< = " + readVals[5] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 325, false);
             }
             if (coilArr[6] != false)
             {
-                textBox8.Text += ("Test Microphone ** Signal GGS                  OFF          < = " + readVals[6] + ">  " + readVolt[6] * 10 + " мВ\r\n");
+                temp_disp = readVolt[6];
+                textBox8.Text += ("Test Microphone ** Signal GGS                  \tOFF        \t< = " + readVals[6] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 326, false);
             }
             if (coilArr[7] != false)
             {
-                textBox8.Text += ("Test Microphone ** Signal GG Radio1            OFF          < = " + readVals[7] + ">  " + readVolt[7] * 10 + " мВ\r\n");
+                temp_disp = readVolt[7];
+                textBox8.Text += ("Test Microphone ** Signal GG Radio1            \tOFF        \t< = " + readVals[7] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 327, false);
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("Test Microphone ** Signal GG Radio2            OFF          < = " + readVals[8] + ">  " + readVolt[8] * 10 + " мВ\r\n");
+                temp_disp = readVolt[8];
+                textBox8.Text += ("Test Microphone ** Signal GG Radio2            \tOFF        \t< = " + readVals[8] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 328, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += ("Test Microphone ** Signal Radio2               ON           < = " + readVals[9] + ">  " + readVolt[9] * 10 + " мВ\r\n");
+                temp_disp = readVolt[9];
+                textBox8.Text += ("Test Microphone ** Signal Radio2               \tON         \t< = " + readVals[9] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 329, false);
             }
 

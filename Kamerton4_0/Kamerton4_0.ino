@@ -279,10 +279,10 @@ const char  txt_message52[]   PROGMEM            = " ****** Test Radio2 start! *
 const char  txt_message53[]   PROGMEM            = "Signal Radio1 300 mV    Center                ON"            ;
 const char  txt_message54[]   PROGMEM            = " ****** Test miсrophone start! ******"                       ;
 const char  txt_message55[]   PROGMEM            = "Signal miсrophone 30  mV                      ON"            ;
-const char  txt_message56[]   PROGMEM            = ""      ;
-const char  txt_message57[]   PROGMEM            = ""      ;
-const char  txt_message58[]   PROGMEM            = ""      ;
-const char  txt_message59[]   PROGMEM            = ""      ;
+const char  txt_message56[]   PROGMEM            = "Command PTT    OFF microphone                    send!"      ;
+const char  txt_message57[]   PROGMEM            = "Command PTT    ON  microphone                    send!"      ;
+const char  txt_message58[]   PROGMEM            = "Command sensor OFF microphone                    send!"      ;  
+const char  txt_message59[]   PROGMEM            = "Command sensor ON  microphone                    send!"      ;
 
 //++++++++++++++++++++++++++++++ Тексты ошибок ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const char  txt_error0[]  PROGMEM              = "Sensor MTT                          XP1- 19 HaSs            OFF - ";
@@ -355,9 +355,9 @@ const char  txt_error60[]  PROGMEM             = "Test MTT ** Signal LineL      
 const char  txt_error61[]  PROGMEM             = "Test MTT ** Signal LineR                                    ON  - ";  
 const char  txt_error62[]  PROGMEM             = "Test MTT ** Signal Mag phone                                ON  - ";
 const char  txt_error63[]  PROGMEM             = "Test MTT PTT    (CTS)                                       OFF - ";
-const char  txt_error64[]  PROGMEM             = "";
+const char  txt_error64[]  PROGMEM             = "Test microphone PTT  (CTS)                                  OFF - ";
 const char  txt_error65[]  PROGMEM             = "Test MTT PTT    (CTS)                                       ON  - ";
-const char  txt_error66[]  PROGMEM             = "";
+const char  txt_error66[]  PROGMEM             = "Test microphone PTT  (CTS)                                  ON  - ";
 const char  txt_error67[]  PROGMEM             = "Test MTT HangUp (DCD)                                       OFF - ";
 const char  txt_error68[]  PROGMEM             = "Test MTT HangUp (DCD)                                       ON  - ";
 const char  txt_error69[]  PROGMEM             = "";
@@ -489,10 +489,10 @@ txt_message52,                                //" ****** Test Radio2 start! ****
 txt_message53,                                // "Signal Radio1 300 mV    Center                ON"            ;
 txt_message54,                                // " ****** Test miсrophone start! ******"                       ;
 txt_message55,                                // "Signal miсrophone 30  mV                      ON"            ;
-txt_message56,                                // ""      ;
-txt_message57,                                // ""      ;
-txt_message58,                                // ""      ;
-txt_message59                                 // ""      ;
+txt_message56,                                // "Command PTT    OFF microphone                    send!"      ;
+txt_message57,                                // "Command PTT    ON  microphone                    send!"      ;
+txt_message58,                                // "Command sensor OFF microphone                    send!"      ;  
+txt_message59                                 // "Command sensor ON  microphone                    send!"      ;
 
 };
 
@@ -568,9 +568,9 @@ txt_error60,                                  // "Test MTT ** Signal LineL      
 txt_error61,                                  // "Test MTT ** Signal LineR                                    ON  - ";  
 txt_error62,                                  // "Test MTT ** Signal Mag phone                                ON  - ";
 txt_error63,                                  // "Test MTT PTT    (CTS)                                       OFF - ";
-txt_error64,                                  // "";
+txt_error64,                                  // "Test microphone PTT  (CTS)                                  OFF - ";
 txt_error65,                                  // "Test MTT PTT    (CTS)                                       ON  - ";
-txt_error66,                                  // "";
+txt_error66,                                  // "Test microphone PTT  (CTS)                                  ON  - ";
 txt_error67,                                  // "Test MTT HangUp (DCD)                                       OFF - ";
 txt_error68,                                  // "Test MTT HangUp (DCD)                                       ON  - ";
 txt_error69,                                  //
@@ -2812,18 +2812,172 @@ void test_tangN()
 }
 void test_mikrophon()
 {
-//	unsigned int regcount = 0;
+	unsigned int regcount = 0;
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[54])));                   // " ****** Test miсrophone start! ******"                       ;
 	myFile.println(buffer);                                                         // " ****** Test miсrophone start! ******"                       ;
 	file_print_date();
 	myFile.println("");
-	regBank.set(16,1);                                                              // XS1 - 6   sensor подключения микрофона
+	regBank.set(15,0);                                                              // XS1 - 5   PTT Мик CTS
+	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[58])));                   // "Command sensor OFF microphone                    send!"      ;  
+	if (test_repeat == false) myFile.println(buffer);                               //
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[56])));                   //"Command PTT    OFF microphone                    send!"      ;
+	if (test_repeat == false) myFile.println(buffer);                               //
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
-	
 
-	
+	 // +++++++++++++++++++++++++++++++++++++++ Проверка  на отключение сенсора и  PTT microphone ++++++++++++++++++++++++++++++++++++++++++++
+	byte i52 = regs_in[2];    
+			if(bitRead(i52,5) != 0)                                                 // XS1 - 6   sensor отключения микрофона
+		  {
+			regcount = regBank.get(40207);                                          // адрес счетчика ошибки sensor подключения микрофона
+			regcount++;                                                             // увеличить счетчик ошибок sensor подключения микрофона
+			regBank.set(40207,regcount);                                            // адрес счетчика ошибки sensor подключения микрофона
+			regBank.set(207,1);                                                     // установить флаг ошибки sensor подключения микрофона
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[7])));         // "Sensor microphone                   XS1 - 6                 OFF - "; 
+			myFile.print(buffer);                                                   // "Sensor microphone                   XS1 - 6                 OFF - "; 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+		  }
+		else
+		  {
+			  if (test_repeat == false)
+			   {
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[7])));     // "Sensor microphone                   XS1 - 6                 OFF - "; 
+				myFile.print(buffer);                                               // 
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+				if (test_repeat == false) myFile.println(buffer);                   // "Sensor microphone отключен  - Pass
+			  }
+		  }
+
+	 UpdateRegs(); 
+	  // 2)  Проверка  на отключение PTT microphone
+		if(regBank.get(adr_reg_ind_CTS) != 0)                                       // Проверка  на отключение "Test microphone PTT  (CTS)                                  OFF - ";
+		  {
+			regcount = regBank.get(40264);                                          // адрес счетчика ошибки       "Test microphone PTT  (CTS)                                  OFF - ";
+			regcount++;                                                             // увеличить счетчик ошибок
+			regBank.set(40264,regcount);                                            // адрес счетчика ошибки 
+			regBank.set(264,1);                                                     // установить флаг ошибки
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[64])));        // "Test microphone PTT  (CTS)                                  OFF - ";
+			myFile.print(buffer);                                                   // "Test microphone PTT  (CTS)                                  OFF - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+		  }
+		else
+		  {
+		  if (test_repeat == false)
+		   {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[64])));        // "Test microphone PTT  (CTS)                                  OFF - ";
+			myFile.print(buffer);                                                   // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Test microphone PTT  (CTS)                                  OFF - ";  - Pass
+		  }
+		 }
+
+	 // +++++++++++++++++++++++++++++++++++++++ Проверка  на включение сенсора  microphone ++++++++++++++++++++++++++++++++++++++++++++
+	regBank.set(16,1);                                                              // XS1 - 6   sensor подключения микрофона
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[59])));                   // "Command sensor ON  microphone                    send!"      ; 
+	if (test_repeat == false) myFile.println(buffer);                               //
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+	i52 = regs_in[2];    
+
+	  if(bitRead(i52,5) == 0)                                                 // XS1 - 6   sensor отключения микрофона
+		  {
+			regcount = regBank.get(40217);                                          // адрес счетчика ошибки sensor подключения микрофона
+			regcount++;                                                             // увеличить счетчик ошибок sensor подключения микрофона
+			regBank.set(40217,regcount);                                            // адрес счетчика ошибки sensor подключения микрофона
+			regBank.set(217,1);                                                     // установить флаг ошибки sensor подключения микрофона
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[17])));        // "Sensor microphone                   XS1 - 6                 ON  - "; 
+			myFile.print(buffer);                                                   // "Sensor microphone                   XS1 - 6                 ON  - "; 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+		  }
+		else
+		  {
+			if (test_repeat == false)
+			{
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[17])));    // "Sensor microphone                   XS1 - 6                 ON  - "; 
+				myFile.print(buffer);                                               // 
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+				if (test_repeat == false) myFile.println(buffer);                   // "Sensor microphone включен  - Pass;  включен  -
+			}
+		  }
+	  // +++++++++++++++++++++++++++++++++++++++ Проверка  на включение  PTT microphone ++++++++++++++++++++++++++++++++++++++++++++
+	regBank.set(15,1);                                                              // XS1 - 5   PTT Мик CTS
+	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[57])));                   // "Command PTT    ON  microphone                    send!"      ; 
+	if (test_repeat == false) myFile.println(buffer);                               //
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[58])));                   // "Command sensor OFF microphone                    send!"      ;  
+	if (test_repeat == false) myFile.println(buffer);                               //
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
+	i52 = regs_in[2];    
+
+	if(bitRead(i52,5) == 0)                                             // XS1 - 6   sensor отключения микрофона
+		  {
+			regcount = regBank.get(40217);                                          // адрес счетчика ошибки sensor подключения микрофона
+			regcount++;                                                             // увеличить счетчик ошибок sensor подключения микрофона
+			regBank.set(40217,regcount);                                            // адрес счетчика ошибки sensor подключения микрофона
+			regBank.set(217,1);                                                     // установить флаг ошибки sensor подключения микрофона
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[17])));        // "Sensor microphone                   XS1 - 6                 ON  - "; 
+			myFile.print(buffer);                                                   // "Sensor microphone                   XS1 - 6                 ON  - "; 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+		  }
+		else
+		  {
+			if (test_repeat == false)
+			{
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[17])));    // "Sensor microphone                   XS1 - 6                 ON  - "; 
+				myFile.print(buffer);                                               // 
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));        // "Pass";
+				if (test_repeat == false) myFile.println(buffer);                   // "Sensor microphone включен  - Pass;  включен  -
+			}
+		  }
+
+	 UpdateRegs(); 
+	  // 2)  Проверка  на включение  PTT microphone
+		if(regBank.get(adr_reg_ind_CTS) == 0)                                       // Проверка  на включение      "Test microphone PTT  (CTS)                                  ON  
+		  {
+			regcount = regBank.get(40266);                                          // адрес счетчика ошибки       "Test microphone PTT  (CTS)                                  ON  - ";
+			regcount++;                                                             // увеличить счетчик ошибок
+			regBank.set(40266,regcount);                                            // адрес счетчика ошибки 
+			regBank.set(266,1);                                                     // установить флаг ошибки
+			regBank.set(120,1);                                                     // установить общий флаг ошибки
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[66])));        // "Test microphone PTT  (CTS)                                  ON  - ";
+			myFile.print(buffer);                                                   // "Test microphone PTT  (CTS)                                  ON  - ";
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));            // "    Error! - "; 
+			myFile.print(buffer);                                                   // "    Error! - "; 
+			myFile.println(regcount);                                               // Показания счетчика ошибок
+		  }
+		else
+		  {
+		  if (test_repeat == false)
+		   {
+			strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[66])));        // "Test microphone PTT  (CTS)                                  ON  - ";
+			myFile.print(buffer);                                                   // 
+			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
+			myFile.println(buffer);                                                 // "Test microphone PTT  (CTS)                                  ON  - ";
+		  }
+		 }
+
+
+
+
+
+
+
+
 		// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона +++++++++++++++++++++++++++++++++++++++++++++++++
 	resistor(1, 60);                                                                // Установить уровень сигнала 60 мв
 	resistor(2, 60);                                                                // Установить уровень сигнала 60 мв
@@ -2831,11 +2985,11 @@ void test_mikrophon()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
 	
-
-
+	
 
 	regBank.set(9,0);                                                               // Отключить сигнал на вход микрофона Реле RL8 Звук на микрофон
 	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
+	regBank.set(15,0);                                                              // XS1 - 5   PTT Мик CTS
 	UpdateRegs();     
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 }
@@ -3931,7 +4085,6 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[119])));    // "Test Radio1 ** Signal Radio2                                ON  - ";
 				break;
 		}
-
 	
 		if(voltage10 <  porogV)                                                     // Проверить исправность канала
 			{
@@ -4372,9 +4525,9 @@ modbus registers follow the following format
 	regBank.add(261);                         // Флаг ошибки "Test MTT ** Signal LineR                                    ON  - ";  
 	regBank.add(262);                         // Флаг ошибки "Test MTT ** Signal Mag phone                                ON  - ";
 	regBank.add(263);                         // Флаг ошибки "Test MTT PTT    (CTS)                                       OFF - ";
-	regBank.add(264);                         //
+	regBank.add(264);                         // Флаг ошибки "Test microphone PTT  (CTS)                                  OFF - ";
 	regBank.add(265);                         // Флаг ошибки "Test MTT PTT    (CTS)                                       ON  - ";
-	regBank.add(266);                         // 
+	regBank.add(266);                         // Флаг ошибки "Test microphone PTT  (CTS)                                  ON  - ";
 	regBank.add(267);                         // Флаг ошибки "Test MTT HangUp (DCD)                                       OFF - ";
 	regBank.add(268);                         // Флаг ошибки "Test MTT HangUp (DCD)                                       ON  - ";
 	regBank.add(269);                         //  
@@ -4702,9 +4855,9 @@ modbus registers follow the following format
 	regBank.add(40261);                         // Aдрес счетчика ошибки "Test MTT ** Signal LineR                                    ON  - ";  
 	regBank.add(40262);                         // Aдрес счетчика ошибки "Test MTT ** Signal Mag phone                                ON  - ";
 	regBank.add(40263);                         // Aдрес счетчика ошибки "Test MTT PTT    (CTS)                                       OFF - ";
-	regBank.add(40264);                         // 
+	regBank.add(40264);                         // Aдрес счетчика ошибки "Test microphone PTT  (CTS)                                  OFF - ";
 	regBank.add(40265);                         // Aдрес счетчика ошибки "Test MTT PTT    (CTS)                                       ON  - ";
-	regBank.add(40266);                         // 
+	regBank.add(40266);                         // Aдрес счетчика ошибки "Test microphone PTT  (CTS)                                  ON  - ";
 	regBank.add(40267);                         // Aдрес счетчика ошибки "Test MTT HangUp (DCD)                                       OFF - ";
 	regBank.add(40268);                         // Aдрес счетчика ошибки "Test MTT HangUp (DCD)                                       ON  - ";
 	regBank.add(40269);                         //  
