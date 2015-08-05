@@ -392,8 +392,8 @@ const char  txt_error94[]  PROGMEM             = "";
 const char  txt_error95[]  PROGMEM             = ""; 
 const char  txt_error96[]  PROGMEM             = "";    
 const char  txt_error97[]  PROGMEM             = "";  
-const char  txt_error98[]  PROGMEM             = "";    
-const char  txt_error99[]  PROGMEM             = "";  
+const char  txt_error98[]  PROGMEM             = "Test Microphone ** Signal mag phone                         ON  - ";  
+const char  txt_error99[]  PROGMEM             = "Test Microphone ** Signal LineL                             ON  - "; 
 
 const char  txt_error100[]  PROGMEM            = "Test Radio1 ** Signal FrontL                                OFF - ";
 const char  txt_error101[]  PROGMEM            = "Test Radio1 ** Signal FrontR                                OFF - ";
@@ -426,7 +426,7 @@ const char  txt_error125[]  PROGMEM            = "Test Microphone ** Signal mag 
 const char  txt_error126[]  PROGMEM            = "Test Microphone ** Signal GGS                               OFF - ";
 const char  txt_error127[]  PROGMEM            = "Test Microphone ** Signal GG Radio1                         OFF - ";
 const char  txt_error128[]  PROGMEM            = "Test Microphone ** Signal GG Radio2                         OFF - ";
-const char  txt_error129[]  PROGMEM            = "Test Microphone ** Signal Radio2                            ON  - ";
+const char  txt_error129[]  PROGMEM            = "";
 
 char buffer[130];  
 
@@ -605,8 +605,8 @@ txt_error94,                                  //
 txt_error95,                                  // 
 txt_error96,                                  // 
 txt_error97,                                  // 
-txt_error98,                                  //    
-txt_error99,                                  // 
+txt_error98,                                  // "Test Microphone ** Signal mag phone                         ON  - ";   
+txt_error99,                                  // "Test Microphone ** Signal LineL                             ON  - "; 
 
 txt_error100,                                 // "Test Radio1 ** Signal FrontL                                OFF - ";
 txt_error101,                                 // "Test Radio1 ** Signal FrontR                                OFF - ";
@@ -639,7 +639,7 @@ txt_error125,                                 // "Test Microphone ** Signal mag 
 txt_error126,                                 // "Test Microphone ** Signal GGS                               OFF - ";
 txt_error127,                                 // "Test Microphone ** Signal GG Radio1                         OFF - ";
 txt_error128,                                 // "Test Microphone ** Signal GG Radio2                         OFF - ";
-txt_error129,                                 // "Test Microphone ** Signal Radio2                            ON  - ";
+txt_error129,                                 // ";
 
 };
 
@@ -2820,6 +2820,16 @@ void test_mikrophon()
 	myFile.println("");
 	regBank.set(15,0);                                                              // XS1 - 5   PTT Мик CTS
 	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
+
+	regBank.set(14,0);    // XP8 - 1   PTT Тангента ножная
+	regBank.set(17,0);    // J8-12     XP7 4 PTT2   Танг. р.
+	regBank.set(18,0);    // XP1 - 20  HangUp  DCD
+	regBank.set(20,0);    // J8-23     XP7 1 PTT1 Танг. р.
+	regBank.set(26,0);    // XP1- 17 HaSPTT    CTS DSR вкл.  
+	regBank.set(28,0);    // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
+	regBank.set(30,0);    // XP1- 6  HeS1PTT   CTS вкл   РТТ Диспетчера
+
+
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[58])));                   // "Command sensor OFF microphone                    send!"      ;  
 	if (test_repeat == false) myFile.println(buffer);                               //
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[56])));                   //"Command PTT    OFF microphone                    send!"      ;
@@ -2971,11 +2981,16 @@ void test_mikrophon()
 		  }
 		 }
 
-
-
-
-
-
+	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала  на отсутствие наводок ++++++++++++++++++++++++
+	measure_vol_min(analog_FrontL,    40320,320,25);                                // Измерить уровень сигнала на выходе FrontL    "Test Microphone ** Signal FrontL                                   OFF - ";
+	measure_vol_min(analog_FrontR,    40321,321,25);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal FrontR                                   OFF - ";
+	measure_vol_min(analog_LineL,     40322,322,25);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal LineL                                    OFF - ";
+	measure_vol_min(analog_LineR,     40323,323,25);                                // Измерить уровень сигнала на выходе LineR     "Test Microphone ** Signal LineR                                    OFF - ";
+	measure_vol_min(analog_mag_radio, 40324,324,25);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal mag radio                                OFF - ";
+	measure_vol_min(analog_mag_phone, 40325,325,25);                                // Измерить уровень сигнала на выходе LineR     "Test Microphone ** Signal mag phone                                OFF - ";
+	measure_vol_min(analog_ggs,       40326,326,30);                                // Измерить уровень сигнала на выходе GGS       "Test Microphone ** Signal GGS                                      OFF - ";
+	measure_vol_min(analog_gg_radio1, 40327,327,30);                                // Измерить уровень сигнала на выходе GG Radio1 "Test Microphone ** Signal GG Radio1                                OFF - ";
+	measure_vol_min(analog_gg_radio2, 40328,328,30);                                // Измерить уровень сигнала на выходе GG Radio2 "Test Microphone ** Signal GG Radio2     
 
 
 		// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -2984,8 +2999,17 @@ void test_mikrophon()
 	regBank.set(9,1);                                                               // Включить сигнал на вход микрофона Реле RL8 Звук на микрофон
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
+
+	measure_vol_max(analog_mag_phone,40298,298,90);                                 // Измерить уровень сигнала на выходе mag phone  "Test Microphone ** Signal Mag phone      
+    measure_vol_max(analog_LineL,    40299,299,90);                                 // Измерить уровень сигнала на выходе "Test Microphone ** Signal LineL                      ON  - ";  
 	
-	
+	measure_vol_min(analog_FrontL,    40320,320,25);                                // Измерить уровень сигнала на выходе FrontL    "Test Microphone ** Signal FrontL                                   OFF - ";
+	measure_vol_min(analog_FrontR,    40321,321,25);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal FrontR                                   OFF - ";
+	measure_vol_min(analog_LineR,     40323,323,25);                                // Измерить уровень сигнала на выходе LineR     "Test Microphone ** Signal LineR                                    OFF - ";
+	measure_vol_min(analog_mag_radio, 40324,324,25);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal mag radio                                OFF - ";
+	measure_vol_min(analog_ggs,       40326,326,30);                                // Измерить уровень сигнала на выходе GGS       "Test Microphone ** Signal GGS                                      OFF - ";
+	measure_vol_min(analog_gg_radio1, 40327,327,30);                                // Измерить уровень сигнала на выходе GG Radio1 "Test Microphone ** Signal GG Radio1                                OFF - ";
+	measure_vol_min(analog_gg_radio2, 40328,328,30);                                // Измерить уровень сигнала на выходе GG Radio2 "Test Microphone ** Signal GG Radio2     
 
 	regBank.set(9,0);                                                               // Отключить сигнал на вход микрофона Реле RL8 Звук на микрофон
 	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
@@ -4562,8 +4586,8 @@ modbus registers follow the following format
 	regBank.add(295);                         // 
 	regBank.add(296);                         // 
 	regBank.add(297);                         // 
-	regBank.add(298);                         //    
-	regBank.add(299);                         // 
+	regBank.add(298);                         // Флаг ошибки "Test Microphone ** Signal mag phone                         ON  - ";      
+	regBank.add(299);                         // Флаг ошибки "Test Microphone ** Signal LineL                             ON  - ";   
 
 	regBank.add(300);                         // Флаг ошибки "Test Radio1 ** Signal FrontL                                OFF - ";
 	regBank.add(301);                         // Флаг ошибки "Test Radio1 ** Signal FrontR                                OFF - ";
@@ -4892,8 +4916,8 @@ modbus registers follow the following format
 	regBank.add(40295);                         // 
 	regBank.add(40296);                         // 
 	regBank.add(40297);                         // 
-	regBank.add(40298);                         //    
-	regBank.add(40299);                         // 
+	regBank.add(40298);                         // Aдрес счетчика ошибки "Test Microphone ** Signal mag phone                         ON  - ";    
+	regBank.add(40299);                         // Aдрес счетчика ошибки "Test Microphone ** Signal LineL                             ON  - ";   
 
 	regBank.add(40300);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal FrontL                                OFF - ";
 	regBank.add(40301);                         // Aдрес счетчика ошибки "Test Radio1 ** Signal FrontR                                OFF - ";
@@ -4926,7 +4950,7 @@ modbus registers follow the following format
 	regBank.add(40326);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GGS                               OFF - ";
 	regBank.add(40327);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GG Radio1                         OFF - ";
 	regBank.add(40328);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GG Radio2                         OFF - ";
-	regBank.add(40329);                         // Aдрес счетчика ошибки "Test Microphone ** Signal Radio2                            ON  - ";
+	regBank.add(40329);                         // 
 
 
 	

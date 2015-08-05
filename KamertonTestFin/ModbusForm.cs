@@ -4018,13 +4018,15 @@ namespace KamertonTest
             }
             if (coilArr[8] != false)
             {
-                textBox8.Text += ("  < = " + readVals[8] + ">\r\n");
+                temp_disp = readVolt[8];
+                textBox8.Text += ("Test Microphone ** Signal mag phone            \tON         \t< = " + readVals[8] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 298, false);
             }
             if (coilArr[9] != false)
             {
-                textBox8.Text += (" < = " + readVals[9] + ">\r\n");
+                temp_disp = readVolt[9];
+                textBox8.Text += ("Test Microphone ** Signal LineL                \tON         \t< = " + readVals[9] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 299, false);
             }
