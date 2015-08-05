@@ -4270,7 +4270,7 @@ namespace KamertonTest
             if (coilArr[9] != false)
             {
                 temp_disp = readVolt[9];
-                textBox8.Text += ("Test Microphone ** Signal Radio2               \tON         \t< = " + readVals[9] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Text += ("");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 329, false);
             }

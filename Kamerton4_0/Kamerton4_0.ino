@@ -3000,8 +3000,8 @@ void test_mikrophon()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
 
-	measure_vol_max(analog_mag_phone,40298,298,90);                                 // Измерить уровень сигнала на выходе mag phone  "Test Microphone ** Signal Mag phone      
-    measure_vol_max(analog_LineL,    40299,299,90);                                 // Измерить уровень сигнала на выходе "Test Microphone ** Signal LineL                      ON  - ";  
+	measure_vol_max(analog_mag_phone,40298,298,150);                                // Измерить уровень сигнала на выходе mag phone  "Test Microphone ** Signal Mag phone      
+    measure_vol_max(analog_LineL,    40299,299,150);                                // Измерить уровень сигнала на выходе "Test Microphone ** Signal LineL                      ON  - ";  
 	
 	measure_vol_min(analog_FrontL,    40320,320,25);                                // Измерить уровень сигнала на выходе FrontL    "Test Microphone ** Signal FrontL                                   OFF - ";
 	measure_vol_min(analog_FrontR,    40321,321,25);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal FrontR                                   OFF - ";
@@ -4023,6 +4023,33 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 			case 318:
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[118])));    // "Test Radio2 ** Signal GG Radio2                             OFF - ";
 				break;
+			case 320:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[120])));    //  "Test Microphone ** Signal FrontL                                   OFF - ";
+				break;
+			case 321:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[121])));    // "Test Microphone ** Signal FrontR                                   OFF - ";
+				break;
+			case 322:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[122])));    // "Test Microphone ** Signal LineL                                    OFF - ";
+				break;
+			case 323:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[123])));    // "Test Microphone ** Signal LineR                                    OFF - ";
+				break;
+			case 324:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[124])));    // "Test Microphone ** Signal mag radio                                OFF - ";
+				break;
+			case 325:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[125])));    // "Test Microphone ** Signal mag phone                                OFF - ";
+				break;
+			case 326:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[126])));    // "Test Microphone ** Signal GGS                                      OFF - ";
+				break;
+			case 327:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[127])));    // "Test Microphone ** Signal GG Radio1                                OFF - ";
+				break;
+			case 328:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[128])));    // "Test Microphone ** Signal GG Radio2                                OFF - ";
+				break;
 
 		}
 		if(voltage10 >  porogV)                                                     // Проверить исправность канала
@@ -4107,6 +4134,12 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				break;
 			case 319:
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[119])));    // "Test Radio1 ** Signal Radio2                                ON  - ";
+				break;
+			case 298:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[98])));    // "Test Microphone ** Signal mag phone                         ON  - ";      
+				break;
+			case 299:
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[99])));    // "Test Microphone ** Signal LineL                             ON  - ";  
 				break;
 		}
 	
@@ -4620,7 +4653,7 @@ modbus registers follow the following format
 	regBank.add(326);                         // Флаг ошибки "Test Microphone ** Signal GGS                               OFF - ";
 	regBank.add(327);                         // Флаг ошибки "Test Microphone ** Signal GG Radio1                         OFF - ";
 	regBank.add(328);                         // Флаг ошибки "Test Microphone ** Signal GG Radio2                         OFF - ";
-	regBank.add(329);                         // Флаг ошибки "Test Microphone ** Signal Radio2                            ON  - ";
+	regBank.add(329);                         // 
 
 
 
@@ -5041,8 +5074,8 @@ modbus registers follow the following format
 	regBank.add(40495);                         // 
 	regBank.add(40496);                         // 
 	regBank.add(40497);                         // 
-	regBank.add(40498);                         //    
-	regBank.add(40499);                         // 
+	regBank.add(40498);                         // Aдрес данных измерения "Test Microphone ** Signal mag phone                         ON  - "; 
+	regBank.add(40499);                         // Aдрес данных измерения "Test Microphone ** Signal LineL                             ON  - ";   
 
 	regBank.add(40500);                         // Aдрес данных измерения "Test Radio1 ** Signal FrontL                                OFF - ";
 	regBank.add(40501);                         // Aдрес данных измерения "Test Radio1 ** Signal FrontR                                OFF - ";
@@ -5075,7 +5108,7 @@ modbus registers follow the following format
 	regBank.add(40526);                         // Aдрес данных измерения "Test Microphone ** Signal GGS                               OFF - ";
 	regBank.add(40527);                         // Aдрес данных измерения "Test Microphone ** Signal GG Radio1                         OFF - ";
 	regBank.add(40528);                         // Aдрес данных измерения "Test Microphone ** Signal GG Radio2                         OFF - ";
-	regBank.add(40529);                         // Aдрес данных измерения "Test Microphone ** Signal Radio2                            ON  - ";
+	regBank.add(40529);                         // 
 
 
 
