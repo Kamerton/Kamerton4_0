@@ -277,7 +277,7 @@ const char  txt_message50[]   PROGMEM            = " ****** Test Radio1 start! *
 const char  txt_message51[]   PROGMEM            = "Signal Radio1 300 mV    LFE                   ON"            ;
 const char  txt_message52[]   PROGMEM            = " ****** Test Radio2 start! ******"      ;
 const char  txt_message53[]   PROGMEM            = "Signal Radio1 300 mV    Center                ON"            ;
-const char  txt_message54[]   PROGMEM            = " ****** Test miсrophone start! ******"                       ;
+const char  txt_message54[]   PROGMEM            = " ****** Test microphone start! ******"                       ;
 const char  txt_message55[]   PROGMEM            = "Signal miсrophone 30  mV                      ON"            ;
 const char  txt_message56[]   PROGMEM            = "Command PTT    OFF microphone                    send!"      ;
 const char  txt_message57[]   PROGMEM            = "Command PTT    ON  microphone                    send!"      ;
@@ -3858,9 +3858,15 @@ void test_MTT_on()
 
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
+
+		int _istochnik          = istochnik;
+		unsigned int _adr_count = adr_count;
+		int _adr_flagErr        = adr_flagErr;
+		unsigned int _porogV    = porogV;
 		int regcount = 0;
-		measure_volume(istochnik);                                               // Измерить уровень сигнала на выходе
-		switch (adr_flagErr) 
+
+		measure_volume(_istochnik);                                                 // Измерить уровень сигнала на выходе
+		switch (_adr_flagErr) 
 		{
 			case 230:
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[30])));    // "Test headset instructor ** Signal FrontL                    OFF - ";
@@ -4053,18 +4059,18 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				break;
 
 		}
-		if(voltage10 >  porogV)                                                     // Проверить исправность канала
+		if(voltage10 > _porogV)                                                      // Проверить исправность канала
 			{
 				myFile.print(buffer); 
-				regcount = regBank.get(adr_count);                                  // адрес счетчика ошибки 
-				regcount++;                                                         // увеличить счетчик ошибок канала 
-				regBank.set(adr_count,regcount);                                    // адрес счетчика ошибки канала 
-				regBank.set(adr_count+200,voltage10);                               // адрес данных ошибки канала 
-				regBank.set(adr_flagErr,1);                                         // установить флаг ошибки  канала 
-				regBank.set(120,1);                                                 // установить общий флаг ошибки 
-				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));        // "    Error! - "; 
-				myFile.print(buffer);                                               // "    Error! - "; 
-				myFile.print(regcount);                                             // Показания счетчика ошибок
+				regcount = regBank.get(_adr_count);                                  // адрес счетчика ошибки 
+				regcount++;                                                          // увеличить счетчик ошибок канала 
+				regBank.set(_adr_count,regcount);                                    // адрес счетчика ошибки канала 
+				regBank.set(_adr_count+200,voltage10);                               // адрес данных ошибки канала 
+				regBank.set(_adr_flagErr,1);                                         // установить флаг ошибки  канала 
+				regBank.set(120,1);                                                  // установить общий флаг ошибки 
+				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));         // "    Error! - "; 
+				myFile.print(buffer);                                                // "    Error! - "; 
+				myFile.print(regcount);                                              // Показания счетчика ошибок
 				myFile.print("     ");  
 				myFile.print(voltage); 
 				myFile.println(" V");
@@ -4085,9 +4091,15 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 }
 void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
+	int _istochnik          = istochnik;
+	unsigned int _adr_count = adr_count;
+	int _adr_flagErr        = adr_flagErr;
+	unsigned int _porogV    = porogV;
+
+
 		int regcount = 0;
-		measure_volume(istochnik);                                                  // Измерить уровень сигнала на выходе
-		switch (adr_flagErr) 
+		measure_volume(_istochnik);                                                 // Измерить уровень сигнала на выходе
+		switch (_adr_flagErr) 
 		{
 			case 224:
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[24])));    // "Test headset instructor ** Signal LineL                     ON  - ";
@@ -4138,21 +4150,21 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[99])));    // "Test Microphone ** Signal LineL                             ON  - ";  
 				break;
 			case 309:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[109])));    // "Test Radio1 ** Signal Radio1                                ON  - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[109])));   // "Test Radio1 ** Signal Radio1                                ON  - ";
 				break;
 			case 319:
-				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[119])));    // "Test Radio1 ** Signal Radio2                                ON  - ";
+				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[119])));   // "Test Radio1 ** Signal Radio2                                ON  - ";
 				break;
 		}
 	
-		if(voltage10 <  porogV)                                                     // Проверить исправность канала
+		if(voltage10 < _porogV)                                                     // Проверить исправность канала
 			{
 				myFile.print(buffer); 
-				regcount = regBank.get(adr_count);                                  // адрес счетчика ошибки 
+				regcount = regBank.get(_adr_count);                                 // адрес счетчика ошибки 
 				regcount++;                                                         // увеличить счетчик ошибок канала 
-				regBank.set(adr_count,regcount);                                    // адрес счетчика ошибки канала 
-				regBank.set(adr_count+200,voltage10);                               // адрес данных ошибки канала 
-				regBank.set(adr_flagErr,1);                                         // установить флаг ошибки  канала 
+				regBank.set(_adr_count, regcount);                                  // адрес счетчика ошибки канала 
+				regBank.set(_adr_count+200,voltage10);                              // адрес данных ошибки канала 
+				regBank.set(_adr_flagErr,1);                                        // установить флаг ошибки  канала 
 				regBank.set(120,1);                                                 // установить общий флаг ошибки 
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));        // "    Error! - "; 
 				myFile.print(buffer);                                               // "    Error! - "; 
@@ -4160,6 +4172,15 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				myFile.print("     ");  
 				myFile.print(voltage); 
 				myFile.println(" V");
+				Serial.println(regBank.get(_adr_count));
+				Serial.println(regBank.get(_adr_count+200));
+				Serial.println(regBank.get(_adr_flagErr));
+  /*              do
+				{
+					Serial.println(regBank.get(_adr_flagErr));
+
+				} while (regBank.get(_adr_flagErr) != 0);
+*/
 			}
 		else
 			{
