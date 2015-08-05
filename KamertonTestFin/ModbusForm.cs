@@ -3207,28 +3207,26 @@ namespace KamertonTest
         {
             ushort[] readVals = new ushort[21];
             bool[] coilArr = new bool[2];
-            startRdReg = 120;                                    // 40120 Адрес 
+            startRdReg = 120;                                    //regBank.add(40120);  // adr_control_command Адрес передачи комманд на выполнение
+                                                                 //  0 в регистре означает завершение выполнения фрагмента проверки
             numRdRegs = 2;
 
-
-            startCoil = 120;                                     //Адрес флага общей ошибки
-            numCoils = 1;
-            Thread.Sleep(1000);
+            startCoil = 120;                                     // regBank.add(120);   // Флаг индикации возникновения любой ошибки
+            numCoils = 2;
+            Thread.Sleep(100);
 
             do
             {
-                res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
-                //    textBox9.Text += ("Вызов программы обработки ошибок" + coilArr[0] + " - " + coilArr[1] + "\r\n");
+               //res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
+               //if (coilArr[0] == true) //есть ошибка
+               // {
+               //     // Обработка ошибки.
+               //     textBox8.Text += ("Вызов программы обработки ошибок. " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
+               //     textBox8.Refresh();
 
-                if (coilArr[0] == true) //есть ошибка
-                {
-                    // Обработка ошибки.
-                    textBox8.Text += ("Вызов программы обработки ошибок. " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
-                    textBox8.Refresh();
-
-                    error_All();
-                    //textBox8.Text += ("Вызов программы обработки ошибок" + "\r\n");
-                }
+               //     error_All();
+               //     //textBox8.Text += ("Вызов программы обработки ошибок" + "\r\n");
+               // }
 
                 res = myProtocol.readMultipleRegisters(slave, 120, readVals, 1);  // Ожидание кода подтверждения окончания проверки  Адрес передачи подтверждения 40120
 
@@ -3250,7 +3248,16 @@ namespace KamertonTest
                     return;
                 }
             } while (readVals[0] != 0);                                     // Если readVals[0] == 0 , тест завершен
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
+            if (coilArr[0] == true) //есть ошибка
+            {
+                // Обработка ошибки.
+                textBox8.Text += ("Вызов программы обработки ошибок. " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
+                textBox8.Refresh();
 
+                error_All();
+                //textBox8.Text += ("Вызов программы обработки ошибок" + "\r\n");
+            }
             textBox7.Text += ("Выполнение команды завершено " + "\r\n" + "\r\n");
         }
 
@@ -3645,11 +3652,11 @@ namespace KamertonTest
             }
 
             startRdReg = 250;
-            numRdRegs = 11;
+            numRdRegs = 10;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40250 Считать счетчики ошибок  
             res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40450 Считать счетчики ошибок  
             startCoil = 250;                                                                      // Начальный Адрес 250 флага индикации возникновения  ошибки
-            numCoils = 11;
+            numCoils = 10;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
             Thread.Sleep(50);
             if (coilArr[0] != false)
