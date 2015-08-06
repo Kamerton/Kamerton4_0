@@ -315,6 +315,9 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
+            this.checkBoxSensors2 = new System.Windows.Forms.CheckBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -2385,6 +2388,8 @@ namespace KamertonTest
             // 
             this.tabPage6.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage6.Controls.Add(this.button1);
+            this.tabPage6.Controls.Add(this.richTextBox1);
             this.tabPage6.Controls.Add(this.groupBox18);
             this.tabPage6.Controls.Add(this.groupBox16);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
@@ -2401,7 +2406,7 @@ namespace KamertonTest
             this.groupBox18.Controls.Add(this.label95);
             this.groupBox18.Location = new System.Drawing.Point(339, 20);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(322, 390);
+            this.groupBox18.Size = new System.Drawing.Size(202, 390);
             this.groupBox18.TabIndex = 1;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "Управление файлами";
@@ -2419,7 +2424,7 @@ namespace KamertonTest
             // 
             // button81
             // 
-            this.button81.Location = new System.Drawing.Point(208, 96);
+            this.button81.Location = new System.Drawing.Point(18, 131);
             this.button81.Name = "button81";
             this.button81.Size = new System.Drawing.Size(94, 23);
             this.button81.TabIndex = 3;
@@ -2430,7 +2435,7 @@ namespace KamertonTest
             // label101
             // 
             this.label101.AutoSize = true;
-            this.label101.Location = new System.Drawing.Point(15, 101);
+            this.label101.Location = new System.Drawing.Point(15, 162);
             this.label101.Name = "label101";
             this.label101.Size = new System.Drawing.Size(159, 13);
             this.label101.TabIndex = 1;
@@ -2448,6 +2453,7 @@ namespace KamertonTest
             // 
             // groupBox16
             // 
+            this.groupBox16.Controls.Add(this.checkBoxSensors2);
             this.groupBox16.Controls.Add(this.checkBoxSensors1);
             this.groupBox16.Controls.Add(this.checkBoxSenGGS);
             this.groupBox16.Controls.Add(this.checkBoxSenMicrophon);
@@ -2470,17 +2476,18 @@ namespace KamertonTest
             // checkBoxSensors1
             // 
             this.checkBoxSensors1.AutoSize = true;
-            this.checkBoxSensors1.Location = new System.Drawing.Point(16, 110);
+            this.checkBoxSensors1.Location = new System.Drawing.Point(16, 106);
             this.checkBoxSensors1.Name = "checkBoxSensors1";
-            this.checkBoxSensors1.Size = new System.Drawing.Size(77, 19);
+            this.checkBoxSensors1.Size = new System.Drawing.Size(146, 19);
             this.checkBoxSensors1.TabIndex = 26;
-            this.checkBoxSensors1.Text = "Сенсоры";
+            this.checkBoxSensors1.Text = "Сенсоры  отключить";
             this.checkBoxSensors1.UseVisualStyleBackColor = true;
+            this.checkBoxSensors1.CheckedChanged += new System.EventHandler(this.checkBoxSensors1_CheckedChanged);
             // 
             // checkBoxSenGGS
             // 
             this.checkBoxSenGGS.AutoSize = true;
-            this.checkBoxSenGGS.Location = new System.Drawing.Point(16, 336);
+            this.checkBoxSenGGS.Location = new System.Drawing.Point(16, 357);
             this.checkBoxSenGGS.Name = "checkBoxSenGGS";
             this.checkBoxSenGGS.Size = new System.Drawing.Size(48, 19);
             this.checkBoxSenGGS.TabIndex = 25;
@@ -2490,7 +2497,7 @@ namespace KamertonTest
             // checkBoxSenMicrophon
             // 
             this.checkBoxSenMicrophon.AutoSize = true;
-            this.checkBoxSenMicrophon.Location = new System.Drawing.Point(16, 260);
+            this.checkBoxSenMicrophon.Location = new System.Drawing.Point(16, 281);
             this.checkBoxSenMicrophon.Name = "checkBoxSenMicrophon";
             this.checkBoxSenMicrophon.Size = new System.Drawing.Size(89, 19);
             this.checkBoxSenMicrophon.TabIndex = 24;
@@ -2500,7 +2507,7 @@ namespace KamertonTest
             // checkBoxSenGar1disp
             // 
             this.checkBoxSenGar1disp.AutoSize = true;
-            this.checkBoxSenGar1disp.Location = new System.Drawing.Point(16, 160);
+            this.checkBoxSenGar1disp.Location = new System.Drawing.Point(16, 181);
             this.checkBoxSenGar1disp.Name = "checkBoxSenGar1disp";
             this.checkBoxSenGar1disp.Size = new System.Drawing.Size(158, 19);
             this.checkBoxSenGar1disp.TabIndex = 23;
@@ -2510,7 +2517,7 @@ namespace KamertonTest
             // checkBoxSenGar1instr
             // 
             this.checkBoxSenGar1instr.AutoSize = true;
-            this.checkBoxSenGar1instr.Location = new System.Drawing.Point(16, 135);
+            this.checkBoxSenGar1instr.Location = new System.Drawing.Point(16, 156);
             this.checkBoxSenGar1instr.Name = "checkBoxSenGar1instr";
             this.checkBoxSenGar1instr.Size = new System.Drawing.Size(163, 19);
             this.checkBoxSenGar1instr.TabIndex = 21;
@@ -2520,7 +2527,7 @@ namespace KamertonTest
             // checkBoxSenTangRuch
             // 
             this.checkBoxSenTangRuch.AutoSize = true;
-            this.checkBoxSenTangRuch.Location = new System.Drawing.Point(16, 235);
+            this.checkBoxSenTangRuch.Location = new System.Drawing.Point(16, 256);
             this.checkBoxSenTangRuch.Name = "checkBoxSenTangRuch";
             this.checkBoxSenTangRuch.Size = new System.Drawing.Size(122, 19);
             this.checkBoxSenTangRuch.TabIndex = 18;
@@ -2530,7 +2537,7 @@ namespace KamertonTest
             // checkBoxSenTangN
             // 
             this.checkBoxSenTangN.AutoSize = true;
-            this.checkBoxSenTangN.Location = new System.Drawing.Point(16, 210);
+            this.checkBoxSenTangN.Location = new System.Drawing.Point(16, 231);
             this.checkBoxSenTangN.Name = "checkBoxSenTangN";
             this.checkBoxSenTangN.Size = new System.Drawing.Size(127, 19);
             this.checkBoxSenTangN.TabIndex = 17;
@@ -2540,7 +2547,7 @@ namespace KamertonTest
             // checkBoxSenTrubka
             // 
             this.checkBoxSenTrubka.AutoSize = true;
-            this.checkBoxSenTrubka.Location = new System.Drawing.Point(16, 185);
+            this.checkBoxSenTrubka.Location = new System.Drawing.Point(16, 206);
             this.checkBoxSenTrubka.Name = "checkBoxSenTrubka";
             this.checkBoxSenTrubka.Size = new System.Drawing.Size(65, 19);
             this.checkBoxSenTrubka.TabIndex = 16;
@@ -2550,7 +2557,7 @@ namespace KamertonTest
             // checkBoxSenGGRadio2
             // 
             this.checkBoxSenGGRadio2.AutoSize = true;
-            this.checkBoxSenGGRadio2.Location = new System.Drawing.Point(16, 311);
+            this.checkBoxSenGGRadio2.Location = new System.Drawing.Point(16, 332);
             this.checkBoxSenGGRadio2.Name = "checkBoxSenGGRadio2";
             this.checkBoxSenGGRadio2.Size = new System.Drawing.Size(86, 19);
             this.checkBoxSenGGRadio2.TabIndex = 15;
@@ -2560,7 +2567,7 @@ namespace KamertonTest
             // checkBoxSenGGRadio1
             // 
             this.checkBoxSenGGRadio1.AutoSize = true;
-            this.checkBoxSenGGRadio1.Location = new System.Drawing.Point(16, 286);
+            this.checkBoxSenGGRadio1.Location = new System.Drawing.Point(16, 307);
             this.checkBoxSenGGRadio1.Name = "checkBoxSenGGRadio1";
             this.checkBoxSenGGRadio1.Size = new System.Drawing.Size(86, 19);
             this.checkBoxSenGGRadio1.TabIndex = 14;
@@ -3421,6 +3428,34 @@ namespace KamertonTest
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
             // 
+            // checkBoxSensors2
+            // 
+            this.checkBoxSensors2.AutoSize = true;
+            this.checkBoxSensors2.Location = new System.Drawing.Point(16, 131);
+            this.checkBoxSensors2.Name = "checkBoxSensors2";
+            this.checkBoxSensors2.Size = new System.Drawing.Size(136, 19);
+            this.checkBoxSensors2.TabIndex = 27;
+            this.checkBoxSensors2.Text = "Сенсоры включить";
+            this.checkBoxSensors2.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(547, 21);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(427, 389);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(547, 427);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Получить ошибки";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -3762,6 +3797,9 @@ namespace KamertonTest
         private System.Windows.Forms.Label label95;
         private System.Windows.Forms.Button button81;
         private System.Windows.Forms.Label label134;
+        private System.Windows.Forms.CheckBox checkBoxSensors2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
