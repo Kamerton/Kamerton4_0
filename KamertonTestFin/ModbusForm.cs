@@ -4461,12 +4461,7 @@ namespace KamertonTest
             int startCoil_temp = 0; 
             numCoils = 5;
 
-            //startRdReg = 220;
-            //numRdRegs = 10;
-            //res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40220 —читать счетчики ошибок  
-            //res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40420 —читать счетчики ошибок  
-
-
+   
             for (int i_reg = 0; i_reg < 13 ; i_reg++)
             {
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40200 —читать счетчики ошибок  
@@ -4489,7 +4484,7 @@ namespace KamertonTest
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40200 —читать счетчики ошибок  
                 res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs);
                 res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-                for (int i_temp = 0; i_temp < 10; i_temp++)
+                for (int i_temp = 0; i_temp < 5; i_temp++)
                 {
                     startRdReg_temp = startRdReg + i_temp;
                     startCoil_temp = startCoil + i_temp;
@@ -4502,8 +4497,9 @@ namespace KamertonTest
                 }
                 startRdReg += 5;
                 startCoil += 5;
+                Thread.Sleep(100);
             }
-        
+        /*
            
            if (coilArr_all[0] != false)
             {
@@ -5062,7 +5058,7 @@ namespace KamertonTest
                 count_error_all();
             }
 
-            if (coilArr[70] != false)
+            if (coilArr_all[70] != false)
             {
                 textBox8.Text += ("Command PTT1 tangenta ruchnaja (CTS)           \tOFF        \t< = " + readVals_all[0] + ">\r\n");
                 textBox8.Refresh();
@@ -5550,6 +5546,7 @@ namespace KamertonTest
                 res = myProtocol.writeCoil(slave, 329, false);
                 count_error_all();
             }
+            */
         }
 
         //*******************************************

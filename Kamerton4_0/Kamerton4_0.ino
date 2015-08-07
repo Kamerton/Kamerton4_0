@@ -5189,15 +5189,15 @@ modbus registers follow the following format
 	regBank.add(40327);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GG Radio1                         OFF - ";
 	regBank.add(40328);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GG Radio2                         OFF - ";
 	regBank.add(40329);                         // 
-
+	regBank.add(40330);                         // 
 
 	
 	// ++++++++++++++++++++++ Регистры хранения данных при проверке модулей ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-	regBank.add(40220);                         // Aдрес  ;
-	regBank.add(40221);                         // Aдрес  ;
-	regBank.add(40222);                         // Aдрес  ;
-	regBank.add(40223);                         // Aдрес  ;
+	regBank.add(40420);                         // Aдрес  ;
+	regBank.add(40421);                         // Aдрес  ;
+	regBank.add(40422);                         // Aдрес  ;
+	regBank.add(40423);                         // Aдрес  ;
 	regBank.add(40424);                         // Aдрес данных измерения "Test headset instructor ** Signal LineL                     ON  - ";
 	regBank.add(40425);                         // Aдрес данных измерения "Test headset instructor ** Signal LineR                     ON  - ";   
 	regBank.add(40426);                         // Aдрес данных измерения "Test headset instructor ** Signal Mag phone                 ON  - ";
@@ -5314,7 +5314,7 @@ modbus registers follow the following format
 	regBank.add(40527);                         // Aдрес данных измерения "Test Microphone ** Signal GG Radio1                         OFF - ";
 	regBank.add(40528);                         // Aдрес данных измерения "Test Microphone ** Signal GG Radio2                         OFF - ";
 	regBank.add(40529);                         // 
-
+	regBank.add(40530);                         // 
 
 
 	slave._device = &regBank;  
@@ -5414,15 +5414,31 @@ void setup()
 	cbi(ADCSRA,ADPS0) ;
 	#endif
 
-	for (int i = 200; i <= 239; i++)                  // Очистить флаги ошибок
+	for (int i = 200; i <= 330; i++)                  // Очистить флаги ошибок
 	{
 	   regBank.set(i,0);   
 	}
 	
-	for (unsigned int i = 40200; i <= 40239; i++)     // Очистить флаги ошибок
+	for (unsigned int i = 40200; i <= 40330; i++)     // Очистить флаги ошибок
 	{
 	   regBank.set(i,0);   
 	}
+		for (unsigned int i = 40420; i <= 40530; i++)     // Очистить флаги ошибок
+	{
+	   regBank.set(i,0);   
+	}
+
+	//for (int i = 200; i <= 330; i++)                  // Очистить флаги ошибок
+	//{
+	//	Serial.print(i);
+	//	Serial.print(" - ");
+	//	Serial.print(regBank.get(i+40000));
+	//	Serial.print(" - ");
+	//	Serial.println(regBank.get(i));
+	//}
+
+
+
 	regBank.set(120,0);
 	regBank.set(40120,0);
 	regBank.set(adr_reg_count_err,0);                // Обнулить данные счетчика всех ошибок
