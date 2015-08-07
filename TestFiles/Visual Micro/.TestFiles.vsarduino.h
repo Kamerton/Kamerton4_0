@@ -83,6 +83,21 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 
+void sdError_P(const char* str);
+void debugPrint();
+uint8_t writeCache(uint32_t lbn);
+void initSizes();
+void clearCache(uint8_t addSig);
+void clearFatDir(uint32_t bgn, uint32_t count);
+uint16_t lbnToCylinder(uint32_t lbn);
+uint8_t lbnToHead(uint32_t lbn);
+uint8_t lbnToSector(uint32_t lbn);
+void writeMbr();
+uint32_t volSerialNumber();
+void makeFat16();
+void makeFat32();
+void eraseCard();
+void formatCard();
 //
 //
 
