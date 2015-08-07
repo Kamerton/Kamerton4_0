@@ -211,12 +211,15 @@ namespace KamertonTest
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.label134 = new System.Windows.Forms.Label();
             this.button81 = new System.Windows.Forms.Button();
             this.label101 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.checkBoxSensors2 = new System.Windows.Forms.CheckBox();
             this.checkBoxSensors1 = new System.Windows.Forms.CheckBox();
             this.checkBoxSenGGS = new System.Windows.Forms.CheckBox();
             this.checkBoxSenMicrophon = new System.Windows.Forms.CheckBox();
@@ -315,9 +318,7 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
-            this.checkBoxSensors2 = new System.Windows.Forms.CheckBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -2388,6 +2389,7 @@ namespace KamertonTest
             // 
             this.tabPage6.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage6.Controls.Add(this.button2);
             this.tabPage6.Controls.Add(this.button1);
             this.tabPage6.Controls.Add(this.richTextBox1);
             this.tabPage6.Controls.Add(this.groupBox18);
@@ -2397,6 +2399,24 @@ namespace KamertonTest
             this.tabPage6.Size = new System.Drawing.Size(987, 613);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Настройка проверки";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(547, 427);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Получить ошибки";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(547, 21);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(427, 389);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
             // 
             // groupBox18
             // 
@@ -2472,6 +2492,16 @@ namespace KamertonTest
             this.groupBox16.TabIndex = 0;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Настройка проверки сенсоров";
+            // 
+            // checkBoxSensors2
+            // 
+            this.checkBoxSensors2.AutoSize = true;
+            this.checkBoxSensors2.Location = new System.Drawing.Point(16, 131);
+            this.checkBoxSensors2.Name = "checkBoxSensors2";
+            this.checkBoxSensors2.Size = new System.Drawing.Size(136, 19);
+            this.checkBoxSensors2.TabIndex = 27;
+            this.checkBoxSensors2.Text = "Сенсоры включить";
+            this.checkBoxSensors2.UseVisualStyleBackColor = true;
             // 
             // checkBoxSensors1
             // 
@@ -3428,33 +3458,15 @@ namespace KamertonTest
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
             // 
-            // checkBoxSensors2
+            // button2
             // 
-            this.checkBoxSensors2.AutoSize = true;
-            this.checkBoxSensors2.Location = new System.Drawing.Point(16, 131);
-            this.checkBoxSensors2.Name = "checkBoxSensors2";
-            this.checkBoxSensors2.Size = new System.Drawing.Size(136, 19);
-            this.checkBoxSensors2.TabIndex = 27;
-            this.checkBoxSensors2.Text = "Сенсоры включить";
-            this.checkBoxSensors2.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(547, 21);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(427, 389);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(547, 427);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Получить ошибки";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button2.Location = new System.Drawing.Point(764, 427);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
@@ -3800,6 +3812,7 @@ namespace KamertonTest
         private System.Windows.Forms.CheckBox checkBoxSensors2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
