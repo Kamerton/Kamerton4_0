@@ -4686,7 +4686,7 @@ namespace KamertonTest
             }
             if (coilArr_all[24] != false)
             {
-                temp_disp = readVolt[4];
+                temp_disp = readVolt_all[24];
                 textBox8.Text += ("Сигнал инструктора LineL отсутствует                      \t< = " + readVals_all[4] + ">  " + temp_disp / 100 + " V \r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 224, false);
@@ -4694,14 +4694,14 @@ namespace KamertonTest
             }
             if (coilArr_all[25] != false)
             {
-                temp_disp = readVolt[5];
+                temp_disp = readVolt_all[25];
                 textBox8.Text += ("Сигнал инструктора LineR отсутствует                      \t< = " + readVals_all[5] + ">  " + temp_disp / 100 + " V \r\n");
                 res = myProtocol.writeCoil(slave, 225, false);
                 count_error_all();
             }
             if (coilArr_all[26] != false)
             {
-                temp_disp = readVolt[6];
+                temp_disp = readVolt_all[26];
                 textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует \t< = " + readVals_all[6] + ">  " + temp_disp / 100 + " V \r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 226, false);
@@ -4709,7 +4709,7 @@ namespace KamertonTest
             }
             if (coilArr_all[27] != false)
             {
-                temp_disp = readVolt[7];
+                temp_disp = readVolt_all[27];
                 textBox8.Text += ("Сигнал диспетчера LineL отсутствует                       \t< = " + readVals_all[7] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 227, false);
@@ -4717,7 +4717,7 @@ namespace KamertonTest
             }
             if (coilArr_all[28] != false)
             {
-                temp_disp = readVolt[8];
+                temp_disp = readVolt_all[28];
                 textBox8.Text += ("Сигнал диспетчера LineR отсутствует                       \t< = " + readVals_all[8] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 228, false);
@@ -4725,7 +4725,7 @@ namespace KamertonTest
             }
             if (coilArr_all[29] != false)
             {
-                temp_disp = readVolt[9];
+                temp_disp = readVolt_all[29];
                 textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует    \t< = " + readVals_all[9] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 229, false);
@@ -4734,7 +4734,7 @@ namespace KamertonTest
 
             if (coilArr_all[30] != false)
             {
-                temp_disp = readVolt[0];
+                temp_disp = readVolt_all[30];
                 textBox8.Text += ("Test headset instructor ** Signal FrontL     \tOFF          \t< = " + readVals_all[0] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 230, false);
@@ -4744,7 +4744,7 @@ namespace KamertonTest
 
             if (coilArr_all[31] != false)
             {
-                temp_disp = readVolt[1];
+                temp_disp = readVolt_all[31];
                 textBox8.Text += ("Test headset instructor ** Signal FrontR      \tOFF         \t< = " + readVals_all[1] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 231, false);
@@ -4753,7 +4753,7 @@ namespace KamertonTest
 
             if (coilArr_all[32] != false)
             {
-                temp_disp = readVolt[2];
+                temp_disp = readVolt_all[32];
                 textBox8.Text += ("Test headset instructor ** Signal LineL        \tOFF        \t< = " + readVals_all[2] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 232, false);
@@ -4762,7 +4762,7 @@ namespace KamertonTest
 
             if (coilArr_all[33] != false)
             {
-                temp_disp = readVolt[3];
+                temp_disp = readVolt_all[33];
                 textBox8.Text += ("Test headset instructor ** Signal LineR        \tOFF        \t< = " + readVals_all[3] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 233, false);
@@ -4770,7 +4770,7 @@ namespace KamertonTest
             }
             if (coilArr_all[34] != false)
             {
-                temp_disp = readVolt[4];
+                temp_disp = readVolt_all[34];
                 textBox8.Text += ("Test headset instructor ** Signal mag radio    \tOFF        \t< = " + readVals_all[4] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 234, false);
@@ -4778,7 +4778,7 @@ namespace KamertonTest
             }
             if (coilArr_all[35] != false)
             {
-                temp_disp = readVolt[5];
+                temp_disp = readVolt_all[35];
                 textBox8.Text += ("Test headset instructor ** Signal mag phone    \tOFF        \t< = " + readVals_all[5] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 235, false);
@@ -4786,7 +4786,7 @@ namespace KamertonTest
             }
             if (coilArr_all[36] != false)
             {
-                temp_disp = readVolt[6];
+                temp_disp = readVolt_all[36];
                 textBox8.Text += ("Test headset instructor ** Signal GGS          \tOFF        \t< = " + readVals_all[6] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 236, false);
@@ -4794,7 +4794,7 @@ namespace KamertonTest
             }
             if (coilArr_all[37] != false)
             {
-                temp_disp = readVolt[7];
+                temp_disp = readVolt_all[37];
                 textBox8.Text += ("Test headset instructor ** Signal GG Radio1    \tOFF        \t< = " + readVals_all[7] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 237, false);
@@ -4802,7 +4802,7 @@ namespace KamertonTest
             }
             if (coilArr_all[38] != false)
             {
-                temp_disp = readVolt[8];
+                temp_disp = readVolt_all[38];
                 textBox8.Text += ("Test headset instructor ** Signal GG Radio2    \tOFF        \t< = " + readVals_all[8] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 238, false);
@@ -4810,7 +4810,7 @@ namespace KamertonTest
             }
             if (coilArr_all[39] != false)
             {
-                temp_disp = readVolt[9];
+               // temp_disp = readVolt_all[39];
                 textBox8.Text += ("  < = " + readVals[9] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 239, false);
@@ -4819,7 +4819,7 @@ namespace KamertonTest
 
             if (coilArr_all[40] != false)
             {
-                temp_disp = readVolt[0];
+                temp_disp = readVolt_all[40];
                 textBox8.Text += ("Test headset dispatcher ** Signal FrontL     \tOFF          \t< = " + readVals_all[0] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 240, false);
@@ -4828,7 +4828,7 @@ namespace KamertonTest
 
             if (coilArr_all[41] != false)
             {
-                temp_disp = readVolt[1];
+                temp_disp = readVolt_all[41];
                 textBox8.Text += ("Test headset dispatcher ** Signal FrontR      \tOFF         \t< = " + readVals_all[1] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 241, false);
@@ -4837,7 +4837,7 @@ namespace KamertonTest
 
             if (coilArr_all[42] != false)
             {
-                temp_disp = readVolt[2];
+                temp_disp = readVolt_all[42];
                 textBox8.Text += ("Test headset dispatcher ** Signal LineL       \tOFF         \t< = " + readVals_all[2] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 242, false);
@@ -4846,7 +4846,7 @@ namespace KamertonTest
 
             if (coilArr_all[43] != false)
             {
-                temp_disp = readVolt[3];
+                temp_disp = readVolt_all[43];
                 textBox8.Text += ("Test headset dispatcher ** Signal LineR       \tOFF         \t< = " + readVals_all[3] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 243, false);
@@ -4854,7 +4854,7 @@ namespace KamertonTest
             }
             if (coilArr_all[44] != false)
             {
-                temp_disp = readVolt[4];
+                temp_disp = readVolt_all[44];
                 textBox8.Text += ("Test headset dispatcher ** Signal mag radio    \tOFF        \t< = " + readVals_all[4] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 244, false);
@@ -4862,14 +4862,14 @@ namespace KamertonTest
             }
             if (coilArr_all[45] != false)
             {
-                temp_disp = readVolt[5];
+                temp_disp = readVolt_all[45];
                 textBox8.Text += ("Test headset dispatcher ** Signal mag phone    \tOFF        \t< = " + readVals_all[5] + ">  " + temp_disp / 100 + " V\r\n");
                 res = myProtocol.writeCoil(slave, 245, false);
                 count_error_all();
             }
             if (coilArr_all[46] != false)
             {
-                temp_disp = readVolt[6];
+                temp_disp = readVolt_all[46];
                 textBox8.Text += ("Test headset dispatcher ** Signal GGS          \tOFF        \t< = " + readVals_all[6] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 246, false);
@@ -4877,7 +4877,7 @@ namespace KamertonTest
             }
             if (coilArr_all[47] != false)
             {
-                temp_disp = readVolt[7];
+                temp_disp = readVolt_all[47];
                 textBox8.Text += ("Test headset dispatcher ** Signal GG Radio1    \tOFF        \t< = " + readVals_all[7] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 247, false);
@@ -4885,7 +4885,7 @@ namespace KamertonTest
             }
             if (coilArr_all[48] != false)
             {
-                temp_disp = readVolt[8];
+                temp_disp = readVolt_all[48];
                 textBox8.Text += ("Test headset dispatcher ** Signal GG Radio2    \tOFF        \t< = " + readVals_all[8] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 248, false);
@@ -4893,7 +4893,7 @@ namespace KamertonTest
             }
             if (coilArr_all[49] != false)
             {
-                temp_disp = readVolt[9];
+                temp_disp = readVolt_all[49];
                 textBox8.Text += ("                                                          \t< = " + readVals_all[9] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 249, false);
@@ -4902,7 +4902,7 @@ namespace KamertonTest
 
             if (coilArr_all[50] != false)
             {
-                temp_disp = readVolt[0];
+                temp_disp = readVolt_all[50];
                 textBox8.Text += ("Test MTT ** Signal FrontL                      \tOFF        \t< = " + readVals_all[0] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 250, false);
@@ -4911,7 +4911,7 @@ namespace KamertonTest
 
             if (coilArr_all[51] != false)
             {
-                temp_disp = readVolt[1];
+                temp_disp = readVolt_all[51];
                 textBox8.Text += ("Test MTT ** Signal FrontR                      \tOFF        \t< = " + readVals_all[1] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 251, false);
@@ -4920,7 +4920,7 @@ namespace KamertonTest
 
             if (coilArr_all[52] != false)
             {
-                temp_disp = readVolt[2];
+                temp_disp = readVolt_all[52];
                 textBox8.Text += ("Test MTT ** Signal LineL                       \tOFF        \t< = " + readVals_all[2] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 252, false);
@@ -4929,7 +4929,7 @@ namespace KamertonTest
 
             if (coilArr_all[53] != false)
             {
-                temp_disp = readVolt[3];
+                temp_disp = readVolt_all[53];
                 textBox8.Text += ("Test MTT ** Signal LineR                       \tOFF        \t< = " + readVals_all[3] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 253, false);
@@ -4937,7 +4937,7 @@ namespace KamertonTest
             }
             if (coilArr_all[54] != false)
             {
-                temp_disp = readVolt[4];
+                temp_disp = readVolt_all[54];
                 textBox8.Text += ("Test MTT ** Signal mag radio                   \tOFF        \t< = " + readVals_all[4] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 254, false);
@@ -4945,7 +4945,7 @@ namespace KamertonTest
             }
             if (coilArr_all[55] != false)
             {
-                temp_disp = readVolt[5];
+                temp_disp = readVolt_all[55];
                 textBox8.Text += ("Test MTT ** Signal mag phone                   \tOFF        \t< = " + readVals_all[5] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 255, false);
@@ -4953,7 +4953,7 @@ namespace KamertonTest
             }
             if (coilArr_all[56] != false)
             {
-                temp_disp = readVolt[6];
+                temp_disp = readVolt_all[56];
                 textBox8.Text += ("Test MTT ** Signal GGS                         \tOFF        \t< = " + readVals_all[6] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 256, false);
@@ -4961,7 +4961,7 @@ namespace KamertonTest
             }
             if (coilArr_all[57] != false)
             {
-                temp_disp = readVolt[7];
+                temp_disp = readVolt_all[57];
                 textBox8.Text += ("Test MTT ** Signal GG Radio1                   \tOFF        \t< = " + readVals_all[7] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 257, false);
@@ -4969,7 +4969,7 @@ namespace KamertonTest
             }
             if (coilArr_all[58] != false)
             {
-                temp_disp = readVolt[8];
+                temp_disp = readVolt_all[58];
                 textBox8.Text += ("Test MTT ** Signal GG Radio2                   \tOFF        \t< = " + readVals_all[8] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 258, false);
@@ -4977,7 +4977,7 @@ namespace KamertonTest
             }
             if (coilArr_all[59] != false)
             {
-                temp_disp = readVolt[9];
+                temp_disp = readVolt_all[59];
                 textBox8.Text += ("Test MTT ** Signal GGS                         \tON         \t< = " + readVals_all[9] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 259, false);
@@ -4986,7 +4986,7 @@ namespace KamertonTest
 
             if (coilArr_all[60] != false)
             {
-                temp_disp = readVolt[0];
+                temp_disp = readVolt_all[60];
                 textBox8.Text += ("Test MTT ** Signal LineL                       \tON         \t< = " + readVals_all[0] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 260, false);
@@ -4995,7 +4995,7 @@ namespace KamertonTest
 
             if (coilArr_all[61] != false)
             {
-                temp_disp = readVolt[1];
+                temp_disp = readVolt_all[61];
                 textBox8.Text += ("Test MTT ** Signal LineR                       \tON         \t< = " + readVals_all[1] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 261, false);
@@ -5004,7 +5004,7 @@ namespace KamertonTest
 
             if (coilArr_all[62] != false)
             {
-                temp_disp = readVolt[2];
+                temp_disp = readVolt_all[62];
                 textBox8.Text += ("Test MTT ** Signal Mag phone                 \tON         \t< = " + readVals_all[2] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 262, false);
@@ -5013,7 +5013,7 @@ namespace KamertonTest
 
             if (coilArr_all[63] != false)
             {
-                temp_disp = readVolt[3];
+                temp_disp = readVolt_all[63];
                 textBox8.Text += ("Test MTT PTT    (CTS)                          \tOFF        \t< = " + readVals_all[3] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 263, false);
@@ -5138,7 +5138,7 @@ namespace KamertonTest
 
             if (coilArr_all[80] != false)
             {
-                temp_disp = readVolt[0];
+                temp_disp = readVolt_all[80];
                 textBox8.Text += ("Test GGS ** Signal FrontL                      \tOFF        \t< = " + readVals_all[0] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 280, false);
@@ -5147,7 +5147,7 @@ namespace KamertonTest
 
             if (coilArr_all[81] != false)
             {
-                temp_disp = readVolt[1];
+                temp_disp = readVolt_all[81];
                 textBox8.Text += ("Test GGS ** Signal FrontR                     \tOFF         \t< = " + readVals_all[1] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 281, false);
@@ -5156,7 +5156,7 @@ namespace KamertonTest
 
             if (coilArr_all[82] != false)
             {
-                temp_disp = readVolt[2];
+                temp_disp = readVolt_all[82];
                 textBox8.Text += ("Test GGS ** Signal LineL                       \tOFF        \t< = " + readVals_all[2] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 282, false);
@@ -5165,7 +5165,7 @@ namespace KamertonTest
 
             if (coilArr_all[83] != false)
             {
-                temp_disp = readVolt[3];
+                temp_disp = readVolt_all[83];
                 textBox8.Text += ("Test GGS ** Signal LineR                       \tOFF        \t< = " + readVals_all[3] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 283, false);
@@ -5173,7 +5173,7 @@ namespace KamertonTest
             }
             if (coilArr_all[84] != false)
             {
-                temp_disp = readVolt[4];
+                temp_disp = readVolt_all[84];
                 textBox8.Text += ("Test GGS ** Signal mag radio                   \tOFF        \t< = " + readVals_all[4] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 284, false);
@@ -5181,7 +5181,7 @@ namespace KamertonTest
             }
             if (coilArr_all[85] != false)
             {
-                temp_disp = readVolt[5];
+                temp_disp = readVolt_all[85];
                 textBox8.Text += ("Test GGS ** Signal mag phone                   \tOFF        \t< = " + readVals_all[5] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 285, false);
@@ -5189,7 +5189,7 @@ namespace KamertonTest
             }
             if (coilArr_all[86] != false)
             {
-                temp_disp = readVolt[6];
+                temp_disp = readVolt_all[86];
                 textBox8.Text += ("Test GGS ** Signal GGS                         \tOFF        \t< = " + readVals_all[6] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 286, false);
@@ -5197,7 +5197,7 @@ namespace KamertonTest
             }
             if (coilArr_all[87] != false)
             {
-                temp_disp = readVolt[7];
+                temp_disp = readVolt_all[87];
                 textBox8.Text += ("Test GGS ** Signal GG Radio1                   \tOFF        \t< = " + readVals_all[7] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 287, false);
@@ -5205,7 +5205,7 @@ namespace KamertonTest
             }
             if (coilArr_all[88] != false)
             {
-                temp_disp = readVolt[8];
+                temp_disp = readVolt_all[88];
                 textBox8.Text += ("Test GGS ** Signal GG Radio2                   \tOFF        \t< = " + readVals_all[8] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 288, false);
@@ -5213,7 +5213,7 @@ namespace KamertonTest
             }
             if (coilArr_all[89] != false)
             {
-                temp_disp = readVolt[9];
+                temp_disp = readVolt_all[89];
                 textBox8.Text += ("Test GGS ** Signal GGS                         \tON         \t< = " + readVals_all[9] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 289, false);
@@ -5222,7 +5222,7 @@ namespace KamertonTest
 
             if (coilArr_all[90] != false)
             {
-                temp_disp = readVolt[0];
+                temp_disp = readVolt_all[90];
                 textBox8.Text += ("Test GGS ** Signal FrontL                      \tON         \t< = " + readVals_all[0] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 290, false);
@@ -5231,7 +5231,7 @@ namespace KamertonTest
 
             if (coilArr_all[91] != false)
             {
-                temp_disp = readVolt[1];
+                temp_disp = readVolt_all[91];
                 textBox8.Text += ("Test GGS ** Signal FrontR                     \tON          \t< = " + readVals_all[1] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 291, false);
@@ -5240,7 +5240,7 @@ namespace KamertonTest
 
             if (coilArr_all[92] != false)
             {
-                temp_disp = readVolt[2];
+                temp_disp = readVolt_all[92];
                 textBox8.Text += ("Test GGS ** Signal mag phone                   \tON         \t < = " + readVals_all[2] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 292, false);
@@ -5284,7 +5284,7 @@ namespace KamertonTest
             }
             if (coilArr_all[98] != false)
             {
-                temp_disp = readVolt[8];
+                temp_disp = readVolt_all[98];
                 textBox8.Text += ("Test Microphone ** Signal mag phone            \tON         \t< = " + readVals_all[8] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 298, false);
@@ -5292,7 +5292,7 @@ namespace KamertonTest
             }
             if (coilArr_all[99] != false)
             {
-                temp_disp = readVolt[9];
+                temp_disp = readVolt_all[99];
                 textBox8.Text += ("Test Microphone ** Signal LineL                \tON         \t< = " + readVals_all[9] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 299, false);
@@ -5301,7 +5301,7 @@ namespace KamertonTest
 
             if (coilArr_all[100] != false)
             {
-                temp_disp = readVolt[0];
+                temp_disp = readVolt_all[100];
                 textBox8.Text += ("Test Radio1 ** Signal FrontL                   \tOFF        \t< = " + readVals_all[0] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 300, false);
@@ -5310,7 +5310,7 @@ namespace KamertonTest
 
             if (coilArr_all[101] != false)
             {
-                temp_disp = readVolt[1];
+                temp_disp = readVolt_all[101];
                 textBox8.Text += ("Test Radio1 ** Signal FrontR                   \tOFF        \t< = " + readVals_all[1] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 301, false);
@@ -5319,7 +5319,7 @@ namespace KamertonTest
 
             if (coilArr_all[102] != false)
             {
-                temp_disp = readVolt[2];
+                temp_disp = readVolt_all[102];
                 textBox8.Text += ("Test Radio1 ** Signal LineL                    \tOFF        \t< = " + readVals_all[2] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 302, false);
@@ -5328,7 +5328,7 @@ namespace KamertonTest
 
             if (coilArr_all[103] != false)
             {
-                temp_disp = readVolt[3];
+                temp_disp = readVolt_all[103];
                 textBox8.Text += ("Test Radio1 ** Signal LineR                    \tOFF        \t< = " + readVals_all[3] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 303, false);
@@ -5336,7 +5336,7 @@ namespace KamertonTest
             }
             if (coilArr_all[104] != false)
             {
-                temp_disp = readVolt[4];
+                temp_disp = readVolt_all[104];
                 textBox8.Text += ("Test Radio1 ** Signal mag radio                \tOFF        \t< = " + readVals_all[4] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 304, false);
@@ -5344,7 +5344,7 @@ namespace KamertonTest
             }
             if (coilArr_all[105] != false)
             {
-                temp_disp = readVolt[5];
+                temp_disp = readVolt_all[105];
                 textBox8.Text += ("Test Radio1 ** Signal mag phone                \tOFF        \t< = " + readVals_all[5] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 305, false);
@@ -5352,7 +5352,7 @@ namespace KamertonTest
             }
             if (coilArr_all[106] != false)
             {
-                temp_disp = readVolt[6];
+                temp_disp = readVolt_all[6];
                 textBox8.Text += ("Test Radio1 ** Signal GGS                      \tOFF        \t< = " + readVals_all[6] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 306, false);
@@ -5360,7 +5360,7 @@ namespace KamertonTest
             }
             if (coilArr_all[107] != false)
             {
-                temp_disp = readVolt[7];
+                temp_disp = readVolt_all[107];
                 textBox8.Text += ("Test Radio1 ** Signal GG Radio1                \tOFF        \t< = " + readVals_all[7] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 307, false);
@@ -5368,7 +5368,7 @@ namespace KamertonTest
             }
             if (coilArr_all[108] != false)
             {
-                temp_disp = readVolt[8];
+                temp_disp = readVolt_all[108];
                 textBox8.Text += ("Test Radio1 ** Signal GG Radio2                \tOFF        \t< = " + readVals_all[8] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 308, false);
@@ -5376,7 +5376,7 @@ namespace KamertonTest
             }
             if (coilArr_all[109] != false)
             {
-                temp_disp = readVolt[9];
+                temp_disp = readVolt_all[109];
                 textBox8.Text += ("Test Radio1 ** Signal Radio1                   \tON         \t< = " + readVals_all[9] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 309, false);
@@ -5385,7 +5385,7 @@ namespace KamertonTest
              
             if (coilArr_all[110] != false)
             {
-                temp_disp = readVolt[0];
+                temp_disp = readVolt_all[110];
                 textBox8.Text += ("Test Radio2 ** Signal FrontL                   \tOFF        \t< = " + readVals_all[0] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 310, false);
@@ -5394,7 +5394,7 @@ namespace KamertonTest
 
             if (coilArr_all[111] != false)
             {
-                temp_disp = readVolt[1];
+                temp_disp = readVolt_all[111];
                 textBox8.Text += ("Test Radio2 ** Signal FrontR                   \tOFF        \t< = " + readVals_all[1] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 311, false);
@@ -5403,7 +5403,7 @@ namespace KamertonTest
 
             if (coilArr_all[112] != false)
             {
-                temp_disp = readVolt[2];
+                temp_disp = readVolt_all[112];
                 textBox8.Text += ("Test Radio2 ** Signal LineL                    \tOFF        \t< = " + readVals_all[2] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 312, false);
@@ -5412,7 +5412,7 @@ namespace KamertonTest
 
             if (coilArr_all[113] != false)
             {
-                temp_disp = readVolt[3];
+                temp_disp = readVolt_all[113];
                 textBox8.Text += ("Test Radio2 ** Signal LineR                    \tOFF        \t< = " + readVals_all[3] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 313, false);
@@ -5420,7 +5420,7 @@ namespace KamertonTest
             }
             if (coilArr_all[114] != false)
             {
-                temp_disp = readVolt[4];
+                temp_disp = readVolt_all[114];
                 textBox8.Text += ("Test Radio2 ** Signal mag radio                \tOFF        \t< = " + readVals_all[4] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 314, false);
@@ -5428,7 +5428,7 @@ namespace KamertonTest
             }
             if (coilArr_all[115] != false)
             {
-                temp_disp = readVolt[5];
+                temp_disp = readVolt_all[115];
                 textBox8.Text += ("Test Radio2 ** Signal mag phone                \tOFF        \t< = " + readVals_all[5] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 315, false);
@@ -5436,7 +5436,7 @@ namespace KamertonTest
             }
             if (coilArr_all[116] != false)
             {
-                temp_disp = readVolt[6];
+                temp_disp = readVolt_all[116];
                 textBox8.Text += ("Test Radio2 ** Signal GGS                      \tOFF        \t< = " + readVals_all[6] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 316, false);
@@ -5444,7 +5444,7 @@ namespace KamertonTest
             }
             if (coilArr_all[117] != false)
             {
-                temp_disp = readVolt[7];
+                temp_disp = readVolt_all[117];
                 textBox8.Text += ("Test Radio2 ** Signal GG Radio1                \tOFF        \t< = " + readVals_all[7] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 317, false);
@@ -5452,7 +5452,7 @@ namespace KamertonTest
             }
             if (coilArr_all[118] != false)
             {
-                temp_disp = readVolt[8];
+                temp_disp = readVolt_all[118];
                 textBox8.Text += ("Test Radio2 ** Signal GG Radio2                \tOFF        \t< = " + readVals_all[8] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 318, false);
@@ -5460,24 +5460,16 @@ namespace KamertonTest
             }
             if (coilArr_all[119] != false)
             {
-                temp_disp = readVolt[9];
+                temp_disp = readVolt_all[119];
                 textBox8.Text += ("Test Radio2 ** Signal Radio2                   \tON         \t< = " + readVals_all[9] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 319, false);
                 count_error_all();
             }
 
-            //startRdReg = 320;
-            //numRdRegs = 10;
-            //res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);       // 40320 Считать счетчики ошибок  
-            //res = myProtocol.readMultipleRegisters(slave, startRdReg + 200, readVolt, numRdRegs); // 40520 Считать напряжение ошибок  
-            //startCoil = 320;                                                                      // Начальный Адрес 520 флага индикации возникновения  ошибки
-            //numCoils = 10;
-            //res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-            //Thread.Sleep(50);
             if (coilArr_all[120] != false)
             {
-                temp_disp = readVolt[0];
+                temp_disp = readVolt_all[120];
                 textBox8.Text += ("Test Microphone ** Signal FrontL               \tOFF        \t< = " + readVals_all[0] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 320, false);
@@ -5486,7 +5478,7 @@ namespace KamertonTest
 
             if (coilArr_all[121] != false)
             {
-                temp_disp = readVolt[1];
+                temp_disp = readVolt_all[121];
                 textBox8.Text += ("Test Microphone ** Signal FrontR               \tOFF        \t< = " + readVals_all[1] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 321, false);
@@ -5495,7 +5487,7 @@ namespace KamertonTest
 
             if (coilArr_all[122] != false)
             {
-                temp_disp = readVolt[2];
+                temp_disp = readVolt_all[122];
                 textBox8.Text += ("Test Microphone ** Signal LineL                \tOFF        \t< = " + readVals_all[2] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 322, false);
@@ -5504,7 +5496,7 @@ namespace KamertonTest
 
             if (coilArr_all[123] != false)
             {
-                temp_disp = readVolt[3];
+                temp_disp = readVolt_all[123];
                 textBox8.Text += ("Test Microphone ** Signal LineR                \tOFF        \t< = " + readVals_all[3] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 323, false);
@@ -5512,7 +5504,7 @@ namespace KamertonTest
             }
             if (coilArr_all[124] != false)
             {
-                temp_disp = readVolt[4];
+                temp_disp = readVolt_all[124];
                 textBox8.Text += ("Test Microphone ** Signal mag radio            \tOFF        \t< = " + readVals_all[4] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 324, false);
@@ -5520,7 +5512,7 @@ namespace KamertonTest
             }
             if (coilArr_all[125] != false)
             {
-                temp_disp = readVolt[5];
+                temp_disp = readVolt_all[125];
                 textBox8.Text += ("Test Microphone ** Signal mag phone            \tOFF        \t< = " + readVals_all[5] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 325, false);
@@ -5528,7 +5520,7 @@ namespace KamertonTest
             }
             if (coilArr_all[126] != false)
             {
-                temp_disp = readVolt[6];
+                temp_disp = readVolt_all[126];
                 textBox8.Text += ("Test Microphone ** Signal GGS                  \tOFF        \t< = " + readVals_all[6] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 326, false);
@@ -5536,7 +5528,7 @@ namespace KamertonTest
             }
             if (coilArr_all[127] != false)
             {
-                temp_disp = readVolt[7];
+                temp_disp = readVolt_all[127];
                 textBox8.Text += ("Test Microphone ** Signal GG Radio1            \tOFF        \t< = " + readVals_all[7] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 327, false);
@@ -5544,7 +5536,7 @@ namespace KamertonTest
             }
             if (coilArr_all[128] != false)
             {
-                temp_disp = readVolt[8];
+                temp_disp = readVolt_all[128];
                 textBox8.Text += ("Test Microphone ** Signal GG Radio2            \tOFF        \t< = " + readVals_all[8] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 328, false);
@@ -5552,7 +5544,7 @@ namespace KamertonTest
             }
             if (coilArr_all[129] != false)
             {
-                temp_disp = readVolt[9];
+                temp_disp = readVolt_all[129];
                 textBox8.Text += ("");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 329, false);
