@@ -1005,11 +1005,15 @@ void Reg_count_clear()
 	{
 		regBank.set(i,0);
 	}
+		for(unsigned int i = 40400; i<=40519;i++)
+	{
+		regBank.set(i,0);
+	}
 	for(int k = 200; k<=319;k++)
 	{
 		regBank.set(k,false);
 	}
-
+	regBank.set(40121,0);
 }
 void set_clock()
 {    
@@ -1160,7 +1164,6 @@ void FileOpen()
  //   regBank.set(adr_reg_file_tek,file_name_count);                                  // Регистр  хранения переменной номер файла
 	 if (SD.exists(file_name))                                                      // проверить есть ли такой файл
 	  { 
-
 		Serial.print(file_name);
 		Serial.println("  OK!.");
 	  }
