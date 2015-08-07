@@ -1165,7 +1165,7 @@ void FileOpen()
 	 if (SD.exists(file_name))                                                      // проверить есть ли такой файл
 	  { 
 		Serial.print(file_name);
-		Serial.println("  OK!.");
+		Serial.println("  Open  OK!.");
 	  }
 	  else 
 	  {
@@ -1200,14 +1200,13 @@ void FileClose()
 
 	   Serial.print(file_name);
 	   Serial.println(" close.");
-	  delay(500);
+	  delay(100);
 
 	  if (SD.exists(file_name))
 	  { 
 		Serial.print(file_name);
-		Serial.println("Close  OK!.");
+		Serial.println("  Close  OK!.");
 	  }
-
 	  else 
 	  {
 		  Serial.print(file_name);
@@ -2274,7 +2273,7 @@ if(test_sens == false)
 
 void set_rezistor()
 {
-	int mwt = regBank.get(40010);
+	int mwt = regBank.get(40010);             // Адрес хранения величины сигнала
 	resistor(1, mwt);
 	resistor(2, mwt);
 	regBank.set(adr_control_command,0);
@@ -4951,7 +4950,7 @@ modbus registers follow the following format
  // 
 	//regBank.add(40008);  // 
 	//regBank.add(40009);  // 
-	regBank.add(40010);  // 
+	regBank.add(40010);    // Адрес хранения величины сигнала резисторами
 	//regBank.add(40011);  // 
 	//regBank.add(40012);  // 
 	//regBank.add(40013);  // 

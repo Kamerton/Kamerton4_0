@@ -468,12 +468,12 @@ namespace KamertonTest
 
         private void file_fakt_namber()
         {
-            short[] readVals = new short[125];
+            short[] readVals = new short[20];
             int slave;
             int startRdReg;
             int numRdRegs;
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-            startRdReg = 112; // 40046 Адрес дата/время контроллера  
+            startRdReg = 112; // 40112 Адрес
             numRdRegs = 4;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
             lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
@@ -516,6 +516,7 @@ namespace KamertonTest
                 toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
                 toolStripStatusLabel1.BackColor = Color.Red;
             }
+            test_end();
         }
 
         #region Load Listboxes
@@ -2908,7 +2909,6 @@ namespace KamertonTest
             //    textBox8.Refresh();
             //}
 
-
             test_end();
         }
         private void sensor_on()
@@ -3149,7 +3149,7 @@ namespace KamertonTest
             bool[] coilArr = new bool[4];
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 8); // Отключить все сенсоры
-            textBox7.Text += ("Команда на ГГС отправлена" + "\r\n");
+            textBox7.Text += ("Команда на проверку ГГС отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
             test_end();
@@ -3208,7 +3208,7 @@ namespace KamertonTest
 
         private void test_end()
         {
-            ushort[] readVals = new ushort[21];
+            ushort[] readVals = new ushort[2];
             bool[] coilArr = new bool[2];
             startRdReg = 120;                                    //regBank.add(40120);  // adr_control_command Адрес передачи комманд на выполнение
                                                                  //  0 в регистре означает завершение выполнения фрагмента проверки
@@ -3219,7 +3219,7 @@ namespace KamertonTest
 
             do
             {
-                res = myProtocol.readMultipleRegisters(slave, 120, readVals, 1);  // Ожидание кода подтверждения окончания проверки  Адрес передачи подтверждения 40120
+                res = myProtocol.readMultipleRegisters(slave, 120, readVals, numRdRegs);  // Ожидание кода подтверждения окончания проверки  Адрес передачи подтверждения 40120
 
                 if ((res == BusProtocolErrors.FTALK_SUCCESS))
                 {
@@ -3241,8 +3241,8 @@ namespace KamertonTest
                 Thread.Sleep(50);
             } while (readVals[0] != 0);                                     // Если readVals[0] == 0 , тест завершен
 
-            textBox8.Text += ("Тест закончен " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
-            textBox8.Refresh();
+            textBox7.Text += ("Выполнение команды завершено" + "\r\n");
+            textBox7.Refresh();
 
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
             if (coilArr[0] == true) //есть ошибка
@@ -4495,7 +4495,8 @@ namespace KamertonTest
                 res = myProtocol.writeSingleRegister(slave, startWrReg, 12);                        // Команда на открытие файла отправлена
                 textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
                 textBox7.Refresh();
-                file_fakt_namber();
+                test_end();
+               // file_fakt_namber();
                 Thread.Sleep(500);
                 _All_Test_Stop = false;                                                             // Установить флаг запуска теста
             }
@@ -4752,12 +4753,8 @@ namespace KamertonTest
 
         }
 
-        private void button24_Click(object sender, EventArgs e)
+        private void button24_Click(object sender, EventArgs e)                     // Установка уровня входного сигнала резисторами
         {
-            //Polltimer1.Enabled = false;
-            //timer_byte_set.Enabled = false;
-            //timerCTS.Enabled = false;
-            //timerTestAll.Enabled = false;
             short[] writeVals = new short[12];
             short[] MSK = new short[2];
             MSK[0] = 5;
@@ -4783,11 +4780,7 @@ namespace KamertonTest
                 label72.Text = "=";
                 textBox4.BackColor = Color.White;
             }
-            //writeVals[1] = (short) tempK;                 // Установка уровня входного сигнала
-            //startWrReg = 41;
-            //numWrRegs = 10;                               //
-            //res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
-            startWrReg = 10;                                                                   // 
+            startWrReg = 10;                                                                   // Адрес хранения величины сигнала
             res = myProtocol.writeSingleRegister(slave, startWrReg, (short)tempK);
             startWrReg = 120;                                                                   // 
             res = myProtocol.writeSingleRegister(slave, startWrReg, 15);                        // 
@@ -4850,7 +4843,6 @@ namespace KamertonTest
             error_list2();
             error_list3();
             error_list_print();
-          //  Polltimer1.Enabled = true;
         }
 
     }
