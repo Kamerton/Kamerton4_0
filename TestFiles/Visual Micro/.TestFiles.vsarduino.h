@@ -83,8 +83,12 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 
+void dateTime(uint16_t* date, uint16_t* time);
+void serial_print_date();
+void error_P(const char* msg);
+void file_name();
+void preob_num_str();
 void sdError_P(const char* str);
-void debugPrint();
 uint8_t writeCache(uint32_t lbn);
 void initSizes();
 void clearCache(uint8_t addSig);
@@ -96,8 +100,10 @@ void writeMbr();
 uint32_t volSerialNumber();
 void makeFat16();
 void makeFat32();
-void eraseCard();
 void formatCard();
+void test_file();
+void set_time();
+void com_port_in_menu();
 //
 //
 

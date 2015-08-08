@@ -1,16 +1,25 @@
 
-// Print extra info for debug if DEBUG_PRINT is nonzero
-#define DEBUG_PRINT 0
+#include <SPI.h>
 #include <SdFat.h>
-#if DEBUG_PRINT
 #include <SdFatUtil.h>
-#endif  // DEBUG_PRINT
+#include <RTClib.h>
+#include <Wire.h>   
 
+RTC_DS1307 RTC;                                     // define the Real Time Clock object
 
+//-----------------------------------------------------------------------------------------------
+
+uint8_t second = 0;       //Initialization time
+uint8_t minute = 0;
+uint8_t hour   = 0;
+uint8_t dow    = 1;
+uint8_t day    = 1;
+uint8_t month  = 1;
+uint16_t year  = 15 ;
 
 // Adafruit SD shields and modules: pin 10
+//const uint8_t chipSelect = 53;
 const uint8_t chipSelect = SS;
-
 // Change spiSpeed to SPI_FULL_SPEED for better performance
 // Use SPI_QUARTER_SPEED for even slower SPI bus speed
 const uint8_t spiSpeed = SPI_HALF_SPEED;
@@ -21,9 +30,173 @@ ArduinoOutStream cout(Serial);
 Sd2Card card;
 SdFat sd;
 SdFile myFile;
+File root;
+
+//*********************Работа с именем файла ******************************
+//char file_name[13] ;
+//char file_name_txt[5] = ".txt";
+byte file_name_count = 0;
+char str_day_file[3];
+char str_day_file0[3];
+char str_day_file10[3];
+char str_mon_file[3];
+char str_mon_file0[3];
+char str_mon_file10[3];
+char str_year_file[3];
+
+char str_file_name_count[4];
+char str_file_name_count0[4] = "0";
+char str0[10];
+char str1[10];
+char str2[10];
+//char list_files_tab[200][13];
+//uint32_t size_files_tab[200] ;
+//int set_files = 0;
+
+char c;  // Для ввода символа с ком порта
+
+void dateTime(uint16_t* date, uint16_t* time)                  // Программа записи времени и даты файла
+{
+  DateTime now = RTC.now();
+
+  // return date using FAT_DATE macro to format fields
+  *date = FAT_DATE(now.year(), now.month(), now.day());
+
+  // return time using FAT_TIME macro to format fields
+  *time = FAT_TIME(now.hour(), now.minute(), now.second());
+}
+
+void serial_print_date()                           // Печать даты и времени    
+{
+	  DateTime now = RTC.now();
+	  Serial.print(now.day(), DEC);
+	  Serial.print('/');
+	  Serial.print(now.month(), DEC);
+	  Serial.print('/');
+	  Serial.print(now.year(), DEC);//Serial display time
+	  Serial.print(' ');
+	  Serial.print(now.hour(), DEC);
+	  Serial.print(':');
+	  Serial.print(now.minute(), DEC);
+	  Serial.print(':');
+	  Serial.print(now.second(), DEC);
+}
+
+//++++++++++++++++++++ Назначение имени файла ++++++++++++++++++++++++++++++++++++++++++++
+const uint32_t FILE_BLOCK_COUNT = 256000;
+// log file base name.  Must be six characters or less.
+#define FILE_BASE_NAME "150101"
+const uint8_t BASE_NAME_SIZE = sizeof(FILE_BASE_NAME) - 1;
+char fileName[13] = FILE_BASE_NAME "00.TXT";
+//------------------------------------------------------------------------------
+const int8_t ERROR_LED_PIN = 13;
+
+//==============================================================================
+// Error messages stored in flash.
+#define error(msg) error_P(PSTR(msg))
+//------------------------------------------------------------------------------
+void error_P(const char* msg) {
+  sd.errorHalt_P(msg);
+}
+
+//------------------------------------------------------------------------------
+
+// Size of file base name.  Must not be larger than six.
+//Размер базовой части имени файла. Должно быть не больше, чем шесть.
+//const uint8_t BASE_NAME_SIZE = sizeof(FILE_BASE_NAME) - 1;
+
+void file_name()
+{
+
+	preob_num_str();
+
+  while (sd.exists(fileName)) 
+  {
+    if (fileName[BASE_NAME_SIZE + 1] != '9') 
+	{
+      fileName[BASE_NAME_SIZE + 1]++;
+    }
+	else if (fileName[BASE_NAME_SIZE] != '9') 
+	{
+      fileName[BASE_NAME_SIZE + 1] = '0';
+      fileName[BASE_NAME_SIZE]++;
+    }
+	else 
+	{
+      error("Can't create file name");
+    }
+  }
+  if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) error("file.open");
+  //do {
+  //  delay(10);
+  // } while (Serial.read() >= 0);
+  //
+  Serial.print(F("Logging to: "));
+  Serial.println(fileName);
+  myFile.close();
+  Serial.println("done.");
 
 
 
+
+ // Serial.println(F("Type any character to stop"));
+} 
+
+void preob_num_str() // Программа формирования имени файла, состоящего из текущей даты и счетчика файлов
+{
+	DateTime now = RTC.now();
+	//second = now.second();       //Initialization time
+	//minute = now.minute();
+	//hour   = now.hour();
+	day   = now.day();
+	month = now.month();
+	year  = now.year();
+
+
+	int year_temp = year-2000;
+
+	itoa (year_temp,str_year_file, 10);                                        // Преобразование даты год в строку ( 10 - десятичный формат) 
+
+	
+	if (month <10)
+		{
+		   itoa (0,str_mon_file0, 10);                                         //  Преобразование даты месяц  в строку ( 10 - десятичный формат) 
+		   itoa (month,str_mon_file10, 10);                                    //  Преобразование числа в строку ( 10 - десятичный формат) 
+		   sprintf(str_mon_file, "%s%s", str_mon_file0, str_mon_file10);       // Сложение 2 строк
+		}
+	else
+		{
+		   itoa (month,str_mon_file, 10);                                      // Преобразование числа в строку ( 10 - десятичный формат) 
+		}
+
+
+	if (day <10)
+		{
+		   itoa (0,str_day_file0, 10);                                         // Преобразование числа в строку ( 10 - десятичный формат) 
+		   itoa (day,str_day_file10, 10);                                      // Преобразование числа в строку ( 10 - десятичный формат) 
+		   sprintf(str_day_file, "%s%s", str_day_file0, str_day_file10);       // Сложение 2 строк
+		}
+	else
+		{
+		itoa (day,str_day_file, 10);                                           // Преобразование числа в строку ( 10 - десятичный формат) 
+		}
+		 
+	if (file_name_count<10)
+		{
+			itoa (file_name_count,str0, 10);                                   // Преобразование числа в строку ( 10 - десятичный формат) 
+			sprintf(str_file_name_count, "%s%s", str_file_name_count0, str0);  // Сложение 2 строк
+		}
+	
+	else
+		{
+			itoa (file_name_count,str_file_name_count, 10);                    // Преобразование числа в строку ( 10 - десятичный формат) 
+		}
+	sprintf(str1, "%s%s",str_year_file, str_mon_file);                         // Сложение 2 строк
+	sprintf(str2, "%s%s",str1, str_day_file);                                  // Сложение 2 строк
+	sprintf(fileName, "%s%s", str2, "00.TXT");                                 // Получение имени файла в file_name
+}
+
+//+++++++++++++++++++++++++++++++++++++++++++++ Форматирование SD ++++++++++++++++++++++++++
 uint32_t cardSizeBlocks;
 uint16_t cardCapacityMB;
 
@@ -67,25 +240,6 @@ void sdError_P(const char* str) {
   while (1);
 }
 //------------------------------------------------------------------------------
-#if DEBUG_PRINT
-void debugPrint() {
-  cout << pstr("FreeRam: ") << FreeRam() << endl;
-  cout << pstr("partStart: ") << relSector << endl;
-  cout << pstr("partSize: ") << partSize << endl;
-  cout << pstr("reserved: ") << reservedSectors << endl;
-  cout << pstr("fatStart: ") << fatStart << endl;
-  cout << pstr("fatSize: ") << fatSize << endl;
-  cout << pstr("dataStart: ") << dataStart << endl;
-  cout << pstr("clusterCount: ");
-  cout << ((relSector + partSize - dataStart)/sectorsPerCluster) << endl;
-  cout << endl;
-  cout << pstr("Heads: ") << int(numberOfHeads) << endl;
-  cout << pstr("Sectors: ") << int(sectorsPerTrack) << endl;
-  cout << pstr("Cylinders: ");
-  cout << cardSizeBlocks/(numberOfHeads*sectorsPerTrack) << endl;
-}
-#endif  // DEBUG_PRINT
-//------------------------------------------------------------------------------
 // write cached block to the card
 uint8_t writeCache(uint32_t lbn) 
 {
@@ -93,8 +247,7 @@ uint8_t writeCache(uint32_t lbn)
 }
 //------------------------------------------------------------------------------
 // initialize appropriate sizes for SD capacity
-void initSizes() 
-{
+void initSizes() {
   if (cardCapacityMB <= 6) {
     sdError("Card is too small.");
   } else if (cardCapacityMB <= 16) {
@@ -138,8 +291,7 @@ void initSizes()
 }
 //------------------------------------------------------------------------------
 // zero cache and optionally set the sector signature
-void clearCache(uint8_t addSig) 
-{
+void clearCache(uint8_t addSig) {
   memset(&cache, 0, sizeof(cache));
   if (addSig) {
     cache.mbr.mbrSig0 = BOOTSIG0;
@@ -148,8 +300,7 @@ void clearCache(uint8_t addSig)
 }
 //------------------------------------------------------------------------------
 // zero FAT and root dir area on SD
-void clearFatDir(uint32_t bgn, uint32_t count) 
-{
+void clearFatDir(uint32_t bgn, uint32_t count) {
   clearCache(false);
   if (!card.writeStart(bgn, count)) {
     sdError("Clear FAT/DIR writeStart failed");
@@ -373,43 +524,20 @@ void makeFat32()
     sdError("FAT32 reserve failed");
   }
 }
-//------------------------------------------------------------------------------
-// flash erase all data
-uint32_t const ERASE_SIZE = 262144L;
-void eraseCard() 
-{
-  cout << endl << pstr("Erasing\n");
-  uint32_t firstBlock = 0;
-  uint32_t lastBlock;
-  uint16_t n = 0;
 
-  do {
-    lastBlock = firstBlock + ERASE_SIZE - 1;
-    if (lastBlock >= cardSizeBlocks) lastBlock = cardSizeBlocks - 1;
-    if (!card.erase(firstBlock, lastBlock)) sdError("erase failed");
-    cout << '.';
-    if ((n++)%32 == 31) cout << endl;
-    firstBlock += ERASE_SIZE;
-  } while (firstBlock < cardSizeBlocks);
-  cout << endl;
-
-  if (!card.readBlock(0, cache.data)) sdError("readBlock");
-  cout << hex << showbase << setfill('0') << internal;
-  cout << pstr("All data set to ") << setw(4) << int(cache.data[0]) << endl;
-  cout << dec << noshowbase << setfill(' ') << right;
-  cout << pstr("Erase done\n");
-}
-//------------------------------------------------------------------------------
 void formatCard() 
 {
   cout << endl;
   cout << pstr("Formatting\n");
   initSizes();
-  if (card.type() != SD_CARD_TYPE_SDHC) {
-    cout << pstr("FAT16\n");
+  if (card.type() != SD_CARD_TYPE_SDHC) 
+  {
+   // cout << pstr("FAT16\n");
     makeFat16();
-  } else {
-    cout << pstr("FAT32\n");
+  }
+  else 
+  {
+   // cout << pstr("FAT32\n");
     makeFat32();
   }
 #if DEBUG_PRINT
@@ -417,111 +545,147 @@ void formatCard()
 #endif  // DEBUG_PRINT
   cout << pstr("Format done\n");
 }
+//+++++++++++++++++++++++++++++++++++++++++++++Конецы  Форматирование SD ++++++++++++++++++++++++++
+
+void test_file()
+{
+	file_name();
+	// open the file for write at end like the Native SD library
+
+    if (!myFile.open(fileName, O_RDWR | O_CREAT | O_AT_END)) 
+	//if (!myFile.open("test.txt", O_RDWR | O_CREAT | O_AT_END)) 
+	{
+		sd.errorHalt("opening test.txt for write failed");
+	}
+	// if the file opened okay, write to it:
+	Serial.print("Writing to test.txt...");
+	myFile.println("testing 1, 2, 3.");
+
+	// close the file:
+	myFile.close();
+	Serial.println("done.");
+
+	// re-open the file for reading:
+	if (!myFile.open(fileName, O_READ)) 
+	{
+		sd.errorHalt("opening test.txt for read failed");
+	}
+	Serial.println(fileName);
+
+	// read from the file until there's nothing else in it:
+	int data;
+	while ((data = myFile.read()) >= 0) Serial.write(data);
+	// close the file:
+	myFile.close();
+}
+void set_time()
+{
+	RTC.adjust(DateTime(__DATE__, __TIME__));
+//	DateTime now = RTC.now();
+//	second = now.second();       //Initialization time
+//	minute = now.minute();
+//	hour   = now.hour();
+//	day    =  now.day();
+//	day++;
+//	if(day > 31)day = 1;
+//	month  = now.month();
+//	year   = now.year();
+//	DateTime set_time = DateTime(year, month, day, hour, minute, second); // Занести данные о времени в строку "set_time"
+//	RTC.adjust(set_time);             
+}
+
+void com_port_in_menu()
+{
+  while (1) 
+  {
+ 	  cout << pstr(
+		"\n"
+		"Options are:\n"
+		"F or f - erase and then format the card. (recommended)\n"
+		"T or t - test file.\n"
+		"P or p - print date.\n"
+		"N or n - set file name.\n"
+		"S or s - set time.\n"
+		"\n"
+		"Enter option: ");
+    
+	  while (!Serial.available()) {}
+	  c = Serial.read();
+	  cout << c << endl;
+	  if (!strchr("FfPpTtNnSs", c)) 
+	  {
+		cout << pstr("Quiting, invalid option entered.") << endl;
+		return;
+	  }
+
+	  if (!card.init(spiSpeed, chipSelect)) 
+	  {
+		cout << pstr(
+		 "\nSD initialization failure!\n"
+		 "Is the SD card inserted correctly?\n"
+		 "Is chip select correct at the top of this sketch?\n");
+		sdError("card.init failed");
+	  }
+	  if (c == 'F' || c == 'f') 
+	  {
+		formatCard();
+	  }
+		if (c == 'T'|| c == 't') 
+	  {
+		test_file();
+	  }
+	   if (c == 'P'|| c == 'p') 
+	  {
+		serial_print_date();
+	    Serial.println();
+	  }
+
+	   if (c == 'N'|| c == 'n') 
+	  {
+	   file_name();
+	  }
+	   	   if (c == 'S'|| c == 's') 
+	  {
+	    set_time();
+	  }
+  }
+}
+
 //------------------------------------------------------------------------------
 void setup() 
 {
-  char c;
-  Serial.begin(9600);
-    Serial.println("Type any character to start");
-  while (Serial.read() <= 0) {}
-  delay(400);  // catch Due reset problem
+
+	Serial.begin(9600);
+	Wire.begin();
+
+	if (!RTC.begin())                               // Настройка часов 
+		{
+			Serial.println("RTC failed");
+			while(1);
+		};
+
+	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
+
+	delay(400);  // catch Due reset problem
   
-  // Initialize SdFat or print a detailed error message and halt
-  // Use half speed like the native library.
-  // change to SPI_FULL_SPEED for more performance.
-  if (!sd.begin(chipSelect, SPI_HALF_SPEED)) sd.initErrorHalt();
+	// Initialize SdFat or print a detailed error message and halt
+	// Use half speed like the native library.
+	// change to SPI_FULL_SPEED for more performance.
+	if (!sd.begin(chipSelect, SPI_HALF_SPEED)) sd.initErrorHalt();
+	cardSizeBlocks = card.cardSize();
+	if (cardSizeBlocks == 0) sdError("cardSize");
+	cardCapacityMB = (cardSizeBlocks + 2047)/2048;
 
-  // open the file for write at end like the Native SD library
-  if (!myFile.open("test.txt", O_RDWR | O_CREAT | O_AT_END)) {
-    sd.errorHalt("opening test.txt for write failed");
-  }
-  // if the file opened okay, write to it:
-  Serial.print("Writing to test.txt...");
-  myFile.println("testing 1, 2, 3.");
+	cout << pstr("Card Size: ") << cardCapacityMB;
+	cout << pstr(" MB, (MB = 1,048,576 bytes)") << endl;
+	preob_num_str();
+	// rtc.adjust(DateTime(__DATE__, __TIME__));
 
-  // close the file:
-  myFile.close();
-  Serial.println("done.");
-
-  // re-open the file for reading:
-  if (!myFile.open("test.txt", O_READ)) {
-    sd.errorHalt("opening test.txt for read failed");
-  }
-  Serial.println("test.txt:");
-
-  // read from the file until there's nothing else in it:
-  int data;
-  while ((data = myFile.read()) >= 0) Serial.write(data);
-  // close the file:
-  myFile.close();
-
-
-  /*
-  while (!Serial) {} // wait for Leonardo
-
-  cout << pstr(
-    "\n"
-    "This sketch can erase and/or format SD/SDHC cards.\n"
-    "\n"
-    "Erase uses the card's fast flash erase command.\n"
-    "Flash erase sets all data to 0X00 for most cards\n"
-    "and 0XFF for a few vendor's cards.\n"
-    "\n"
-    "Cards larger than 2 GB will be formatted FAT32 and\n"
-    "smaller cards will be formatted FAT16.\n"
-    "\n"
-    "Warning, all data on the card will be erased.\n"
-    "Enter 'Y' to continue: ");
-  while (!Serial.available()) {}
-  delay(400);  // catch Due restart problem
-  
-  c = Serial.read();
-  cout << c << endl;
-  if (c != 'Y') {
-    cout << pstr("Quiting, you did not enter 'Y'.\n");
-    return;
-  }
-  // read any existing Serial data
-  while (Serial.read() >= 0) {}
-  
-  cout << pstr(
-    "\n"
-    "Options are:\n"
-    "E - erase the card and skip formatting.\n"
-    "F - erase and then format the card. (recommended)\n"
-    "Q - quick format the card without erase.\n"
-    "\n"
-    "Enter option: ");
-    
-  while (!Serial.available()) {}
-  c = Serial.read();
-  cout << c << endl;
-  if (!strchr("EFQ", c)) {
-    cout << pstr("Quiting, invalid option entered.") << endl;
-    return;
-  }
-
-  if (!card.init(spiSpeed, chipSelect)) {
-    cout << pstr(
-     "\nSD initialization failure!\n"
-     "Is the SD card inserted correctly?\n"
-     "Is chip select correct at the top of this sketch?\n");
-    sdError("card.init failed");
-  }
-  cardSizeBlocks = card.cardSize();
-  if (cardSizeBlocks == 0) sdError("cardSize");
-  cardCapacityMB = (cardSizeBlocks + 2047)/2048;
-
-  cout << pstr("Card Size: ") << cardCapacityMB;
-  cout << pstr(" MB, (MB = 1,048,576 bytes)") << endl;
-
-  if (c == 'E' || c == 'F') {
-    eraseCard();
-  }
-  if (c == 'F' || c == 'Q') {
-    formatCard();
-  }
-  */
 }
 //------------------------------------------------------------------------------
-void loop() {}
+void loop() 
+{
+	com_port_in_menu();
+	delay(500);
+
+}
