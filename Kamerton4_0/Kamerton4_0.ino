@@ -25,7 +25,6 @@
 
 
 #include <SPI.h>
-//#include <SD.h>
 #include <SdFat.h>
 #include <SdFatUtil.h>
 #include <RTClib.h>
@@ -101,6 +100,7 @@ int analog_12v_x1        = 15;       //
 
 //************************************************************************************************
 
+
 RTC_DS1307 RTC;                                     // define the Real Time Clock object
 
 //-----------------------------------------------------------------------------------------------
@@ -113,6 +113,7 @@ uint8_t day    = 1;
 uint8_t month  = 1;
 uint16_t year  = 15 ;
 
+//------------------------------------------------------------------------------------------------------------
 
 
 MCP23017 mcp_Klava;                                 // Назначение портов расширения MCP23017  2 A - in,  B - Out
@@ -132,48 +133,36 @@ const int adr_file_name_count  PROGMEM           = 243;          // Адрес хранен
 //------------------------------------------------------------------------------------------------------------------
 int regcount_err        = 0;                                     // Переменная для хранения всех ошибок
 
-//*********************Работа с именем файла ******************************
-//char file_name[13] ;
-//char file_name_txt[5] = ".txt";
-byte file_name_count = 0;
-char str_day_file[3];
-char str_day_file0[3];
-char str_day_file10[3];
-char str_mon_file[3];
-char str_mon_file0[3];
-char str_mon_file10[3];
-char str_year_file[3];
-
-char str_file_name_count[4];
-char str_file_name_count0[4] = "0";
-char str0[10];
-char str1[10];
-char str2[10];
 
 
+//++++++++++++++++++++++ Работа с файлами +++++++++++++++++++++++++++++++++++++++
+#define chipSelect SS
+SdFat sd;
+File myFile;
+SdFile file;
+// созданы переменные, использующие функции библиотеки SD utility library functions: +++++++++++++++
+// Change spiSpeed to SPI_FULL_SPEED for better performance
+// Use SPI_QUARTER_SPEED for even slower SPI bus speed
+const uint8_t spiSpeed = SPI_HALF_SPEED;
+
+//++++++++++++++++++++ Назначение имени файла ++++++++++++++++++++++++++++++++++++++++++++
+//const uint32_t FILE_BLOCK_COUNT = 256000;
+// log file base name.  Must be six characters or less.
+#define FILE_BASE_NAME "150101"
+const uint8_t BASE_NAME_SIZE = sizeof(FILE_BASE_NAME) - 1;
+char fileName[13] = FILE_BASE_NAME "00.TXT";
+//------------------------------------------------------------------------------
+
+char c;  // Для ввода символа с ком порта
 
 
+// Serial output stream
+ArduinoOutStream cout(Serial);
 
-
-
-//-------------------------------------------------------------------------
 
 //+++++++++++++++++++++ Установки прерывания +++++++++++++++++++++++++++++++
 
 unsigned int sampleCount1 = 0;
-
-//++++++++++++++ созданы переменные, использующие функции библиотеки SD utility library functions: +++++++++++++++
-Sd2Card card;
-//SdVolume volume;
-SdFile root;
-File myFile;
-SdFat SD;
-
-//const uint8_t chipSelect = SS;
-const uint8_t chipSelect = 53;
-// Serial output stream
-ArduinoOutStream cout(Serial);
-
 
 //+++++++++++++++++++ MODBUS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -686,6 +675,7 @@ void dateTime(uint16_t* date, uint16_t* time)                  // Программа запи
   *time = FAT_TIME(now.hour(), now.minute(), now.second());
 }
 
+
 void serial_print_date()                           // Печать даты и времени    
 {
 	  DateTime now = RTC.now();
@@ -701,7 +691,6 @@ void serial_print_date()                           // Печать даты и времени
 	  Serial.print(':');
 	  Serial.print(now.second(), DEC);
 }
-
 //++++++++++++++++++++ Назначение имени файла ++++++++++++++++++++++++++++++++++++++++++++
 const uint32_t FILE_BLOCK_COUNT = 256000;
 // log file base name.  Must be six characters or less.
@@ -728,9 +717,9 @@ void error_P(const char* msg) {
 void file_name()
 {
 
-	preob_num_str();
+   preob_num_str();
 
-  while (SD.exists(fileName)) 
+  while (sd.exists(fileName)) 
   {
 	if (fileName[BASE_NAME_SIZE + 1] != '9') 
 	{
@@ -743,27 +732,24 @@ void file_name()
 	}
 	else 
 	{
-	  error("Can't create file name");
+//	  sdError("Can't create file name");
 	}
   }
-  if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) error("file.open");
+  if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) //sdError("file.open");
   //do {
   //  delay(10);
   // } while (Serial.read() >= 0);
   //
-  //Serial.print(F("Logging to: "));
-  //Serial.println(fileName);
-  //myFile.close();
-  //Serial.println("done.");
-  // Serial.println(F("Type any character to stop"));
+  Serial.print(F("Logging to: "));
+  Serial.println(fileName);
+  myFile.close();
+  Serial.println("done.");
 } 
 
 void preob_num_str() // Программа формирования имени файла, состоящего из текущей даты и счетчика файлов
 {
 	DateTime now = RTC.now();
-	//second = now.second();       //Initialization time
-	//minute = now.minute();
-	//hour   = now.hour();
+
 	day   = now.day();
 	month = now.month();
 	year  = now.year();
@@ -797,19 +783,10 @@ void preob_num_str() // Программа формирования имени файла, состоящего из текуще
 		itoa (day,str_day_file, 10);                                           // Преобразование числа в строку ( 10 - десятичный формат) 
 		}
 		 
-	if (file_name_count<10)
-		{
-			itoa (file_name_count,str0, 10);                                   // Преобразование числа в строку ( 10 - десятичный формат) 
-			sprintf(str_file_name_count, "%s%s", str_file_name_count0, str0);  // Сложение 2 строк
-		}
-	
-	else
-		{
-			itoa (file_name_count,str_file_name_count, 10);                    // Преобразование числа в строку ( 10 - десятичный формат) 
-		}
 	sprintf(str1, "%s%s",str_year_file, str_mon_file);                         // Сложение 2 строк
 	sprintf(str2, "%s%s",str1, str_day_file);                                  // Сложение 2 строк
 	sprintf(fileName, "%s%s", str2, "00.TXT");                                 // Получение имени файла в file_name
+	//Serial.println(fileName);
 }
 
 //+++++++++++++++++++++++++++++++++++++++++++++ Форматирование SD ++++++++++++++++++++++++++
@@ -908,7 +885,6 @@ void initSizes() {
 //------------------------------------------------------------------------------
 // zero cache and optionally set the sector signature
 void clearCache(uint8_t addSig) {
-  memset(&cache, 0, sizeof(cache));
   if (addSig) {
 	cache.mbr.mbrSig0 = BOOTSIG0;
 	cache.mbr.mbrSig1 = BOOTSIG1;
@@ -1734,7 +1710,7 @@ void FileOpen()
 			regBank.set(adr_Time_Test_minute, 0); 
 			regBank.set(adr_Time_Test_second, 0); 
 	
-	  myFile = SD.open(fileName, FILE_WRITE);            // открыть файл для записи данных
+	  myFile = sd.open(fileName, FILE_WRITE);            // открыть файл для записи данных
 	  myFile.println ("");
 	  myFile.print ("Start test   ");
 	  file_print_date();
@@ -6012,7 +5988,7 @@ void setup()
 		// Initialize SdFat or print a detailed error message and halt
 	// Use half speed like the native library.
 	// change to SPI_FULL_SPEED for more performance.
-	if (!SD.begin(chipSelect, SPI_HALF_SPEED)) SD.initErrorHalt();
+	if (!sd.begin(chipSelect, SPI_HALF_SPEED)) SD.initErrorHalt();
 //	if (!SD.begin(chipSelect, SPI_FULL_SPEED)) SD.initErrorHalt();
 	cardSizeBlocks = card.cardSize();
 	//if (cardSizeBlocks == 0) sdError("cardSize");
