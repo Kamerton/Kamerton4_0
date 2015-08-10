@@ -646,17 +646,17 @@ void list_file()
 {
   while (file.openNext(sd.vwd(), O_READ))
   {
-    file.printName(&Serial);
-    Serial.write(' ');
-    file.printModifyDateTime(&Serial);
-    Serial.write(' ');
-    file.printFileSize(&Serial);
-    if (file.isDir()) {
-      // Indicate a directory.
-      Serial.write('/');
-    }
-    Serial.println();
-    file.close();
+	file.printName(&Serial);
+	Serial.write(' ');
+	file.printModifyDateTime(&Serial);
+	Serial.write(' ');
+	file.printFileSize(&Serial);
+	if (file.isDir()) {
+	  // Indicate a directory.
+	  Serial.write('/');
+	}
+	Serial.println();
+	file.close();
   }
   Serial.println("Done!");
 
