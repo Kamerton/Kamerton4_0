@@ -83,9 +83,13 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 
-void dateTime(uint16_t* date, uint16_t* time);
+void sdErrorMsg_F(const __FlashStringHelper* str);
+uint8_t cidDmp();
+uint8_t csdDmp();
+uint8_t partDmp();
+void volDmp();
 void serial_print_date();
-void error_P(const char* msg);
+void dateTime(uint16_t* date, uint16_t* time);
 void file_name();
 void preob_num_str();
 void sdError_P(const char* str);

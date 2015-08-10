@@ -20,17 +20,161 @@ uint16_t year  = 15 ;
 // Adafruit SD shields and modules: pin 10
 //const uint8_t chipSelect = 53;
 const uint8_t chipSelect = SS;
+
+const int8_t DISABLE_CHIP_SELECT = -1;
 // Change spiSpeed to SPI_FULL_SPEED for better performance
 // Use SPI_QUARTER_SPEED for even slower SPI bus speed
 const uint8_t spiSpeed = SPI_HALF_SPEED;
-
+//const uint8_t spiSpeed = SPI_QUARTER_SPEED;
 // Serial output stream
 ArduinoOutStream cout(Serial);
 
 Sd2Card card;
 SdFat sd;
 SdFile myFile;
-File root;
+//File root;
+
+
+
+
+
+
+// global for card size
+uint32_t cardSize;
+
+// global for card erase size
+uint32_t eraseSize;
+//------------------------------------------------------------------------------
+// store error strings in flash
+#define sdErrorMsg(msg) sdErrorMsg_F(F(msg));
+void sdErrorMsg_F(const __FlashStringHelper* str) 
+{
+  cout << str << endl;
+  if (sd.card()->errorCode()) {
+	cout << F("SD errorCode: ");
+	cout << hex << int(sd.card()->errorCode()) << endl;
+	cout << F("SD errorData: ");
+	cout << int(sd.card()->errorData()) << dec << endl;
+  }
+}
+//------------------------------------------------------------------------------
+uint8_t cidDmp()
+{
+  cid_t cid;
+  if (!sd.card()->readCID(&cid)) {
+	sdErrorMsg("readCID failed");
+	return false;
+  }
+  cout << F("\nManufacturer ID: ");
+  cout << hex << int(cid.mid) << dec << endl;
+  cout << F("OEM ID: ") << cid.oid[0] << cid.oid[1] << endl;
+  cout << F("Product: ");
+  for (uint8_t i = 0; i < 5; i++) {
+	cout << cid.pnm[i];
+  }
+  cout << F("\nVersion: ");
+  cout << int(cid.prv_n) << '.' << int(cid.prv_m) << endl;
+  cout << F("Serial number: ") << hex << cid.psn << dec << endl;
+  cout << F("Manufacturing date: ");
+  cout << int(cid.mdt_month) << '/';
+  cout << (2000 + cid.mdt_year_low + 10 * cid.mdt_year_high) << endl;
+  cout << endl;
+  return true;
+}
+//------------------------------------------------------------------------------
+uint8_t csdDmp() 
+{
+  csd_t csd;
+  uint8_t eraseSingleBlock;
+  if (!sd.card()->readCSD(&csd)) {
+	sdErrorMsg("readCSD failed");
+	return false;
+  }
+  if (csd.v1.csd_ver == 0) {
+	eraseSingleBlock = csd.v1.erase_blk_en;
+	eraseSize = (csd.v1.sector_size_high << 1) | csd.v1.sector_size_low;
+  } else if (csd.v2.csd_ver == 1) {
+	eraseSingleBlock = csd.v2.erase_blk_en;
+	eraseSize = (csd.v2.sector_size_high << 1) | csd.v2.sector_size_low;
+  } else {
+	cout << F("csd version error\n");
+	return false;
+  }
+  eraseSize++;
+  cout << F("cardSize: ") << 0.000512*cardSize;
+  cout << F(" MB (MB = 1,000,000 bytes)\n");
+
+  cout << F("flashEraseSize: ") << int(eraseSize) << F(" blocks\n");
+  cout << F("eraseSingleBlock: ");
+  if (eraseSingleBlock) {
+	cout << F("true\n");
+  } else {
+	cout << F("false\n");
+  }
+  return true;
+}
+//------------------------------------------------------------------------------
+// print partition table
+uint8_t partDmp() 
+{
+  cache_t *p = sd.vol()->cacheClear();
+  if (!p) {
+	sdErrorMsg("cacheClear failed");
+	return false;
+  }
+  if (!sd.card()->readBlock(0, p->data)) {
+	sdErrorMsg("read MBR failed");
+	return false;
+  }
+  for (uint8_t ip = 1; ip < 5; ip++) {
+	part_t *pt = &p->mbr.part[ip - 1];
+	if ((pt->boot & 0X7F) != 0 || pt->firstSector > cardSize) {
+	  cout << F("\nNo MBR. Assuming Super Floppy format.\n");
+	  return true;
+	}
+  }
+  cout << F("\nSD Partition Table\n");
+  cout << F("part,boot,type,start,length\n");
+  for (uint8_t ip = 1; ip < 5; ip++) {
+	part_t *pt = &p->mbr.part[ip - 1];
+	cout << int(ip) << ',' << hex << int(pt->boot) << ',' << int(pt->type);
+	cout << dec << ',' << pt->firstSector <<',' << pt->totalSectors << endl;
+  }
+  return true;
+}
+//------------------------------------------------------------------------------
+void volDmp()
+{
+  cout << F("\nVolume is FAT") << int(sd.vol()->fatType()) << endl;
+  cout << F("blocksPerCluster: ") << int(sd.vol()->blocksPerCluster()) << endl;
+  cout << F("clusterCount: ") << sd.vol()->clusterCount() << endl;
+  cout << F("freeClusters: ");
+  uint32_t volFree = sd.vol()->freeClusterCount();
+  cout <<  volFree << endl;
+  float fs = 0.000512*volFree*sd.vol()->blocksPerCluster();
+  cout << F("freeSpace: ") << fs << F(" MB (MB = 1,000,000 bytes)\n");
+  cout << F("fatStartBlock: ") << sd.vol()->fatStartBlock() << endl;
+  cout << F("fatCount: ") << int(sd.vol()->fatCount()) << endl;
+  cout << F("blocksPerFat: ") << sd.vol()->blocksPerFat() << endl;
+  cout << F("rootDirStart: ") << sd.vol()->rootDirStart() << endl;
+  cout << F("dataStartBlock: ") << sd.vol()->dataStartBlock() << endl;
+  if (sd.vol()->dataStartBlock() % eraseSize) {
+	cout << F("Data area is not aligned on flash erase boundaries!\n");
+	cout << F("Download and use formatter from www.sdsd.card()->org/consumer!\n");
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 //*********************Работа с именем файла ******************************
 //char file_name[13] ;
@@ -55,16 +199,7 @@ char str2[10];
 
 char c;  // Для ввода символа с ком порта
 
-void dateTime(uint16_t* date, uint16_t* time)                  // Программа записи времени и даты файла
-{
-  DateTime now = RTC.now();
 
-  // return date using FAT_DATE macro to format fields
-  *date = FAT_DATE(now.year(), now.month(), now.day());
-
-  // return time using FAT_TIME macro to format fields
-  *time = FAT_TIME(now.hour(), now.minute(), now.second());
-}
 
 void serial_print_date()                           // Печать даты и времени    
 {
@@ -93,12 +228,23 @@ const int8_t ERROR_LED_PIN = 13;
 
 //==============================================================================
 // Error messages stored in flash.
-#define error(msg) error_P(PSTR(msg))
+//#define error(msg) error_P(PSTR(msg))
 //------------------------------------------------------------------------------
-void error_P(const char* msg) {
-  sd.errorHalt_P(msg);
-}
+//void error_P(const char* msg) {
+//  sd.errorHalt_P(msg);
+//}
 
+
+void dateTime(uint16_t* date, uint16_t* time)                  // Программа записи времени и даты файла
+{
+  DateTime now = RTC.now();
+
+  // return date using FAT_DATE macro to format fields
+  *date = FAT_DATE(now.year(), now.month(), now.day());
+
+  // return time using FAT_TIME macro to format fields
+  *time = FAT_TIME(now.hour(), now.minute(), now.second());
+}
 //------------------------------------------------------------------------------
 
 // Size of file base name.  Must not be larger than six.
@@ -112,21 +258,21 @@ void file_name()
 
   while (sd.exists(fileName)) 
   {
-    if (fileName[BASE_NAME_SIZE + 1] != '9') 
+	if (fileName[BASE_NAME_SIZE + 1] != '9') 
 	{
-      fileName[BASE_NAME_SIZE + 1]++;
-    }
+	  fileName[BASE_NAME_SIZE + 1]++;
+	}
 	else if (fileName[BASE_NAME_SIZE] != '9') 
 	{
-      fileName[BASE_NAME_SIZE + 1] = '0';
-      fileName[BASE_NAME_SIZE]++;
-    }
+	  fileName[BASE_NAME_SIZE + 1] = '0';
+	  fileName[BASE_NAME_SIZE]++;
+	}
 	else 
 	{
-      error("Can't create file name");
-    }
+//	  error("Can't create file name");
+	}
   }
-  if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) error("file.open");
+  if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) // error("file.open");
   //do {
   //  delay(10);
   // } while (Serial.read() >= 0);
@@ -234,8 +380,8 @@ void sdError_P(const char* str) {
   cout << pstr("error: ");
   cout << pgm(str) << endl;
   if (card.errorCode()) {
-    cout << pstr("SD error: ") << hex << int(card.errorCode());
-    cout << ',' << int(card.errorData()) << dec << endl;
+	cout << pstr("SD error: ") << hex << int(card.errorCode());
+	cout << ',' << int(card.errorData()) << dec << endl;
   }
   while (1);
 }
@@ -247,24 +393,25 @@ uint8_t writeCache(uint32_t lbn)
 }
 //------------------------------------------------------------------------------
 // initialize appropriate sizes for SD capacity
-void initSizes() {
+void initSizes() 
+{
   if (cardCapacityMB <= 6) {
-    sdError("Card is too small.");
+	sdError("Card is too small.");
   } else if (cardCapacityMB <= 16) {
-    sectorsPerCluster = 2;
+	sectorsPerCluster = 2;
   } else if (cardCapacityMB <= 32) {
-    sectorsPerCluster = 4;
+	sectorsPerCluster = 4;
   } else if (cardCapacityMB <= 64) {
-    sectorsPerCluster = 8;
+	sectorsPerCluster = 8;
   } else if (cardCapacityMB <= 128) {
-    sectorsPerCluster = 16;
+	sectorsPerCluster = 16;
   } else if (cardCapacityMB <= 1024) {
-    sectorsPerCluster = 32;
+	sectorsPerCluster = 32;
   } else if (cardCapacityMB <= 32768) {
-    sectorsPerCluster = 64;
+	sectorsPerCluster = 64;
   } else {
-    // SDXC cards
-    sectorsPerCluster = 128;
+	// SDXC cards
+	sectorsPerCluster = 128;
   }
 
   cout << pstr("Blocks/Cluster: ") << int(sectorsPerCluster) << endl;
@@ -272,21 +419,21 @@ void initSizes() {
   sectorsPerTrack = cardCapacityMB <= 256 ? 32 : 63;
 
   if (cardCapacityMB <= 16) {
-    numberOfHeads = 2;
+	numberOfHeads = 2;
   } else if (cardCapacityMB <= 32) {
-    numberOfHeads = 4;
+	numberOfHeads = 4;
   } else if (cardCapacityMB <= 128) {
-    numberOfHeads = 8;
+	numberOfHeads = 8;
   } else if (cardCapacityMB <= 504) {
-    numberOfHeads = 16;
+	numberOfHeads = 16;
   } else if (cardCapacityMB <= 1008) {
-    numberOfHeads = 32;
+	numberOfHeads = 32;
   } else if (cardCapacityMB <= 2016) {
-    numberOfHeads = 64;
+	numberOfHeads = 64;
   } else if (cardCapacityMB <= 4032) {
-    numberOfHeads = 128;
+	numberOfHeads = 128;
   } else {
-    numberOfHeads = 255;
+	numberOfHeads = 255;
   }
 }
 //------------------------------------------------------------------------------
@@ -294,8 +441,8 @@ void initSizes() {
 void clearCache(uint8_t addSig) {
   memset(&cache, 0, sizeof(cache));
   if (addSig) {
-    cache.mbr.mbrSig0 = BOOTSIG0;
-    cache.mbr.mbrSig1 = BOOTSIG1;
+	cache.mbr.mbrSig0 = BOOTSIG0;
+	cache.mbr.mbrSig1 = BOOTSIG1;
   }
 }
 //------------------------------------------------------------------------------
@@ -303,16 +450,16 @@ void clearCache(uint8_t addSig) {
 void clearFatDir(uint32_t bgn, uint32_t count) {
   clearCache(false);
   if (!card.writeStart(bgn, count)) {
-    sdError("Clear FAT/DIR writeStart failed");
+	sdError("Clear FAT/DIR writeStart failed");
   }
   for (uint32_t i = 0; i < count; i++) {
-    if ((i & 0XFF) == 0) cout << '.';
-    if (!card.writeData(cache.data)) {
-      sdError("Clear FAT/DIR writeData failed");
-    }
+	if ((i & 0XFF) == 0) cout << '.';
+	if (!card.writeData(cache.data)) {
+	  sdError("Clear FAT/DIR writeData failed");
+	}
   }
   if (!card.writeStop()) {
-    sdError("Clear FAT/DIR writeStop failed");
+	sdError("Clear FAT/DIR writeStop failed");
   }
   cout << endl;
 }
@@ -351,16 +498,16 @@ void writeMbr()
   uint32_t endLbn = relSector + partSize - 1;
   c = lbnToCylinder(endLbn);
   if (c <= 1023) {
-    p->endCylinderHigh = c >> 8;
-    p->endCylinderLow = c & 0XFF;
-    p->endHead = lbnToHead(endLbn);
-    p->endSector = lbnToSector(endLbn);
+	p->endCylinderHigh = c >> 8;
+	p->endCylinderLow = c & 0XFF;
+	p->endHead = lbnToHead(endLbn);
+	p->endSector = lbnToSector(endLbn);
   } else {
-    // Too big flag, c = 1023, h = 254, s = 63
-    p->endCylinderHigh = 3;
-    p->endCylinderLow = 255;
-    p->endHead = 254;
-    p->endSector = 63;
+	// Too big flag, c = 1023, h = 254, s = 63
+	p->endCylinderHigh = 3;
+	p->endCylinderLow = 255;
+	p->endHead = 254;
+	p->endSector = 63;
   }
   p->firstSector = relSector;
   p->totalSectors = partSize;
@@ -378,12 +525,12 @@ void makeFat16()
 {
   uint32_t nc;
   for (dataStart = 2 * BU16;; dataStart += BU16) {
-    nc = (cardSizeBlocks - dataStart)/sectorsPerCluster;
-    fatSize = (nc + 2 + 255)/256;
-    uint32_t r = BU16 + 1 + 2 * fatSize + 32;
-    if (dataStart < r) continue;
-    relSector = dataStart - r + BU16;
-    break;
+	nc = (cardSizeBlocks - dataStart)/sectorsPerCluster;
+	fatSize = (nc + 2 + 255)/256;
+	uint32_t r = BU16 + 1 + 2 * fatSize + 32;
+	if (dataStart < r) continue;
+	relSector = dataStart - r + BU16;
+	break;
   }
   // check valid cluster count for FAT16 volume
   if (nc < 4085 || nc >= 65525) sdError("Bad cluster count");
@@ -391,11 +538,11 @@ void makeFat16()
   fatStart = relSector + reservedSectors;
   partSize = nc * sectorsPerCluster + 2 * fatSize + reservedSectors + 32;
   if (partSize < 32680) {
-    partType = 0X01;
+	partType = 0X01;
   } else if (partSize < 65536) {
-    partType = 0X04;
+	partType = 0X04;
   } else {
-    partType = 0X06;
+	partType = 0X06;
   }
   // write MBR
   writeMbr();
@@ -405,7 +552,7 @@ void makeFat16()
   pb->jump[1] = 0X00;
   pb->jump[2] = 0X90;
   for (uint8_t i = 0; i < sizeof(pb->oemId); i++) {
-    pb->oemId[i] = ' ';
+	pb->oemId[i] = ' ';
   }
   pb->bytesPerSector = 512;
   pb->sectorsPerCluster = sectorsPerCluster;
@@ -425,7 +572,7 @@ void makeFat16()
   memcpy(pb->fileSystemType, fat16str, sizeof(pb->fileSystemType));
   // write partition boot sector
   if (!writeCache(relSector)) {
-    sdError("FAT16 write PBS failed");
+	sdError("FAT16 write PBS failed");
   }
   // clear FAT and root directory
   clearFatDir(fatStart, dataStart - fatStart);
@@ -434,8 +581,8 @@ void makeFat16()
   cache.fat16[1] = 0XFFFF;
   // write first block of FAT and backup for reserved clusters
   if (!writeCache(fatStart)
-    || !writeCache(fatStart + fatSize)) {
-    sdError("FAT16 reserve failed");
+	|| !writeCache(fatStart + fatSize)) {
+	sdError("FAT16 reserve failed");
   }
 }
 //------------------------------------------------------------------------------
@@ -445,10 +592,10 @@ void makeFat32()
   uint32_t nc;
   relSector = BU32;
   for (dataStart = 2 * BU32;; dataStart += BU32) {
-    nc = (cardSizeBlocks - dataStart)/sectorsPerCluster;
-    fatSize = (nc + 2 + 127)/128;
-    uint32_t r = relSector + 9 + 2 * fatSize;
-    if (dataStart >= r) break;
+	nc = (cardSizeBlocks - dataStart)/sectorsPerCluster;
+	fatSize = (nc + 2 + 127)/128;
+	uint32_t r = relSector + 9 + 2 * fatSize;
+	if (dataStart >= r) break;
   }
   // error if too few clusters in FAT32 volume
   if (nc < 65525) sdError("Bad cluster count");
@@ -458,11 +605,11 @@ void makeFat32()
   // type depends on address of end sector
   // max CHS has lbn = 16450560 = 1024*255*63
   if ((relSector + partSize) <= 16450560) {
-    // FAT32
-    partType = 0X0B;
+	// FAT32
+	partType = 0X0B;
   } else {
-    // FAT32 with INT 13
-    partType = 0X0C;
+	// FAT32 with INT 13
+	partType = 0X0C;
   }
   writeMbr();
   clearCache(true);
@@ -472,7 +619,7 @@ void makeFat32()
   pb->jump[1] = 0X00;
   pb->jump[2] = 0X90;
   for (uint8_t i = 0; i < sizeof(pb->oemId); i++) {
-    pb->oemId[i] = ' ';
+	pb->oemId[i] = ' ';
   }
   pb->bytesPerSector = 512;
   pb->sectorsPerCluster = sectorsPerCluster;
@@ -494,14 +641,14 @@ void makeFat32()
   memcpy(pb->fileSystemType, fat32str, sizeof(pb->fileSystemType));
   // write partition boot sector and backup
   if (!writeCache(relSector)
-    || !writeCache(relSector + 6)) {
-    sdError("FAT32 write PBS failed");
+	|| !writeCache(relSector + 6)) {
+	sdError("FAT32 write PBS failed");
   }
   clearCache(true);
   // write extra boot area and backup
   if (!writeCache(relSector + 2)
-    || !writeCache(relSector + 8)) {
-    sdError("FAT32 PBS ext failed");
+	|| !writeCache(relSector + 8)) {
+	sdError("FAT32 PBS ext failed");
   }
   fat32_fsinfo_t* pf = &cache.fsinfo;
   pf->leadSignature = FSINFO_LEAD_SIG;
@@ -510,8 +657,8 @@ void makeFat32()
   pf->nextFree = 0XFFFFFFFF;
   // write FSINFO sector and backup
   if (!writeCache(relSector + 1)
-    || !writeCache(relSector + 7)) {
-    sdError("FAT32 FSINFO failed");
+	|| !writeCache(relSector + 7)) {
+	sdError("FAT32 FSINFO failed");
   }
   clearFatDir(fatStart, 2 * fatSize + sectorsPerCluster);
   clearCache(false);
@@ -520,8 +667,8 @@ void makeFat32()
   cache.fat32[2] = 0x0FFFFFFF;
   // write first block of FAT and backup for reserved clusters
   if (!writeCache(fatStart)
-    || !writeCache(fatStart + fatSize)) {
-    sdError("FAT32 reserve failed");
+	|| !writeCache(fatStart + fatSize)) {
+	sdError("FAT32 reserve failed");
   }
 }
 
@@ -533,12 +680,12 @@ void formatCard()
   if (card.type() != SD_CARD_TYPE_SDHC) 
   {
    // cout << pstr("FAT16\n");
-    makeFat16();
+	makeFat16();
   }
   else 
   {
    // cout << pstr("FAT32\n");
-    makeFat32();
+	makeFat32();
   }
 #if DEBUG_PRINT
   debugPrint();
@@ -552,7 +699,7 @@ void test_file()
 	file_name();
 	// open the file for write at end like the Native SD library
 
-    if (!myFile.open(fileName, O_RDWR | O_CREAT | O_AT_END)) 
+	if (!myFile.open(fileName, O_RDWR | O_CREAT | O_AT_END)) 
 	//if (!myFile.open("test.txt", O_RDWR | O_CREAT | O_AT_END)) 
 	{
 		sd.errorHalt("opening test.txt for write failed");
@@ -598,7 +745,7 @@ void com_port_in_menu()
 {
   while (1) 
   {
- 	  cout << pstr(
+	  cout << pstr(
 		"\n"
 		"Options are:\n"
 		"F or f - erase and then format the card. (recommended)\n"
@@ -608,7 +755,7 @@ void com_port_in_menu()
 		"S or s - set time.\n"
 		"\n"
 		"Enter option: ");
-    
+	
 	  while (!Serial.available()) {}
 	  c = Serial.read();
 	  cout << c << endl;
@@ -637,19 +784,21 @@ void com_port_in_menu()
 	   if (c == 'P'|| c == 'p') 
 	  {
 		serial_print_date();
-	    Serial.println();
+		Serial.println();
 	  }
 
 	   if (c == 'N'|| c == 'n') 
 	  {
 	   file_name();
 	  }
-	   	   if (c == 'S'|| c == 's') 
+		   if (c == 'S'|| c == 's') 
 	  {
-	    set_time();
+		set_time();
 	  }
   }
 }
+
+
 
 //------------------------------------------------------------------------------
 void setup() 
@@ -664,20 +813,94 @@ void setup()
 			while(1);
 		};
 
+	  // use uppercase in hex and use 0X base prefix
+  cout << uppercase << showbase << endl;
+
+  // pstr stores strings in flash to save RAM
+  cout << F("SdFat version: ") << SD_FAT_VERSION << endl;
+  if (DISABLE_CHIP_SELECT < 0) {
+	cout << F(
+		   "\nAssuming the SD is the only SPI device.\n"
+		   "Edit DISABLE_CHIP_SELECT to disable another device.\n");
+  } else {
+	cout << F("\nDisabling SPI device on pin ");
+	cout << int(DISABLE_CHIP_SELECT) << endl;
+	pinMode(DISABLE_CHIP_SELECT, OUTPUT);
+	digitalWrite(DISABLE_CHIP_SELECT, HIGH);
+  }
+  cout << F("\nAssuming the SD chip select pin is: ") <<int(chipSelect);
+  cout << F("\nEdit SD_CHIP_SELECT to change the SD chip select pin.\n");
+
+	// initialize the SD card at SPI_HALF_SPEED to avoid bus errors with
+  // breadboards.  use SPI_FULL_SPEED for better performance.
+  if (!sd.cardBegin(chipSelect, SPI_HALF_SPEED)) 
+  {
+	sdErrorMsg("\ncardBegin failed");
+	return;
+  }
+
+   cardSize = sd.card()->cardSize();
+  if (cardSize == 0) {
+	sdErrorMsg("cardSize failed");
+	return;
+  }
+//  cout << F("\ninit time: ") << t << " ms" << endl;
+  cout << F("\nCard type: ");
+  switch (sd.card()->type()) {
+  case SD_CARD_TYPE_SD1:
+	cout << F("SD1\n");
+	break;
+
+  case SD_CARD_TYPE_SD2:
+	cout << F("SD2\n");
+	break;
+
+  case SD_CARD_TYPE_SDHC:
+	if (cardSize < 70000000) {
+	  cout << F("SDHC\n");
+	} else {
+	  cout << F("SDXC\n");
+	}
+	break;
+
+  default:
+	cout << F("Unknown\n");
+  }
+  if (!cidDmp()) {
+	return;
+  }
+  if (!csdDmp()) {
+	return;
+  }
+  uint32_t ocr;
+  if (!sd.card()->readOCR(&ocr)) {
+	sdErrorMsg("\nreadOCR failed");
+	return;
+  }
+  cout << F("OCR: ") << hex << ocr << dec << endl;
+  if (!partDmp()) {
+	return;
+  }
+  if (!sd.fsBegin()) 
+  {
+	sdErrorMsg("\nFile System initialization failed.\n");
+	return;
+  }
+  volDmp();
+
+
 	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
 
-	delay(400);  // catch Due reset problem
-  
 	// Initialize SdFat or print a detailed error message and halt
 	// Use half speed like the native library.
 	// change to SPI_FULL_SPEED for more performance.
-	if (!sd.begin(chipSelect, SPI_HALF_SPEED)) sd.initErrorHalt();
-	cardSizeBlocks = card.cardSize();
-	if (cardSizeBlocks == 0) sdError("cardSize");
-	cardCapacityMB = (cardSizeBlocks + 2047)/2048;
+	//if (!sd.begin(chipSelect, SPI_HALF_SPEED)) sd.initErrorHalt();
+	//cardSizeBlocks = card.cardSize();
+	//if (cardSizeBlocks == 0) sdError("cardSize");
+	//cardCapacityMB = (cardSizeBlocks + 2047)/2048;
 
-	cout << pstr("Card Size: ") << cardCapacityMB;
-	cout << pstr(" MB, (MB = 1,048,576 bytes)") << endl;
+	//cout << pstr("Card Size: ") << cardCapacityMB;
+	//cout << pstr(" MB, (MB = 1,048,576 bytes)") << endl;
 	preob_num_str();
 	// rtc.adjust(DateTime(__DATE__, __TIME__));
 
