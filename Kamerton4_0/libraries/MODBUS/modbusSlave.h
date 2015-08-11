@@ -64,27 +64,19 @@ class modbusSlave
 		void setStatus(byte, word, word);
 		void setMULTIPLE_Status(byte, word, word);
 		void setMULTIPLE_REGISTERS(byte, word, word);
-		int run(void);
-		//void run(void);
+		void run(void);
 		void setSerial(byte serno, word baud);
 		modbusDevice *_device;
 
 	private:
 		HardwareSerial *port; ///< Pointer to Serial class object
-		uint8_t *_msg,
-		//byte *_msg,
+		byte *_msg,
 			  _len;
 
-		uint16_t  _baud,
-		//word _baud,
+
+		word _baud,
 			 _crc,
 			 _frameDelay;
 		byte _serno;
-
-		uint8_t u8lastRec;
-		uint16_t u16timeOut;
-        uint32_t u32time, u32timeOut;
-		uint8_t u8lastError;
-
 };
 #endif

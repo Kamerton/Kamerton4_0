@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 //#define  ledPin13  13       // Назначение светодиодов на плате
-#define T35  5
+
 
 modbusSlave::modbusSlave()
 {
@@ -70,7 +70,7 @@ void modbusSlave::setSerial(byte serno, word baud)
 		port = &Serial;
 		break;
   }
-   u8lastRec = 0;
+ 
    port->begin(baud);
    port->flush();
  }
@@ -114,14 +114,14 @@ void modbusSlave::checkSerial(void)
 {
 	//while there is more data in the UART than when last checked
 	while(port->available()> _len)
-		{
-			//update the incoming query message length
-			_len = port->available();
-			//Wait for 3 bytewidths of data (SOM/EOM)
-	        //delayMicroseconds(RTUFRAMETIME);
-			delay(_frameDelay);
-			//Check the UART again
-		}
+	{
+		//update the incoming query message length
+		_len = port->available();
+		//Wait for 3 bytewidths of data (SOM/EOM)
+//		delayMicroseconds(RTUFRAMETIME);
+		delay(_frameDelay);
+		//Check the UART again
+	}
 }
 
 /*
@@ -136,9 +136,7 @@ void modbusSlave::serialRx(void)
 
 		//copy the query byte for byte to the new buffer
 		for (i=0 ; i < _len ; i++)
-		{
 			_msg[i] = port->read();
-		}
 }
 
 /*
@@ -146,82 +144,15 @@ Generates a query reply message for Digital In/Out status update queries.
 */
 void modbusSlave::getDigitalStatus(byte funcType, word startreg, word numregs)
 {
-	//************************* »сходный код *************************************
 	//initialize the bit counter to 0
 	byte bitn =0;
 	
 	//if the function is to read digital inputs then add 10001 to the start register
-	// ≈сли функци€ €вл€етс€ чтение цифровых входов затем добавить 10001 до начального регистра
 	//else add 1 to the start register
 	if(funcType == READ_DISCRETE_INPUT)
-		startreg += 10001;
+		startreg += 10000;
 	else
-		startreg += 1;
-
-	//determine the message length
-	//определить длину сообщени€
-	//for each group of 8 registers the message length increases by 1
-	//дл€ каждой группы из 8 регистров длины сообщени€ увеличиваетс€ на 1
-	_len = numregs/8;
-	//if there is at least one incomplete byte's worth of data
-	//≈сли там стоит по крайней мере одного неполного байта данных
-	//then add 1 to the message length for the partial byte.
-	//затем добавить 1 к длине сообщени€ дл€ частичного байта.
-	if(numregs%8)
-		_len++;
-	//allow room for the Device ID byte, Function type byte, data byte count byte, and crc word
-	//чтобы места дл€ байта идентификатор устройства, байт “ип функции, количество байт данных, байт, а слово CRC
-	_len +=5;
-
-	//allocate memory of the appropriate size for the message
-	//выдел€ет пам€ть соответствующего размера дл€ сообщени€
-	_msg = (byte *) malloc(_len);
-
-	//write the slave device ID
-	//написать ID ведомого устройства
-	_msg[0] = _device->getId();
-	//write the function type
-	//написать функцию типа
-	_msg[1] = funcType;
-	//set the data byte count
-	//установить количество байт данных
-	_msg[2] = _len-5;
-
-	//For the quantity of registers queried
-	//ѕо количеству регистров запросы
-	while(numregs--)
-	{
-		//if a value is found for the current register, set bit number bitn of msg[3]
-		//else clear it
-		if(_device->get(startreg))
-			bitSet(_msg[3], bitn);
-		else
-			bitClear(_msg[3], bitn);
-		//increment the bit index
-		bitn++;
-		//increment the register
-		startreg++;
-	}
-	
-	//generate the crc for the query reply and append it
-	this->calcCrc();
-	_msg[_len - 2] = _crc >> 8;
-	_msg[_len - 1] = _crc & 0xFF;
-
-
-//********************************************************************************
-	/*  // –едактированный код
-
-
-	//initialize the bit counter to 0
-	//byte bitn =0;
-	
-	//if the function is to read digital inputs then add 10001 to the start register
-	//else add 1 to the start register
-	if(funcType == READ_DISCRETE_INPUT)
-		startreg += 10001;
-	else
-		startreg += 1;
+		startreg += 0;
 
 
 	uint8_t u8currentRegister, u8currentBit, u8bytesno, u8bitsno,  u8BufferSize;
@@ -243,20 +174,20 @@ void modbusSlave::getDigitalStatus(byte funcType, word startreg, word numregs)
 
   for (u16currentCoil = 0; u16currentCoil < u16Coilno; u16currentCoil++) 
   {
-	u16coil = u16StartCoil + u16currentCoil;
-	u8currentRegister = (uint8_t) (u16coil / 16);
-	u8currentBit = (uint8_t) (u16coil % 16);
+    u16coil = u16StartCoil + u16currentCoil;
+    u8currentRegister = (uint8_t) (u16coil / 16);
+    u8currentBit = (uint8_t) (u16coil % 16);
 
    // bitWrite( _msg[ u8BufferSize ],  u8bitsno,  bitRead( regs[ u8currentRegister ], u8currentBit ) );
 	  bitWrite( _msg[ u8BufferSize ],  u8bitsno,  _device->get(startreg + u16currentCoil));
 	//   bitWrite( _msg[ u8BufferSize ],  u8bitsno,  1);
-	u8bitsno ++;
+    u8bitsno ++;
 
-	if (u8bitsno > 7)
+    if (u8bitsno > 7)
 	{
-	  u8bitsno = 0;
-	  u8BufferSize++;
-	}
+      u8bitsno = 0;
+      u8BufferSize++;
+    }
   } 
 
 
@@ -299,13 +230,8 @@ void modbusSlave::getDigitalStatus(byte funcType, word startreg, word numregs)
 	this->calcCrc();
 	_msg[_len - 2] = _crc >> 8;
 	_msg[_len - 1] = _crc & 0xFF;
-
-
-
-
-
-	*/
 }
+
 void modbusSlave::getImputRegister(byte funcType, word startreg, word numregs)
 {
 	word val;
@@ -314,9 +240,9 @@ void modbusSlave::getImputRegister(byte funcType, word startreg, word numregs)
 	//if the function is to read analog inputs then add 30001 to the start register
 	//else add 40001 to the start register
 	if(funcType == READ_INPUT_REGISTER)
-		startreg += 30001;
+		startreg += 30000;
 	else
-		startreg += 40001;
+		startreg += 40000;
 
 	//calculate the query reply message length
 	//for each register queried add 2 bytes
@@ -352,6 +278,7 @@ void modbusSlave::getImputRegister(byte funcType, word startreg, word numregs)
 	_msg[_len - 2] = _crc >> 8;
 	_msg[_len - 1] = _crc & 0xFF;
 }
+
 void modbusSlave::setStatus(byte funcType, word reg, word val)
 {
 	//Set the query response message length
@@ -367,14 +294,14 @@ void modbusSlave::setStatus(byte funcType, word reg, word val)
 	if(funcType == WRITE_COIL)
 	{
 		//Add 1 to the register value and set it's value to val
-		_device->set(reg + 1, val);
+		_device->set(reg + 0, val);
 		//write the function type to the response message
 		_msg[1] = WRITE_COIL;
 	}
 	else
 	{
 		//else add 40001 to the register and set it's value to val
-		_device->set(reg + 40001, val);
+		_device->set(reg + 40000, val);
 
 		//write the function type of the response message
 		_msg[1] = WRITE_REGISTER;
@@ -400,9 +327,12 @@ void modbusSlave::setMULTIPLE_Status(byte funcType, word reg, word val)
   uint8_t u8currentRegister, u8currentBit, u8frameByte, u8bitsno;
   unsigned int u16currentCoil, u16coil;
   boolean bTemp;
-  reg += 1;                                                  // ѕервый адрес регистров
-   unsigned int u16StartCoil = word(  _msg[2],  _msg[3] );   // Ќомер первого регистра
-  unsigned int u16Coilno = word(  _msg[4],  _msg[5] );       //  оличество регистров
+  reg += 0; // ѕервый адрес регистров
+  // get the first and last coil from the message
+
+  
+  unsigned int u16StartCoil = word(  _msg[2],  _msg[3] ); // Ќомер первого регистра
+  unsigned int u16Coilno = word(  _msg[4],  _msg[5] );    //  оличество регистров
 
   // read each coil from the register map and put its value inside the outcoming message  
   // читать каждый бит от регистра  и положить его значение внутри исход€щего сообщени€
@@ -410,23 +340,23 @@ void modbusSlave::setMULTIPLE_Status(byte funcType, word reg, word val)
   u8bitsno = 0;
   u8frameByte = 7;
   for (u16currentCoil = 0; u16currentCoil < u16Coilno; u16currentCoil++) 
-	  {
+  {
 
-		u16coil = u16StartCoil + u16currentCoil;
-		u8currentRegister = (uint8_t) (u16coil / 16);
-		u8currentBit = (uint8_t) (u16coil % 16);
+   u16coil = u16StartCoil + u16currentCoil;
+    u8currentRegister = (uint8_t) (u16coil / 16);
+    u8currentBit = (uint8_t) (u16coil % 16);
 
-		bTemp = bitRead( _msg[ u8frameByte ], u8bitsno );
+    bTemp = bitRead( _msg[ u8frameByte ], u8bitsno );
 
-		_device->set( u16coil,  bTemp); 
-		 u8bitsno ++;
+	_device->set( u16coil,  bTemp); 
+	 u8bitsno ++;
 
-		if (u8bitsno > 7) 
-			{
-			  u8bitsno = 0;
-			  u8frameByte++;
-			}
-	  } 
+    if (u8bitsno > 7) 
+	{
+      u8bitsno = 0;
+      u8frameByte++;
+    }
+  } 
 
 
 	//Set the query response message length
@@ -458,8 +388,8 @@ void modbusSlave::setMULTIPLE_Status(byte funcType, word reg, word val)
 }
 void modbusSlave::setMULTIPLE_REGISTERS(byte funcType, word reg, word val)
 {
-	//  uint8_t u8func      = _msg[1];  // get the original FUNC code
-	//  uint8_t u8StartAdd  = _msg[2] << 8 | _msg[3];
+	  uint8_t u8func      = _msg[1];  // get the original FUNC code
+	  uint8_t u8StartAdd  = _msg[2] << 8 | _msg[3];
 	  uint8_t u8regsno    = _msg[4] << 8 | _msg[5];
 	  uint8_t i;
 	  byte BYTE_CNT       = 6;
@@ -468,7 +398,7 @@ void modbusSlave::setMULTIPLE_REGISTERS(byte funcType, word reg, word val)
 	   for (i = 0; i < u8regsno; i++)
 		   {
 			temp = word(_msg[ (BYTE_CNT + 1) + i*2 ],	_msg[ (BYTE_CNT + 2) + i*2 ]);
-			_device->set(reg + 40001 + i, temp);
+			_device->set(reg + 40000 + i, temp);
 		   }
 
 	//Set the query response message length
@@ -497,15 +427,15 @@ void modbusSlave::setMULTIPLE_REGISTERS(byte funcType, word reg, word val)
 
 }
 
-// uint8_t modbusSlave::run(void)
-int modbusSlave::run(void)
-//void modbusSlave::run(void)
+void modbusSlave::run(void)
 {
 
-//	byte deviceId;
+	byte deviceId;
 	byte funcType;
 	word field1;
 	word field2;
+	
+	int i;
 	
 	//initialize mesasge length
 	_len = 0;
@@ -513,48 +443,28 @@ int modbusSlave::run(void)
 	//check for data in the recieve buffer
 	this->checkSerial();
 
-	//если нет ничего в буфере возврат
+	//if there is nothing in the recieve buffer, bail.
 	if(_len == 0)
-		{
-			return 0;
-		}
-
-	 // проверить “35 после завершени€ кадра или еще  нет окончани€ кадра
-  if (_len != u8lastRec) 
-	  {
-		u8lastRec = _len;
-		u32time = millis() + T35;
-		return 0;   //return 0;
-	  }
-  if (millis() < u32time) return 0;            // ≈сли интервал меньше заданного - возврат
-
-  u8lastRec = 0;                                     //     
-  //int8_t i8state = getRxBuffer();
- 
-
-  this->serialRx();
-
- 
-
-  int8_t i8state = _len;
-  u8lastError = i8state;
-  if (i8state < 7) return i8state;  //  return i8state;  
+	{
+		return;
+	}
 
 	//retrieve the query message from the serial uart
-//	this->serialRx();
+	this->serialRx();
 	
 	//if the message id is not 255, and
 	// and device id does not match bail
-	if( (_msg[0] != 0xFF) && (_msg[0] != _device->getId()) )
-		{
-			return 0;
-		}
+	if( (_msg[0] != 0xFF) && 
+		(_msg[0] != _device->getId()) )
+	{
+		return;
+	}
 	//calculate the checksum of the query message minus the checksum it came with.
 	this->calcCrc();
 
 	//if the checksum does not match, ignore the message
 	if ( _crc != ((_msg[_len - 2] << 8) + _msg[_len - 1]))
-		return 0;
+		return;
 	
 	//copy the function type from the incoming query
 	funcType = _msg[1];
@@ -572,47 +482,47 @@ int modbusSlave::run(void)
 
 	//generate query response based on function type
 	switch(funcType)
-		{
-			case READ_DISCRETE_INPUT:
-				this->getDigitalStatus(funcType, field1, field2);
-				break;
-			case READ_COILS:
-				this->getDigitalStatus(funcType, field1, field2);
-				break;
-			case READ_INPUT_REGISTER:
-				this->getImputRegister(funcType, field1, field2);
-				break;
-			case READ_REGISTERS:
-				this->getImputRegister(funcType, field1, field2);
-				break;
-			case WRITE_COIL:
-				this->setStatus(funcType, field1, field2);
-				break;
-			case WRITE_REGISTER:
-				this->setStatus(funcType, field1, field2);
-				break;
-			case WRITE_MULTIPLE_COILS:
-				this->setMULTIPLE_Status(funcType, field1, field2);
-				break;
-			case WRITE_MULTIPLE_REGISTERS:
-				this->setMULTIPLE_REGISTERS(funcType, field1, field2);
-				break;
-			default:
-				return 0;
-				break;
-		}
+	{
+	case READ_DISCRETE_INPUT:
+		this->getDigitalStatus(funcType, field1, field2);
+		break;
+	case READ_COILS:
+		this->getDigitalStatus(funcType, field1, field2);
+		break;
+	case READ_INPUT_REGISTER:
+		this->getImputRegister(funcType, field1, field2);
+		break;
+	case READ_REGISTERS:
+		this->getImputRegister(funcType, field1, field2);
+		break;
+	case WRITE_COIL:
+		this->setStatus(funcType, field1, field2);
+		break;
+	case WRITE_REGISTER:
+		this->setStatus(funcType, field1, field2);
+		break;
+    case WRITE_MULTIPLE_COILS:
+		this->setMULTIPLE_Status(funcType, field1, field2);
+		break;
+	case WRITE_MULTIPLE_REGISTERS:
+		this->setMULTIPLE_REGISTERS(funcType, field1, field2);
+		break;
+	default:
+		return;
+		break;
+	}
 
 	//if a reply was generated
 	if(_len)
-		{
-			int i;
-			//send the reply to the serial UART
-			//Senguino doesn't support a bulk serial write command....
-			for(i = 0 ; i < _len ; i++)
-				port->write(_msg[i]);
-			//free the allocated memory for the reply message
-			free(_msg);
-			//reset the message length
-			_len = 0;
-		}
+	{
+		int i;
+		//send the reply to the serial UART
+		//Senguino doesn't support a bulk serial write command....
+		for(i = 0 ; i < _len ; i++)
+			port->write(_msg[i]);
+		//free the allocated memory for the reply message
+		free(_msg);
+		//reset the message length
+		_len = 0;
+	}
 }

@@ -87,12 +87,11 @@ void modbusRegBank::set(word addr, word value)
 		//search for the register address
 		regPtr = (modbusDigReg *) this->search(addr);
 		//if a pointer was returned the set the register value to true if value is non zero
-		if(regPtr){
+		if(regPtr)
 			if(value)
 				regPtr->value = 0xFF;
 			else
 				regPtr->value = 0x00;
-		}
 	}
 	else
 	{

@@ -810,13 +810,14 @@ void flash_time()                                              // Программа обра
 		prer_Kmerton_Run = true;
 	//		digitalWrite(ledPin12,HIGH);
 		prer_Kamerton();
-		slave.run(); 
+		//slave.run(); 
 		//	digitalWrite(ledPin12,LOW);
 		prer_Kmerton_Run = false;
 }
 
 void serialEvent2()
 {
+	//slave.run(); 
 	//while(prer_Kmerton_Run == 1) {}                                // Подождать окончания прерывания
 	//	digitalWrite(ledPin13,HIGH);
 	// // digitalWrite(ledPin13,!digitalRead(ledPin13));               // Сроб импульс MODBUS
@@ -1213,7 +1214,7 @@ void data_clock_exchange()
 
 		  b = i2c_eeprom_read_byte(0x50, adr_file_name_count);                             //access an address from the memory
 		  regBank.set(adr_reg_file_name,b);                                                // Регистр  хранения переменной номер файла
-		  */
+		 */
 }
 void time_control() // Программа записи текущего времени в регистры для передачи в ПК
 {
@@ -1786,7 +1787,7 @@ void FileClose()
 
 	if (sd.exists(fileName))
 		{ 
-        Serial.println();
+		Serial.println();
 		Serial.print(fileName);
 		Serial.println("  Close  OK!.");
 		}
@@ -1958,7 +1959,7 @@ void control_command()
 			 formatCard();              //
 				break;
 		case 18:
-			                         //
+									 //
 				break;
 		default:
 		break;
@@ -2961,7 +2962,7 @@ void test_headset_instructor()
 	measure_vol_min(analog_gg_radio2,40238,238,35);                                 // Измерить уровень сигнала на выходе GG Radio2 "Test headset instructor ** Signal GG Radio2                 OFF - ";
 
 	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
-                                                   //
+												   //
 	regBank.set(5,1);                                                               // Подать управляющую команду на вывод 12 ХР1 HeS2e (Включить микрофон)
 	regBank.set(28,1);                                                              // XP1- 15 HeS2PTT Включить PTT инструктора
 	regBank.set(16,0);                                                              // Сенсор микрофона отключить
