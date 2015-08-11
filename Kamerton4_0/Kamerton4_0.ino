@@ -673,10 +673,7 @@ txt_error129,                                 // ";
 
 };
 
-
-
 // ========================= Блок программ ============================================
-
 
 void dateTime(uint16_t* date, uint16_t* time)                  // Программа записи времени и даты файла
 {
@@ -688,7 +685,6 @@ void dateTime(uint16_t* date, uint16_t* time)                  // Программа запи
   // return time using FAT_TIME macro to format fields
   *time = FAT_TIME(now.hour(), now.minute(), now.second());
 }
-
 
 void serial_print_date()                           // Печать даты и времени    
 {
@@ -1180,6 +1176,7 @@ void set_clock()
 }
 void data_clock_exchange()
 {
+	/*
 	DateTime now = RTC.now();
 	uint16_t year_temp = now.year()-2000;
 	uint8_t day_temp = now.day();
@@ -1216,7 +1213,7 @@ void data_clock_exchange()
 
 		  b = i2c_eeprom_read_byte(0x50, adr_file_name_count);                             //access an address from the memory
 		  regBank.set(adr_reg_file_name,b);                                                // Регистр  хранения переменной номер файла
-
+		  */
 }
 void time_control() // Программа записи текущего времени в регистры для передачи в ПК
 {
@@ -1628,14 +1625,18 @@ void makeFat32() {
 //  cout << F("Erase done\n");
 //}
 //------------------------------------------------------------------------------
-void formatCard() {
+void formatCard() 
+{
   cout << endl;
   cout << F("Formatting\n");
   initSizes();
-  if (card.type() != SD_CARD_TYPE_SDHC) {
+  if (card.type() != SD_CARD_TYPE_SDHC) 
+  {
 	cout << F("FAT16\n");
 	makeFat16();
-  } else {
+  }
+  else 
+  {
 	cout << F("FAT32\n");
 	makeFat32();
   }
@@ -1643,6 +1644,8 @@ void formatCard() {
   debugPrint();
 #endif  // DEBUG_PRINT
   cout << F("Format done\n");
+
+
 }
 
 void list_file()
@@ -1664,7 +1667,6 @@ void list_file()
   Serial.println("Done!");
 
 }
-
 
 void file_print_date()  //программа  записи даты в файл
 	{
@@ -1738,13 +1740,8 @@ void FileOpen()
 	}
   }
 
-
-
- // temp_file_name = (fileName[BASE_NAME_SIZE + 1]-30) + ((fileName[BASE_NAME_SIZE]-30)*10);
-
-  Serial.print("temp_file_name - ");
+ 
   temp_file_name = ((fileName[BASE_NAME_SIZE]-48)*10) + (fileName[BASE_NAME_SIZE + 1]-48);
-  Serial.println(temp_file_name);
   regBank.set(adr_reg_file_name,temp_file_name);      
 
 
@@ -1876,9 +1873,9 @@ void preob_num_str() // Программа формирования имени файла, состоящего из текуще
 
 void set_namber_file_zero()
 {
-   i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                              // счетчик номера файла сбросить в "0"
-   data_clock_exchange();
-   regBank.set(adr_control_command,0);
+   //i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                              // счетчик номера файла сбросить в "0"
+   //data_clock_exchange();
+   //regBank.set(adr_control_command,0);
  }
 void control_command()
 {
@@ -1958,13 +1955,12 @@ void control_command()
 				Reg_count_clear();			                                        // Сброс счетчиков ошибок                    
 				break;
 		case 17:
-			 set_namber_file_zero();              //
+			 formatCard();              //
 				break;
 		case 18:
-			// format_SD();                       //
+			                         //
 				break;
 		default:
-		//	regBank.set(adr_control_command,0);
 		break;
 
 	 }
@@ -2949,7 +2945,6 @@ void test_headset_instructor()
 	regBank.set(2,1);                                                               // Подать сигнал на вход микрофона инструктора  Mic2p
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(200);
-	//myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[4])));                    // "Signal headset instructor microphone 30mv     ON"            ;   
 	if (test_repeat == false)  myFile.println(buffer);                           // "Signal headset instructor microphone 30mv     ON"            ;   
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
@@ -2966,7 +2961,7 @@ void test_headset_instructor()
 	measure_vol_min(analog_gg_radio2,40238,238,35);                                 // Измерить уровень сигнала на выходе GG Radio2 "Test headset instructor ** Signal GG Radio2                 OFF - ";
 
 	//++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
-	//myFile.println("");                                                             //
+                                                   //
 	regBank.set(5,1);                                                               // Подать управляющую команду на вывод 12 ХР1 HeS2e (Включить микрофон)
 	regBank.set(28,1);                                                              // XP1- 15 HeS2PTT Включить PTT инструктора
 	regBank.set(16,0);                                                              // Сенсор микрофона отключить
@@ -3001,7 +2996,6 @@ void test_headset_instructor()
 				if (test_repeat == false) myFile.println(buffer);                                             // Микрофон инструктора включен  - Pass
 			  }
 		  }
-//	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[5])));                    // "Microphone headset instructor signal          ON"            ;  
 	if (test_repeat == false) myFile.println(buffer);                               // "Microphone headset instructor signal          ON"            ;    Звуковой сигнал подан на вход микрофона инструктора
 	delay(20);
@@ -3040,15 +3034,12 @@ void test_headset_dispatcher()
 	unsigned int regcount = 0;
 	test_disp_off();                                                                // Отключить реле и сенсоры, прверить отключение
 	test_disp_on();                                                                 // Включить необходимые сенсоры, проверить состояние
-	//myFile.println("");
-
-		// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
+	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
 	resistor(1, 30);                                                                // Установить уровень сигнала 30 мв
 	resistor(2, 30);                                                                // Установить уровень сигнала 30 мв
 	regBank.set(1,1);                                                               // Подать сигнал на вход микрофона диспетчера Mic1p
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(200);
-	//myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[13])));                   // "Signal headset dispatcher microphone 30mv     ON"            ;    
 	if (test_repeat == false)  myFile.println(buffer);                              // "Signal headset dispatcher microphone 30mv     ON"            ;   
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
@@ -3103,7 +3094,6 @@ void test_headset_dispatcher()
 				if (test_repeat == false) myFile.println(buffer);                                             // "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - ";  - Pass
 			   }
 		  }
-	//myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[14])));                   // "Microphone headset dispatcher signal          ON" 
 	if (test_repeat == false) myFile.println(buffer);                               // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
 	delay(20);
@@ -3146,7 +3136,6 @@ void test_MTT()
 	regBank.set(18,0);                                                              // XP1 - 20  HangUp  DCD Трубку поднять DCD должно быть в "0"
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[32])));
 	if (test_repeat == false)  myFile.println(buffer);                              // "Command  HangUp MTT OFF send!"
-
 	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,    40250,250,35);                                // Измерить уровень сигнала на выходе FrontL    "Test MTT ** Signal FrontL                                   OFF - ";
 	measure_vol_min(analog_FrontR,    40251,251,35);                                // Измерить уровень сигнала на выходе FrontR    "Test MTT ** Signal FrontR                                   OFF - ";
@@ -3157,7 +3146,6 @@ void test_MTT()
 	measure_vol_min(analog_ggs,       40256,256,35);                                // Измерить уровень сигнала на выходе GGS       "Test MTT ** Signal GGS                                      OFF - ";
 	measure_vol_min(analog_gg_radio1, 40257,257,35);                                // Измерить уровень сигнала на выходе GG Radio1 "Test MTT ** Signal GG Radio1                                OFF - ";
 	measure_vol_min(analog_gg_radio2, 40258,258,35);                                // Измерить уровень сигнала на выходе GG Radio2 "Test MTT ** Signal GG Radio2                                OFF - ";
-
 	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона MTT +++++++++++++++++++++++++++++++++++++++++++++++++
 	resistor(1, 130);                                                               // Установить уровень сигнала 60 мв
 	resistor(2, 130);                                                               // Установить уровень сигнала 60 мв
@@ -3166,7 +3154,6 @@ void test_MTT()
 	delay(400);
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[33])));                   // "Signal MTT microphone 30mv                    ON"            ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal MTT microphone 30mv                    ON"            ;
-
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях  +++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,    40250,250,35);                                // Измерить уровень сигнала на выходе FrontL    "Test MTT ** Signal FrontL                                   OFF - ";
 	measure_vol_min(analog_FrontR,    40251,251,35);                                // Измерить уровень сигнала на выходе FrontR    "Test MTT ** Signal FrontR                                   OFF - ";
@@ -3175,12 +3162,10 @@ void test_MTT()
 	measure_vol_min(analog_ggs,       40256,256,35);                                // Измерить уровень сигнала на выходе GGS       "Test MTT ** Signal GGS                                      OFF - ";
 	measure_vol_min(analog_gg_radio1, 40257,257,35);                                // Измерить уровень сигнала на выходе GG Radio1 "Test MTT ** Signal GG Radio1                                OFF - ";
 	measure_vol_min(analog_gg_radio2, 40258,258,35);                                // Измерить уровень сигнала на выходе GG Radio2 "Test MTT ** Signal GG Radio2                                OFF - ";
-
 	// ++++++++++++++++++++++++++++++++++ Проверить наличие сигнала  ++++++++++++++++++++++++++++++++++++
 //	measure_vol_max(analog_LineL,    40260,260,35);                                 // "Test MTT ** Signal LineL                                    ON  - ";  
 	measure_vol_max(analog_LineR,    40261,261,35);                                 // "Test MTT ** Signal LineR                                    ON  - ";  
 	measure_vol_max(analog_mag_phone,40262,262,90);                                 // Измерить уровень сигнала на выходе mag phone  "Test MTT ** Signal Mag phone                                ON  - ";
-
 	// +++++++++++++++++++++ Проверка реагирования вывода ГГС на сигнал HangUp  DCD ON +++++++++++++++++++++++++++++++++
 	regBank.set(3,0);                                                               // Отключить сигнал на вход микрофона трубки Mic3p
 	regBank.set(6,1);                                                               // Реле RL5. Подать звук Front L, Front R
@@ -3224,8 +3209,6 @@ void test_tangR()
 	if (test_repeat == false) myFile.println(buffer);                               // "Command PTT2   OFF tangenta ruchnaja             send!"      ; 
 
 	byte i50 = regs_in[0];    
-
-
 	if(bitRead(i50,3) != 0)                                                         // J8-11     XP7 2 sensor тангента ручная               "Command sensor tangenta ruchnaja                            OFF - ";
 		{
 			regcount = regBank.get(40274);                                          // адрес счетчика ошибки sensor тангента ручная     "Command sensor tangenta ruchnaja                            OFF - ";
@@ -3323,8 +3306,7 @@ void test_tangR()
 
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
-
-			if(bitRead(regs_in[0],3) == 0)                                          // J8-11     XP7 2 sensor тангента ручная             "Command sensor tangenta ruchnaja                            ON  - ";
+		if(bitRead(regs_in[0],3) == 0)                                          // J8-11     XP7 2 sensor тангента ручная             "Command sensor tangenta ruchnaja                            ON  - ";
 		  {
 			regcount = regBank.get(40275);                                          // адрес счетчика ошибки sensor тангента ручная       "Command sensor tangenta ruchnaja                            ON  - ";
 			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная    "Command sensor tangenta ruchnaja                            ON  - ";
@@ -3348,7 +3330,7 @@ void test_tangR()
 			myFile.print(buffer);                         // 
 			strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));            // "Pass";
 			myFile.println(buffer);                                                 // "Command sensor tangenta ruchnaja                            ON  - "; - Pass
-		  }
+		   }
 		  }
 	 UpdateRegs(); 
 	  // 2)  Проверка  на отключение J8-23     XP7 1 PTT1 тангента ручная CTS
@@ -3580,7 +3562,6 @@ void test_mikrophon()
 	regBank.set(26,0);    // XP1- 17 HaSPTT    CTS DSR вкл.  
 	regBank.set(28,0);    // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
 	regBank.set(30,0);    // XP1- 6  HeS1PTT   CTS вкл   РТТ Диспетчера
-
 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[58])));                   // "Command sensor OFF microphone                    send!"      ;  
 	if (test_repeat == false) myFile.println(buffer);                               //
@@ -3922,15 +3903,12 @@ void test_GG_Radio1()
 	measure_vol_min(analog_ggs,       40306,306,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
 	measure_vol_max(analog_gg_radio1, 40309,309,220);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
 	measure_vol_min(analog_gg_radio2, 40308,308,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
-
-
 	regBank.set(4,0);                                                               // Реле RL3 Звук  LFE  "Маг."
 	UpdateRegs();     
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 }
 void test_GG_Radio2()
 {
-
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[52])));                   // " ****** Test Radio2 start! ******"                           ;
 	myFile.println(buffer);                                                         // " ****** Test Radio2 start! ******"                           ;
@@ -3969,7 +3947,6 @@ void test_GG_Radio2()
 	measure_vol_min(analog_ggs,       40316,316,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
 	measure_vol_min(analog_gg_radio1, 40317,317,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal Radio1                                ON  - ";
 	measure_vol_max(analog_gg_radio2, 40319,319,250);                               // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GG Radio2                             OFF - ";
-
 
 	regBank.set(7,0);                                                               // Реле RL6 Звук Center
 	UpdateRegs();     
@@ -4494,7 +4471,6 @@ void test_MTT_off()
 	delay(100);
 	byte i50 = regs_in[0];    
 
-
 		if(bitRead(i50,2) != 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            OFF - ";
 		  {
 			regcount = regBank.get(40200);                                          // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            OFF - ";
@@ -4550,7 +4526,6 @@ void test_MTT_off()
 				myFile.println(buffer);                                             // "Test MTT PTT    (CTS)                                       OFF - ";
 			   }                   
 		  }
-
 
 	   if(regBank.get(adr_reg_ind_DCD)!= 0)                                         // Проверить включение HangUp  DCD   "Test MTT HangUp (DCD)                                       OFF - ";
 		  {
@@ -4625,8 +4600,6 @@ void test_MTT_on()
 			   }
 		  }
 
-		//delay(300);
-		//UpdateRegs(); 
 		delay(300);
 		UpdateRegs(); 
 	  // 2)  Проверка  на отключение PTT  MTT (CTS)
@@ -4658,7 +4631,6 @@ void test_MTT_on()
 				myFile.println(buffer);                                             //  "Test MTT PTT    (CTS)                                       ON  - " трубки включен  - Pass
 			   }
 		  }
-
 
 	   if(regBank.get(adr_reg_ind_DCD)== 0)                                         // Проверить включение HangUp  DCD "Test MTT HangUp (DCD)                                       ON  - ";
 		  {
@@ -5007,15 +4979,6 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				myFile.print("     ");  
 				myFile.print(voltage); 
 				myFile.println(" V");
-				//Serial.println(regBank.get(_adr_count));
-				//Serial.println(regBank.get(_adr_count+200));
-				//Serial.println(regBank.get(_adr_flagErr));
-  /*              do
-				{
-					Serial.println(regBank.get(_adr_flagErr));
-
-				} while (regBank.get(_adr_flagErr) != 0);
-*/
 			}
 		else
 			{
@@ -5056,67 +5019,7 @@ void measure_volume(int analog)
 
 		Serial.print("voltage - ");
 		Serial.println(voltage10);
-
-		//Serial.print(volume_min*(5.0 / 1023.0) );
-		//Serial.print("  max - ");
-		//Serial.print(volume_max*(5.0 / 1023.0));
-		//Serial.print("  fact - ");
-		//Serial.println(volume_fact*(5.0 / 1023.0));
-
-		//Serial.print("  *** - ");
-		//  for (int i=0;i<= i_stop; i++)
-		//   {
-		//	   Serial.println(Array_volume[i]*(5.0 / 1023.0));
-		//   }
 }
-//void preob_num_str() // Программа формирования имени файла, состоящего из текущей даты и счетчика файлов
-//{
-//	DateTime now = RTC.now();
-//	int year_temp = now.year()-2000;
-//
-//	itoa (year_temp,str_year_file, 10); // Преобразование даты год в строку ( 10 - десятичный формат) 
-//
-//	
-//	if (now.month() <10)
-//		{
-//		   itoa (0,str_mon_file0, 10);                   //  Преобразование даты месяц  в строку ( 10 - десятичный формат) 
-//		   itoa (now.month(),str_mon_file10, 10);        //  Преобразование числа в строку ( 10 - десятичный формат) 
-//		   sprintf(str_mon_file, "%s%s", str_mon_file0, str_mon_file10);  // Сложение 2 строк
-//		}
-//	else
-//		{
-//		   itoa (now.month(),str_mon_file, 10);         // Преобразование числа в строку ( 10 - десятичный формат) 
-//		}
-//
-//
-//	if (now.day() <10)
-//		{
-//		   itoa (0,str_day_file0, 10);                  // Преобразование числа в строку ( 10 - десятичный формат) 
-//		   itoa (now.day(),str_day_file10, 10);         // Преобразование числа в строку ( 10 - десятичный формат) 
-//		   sprintf(str_day_file, "%s%s", str_day_file0, str_day_file10);  // Сложение 2 строк
-//		}
-//	else
-//		{
-//		itoa (now.day(),str_day_file, 10);                   // Преобразование числа в строку ( 10 - десятичный формат) 
-//		}
-//
-//		 
-//	if (file_name_count<10)
-//		{
-//			itoa (file_name_count,str0, 10);                 // Преобразование числа в строку ( 10 - десятичный формат) 
-//			sprintf(str_file_name_count, "%s%s", str_file_name_count0, str0);  // Сложение 2 строк
-//		}
-//	
-//	else
-//		{
-//			itoa (file_name_count,str_file_name_count, 10);  // Преобразование числа в строку ( 10 - десятичный формат) 
-//		}
-//	sprintf(str1, "%s%s",str_year_file, str_mon_file);       // Сложение 2 строк
-//	sprintf(str2, "%s%s",str1, str_day_file);                // Сложение 2 строк
-//	sprintf(str3, "%s%s", str2, str_file_name_count);        // Сложение 2 строк
-//	sprintf(file_name, "%s%s", str3, file_name_txt);         // Получение имени файла в file_name
-//
-//}
 
 void setup_mcp()
 {
@@ -6105,11 +6008,7 @@ void setup()
 
 
 	preob_num_str();
-	//setup_SD();
-	//if (!SD.begin(SD_Select))                       // Подключить SD память
-	//	{
-	//		Serial.println("initialization SD failed!");
-	//	}
+
 	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
 	//setup_SDFile();                                // Проверка рабрты с файлами
 	setup_regModbus();                              // Настройка регистров MODBUS
@@ -6124,7 +6023,7 @@ void setup()
 //	reg_Kamerton();
 	regBank.set(8,1);                               // Включить питание Камертон
 //	sensor_all_off();
-	data_clock_exchange();
+//	data_clock_exchange();
 	UpdateRegs();                                   // Обновить информацию в регистрах
 
 	#if FASTADC                                     // Ускорить считывание аналогового канала
@@ -6147,18 +6046,6 @@ void setup()
 	{
 	   regBank.set(i,0);   
 	}
-
-	//for (int i = 200; i <= 330; i++)                  // Очистить флаги ошибок
-	//{
-	//	Serial.print(i);
-	//	Serial.print(" - ");
-	//	Serial.print(regBank.get(i+40000));
-	//	Serial.print(" - ");
-	//	Serial.println(regBank.get(i));
-	//}
-
-
-
 	regBank.set(120,0);
 	regBank.set(40120,0);
 	regBank.set(adr_reg_count_err,0);                // Обнулить данные счетчика всех ошибок

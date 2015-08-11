@@ -4807,13 +4807,13 @@ namespace KamertonTest
 
         }
 
-        private void button81_Click(object sender, EventArgs e)            //  Установить номер файла в '0'
+        private void button81_Click(object sender, EventArgs e)            // Форматирование SD карты
         {
-            //ushort[] writeVals = new ushort[2];
-            //bool[] coilArr = new bool[4];
-            //startWrReg = 120;
-            //res = myProtocol.writeSingleRegister(slave, startWrReg, 17);   // 
-            // test_end();
+            ushort[] writeVals = new ushort[2];
+            bool[] coilArr = new bool[4];
+            startWrReg = 120;
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 17);   // 
+            test_end();
         }
 
         private void label133_Click_1(object sender, EventArgs e)

@@ -318,6 +318,7 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
+            this.label37 = new System.Windows.Forms.Label();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -2418,6 +2419,7 @@ namespace KamertonTest
             // 
             // groupBox18
             // 
+            this.groupBox18.Controls.Add(this.label37);
             this.groupBox18.Controls.Add(this.label134);
             this.groupBox18.Controls.Add(this.button81);
             this.groupBox18.Controls.Add(this.label101);
@@ -2443,11 +2445,11 @@ namespace KamertonTest
             // 
             // button81
             // 
-            this.button81.Location = new System.Drawing.Point(18, 131);
+            this.button81.Location = new System.Drawing.Point(43, 131);
             this.button81.Name = "button81";
             this.button81.Size = new System.Drawing.Size(94, 23);
             this.button81.TabIndex = 3;
-            this.button81.Text = "***";
+            this.button81.Text = "Формат SD";
             this.button81.UseVisualStyleBackColor = true;
             this.button81.Click += new System.EventHandler(this.button81_Click);
             // 
@@ -2456,9 +2458,9 @@ namespace KamertonTest
             this.label101.AutoSize = true;
             this.label101.Location = new System.Drawing.Point(15, 162);
             this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(19, 13);
+            this.label101.Size = new System.Drawing.Size(149, 13);
             this.label101.TabIndex = 1;
-            this.label101.Text = "***";
+            this.label101.Text = "Форматирование SD карты";
             this.label101.Click += new System.EventHandler(this.label101_Click);
             // 
             // label95
@@ -3458,6 +3460,19 @@ namespace KamertonTest
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
             // 
+            // label37
+            // 
+            this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label37.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label37.ForeColor = System.Drawing.Color.Red;
+            this.label37.Location = new System.Drawing.Point(15, 187);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(181, 63);
+            this.label37.TabIndex = 36;
+            this.label37.Text = "По окончанию форматирования, необходимо перезагрузить контроллер";
+            this.label37.UseCompatibleTextRendering = true;
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -3802,6 +3817,7 @@ namespace KamertonTest
         private System.Windows.Forms.CheckBox checkBoxSensors2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label37;
     }
 }
 
