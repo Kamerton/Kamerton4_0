@@ -2439,6 +2439,7 @@ namespace KamertonTest
             this.label134.Size = new System.Drawing.Size(147, 20);
             this.label134.TabIndex = 35;
             this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label134.Click += new System.EventHandler(this.label134_Click);
             // 
             // button81
             // 
@@ -2446,7 +2447,7 @@ namespace KamertonTest
             this.button81.Name = "button81";
             this.button81.Size = new System.Drawing.Size(94, 23);
             this.button81.TabIndex = 3;
-            this.button81.Text = "—брос в \'0\'";
+            this.button81.Text = "***";
             this.button81.UseVisualStyleBackColor = true;
             this.button81.Click += new System.EventHandler(this.button81_Click);
             // 
@@ -2455,9 +2456,10 @@ namespace KamertonTest
             this.label101.AutoSize = true;
             this.label101.Location = new System.Drawing.Point(15, 162);
             this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(159, 13);
+            this.label101.Size = new System.Drawing.Size(19, 13);
             this.label101.TabIndex = 1;
-            this.label101.Text = "”становить номер файла в \'0\'";
+            this.label101.Text = "***";
+            this.label101.Click += new System.EventHandler(this.label101_Click);
             // 
             // label95
             // 

@@ -1719,7 +1719,8 @@ void resistor(int resist, int valresist)
 }
 void FileOpen()
 {
-
+	int temp_file_name = 0;
+  preob_num_str();
   while (sd.exists(fileName)) 
   {
 	if (fileName[BASE_NAME_SIZE + 1] != '9') 
@@ -1736,153 +1737,112 @@ void FileOpen()
 //	  sdError("Can't create file name");
 	}
   }
+
+
+
+ // temp_file_name = (fileName[BASE_NAME_SIZE + 1]-30) + ((fileName[BASE_NAME_SIZE]-30)*10);
+
+  Serial.print("temp_file_name - ");
+  temp_file_name = ((fileName[BASE_NAME_SIZE]-48)*10) + (fileName[BASE_NAME_SIZE + 1]-48);
+  Serial.println(temp_file_name);
+  regBank.set(adr_reg_file_name,temp_file_name);      
+
+
   if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) //sdError("file.open");
   {
 
   }
   else
   {
-	Serial.println(fileName);
-	Serial.print(F(" Open Ok!: "));
-  }
-
+	Serial.print(fileName);
+	Serial.println(F("  Open Ok!"));
 
 	DateTime now = RTC.now();
 
-			regBank.set(adr_Mic_Start_day , now.day());           // Время старта теста
-			regBank.set(adr_Mic_Start_month, now.month());
-			regBank.set(adr_Mic_Start_year, now.year());
-			regBank.set(adr_Mic_Start_hour, now.hour());
-			regBank.set(adr_Mic_Start_minute, now.minute());
-			regBank.set(adr_Mic_Start_second, now.second());
+	regBank.set(adr_Mic_Start_day , now.day());           // Время старта теста
+	regBank.set(adr_Mic_Start_month, now.month());
+	regBank.set(adr_Mic_Start_year, now.year());
+	regBank.set(adr_Mic_Start_hour, now.hour());
+	regBank.set(adr_Mic_Start_minute, now.minute());
+	regBank.set(adr_Mic_Start_second, now.second());
 	// Уточнить 			
-			regBank.set(adr_Time_Test_day, 0); 
-			regBank.set(adr_Time_Test_hour, 0); 
-			regBank.set(adr_Time_Test_minute, 0); 
-			regBank.set(adr_Time_Test_second, 0); 
-	
-	/*  myFile = sd.open(fileName, FILE_WRITE);            // открыть файл для записи данных
-	  myFile.println ("");
-	  myFile.print ("Start test   ");
-	  file_print_date();
-	  myFile.println ("");
-	  delay(100);
-	  regBank.set(adr_control_command,0);
-
-	
-	data_clock_exchange();                                                          // Проверить не изменилась ли дата
-
-	file_name_count = i2c_eeprom_read_byte(0x50, adr_file_name_count);              // считать текущий номер файла из памяти
-	regBank.set(adr_reg_file_name,file_name_count);                                 // Регистр  хранения переменной номер файла
-	preob_num_str();                                                                // сформировать имя файла из даты и счетчика файлов
- //   regBank.set(adr_reg_file_tek,file_name_count);                                  // Регистр  хранения переменной номер файла
- */
- //if (sd.exists(file_name))                                                      // проверить есть ли такой файл
-	//  { 
-	//	Serial.print(file_name);
-	//	Serial.println("  Open  OK!.");
-	//  }
-	//  else 
-	//  {
-	//	  Serial.println("");
-	//	  Serial.print(file_name);
-	//	  Serial.println(" doesn't exist.");             // такого файла нет
-	//  }
-
-//	  myFile = sd.open(file_name, FILE_WRITE);            // открыть файл для записи данных
-	  myFile.println ("");
-	  myFile.print ("Start test   ");
-	  file_print_date();
-	  myFile.println ("");
-	  delay(100);
-	  regBank.set(adr_control_command,0);
-	  
+	regBank.set(adr_Time_Test_day, 0); 
+	regBank.set(adr_Time_Test_hour, 0); 
+	regBank.set(adr_Time_Test_minute, 0); 
+	regBank.set(adr_Time_Test_second, 0); 
+	myFile.println ("");
+	myFile.print ("Start test   ");
+	file_print_date();
+	myFile.println ("");
+	delay(100);
+   }
+  regBank.set(adr_control_command,0);  
 }
 void FileClose()
 {
 	
-	 myFile.println ("");
-	 myFile.print ("Stop test   ");
-	 file_print_date();
-	 myFile.println ("");
-	 myFile.close();
+	myFile.println ("");
+	myFile.print ("Stop test   ");
+	file_print_date();
+	myFile.println ("");
+	myFile.close();
 
-	  Serial.println();
-	   Serial.print(fileName);
-	   Serial.println(" close.");
-	  delay(100);
-
-
-
-	//   if (!myFile.close) //sdError("file.open");
- // {
-
- // }
- // else
- // {
-	//Serial.println(fileName);
-	//Serial.print(F(" Close Ok!: "));
- // }
-	  if (sd.exists(file_name))
-	  { 
-		Serial.print(file_name);
+	if (sd.exists(fileName))
+		{ 
+        Serial.println();
+		Serial.print(fileName);
 		Serial.println("  Close  OK!.");
-	  }
-	  else 
-	  {
-		  Serial.print(fileName);
-		  Serial.println(" doesn't exist.");  
-	  }
+		}
+	else 
+		{
+		Serial.println();
+		Serial.print(fileName);
+		Serial.println(" doesn't exist.");  
+		}
 	regBank.set(adr_control_command,0);
-	
 }
 
-void file_name()
-{
-
-   preob_num_str();
-
-  while (sd.exists(fileName)) 
-  {
-	if (fileName[BASE_NAME_SIZE + 1] != '9') 
-	{
-	  fileName[BASE_NAME_SIZE + 1]++;
-	}
-	else if (fileName[BASE_NAME_SIZE] != '9') 
-	{
-	  fileName[BASE_NAME_SIZE + 1] = '0';
-	  fileName[BASE_NAME_SIZE]++;
-	}
-	else 
-	{
-//	  sdError("Can't create file name");
-	}
-  }
-  if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) //sdError("file.open");
-  //do {
-  //  delay(10);
-  // } while (Serial.read() >= 0);
-  //
-  Serial.print(F("Logging to: "));
-  Serial.println(fileName);
-  myFile.close();
-  Serial.println("done.");
-  
-} 
+//void file_name()
+//{
+//
+//   preob_num_str();
+//
+//  while (sd.exists(fileName)) 
+//  {
+//	if (fileName[BASE_NAME_SIZE + 1] != '9') 
+//	{
+//	  fileName[BASE_NAME_SIZE + 1]++;
+//	}
+//	else if (fileName[BASE_NAME_SIZE] != '9') 
+//	{
+//	  fileName[BASE_NAME_SIZE + 1] = '0';
+//	  fileName[BASE_NAME_SIZE]++;
+//	}
+//	else 
+//	{
+////	  sdError("Can't create file name");
+//	}
+//  }
+//  if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) //sdError("file.open");
+//  //do {
+//  //  delay(10);
+//  // } while (Serial.read() >= 0);
+//  //
+//  Serial.print(F("Logging to: "));
+//  Serial.println(fileName);
+//  myFile.close();
+//  Serial.println("done.");
+//  
+//} 
 void preob_num_str() // Программа формирования имени файла, состоящего из текущей даты и счетчика файлов
 {
 	DateTime now = RTC.now();
-
 	day   = now.day();
 	month = now.month();
 	year  = now.year();
-
-
 	int year_temp = year-2000;
-
 	itoa (year_temp,str_year_file, 10);                                        // Преобразование даты год в строку ( 10 - десятичный формат) 
 
-	
 	if (month <10)
 		{
 		   itoa (0,str_mon_file0, 10);                                         //  Преобразование даты месяц  в строку ( 10 - десятичный формат) 
@@ -1893,8 +1853,6 @@ void preob_num_str() // Программа формирования имени файла, состоящего из текуще
 		{
 		   itoa (month,str_mon_file, 10);                                      // Преобразование числа в строку ( 10 - десятичный формат) 
 		}
-
-
 	if (day <10)
 		{
 		   itoa (0,str_day_file0, 10);                                         // Преобразование числа в строку ( 10 - десятичный формат) 
@@ -1910,6 +1868,10 @@ void preob_num_str() // Программа формирования имени файла, состоящего из текуще
 	sprintf(str2, "%s%s",str1, str_day_file);                                  // Сложение 2 строк
 	sprintf(fileName, "%s%s", str2, "00.TXT");                                 // Получение имени файла в file_name
 	//Serial.println(fileName);
+
+	regBank.set(adr_reg_temp_day, day);  
+	regBank.set(adr_reg_temp_mon, month); 
+	regBank.set(adr_reg_temp_year, year-2000); 
 }
 
 void set_namber_file_zero()

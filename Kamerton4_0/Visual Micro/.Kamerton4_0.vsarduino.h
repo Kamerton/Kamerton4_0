@@ -122,7 +122,6 @@ void file_print_date();
 void resistor(int resist, int valresist);
 void FileOpen();
 void FileClose();
-void file_name();
 void preob_num_str();
 void set_namber_file_zero();
 void control_command();

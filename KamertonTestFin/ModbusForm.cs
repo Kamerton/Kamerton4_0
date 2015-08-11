@@ -4496,7 +4496,7 @@ namespace KamertonTest
                 textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
                 textBox7.Refresh();
                 test_end();
-               // file_fakt_namber();
+                file_fakt_namber();
                 Thread.Sleep(500);
                 _All_Test_Stop = false;                                                             // Установить флаг запуска теста
             }
@@ -4809,10 +4809,10 @@ namespace KamertonTest
 
         private void button81_Click(object sender, EventArgs e)            //  Установить номер файла в '0'
         {
-            ushort[] writeVals = new ushort[2];
-            bool[] coilArr = new bool[4];
-            startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 17);   // 
+            //ushort[] writeVals = new ushort[2];
+            //bool[] coilArr = new bool[4];
+            //startWrReg = 120;
+            //res = myProtocol.writeSingleRegister(slave, startWrReg, 17);   // 
             // test_end();
         }
 
@@ -4843,6 +4843,16 @@ namespace KamertonTest
             error_list2();
             error_list3();
             error_list_print();
+        }
+
+        private void label101_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label134_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
