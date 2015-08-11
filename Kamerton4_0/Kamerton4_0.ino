@@ -1806,29 +1806,33 @@ void FileClose()
 	 file_print_date();
 	 myFile.println ("");
 	 myFile.close();
-	// 
-	// file_name_count++;
 
-	//if(file_name_count > 99)
-	//	{
-	//		file_name_count = 0;
-	//	}
-	//i2c_eeprom_write_byte(0x50, adr_file_name_count, file_name_count);//
-
+	  Serial.println();
 	   Serial.print(fileName);
 	   Serial.println(" close.");
 	  delay(100);
 
-	 // if (SD.exists(file_name))
-	 // { 
-		//Serial.print(file_name);
-		//Serial.println("  Close  OK!.");
-	 // }
-	 // else 
-	 // {
-		  //Serial.print(fileName);
-		  //Serial.println(" doesn't exist.");  
-	  //}
+
+
+	//   if (!myFile.close) //sdError("file.open");
+ // {
+
+ // }
+ // else
+ // {
+	//Serial.println(fileName);
+	//Serial.print(F(" Close Ok!: "));
+ // }
+	  if (sd.exists(file_name))
+	  { 
+		Serial.print(file_name);
+		Serial.println("  Close  OK!.");
+	  }
+	  else 
+	  {
+		  Serial.print(fileName);
+		  Serial.println(" doesn't exist.");  
+	  }
 	regBank.set(adr_control_command,0);
 	
 }
