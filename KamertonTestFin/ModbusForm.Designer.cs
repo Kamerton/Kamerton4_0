@@ -211,8 +211,9 @@ namespace KamertonTest
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.label134 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
@@ -316,7 +317,8 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -330,6 +332,7 @@ namespace KamertonTest
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.TabPage1.SuspendLayout();
@@ -341,7 +344,6 @@ namespace KamertonTest
             this.GroupBox5.SuspendLayout();
             this.GroupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl1
@@ -350,12 +352,13 @@ namespace KamertonTest
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl1.Controls.Add(this.tabPage3);
-            this.TabControl1.Controls.Add(this.tabPage5);
             this.TabControl1.Controls.Add(this.tabPage6);
-            this.TabControl1.Controls.Add(this.TabPage1);
-            this.TabControl1.Controls.Add(this.TabPage2);
+            this.TabControl1.Controls.Add(this.tabPage5);
             this.TabControl1.Controls.Add(this.tabPage7);
             this.TabControl1.Controls.Add(this.tabPage8);
+            this.TabControl1.Controls.Add(this.TabPage1);
+            this.TabControl1.Controls.Add(this.TabPage2);
+            this.TabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TabControl1.Location = new System.Drawing.Point(0, 2);
             this.TabControl1.Name = "TabControl1";
             this.TabControl1.SelectedIndex = 0;
@@ -2398,15 +2401,15 @@ namespace KamertonTest
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Настройка проверки";
             // 
-            // button1
+            // groupBox8
             // 
-            this.button1.Location = new System.Drawing.Point(749, 427);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Получить ошибки";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.groupBox8.Controls.Add(this.richTextBox1);
+            this.groupBox8.Location = new System.Drawing.Point(721, 21);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(204, 389);
+            this.groupBox8.TabIndex = 4;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Сервисная информация";
             // 
             // richTextBox1
             // 
@@ -2416,6 +2419,16 @@ namespace KamertonTest
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(749, 427);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(149, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Получить ошибки";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox18
             // 
@@ -2609,7 +2622,7 @@ namespace KamertonTest
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.Size = new System.Drawing.Size(987, 613);
             this.TabPage1.TabIndex = 0;
-            this.TabPage1.Text = "Параметры";
+            this.TabPage1.Text = "Параметры прибора";
             // 
             // groupBox12
             // 
@@ -3086,6 +3099,8 @@ namespace KamertonTest
             // TabPage2
             // 
             this.TabPage2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TabPage2.Controls.Add(this.label38);
+            this.TabPage2.Controls.Add(this.label37);
             this.TabPage2.Controls.Add(this.Label19);
             this.TabPage2.Controls.Add(this.txtNumCoils);
             this.TabPage2.Controls.Add(this.Label20);
@@ -3437,15 +3452,23 @@ namespace KamertonTest
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
             // 
-            // groupBox8
+            // label37
             // 
-            this.groupBox8.Controls.Add(this.richTextBox1);
-            this.groupBox8.Location = new System.Drawing.Point(721, 21);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(204, 389);
-            this.groupBox8.TabIndex = 4;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Сервисная информация";
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label37.Location = new System.Drawing.Point(652, 14);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(186, 17);
+            this.label37.TabIndex = 31;
+            this.label37.Text = "Сервисные  функции !";
+            // 
+            // label38
+            // 
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label38.Location = new System.Drawing.Point(652, 36);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(261, 17);
+            this.label38.TabIndex = 32;
+            this.label38.Text = "При тестировании не применяются";
             // 
             // Form1
             // 
@@ -3476,6 +3499,7 @@ namespace KamertonTest
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.tabPage6.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
             this.groupBox16.ResumeLayout(false);
@@ -3495,7 +3519,6 @@ namespace KamertonTest
             this.GroupBox4.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3791,6 +3814,8 @@ namespace KamertonTest
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label37;
     }
 }
 
