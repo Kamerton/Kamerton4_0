@@ -27,12 +27,17 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>http://localhost/KamertonTestFin/</UpdateUrl>
-    <ApplicationRevision>30</ApplicationRevision>
+    <UpdateUrl>\\Decima-files\users\nto\Мосейчук\</UpdateUrl>
+    <ProductName>Kamerton4_0</ProductName>
+    <PublisherName>Децима</PublisherName>
+    <SuiteName>Kamerton4_0</SuiteName>
+    <ApplicationRevision>31</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
     <BootstrapperComponentsUrl>file:///C:/VirtualBuffer/</BootstrapperComponentsUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
@@ -93,6 +98,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>kcontrol2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mbusmaster.net, Version=2.7.1.0, Culture=neutral, PublicKeyToken=e3fe03aede4b4746, processorArchitecture=x86">
@@ -157,16 +166,11 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.VisualBasic.PowerPacks.10.0">
       <Visible>False</Visible>
       <ProductName>Microsoft Visual Basic PowerPacks 10.0</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Установщик Windows 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>

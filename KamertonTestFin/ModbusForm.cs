@@ -558,8 +558,7 @@ namespace KamertonTest
 
                 label83.Text = "";
                 label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-
-
+  
                 startRdReg = 112; // 40046 Адрес дата/время контроллера  
                 numRdRegs = 4;
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
@@ -2487,24 +2486,24 @@ namespace KamertonTest
 
         private void button55_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор ГГ-Радио2
         {
-            startCoil = 24;                                                          // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true);
+            //startCoil = 24;                                                          // Управление сенсорами
+            //res = myProtocol.writeCoil(slave, startCoil, true);
         }
         private void button67_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор ГГ-Радио2
         {
-            startCoil = 24;                                                           // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false);
+            //startCoil = 24;                                                           // Управление сенсорами
+            //res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
         private void button56_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор ГГ-Радио1
         {
-            startCoil = 23; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true);
+            //startCoil = 23; // Управление сенсорами
+            //res = myProtocol.writeCoil(slave, startCoil, true);
         }
         private void button68_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор ГГ-Радио1
         {
-            startCoil = 23; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false);
+            //startCoil = 23; // Управление сенсорами
+            //res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
         private void button57_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ подключения трубки    XP1- 19 HaSs  
@@ -2544,14 +2543,14 @@ namespace KamertonTest
 
         private void button60_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор  Маг.
         {
-            startCoil = 21; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true);
+            //startCoil = 21; // Управление сенсорами
+            //res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
         private void button76_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор  Маг.
         {
-            startCoil = 21; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false);
+            //startCoil = 21; // Управление сенсорами
+            //res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
         private void button61_Click(object sender, EventArgs e)                      // 7 Кнопка  ВКЛ   XP1- 16 HeS2Rs Сенсор подключения гарнитуры инструктора с 2 наушниками
@@ -2616,14 +2615,14 @@ namespace KamertonTest
 
         private void button35_Click(object sender, EventArgs e)                      //  Кнопка  ВКЛ Сенсор ГГС
         {
-            startCoil = 22; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, true);
+            //startCoil = 22; // Управление сенсорами
+            //res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
         private void button36_Click(object sender, EventArgs e)                      //  Кнопка  ОТКЛ Сенсор ГГС
         {
-            startCoil = 22; // Управление сенсорами
-            res = myProtocol.writeCoil(slave, startCoil, false);
+            //startCoil = 22; // Управление сенсорами
+            //res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
 
@@ -4297,16 +4296,14 @@ namespace KamertonTest
         }
         private void error_list_print()
         {
-             richTextBox1.Text = "";
-
+            richTextBox1.Text = "";
             for (int i_reg = 0; i_reg < 130; i_reg++)
-            {
-                richTextBox1.Text += ((i_reg +200 ) + " - " + readVals_all[i_reg] + " - " + coilArr_all[i_reg] + readVolt_all[i_reg] + "\r\n");
-                richTextBox1.Refresh();
-            }
-
+                {
+                    richTextBox1.Text += ((i_reg + 200) + "   -  " + readVals_all[i_reg] + "  -  " + coilArr_all[i_reg] +  "  -  " + readVolt_all[i_reg] + "\r\n");
+                }
+            richTextBox1.Refresh();
+            Polltimer1.Enabled = true;
         }
-
 
         //*******************************************
 
@@ -4807,14 +4804,7 @@ namespace KamertonTest
 
         }
 
-        private void button81_Click(object sender, EventArgs e)            // Форматирование SD карты
-        {
-            ushort[] writeVals = new ushort[2];
-            bool[] coilArr = new bool[4];
-            startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 17);   // 
-            test_end();
-        }
+      
 
         private void label133_Click_1(object sender, EventArgs e)
         {
@@ -4851,6 +4841,11 @@ namespace KamertonTest
         }
 
         private void label134_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

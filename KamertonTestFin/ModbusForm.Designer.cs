@@ -215,8 +215,6 @@ namespace KamertonTest
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.label134 = new System.Windows.Forms.Label();
-            this.button81 = new System.Windows.Forms.Button();
-            this.label101 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.checkBoxSensors2 = new System.Windows.Forms.CheckBox();
@@ -318,7 +316,7 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
-            this.label37 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -343,6 +341,7 @@ namespace KamertonTest
             this.GroupBox5.SuspendLayout();
             this.GroupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl1
@@ -2389,8 +2388,8 @@ namespace KamertonTest
             // 
             this.tabPage6.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage6.Controls.Add(this.groupBox8);
             this.tabPage6.Controls.Add(this.button1);
-            this.tabPage6.Controls.Add(this.richTextBox1);
             this.tabPage6.Controls.Add(this.groupBox18);
             this.tabPage6.Controls.Add(this.groupBox16);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
@@ -2401,9 +2400,9 @@ namespace KamertonTest
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(547, 427);
+            this.button1.Location = new System.Drawing.Point(749, 427);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 23);
+            this.button1.Size = new System.Drawing.Size(149, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "Получить ошибки";
             this.button1.UseVisualStyleBackColor = true;
@@ -2411,18 +2410,16 @@ namespace KamertonTest
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(547, 21);
+            this.richTextBox1.Location = new System.Drawing.Point(6, 15);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(427, 389);
+            this.richTextBox1.Size = new System.Drawing.Size(192, 368);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // groupBox18
             // 
-            this.groupBox18.Controls.Add(this.label37);
             this.groupBox18.Controls.Add(this.label134);
-            this.groupBox18.Controls.Add(this.button81);
-            this.groupBox18.Controls.Add(this.label101);
             this.groupBox18.Controls.Add(this.label95);
             this.groupBox18.Location = new System.Drawing.Point(339, 20);
             this.groupBox18.Name = "groupBox18";
@@ -2442,26 +2439,6 @@ namespace KamertonTest
             this.label134.TabIndex = 35;
             this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label134.Click += new System.EventHandler(this.label134_Click);
-            // 
-            // button81
-            // 
-            this.button81.Location = new System.Drawing.Point(43, 131);
-            this.button81.Name = "button81";
-            this.button81.Size = new System.Drawing.Size(94, 23);
-            this.button81.TabIndex = 3;
-            this.button81.Text = "Формат SD";
-            this.button81.UseVisualStyleBackColor = true;
-            this.button81.Click += new System.EventHandler(this.button81_Click);
-            // 
-            // label101
-            // 
-            this.label101.AutoSize = true;
-            this.label101.Location = new System.Drawing.Point(15, 162);
-            this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(149, 13);
-            this.label101.TabIndex = 1;
-            this.label101.Text = "Форматирование SD карты";
-            this.label101.Click += new System.EventHandler(this.label101_Click);
             // 
             // label95
             // 
@@ -3460,18 +3437,15 @@ namespace KamertonTest
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
             // 
-            // label37
+            // groupBox8
             // 
-            this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label37.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label37.ForeColor = System.Drawing.Color.Red;
-            this.label37.Location = new System.Drawing.Point(15, 187);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(181, 63);
-            this.label37.TabIndex = 36;
-            this.label37.Text = "По окончанию форматирования, необходимо перезагрузить контроллер";
-            this.label37.UseCompatibleTextRendering = true;
+            this.groupBox8.Controls.Add(this.richTextBox1);
+            this.groupBox8.Location = new System.Drawing.Point(721, 21);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(204, 389);
+            this.groupBox8.TabIndex = 4;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Сервисная информация";
             // 
             // Form1
             // 
@@ -3521,6 +3495,7 @@ namespace KamertonTest
             this.GroupBox4.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3810,14 +3785,12 @@ namespace KamertonTest
         private System.Windows.Forms.CheckBox checkBoxSensors1;
         private System.Windows.Forms.Label label92;
         private System.Windows.Forms.GroupBox groupBox18;
-        private System.Windows.Forms.Label label101;
         private System.Windows.Forms.Label label95;
-        private System.Windows.Forms.Button button81;
         private System.Windows.Forms.Label label134;
         private System.Windows.Forms.CheckBox checkBoxSensors2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.GroupBox groupBox8;
     }
 }
 

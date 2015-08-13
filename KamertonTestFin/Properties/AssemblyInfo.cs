@@ -7,7 +7,7 @@ using System.Resources;
 // атрибутов. Отредактируйте значения этих атрибутов, чтобы изменить
 // общие сведения об этой сборке.
 [assembly: AssemblyTitle("KamertonTestFin")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("KamertonTestFin")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Децима")]
 [assembly: AssemblyProduct("KamertonTestFin.Properties")]
