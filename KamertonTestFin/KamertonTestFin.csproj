@@ -17,7 +17,7 @@
     <UpgradeBackupLocation />
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>E:\1 SVN Kamerton4_0\trunk\KamertonTestFin\publish\</PublishUrl>
+    <PublishUrl>E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -31,7 +31,7 @@
     <ProductName>Kamerton4_0</ProductName>
     <PublisherName>Децима</PublisherName>
     <SuiteName>Kamerton4_0</SuiteName>
-    <ApplicationRevision>31</ApplicationRevision>
+    <ApplicationRevision>34</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -171,6 +171,11 @@
     <BootstrapperPackage Include="Microsoft.VisualBasic.PowerPacks.10.0">
       <Visible>False</Visible>
       <ProductName>Microsoft Visual Basic PowerPacks 10.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Установщик Windows 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
