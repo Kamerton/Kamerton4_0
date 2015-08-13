@@ -4400,9 +4400,31 @@ namespace KamertonTest
             textBox7.Text += ("\r\n");
             textBox8.Text = ("");
             textBox9.Text = ("");
-            textBox7.Refresh();
             textBox8.Refresh();
             textBox9.Refresh();
+            //  0 в регистре означает завершение выполнения фрагмента проверки
+            numRdRegs = 2;
+            startCoil = 124;                                     // regBank.add(120);   // Флаг индикации возникновения любой ошибки
+            numCoils = 2;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
+            if (coilArr[0] == true) //есть ошибка
+            {
+                // Обработка ошибки.
+                textBox7.Text += ("Связь со звуковой платой Камертон НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
+                timerTestAll.Enabled = false;
+                button9.BackColor = Color.Red;
+                button11.BackColor = Color.White;
+                label92.Text = ("");
+                textBox7.Text += ("Тест остановлен" + "\r\n");
+                progressBar2.Value = 0;
+             }
+            else
+            {
+               textBox7.Text += ("Связь со звуковой платой Камертон установнена." + "\r\n");
+            
+ 
+            textBox7.Refresh();
+
             if (radioButton2.Checked)
             {
                 startCoil = 118;                                                                   // Признак многократной роверки передать в контроллер
@@ -4437,7 +4459,7 @@ namespace KamertonTest
  
             //-------------------------------------------------
             timerTestAll.Enabled = true;
-
+        }
 
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
@@ -4449,7 +4471,7 @@ namespace KamertonTest
                 toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
                 toolStripStatusLabel1.BackColor = Color.Red;
                 // Polltimer1.Enabled = false;
-                timer_Mic_test.Enabled = false;
+              //  timer_Mic_test.Enabled = false;
             }
 
             progressBar2.Value = 0;

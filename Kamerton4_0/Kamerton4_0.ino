@@ -784,10 +784,12 @@ void waiting_for_replyK()                                  // Чтение данных из К
 					}
 				}
 			calculateCRC_In();
+			regBank.set(124,0);                              // Связь с "Камертон" установлена
 		   }
 	 else 
 		{
 			Stop_Kam = 0;                                    // Флаг отсутств. инф. из Камертона
+			regBank.set(124,1);                              // Флаг ошибки  связи с "Камертон"
 		}
 }
 void Stop_Kamerton ()                  //Если не приходит информация с Камертона - регистры обнулить
@@ -1242,7 +1244,7 @@ void FileOpen()
 	}
 	else 
 	{
-//	  sdError("Can't create file name");
+		regBank.set(122,1);                              // Флаг ошибки  открытия файла
 	}
   }
 
@@ -1253,7 +1255,7 @@ void FileOpen()
 
   if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) //sdError("file.open");
   {
-
+	regBank.set(122,1);                              // Флаг ошибки  открытия файла
   }
   else
   {
@@ -1277,6 +1279,8 @@ void FileOpen()
 	myFile.print ("Start test   ");
 	file_print_date();
 	myFile.println ("");
+	regBank.set(122,0);                              // Флаг индикации открытия файла                                   
+
 	delay(100);
    }
   regBank.set(adr_control_command,0);  
@@ -1295,12 +1299,14 @@ void FileClose()
 		Serial.println();
 		Serial.print(fileName);
 		Serial.println("  Close  OK!.");
+		regBank.set(123,0);                                  // Флаг закрытия файла
 		}
 	else 
 		{
 		Serial.println();
 		Serial.print(fileName);
 		Serial.println(" doesn't exist.");  
+			regBank.set(123,1);                              // Флаг ошибки  закрытия файла
 		}
 	regBank.set(adr_control_command,0);
 }
@@ -4692,7 +4698,9 @@ modbus registers follow the following format
 	regBank.add(118);   // Флаг индикации многоразовой проверки
 	regBank.add(119);   // 
 	regBank.add(120);   // Флаг индикации возникновения любой ошибки
- 
+ 	regBank.add(122);   // Флаг индикации открытия файла
+	regBank.add(123);   // Флаг индикации закрытия файла
+	regBank.add(124);   // Флаг индикации связи с модулем "Камертон"
 
 
 	regBank.add(200);                         // Флаг ошибки "Sensor MTT                          XP1- 19 HaSs            OFF - ";
@@ -5410,6 +5418,7 @@ void setup()
   //sd.ls (LS_R | LS_DATE | LS_SIZE);
  
 	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
+
 	setup_regModbus();                              // Настройка регистров MODBUS
 
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
@@ -5444,7 +5453,11 @@ void setup()
 	{
 	   regBank.set(i,0);   
 	} 
-	regBank.set(120,0);
+	regBank.set(120,0);                              // 
+	regBank.set(122,0);                              // Флаг индикации открытия файла
+	regBank.set(123,0);                              // Флаг индикации закрытия файла
+	regBank.set(124,0);                              // Флаг индикации связи с модулем "Камертон"
+
 	regBank.set(40120,0);
 	regBank.set(adr_reg_count_err,0);                // Обнулить данные счетчика всех ошибок
 	MsTimer2::set(30, flash_time);                   // 30ms период таймера прерывани
