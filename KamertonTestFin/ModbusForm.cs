@@ -3488,7 +3488,7 @@ namespace KamertonTest
             if (coilArr_all[33] != false)
             {
                 temp_disp = readVolt_all[33];
-                textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал LineR        \tOFF        \t< = " + readVals_all[33] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал LineR    \tOFF        \t< = " + readVals_all[33] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 233, false);
             }
@@ -3848,7 +3848,7 @@ namespace KamertonTest
             if (coilArr_all[84] != false)
             {
                 temp_disp = readVolt_all[84];
-                textBox8.Text += ("Тест ГГС ** Сигнал mag radio                   \tOFF        \t< = " + readVals_all[84] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Text += ("Тест ГГС ** Сигнал mag radio               \tOFF        \t< = " + readVals_all[84] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 284, false);
             }
@@ -3907,7 +3907,7 @@ namespace KamertonTest
             if (coilArr_all[92] != false)
             {
                 temp_disp = readVolt_all[92];
-                textBox8.Text += ("Тест ГГС ** Сигнал mag phone                   \tON         \t < = " + readVals_all[92] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Text += ("Тест ГГС ** Сигнал mag phone            \tON         \t < = " + readVals_all[92] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 292, false);
             }
@@ -3960,7 +3960,7 @@ namespace KamertonTest
             if (coilArr_all[100] != false)
             {
                 temp_disp = readVolt_all[100];
-                textBox8.Text += ("Тест Радио1 ** Сигнал FrontL                   \tOFF        \t< = " + readVals_all[100] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Text += ("Тест Радио1 ** Сигнал FrontL                  \tOFF        \t< = " + readVals_all[100] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 300, false);
             }
