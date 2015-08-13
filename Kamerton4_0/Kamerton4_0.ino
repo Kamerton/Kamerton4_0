@@ -1077,6 +1077,7 @@ void Reg_count_clear()
 		regBank.set(k,false);
 	}
 	regBank.set(40121,0);
+	regBank.set(adr_control_command,0);
 }
 void set_clock()
 {    
@@ -1090,6 +1091,7 @@ void set_clock()
 		RTC.adjust(set_time);                                                 // Записать время в контроллер часов  
 	//	Serial.println("set_clock");
 		regBank.set(adr_set_time, 0);                                         // Записать в регистр признак окончания выполнения команды
+		regBank.set(adr_control_command,0);
 }
 void data_clock_exchange()
 {
@@ -1398,7 +1400,10 @@ void control_command()
 	UpdateRegs() ;
 
 	int test_n = regBank.get(adr_control_command);                                  //адрес  40120
-		
+
+	if (test_n != 0)
+	{
+	Serial.println(test_n);	
 	switch (test_n)
 	{
 		case 1:
@@ -1459,7 +1464,8 @@ void control_command()
 		break;
 
 	 }
-	regBank.set(adr_control_command,0);
+	 regBank.set(adr_control_command,0);
+	}
 }
 
 void sensor_all_off()
@@ -5437,7 +5443,7 @@ void setup()
 		for (unsigned int i = 40400; i <= 40530; i++)     // Очистить флаги ошибок
 	{
 	   regBank.set(i,0);   
-	}
+	} 
 	regBank.set(120,0);
 	regBank.set(40120,0);
 	regBank.set(adr_reg_count_err,0);                // Обнулить данные счетчика всех ошибок

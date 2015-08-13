@@ -516,7 +516,7 @@ namespace KamertonTest
                 toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
                 toolStripStatusLabel1.BackColor = Color.Red;
             }
-            test_end();
+           test_end1();
         }
 
         #region Load Listboxes
@@ -2752,7 +2752,6 @@ namespace KamertonTest
             textBox7.Refresh();
             Thread.Sleep(700);
 
-
             // Новый фрагмент чтения регистров 40001-40007
 
             int startRdReg;
@@ -2815,98 +2814,6 @@ namespace KamertonTest
                 }
 
             }
-            //if (Dec_bin[24] == false) // флаг подключения ГГ Радио2
-            //{
-            //    textBox8.Text += ("Сенсор ГГ Радио2 не отключился" + "\r\n");
-            //    textBox8.Refresh();
-            //}
-
-            //if (Dec_bin[25] == false) // флаг подключения ГГ Радио1
-            //{
-            //    textBox8.Text += ("Сенсор ГГ Радио1 не отключился" + "\r\n");
-            //    textBox8.Refresh();
-            //}
-/*
-            if (Dec_bin[26] == true) //  флаг подключения трубки
-            {
-                //      textBox8.Text += ("Сенсор подключения трубки не отключился" + "\r\n");
-                textBox8.Refresh();
-            }
-
-
-
-            if (Dec_bin[27] == true)   // флаг подключения ручной тангенты
-            {
-                //     textBox8.Text += ("Сенсор подключения ручной тангенты не отключился" + "\r\n");
-                textBox8.Refresh();
-            }
-
-
-            if (Dec_bin[28] == true)  // флаг подключения педали
-            {
-                //      textBox8.Text += ("Сенсор подключения педали не отключился" + "\r\n");
-                textBox8.Refresh();
-            }
-
-            */
-            //if (Dec_bin[40] == true) //  флаг подключения магнитофона
-            //{
-            //    textBox8.Text += ("Сенсор подключения магнитофона не отключился" + "\r\n");
-            //    textBox8.Refresh();
-            //}
-
-/*
-            if (Dec_bin[41] == true) //  флаг подключения гарнитуры инструктора 2 наушниками
-            {
-                //      textBox8.Text += ("Сенсор отключения гарнитуры инструктора 2 наушниками не отключился" + "\r\n");
-                textBox8.Refresh();
-            }
-
-            if (Dec_bin[42] == true) //   флаг подключения гарнитуры инструктора
-            {
-                //     textBox8.Text += ("Сенсор подключения гарнитуры инструктора не отключился" + "\r\n");
-                textBox8.Refresh();
-            }
-
-
-            if (Dec_bin[43] == true) //  флаг подключения гарнитуры диспетчера с 2 наушниками
-            {
-                //    textBox8.Text += ("Сенсор подключения гарнитуры диспетчера с 2 наушниками не отключился" + "\r\n");
-                textBox8.Refresh();
-            }
-
-
-            if (Dec_bin[44] == true) //  флаг подключения гарнитуры диспетчера
-            {
-                //     textBox8.Text += ("Сенсор подключения гарнитуры диспетчера не отключился" + "\r\n");
-                textBox8.Refresh();
-            }
-
-
-            if (Dec_bin[45] == true) //  флаг подключения микрофона XS1 - 6 Sence  
-            {
-                //     textBox8.Text += ("Сенсор подключения микрофона не отключился" + "\r\n");
-                textBox8.Refresh();
-            }
-
-            */
-            //if (Dec_bin[46] == true) // флаг подключения ГГС
-            //{
-            //    textBox8.Text += ("Сенсор подключения ГГС не отключился" + "\r\n");
-            //    textBox8.Refresh();
-            //}
-            //if (Dec_bin[52] == true) //  флаг подключения гарнитуры диспетчера
-            //{
-            //    textBox8.Text += ("Микрофон гарнитуры инструктора не отключился" + "\r\n");
-            //    textBox8.Refresh();
-            //}
-
-
-            //if (Dec_bin[54] == true) //  флаг подключения микрофона XS1 - 6 Sence  
-            //{
-            //    textBox8.Text += ("Микрофон гарнитуры диспетчера не отключился" + "\r\n");
-            //    textBox8.Refresh();
-            //}
 
             test_end();
         }
@@ -3125,7 +3032,7 @@ namespace KamertonTest
             ushort[] writeVals = new ushort[2];
             bool[] coilArr = new bool[4];
             startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 6); // 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 6); // Отключить все сенсоры
             textBox7.Text += ("Команда на проверку 'Тангента ручная' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
@@ -3257,6 +3164,34 @@ namespace KamertonTest
              }
 
        }
+        private void test_end1()
+        {
+            ushort[] readVals = new ushort[2];
+            bool[] coilArr = new bool[2];
+            startRdReg = 120;                                    //regBank.add(40120);  // adr_control_command Адрес передачи комманд на выполнение
+            //  0 в регистре означает завершение выполнения фрагмента проверки
+            numRdRegs = 2;
+            do
+            {
+                res = myProtocol.readMultipleRegisters(slave, 120, readVals, numRdRegs);  // Ожидание кода подтверждения окончания проверки  Адрес передачи подтверждения 40120
+
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                    toolStripStatusLabel1.BackColor = Color.Lime;
+                }
+
+                else
+                {
+                    toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                    toolStripStatusLabel1.BackColor = Color.Red;
+                    Polltimer1.Enabled = false;
+                    return;
+                }
+                Thread.Sleep(50);
+            } while (readVals[0] != 0);                                     // Если readVals[0] == 0 , тест завершен
+        }
+
         private void error_list()
         {
             error_list1();
@@ -4487,14 +4422,16 @@ namespace KamertonTest
             {
                 startWrReg = 120;                                                                   // Команда на 
                 res = myProtocol.writeSingleRegister(slave, startWrReg, 16);                        // Команда на сброс счетчиков отправлена
-                Thread.Sleep(500);
+                test_end1();
                 startWrReg = 120;                                                                   // Команда на открытие файла отправлена
                 res = myProtocol.writeSingleRegister(slave, startWrReg, 12);                        // Команда на открытие файла отправлена
                 textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
                 textBox7.Refresh();
-                test_end();
+                //Thread.Sleep(400);
+                test_end1();
                 file_fakt_namber();
-                Thread.Sleep(500);
+                //Thread.Sleep(400);
+                test_end1();
                 _All_Test_Stop = false;                                                             // Установить флаг запуска теста
             }
  
