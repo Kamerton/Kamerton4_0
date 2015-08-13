@@ -2,7 +2,7 @@
 
 modbusDevice::modbusDevice(void)
 {
-	_id=NULL;
+	_id = NULL;
 }
 
 void modbusDevice::setId(byte id)

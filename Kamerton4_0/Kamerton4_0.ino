@@ -5,10 +5,10 @@
  
  Программа тестирования модуля "Камертон" (Базовый вариант)
  Версия:      - 4_0_0
- Дата:        - 10.06.2015г.
+ Дата:        - 12.08.2015г.
  Организация: - ООО "Децима"
  Автор:       - Мосейчук А.В.
- Версия: Работа продолжена после перерыва 10.06.2015 г.
+ Версия: Работа продолжена после перерыва 12.08.2015 г.
  Реализовано:
  -
  - прерывание 20мс,
@@ -705,89 +705,6 @@ void serial_print_date()                           // Печать даты и времени
 const int8_t ERROR_LED_PIN = 13;
 
 
-//------------------------------------------------------------------------------
-
-// Size of file base name.  Must not be larger than six.
-//Размер базовой части имени файла. Должно быть не больше, чем шесть.
-//const uint8_t BASE_NAME_SIZE = sizeof(FILE_BASE_NAME) - 1;
-
-//void file_name()
-//{
-//
-//   preob_num_str();
-//
-//  while (sd.exists(fileName)) 
-//  {
-//	if (fileName[BASE_NAME_SIZE + 1] != '9') 
-//	{
-//	  fileName[BASE_NAME_SIZE + 1]++;
-//	}
-//	else if (fileName[BASE_NAME_SIZE] != '9') 
-//	{
-//	  fileName[BASE_NAME_SIZE + 1] = '0';
-//	  fileName[BASE_NAME_SIZE]++;
-//	}
-//	else 
-//	{
-////	  sdError("Can't create file name");
-//	}
-//  }
-//  if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) //sdError("file.open");
-//  //do {
-//  //  delay(10);
-//  // } while (Serial.read() >= 0);
-//  //
-//  Serial.print(F("Logging to: "));
-//  Serial.println(fileName);
-//  myFile.close();
-//  Serial.println("done.");
-//} 
-//
-//void preob_num_str() // Программа формирования имени файла, состоящего из текущей даты и счетчика файлов
-//{
-//	DateTime now = RTC.now();
-//
-//	day   = now.day();
-//	month = now.month();
-//	year  = now.year();
-//
-//
-//	int year_temp = year-2000;
-//
-//	itoa (year_temp,str_year_file, 10);                                        // Преобразование даты год в строку ( 10 - десятичный формат) 
-//
-//	
-//	if (month <10)
-//		{
-//		   itoa (0,str_mon_file0, 10);                                         //  Преобразование даты месяц  в строку ( 10 - десятичный формат) 
-//		   itoa (month,str_mon_file10, 10);                                    //  Преобразование числа в строку ( 10 - десятичный формат) 
-//		   sprintf(str_mon_file, "%s%s", str_mon_file0, str_mon_file10);       // Сложение 2 строк
-//		}
-//	else
-//		{
-//		   itoa (month,str_mon_file, 10);                                      // Преобразование числа в строку ( 10 - десятичный формат) 
-//		}
-//
-//
-//	if (day <10)
-//		{
-//		   itoa (0,str_day_file0, 10);                                         // Преобразование числа в строку ( 10 - десятичный формат) 
-//		   itoa (day,str_day_file10, 10);                                      // Преобразование числа в строку ( 10 - десятичный формат) 
-//		   sprintf(str_day_file, "%s%s", str_day_file0, str_day_file10);       // Сложение 2 строк
-//		}
-//	else
-//		{
-//		itoa (day,str_day_file, 10);                                           // Преобразование числа в строку ( 10 - десятичный формат) 
-//		}
-//		 
-//	sprintf(str1, "%s%s",str_year_file, str_mon_file);                         // Сложение 2 строк
-//	sprintf(str2, "%s%s",str1, str_day_file);                                  // Сложение 2 строк
-//	sprintf(fileName, "%s%s", str2, "00.TXT");                                 // Получение имени файла в file_name
-//	//Serial.println(fileName);
-//}
-
-//+++++++++++++++++++++++++++++++++++++++++++++Конецы  Форматирование SD ++++++++++++++++++++++++++
-
 
 void set_time()
 {
@@ -810,14 +727,13 @@ void flash_time()                                              // Программа обра
 		prer_Kmerton_Run = true;
 	//		digitalWrite(ledPin12,HIGH);
 		prer_Kamerton();
-		//slave.run(); 
+		slave.run(); 
 		//	digitalWrite(ledPin12,LOW);
 		prer_Kmerton_Run = false;
 }
 
 void serialEvent2()
 {
-	//slave.run(); 
 	//while(prer_Kmerton_Run == 1) {}                                // Подождать окончания прерывания
 	//	digitalWrite(ledPin13,HIGH);
 	// // digitalWrite(ledPin13,!digitalRead(ledPin13));               // Сроб импульс MODBUS
@@ -1214,7 +1130,7 @@ void data_clock_exchange()
 
 		  b = i2c_eeprom_read_byte(0x50, adr_file_name_count);                             //access an address from the memory
 		  regBank.set(adr_reg_file_name,b);                                                // Регистр  хранения переменной номер файла
-		 */
+		  */
 }
 void time_control() // Программа записи текущего времени в регистры для передачи в ПК
 {
@@ -1744,7 +1660,7 @@ void FileOpen()
  
   temp_file_name = ((fileName[BASE_NAME_SIZE]-48)*10) + (fileName[BASE_NAME_SIZE + 1]-48);
   regBank.set(adr_reg_file_name,temp_file_name);      
-
+  i2c_eeprom_write_byte(0x50, adr_file_name_count,temp_file_name);                 // при смене даты счетчик номера файла сбросить в "0"
 
   if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) //sdError("file.open");
   {
@@ -1800,38 +1716,38 @@ void FileClose()
 	regBank.set(adr_control_command,0);
 }
 
-//void file_name()
-//{
-//
-//   preob_num_str();
-//
-//  while (sd.exists(fileName)) 
-//  {
-//	if (fileName[BASE_NAME_SIZE + 1] != '9') 
-//	{
-//	  fileName[BASE_NAME_SIZE + 1]++;
-//	}
-//	else if (fileName[BASE_NAME_SIZE] != '9') 
-//	{
-//	  fileName[BASE_NAME_SIZE + 1] = '0';
-//	  fileName[BASE_NAME_SIZE]++;
-//	}
-//	else 
-//	{
-////	  sdError("Can't create file name");
-//	}
-//  }
-//  if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) //sdError("file.open");
-//  //do {
-//  //  delay(10);
-//  // } while (Serial.read() >= 0);
-//  //
-//  Serial.print(F("Logging to: "));
-//  Serial.println(fileName);
-//  myFile.close();
-//  Serial.println("done.");
-//  
-//} 
+void file_name()
+{
+
+   preob_num_str();
+
+  while (sd.exists(fileName)) 
+  {
+	if (fileName[BASE_NAME_SIZE + 1] != '9') 
+	{
+	  fileName[BASE_NAME_SIZE + 1]++;
+	}
+	else if (fileName[BASE_NAME_SIZE] != '9') 
+	{
+	  fileName[BASE_NAME_SIZE + 1] = '0';
+	  fileName[BASE_NAME_SIZE]++;
+	}
+	else 
+	{
+//	  sdError("Can't create file name");
+	}
+  }
+  if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) //sdError("file.open");
+  //do {
+  //  delay(10);
+  // } while (Serial.read() >= 0);
+  //
+  Serial.print(F("Logging to: "));
+  Serial.println(fileName);
+  myFile.close();
+  Serial.println("done.");
+  
+} 
 void preob_num_str() // Программа формирования имени файла, состоящего из текущей даты и счетчика файлов
 {
 	DateTime now = RTC.now();
@@ -1872,12 +1788,6 @@ void preob_num_str() // Программа формирования имени файла, состоящего из текуще
 	regBank.set(adr_reg_temp_year, year-2000); 
 }
 
-void set_namber_file_zero()
-{
-   //i2c_eeprom_write_byte(0x50, adr_file_name_count,0);                              // счетчик номера файла сбросить в "0"
-   //data_clock_exchange();
-   //regBank.set(adr_control_command,0);
- }
 void control_command()
 {
 	/*
@@ -1956,7 +1866,7 @@ void control_command()
 				Reg_count_clear();			                                        // Сброс счетчиков ошибок                    
 				break;
 		case 17:
-			 formatCard();              //
+					//
 				break;
 		case 18:
 									 //
@@ -6005,13 +5915,9 @@ void setup()
   Serial.println("Files found on the card (name, date and size in bytes): ");
 
   // list all files in the card with date and size
-  sd.ls (LS_R | LS_DATE | LS_SIZE);
-
-
-	preob_num_str();
-
+  //sd.ls (LS_R | LS_DATE | LS_SIZE);
+ 
 	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
-	//setup_SDFile();                                // Проверка рабрты с файлами
 	setup_regModbus();                              // Настройка регистров MODBUS
 
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
@@ -6023,8 +5929,7 @@ void setup()
 	regs_in[3]= 0x00;                               // 
 //	reg_Kamerton();
 	regBank.set(8,1);                               // Включить питание Камертон
-//	sensor_all_off();
-//	data_clock_exchange();
+
 	UpdateRegs();                                   // Обновить информацию в регистрах
 
 	#if FASTADC                                     // Ускорить считывание аналогового канала
@@ -6055,7 +5960,9 @@ void setup()
 	resistor(1, 200);                                // Установить уровень сигнала
 	resistor(2, 200);                                // Установить уровень сигнала
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
-
+	
+	preob_num_str();
+	list_file();
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	Serial.println(" ");
