@@ -3472,7 +3472,7 @@ namespace KamertonTest
             if (coilArr_all[31] != false)
             {
                 temp_disp = readVolt_all[31];
-                textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал FrontR      \tOFF         \t< = " + readVals_all[31] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал FrontR     \tOFF         \t< = " + readVals_all[31] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 231, false);
             }

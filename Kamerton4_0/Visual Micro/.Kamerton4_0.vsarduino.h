@@ -103,20 +103,6 @@ void set_clock();
 void data_clock_exchange();
 void time_control();
 void time_control_get();
-void sdError_F(const __FlashStringHelper* str);
-void debugPrint();
-uint8_t writeCache(uint32_t lbn);
-void initSizes();
-void clearCache(uint8_t addSig);
-void clearFatDir(uint32_t bgn, uint32_t count);
-uint16_t lbnToCylinder(uint32_t lbn);
-uint8_t lbnToHead(uint32_t lbn);
-uint8_t lbnToSector(uint32_t lbn);
-void writeMbr();
-uint32_t volSerialNumber();
-void makeFat16();
-void makeFat32();
-void formatCard();
 void list_file();
 void file_print_date();
 void resistor(int resist, int valresist);
@@ -148,7 +134,6 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 void measure_volume(int analog);
 void setup_mcp();
 void setup_resistor();
-void setup_SD();
 void setup_regModbus();
 void test_system();
 //
