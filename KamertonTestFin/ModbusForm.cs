@@ -2325,23 +2325,34 @@ namespace KamertonTest
 
         private void button32_Click(object sender, EventArgs e)                       //Старт теста "Байты обмена с Камертон"
         {
-            Polltimer1.Enabled = false;                                            // Запретить опрос состояния
+            Polltimer1.Enabled = false;                                               // Запретить опрос состояния
             timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона
             timerCTS.Enabled = false;
             timerTestAll.Enabled = false;
 
 
             bool[] coilVals = new bool[200];
+            bool[] coilArr = new bool[2];
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             progressBar1.Value = 0;
-
+            startCoil = 8;                                               // Управление питанием платы "Камертон"
+            res = myProtocol.writeCoil(slave, startCoil, true);          // Включить питание платы "Камертон"
+            Thread.Sleep(700);
             button32.BackColor = Color.Lime;                                           //Изменение цвета кнопок
             button31.BackColor = Color.LightSalmon;
             label102.Text = "Выполняется контроль состояния сенсоров";
             label102.ForeColor = Color.DarkOliveGreen;
 
-            //startCoil = 33; // Запустить тест CTS
-            //res = myProtocol.writeCoil(slave, startCoil, true); 
+            numRdRegs = 2;
+            startCoil = 124;                                                                      // regBank.add(120);  Флаг индикации возникновения любой ошибки
+            numCoils = 2;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
+            if (coilArr[0] == true) //есть ошибка
+            {
+                // Обработка ошибки.
+                textBox11.Text = ("Связь со звуковой платой Камертон НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
+            }
+
             timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
 
         }
@@ -2358,6 +2369,9 @@ namespace KamertonTest
             progressBar1.Value = 0;
             timer_byte_set.Enabled = false;
             Polltimer1.Enabled = true;
+            textBox11.Text = "";
+            startCoil = 8;                                                            // Управление питанием платы "Камертон"
+            res = myProtocol.writeCoil(slave, startCoil, false);                      // Отключить питание платы "Камертон"
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
@@ -3093,25 +3107,19 @@ namespace KamertonTest
             Thread.Sleep(250);
             test_end();
         }
-        //private void test_mic_off ()
-        //{
-        //    ushort[] writeVals = new ushort[2];
-        //    bool[] coilArr = new bool[4];
-        //    startWrReg = 120;
-        //    res = myProtocol.writeSingleRegister(slave, startWrReg, 7); // Отключить все сенсоры
-        //    //startCoil = 38; // Запустить полный тест , адрес в контроллере 37
-        //    //res = myProtocol.writeCoil(slave, startCoil, true);
-        //    textBox7.Text += ("Команда на проверку отключения микрофона отправлена" + "\r\n");
-        //    textBox7.Refresh();
-        //    startCoil = 248;  //адрес сенсоров
-        //    numCoils = 34;
-        //    res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
-        //    if ((res == BusProtocolErrors.FTALK_SUCCESS))
-        //    {
-        //    }
-        //    test_end();
-        //}
-
+        private void test_power()
+        {
+            ushort[] writeVals = new ushort[2];
+            bool[] coilArr = new bool[4];
+            startWrReg = 120;
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 17); // Отключить все сенсоры
+            textBox7.Text += ("Проверка напряжения питания" + "\r\n");
+            textBox7.Refresh();
+            Thread.Sleep(250);
+            test_end();
+            // Результат?
+        }
+ 
         private void test_end()
         {
             ushort[] readVals = new ushort[2];
@@ -4251,7 +4259,7 @@ namespace KamertonTest
                 case 0:
                     if (checkBoxSensors1.Checked || radioButton1.Checked)
                     {
-                        sensor_off();
+                        test_power();
                         progressBar2.Value += 1;
                         label98.Text = ("" + progressBar2.Value);
                         label98.Refresh();
@@ -4259,6 +4267,16 @@ namespace KamertonTest
                     break;
 
                 case 1:
+                    if (checkBoxSensors1.Checked || radioButton1.Checked)
+                    {
+                        sensor_off();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                    break;
+
+                case 2:
                     if (checkBoxSensors2.Checked || radioButton1.Checked)
                     {
                         sensor_on();
@@ -4267,7 +4285,7 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-                case 2:
+                case 3:
                     if (checkBoxSenGar1instr.Checked || radioButton1.Checked)
                     {
                         test_instruktora();
@@ -4276,7 +4294,7 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-                case 3:
+                case 4:
                     if (checkBoxSenGar1disp.Checked || radioButton1.Checked)
                     {
                         test_dispetchera();
@@ -4285,7 +4303,7 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-                case 4:
+                case 5:
                     if (checkBoxSenTrubka.Checked || radioButton1.Checked)
                     {
                         test_MTT();
@@ -4294,7 +4312,7 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-                case 5:
+                case 6:
                     if (checkBoxSenTangRuch.Checked || radioButton1.Checked)
                     {
                         test_tangR();
@@ -4303,7 +4321,7 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-                case 6:
+                case 7:
                     if (checkBoxSenTangN.Checked || radioButton1.Checked)
                     {
                         test_tangN();
@@ -4312,7 +4330,7 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-                case 7:
+                case 8:
                     if (checkBoxSenGGS.Checked || radioButton1.Checked)
                     {
                         testGGS();
@@ -4321,7 +4339,7 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-                case 8:
+                case 9:
                     if (checkBoxSenGGRadio1.Checked || radioButton1.Checked)
                     {
                         test_GG_Radio1();
@@ -4330,7 +4348,7 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-                case 9:
+                case 10:
                     if (checkBoxSenGGRadio2.Checked || radioButton1.Checked)
                     {
                         test_GG_Radio2();
@@ -4339,7 +4357,7 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
-                case 10:
+                case 11:
                     if (checkBoxSenMicrophon.Checked || radioButton1.Checked)
                     {
                         test_mikrophon();
@@ -4361,7 +4379,7 @@ namespace KamertonTest
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
 
-            if (radioButton1.Checked & TestN == 11)
+            if (radioButton1.Checked & TestN == 12)
             {
                 timerTestAll.Enabled = false;
                 textBox7.Text += ("Тест завершен" + "\r\n");
@@ -4369,7 +4387,7 @@ namespace KamertonTest
 
                 _All_Test_Stop = false;
             }
-            if (radioButton2.Checked & TestN == 11)
+            if (radioButton2.Checked & TestN == 12)
             {
                 timerTestAll.Enabled = true;
                 TestN = 0;
@@ -4391,6 +4409,9 @@ namespace KamertonTest
             bool[] coilArr = new bool[200];
             progressBar2.Value = 0;
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+            startCoil = 8;                                               // Управление питанием платы "Камертон"
+            res = myProtocol.writeCoil(slave, startCoil, true);          // Включить питание платы "Камертон"
+            Thread.Sleep(1000);
             button11.BackColor = Color.Lime;
             button11.Refresh();
             label92.Text = ("Не забываем нажать кнопку [СТОП] после выполнения теста!");
@@ -4404,7 +4425,7 @@ namespace KamertonTest
             textBox9.Refresh();
             //  0 в регистре означает завершение выполнения фрагмента проверки
             numRdRegs = 2;
-            startCoil = 124;                                     // regBank.add(120);   // Флаг индикации возникновения любой ошибки
+            startCoil = 124;                                                                      // regBank.add(120);  Флаг индикации возникновения любой ошибки
             numCoils = 2;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
             if (coilArr[0] == true) //есть ошибка
@@ -4420,7 +4441,7 @@ namespace KamertonTest
              }
             else
             {
-               textBox7.Text += ("Связь со звуковой платой Камертон установнена." + "\r\n");
+               textBox7.Text += ("Связь со звуковой платой Камертон установлена." + "\r\n");
             
  
             textBox7.Refresh();
@@ -4470,8 +4491,6 @@ namespace KamertonTest
             {
                 toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
                 toolStripStatusLabel1.BackColor = Color.Red;
-                // Polltimer1.Enabled = false;
-              //  timer_Mic_test.Enabled = false;
             }
 
             progressBar2.Value = 0;
@@ -4505,6 +4524,8 @@ namespace KamertonTest
 
             _All_Test_Stop = true;
             Polltimer1.Enabled = true;
+            startCoil = 8;                                               // Управление питанием платы "Камертон"
+            res = myProtocol.writeCoil(slave, startCoil, false);         // Отключить питание платы "Камертон"
         }
 
         private void label92_Click(object sender, EventArgs e)

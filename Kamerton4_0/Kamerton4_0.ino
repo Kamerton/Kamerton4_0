@@ -5,10 +5,10 @@
  
  Программа тестирования модуля "Камертон" (Базовый вариант)
  Версия:      - 4_0_0
- Дата:        - 12.08.2015г.
+ Дата:        - 14.08.2015г.
  Организация: - ООО "Децима"
  Автор:       - Мосейчук А.В.
- Версия: Работа продолжена после перерыва 12.08.2015 г.
+ Версия: Работа продолжена после перерыва 14.08.2015 г.
  Реализовано:
  -
  - прерывание 20мс,
@@ -96,7 +96,7 @@ int analog_FrontR        = 11;       //
 int analog_W             = 12;       //
 int analog_13            = 13;       //
 int analog_14            = 14;       //
-int analog_12v_x1        = 15;       //
+int analog_3_6           = 15;       //
 
 //************************************************************************************************
 
@@ -314,6 +314,25 @@ const char  txt_message57[]   PROGMEM            = "Command PTT    ON  microphon
 const char  txt_message58[]   PROGMEM            = "Command sensor OFF microphone                    send!"      ;  
 const char  txt_message59[]   PROGMEM            = "Command sensor ON  microphone                    send!"      ;
 
+const char  txt_message60[]   PROGMEM            = "Power amperage                                      mA - "   ;
+const char  txt_message61[]   PROGMEM            = "Power module Kamerton                                  - "   ;
+const char  txt_message62[]   PROGMEM            = "Power amperage                                      mA - "   ;
+const char  txt_message63[]   PROGMEM            = "Power Radio1                                           - "   ;
+const char  txt_message64[]   PROGMEM            = "Power Radio2                                           - "   ;
+const char  txt_message65[]   PROGMEM            = "Power GGS                                              - "   ;
+const char  txt_message66[]   PROGMEM            = "Power Led microphone                                   -  "  ;
+const char  txt_message67[]   PROGMEM            = " ****** Test power start! ******"                            ;
+const char  txt_message68[]   PROGMEM            = ""      ;  
+const char  txt_message69[]   PROGMEM            = ""      ;
+
+
+
+
+
+
+
+
+
 //++++++++++++++++++++++++++++++ Тексты ошибок ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const char  txt_error0[]  PROGMEM              = "Sensor MTT                          XP1- 19 HaSs            OFF - ";
 const char  txt_error1[]  PROGMEM              = "Sensor tangenta ruchnaja            XP7 - 2                 OFF - ";
@@ -522,8 +541,16 @@ txt_message55,                                // "Signal miсrophone 30  mV      
 txt_message56,                                // "Command PTT    OFF microphone                    send!"      ;
 txt_message57,                                // "Command PTT    ON  microphone                    send!"      ;
 txt_message58,                                // "Command sensor OFF microphone                    send!"      ;  
-txt_message59                                 // "Command sensor ON  microphone                    send!"      ;
+txt_message59,                                // "Command sensor ON  microphone                    send!"      ;
 
+txt_message60,                                // "Power amperage mA - "                                        ;
+txt_message61,                                // "Power Kamerton V  - "                                        ;
+txt_message62,                                // "Power amperage mA - "                                        ;
+txt_message63,                                // "Power Radio1 V    - "                                        ;
+txt_message64,                                // "Power Radio2 V    - "                                        ;
+txt_message65,                                // "Power GGS    V    - "                                        ;
+txt_message66,                                // "Power Led mic.V   - "                                        ;
+txt_message67                                 // " ****** Test power start! ******"                            ;
 };
 
 const char* const string_table_err[] PROGMEM = 
@@ -1409,7 +1436,7 @@ void control_command()
 
 	if (test_n != 0)
 	{
-	Serial.println(test_n);	
+//	Serial.println(test_n);	
 	switch (test_n)
 	{
 		case 1:
@@ -1461,7 +1488,7 @@ void control_command()
 				Reg_count_clear();			                                        // Сброс счетчиков ошибок                    
 				break;
 		case 17:
-					//
+				test_power();                                                    	// Проверить напряжение  питания
 				break;
 		case 18:
 									 //
@@ -3454,6 +3481,135 @@ void test_GG_Radio2()
 	UpdateRegs();     
 	regBank.set(adr_control_command,0);    
 }
+void test_power()
+{
+	unsigned int regcount = 0;
+
+	myFile.println(""); 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[67])));                   // " ****** Test power start! ******"                           ;
+	myFile.println(buffer);                                                         // " ****** Test power start! ******"                           ;
+	file_print_date();
+	myFile.println("");
+
+	measure_power();
+
+	// Проверка напряжения 12 вольт платы Камертон
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[61])));                   // "Power Kamerton V  - "                                        ;
+	if(regBank.get(40401)*2.51/100 < 11 || regBank.get(40401)*2.51/100 >13)
+	{
+	    myFile.print(buffer);                               // 
+	    myFile.print(regBank.get(40401)*2.51/100);
+		myFile.println("V - error");
+		regBank.set(126,1); 
+		regcount = regBank.get(40126);
+		regcount++;
+		regBank.set(40126,regcount); 
+	}
+
+	else
+	{
+		if (test_repeat == false)
+			{
+				myFile.print(buffer);                               // 
+				myFile.print(regBank.get(40401)*2.51/100);
+				myFile.println("V - pass");
+		    }
+	}
+
+	// Проверка напряжения 12 вольт Радио 1
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[63])));                   // "Power Radio1 V    - "                                        ;
+	if(regBank.get(40403)*2.51/100 < 11 || regBank.get(40403)*2.51/100 >13)
+	{
+		myFile.print(buffer);                               // "Power Radio1 V    - "                                        ;
+		myFile.print(regBank.get(40403)*2.51/100);
+		myFile.println("V - error");
+		regBank.set(128,1); 
+		regcount = regBank.get(40128);
+		regcount++;
+		regBank.set(40128,regcount); 
+	}
+
+	else
+	{
+		if (test_repeat == false) 
+			{
+				myFile.print(buffer);                               // "Power Radio1 V    - "                                        ;
+				myFile.print(regBank.get(40403)*2.51/100);
+				myFile.println("V - pass");
+			}
+	}
+
+	// Проверка напряжения 12 вольт Радио 2
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[64])));                   // "Power Radio2 V    - "                                        ;
+	if(regBank.get(40404)*2.51/100 < 11 || regBank.get(40404)*2.51/100 >13)
+	{
+		myFile.print(buffer);                               // "Power Radio2 V    - "                                        ;
+		myFile.print(regBank.get(40404)*2.51/100);
+		myFile.println("V - error");
+		regBank.set(129,1); 
+		regcount = regBank.get(40129);
+		regcount++;
+		regBank.set(40129,regcount); 
+	}
+
+	else
+	{
+		if (test_repeat == false) 
+			{
+				myFile.print(buffer);                               // "Power Radio2 V    - "                                        ;
+				myFile.print(regBank.get(40404)*2.51/100);
+				myFile.println("V - pass");
+		    }
+	}
+
+	// Проверка напряжения 12 вольт  ГГС
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[65])));                   // "Power GGS    V    - "                                        ;
+	if(regBank.get(40405)*2.51/100 < 11 || regBank.get(40405)*2.51/100 >13)
+	{
+		myFile.print(buffer);                               // "Power GGS    V    - "                                        ;
+		myFile.print(regBank.get(40405)*2.51/100);
+		myFile.println("V - error");
+		regBank.set(130,1); 
+		regcount = regBank.get(40130);
+		regcount++;
+		regBank.set(40130,regcount); 
+	}
+
+	else
+	{	
+		if (test_repeat == false) 
+		{
+			myFile.print(buffer);                               // "Power GGS    V    - "                                        ;
+			myFile.print(regBank.get(40405)*2.51/100);
+			myFile.println("V - pass");
+	    }
+	}
+
+	// Проверка напряжения 3,6 вольт на светодиоде микрофона
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[66])));                   // "Power Led mic.V   - "  
+	if(regBank.get(40406)/100 < 2 || regBank.get(40406)/100 >4)
+	{
+		myFile.print(buffer);                                 // "Power Led mic.V   - " 
+		myFile.print(regBank.get(40406)/100.0);
+		myFile.println("V - error");
+		regBank.set(131,1); 
+		regcount = regBank.get(40131);
+		regcount++;
+		regBank.set(40131,regcount); 
+	}
+
+	else
+	{
+		if (test_repeat == false) 
+			{
+				myFile.print(buffer);                                 // "Power Led mic.V   - " 
+				myFile.print(regBank.get(40406)/100.0);
+				myFile.println("V - pass");
+		    }
+	}
+
+	regBank.set(adr_control_command,0);    
+}
 
 void test_instr_off()
 {
@@ -4520,6 +4676,59 @@ void measure_volume(int analog)
 		//Serial.print("voltage - ");
 		//Serial.println(voltage10);
 }
+void measure_volume_P(int analog)
+{
+		volume_fact = 0;
+    	volume_fact = analogRead(analog);               // считываем значение
+		voltage = volume_fact * (5.0 / 1023.0);
+		voltage10 = voltage * 100;
+
+		//Serial.print("voltage - ");
+		//Serial.println(voltage10);
+}
+void measure_power()
+{
+	regBank.set(21,0);                           // XP2-2     sensor "Маг."  
+	regBank.set(22,0);                           // XP5-3     sensor "ГГC."
+	regBank.set(23,0);                           // XP3-3     sensor "ГГ-Радио1."
+	regBank.set(24,0);                           // XP4-3     sensor "ГГ-Радио2."
+	UpdateRegs();         
+	delay(200);
+
+	measure_volume_P(analog_tok);     
+	regBank.set(40400,voltage10);                     
+	measure_volume_P(analog_12V);   
+	regBank.set(40401,voltage10);   
+	measure_volume_P(analog_tok_x10);   
+	regBank.set(40402,voltage10);   
+
+	regBank.set(23,1);                           // XP3-3     sensor "ГГ-Радио1."
+	UpdateRegs();         
+	delay(200);
+	measure_volume_P(analog_14); 
+	regBank.set(40403,voltage10);   
+
+	regBank.set(23,0);                           // XP3-3     sensor "ГГ-Радио1."
+	regBank.set(24,1);                           // XP4-3     sensor "ГГ-Радио2."
+	UpdateRegs();         
+	delay(200);
+	measure_volume_P(analog_14); 
+	regBank.set(40404,voltage10);   
+
+	regBank.set(24,0);                           // XP4-3     sensor "ГГ-Радио2."
+	regBank.set(22,1);                           // XP5-3     sensor "ГГC."
+	UpdateRegs();         
+	delay(200);
+	measure_volume_P(analog_14); 
+	regBank.set(40405,voltage10);   
+
+	regBank.set(22,0);                           // XP5-3     sensor "ГГC."
+	UpdateRegs();         
+	delay(200);
+
+	measure_volume_P(analog_3_6);     
+	regBank.set(40406,voltage10);   
+}
 
 void setup_mcp()
 {
@@ -4659,48 +4868,58 @@ modbus registers follow the following format
 обеспечивает более эффективный поиск и регистра и уменьшает количество сообщений
 требуются мастера для извлечения данных.
 */
-	regBank.add(1);     // Реле RL0 Звук  MIC1P
-	regBank.add(2);     // Реле RL1 Звук  MIC2P
-	regBank.add(3);     // Реле RL2 Звук  MIC3P
-	regBank.add(4);     // Реле RL3 Звук  LFE  "Маг."
-	regBank.add(5);     // Реле RL4 XP1 12  HeS2e   Включение микрофона инструктора
-	regBank.add(6);     // Реле RL5 Звук Front L, Front R
-	regBank.add(7);     // Реле RL6 Звук Center
-	regBank.add(8);     // Реле RL7 Питание платы
+	regBank.add(1);                           // Реле RL0 Звук  MIC1P
+	regBank.add(2);                           // Реле RL1 Звук  MIC2P
+	regBank.add(3);                           // Реле RL2 Звук  MIC3P
+	regBank.add(4);                           // Реле RL3 Звук  LFE  "Маг."
+	regBank.add(5);                           // Реле RL4 XP1 12  HeS2e   Включение микрофона инструктора
+	regBank.add(6);                           // Реле RL5 Звук Front L, Front R
+	regBank.add(7);                           // Реле RL6 Звук Center
+	regBank.add(8);                           // Реле RL7 Питание платы
   
-	regBank.add(9);     // Реле RL8 Звук на микрофон
-	regBank.add(10);    // Реле RL9 XP1 10 Включение микрофона диспетчера
-	regBank.add(11);    // Свободен J24 - 2 
-	regBank.add(12);    // Свободен J24 - 1 
-	regBank.add(13);    // XP8 - 2   sensor Тангента ножная
-	regBank.add(14);    // XP8 - 1   PTT Тангента ножная
-	regBank.add(15);    // XS1 - 5   PTT Мик
-	regBank.add(16);    // XS1 - 6   sensor Мик
+	regBank.add(9);                           // Реле RL8 Звук на микрофон
+	regBank.add(10);                          // Реле RL9 XP1 10 Включение микрофона диспетчера
+	regBank.add(11);                          // Свободен J24 - 2 
+	regBank.add(12);                          // Свободен J24 - 1 
+	regBank.add(13);                          // XP8 - 2   sensor Тангента ножная
+	regBank.add(14);                          // XP8 - 1   PTT Тангента ножная
+	regBank.add(15);                          // XS1 - 5   PTT Мик
+	regBank.add(16);                          // XS1 - 6   sensor Мик
  
-	regBank.add(17);    // J8-12     XP7 4 PTT2   Танг. р.
-	regBank.add(18);    // XP1 - 20  HangUp  DCD
-	regBank.add(19);    // J8-11     XP7 2 sensor  Танг. р.
-	regBank.add(20);    // J8-23     XP7 1 PTT1 Танг. р.
-	regBank.add(21);    // XP2-2     sensor "Маг."  
-	regBank.add(22);    // XP5-3     sensor "ГГC."
-	regBank.add(23);    // XP3-3     sensor "ГГ-Радио1."
-	regBank.add(24);    // XP4-3     sensor "ГГ-Радио2."
+	regBank.add(17);                          // J8-12     XP7 4 PTT2   Танг. р.
+	regBank.add(18);                          // XP1 - 20  HangUp  DCD
+	regBank.add(19);                          // J8-11     XP7 2 sensor  Танг. р.
+	regBank.add(20);                          // J8-23     XP7 1 PTT1 Танг. р.
+	regBank.add(21);                          // XP2-2     sensor "Маг."  
+	regBank.add(22);                          // XP5-3     sensor "ГГC."
+	regBank.add(23);                          // XP3-3     sensor "ГГ-Радио1."
+	regBank.add(24);                          // XP4-3     sensor "ГГ-Радио2."
  
-	regBank.add(25);    // XP1- 19 HaSs      sensor подключения трубки    MTT                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-	regBank.add(26);    // XP1- 17 HaSPTT    CTS DSR вкл.  
-	regBank.add(27);    // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
-	regBank.add(28);    // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
-	regBank.add(29);    // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
-	regBank.add(30);    // XP1- 6  HeS1PTT   CTS вкл   РТТ Диспетчера
-	regBank.add(31);    // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.add(32);    // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	regBank.add(25);                          // XP1- 19 HaSs      sensor подключения трубки    MTT                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+	regBank.add(26);                          // XP1- 17 HaSPTT    CTS DSR вкл.  
+	regBank.add(27);                          // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+	regBank.add(28);                          // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
+	regBank.add(29);                          // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+	regBank.add(30);                          // XP1- 6  HeS1PTT   CTS вкл   РТТ Диспетчера
+	regBank.add(31);                          // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.add(32);                          // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
-	regBank.add(118);   // Флаг индикации многоразовой проверки
-	regBank.add(119);   // 
-	regBank.add(120);   // Флаг индикации возникновения любой ошибки
-	regBank.add(122);   // Флаг индикации открытия файла
-	regBank.add(123);   // Флаг индикации закрытия файла
-	regBank.add(124);   // Флаг индикации связи с модулем "Камертон"
+
+	regBank.add(118);                         // Флаг индикации многоразовой проверки
+	regBank.add(119);                         // 
+
+	regBank.add(120);                         // Флаг индикации возникновения любой ошибки
+	regBank.add(122);                         // Флаг индикации открытия файла
+	regBank.add(123);                         // Флаг индикации закрытия файла
+	regBank.add(124);                         // Флаг индикации связи с модулем "Камертон"
+	regBank.add(125);                         // Адрес ADC0  ток x1 
+	regBank.add(126);                         // Адрес ADC1 напряжение 12/3 вольт
+	regBank.add(127);                         // Адрес ADC2 ток x10 
+	regBank.add(128);                         // Адрес ADC14 напряжение 12/3 вольт Radio1
+	regBank.add(129);                         // Адрес ADC14 напряжение 12/3 вольт Radio2
+
+	regBank.add(130);                         // Адрес ADC14 напряжение 12/3 вольт ГГС
+	regBank.add(131);                         // Адрес ADC15 напряжение светодиода 3,6 вольта
 
 
 	regBank.add(200);                         // Флаг ошибки "Sensor MTT                          XP1- 19 HaSs            OFF - ";
@@ -5034,6 +5253,19 @@ modbus registers follow the following format
 
 	regBank.add(40120);  // adr_control_command Адрес передачи комманд на выполнение
 	regBank.add(40121);  // Адрес счетчика всех ошибок
+	regBank.add(40122);  //
+	regBank.add(40123);  //
+	regBank.add(40124);  //
+	regBank.add(40125);  // Aдрес счетчика  ошибки ADC0  ток x1 
+	regBank.add(40126);  // Aдрес счетчика  ошибки ADC1 напряжение 12/3 вольт
+	regBank.add(40127);  // Aдрес счетчика  ошибки ADC2 ток x10
+	regBank.add(40128);  // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт Radio1
+	regBank.add(40129);  // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт Radio2
+
+	regBank.add(40130);  // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт ГГС
+	regBank.add(40131);  // Aдрес счетчика  ошибки ADC15 напряжение светодиода 3,6 вольта
+
+
 	regBank.add(40200);                         // Aдрес счетчика ошибки "Sensor MTT                          XP1- 19 HaSs            OFF - ";
 	regBank.add(40201);                         // Aдрес счетчика ошибки "Sensor tangenta ruchnaja            XP7 - 2                 OFF - ";
 	regBank.add(40202);                         // Aдрес счетчика ошибки "Sensor tangenta nognaja             XP8 - 2                 OFF - "; 
@@ -5181,30 +5413,27 @@ modbus registers follow the following format
 	
 	// ++++++++++++++++++++++ Регистры хранения данных при проверке модулей ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-	regBank.add(40200);                         // Aдрес счетчика ошибки "Sensor MTT                          XP1- 19 HaSs            OFF - ";
-	regBank.add(40201);                         // Aдрес счетчика ошибки "Sensor tangenta ruchnaja            XP7 - 2                 OFF - ";
-	regBank.add(40202);                         // Aдрес счетчика ошибки "Sensor tangenta nognaja             XP8 - 2                 OFF - "; 
-	regBank.add(40203);                         // Aдрес счетчика ошибки "Sensor headset instructor 2         XP1- 16 HeS2Rs          OFF - ";
-	regBank.add(40204);                         // Aдрес счетчика ошибки "Sensor headset instructor           XP1- 13 HeS2Ls          OFF - "; 
-	regBank.add(40205);                         // Aдрес счетчика ошибки "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          OFF - ";
-	regBank.add(40206);                         // Aдрес счетчика ошибки "Sensor headset dispatcher           XP1- 1  HeS1Ls          OFF - ";
-	regBank.add(40207);                         // Aдрес счетчика ошибки "Sensor microphone                   XS1 - 6                 OFF - "; 
-	regBank.add(40208);                         // Aдрес счетчика ошибки "Microphone headset instructor Sw.   XP1 12 HeS2e            OFF - "; 
-	regBank.add(40209);                         // Aдрес счетчика ошибки "Microphone headset dispatcher Sw.   XP1 12 HeS2e            OFF - ";  
+	regBank.add(40400);                         // Aдрес напряжение ADC0  ток x1 
+	regBank.add(40401);                         // Aдрес напряжение ADC1 напряжение 12/3 вольт
+	regBank.add(40402);                         // Aдрес напряжение ADC2 ток x10
+	regBank.add(40403);                         // Aдрес напряжение ADC14 напряжение 12/3 вольт Radio1
+	regBank.add(40404);                         // Aдрес напряжение ADC14 напряжение 12/3 вольт Radio2
+	regBank.add(40405);                         // Aдрес напряжение ADC14 напряжение 12/3 вольт ГГС
+	regBank.add(40406);                         // Aдрес напряжение ADC15 напряжение светодиода 3,6 вольта
+	regBank.add(40407);                         // Aдрес счетчика  
+	regBank.add(40408);                         // Aдрес счетчика  
+	regBank.add(40409);                         // Aдрес счетчика  
 
-	regBank.add(40210);                         // Aдрес счетчика ошибки "Sensor MTT                          XP1- 19 HaSs            ON  - ";
-	regBank.add(40211);                         // Aдрес счетчика ошибки "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
-	regBank.add(40212);                         // Aдрес счетчика ошибки "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
-	regBank.add(40213);                         // Aдрес счетчика ошибки "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
-	regBank.add(40214);                         // Aдрес счетчика ошибки "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - "; 
-	regBank.add(40215);                         // Aдрес счетчика ошибки "Sensor headset dispatcher 2         XP1- 13 HeS2Ls          ON  - ";
-	regBank.add(40216);                         // Aдрес счетчика ошибки "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";
-	regBank.add(40217);                         // Aдрес счетчика ошибки "Sensor microphone                   XS1 - 6                 ON  - "; 
-	regBank.add(40218);                         // Aдрес счетчика ошибки "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - "; 
-	regBank.add(40219);                         // Aдрес счетчика ошибки "Microphone headset dispatcher Sw.   XP1 12 HeS2e            ON  - "; 
-
-
-
+	regBank.add(40410);                         // Aдрес счетчика 
+	regBank.add(40411);                         // Aдрес счетчика  
+	regBank.add(40412);                         // Aдрес счетчика  
+	regBank.add(40413);                         // Aдрес счетчика  
+	regBank.add(40414);                         // Aдрес счетчика  
+	regBank.add(40415);                         // Aдрес счетчика  
+	regBank.add(40416);                         // Aдрес счетчика  
+	regBank.add(40417);                         // Aдрес счетчика  
+	regBank.add(40418);                         // Aдрес счетчика  
+	regBank.add(40419);                         // Aдрес счетчика  
 
 	regBank.add(40420);                         // Aдрес  ;
 	regBank.add(40421);                         // Aдрес  ;
@@ -5429,8 +5658,12 @@ void setup()
 	regs_in[2]= 0x00;                               // 
 	regs_in[3]= 0x00;                               // 
 //	reg_Kamerton();
-	regBank.set(8,1);                               // Включить питание Камертон
 
+	regBank.set(21,0);    // XP2-2     sensor "Маг."  
+	regBank.set(22,0);    // XP5-3     sensor "ГГC."
+	regBank.set(23,0);    // XP3-3     sensor "ГГ-Радио1."
+	regBank.set(24,0);    // XP4-3     sensor "ГГ-Радио2."
+	regBank.set(8,1);                               // Выключить питание Камертон
 	UpdateRegs();                                   // Обновить информацию в регистрах
 
 	#if FASTADC                                     // Ускорить считывание аналогового канала
@@ -5439,6 +5672,13 @@ void setup()
 	cbi(ADCSRA,ADPS1) ;
 	cbi(ADCSRA,ADPS0) ;
 	#endif
+
+	for (int i = 120; i <= 131; i++)                  // Очистить флаги ошибок
+	{
+	   regBank.set(i,0);   
+	}
+
+
 
 	for (int i = 200; i <= 330; i++)                  // Очистить флаги ошибок
 	{
@@ -5453,10 +5693,7 @@ void setup()
 	{
 	   regBank.set(i,0);   
 	} 
-	regBank.set(120,0);                              // 
-	regBank.set(122,0);                              // Флаг индикации открытия файла
-	regBank.set(123,0);                              // Флаг индикации закрытия файла
-	regBank.set(124,0);                              // Флаг индикации связи с модулем "Камертон"
+
 
 	regBank.set(40120,0);
 	regBank.set(adr_reg_count_err,0);                // Обнулить данные счетчика всех ошибок
