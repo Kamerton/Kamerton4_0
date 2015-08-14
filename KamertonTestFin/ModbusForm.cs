@@ -2112,7 +2112,7 @@ namespace KamertonTest
 
 
         }
-
+        #region label all
         private void label48_Click(object sender, EventArgs e)
         {
 
@@ -2292,33 +2292,83 @@ namespace KamertonTest
         {
 
         }
+        private void label30_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label33_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label83_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label71_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void checkBoxSenGar2instr_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label92_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label95_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
 
+        private void label133_Click_1(object sender, EventArgs e)
+        {
 
+        }
+
+        private void label80_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label37_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label101_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label134_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
         #region Button test
         private void tabPage5_Click(object sender, EventArgs e)
         {
             if (TabControl1.SelectedIndex == 2)
             {
-                //Polltimer1.Enabled = false;                                              // Запретить опрос состояния
-                //timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона
-                //timerCTS.Enabled = false;
-                //timerTestAll.Enabled = false;
-
-
-                //bool[] coilVals = new bool[200];
-                //slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-                //progressBar1.Value = 0;
-
-                //button32.BackColor = Color.Lime;                              //Изменение цвета кнопок
-                //button31.BackColor = Color.LightSalmon;
-                //label102.Text = "Выполняется контроль состояния сенсоров";
-                //label102.ForeColor = Color.DarkOliveGreen;
-
-                ////startCoil = 33; // Запустить тест CTS
-                ////res = myProtocol.writeCoil(slave, startCoil, true); 
-                //timer_byte_set.Enabled = true;        // Включить контроль состояния модуля Камертон            
+                // Управление вкладкой   "Байты обмена с Камертон"
 
             }
         }
@@ -3164,11 +3214,8 @@ namespace KamertonTest
                 // Обработка ошибки.
                 textBox8.Text += ("Вызов программы обработки ошибок. " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
                 textBox8.Refresh();
-                //do{
-                     error_list();
-                  //   res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
-                   //  Thread.Sleep(50);
-                   //} while (coilArr[0] == true);    
+                error_list();
+ 
              }
 
        }
@@ -3202,9 +3249,9 @@ namespace KamertonTest
 
         private void error_list()
         {
-            error_list1();
-            error_list2();
-            error_list3();
+            error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
+            error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
+            error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
 
            
            if (coilArr_all[0] != false)
@@ -4664,7 +4711,6 @@ namespace KamertonTest
 
         }
 
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxSenAll.Checked == true)
@@ -4701,31 +4747,6 @@ namespace KamertonTest
         }
 
         private void checkBoxSenGGRadio1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label30_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label33_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label83_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label71_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -4769,38 +4790,7 @@ namespace KamertonTest
 
         }
 
-        private void checkBoxSenGar2instr_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label92_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label95_Click(object sender, EventArgs e)
-        {
-
-        }
-
-      
-
-        private void label133_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label80_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label37_Click(object sender, EventArgs e)
-        {
-
-        }
-
+  
         private void checkBoxSensors1_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -4815,20 +4805,7 @@ namespace KamertonTest
             error_list_print();
         }
 
-        private void label101_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label134_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+ 
 
     }
 }
