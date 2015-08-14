@@ -46,3 +46,6 @@ E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Release\KamertonTestFin.exe.
 E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Release\KamertonTestFin.application
 E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Release\KamertonTestFin.exe
 E:\1 SVN Kamerton 4_0\trunk\KamertonTestFin\obj\x86\Release\KamertonTestFin.pdb
+E:\2 SVN Kamerton4_0\trunk\KamertonTestFin\bin\x86\Release\KamertonTestFin.exe.config
+E:\2 SVN Kamerton4_0\trunk\KamertonTestFin\obj\x86\Release\KamertonTestFin.exe
+E:\2 SVN Kamerton4_0\trunk\KamertonTestFin\obj\x86\Release\KamertonTestFin.pdb
