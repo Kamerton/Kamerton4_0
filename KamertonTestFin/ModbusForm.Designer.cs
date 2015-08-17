@@ -1979,6 +1979,7 @@ namespace KamertonTest
             this.label112.Size = new System.Drawing.Size(23, 23);
             this.label112.TabIndex = 43;
             this.label112.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label112.Click += new System.EventHandler(this.label112_Click);
             // 
             // label111
             // 

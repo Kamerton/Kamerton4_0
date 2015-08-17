@@ -934,7 +934,7 @@ namespace KamertonTest
             }
 
             //********************Вторая колонка ********************
-            startCoil = 1;  //  regBank.add(00001-12);   Отображение соостояния реле 0-9
+            startCoil = 1;  //  regBank.add(00001-9);   Отображение соостояния реле 0-7
             numCoils = 8;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
             lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
@@ -4783,7 +4783,7 @@ namespace KamertonTest
                 label72.Text = "=";
                 textBox4.BackColor = Color.White;
             }
-            startWrReg = 10;                                                                   // Адрес хранения величины сигнала
+            startWrReg = 60;                                                                   // 40060 Адрес хранения величины сигнала
             res = myProtocol.writeSingleRegister(slave, startWrReg, (short)tempK);
             startWrReg = 120;                                                                   // 
             res = myProtocol.writeSingleRegister(slave, startWrReg, 15);                        // 
@@ -4808,6 +4808,11 @@ namespace KamertonTest
             error_list2();
             error_list3();
             error_list_print();
+        }
+
+        private void label112_Click(object sender, EventArgs e)
+        {
+
         }
 
  

@@ -184,11 +184,11 @@ modbusDevice regBank;
 //Create the modbus slave protocol handler
 modbusSlave slave;
 
-byte regs_in[5];                                    // Регистры работы с платой Камертон CPLL
+//byte regs_in[5];                                    // Регистры работы с платой Камертон CPLL
 byte regs_out[4];                                   // Регистры работы с платой Камертон
 byte regs_crc[1];                                   // Регистры работы с платой Камертон контрольная сумма
-
-
+byte regs_temp = 0;
+byte regs_temp1 = 0;
 byte Stop_Kam = 0;                                  // Флаг индикации чтения инф. из Камертона
 bool prer_Kmerton_On = true;                        // Флаг разрешение прерывания Камертон
 bool test_repeat     = true;                        // Флаг повторения теста
@@ -806,11 +806,12 @@ void waiting_for_replyK()                                  // Чтение данных из К
 						{
 							overflowFlag = 1;              // Установить флаг превышения размера буфера
 						}
-						regs_in[buffer] = Serial1.read(); 
+					     regBank.set(40004+buffer,Serial1.read());
+						//regs_in[buffer] = Serial1.read(); 
 						buffer++;
 					}
 				}
-			calculateCRC_In();
+//			calculateCRC_In();
 			regBank.set(124,0);                              // Связь с "Камертон" установлена
 		   }
 	 else 
@@ -818,11 +819,21 @@ void waiting_for_replyK()                                  // Чтение данных из К
 			Stop_Kam = 0;                                    // Флаг отсутств. инф. из Камертона
 			regBank.set(124,1);                              // Флаг ошибки  связи с "Камертон"
 		}
+
+	  //if( regBank.get(40007) != regs_temp)
+	  //{
+		 //Serial.println(regBank.get(40004),BIN);
+		 //Serial.println(regBank.get(40006),BIN);
+		 //Serial.println(regBank.get(40007),BIN);
+	  //}
+   //   regs_temp = regBank.get(40007);
+
 }
 void Stop_Kamerton ()                  //Если не приходит информация с Камертона - регистры обнулить
   {
 	 for (unsigned char i = 0; i <4; i++)
-	 regs_in[i]=0;
+     regBank.set(40004+i,0);
+	// regs_in[i]=0;
   }
 
 void calculateCRC_Out()                // Вычисление контрольной суммы ниблов байта
@@ -842,6 +853,7 @@ void calculateCRC_Out()                // Вычисление контрольной суммы ниблов ба
 }
 void calculateCRC_In()                 // Вычисление контрольной суммы ниблов байта
 { 
+	/*
   byte temp1,temp1H,temp1L, temp2,temp2H,temp2L, temp3,temp3H,temp3L, temp4, temp4H, crc_in;
 
   temp1 = regs_in[0];                  // записать  
@@ -868,6 +880,7 @@ void calculateCRC_In()                 // Вычисление контрольной суммы ниблов ба
   crc_in =   temp1H ^  temp1L  ^   temp2H ^  temp2L  ^  temp3H ^  temp3L  ^  temp4H ;
   crc_in =  crc_in&0x0F;               // Наложить маску F0 на младший нибл 4 байта
   regs_crc[0]= crc_in;
+  */
 }
 void i2c_eeprom_write_byte( int deviceaddress, unsigned int eeaddress, byte data )
 {
@@ -892,6 +905,7 @@ byte i2c_eeprom_read_byte( int deviceaddress, unsigned int eeaddress ) {
 
 void reg_Kamerton()                                       // Подпрограмма преобразования и переноса данных из  regs_out[3] в регистры Samkoon
 {
+	/*
 	 regBank.set(40001,regs_out[0]);   
 	 regBank.set(40002,regs_out[1]);   
 	 regBank.set(40003,regs_out[2]);   
@@ -899,14 +913,16 @@ void reg_Kamerton()                                       // Подпрограмма преобр
 	 regBank.set(40005,regs_in[1]); 
 	 regBank.set(40006,regs_in[2]); 
 	 regBank.set(40007,regs_in[3]); 
-	 if (regBank.get(118)== 0)
-		 {
-			 test_repeat = false;
-		 }
-	else
-		 {
-			test_repeat = true;
-		 }
+
+	 */
+	// if (regBank.get(118)== 0)
+	//	 {
+	//		 test_repeat = false;
+	//	 }
+	//else
+	//	 {
+	//		test_repeat = true;
+	//	 }
 }
 void UpdateRegs()                                        // Обновить регистры
 {
@@ -915,7 +931,7 @@ void UpdateRegs()                                        // Обновить регистры
 	 while(prer_Kmerton_Run == true){}                  // Ждем окончания получения данных из Камертон
 	 boolean set_rele ;
 	 prer_Kmerton_On = false;                            // Запретить прерывание Камертон ??
-	 reg_Kamerton();                                     // Записать данные из Камертон в    регистры 
+	// reg_Kamerton();                                     // Записать данные из Камертон в    регистры 
 		// Подпрограмма переноса данных из регистров на порты вывода
 	  //-----Установить бит 0
 	 set_rele = regBank.get(1);
@@ -1054,6 +1070,16 @@ void UpdateRegs()                                        // Обновить регистры
 	  //-----Установить бит 15
 	  set_rele = regBank.get(32);
 	  mcp_Out2.digitalWrite(15, set_rele);                 // XP1- 1  HeS1Ls    Флаг подкючения гарнитуры диспетчера
+
+	  	 if (regBank.get(118)== 0)
+		 {
+			 test_repeat = false;
+		 }
+	else
+		 {
+			test_repeat = true;
+		 }
+
 
 	  //*******************************************************
 /*
@@ -1535,9 +1561,16 @@ void sensor_all_off()
 	UpdateRegs(); 
 	delay(1000);
 	UpdateRegs(); 
-	byte i50 = regs_in[0];    
+/*	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
-	byte i53 = regs_in[3];    
+	byte i53 = regs_in[3];   */ 
+
+	byte i50 = regBank.get(40004);    
+	byte i52 = regBank.get(40006);     
+	byte i53 = regBank.get(40007);     
+
+
+
 
 		if(bitRead(i50,2) != 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            OFF - ";
 		  {
@@ -1809,6 +1842,8 @@ void sensor_all_off()
 				if (test_repeat == false) myFile.println(buffer);                   // Microphone headset dispatcher Sw. отключен  - Pass
 			   }
 		  }
+	UpdateRegs(); 
+	delay(1000);
 
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(100);
@@ -1822,35 +1857,38 @@ void sensor_all_on()
 	file_print_date();
 	myFile.println();
 	regBank.set(8,1);                                                               // Включить питание Камертон
+	UpdateRegs(); 
+	delay(1000);
 	regBank.set(5,1);                                                               // Микрофон инструктора включить
 	regBank.set(10,1);                                                              // Микрофон диспетчера включить
 	regBank.set(13,1);                                                              // XP8 - 2   sensor Тангента ножная
 	regBank.set(16,1);                                                              // XS1 - 6   sensor подключения микрофона
 	regBank.set(19,1);                                                              // J8-11     XP7 2 sensor тангента ручная
 	regBank.set(25,0);                                                              // XP1- 19 HaSs      sensor подключения трубки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-	regBank.set(27,1);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
-	regBank.set(29,1);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
-	regBank.set(31,1);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
-	regBank.set(32,1);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
-
+	//regBank.set(27,1);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+	//regBank.set(29,1);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+	//regBank.set(31,1);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	//regBank.set(32,1);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	delay(500);
 	UpdateRegs(); 
-	delay(1000);
-	UpdateRegs(); 
-	delay(600);
-	byte i50 = regs_in[0];    
-	byte i52 = regs_in[2];    
-	byte i53 = regs_in[3];  
+	delay(500);
 
-	 Serial.print(regs_in[0],HEX);
-	 Serial.print("--");
-	 Serial.print(regs_in[2],HEX);
-	 Serial.print("--");
-	 Serial.print(regs_in[3],HEX);
-	 Serial.println("    ");
+	byte i50 = regBank.get(40004);    
+	byte i52 = regBank.get(40006);     
+	byte i53 = regBank.get(40007);    
 
-	 Serial.println(regs_in[0],BIN);
-	 Serial.println(regs_in[2],BIN);
-	 Serial.println(regs_in[3],BIN);
+	 //Serial.print(regs_in[0],HEX);
+	 //Serial.print("--");
+	 //Serial.print(regs_in[1],HEX);
+	 //Serial.print("--");
+	 //Serial.print(regs_in[2],HEX);
+	 //Serial.print("--");
+	 //Serial.print(regs_in[3],HEX);
+	 //Serial.println("    ");
+
+	 //Serial.println(i50,BIN);
+	 //Serial.println(i52,BIN);
+	 //Serial.println(i53,BIN);
 
 		if(bitRead(i50,2) == 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            ON  - ";
 		  {
@@ -1923,6 +1961,40 @@ void sensor_all_on()
 				if (test_repeat == false) myFile.println(buffer);                   // "Sensor tangenta nognaja             XP8 - 2                 ON - ";  включен  - Pass
 			  }
 		  }
+//UpdateRegs(); 
+//delay(500);
+// test_instr_on();
+// UpdateRegs(); 
+// delay(500);
+// test_disp_on();
+
+/*
+		//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	Serial.println("Instr2");
+	regBank.set(27,1);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(29,0);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+	regBank.set(31,0);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,0);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	delay(500);
+	UpdateRegs(); 
+	delay(500);
+	int kl=0;
+
+	do{
+		kl++;
+
+	  }while (regBank.get(40007) == regs_temp1);
+	  //if( regBank.get(40007) != regs_temp)
+	  //{
+		 //Serial.println(regBank.get(40004),BIN);
+		 //Serial.println(regBank.get(40006),BIN);
+		 //Serial.println(regBank.get(40007),BIN);
+	  //}
+      regs_temp1 = regBank.get(40007);
+	  kl=0;
+
+
+    i52 = regBank.get(40006);     
 
 		if(bitRead(i52,1) == 0)                                                     // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 		  {
@@ -1948,6 +2020,18 @@ void sensor_all_on()
 			  }
 		  }
 
+//--------------------------------------------------------------------------------
+		Serial.println("Instr");
+	regBank.set(27,0);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(29,1);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+	regBank.set(31,0);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,0);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	delay(500);
+	UpdateRegs(); 
+	delay(500);
+    i52 = regBank.get(40006);     
+
+
 		if(bitRead(i52,2) == 0)                                                     // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
 		  {
 			regcount = regBank.get(40214);                                          // адрес счетчика ошибки sensor подключения гарнитуры инструктора
@@ -1971,6 +2055,17 @@ void sensor_all_on()
 				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset instructor включен  - Pass
 			  }
 		  }
+//-------------------------------------------------------------------------------
+		Serial.println("Disp2");
+	regBank.set(27,0);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(29,0);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+	regBank.set(31,1);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,0);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	delay(500);
+	UpdateRegs(); 
+	delay(500);
+
+	i52 = regBank.get(40006);    
 
 		if(bitRead(i52,3) == 0)                                                     // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
 		  {
@@ -1995,7 +2090,17 @@ void sensor_all_on()
 				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset dispatcher 2 включен  - Pass
 			  }
 		  }
+		//--------------------------------------------------------------------------------------------------
+		Serial.println("Disp");
+	regBank.set(27,0);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
+	regBank.set(29,0);                                                              // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+	regBank.set(31,0);                                                              // XP1- 5  HeS1Rs    sensor подкючения гарнитуры диспетчера с 2 наушниками
+	regBank.set(32,1);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
+	delay(500);
+	UpdateRegs(); 
+	delay(500);
 
+	i52 = regBank.get(40006);    
 		
 		if(bitRead(i52,4) == 0)                                                     // XP1- 1  HeS1Ls   sensor подкючения гарнитуры диспетчера 
 		  {
@@ -2020,7 +2125,9 @@ void sensor_all_on()
 				if (test_repeat == false) myFile.println(buffer);                   // "Sensor headset dispatcher отключен  - Pass
 			  }
 		  }
+//------------------------------------------------------------------------------------------------------------------------
 
+*/
 		if(bitRead(i52,5) == 0)                                                     // XS1 - 6   sensor включения микрофона
 		  {
 			regcount = regBank.get(40217);                                          // адрес счетчика ошибки sensor подключения микрофона
@@ -2092,6 +2199,9 @@ void sensor_all_on()
 				if (test_repeat == false) myFile.println(buffer);                   // Microphone headset dispatcher Sw. включен  - Pass
 			   }
 		  }
+
+
+
 	regBank.set(5,0);                                                               // Микрофон инструктора отключить
 	regBank.set(10,0);                                                              // Микрофон диспетчера отключить
 
@@ -2744,7 +2854,7 @@ if(test_sens == false)
 
 void set_rezistor()
 {
-	int mwt = regBank.get(40010);             // Адрес хранения величины сигнала
+	int mwt = regBank.get(40060);             // Адрес хранения величины сигнала
 	resistor(1, mwt);
 	resistor(2, mwt);
 	regBank.set(adr_control_command,0);
@@ -2791,7 +2901,7 @@ void test_headset_instructor()
 	regBank.set(29,1);                                                              // ВКЛ XP1- 13 HeS2Ls Кнопка  ВКЛ флаг подключения гарнитуры инструктора 
 	UpdateRegs();                                                                   // 
 	delay(400);                                                                     //
-	byte i53 = regs_in[3];                                                          // Получить текущее состояние Камертона
+	byte i53 = regBank.get(40007);                                                  // Получить текущее состояние Камертона
 		if(bitRead(i53,4) == 0)                                                     // Реле RL4 XP1 12  HeS2e   Включение микрофона инструктора
 		  {
 			regcount = regBank.get(40218);                                          // адрес счетчика ошибки Включение микрофона инструктора
@@ -2887,8 +2997,10 @@ void test_headset_dispatcher()
 
 	UpdateRegs();                                                                   // 
 	delay(200);                                                                     //
-	byte i5 = regs_in[3];                                                           // 
-		if(bitRead(i5,6) == 0)                                                      // Проверка  включения микрофона диспетчера
+
+	byte i53 = regBank.get(40007);     
+//	byte i5 = regs_in[3];                                                           // 
+		if(bitRead(i53,6) == 0)                                                      // Проверка  включения микрофона диспетчера
 		  {
 			regcount = regBank.get(40182);                                          // адрес счетчика ошибки включения микрофона диспетчера          "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - "; 
 			regcount++;                                                             // увеличить счетчик ошибок включения микрофона диспетчера       "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - "; 
@@ -3030,7 +3142,8 @@ void test_tangR()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[39])));                   // "Command PTT2   OFF tangenta ruchnaja             send!"      ; 
 	if (test_repeat == false) myFile.println(buffer);                               // "Command PTT2   OFF tangenta ruchnaja             send!"      ; 
 
-	byte i50 = regs_in[0];    
+	byte i50 = regBank.get(40004);    
+
 	if(bitRead(i50,3) != 0)                                                         // J8-11     XP7 2 sensor тангента ручная               "Command sensor tangenta ruchnaja                            OFF - ";
 		{
 			regcount = regBank.get(40274);                                          // адрес счетчика ошибки sensor тангента ручная     "Command sensor tangenta ruchnaja                            OFF - ";
@@ -3127,8 +3240,10 @@ void test_tangR()
 	if (test_repeat == false) myFile.println(buffer);                               //
 
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
-		if(bitRead(regs_in[0],3) == 0)                                          // J8-11     XP7 2 sensor тангента ручная             "Command sensor tangenta ruchnaja                            ON  - ";
+    delay(500);
+    i50 = regBank.get(40004);    
+
+		if(bitRead(i50,3) == 0)                                          // J8-11     XP7 2 sensor тангента ручная             "Command sensor tangenta ruchnaja                            ON  - ";
 		  {
 			regcount = regBank.get(40275);                                          // адрес счетчика ошибки sensor тангента ручная       "Command sensor tangenta ruchnaja                            ON  - ";
 			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная    "Command sensor tangenta ruchnaja                            ON  - ";
@@ -3235,8 +3350,10 @@ void test_tangN()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[45])));                   // "Command PTT    OFF tangenta nognaja              send!"      ;
 	if (test_repeat == false)  myFile.println(buffer);                              //
 
-	byte i50 = regs_in[0];    
-	
+//	byte i50 = regs_in[0];    
+	byte i50 = regBank.get(40004);    
+//	byte i52 = regBank.get(40006);     
+//	byte i53 = regBank.get(40007);     
 	if(bitRead(i50,4) != 0)                                                         // J8-11     XP8 2 sensor тангента                  "Command sensor tangenta nognaja                             OFF - ";
 		{
 			regcount = regBank.get(40276);                                          // адрес счетчика ошибки sensor тангента ручная     "Command sensor tangenta nognaja                             OFF - ";
@@ -3305,7 +3422,12 @@ void test_tangN()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
 
-			if(bitRead(regs_in[0],4) == 0)                                          // J8-11     XP7 2 sensor тангента                    "Command sensor tangenta nognaja                             ON  - ";
+	i50 = regBank.get(40004);    
+	//byte i52 = regBank.get(40006);     
+	//byte i53 = regBank.get(40007);     
+
+
+			if(bitRead(i50,4) == 0)                                                 // J8-11     XP7 2 sensor тангента                    "Command sensor tangenta nognaja                             ON  - ";
 		  {
 			regcount = regBank.get(40277);                                          // адрес счетчика ошибки sensor тангента ручная       "Command sensor tangenta nognaja                             ON  - ";
 			regcount++;                                                             // увеличить счетчик ошибок sensor тангента ручная    "Command sensor tangenta nognaja                             ON  - ";
@@ -3393,7 +3515,11 @@ void test_mikrophon()
 	delay(400);
 
 	 // +++++++++++++++++++++++++++++++++++++++ Проверка  на отключение сенсора и  PTT microphone ++++++++++++++++++++++++++++++++++++++++++++
-	byte i52 = regs_in[2];    
+//		byte i50 = regBank.get(40004);    
+	byte i52 = regBank.get(40006);     
+//	byte i53 = regBank.get(40007);     
+
+	//byte i52 = regs_in[2];    
 			if(bitRead(i52,5) != 0)                                                 // XS1 - 6   sensor отключения микрофона
 		  {
 			regcount = regBank.get(40207);                                          // адрес счетчика ошибки sensor подключения микрофона
@@ -3456,7 +3582,11 @@ void test_mikrophon()
 	if (test_repeat == false) myFile.println(buffer);                               //
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
-	i52 = regs_in[2];    
+	//	byte i50 = regBank.get(40004);    
+	i52 = regBank.get(40006);     
+	//byte i53 = regBank.get(40007);     
+
+	//i52 = regs_in[2];    
 
 	  if(bitRead(i52,5) == 0)                                                 // XS1 - 6   sensor отключения микрофона
 		  {
@@ -3493,7 +3623,11 @@ void test_mikrophon()
 	if (test_repeat == false) myFile.println(buffer);                               //
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
-	i52 = regs_in[2];    
+
+	//byte i50 = regBank.get(40004);    
+    i52 = regBank.get(40006);     
+	//byte i53 = regBank.get(40007);     
+	//i52 = regs_in[2];    
 
 	if(bitRead(i52,5) == 0)                                             // XS1 - 6   sensor отключения микрофона
 		  {
@@ -3552,15 +3686,15 @@ void test_mikrophon()
 		 }
 
 	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала  на отсутствие наводок ++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,    40320,320,30);                                // Измерить уровень сигнала на выходе FrontL    "Test Microphone ** Signal FrontL                                   OFF - ";
-	measure_vol_min(analog_FrontR,    40321,321,30);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal FrontR                                   OFF - ";
-	measure_vol_min(analog_LineL,     40322,322,30);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal LineL                                    OFF - ";
-	measure_vol_min(analog_LineR,     40323,323,30);                                // Измерить уровень сигнала на выходе LineR     "Test Microphone ** Signal LineR                                    OFF - ";
-	measure_vol_min(analog_mag_radio, 40324,324,30);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal mag radio                                OFF - ";
-	measure_vol_min(analog_mag_phone, 40325,325,30);                                // Измерить уровень сигнала на выходе LineR     "Test Microphone ** Signal mag phone                                OFF - ";
-	measure_vol_min(analog_ggs,       40326,326,30);                                // Измерить уровень сигнала на выходе GGS       "Test Microphone ** Signal GGS                                      OFF - ";
-	measure_vol_min(analog_gg_radio1, 40327,327,30);                                // Измерить уровень сигнала на выходе GG Radio1 "Test Microphone ** Signal GG Radio1                                OFF - ";
-	measure_vol_min(analog_gg_radio2, 40328,328,30);                                // Измерить уровень сигнала на выходе GG Radio2 "Test Microphone ** Signal GG Radio2     
+	measure_vol_min(analog_FrontL,    40320,320,35);                                // Измерить уровень сигнала на выходе FrontL    "Test Microphone ** Signal FrontL                                   OFF - ";
+	measure_vol_min(analog_FrontR,    40321,321,35);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal FrontR                                   OFF - ";
+	measure_vol_min(analog_LineL,     40322,322,35);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal LineL                                    OFF - ";
+	measure_vol_min(analog_LineR,     40323,323,35);                                // Измерить уровень сигнала на выходе LineR     "Test Microphone ** Signal LineR                                    OFF - ";
+	measure_vol_min(analog_mag_radio, 40324,324,35);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal mag radio                                OFF - ";
+	measure_vol_min(analog_mag_phone, 40325,325,35);                                // Измерить уровень сигнала на выходе LineR     "Test Microphone ** Signal mag phone                                OFF - ";
+	measure_vol_min(analog_ggs,       40326,326,35);                                // Измерить уровень сигнала на выходе GGS       "Test Microphone ** Signal GGS                                      OFF - ";
+	measure_vol_min(analog_gg_radio1, 40327,327,35);                                // Измерить уровень сигнала на выходе GG Radio1 "Test Microphone ** Signal GG Radio1                                OFF - ";
+	measure_vol_min(analog_gg_radio2, 40328,328,35);                                // Измерить уровень сигнала на выходе GG Radio2 "Test Microphone ** Signal GG Radio2     
 
 
 		// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -3575,13 +3709,13 @@ void test_mikrophon()
 	measure_vol_max(analog_mag_phone,40298,298,180);                                // Измерить уровень сигнала на выходе mag phone  "Test Microphone ** Signal Mag phone      
 	measure_vol_max(analog_LineL,    40299,299,180);                                // Измерить уровень сигнала на выходе "Test Microphone ** Signal LineL                      ON  - ";  
 	
-	measure_vol_min(analog_FrontL,    40320,320,30);                                // Измерить уровень сигнала на выходе FrontL    "Test Microphone ** Signal FrontL                                   OFF - ";
-	measure_vol_min(analog_FrontR,    40321,321,30);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal FrontR                                   OFF - ";
-	measure_vol_min(analog_LineR,     40323,323,30);                                // Измерить уровень сигнала на выходе LineR     "Test Microphone ** Signal LineR                                    OFF - ";
-	measure_vol_min(analog_mag_radio, 40324,324,30);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal mag radio                                OFF - ";
-	measure_vol_min(analog_ggs,       40326,326,30);                                // Измерить уровень сигнала на выходе GGS       "Test Microphone ** Signal GGS                                      OFF - ";
-	measure_vol_min(analog_gg_radio1, 40327,327,30);                                // Измерить уровень сигнала на выходе GG Radio1 "Test Microphone ** Signal GG Radio1                                OFF - ";
-	measure_vol_min(analog_gg_radio2, 40328,328,30);                                // Измерить уровень сигнала на выходе GG Radio2 "Test Microphone ** Signal GG Radio2     
+	measure_vol_min(analog_FrontL,    40320,320,35);                                // Измерить уровень сигнала на выходе FrontL    "Test Microphone ** Signal FrontL                                   OFF - ";
+	measure_vol_min(analog_FrontR,    40321,321,35);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal FrontR                                   OFF - ";
+	measure_vol_min(analog_LineR,     40323,323,35);                                // Измерить уровень сигнала на выходе LineR     "Test Microphone ** Signal LineR                                    OFF - ";
+	measure_vol_min(analog_mag_radio, 40324,324,35);                                // Измерить уровень сигнала на выходе FrontR    "Test Microphone ** Signal mag radio                                OFF - ";
+	measure_vol_min(analog_ggs,       40326,326,35);                                // Измерить уровень сигнала на выходе GGS       "Test Microphone ** Signal GGS                                      OFF - ";
+	measure_vol_min(analog_gg_radio1, 40327,327,35);                                // Измерить уровень сигнала на выходе GG Radio1 "Test Microphone ** Signal GG Radio1                                OFF - ";
+	measure_vol_min(analog_gg_radio2, 40328,328,35);                                // Измерить уровень сигнала на выходе GG Radio2 "Test Microphone ** Signal GG Radio2     
 
 	regBank.set(9,0);                                                               // Отключить сигнал на вход микрофона Реле RL8 Звук на микрофон
 	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
@@ -3606,7 +3740,13 @@ void testGGS()
 	UpdateRegs(); 
 	delay(300);
 	UpdateRegs(); 
-	byte i50 = regs_in[0];    
+
+	byte i50 = regBank.get(40004);    
+	//byte i52 = regBank.get(40006);     
+	//byte i53 = regBank.get(40007);     
+
+
+	//byte i50 = regs_in[0];    
 
 		if(bitRead(i50,2) != 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            OFF - ";
 		  {
@@ -3635,15 +3775,15 @@ void testGGS()
 			   }
 		  }
 		//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,    40280,280,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontL                                   OFF - ";
-	measure_vol_min(analog_FrontR,    40281,281,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontR                                   OFF - ";
-	measure_vol_min(analog_LineL,     40282,282,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
-	measure_vol_min(analog_LineR,     40283,283,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
-	measure_vol_min(analog_mag_radio, 40284,284,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
-	measure_vol_min(analog_mag_phone, 40285,285,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag phone                                OFF - ";
-	measure_vol_min(analog_ggs,       40286,286,30);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
-	measure_vol_min(analog_gg_radio1, 40287,287,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
-	measure_vol_min(analog_gg_radio2, 40288,288,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
+	measure_vol_min(analog_FrontL,    40280,280,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontL                                   OFF - ";
+	measure_vol_min(analog_FrontR,    40281,281,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontR                                   OFF - ";
+	measure_vol_min(analog_LineL,     40282,282,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
+	measure_vol_min(analog_LineR,     40283,283,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
+	measure_vol_min(analog_mag_radio, 40284,284,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
+	measure_vol_min(analog_mag_phone, 40285,285,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag phone                                OFF - ";
+	measure_vol_min(analog_ggs,       40286,286,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
+	measure_vol_min(analog_gg_radio1, 40287,287,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
+	measure_vol_min(analog_gg_radio2, 40288,288,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
 	//----------------------------------------------------------------------------------------------------------------------------------------
 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[49])));                   // "Signal GGS  FrontL, FrontR   0,7v             ON"            ;
@@ -3654,13 +3794,13 @@ void testGGS()
 
 	measure_vol_max(analog_FrontL,    40290,290,40);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontL                                   ON  - ";
 	measure_vol_max(analog_FrontR,    40291,291,40);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontR                                   ON  - ";
-	measure_vol_min(analog_LineL,     40282,282,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
-	measure_vol_min(analog_LineR,     40283,283,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
-	measure_vol_min(analog_mag_radio, 40284,284,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
+	measure_vol_min(analog_LineL,     40282,282,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
+	measure_vol_min(analog_LineR,     40283,283,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
+	measure_vol_min(analog_mag_radio, 40284,284,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
 	measure_vol_max(analog_mag_phone, 40292,292,50);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag phone                                ON  - ";
 	measure_vol_max(analog_ggs,       40289,289,160);                               // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      ON  - ";
-	measure_vol_min(analog_gg_radio1, 40287,287,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
-	measure_vol_min(analog_gg_radio2, 40288,288,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
+	measure_vol_min(analog_gg_radio1, 40287,287,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
+	measure_vol_min(analog_gg_radio2, 40288,288,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
 
 	regBank.set(25,0);                                                              // XP1- 19 HaSs      sensor подключения трубки          
 	UpdateRegs();                                                                   // Выполнить команду
@@ -3671,13 +3811,13 @@ void testGGS()
 
 	measure_vol_max(analog_FrontL,    40290,290,40);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontL                                   ON  - ";
 	measure_vol_max(analog_FrontR,    40291,291,40);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontR                                   ON  - ";
-	measure_vol_min(analog_LineL,     40282,282,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
-	measure_vol_min(analog_LineR,     40283,283,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
-	measure_vol_min(analog_mag_radio, 40284,284,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
+	measure_vol_min(analog_LineL,     40282,282,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
+	measure_vol_min(analog_LineR,     40283,283,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
+	measure_vol_min(analog_mag_radio, 40284,284,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
 	measure_vol_max(analog_mag_phone, 40292,292,50);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal mag phone                                ON  - ";
-	measure_vol_min(analog_ggs,       40286,286,30);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
-	measure_vol_min(analog_gg_radio1, 40287,287,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
-	measure_vol_min(analog_gg_radio2, 40288,288,25);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
+	measure_vol_min(analog_ggs,       40286,286,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
+	measure_vol_min(analog_gg_radio1, 40287,287,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
+	measure_vol_min(analog_gg_radio2, 40288,288,35);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
 
 	regBank.set(6,0);                                                               // Реле RL5 Звук Front L, Front R
 	UpdateRegs();    
@@ -3699,15 +3839,15 @@ void test_GG_Radio1()
 	UpdateRegs(); 
 	delay(300);
 	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,    40300,300,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
-	measure_vol_min(analog_FrontR,    40301,301,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
-	measure_vol_min(analog_LineL,     40302,302,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
-	measure_vol_min(analog_LineR,     40303,303,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
-	measure_vol_min(analog_mag_radio, 40304,304,30);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
-	measure_vol_min(analog_mag_phone, 40305,305,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
-	measure_vol_min(analog_ggs,       40306,306,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
-	measure_vol_min(analog_gg_radio1, 40307,307,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio1                             OFF - ";
-	measure_vol_min(analog_gg_radio2, 40308,308,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
+	measure_vol_min(analog_FrontL,    40300,300,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
+	measure_vol_min(analog_FrontR,    40301,301,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
+	measure_vol_min(analog_LineL,     40302,302,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
+	measure_vol_min(analog_LineR,     40303,303,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
+	measure_vol_min(analog_mag_radio, 40304,304,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_phone, 40305,305,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
+	measure_vol_min(analog_ggs,       40306,306,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
+	measure_vol_min(analog_gg_radio1, 40307,307,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio1                             OFF - ";
+	measure_vol_min(analog_gg_radio2, 40308,308,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[51])));                   // "Signal Radio1 300 mV    LFE                   ON"            ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal Radio1 300 mV    LFE                   ON"            ;
@@ -3715,15 +3855,15 @@ void test_GG_Radio1()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
 
-	measure_vol_min(analog_FrontL,    40300,300,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
-	measure_vol_min(analog_FrontR,    40301,301,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
-	measure_vol_min(analog_LineL,     40302,302,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
-	measure_vol_min(analog_LineR,     40303,303,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
-	measure_vol_min(analog_mag_radio, 40304,304,30);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
-	measure_vol_min(analog_mag_phone, 40305,305,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
-	measure_vol_min(analog_ggs,       40306,306,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
+	measure_vol_min(analog_FrontL,    40300,300,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
+	measure_vol_min(analog_FrontR,    40301,301,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
+	measure_vol_min(analog_LineL,     40302,302,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
+	measure_vol_min(analog_LineR,     40303,303,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
+	measure_vol_min(analog_mag_radio, 40304,304,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_phone, 40305,305,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
+	measure_vol_min(analog_ggs,       40306,306,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
 	measure_vol_max(analog_gg_radio1, 40309,309,220);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
-	measure_vol_min(analog_gg_radio2, 40308,308,25);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
+	measure_vol_min(analog_gg_radio2, 40308,308,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
 	regBank.set(4,0);                                                               // Реле RL3 Звук  LFE  "Маг."
 	UpdateRegs();     
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
@@ -3743,15 +3883,15 @@ void test_GG_Radio2()
 	UpdateRegs(); 
 	delay(300);
 	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	measure_vol_min(analog_FrontL,    40310,310,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
-	measure_vol_min(analog_FrontR,    40311,311,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
-	measure_vol_min(analog_LineL,     40312,312,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
-	measure_vol_min(analog_LineR,     40313,313,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineR                                 OFF - ";
-	measure_vol_min(analog_mag_radio, 40314,314,30);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag radio                             OFF - ";
-	measure_vol_min(analog_mag_phone, 40315,315,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag phone                             OFF - ";
-	measure_vol_min(analog_ggs,       40316,316,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
-	measure_vol_min(analog_gg_radio1, 40317,317,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GG Radio1                             OFF - ";
-	measure_vol_min(analog_gg_radio2, 40318,318,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GG Radio2                             OFF - ";
+	measure_vol_min(analog_FrontL,    40310,310,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
+	measure_vol_min(analog_FrontR,    40311,311,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
+	measure_vol_min(analog_LineL,     40312,312,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
+	measure_vol_min(analog_LineR,     40313,313,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineR                                 OFF - ";
+	measure_vol_min(analog_mag_radio, 40314,314,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_phone, 40315,315,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag phone                             OFF - ";
+	measure_vol_min(analog_ggs,       40316,316,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
+	measure_vol_min(analog_gg_radio1, 40317,317,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GG Radio1                             OFF - ";
+	measure_vol_min(analog_gg_radio2, 40318,318,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GG Radio2                             OFF - ";
 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[53])));                   // "Signal Radio1 300 mV    LFE                   ON"            ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal Radio1 300 mV    LFE                   ON"            ;
@@ -3759,14 +3899,14 @@ void test_GG_Radio2()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
 
-	measure_vol_min(analog_FrontL,    40310,310,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
-	measure_vol_min(analog_FrontR,    40311,311,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
-	measure_vol_min(analog_LineL,     40312,312,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
-	measure_vol_min(analog_LineR,     40313,313,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineR                                 OFF - ";
-	measure_vol_min(analog_mag_radio, 40314,314,30);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag radio                             OFF - ";
-	measure_vol_min(analog_mag_phone, 40315,315,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag phone                             OFF - ";
-	measure_vol_min(analog_ggs,       40316,316,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
-	measure_vol_min(analog_gg_radio1, 40317,317,25);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal Radio1                                ON  - ";
+	measure_vol_min(analog_FrontL,    40310,310,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
+	measure_vol_min(analog_FrontR,    40311,311,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
+	measure_vol_min(analog_LineL,     40312,312,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
+	measure_vol_min(analog_LineR,     40313,313,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineR                                 OFF - ";
+	measure_vol_min(analog_mag_radio, 40314,314,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag radio                             OFF - ";
+	measure_vol_min(analog_mag_phone, 40315,315,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag phone                             OFF - ";
+	measure_vol_min(analog_ggs,       40316,316,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
+	measure_vol_min(analog_gg_radio1, 40317,317,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal Radio1                                ON  - ";
 	measure_vol_max(analog_gg_radio2, 40319,319,250);                               // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GG Radio2                             OFF - ";
 
 	regBank.set(7,0);                                                               // Реле RL6 Звук Center
@@ -3945,7 +4085,12 @@ void test_instr_off()
 	UpdateRegs();                                                                   // Выполнить команду отключения сенсоров
 	delay(300);
 	UpdateRegs(); 
-	byte i52 = regs_in[2];    
+//	byte i50 = regBank.get(40004);    
+	byte i52 = regBank.get(40006);     
+//	byte i53 = regBank.get(40007);     
+
+
+//	byte i52 = regs_in[2];    
 	 
 	  // 1)  Проверка сенсора на отключение гарнитуры инструктора 2 наушниками
 		if(bitRead(i52,1) != 0)                                                     // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
@@ -4078,7 +4223,9 @@ void test_instr_on()
 	UpdateRegs();                                                                   // Выполнить команду включения сенсоров
 	delay(300);
 	UpdateRegs(); 
-	byte i52 = regs_in[2];    
+ 
+	byte i52 = regBank.get(40006);     
+
 	  // 3)  Проверка сенсора на подключение гарнитуры инструктора 2 наушниками
 			if(bitRead(i52,1) == 0)                                                 // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 		  {
@@ -4190,7 +4337,10 @@ void test_disp_off()
 	UpdateRegs();                                                                   // Выполнить команду отключения сенсоров
 	delay(300);
 	UpdateRegs(); 
-	byte i52 = regs_in[2];    
+	//byte i50 = regBank.get(40004);    
+	byte i52 = regBank.get(40006);     
+	//byte i53 = regBank.get(40007);     
+	//byte i52 = regs_in[2];    
 	 
 	  // 1)  Проверка сенсора на отключение гарнитуры диспетчера 2 наушниками
 		if(bitRead(i52,3) != 0)                                                     // XP1- 16 HeS2Rs    sensor подключения гарнитуры диспетчера с 2 наушниками
@@ -4323,7 +4473,10 @@ void test_disp_on()
 	UpdateRegs();                                                                   // Выполнить команду включения сенсоров
 	delay(300);
 	UpdateRegs(); 
-	byte i52 = regs_in[2];    
+	//byte i50 = regBank.get(40004);    
+	byte i52 = regBank.get(40006);     
+	//byte i53 = regBank.get(40007);     
+	//byte i52 = regs_in[2];    
 
 	  // 3)  Проверка сенсора на подключение гарнитуры диспетчера 2 наушниками
 		if(bitRead(i52,3) == 0)                                                 // XP1- 16 HeS2Rs    sensor подключения гарнитуры диспетчера с 2 наушниками
@@ -4436,7 +4589,10 @@ void test_MTT_off()
 	delay(300);
 	UpdateRegs(); 
 	delay(100);
-	byte i50 = regs_in[0];    
+	byte i50 = regBank.get(40004);    
+	//byte i52 = regBank.get(40006);     
+	//byte i53 = regBank.get(40007);     
+	//byte i50 = regs_in[0];    
 
 		if(bitRead(i50,2) != 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            OFF - ";
 		  {
@@ -4539,7 +4695,10 @@ void test_MTT_on()
 	delay(600);
 	UpdateRegs(); 
 	  // 1)  Проверка сенсора MTT на включение 
-	byte i50 = regs_in[0];    
+	byte i50 = regBank.get(40004);    
+	//byte i52 = regBank.get(40006);     
+	//byte i53 = regBank.get(40007);     
+	//byte i50 = regs_in[0];    
 		if(bitRead(i50,2) == 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            ON  - ";
 		  {
 			regcount = regBank.get(40210);                                          // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            ON  - ";
@@ -5460,16 +5619,16 @@ modbus registers follow the following format
 	regBank.add(40005);  // 
 	regBank.add(40006);  // 
 	regBank.add(40007);  // 
- // 
-	//regBank.add(40008);  // 
-	//regBank.add(40009);  // 
+ 	regBank.add(40008);  // 
+	regBank.add(40009);  // 
+
 	regBank.add(40010);    // Адрес хранения величины сигнала резисторами
-	//regBank.add(40011);  // 
-	//regBank.add(40012);  // 
-	//regBank.add(40013);  // 
-	//regBank.add(40014);  // 
-	//regBank.add(40015);  // 
-	//regBank.add(40016);  // 
+	regBank.add(40011);  // 
+	regBank.add(40012);  // 
+	regBank.add(40013);  // 
+	regBank.add(40014);  // 
+	regBank.add(40015);  // 
+	regBank.add(40016);  // 
 
 
 						 // Текущее время 
@@ -5489,8 +5648,9 @@ modbus registers follow the following format
 	regBank.add(40057);  // 
 	regBank.add(40058);  // 
 	regBank.add(40059);  // 
-	/*
+	
 	regBank.add(40060); // адрес счетчика ошибки
+	/*
 	regBank.add(40061); // адрес счетчика ошибки
 	regBank.add(40062); // адрес счетчика ошибки
 	regBank.add(40063); // адрес счетчика ошибки
@@ -5962,10 +6122,10 @@ void setup()
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
 	regs_out[1]= 0xC4;                              // 196 Изменять в реальной схеме
 	regs_out[2]= 0x7F;                              // 127 Изменять в реальной схеме
-	regs_in[0]= 0x00;                               // Код первого байта 
-	regs_in[1]= 0x00;                               // 
-	regs_in[2]= 0x00;                               // 
-	regs_in[3]= 0x00;                               // 
+	//regs_in[0]= 0x00;                               // Код первого байта 
+	//regs_in[1]= 0x00;                               // 
+	//regs_in[2]= 0x00;                               // 
+	//regs_in[3]= 0x00;                               // 
 //	reg_Kamerton();
 
 	regBank.set(21,0);    // XP2-2     sensor "Маг."  
