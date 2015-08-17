@@ -1828,8 +1828,9 @@ void sensor_all_on()
 	bool test_sens = true;
 	regBank.set(27,1);                                                              // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 	UpdateRegs(); 
-	delay(1000);
-
+	delay(500);
+	UpdateRegs(); 
+	delay(500);
 	byte i50 = regs_in[0];    
 	byte i52 = regs_in[2];    
 	byte i53 = regs_in[3];  
@@ -3491,19 +3492,32 @@ void test_power()
 	file_print_date();
 	myFile.println("");
 
+	//regBank.add(40293);                         // Aдрес счетчика  ошибки ADC1 напряжение 12/3 вольт
+	//regBank.add(40294);                         // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт Radio1
+	//regBank.add(40295);                         // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт Radio2
+	//regBank.add(40296);                         // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт ГГС
+	//regBank.add(40297);                         // Aдрес счетчика  ошибки ADC15 напряжение светодиода 3,6 вольта
+
+	//regBank.add(40493);                         // Aдрес данных измерения ADC1 напряжение 12/3 вольт
+	//regBank.add(40494);                         // Aдрес данных измерения ADC14 напряжение 12/3 вольт Radio1
+	//regBank.add(40495);                         // Aдрес данных измерения ADC14 напряжение 12/3 вольт Radio2
+	//regBank.add(40496);                         // Aдрес данных измерения ADC14 напряжение 12/3 вольт ГГС
+	//regBank.add(40497);                         // Aдрес данных измерения ADC15 напряжение светодиода 3,6 вольта
+
 	measure_power();
 
 	// Проверка напряжения 12 вольт платы Камертон
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[61])));                   // "Power Kamerton V  - "                                        ;
-	if(regBank.get(40401)*2.51/100 < 11 || regBank.get(40401)*2.51/100 >13)
+	if(regBank.get(40493)*2.51/100 < 11 || regBank.get(40493)*2.51/100 >13)
 	{
 	    myFile.print(buffer);                               // 
-	    myFile.print(regBank.get(40401)*2.51/100);
+	    myFile.print(regBank.get(40493)*2.51/100);
 		myFile.println("V - error");
-		regBank.set(126,1); 
-		regcount = regBank.get(40126);
+		regBank.set(293,1); 
+		regcount = regBank.get(40293);
 		regcount++;
-		regBank.set(40126,regcount); 
+		regBank.set(40293,regcount); 
+		regBank.set(120,1);  
 	}
 
 	else
@@ -3511,22 +3525,23 @@ void test_power()
 		if (test_repeat == false)
 			{
 				myFile.print(buffer);                               // 
-				myFile.print(regBank.get(40401)*2.51/100);
+				myFile.print(regBank.get(40493)*2.51/100);
 				myFile.println("V - pass");
 		    }
 	}
 
 	// Проверка напряжения 12 вольт Радио 1
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[63])));                   // "Power Radio1 V    - "                                        ;
-	if(regBank.get(40403)*2.51/100 < 11 || regBank.get(40403)*2.51/100 >13)
+	if(regBank.get(40494)*2.51/100 < 11 || regBank.get(40494)*2.51/100 >13)
 	{
 		myFile.print(buffer);                               // "Power Radio1 V    - "                                        ;
-		myFile.print(regBank.get(40403)*2.51/100);
+		myFile.print(regBank.get(40494)*2.51/100);
 		myFile.println("V - error");
-		regBank.set(128,1); 
-		regcount = regBank.get(40128);
+		regBank.set(294,1); 
+		regcount = regBank.get(40294);
 		regcount++;
-		regBank.set(40128,regcount); 
+		regBank.set(40294,regcount); 
+		regBank.set(120,1);  
 	}
 
 	else
@@ -3534,22 +3549,23 @@ void test_power()
 		if (test_repeat == false) 
 			{
 				myFile.print(buffer);                               // "Power Radio1 V    - "                                        ;
-				myFile.print(regBank.get(40403)*2.51/100);
+				myFile.print(regBank.get(40494)*2.51/100);
 				myFile.println("V - pass");
 			}
 	}
 
 	// Проверка напряжения 12 вольт Радио 2
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[64])));                   // "Power Radio2 V    - "                                        ;
-	if(regBank.get(40404)*2.51/100 < 11 || regBank.get(40404)*2.51/100 >13)
+	if(regBank.get(40495)*2.51/100 < 11 || regBank.get(40495)*2.51/100 >13)
 	{
 		myFile.print(buffer);                               // "Power Radio2 V    - "                                        ;
-		myFile.print(regBank.get(40404)*2.51/100);
+		myFile.print(regBank.get(40495)*2.51/100);
 		myFile.println("V - error");
-		regBank.set(129,1); 
-		regcount = regBank.get(40129);
+		regBank.set(295,1); 
+		regcount = regBank.get(40295);
 		regcount++;
-		regBank.set(40129,regcount); 
+		regBank.set(40295,regcount); 
+		regBank.set(120,1);  
 	}
 
 	else
@@ -3557,22 +3573,23 @@ void test_power()
 		if (test_repeat == false) 
 			{
 				myFile.print(buffer);                               // "Power Radio2 V    - "                                        ;
-				myFile.print(regBank.get(40404)*2.51/100);
+				myFile.print(regBank.get(40495)*2.51/100);
 				myFile.println("V - pass");
 		    }
 	}
 
 	// Проверка напряжения 12 вольт  ГГС
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[65])));                   // "Power GGS    V    - "                                        ;
-	if(regBank.get(40405)*2.51/100 < 11 || regBank.get(40405)*2.51/100 >13)
+	if(regBank.get(40496)*2.51/100 < 11 || regBank.get(40496)*2.51/100 >13)
 	{
 		myFile.print(buffer);                               // "Power GGS    V    - "                                        ;
-		myFile.print(regBank.get(40405)*2.51/100);
+		myFile.print(regBank.get(40496)*2.51/100);
 		myFile.println("V - error");
-		regBank.set(130,1); 
-		regcount = regBank.get(40130);
+		regBank.set(296,1); 
+		regcount = regBank.get(40296);
 		regcount++;
-		regBank.set(40130,regcount); 
+		regBank.set(40296,regcount); 
+		regBank.set(120,1);  
 	}
 
 	else
@@ -3580,22 +3597,23 @@ void test_power()
 		if (test_repeat == false) 
 		{
 			myFile.print(buffer);                               // "Power GGS    V    - "                                        ;
-			myFile.print(regBank.get(40405)*2.51/100);
+			myFile.print(regBank.get(40496)*2.51/100);
 			myFile.println("V - pass");
 	    }
 	}
 
 	// Проверка напряжения 3,6 вольт на светодиоде микрофона
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[66])));                   // "Power Led mic.V   - "  
-	if(regBank.get(40406)/100 < 2 || regBank.get(40406)/100 >4)
+	if(regBank.get(40497)/100 < 2 || regBank.get(40497)/100 >4)
 	{
 		myFile.print(buffer);                                 // "Power Led mic.V   - " 
-		myFile.print(regBank.get(40406)/100.0);
+		myFile.print(regBank.get(40497)/100.0);
 		myFile.println("V - error");
-		regBank.set(131,1); 
-		regcount = regBank.get(40131);
+		regBank.set(297,1); 
+		regcount = regBank.get(40297);
 		regcount++;
-		regBank.set(40131,regcount); 
+		regBank.set(40297,regcount); 
+		regBank.set(120,1);  
 	}
 
 	else
@@ -3603,7 +3621,7 @@ void test_power()
 		if (test_repeat == false) 
 			{
 				myFile.print(buffer);                                 // "Power Led mic.V   - " 
-				myFile.print(regBank.get(40406)/100.0);
+				myFile.print(regBank.get(40497)/100.0);
 				myFile.println("V - pass");
 		    }
 	}
@@ -4698,7 +4716,7 @@ void measure_power()
 	measure_volume_P(analog_tok);     
 	regBank.set(40400,voltage10);                     
 	measure_volume_P(analog_12V);   
-	regBank.set(40401,voltage10);   
+	regBank.set(40493,voltage10);   
 	measure_volume_P(analog_tok_x10);   
 	regBank.set(40402,voltage10);   
 
@@ -4706,28 +4724,28 @@ void measure_power()
 	UpdateRegs();         
 	delay(200);
 	measure_volume_P(analog_14); 
-	regBank.set(40403,voltage10);   
+	regBank.set(40494,voltage10);   
 
 	regBank.set(23,0);                           // XP3-3     sensor "ГГ-Радио1."
 	regBank.set(24,1);                           // XP4-3     sensor "ГГ-Радио2."
 	UpdateRegs();         
 	delay(200);
 	measure_volume_P(analog_14); 
-	regBank.set(40404,voltage10);   
+	regBank.set(40495,voltage10);   
 
 	regBank.set(24,0);                           // XP4-3     sensor "ГГ-Радио2."
 	regBank.set(22,1);                           // XP5-3     sensor "ГГC."
 	UpdateRegs();         
 	delay(200);
 	measure_volume_P(analog_14); 
-	regBank.set(40405,voltage10);   
+	regBank.set(40496,voltage10);   
 
 	regBank.set(22,0);                           // XP5-3     sensor "ГГC."
 	UpdateRegs();         
 	delay(200);
 
 	measure_volume_P(analog_3_6);     
-	regBank.set(40406,voltage10);   
+	regBank.set(40497,voltage10);   
 }
 
 void setup_mcp()
@@ -4912,14 +4930,14 @@ modbus registers follow the following format
 	regBank.add(122);                         // Флаг индикации открытия файла
 	regBank.add(123);                         // Флаг индикации закрытия файла
 	regBank.add(124);                         // Флаг индикации связи с модулем "Камертон"
-	regBank.add(125);                         // Адрес ADC0  ток x1 
-	regBank.add(126);                         // Адрес ADC1 напряжение 12/3 вольт
-	regBank.add(127);                         // Адрес ADC2 ток x10 
-	regBank.add(128);                         // Адрес ADC14 напряжение 12/3 вольт Radio1
-	regBank.add(129);                         // Адрес ADC14 напряжение 12/3 вольт Radio2
+	regBank.add(125);                         //  
+	regBank.add(126);                         //  
+	regBank.add(127);                         //  
+	regBank.add(128);                         //  
+	regBank.add(129);                         //  
 
-	regBank.add(130);                         // Адрес ADC14 напряжение 12/3 вольт ГГС
-	regBank.add(131);                         // Адрес ADC15 напряжение светодиода 3,6 вольта
+	regBank.add(130);                         //  
+	regBank.add(131);                         //  
 
 
 	regBank.add(200);                         // Флаг ошибки "Sensor MTT                          XP1- 19 HaSs            OFF - ";
@@ -4964,7 +4982,7 @@ modbus registers follow the following format
 	regBank.add(236);                         // Флаг ошибки "Test headset instructor ** Signal GGS                       OFF - ";
 	regBank.add(237);                         // Флаг ошибки "Test headset instructor ** Signal GG Radio1                 OFF - ";
 	regBank.add(238);                         // Флаг ошибки "Test headset instructor ** Signal GG Radio2                 OFF - ";
-	regBank.add(239);                         //
+	regBank.add(239);                         // Флаг ошибки  ADC0  ток x1 
 
 	regBank.add(240);                         // Флаг ошибки "Test headset dispatcher ** Signal FrontL                    OFF - ";
 	regBank.add(241);                         // Флаг ошибки "Test headset dispatcher ** Signal FrontR                    OFF - ";
@@ -4975,7 +4993,7 @@ modbus registers follow the following format
 	regBank.add(246);                         // Флаг ошибки "Test headset dispatcher ** Signal GGS                       OFF - "; 
 	regBank.add(247);                         // Флаг ошибки "Test headset dispatcher ** Signal GG Radio1                 OFF - ";
 	regBank.add(248);                         // Флаг ошибки "Test headset dispatcher ** Signal GG Radio2                 OFF - "; 
-	regBank.add(249);                         //  
+	regBank.add(249);                         // Флаг ошибки ADC2 ток x10  
 
 	regBank.add(250);                         // Флаг ошибки "Test MTT ** Signal FrontL                                   OFF - ";
 	regBank.add(251);                         // Флаг ошибки "Test MTT ** Signal FrontR                                   OFF - ";
@@ -5024,11 +5042,11 @@ modbus registers follow the following format
 	regBank.add(290);                         // Флаг ошибки "Test GGS ** Signal FrontL                                   ON  - ";
 	regBank.add(291);                         // Флаг ошибки "Test GGS ** Signal FrontR                                   ON  - ";
 	regBank.add(292);                         // Флаг ошибки "Test GGS ** Signal mag phone                                ON  - ";
-	regBank.add(293);                         // 
-	regBank.add(294);                         // 
-	regBank.add(295);                         // 
-	regBank.add(296);                         // 
-	regBank.add(297);                         // 
+	regBank.add(293);                         // Флаг ошибки ADC1 напряжение 12/3 вольт
+	regBank.add(294);                         // Флаг ошибки ADC14 напряжение 12/3 вольт Radio1
+	regBank.add(295);                         // Флаг ошибки ADC14 напряжение 12/3 вольт Radio2
+	regBank.add(296);                         // Флаг ошибки ADC14 напряжение 12/3 вольт ГГС
+	regBank.add(297);                         // Флаг ошибки ADC15 напряжение светодиода 3,6 вольта
 	regBank.add(298);                         // Флаг ошибки "Test Microphone ** Signal mag phone                         ON  - ";      
 	regBank.add(299);                         // Флаг ошибки "Test Microphone ** Signal LineL                             ON  - ";   
 
@@ -5256,14 +5274,14 @@ modbus registers follow the following format
 	regBank.add(40122);  //
 	regBank.add(40123);  //
 	regBank.add(40124);  //
-	regBank.add(40125);  // Aдрес счетчика  ошибки ADC0  ток x1 
-	regBank.add(40126);  // Aдрес счетчика  ошибки ADC1 напряжение 12/3 вольт
-	regBank.add(40127);  // Aдрес счетчика  ошибки ADC2 ток x10
-	regBank.add(40128);  // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт Radio1
-	regBank.add(40129);  // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт Radio2
+	regBank.add(40125);  //  
+	regBank.add(40126);  //  
+	regBank.add(40127);  //  
+	regBank.add(40128);  //  
+	regBank.add(40129);  //  
 
-	regBank.add(40130);  // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт ГГС
-	regBank.add(40131);  // Aдрес счетчика  ошибки ADC15 напряжение светодиода 3,6 вольта
+	regBank.add(40130);  //  
+	regBank.add(40131);  //  
 
 
 	regBank.add(40200);                         // Aдрес счетчика ошибки "Sensor MTT                          XP1- 19 HaSs            OFF - ";
@@ -5308,7 +5326,7 @@ modbus registers follow the following format
 	regBank.add(40236);                         // Aдрес счетчика ошибки "Test headset instructor ** Signal GGS                       OFF - ";
 	regBank.add(40237);                         // Aдрес счетчика ошибки "Test headset instructor ** Signal GG Radio1                 OFF - ";
 	regBank.add(40238);                         // Aдрес счетчика ошибки "Test headset instructor ** Signal GG Radio2                 OFF - ";
-	regBank.add(40239);                         //
+	regBank.add(40239);                         // Aдрес счетчика ошибки ADC0  ток x1 
 
 	regBank.add(40240);                         // Aдрес счетчика ошибки "Test headset dispatcher ** Signal FrontL                    OFF - ";
 	regBank.add(40241);                         // Aдрес счетчика ошибки "Test headset dispatcher ** Signal FrontR                    OFF - ";
@@ -5319,7 +5337,7 @@ modbus registers follow the following format
 	regBank.add(40246);                         // Aдрес счетчика ошибки "Test headset dispatcher ** Signal GGS                       OFF - "; 
 	regBank.add(40247);                         // Aдрес счетчика ошибки "Test headset dispatcher ** Signal GG Radio1                 OFF - ";
 	regBank.add(40248);                         // Aдрес счетчика ошибки "Test headset dispatcher ** Signal GG Radio2                 OFF - "; 
-	regBank.add(40249);                         //  
+	regBank.add(40249);                         // Aдрес счетчика ошибки ADC2 ток x10
 
 	regBank.add(40250);                         // Aдрес счетчика ошибки "Test MTT ** Signal FrontL                                   OFF - ";
 	regBank.add(40251);                         // Aдрес счетчика ошибки "Test MTT ** Signal FrontR                                   OFF - ";
@@ -5368,11 +5386,11 @@ modbus registers follow the following format
 	regBank.add(40290);                         // Aдрес счетчика ошибки "Test GGS ** Signal FrontL                                   ON  - ";
 	regBank.add(40291);                         // Aдрес счетчика ошибки "Test GGS ** Signal FrontR                                   ON  - ";
 	regBank.add(40292);                         // Aдрес счетчика ошибки "Test GGS ** Signal mag phone                                ON  - ";
-	regBank.add(40293);                         // 
-	regBank.add(40294);                         // 
-	regBank.add(40295);                         // 
-	regBank.add(40296);                         // 
-	regBank.add(40297);                         // 
+	regBank.add(40293);                         // Aдрес счетчика  ошибки ADC1 напряжение 12/3 вольт
+	regBank.add(40294);                         // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт Radio1
+	regBank.add(40295);                         // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт Radio2
+	regBank.add(40296);                         // Aдрес счетчика  ошибки ADC14 напряжение 12/3 вольт ГГС
+	regBank.add(40297);                         // Aдрес счетчика  ошибки ADC15 напряжение светодиода 3,6 вольта
 	regBank.add(40298);                         // Aдрес счетчика ошибки "Test Microphone ** Signal mag phone                         ON  - ";    
 	regBank.add(40299);                         // Aдрес счетчика ошибки "Test Microphone ** Signal LineL                             ON  - ";   
 
@@ -5455,7 +5473,7 @@ modbus registers follow the following format
 	regBank.add(40436);                         // Aдрес данных измерения "Test headset instructor ** Signal GGS                       OFF - ";
 	regBank.add(40437);                         // Aдрес данных измерения "Test headset instructor ** Signal GG Radio1                 OFF - ";
 	regBank.add(40438);                         // Aдрес данных измерения "Test headset instructor ** Signal GG Radio2                 OFF - ";
-	regBank.add(40439);                         //
+	regBank.add(40439);                         // Aдрес данных измерения ADC0  ток x1 
 
 	regBank.add(40440);                         // Aдрес данных измерения "Test headset dispatcher ** Signal FrontL                    OFF - ";
 	regBank.add(40441);                         // Aдрес данных измерения "Test headset dispatcher ** Signal FrontR                    OFF - ";
@@ -5466,7 +5484,7 @@ modbus registers follow the following format
 	regBank.add(40446);                         // Aдрес данных измерения "Test headset dispatcher ** Signal GGS                       OFF - "; 
 	regBank.add(40447);                         // Aдрес данных измерения "Test headset dispatcher ** Signal GG Radio1                 OFF - ";
 	regBank.add(40448);                         // Aдрес данных измерения "Test headset dispatcher ** Signal GG Radio2                 OFF - "; 
-	regBank.add(40449);                         //  
+	regBank.add(40449);                         // Aдрес данных измерения ADC2 ток x10
 
 	regBank.add(40450);                         // Aдрес данных измерения "Test MTT ** Signal FrontL                                   OFF - ";
 	regBank.add(40451);                         // Aдрес данных измерения "Test MTT ** Signal FrontR                                   OFF - ";
@@ -5515,11 +5533,11 @@ modbus registers follow the following format
 	regBank.add(40490);                         // Aдрес данных измерения "Test GGS ** Signal FrontL                                   ON  - ";
 	regBank.add(40491);                         // Aдрес данных измерения "Test GGS ** Signal FrontR                                   ON  - ";
 	regBank.add(40492);                         // Aдрес данных измерения "Test GGS ** Signal mag phone                                ON  - ";
-	regBank.add(40493);                         // 
-	regBank.add(40494);                         // 
-	regBank.add(40495);                         // 
-	regBank.add(40496);                         // 
-	regBank.add(40497);                         // 
+	regBank.add(40493);                         // Aдрес данных измерения ADC1 напряжение 12/3 вольт
+	regBank.add(40494);                         // Aдрес данных измерения ADC14 напряжение 12/3 вольт Radio1
+	regBank.add(40495);                         // Aдрес данных измерения ADC14 напряжение 12/3 вольт Radio2
+	regBank.add(40496);                         // Aдрес данных измерения ADC14 напряжение 12/3 вольт ГГС
+	regBank.add(40497);                         // Aдрес данных измерения ADC15 напряжение светодиода 3,6 вольта
 	regBank.add(40498);                         // Aдрес данных измерения "Test Microphone ** Signal mag phone                         ON  - "; 
 	regBank.add(40499);                         // Aдрес данных измерения "Test Microphone ** Signal LineL                             ON  - ";   
 

@@ -3341,7 +3341,7 @@ namespace KamertonTest
 
             if (coilArr_all[13] != false)
             {
-                textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился \t< = " + readVals_all[3] + ">\r\n");
+                textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился \t< = " + readVals_all[13] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 213, false);
             }
@@ -3519,8 +3519,8 @@ namespace KamertonTest
             }
             if (coilArr_all[39] != false)
             {
-               // temp_disp = readVolt_all[39];
-                textBox8.Text += ("  < = " + readVals_all[39] + ">\r\n");
+                temp_disp = readVolt_all[39];
+                textBox8.Text += ("Ошибка! Ток устройства не в норме  < = " + readVals_all[38] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 239, false);
             }
@@ -3593,7 +3593,7 @@ namespace KamertonTest
             if (coilArr_all[49] != false)
             {
                 temp_disp = readVolt_all[49];
-                textBox8.Text += ("                                                          \t< = " + readVals_all[49] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Text += ("Ошибка! Ток устройства не в норме                             \t< = " + readVals_all[49] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 249, false);
             }
@@ -3904,31 +3904,36 @@ namespace KamertonTest
 
             if (coilArr_all[93] != false)
             {
-                textBox8.Text += (" < = " + readVals_all[93] + ">\r\n");
+                temp_disp = readVolt_all[93];
+                textBox8.Text += ("Напряжение питания модуля не в норме                 \t< = " + readVals_all[93] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 293, false);
             }
             if (coilArr_all[94] != false)
             {
-                textBox8.Text += (" < = " + readVals_all[94] + ">\r\n");
+                temp_disp = readVolt_all[94];
+                textBox8.Text += ("Напряжение питания Радио1 не в норме                 \t < = " + readVals_all[94] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 294, false);
             }
             if (coilArr_all[95] != false)
             {
-                textBox8.Text += ("  < = " + readVals_all[95] + ">\r\n");
+                temp_disp = readVolt_all[95];
+                textBox8.Text += ("Напряжение питания Радио2 не в норме                 \t  < = " + readVals_all[95] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 295, false);
             }
             if (coilArr_all[96] != false)
             {
-                textBox8.Text += ("  < = " + readVals_all[96] + ">\r\n");
+                temp_disp = readVolt_all[96];
+                textBox8.Text += ("Напряжение питания ГГС  не в норме                   \t  < = " + readVals_all[96] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 296, false);
             }
             if (coilArr_all[97] != false)
             {
-                textBox8.Text += ("  < = " + readVals_all[97] + ">\r\n");
+                temp_disp = readVolt_all[97];
+                textBox8.Text += ("Напряжение питания светодиода микрофона не в норме   \t  < = " + readVals_all[97] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 297, false);
             }
