@@ -4818,9 +4818,7 @@ namespace KamertonTest
         private void button25_Click(object sender, EventArgs e)                     // Проверка яркости экрана
         {
             short[] writeVals = new short[12];
-          //  short[] MSK = new short[2];
-          //  MSK[0] = 5;
-            ushort[] readVals = new ushort[125];
+            short[] readVals = new short[4];
 
             bool[] coilVals = new bool[200];
             bool[] coilArr = new bool[20];
@@ -4847,6 +4845,36 @@ namespace KamertonTest
          
             startWrReg = 120;                                                                   // 
             res = myProtocol.writeSingleRegister(slave, startWrReg, 18);                        // 
+
+           // Thread.Sleep(500);
+            test_end1();
+            startRdReg = 62;
+            numRdRegs = 2;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40200 Считать счетчики ошибок  
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                toolStripStatusLabel1.BackColor = Color.Lime;
+
+                string s1 = readVals[0].ToString();                // Преобразование числа в строку
+                label43.Text = (s1);
+                string s2 = readVals[1].ToString();                // Преобразование числа в строку
+                label41.Text = (s2);
+                label41.Refresh();
+                label43.Refresh();
+    
+            }
+
+
+
+
+
+
+
+        }
+
+        private void label40_Click(object sender, EventArgs e)
+        {
 
         }
 

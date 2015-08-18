@@ -4067,16 +4067,17 @@ void test_video()
 	regs_out[1]= 0x84;                              // 
 	regs_out[2]= regBank.get(40061);                // Уровень яркости
 	delay(300);
+	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
+	regs_out[1]= 0xC4;                              // 
+	regs_out[2]= 0x7F;                              // Уровень яркости
 	Serial.println(regBank.get(40004),BIN);
 	Serial.println(regBank.get(40005),BIN);
 	Serial.println(regBank.get(40005),DEC);
+	regBank.set(40062,regBank.get(40005));          // Передать уровень яркости в программу
+	regBank.set(40063,10);                          // Передать длительность импульса яркости в программу
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
 	regs_out[1]= 0xC4;                              // 196 Изменять в реальной схеме
 	regs_out[2]= 0x7F;                              // 127 Изменять в реальной схеме
-	//regs_in[0]= 0x00;                               // Код первого байта 
-	//regs_in[1]= 0x00;                               // 
-	//regs_in[2]= 0x00;                               // 
-	//regs_in[3]= 0x00;                               // 
 
   regBank.set(adr_control_command,0);    
 }
@@ -5673,7 +5674,9 @@ modbus registers follow the following format
 	regBank.add(40059);  // 
 	
 	regBank.add(40060);  // Адрес хранения величины сигнала резисторами
-	regBank.add(40061);  // Адрес хранения величины яркости
+	regBank.add(40061);  // Адрес хранения величины яркости для управления
+	regBank.add(40062);  // Адрес хранения величины яркости для передачи в программу
+	regBank.add(40063);  // Адрес хранения длительности импульса яркости для передачи в программу
 	/*
 	regBank.add(40061); // адрес счетчика ошибки
 	regBank.add(40062); // адрес счетчика ошибки
