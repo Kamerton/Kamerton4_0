@@ -3175,7 +3175,7 @@ namespace KamertonTest
             bool[] coilArr = new bool[4];
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 19); // Отключить все сенсоры
-            textBox7.Text += ("Проверка регулировки яркости" + "\r\n");
+            textBox7.Text += ("Проверка регулировки яркости дисплея" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
             test_end();
