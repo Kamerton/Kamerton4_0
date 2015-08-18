@@ -1517,11 +1517,13 @@ void control_command()
 				test_power();                                                    	// Проверить напряжение  питания
 				break;
 		case 18:
+				set_video();				 //
+				break;
+		case 19:
 				test_video();				 //
 				break;
 		default:
 		break;
-
 	 }
 	 regBank.set(adr_control_command,0);
 	}
@@ -4061,7 +4063,6 @@ void test_power()
 }
 void test_video()
 {
-
     delay(300);
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
 	regs_out[1]= 0x84;                              // 
@@ -4070,24 +4071,34 @@ void test_video()
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
 	regs_out[1]= 0xC4;                              // 
 	regs_out[2]= 0x7F;                              // Уровень яркости
-
-	measure_mks();
-	//Serial.println(regBank.get(40004),BIN);
-	//Serial.println(regBank.get(40005),BIN);
-	//Serial.println(regBank.get(40005),DEC);
+	measure_mks();                                  // Измерить длительность импульсов
 	regBank.set(40062,regBank.get(40005));          // Передать уровень яркости в программу
-//	regBank.set(40063,10);                          // Передать длительность импульса яркости в программу
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
 	regs_out[1]= 0xC4;                              // 196 Изменять в реальной схеме
 	regs_out[2]= 0x7F;                              // 127 Изменять в реальной схеме
-
-  regBank.set(adr_control_command,0);    
+    regBank.set(adr_control_command,0);    
+}
+void set_video()
+{
+    delay(300);
+	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
+	regs_out[1]= 0x84;                              // 
+	regs_out[2]= regBank.get(40061);                // Уровень яркости
+	delay(300);
+	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
+	regs_out[1]= 0xC4;                              // 
+	regs_out[2]= 0x7F;                              // Уровень яркости
+	measure_mks();                                  // Измерить длительность импульсов
+	regBank.set(40062,regBank.get(40005));          // Передать уровень яркости в программу
+	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
+	regs_out[1]= 0xC4;                              // 196 Изменять в реальной схеме
+	regs_out[2]= 0x7F;                              // 127 Изменять в реальной схеме
+    regBank.set(adr_control_command,0);  
 }
 void measure_mks()
 {
   unsigned long duration;
   duration = pulseIn(A12, HIGH);
-  Serial.println(duration);
   regBank.set(40063,duration);                          // Передать длительность импульса яркости в программу
 }
 

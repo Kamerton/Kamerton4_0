@@ -3169,6 +3169,17 @@ namespace KamertonTest
             test_end();
             // Результат?
         }
+        private void test_valueDisp()
+        {
+            ushort[] writeVals = new ushort[2];
+            bool[] coilArr = new bool[4];
+            startWrReg = 120;
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 19); // Отключить все сенсоры
+            textBox7.Text += ("Проверка регулировки яркости" + "\r\n");
+            textBox7.Refresh();
+            Thread.Sleep(250);
+            test_end();
+         }
  
         private void test_end()
         {
@@ -4309,7 +4320,7 @@ namespace KamertonTest
             {
                 default:
                 case 0:
-                    if (checkBoxSensors1.Checked || radioButton1.Checked)
+                    if (checkBoxPower.Checked || radioButton1.Checked)
                     {
                         test_power();
                         progressBar2.Value += 1;
@@ -4418,6 +4429,15 @@ namespace KamertonTest
                         label98.Refresh();
                     }
                     break;
+                case 12:
+                    if (checkBoxDisp.Checked || radioButton1.Checked)
+                    {
+                        test_valueDisp();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                    break;
 
             }
 
@@ -4431,7 +4451,7 @@ namespace KamertonTest
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
 
-            if (radioButton1.Checked & TestN == 12)
+            if (radioButton1.Checked & TestN == 13)
             {
                 timerTestAll.Enabled = false;
                 textBox7.Text += ("Тест завершен" + "\r\n");
@@ -4439,7 +4459,7 @@ namespace KamertonTest
 
                 _All_Test_Stop = false;
             }
-            if (radioButton2.Checked & TestN == 12)
+            if (radioButton2.Checked & TestN == 13)
             {
                 timerTestAll.Enabled = true;
                 TestN = 0;
@@ -4732,6 +4752,8 @@ namespace KamertonTest
                 checkBoxSenGGRadio1.Checked = true;
                 checkBoxSenGGRadio2.Checked = true;
                 checkBoxSenGGS.Checked = true;
+                checkBoxDisp.Checked = true;
+                checkBoxPower.Checked = true;
             }
             else
             {
@@ -4747,6 +4769,8 @@ namespace KamertonTest
                 checkBoxSenGar1disp.Checked = false;
                 checkBoxSenMicrophon.Checked = false;
                 checkBoxSenGGS.Checked = false;
+                checkBoxDisp.Checked = false;
+                checkBoxPower.Checked = false;
             }
 
         }
@@ -4845,8 +4869,6 @@ namespace KamertonTest
          
             startWrReg = 120;                                                                   // 
             res = myProtocol.writeSingleRegister(slave, startWrReg, 18);                        // 
-
-           // Thread.Sleep(500);
             test_end1();
             startRdReg = 62;
             numRdRegs = 2;
@@ -4870,10 +4892,7 @@ namespace KamertonTest
                     label41.Text = "3,3";
                     label42.Text = "вольта";
                 }
-                //label41.Refresh();
-                //label43.Refresh();
-    
-            }
+             }
         }
 
         private void label40_Click(object sender, EventArgs e)
