@@ -4858,19 +4858,22 @@ namespace KamertonTest
 
                 string s1 = readVals[0].ToString();                // Преобразование числа в строку
                 label43.Text = (s1);
-                string s2 = readVals[1].ToString();                // Преобразование числа в строку
-                label41.Text = (s2);
-                label41.Refresh();
-                label43.Refresh();
+
+                if (readVals[1] != 0)
+                {
+                    string s2 = readVals[1].ToString();                // Преобразование числа в строку
+                    label41.Text = (s2);
+                    label42.Text = "мкс";
+                }
+                else
+                {
+                    label41.Text = "3,3";
+                    label42.Text = "вольта";
+                }
+                //label41.Refresh();
+                //label43.Refresh();
     
             }
-
-
-
-
-
-
-
         }
 
         private void label40_Click(object sender, EventArgs e)

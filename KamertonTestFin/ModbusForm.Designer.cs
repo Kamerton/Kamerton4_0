@@ -3510,7 +3510,7 @@ namespace KamertonTest
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label41.Location = new System.Drawing.Point(559, 72);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(62, 15);
+            this.label41.Size = new System.Drawing.Size(62, 23);
             this.label41.TabIndex = 62;
             this.label41.Text = "0";
             this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3521,9 +3521,9 @@ namespace KamertonTest
             this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label42.Location = new System.Drawing.Point(624, 72);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(24, 15);
+            this.label42.Size = new System.Drawing.Size(28, 15);
             this.label42.TabIndex = 63;
-            this.label42.Text = "ms";
+            this.label42.Text = "ìêñ";
             this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label43
@@ -3532,7 +3532,7 @@ namespace KamertonTest
             this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label43.Location = new System.Drawing.Point(692, 72);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(51, 15);
+            this.label43.Size = new System.Drawing.Size(51, 23);
             this.label43.TabIndex = 64;
             this.label43.Text = "0";
             this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
