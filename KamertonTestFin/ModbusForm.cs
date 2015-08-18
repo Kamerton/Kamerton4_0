@@ -4815,6 +4815,41 @@ namespace KamertonTest
 
         }
 
+        private void button25_Click(object sender, EventArgs e)                     // Проверка яркости экрана
+        {
+            short[] writeVals = new short[12];
+          //  short[] MSK = new short[2];
+          //  MSK[0] = 5;
+            ushort[] readVals = new ushort[125];
+
+            bool[] coilVals = new bool[200];
+            bool[] coilArr = new bool[20];
+
+            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+
+            textBox5.BackColor = Color.White;
+            writeVals[1] = short.Parse(textBox5.Text, CultureInfo.CurrentCulture);   // Установка уровня входного сигнала
+            int tempK = writeVals[1];                                                // Установка уровня входного сигнала
+            if (tempK > 127)
+            {
+                label39.Text = "<";
+                tempK = 127;
+                textBox5.Text = "127";
+                textBox5.BackColor = Color.Red;
+            }
+            else
+            {
+                label39.Text = "=";
+                textBox5.BackColor = Color.White;
+            }
+            startWrReg = 61;                                                                   // 40060 Адрес хранения величины сигнала
+            res = myProtocol.writeSingleRegister(slave, startWrReg, (short)tempK);
+         
+            startWrReg = 120;                                                                   // 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 18);                        // 
+
+        }
+
  
 
     }

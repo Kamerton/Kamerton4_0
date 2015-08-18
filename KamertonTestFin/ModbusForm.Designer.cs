@@ -319,6 +319,7 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
+            this.label39 = new System.Windows.Forms.Label();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -807,6 +808,7 @@ namespace KamertonTest
             // 
             this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage5.Controls.Add(this.label39);
             this.tabPage5.Controls.Add(this.textBox5);
             this.tabPage5.Controls.Add(this.button25);
             this.tabPage5.Controls.Add(this.label72);
@@ -849,6 +851,7 @@ namespace KamertonTest
             this.button25.TabIndex = 58;
             this.button25.Text = "яркость";
             this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
             // 
             // label72
             // 
@@ -3471,6 +3474,15 @@ namespace KamertonTest
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
             // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(673, 31);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(13, 13);
+            this.label39.TabIndex = 60;
+            this.label39.Text = "=";
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -3817,6 +3829,7 @@ namespace KamertonTest
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label39;
     }
 }
 

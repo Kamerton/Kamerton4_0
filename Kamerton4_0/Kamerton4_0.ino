@@ -1517,7 +1517,7 @@ void control_command()
 				test_power();                                                    	// Проверить напряжение  питания
 				break;
 		case 18:
-									 //
+				test_video();				 //
 				break;
 		default:
 		break;
@@ -4059,6 +4059,27 @@ void test_power()
 
 	regBank.set(adr_control_command,0);    
 }
+void test_video()
+{
+
+    delay(300);
+	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
+	regs_out[1]= 0x84;                              // 
+	regs_out[2]= regBank.get(40061);                // Уровень яркости
+	delay(300);
+	Serial.println(regBank.get(40004),BIN);
+	Serial.println(regBank.get(40005),BIN);
+	Serial.println(regBank.get(40005),DEC);
+	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
+	regs_out[1]= 0xC4;                              // 196 Изменять в реальной схеме
+	regs_out[2]= 0x7F;                              // 127 Изменять в реальной схеме
+	//regs_in[0]= 0x00;                               // Код первого байта 
+	//regs_in[1]= 0x00;                               // 
+	//regs_in[2]= 0x00;                               // 
+	//regs_in[3]= 0x00;                               // 
+
+  regBank.set(adr_control_command,0);    
+}
 
 void test_instr_off()
 {
@@ -5622,14 +5643,16 @@ modbus registers follow the following format
 	regBank.add(40008);  // 
 	regBank.add(40009);  // 
 
-	regBank.add(40010);    // Адрес хранения величины сигнала резисторами
+	regBank.add(40010);  // 
 	regBank.add(40011);  // 
 	regBank.add(40012);  // 
 	regBank.add(40013);  // 
 	regBank.add(40014);  // 
 	regBank.add(40015);  // 
 	regBank.add(40016);  // 
-
+	regBank.add(40017);  // 
+	regBank.add(40018);  // 
+	regBank.add(40019);  // 
 
 						 // Текущее время 
 	regBank.add(40046);  // адрес день модуля часов контроллера
@@ -5649,7 +5672,8 @@ modbus registers follow the following format
 	regBank.add(40058);  // 
 	regBank.add(40059);  // 
 	
-	regBank.add(40060); // адрес счетчика ошибки
+	regBank.add(40060);  // Адрес хранения величины сигнала резисторами
+	regBank.add(40061);  // Адрес хранения величины яркости
 	/*
 	regBank.add(40061); // адрес счетчика ошибки
 	regBank.add(40062); // адрес счетчика ошибки

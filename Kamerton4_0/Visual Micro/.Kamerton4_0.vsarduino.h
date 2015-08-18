@@ -124,6 +124,7 @@ void testGGS();
 void test_GG_Radio1();
 void test_GG_Radio2();
 void test_power();
+void test_video();
 void test_instr_off();
 void test_instr_on();
 void test_disp_off();
