@@ -31,7 +31,7 @@
     <ProductName>Kamerton4_0</ProductName>
     <PublisherName>Децима</PublisherName>
     <SuiteName>Kamerton4_0</SuiteName>
-    <ApplicationRevision>35</ApplicationRevision>
+    <ApplicationRevision>36</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
