@@ -3746,7 +3746,8 @@ namespace KamertonTest
             }
             if (coilArr_all[69] != false)
             {
-                textBox8.Text += (" < = " + readVals_all[69] + ">\r\n");
+                temp_disp = readVolt_all[69];
+                textBox8.Text += ("ƒлительность импульса регулировки €ркости диспле€ < = \t< = " + readVals_all[69] + ">  " + temp_disp + " мкс\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 269, false);
             }
@@ -4180,7 +4181,7 @@ namespace KamertonTest
             if (coilArr_all[129] != false)
             {
                 temp_disp = readVolt_all[129];
-                textBox8.Text += ("");
+                textBox8.Text += (" од регулировки €ркости диспле€ не совпадает   \t< = " + readVals_all[128] + ">  " + temp_disp + " \r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 329, false);
             }

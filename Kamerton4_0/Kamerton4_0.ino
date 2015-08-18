@@ -322,9 +322,9 @@ const char  txt_message64[]   PROGMEM            = "Power Radio2                
 const char  txt_message65[]   PROGMEM            = "Power GGS                                              - "   ;
 const char  txt_message66[]   PROGMEM            = "Power Led microphone                                   -  "  ;
 const char  txt_message67[]   PROGMEM            = " ****** Test power start! ******"                            ;
-const char  txt_message68[]   PROGMEM            = ""      ;  
-const char  txt_message69[]   PROGMEM            = ""      ;
-
+const char  txt_message68[]   PROGMEM            = " ****** Test Adjusting the brightness of the display! ******"; 
+const char  txt_message69[]   PROGMEM            = "Adjusting the brightness code                              - "   ;
+const char  txt_message70[]   PROGMEM            = "Adjusting the brightness mks                               - "   ;
 
 
 
@@ -550,7 +550,10 @@ txt_message63,                                // "Power Radio1 V    - "         
 txt_message64,                                // "Power Radio2 V    - "                                        ;
 txt_message65,                                // "Power GGS    V    - "                                        ;
 txt_message66,                                // "Power Led mic.V   - "                                        ;
-txt_message67                                 // " ****** Test power start! ******"                            ;
+txt_message67,                                // " ****** Test power start! ******"                            ;
+txt_message68,                                // " ****** Test Adjusting the brightness of the display! ******"; 
+txt_message69,                                // "Adjusting the brightness code                              - "   ;
+txt_message70                                 // "Adjusting the brightness mks                               - "   ;
 };
 
 const char* const string_table_err[] PROGMEM = 
@@ -4063,16 +4066,75 @@ void test_power()
 }
 void test_video()
 {
+	unsigned int regcount = 0;
+
+	myFile.println(""); 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[68])));                   // " ****** Test Adjusting the brightness of the display! ******"; 
+	myFile.println(buffer);                                                         // " ****** Test Adjusting the brightness of the display! ******"; 
+	file_print_date();
+	myFile.println("");
+	regBank.set(40061,100);                                                         // Уровень яркости 100
     delay(300);
-	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
-	regs_out[1]= 0x84;                              // 
-	regs_out[2]= regBank.get(40061);                // Уровень яркости
+	regs_out[0]= 0x2B;                                                              // Код первого байта подключения к Камертону 43
+	regs_out[1]= 0x84;                                                              // 
+	regs_out[2]= regBank.get(40061);                                                // Уровень яркости
 	delay(300);
-	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
-	regs_out[1]= 0xC4;                              // 
-	regs_out[2]= 0x7F;                              // Уровень яркости
-	measure_mks();                                  // Измерить длительность импульсов
+	regs_out[0]= 0x2B;                                                              // Код первого байта подключения к Камертону 43
+	regs_out[1]= 0xC4;                                                              // 
+	regs_out[2]= 0x7F;                                                              // Уровень яркости
+	measure_mks();                                                                  // Измерить длительность импульсов
+	
 	regBank.set(40062,regBank.get(40005));          // Передать уровень яркости в программу
+
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[69])));                   // !!!!! 
+	if (regBank.get(40062) != 50)                                                   //   
+	{
+		myFile.print(buffer);                                                       // 
+		myFile.print(regBank.get(40062));
+		myFile.println(" - error");
+		regBank.set(329,1); 
+		regcount = regBank.get(40329);
+		regcount++;
+		regBank.set(40329,regcount); 
+		regBank.set(120,1);  
+		regBank.set(40529,regcount); 
+	}
+
+	else
+	{
+	if (test_repeat == false) 
+		{
+			myFile.print(buffer);                                                   // 
+			myFile.print(regBank.get(40062));
+			myFile.println(" - pass");
+		}
+	}
+
+
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[70])));                   // !!!!! 
+	if (regBank.get(40063) < 20 || regBank.get(40063) > 23)                             //   
+	{
+		myFile.print(buffer);                                                       // 
+		myFile.print(regBank.get(40063));
+		myFile.println(" - error");
+		regBank.set(269,1); 
+		regcount = regBank.get(40269);
+		regcount++;
+		regBank.set(40269,regcount); 
+		regBank.set(120,1);  
+		regBank.set(40469,regcount); 
+	}
+
+	else
+	{
+		if (test_repeat == false) 
+			{
+				myFile.print(buffer);                                               // 
+				myFile.print(regBank.get(40063));
+				myFile.println(" - pass");
+			}
+	}
+
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
 	regs_out[1]= 0xC4;                              // 196 Изменять в реальной схеме
 	regs_out[2]= 0x7F;                              // 127 Изменять в реальной схеме
@@ -5507,7 +5569,7 @@ modbus registers follow the following format
 	regBank.add(266);                         // Флаг ошибки "Test microphone PTT  (CTS)                                  ON  - ";
 	regBank.add(267);                         // Флаг ошибки "Test MTT HangUp (DCD)                                       OFF - ";
 	regBank.add(268);                         // Флаг ошибки "Test MTT HangUp (DCD)                                       ON  - ";
-	regBank.add(269);                         //  
+	regBank.add(269);                         // Флаг ошибки Длительность регулировки яркости 
 
 	regBank.add(270);                         // Флаг ошибки "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
 	regBank.add(271);                         // Флаг ошибки "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
@@ -5573,7 +5635,7 @@ modbus registers follow the following format
 	regBank.add(326);                         // Флаг ошибки "Test Microphone ** Signal GGS                               OFF - ";
 	regBank.add(327);                         // Флаг ошибки "Test Microphone ** Signal GG Radio1                         OFF - ";
 	regBank.add(328);                         // Флаг ошибки "Test Microphone ** Signal GG Radio2                         OFF - ";
-	regBank.add(329);                         // 
+	regBank.add(329);                         // Флаг ошибки Код яркости дисплея
 
 	regBank.add(330);                         // 
 
@@ -5857,7 +5919,7 @@ modbus registers follow the following format
 	regBank.add(40266);                         // Aдрес счетчика ошибки "Test microphone PTT  (CTS)                                  ON  - ";
 	regBank.add(40267);                         // Aдрес счетчика ошибки "Test MTT HangUp (DCD)                                       OFF - ";
 	regBank.add(40268);                         // Aдрес счетчика ошибки "Test MTT HangUp (DCD)                                       ON  - ";
-	regBank.add(40269);                         //  
+	regBank.add(40269);                         // Aдрес счетчика ошибки Длительность регулировки яркости
 
 	regBank.add(40270);                         // Aдрес счетчика ошибки "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
 	regBank.add(40271);                         // Aдрес счетчика ошибки "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
@@ -5923,8 +5985,9 @@ modbus registers follow the following format
 	regBank.add(40326);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GGS                               OFF - ";
 	regBank.add(40327);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GG Radio1                         OFF - ";
 	regBank.add(40328);                         // Aдрес счетчика ошибки "Test Microphone ** Signal GG Radio2                         OFF - ";
-	regBank.add(40329);                         // 
-	regBank.add(40330);                         // 
+	regBank.add(40329);                         // Aдрес счетчика ошибки Код регулировки яркости                             // 
+
+	regBank.add(40330);                         // Aдрес счетчика ошибки  
 
 	
 	// ++++++++++++++++++++++ Регистры хранения данных при проверке модулей ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

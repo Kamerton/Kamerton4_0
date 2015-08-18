@@ -3501,9 +3501,9 @@ namespace KamertonTest
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label40.Location = new System.Drawing.Point(556, 46);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(187, 15);
+            this.label40.Size = new System.Drawing.Size(181, 15);
             this.label40.TabIndex = 61;
-            this.label40.Text = "Уровень принят из устройства";
+            this.label40.Text = "Принято из модуля Камертон";
             this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label40.Click += new System.EventHandler(this.label40_Click);
             // 
