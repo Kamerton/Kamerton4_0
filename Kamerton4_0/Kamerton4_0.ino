@@ -806,7 +806,7 @@ void waiting_for_replyK()                                  // Чтение данных из К
 						{
 							overflowFlag = 1;              // Установить флаг превышения размера буфера
 						}
-					     regBank.set(40004+buffer,Serial1.read());
+						 regBank.set(40004+buffer,Serial1.read());
 						//regs_in[buffer] = Serial1.read(); 
 						buffer++;
 					}
@@ -832,7 +832,7 @@ void waiting_for_replyK()                                  // Чтение данных из К
 void Stop_Kamerton ()                  //Если не приходит информация с Камертона - регистры обнулить
   {
 	 for (unsigned char i = 0; i <4; i++)
-     regBank.set(40004+i,0);
+	 regBank.set(40004+i,0);
 	// regs_in[i]=0;
   }
 
@@ -1071,7 +1071,7 @@ void UpdateRegs()                                        // Обновить регистры
 	  set_rele = regBank.get(32);
 	  mcp_Out2.digitalWrite(15, set_rele);                 // XP1- 1  HeS1Ls    Флаг подкючения гарнитуры диспетчера
 
-	  	 if (regBank.get(118)== 0)
+		 if (regBank.get(118)== 0)
 		 {
 			 test_repeat = false;
 		 }
@@ -1990,11 +1990,11 @@ void sensor_all_on()
 		 //Serial.println(regBank.get(40006),BIN);
 		 //Serial.println(regBank.get(40007),BIN);
 	  //}
-      regs_temp1 = regBank.get(40007);
+	  regs_temp1 = regBank.get(40007);
 	  kl=0;
 
 
-    i52 = regBank.get(40006);     
+	i52 = regBank.get(40006);     
 
 		if(bitRead(i52,1) == 0)                                                     // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 		  {
@@ -2029,7 +2029,7 @@ void sensor_all_on()
 	delay(500);
 	UpdateRegs(); 
 	delay(500);
-    i52 = regBank.get(40006);     
+	i52 = regBank.get(40006);     
 
 
 		if(bitRead(i52,2) == 0)                                                     // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
@@ -2229,7 +2229,7 @@ void sensor_all_on()
 	byte i52 = regs_in[2];    
 	byte i53 = regs_in[3];  
 
- 	 Serial.print(regs_in[0],HEX);
+	 Serial.print(regs_in[0],HEX);
 	 Serial.print("--");
 	 Serial.print(regs_in[2],HEX);
 	 Serial.print("--");
@@ -3240,8 +3240,8 @@ void test_tangR()
 	if (test_repeat == false) myFile.println(buffer);                               //
 
 	UpdateRegs();                                                                   // Выполнить команду
-    delay(500);
-    i50 = regBank.get(40004);    
+	delay(500);
+	i50 = regBank.get(40004);    
 
 		if(bitRead(i50,3) == 0)                                          // J8-11     XP7 2 sensor тангента ручная             "Command sensor tangenta ruchnaja                            ON  - ";
 		  {
@@ -3625,7 +3625,7 @@ void test_mikrophon()
 	delay(400);
 
 	//byte i50 = regBank.get(40004);    
-    i52 = regBank.get(40006);     
+	i52 = regBank.get(40006);     
 	//byte i53 = regBank.get(40007);     
 	//i52 = regs_in[2];    
 
@@ -3941,8 +3941,8 @@ void test_power()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[61])));                   // "Power Kamerton V  - "                                        ;
 	if(regBank.get(40493)*2.51/100 < 11 || regBank.get(40493)*2.51/100 >13)
 	{
-	    myFile.print(buffer);                               // 
-	    myFile.print(regBank.get(40493)*2.51/100);
+		myFile.print(buffer);                               // 
+		myFile.print(regBank.get(40493)*2.51/100);
 		myFile.println("V - error");
 		regBank.set(293,1); 
 		regcount = regBank.get(40293);
@@ -3958,7 +3958,7 @@ void test_power()
 				myFile.print(buffer);                               // 
 				myFile.print(regBank.get(40493)*2.51/100);
 				myFile.println("V - pass");
-		    }
+			}
 	}
 
 	// Проверка напряжения 12 вольт Радио 1
@@ -4006,7 +4006,7 @@ void test_power()
 				myFile.print(buffer);                               // "Power Radio2 V    - "                                        ;
 				myFile.print(regBank.get(40495)*2.51/100);
 				myFile.println("V - pass");
-		    }
+			}
 	}
 
 	// Проверка напряжения 12 вольт  ГГС
@@ -4030,7 +4030,7 @@ void test_power()
 			myFile.print(buffer);                               // "Power GGS    V    - "                                        ;
 			myFile.print(regBank.get(40496)*2.51/100);
 			myFile.println("V - pass");
-	    }
+		}
 	}
 
 	// Проверка напряжения 3,6 вольт на светодиоде микрофона
@@ -4054,7 +4054,7 @@ void test_power()
 				myFile.print(buffer);                                 // "Power Led mic.V   - " 
 				myFile.print(regBank.get(40497)/100.0);
 				myFile.println("V - pass");
-		    }
+			}
 	}
 
 	regBank.set(adr_control_command,0);    
@@ -5147,7 +5147,7 @@ void measure_volume(int analog)
 void measure_volume_P(int analog)
 {
 		volume_fact = 0;
-    	volume_fact = analogRead(analog);               // считываем значение
+		volume_fact = analogRead(analog);               // считываем значение
 		voltage = volume_fact * (5.0 / 1023.0);
 		voltage10 = voltage * 100;
 
@@ -5619,7 +5619,7 @@ modbus registers follow the following format
 	regBank.add(40005);  // 
 	regBank.add(40006);  // 
 	regBank.add(40007);  // 
- 	regBank.add(40008);  // 
+	regBank.add(40008);  // 
 	regBank.add(40009);  // 
 
 	regBank.add(40010);    // Адрес хранения величины сигнала резисторами
