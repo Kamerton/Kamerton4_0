@@ -76,7 +76,7 @@ namespace KamertonTest
             ToolTip1.SetToolTip(cmbSerialProtocol, "Выбор протокола COM: ASCII или RTU");
             ToolTip1.SetToolTip(cmbTcpProtocol, "Выбор протокола Ethernet: MODBUS/TCP или Encapsulated RTU над TCP");
             //   ToolTip1.SetToolTip(textBox1, "Время задержки измерения в миллисекундах");
-            cmbComPort.SelectedIndex = 0;
+            cmbComPort.SelectedIndex = 2;
             cmbParity.SelectedIndex = 0;
             cmbStopBits.SelectedIndex = 0;
             cmbDataBits.SelectedIndex = 0;
@@ -4897,6 +4897,11 @@ namespace KamertonTest
         }
 
         private void label40_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbComPort_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

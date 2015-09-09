@@ -57,6 +57,8 @@ namespace KamertonTest
             this.label134 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.checkBoxPower = new System.Windows.Forms.CheckBox();
+            this.checkBoxDisp = new System.Windows.Forms.CheckBox();
             this.checkBoxSensors2 = new System.Windows.Forms.CheckBox();
             this.checkBoxSensors1 = new System.Windows.Forms.CheckBox();
             this.checkBoxSenGGS = new System.Windows.Forms.CheckBox();
@@ -70,6 +72,11 @@ namespace KamertonTest
             this.checkBoxSenGGRadio1 = new System.Windows.Forms.CheckBox();
             this.checkBoxSenAll = new System.Windows.Forms.CheckBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button25 = new System.Windows.Forms.Button();
             this.label72 = new System.Windows.Forms.Label();
@@ -319,13 +326,6 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.checkBoxDisp = new System.Windows.Forms.CheckBox();
-            this.checkBoxPower = new System.Windows.Forms.CheckBox();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -689,6 +689,26 @@ namespace KamertonTest
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Настройка проверки сенсоров";
             // 
+            // checkBoxPower
+            // 
+            this.checkBoxPower.AutoSize = true;
+            this.checkBoxPower.Location = new System.Drawing.Point(16, 87);
+            this.checkBoxPower.Name = "checkBoxPower";
+            this.checkBoxPower.Size = new System.Drawing.Size(210, 19);
+            this.checkBoxPower.TabIndex = 29;
+            this.checkBoxPower.Text = "Проверка напряжения питания\r\n";
+            this.checkBoxPower.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxDisp
+            // 
+            this.checkBoxDisp.AutoSize = true;
+            this.checkBoxDisp.Location = new System.Drawing.Point(16, 388);
+            this.checkBoxDisp.Name = "checkBoxDisp";
+            this.checkBoxDisp.Size = new System.Drawing.Size(200, 19);
+            this.checkBoxDisp.TabIndex = 28;
+            this.checkBoxDisp.Text = "Регулировка яркости дисплея";
+            this.checkBoxDisp.UseVisualStyleBackColor = true;
+            // 
             // checkBoxSensors2
             // 
             this.checkBoxSensors2.AutoSize = true;
@@ -845,6 +865,61 @@ namespace KamertonTest
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Байты обмена с Камертон";
             this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
+            // 
+            // label43
+            // 
+            this.label43.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label43.Location = new System.Drawing.Point(692, 72);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(51, 23);
+            this.label43.TabIndex = 64;
+            this.label43.Text = "0";
+            this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label42.Location = new System.Drawing.Point(624, 72);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(28, 15);
+            this.label42.TabIndex = 63;
+            this.label42.Text = "мкс";
+            this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label41
+            // 
+            this.label41.BackColor = System.Drawing.SystemColors.Control;
+            this.label41.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label41.Location = new System.Drawing.Point(559, 72);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(62, 23);
+            this.label41.TabIndex = 62;
+            this.label41.Text = "0";
+            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label40.Location = new System.Drawing.Point(556, 46);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(181, 15);
+            this.label40.TabIndex = 61;
+            this.label40.Text = "Принято из модуля Камертон";
+            this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label40.Click += new System.EventHandler(this.label40_Click);
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(673, 23);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(13, 13);
+            this.label39.TabIndex = 60;
+            this.label39.Text = "=";
             // 
             // textBox5
             // 
@@ -3034,6 +3109,7 @@ namespace KamertonTest
             this.cmbComPort.Name = "cmbComPort";
             this.cmbComPort.Size = new System.Drawing.Size(71, 21);
             this.cmbComPort.TabIndex = 3;
+            this.cmbComPort.SelectedIndexChanged += new System.EventHandler(this.cmbComPort_SelectedIndexChanged);
             // 
             // Label1
             // 
@@ -3485,81 +3561,6 @@ namespace KamertonTest
             // 
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(673, 23);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(13, 13);
-            this.label39.TabIndex = 60;
-            this.label39.Text = "=";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label40.Location = new System.Drawing.Point(556, 46);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(181, 15);
-            this.label40.TabIndex = 61;
-            this.label40.Text = "Принято из модуля Камертон";
-            this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label40.Click += new System.EventHandler(this.label40_Click);
-            // 
-            // label41
-            // 
-            this.label41.BackColor = System.Drawing.SystemColors.Control;
-            this.label41.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label41.Location = new System.Drawing.Point(559, 72);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(62, 23);
-            this.label41.TabIndex = 62;
-            this.label41.Text = "0";
-            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label42.Location = new System.Drawing.Point(624, 72);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(28, 15);
-            this.label42.TabIndex = 63;
-            this.label42.Text = "мкс";
-            this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label43
-            // 
-            this.label43.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label43.Location = new System.Drawing.Point(692, 72);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(51, 23);
-            this.label43.TabIndex = 64;
-            this.label43.Text = "0";
-            this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // checkBoxDisp
-            // 
-            this.checkBoxDisp.AutoSize = true;
-            this.checkBoxDisp.Location = new System.Drawing.Point(16, 388);
-            this.checkBoxDisp.Name = "checkBoxDisp";
-            this.checkBoxDisp.Size = new System.Drawing.Size(200, 19);
-            this.checkBoxDisp.TabIndex = 28;
-            this.checkBoxDisp.Text = "Регулировка яркости дисплея";
-            this.checkBoxDisp.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxPower
-            // 
-            this.checkBoxPower.AutoSize = true;
-            this.checkBoxPower.Location = new System.Drawing.Point(16, 87);
-            this.checkBoxPower.Name = "checkBoxPower";
-            this.checkBoxPower.Size = new System.Drawing.Size(210, 19);
-            this.checkBoxPower.TabIndex = 29;
-            this.checkBoxPower.Text = "Проверка напряжения питания\r\n";
-            this.checkBoxPower.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
